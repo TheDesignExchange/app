@@ -1,0 +1,7 @@
+<% @recently_created_methods.each do |design_method| %>
+  <%= render design_method %>
+  <li>
+    <%= link_to 'Edit', edit_design_method_path(design_method) %>
+    <%= link_to 'Destroy', design_method, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </li>
+<% end %>

@@ -1,0 +1,448 @@
+
+
+Started GET "/" for 127.0.0.1 at 2013-10-03 14:39:22 -0700
+Connecting to database specified by database.yml
+
+ActionController::RoutingError (No route matches [GET] "/"):
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.2) lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.1) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.1) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.1) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.1) lib/thin/connection.rb:54:in `process'
+  thin (1.5.1) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run'
+  thin (1.5.1) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.1) lib/thin/server.rb:159:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.12) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.12) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.12) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.12) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (2.3ms)
+
+
+Started GET "/design_methods/new" for 127.0.0.1 at 2013-10-03 14:39:47 -0700
+Processing by DesignMethodsController#new as HTML
+Completed 500 Internal Server Error in 2ms
+
+ActiveRecord::StatementInvalid (Could not find table 'design_methods'):
+  app/controllers/design_methods_controller.rb:39:in `new'
+  app/controllers/design_methods_controller.rb:39:in `new'
+
+
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.0ms)
+Connecting to database specified by database.yml
+  [1m[36m (1.9ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (5.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateDesignMethods (20130807164237)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "design_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "overview" text, "process" text, "principle" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130807164237')[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to CreateMethodCategories (20130819014901)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "method_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130819014901')[0m
+  [1m[35m (1.0ms)[0m  commit transaction
+Migrating to CreateCategorizations (20130819021258)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "categorizations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "design_method_id" integer, "method_category_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "cat_index" ON "categorizations" ("design_method_id", "method_category_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_categorizations_on_design_method_id" ON "categorizations" ("design_method_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_categorizations_on_method_category_id" ON "categorizations" ("method_category_id")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130819021258')
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCitations (20131002033402)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "citations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "method_citation_id" integer, "design_method_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE UNIQUE INDEX "cit_index" ON "citations" ("design_method_id", "method_citation_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_citations_on_design_method_id" ON "citations" ("design_method_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_citations_on_method_citation_id" ON "citations" ("method_citation_id")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20131002033402')[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to CreateMethodCitations (20131002033635)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "method_citations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20131002033635')[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+
+
+Started GET "/design_methods/new" for 127.0.0.1 at 2013-10-03 14:40:10 -0700
+Processing by DesignMethodsController#new as HTML
+  Rendered design_methods/_form.html.erb (11.1ms)
+  Rendered design_methods/new.html.erb within layouts/application (14.4ms)
+Completed 500 Internal Server Error in 23ms
+
+ActionView::Template::Error (undefined method `citation_id' for #<DesignMethod:0x007fbedb252b90>):
+    29:   </div>
+    30:   <div class="field">
+    31:     <%= f.label :citation_id %><br />
+    32:     <%= f.number_field :citation_id %>
+    33:   </div>
+    34:   <div class="actions">
+    35:     <%= f.submit %>
+  app/views/design_methods/_form.html.erb:32:in `block in _app_views_design_methods__form_html_erb__458415434825490409_70228847863120'
+  app/views/design_methods/_form.html.erb:1:in `_app_views_design_methods__form_html_erb__458415434825490409_70228847863120'
+  app/views/design_methods/new.html.erb:3:in `_app_views_design_methods_new_html_erb___544244968375559842_70228827460060'
+  app/controllers/design_methods_controller.rb:41:in `new'
+
+
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.6ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.0ms)
+
+
+Started GET "/design_methods/" for 127.0.0.1 at 2013-10-03 14:40:22 -0700
+Processing by DesignMethodsController#index as HTML
+  [1m[36mDesignMethod Load (0.2ms)[0m  [1mSELECT "design_methods".* FROM "design_methods" [0m
+  Rendered design_methods/index.html.erb within layouts/application (0.9ms)
+Compiled citations.css  (8ms)  (pid 95109)
+Compiled design_methods.css  (1ms)  (pid 95109)
+Compiled method_categories.css  (1ms)  (pid 95109)
+Compiled method_citations.css  (1ms)  (pid 95109)
+Compiled scaffolds.css  (9ms)  (pid 95109)
+Compiled application.css  (72ms)  (pid 95109)
+Compiled jquery.js  (1ms)  (pid 95109)
+Compiled jquery_ujs.js  (0ms)  (pid 95109)
+Compiled citations.js  (50ms)  (pid 95109)
+Compiled design_methods.js  (1ms)  (pid 95109)
+Compiled method_categories.js  (0ms)  (pid 95109)
+Compiled method_citations.js  (0ms)  (pid 95109)
+Compiled application.js  (136ms)  (pid 95109)
+Completed 200 OK in 328ms (Views: 326.1ms | ActiveRecord: 0.2ms | Solr: 0.0ms)
+
+
+Started GET "/design_methods/new" for 127.0.0.1 at 2013-10-03 14:40:26 -0700
+Processing by DesignMethodsController#new as HTML
+  Rendered design_methods/_form.html.erb (2.5ms)
+  Rendered design_methods/new.html.erb within layouts/application (2.9ms)
+Completed 500 Internal Server Error in 4ms
+
+ActionView::Template::Error (undefined method `citation_id' for #<DesignMethod:0x007fbed9405070>):
+    29:   </div>
+    30:   <div class="field">
+    31:     <%= f.label :citation_id %><br />
+    32:     <%= f.number_field :citation_id %>
+    33:   </div>
+    34:   <div class="actions">
+    35:     <%= f.submit %>
+  app/views/design_methods/_form.html.erb:32:in `block in _app_views_design_methods__form_html_erb__458415434825490409_70228847863120'
+  app/views/design_methods/_form.html.erb:1:in `_app_views_design_methods__form_html_erb__458415434825490409_70228847863120'
+  app/views/design_methods/new.html.erb:3:in `_app_views_design_methods_new_html_erb___544244968375559842_70228827460060'
+  app/controllers/design_methods_controller.rb:41:in `new'
+
+
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.3ms)
+
+
+Started GET "/method_categories/show" for 127.0.0.1 at 2013-10-03 14:40:50 -0700
+Processing by MethodCategoriesController#show as HTML
+  Parameters: {"id"=>"show"}
+  [1m[35mMethodCategory Load (0.2ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1  [["id", "show"]]
+Completed 404 Not Found in 2ms
+
+ActiveRecord::RecordNotFound (Couldn't find MethodCategory with id=show):
+  app/controllers/method_categories_controller.rb:4:in `show'
+
+
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (24.7ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (30.2ms)
+
+
+Started GET "/method_categories/_method_categories" for 127.0.0.1 at 2013-10-03 14:41:10 -0700
+Processing by MethodCategoriesController#show as HTML
+  Parameters: {"id"=>"_method_categories"}
+  [1m[36mMethodCategory Load (0.1ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1[0m  [["id", "_method_categories"]]
+Completed 404 Not Found in 1ms
+
+ActiveRecord::RecordNotFound (Couldn't find MethodCategory with id=_method_categories):
+  app/controllers/method_categories_controller.rb:4:in `show'
+
+
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-10-10 14:45:50 -0700
+
+ActionController::RoutingError (No route matches [GET] "/"):
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.2) lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.1) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.1) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.1) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.1) lib/thin/connection.rb:54:in `process'
+  thin (1.5.1) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run'
+  thin (1.5.1) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.1) lib/thin/server.rb:159:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.12) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.12) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.12) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.12) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (27.8ms)
+
+
+Started GET "/design_methods/" for 127.0.0.1 at 2013-10-10 14:45:53 -0700
+Processing by DesignMethodsController#index as HTML
+  [1m[35mDesignMethod Load (4.3ms)[0m  SELECT "design_methods".* FROM "design_methods" 
+  Rendered design_methods/index.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 98ms (Views: 57.1ms | ActiveRecord: 4.3ms | Solr: 0.0ms)
+
+
+Started GET "/design_methods/new" for 127.0.0.1 at 2013-10-10 14:45:56 -0700
+Processing by DesignMethodsController#new as HTML
+  Rendered design_methods/_form.html.erb (25.2ms)
+  Rendered design_methods/new.html.erb within layouts/application (29.3ms)
+Completed 500 Internal Server Error in 34ms
+
+ActionView::Template::Error (undefined method `citation_id' for #<DesignMethod:0x007fbed93f1610>):
+    29:   </div>
+    30:   <div class="field">
+    31:     <%= f.label :citation_id %><br />
+    32:     <%= f.number_field :citation_id %>
+    33:   </div>
+    34:   <div class="actions">
+    35:     <%= f.submit %>
+  app/views/design_methods/_form.html.erb:32:in `block in _app_views_design_methods__form_html_erb__458415434825490409_70228847863120'
+  app/views/design_methods/_form.html.erb:1:in `_app_views_design_methods__form_html_erb__458415434825490409_70228847863120'
+  app/views/design_methods/new.html.erb:3:in `_app_views_design_methods_new_html_erb___544244968375559842_70228827460060'
+  app/controllers/design_methods_controller.rb:41:in `new'
+
+
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (5.3ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (10.2ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (33.3ms)
+Connecting to database specified by database.yml
+  [1m[36mDesignMethod Load (4.9ms)[0m  [1mSELECT "design_methods".* FROM "design_methods" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (8.0ms)[0m  [1mINSERT INTO "design_methods" ("created_at", "name", "overview", "principle", "process", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 10 Oct 2013 21:51:09 UTC +00:00], ["name", "3-12-3 Brainstorm"], ["overview", "This format for brainstorming compresses the essentials of an ideation session into one short format. The number 3-12-3 refer to the amount of time in minutes given to each of three activities: 3 minutes for generating pool of observations, 12 for combining those observations into rough concepts, and 3 again for presenting the concepts back to a group. Essential to this format is strict time keeping."], ["principle", "Strict time keeping. Speed is key."], ["process", "1. Pick a topic on which to brainstorm ideas, boiled down to 2 words. \n2. The 2 words can be presented as a full challenge question, such as \"How will tomorrow's television work?\" it is best to avoid doing this right away. By focusing on 2 wors that signify the topic, you will aim to evoke thinking about its defining aspects first, before moving into new concepts or proposing solutions.\n3. To set up the game distribute stack of cards and markers to participants. Everyone should have same umber of cards and  distribution should happen after rules are given. \n\n4. First 3 minutes: Generate a pool of aspects: think about characteristics of the topic and wrie them down on the index card\n5. 12 Minutes: Develop concepts: divide group into pairs. each team draws 3 cards randomly from the pool. Teams develop concepts from the chosen cards.\n6. 3 minutes: Make presentations: when teams present to the larger group, teams may reveal the cards that they drew and how the cards influenced their thinking."], ["updated_at", Thu, 10 Oct 2013 21:51:09 UTC +00:00]]
+  [1m[35mMethodCategory Load (0.4ms)[0m  SELECT "method_categories".* FROM "method_categories" INNER JOIN "categorizations" ON "method_categories"."id" = "categorizations"."method_category_id" WHERE "categorizations"."design_method_id" = 1
+  [1m[32mSOLR Request (2.0ms)[0m  [ path=#<RSolr::Client:0x007fd906d95a08> parameters={data: [1m[1m<?xml version="1.0" encoding="UTF-8"?><add><doc><field name="id">DesignMethod 1</field><field name="type">DesignMethod</field><field name="type">ActiveRecord::Base</field><field name="class_name">DesignMethod</field><field name="name_text">3-12-3 Brainstorm</field><field name="overview_text">This format for brainstorming compresses the essentials of an ideation session into one short format. The number 3-12-3 refer to the amount of time in minutes given to each of three activities: 3 minutes for generating pool of observations, 12 for combining those observations into rough concepts, and 3 again for presenting the concepts back to a group. Essential to this format is strict time keeping.</field><field name="principle_text">Strict time keeping. Speed is key.</field><field name="process_text">1. Pick a topic on which to brainstorm ideas, boiled down to 2 words. 
+2. The 2 words can be presented as a full challenge question, such as "How will tomorrow's television work?" it is best to avoid doing this right away. By focusing on 2 wors that signify the topic, you will aim to evoke thinking about its defining aspects first, before moving into new concepts or proposing solutions.
+3. To set up the game distribute stack of cards and markers to participants. Everyone should have same umber of cards and  distribution should happen after rules are given. 
+
+4. First 3 minutes: Generate a pool of aspects: think about characteristics of the topic and wrie them down on the index card
+5. 12 Minutes: Develop concepts: divide group into pairs. each team draws 3 cards randomly from the pool. Teams develop concepts from the chosen cards.
+6. 3 minutes: Make presentations: when teams present to the larger group, teams may reveal the cards that they drew and how the cards influenced their thinking.</field></doc></add>[0m, headers: [1m[1m{"Content-Type"=>"text/xml"}[0m, method: [1m[1mpost[0m, params: [1m[1m{:wt=>:ruby}[0m, query: [1m[1mwt=ruby[0m, path: [1m[1mupdate[0m, uri: [1m[1mhttp://localhost:8982/solr/update?wt=ruby[0m, open_timeout: [1m[1m[0m, read_timeout: [1m[1m[0m, retry_503: [1m[1m[0m, retry_after_limit: [1m[1m[0m} ]
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36mDesignMethod Load (1.2ms)[0m  [1mSELECT "design_methods".* FROM "design_methods" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (4.0ms)[0m  [1mINSERT INTO "design_methods" ("created_at", "name", "overview", "principle", "process", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 10 Oct 2013 21:52:10 UTC +00:00], ["name", "3-12-3 Brainstorm"], ["overview", "This format for brainstorming compresses the essentials of an ideation session into one short format. The number 3-12-3 refer to the amount of time in minutes given to each of three activities: 3 minutes for generating pool of observations, 12 for combining those observations into rough concepts, and 3 again for presenting the concepts back to a group. Essential to this format is strict time keeping."], ["principle", "Strict time keeping. Speed is key."], ["process", "1. Pick a topic on which to brainstorm ideas, boiled down to 2 words. \n2. The 2 words can be presented as a full challenge question, such as \"How will tomorrow's television work?\" it is best to avoid doing this right away. By focusing on 2 wors that signify the topic, you will aim to evoke thinking about its defining aspects first, before moving into new concepts or proposing solutions.\n3. To set up the game distribute stack of cards and markers to participants. Everyone should have same umber of cards and  distribution should happen after rules are given. \n\n4. First 3 minutes: Generate a pool of aspects: think about characteristics of the topic and wrie them down on the index card\n5. 12 Minutes: Develop concepts: divide group into pairs. each team draws 3 cards randomly from the pool. Teams develop concepts from the chosen cards.\n6. 3 minutes: Make presentations: when teams present to the larger group, teams may reveal the cards that they drew and how the cards influenced their thinking."], ["updated_at", Thu, 10 Oct 2013 21:52:10 UTC +00:00]]
+  [1m[35mMethodCategory Load (0.1ms)[0m  SELECT "method_categories".* FROM "method_categories" INNER JOIN "categorizations" ON "method_categories"."id" = "categorizations"."method_category_id" WHERE "categorizations"."design_method_id" = 1
+  [1m[32mSOLR Request (2.2ms)[0m  [ path=#<RSolr::Client:0x007fc69cfbe2c0> parameters={data: [1m[1m<?xml version="1.0" encoding="UTF-8"?><add><doc><field name="id">DesignMethod 1</field><field name="type">DesignMethod</field><field name="type">ActiveRecord::Base</field><field name="class_name">DesignMethod</field><field name="name_text">3-12-3 Brainstorm</field><field name="overview_text">This format for brainstorming compresses the essentials of an ideation session into one short format. The number 3-12-3 refer to the amount of time in minutes given to each of three activities: 3 minutes for generating pool of observations, 12 for combining those observations into rough concepts, and 3 again for presenting the concepts back to a group. Essential to this format is strict time keeping.</field><field name="principle_text">Strict time keeping. Speed is key.</field><field name="process_text">1. Pick a topic on which to brainstorm ideas, boiled down to 2 words. 
+2. The 2 words can be presented as a full challenge question, such as "How will tomorrow's television work?" it is best to avoid doing this right away. By focusing on 2 wors that signify the topic, you will aim to evoke thinking about its defining aspects first, before moving into new concepts or proposing solutions.
+3. To set up the game distribute stack of cards and markers to participants. Everyone should have same umber of cards and  distribution should happen after rules are given. 
+
+4. First 3 minutes: Generate a pool of aspects: think about characteristics of the topic and wrie them down on the index card
+5. 12 Minutes: Develop concepts: divide group into pairs. each team draws 3 cards randomly from the pool. Teams develop concepts from the chosen cards.
+6. 3 minutes: Make presentations: when teams present to the larger group, teams may reveal the cards that they drew and how the cards influenced their thinking.</field></doc></add>[0m, headers: [1m[1m{"Content-Type"=>"text/xml"}[0m, method: [1m[1mpost[0m, params: [1m[1m{:wt=>:ruby}[0m, query: [1m[1mwt=ruby[0m, path: [1m[1mupdate[0m, uri: [1m[1mhttp://localhost:8982/solr/update?wt=ruby[0m, open_timeout: [1m[1m[0m, read_timeout: [1m[1m[0m, retry_503: [1m[1m[0m, retry_after_limit: [1m[1m[0m} ]
+  [1m[36m (1.6ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36mDesignMethod Load (1.2ms)[0m  [1mSELECT "design_methods".* FROM "design_methods" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (4.1ms)[0m  [1mINSERT INTO "design_methods" ("created_at", "name", "overview", "principle", "process", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 10 Oct 2013 22:09:22 UTC +00:00], ["name", "3-12-3 Brainstorm"], ["overview", "This format for brainstorming compresses the essentials of an ideation session into one short format. The number 3-12-3 refer to the amount of time in minutes given to each of three activities: 3 minutes for generating pool of observations, 12 for combining those observations into rough concepts, and 3 again for presenting the concepts back to a group. Essential to this format is strict time keeping."], ["principle", "Strict time keeping. Speed is key."], ["process", "1. Pick a topic on which to brainstorm ideas, boiled down to 2 words. \n2. The 2 words can be presented as a full challenge question, such as \"How will tomorrow's television work?\" it is best to avoid doing this right away. By focusing on 2 wors that signify the topic, you will aim to evoke thinking about its defining aspects first, before moving into new concepts or proposing solutions.\n3. To set up the game distribute stack of cards and markers to participants. Everyone should have same umber of cards and  distribution should happen after rules are given. \n\n4. First 3 minutes: Generate a pool of aspects: think about characteristics of the topic and wrie them down on the index card\n5. 12 Minutes: Develop concepts: divide group into pairs. each team draws 3 cards randomly from the pool. Teams develop concepts from the chosen cards.\n6. 3 minutes: Make presentations: when teams present to the larger group, teams may reveal the cards that they drew and how the cards influenced their thinking."], ["updated_at", Thu, 10 Oct 2013 22:09:22 UTC +00:00]]
+  [1m[35mMethodCategory Load (0.1ms)[0m  SELECT "method_categories".* FROM "method_categories" INNER JOIN "categorizations" ON "method_categories"."id" = "categorizations"."method_category_id" WHERE "categorizations"."design_method_id" = 1
+  [1m[32mSOLR Request (2.1ms)[0m  [ path=#<RSolr::Client:0x007fa7897602e0> parameters={data: [1m[1m<?xml version="1.0" encoding="UTF-8"?><add><doc><field name="id">DesignMethod 1</field><field name="type">DesignMethod</field><field name="type">ActiveRecord::Base</field><field name="class_name">DesignMethod</field><field name="name_text">3-12-3 Brainstorm</field><field name="overview_text">This format for brainstorming compresses the essentials of an ideation session into one short format. The number 3-12-3 refer to the amount of time in minutes given to each of three activities: 3 minutes for generating pool of observations, 12 for combining those observations into rough concepts, and 3 again for presenting the concepts back to a group. Essential to this format is strict time keeping.</field><field name="principle_text">Strict time keeping. Speed is key.</field><field name="process_text">1. Pick a topic on which to brainstorm ideas, boiled down to 2 words. 
+2. The 2 words can be presented as a full challenge question, such as "How will tomorrow's television work?" it is best to avoid doing this right away. By focusing on 2 wors that signify the topic, you will aim to evoke thinking about its defining aspects first, before moving into new concepts or proposing solutions.
+3. To set up the game distribute stack of cards and markers to participants. Everyone should have same umber of cards and  distribution should happen after rules are given. 
+
+4. First 3 minutes: Generate a pool of aspects: think about characteristics of the topic and wrie them down on the index card
+5. 12 Minutes: Develop concepts: divide group into pairs. each team draws 3 cards randomly from the pool. Teams develop concepts from the chosen cards.
+6. 3 minutes: Make presentations: when teams present to the larger group, teams may reveal the cards that they drew and how the cards influenced their thinking.</field></doc></add>[0m, headers: [1m[1m{"Content-Type"=>"text/xml"}[0m, method: [1m[1mpost[0m, params: [1m[1m{:wt=>:ruby}[0m, query: [1m[1mwt=ruby[0m, path: [1m[1mupdate[0m, uri: [1m[1mhttp://localhost:8982/solr/update?wt=ruby[0m, open_timeout: [1m[1m[0m, read_timeout: [1m[1m[0m, retry_503: [1m[1m[0m, retry_after_limit: [1m[1m[0m} ]
+  [1m[36m (1.7ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (2.8ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateDesignMethods (20130807164237)
+Migrating to CreateMethodCategories (20130819014901)
+Migrating to CreateCategorizations (20130819021258)
+Migrating to CreateCitations (20131002033402)
+Migrating to CreateMethodCitations (20131002033635)
+Migrating to CreateCaseStudies (20131010222104)
+  [1m[35m (0.5ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateDesignMethods (20130807164237)
+Migrating to CreateMethodCategories (20130819014901)
+Migrating to CreateCategorizations (20130819021258)
+Migrating to CreateCitations (20131002033402)
+Migrating to CreateMethodCitations (20131002033635)
+Migrating to CreateCaseStudies (20131010222104)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "case_studies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "company" varchar(255), "company_id" integer, "name" varchar(255), "contact" varchar(255), "contact_information" varchar(255), "description" varchar(255), "resources" varchar(255), "usability_rating" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20131010222104')[0m
+  [1m[35m (2.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+
+
+Started GET "/author/2" for 127.0.0.1 at 2013-10-10 17:05:01 -0700
+
+ActionController::RoutingError (No route matches [GET] "/author/2"):
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.2) lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.1) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.1) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.1) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.1) lib/thin/connection.rb:54:in `process'
+  thin (1.5.1) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run'
+  thin (1.5.1) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.1) lib/thin/server.rb:159:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.12) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.12) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.12) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.12) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (3.0ms)
+DEPRECATION WARNING: You didn't set config.secret_key_base. Read the upgrade documentation to learn more about this new config option. (called from require at bin/rails:4)
+
+
+Started GET "/" for 127.0.0.1 at 2013-12-05 15:16:15 -0800
+Processing by MainPagesController#home as HTML
+  Rendered main_pages/home.html.erb within layouts/application (3.5ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 1241ms (Views: 1239.8ms | ActiveRecord: 0.0ms | Solr: 0.0ms)
+
+
+Started GET "/search?query=brainstorm" for 127.0.0.1 at 2013-12-05 15:17:35 -0800
+Processing by DesignMethodsController#search as JSON
+  Parameters: {"query"=>"brainstorm"}
+  [1m[32mSOLR Request (2.1ms)[0m  [ path=[1m[1mselect[0m parameters={fq: [1m[1m["type:DesignMethod"][0m, q: [1m[1m"brainstorm"[0m, fl: [1m[1m"* score"[0m, qf: [1m[1m"name_texts overview_texts principle_texts process_texts method_categories_text"[0m, defType: [1m[1m"edismax"[0m, mm: [1m[1m0[0m, hl: [1m[1m"on"[0m, hl.simple.pre: [1m[1m"@@@hl@@@"[0m, hl.simple.post: [1m[1m"@@@endhl@@@"[0m, start: [1m[1m0[0m, rows: [1m[1m30[0m} ]
+Completed 500 Internal Server Error in 60ms
+
+Errno::ECONNREFUSED (Connection refused - {:data=>"fq=type%3ADesignMethod&q=brainstorm&fl=%2A+score&qf=name_texts+overview_texts+principle_texts+process_texts+method_categories_text&defType=edismax&mm=0&hl=on&hl.simple.pre=%40%40%40hl%40%40%40&hl.simple.post=%40%40%40endhl%40%40%40&start=0&rows=30", :method=>:post, :params=>{:wt=>:ruby}, :query=>"wt=ruby", :headers=>{"Content-Type"=>"application/x-www-form-urlencoded; charset=UTF-8"}, :path=>"select", :uri=>#<URI::HTTP:0x007f98ac03e840 URL:http://localhost:8982/solr/default/select?wt=ruby>, :open_timeout=>nil, :read_timeout=>nil, :retry_503=>nil, :retry_after_limit=>nil}):
+  app/controllers/design_methods_controller.rb:34:in `search'
+
+
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.5ms)
+
+
+Started GET "/search?query=brainstorm" for 127.0.0.1 at 2013-12-05 15:17:40 -0800
+Processing by DesignMethodsController#search as HTML
+  Parameters: {"query"=>"brainstorm"}
+  [1m[32mSOLR Request (1.6ms)[0m  [ path=[1m[1mselect[0m parameters={fq: [1m[1m["type:DesignMethod"][0m, q: [1m[1m"brainstorm"[0m, fl: [1m[1m"* score"[0m, qf: [1m[1m"name_texts overview_texts principle_texts process_texts method_categories_text"[0m, defType: [1m[1m"edismax"[0m, mm: [1m[1m0[0m, hl: [1m[1m"on"[0m, hl.simple.pre: [1m[1m"@@@hl@@@"[0m, hl.simple.post: [1m[1m"@@@endhl@@@"[0m, start: [1m[1m0[0m, rows: [1m[1m30[0m} ]
+Completed 500 Internal Server Error in 3ms
+
+Errno::ECONNREFUSED (Connection refused - {:data=>"fq=type%3ADesignMethod&q=brainstorm&fl=%2A+score&qf=name_texts+overview_texts+principle_texts+process_texts+method_categories_text&defType=edismax&mm=0&hl=on&hl.simple.pre=%40%40%40hl%40%40%40&hl.simple.post=%40%40%40endhl%40%40%40&start=0&rows=30", :method=>:post, :params=>{:wt=>:ruby}, :query=>"wt=ruby", :headers=>{"Content-Type"=>"application/x-www-form-urlencoded; charset=UTF-8"}, :path=>"select", :uri=>#<URI::HTTP:0x007f98ac19df88 URL:http://localhost:8982/solr/default/select?wt=ruby>, :open_timeout=>nil, :read_timeout=>nil, :retry_503=>nil, :retry_after_limit=>nil}):
+  app/controllers/design_methods_controller.rb:34:in `search'
+
+
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.1ms)
+DEPRECATION WARNING: You didn't set config.secret_key_base. Read the upgrade documentation to learn more about this new config option. (called from require at bin/rails:4)
+
+
+Started GET "/" for 127.0.0.1 at 2013-12-17 15:40:35 -0800
+Processing by MainPagesController#home as HTML
+  Rendered main_pages/home.html.erb within layouts/application (3.7ms)
+  Rendered layouts/_header.html.erb (1.6ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 189ms (Views: 188.4ms | ActiveRecord: 0.0ms | Solr: 0.0ms)
+
+
+Started GET "/design_methods/autocomplete?term=brain" for 127.0.0.1 at 2013-12-17 15:40:39 -0800
+Processing by DesignMethodsController#autocomplete as JSON
+  Parameters: {"term"=>"brain"}
+  [1m[36mDesignMethod Load (2.8ms)[0m  [1mSELECT "design_methods".* FROM "design_methods" WHERE (name LIKE 'brain%')[0m
+Completed 200 OK in 15ms (Views: 0.1ms | ActiveRecord: 2.8ms | Solr: 0.0ms)
+
+
+Started GET "/search?utf8=%E2%9C%93&query=brainstorm" for 127.0.0.1 at 2013-12-17 15:40:41 -0800
+Processing by DesignMethodsController#search as HTML
+  Parameters: {"utf8"=>"✓", "query"=>"brainstorm"}
+  [1m[32mSOLR Request (2.2ms)[0m  [ path=[1m[1mselect[0m parameters={fq: [1m[1m["type:DesignMethod"][0m, q: [1m[1m"brainstorm"[0m, fl: [1m[1m"* score"[0m, qf: [1m[1m"name_texts overview_texts principle_texts process_texts method_categories_text"[0m, defType: [1m[1m"edismax"[0m, mm: [1m[1m0[0m, hl: [1m[1m"on"[0m, hl.simple.pre: [1m[1m"@@@hl@@@"[0m, hl.simple.post: [1m[1m"@@@endhl@@@"[0m, start: [1m[1m0[0m, rows: [1m[1m30[0m} ]
+Completed 500 Internal Server Error in 51ms
+
+Errno::ECONNREFUSED (Connection refused - {:data=>"fq=type%3ADesignMethod&q=brainstorm&fl=%2A+score&qf=name_texts+overview_texts+principle_texts+process_texts+method_categories_text&defType=edismax&mm=0&hl=on&hl.simple.pre=%40%40%40hl%40%40%40&hl.simple.post=%40%40%40endhl%40%40%40&start=0&rows=30", :method=>:post, :params=>{:wt=>:ruby}, :query=>"wt=ruby", :headers=>{"Content-Type"=>"application/x-www-form-urlencoded; charset=UTF-8"}, :path=>"select", :uri=>#<URI::HTTP:0x007fc72b360228 URL:http://localhost:8982/solr/default/select?wt=ruby>, :open_timeout=>nil, :read_timeout=>nil, :retry_503=>nil, :retry_after_limit=>nil}):
+  app/controllers/design_methods_controller.rb:34:in `search'
+
+
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /Users/cearto/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.2ms)

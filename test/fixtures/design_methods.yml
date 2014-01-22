@@ -1,0 +1,28 @@
+# == Schema Information
+#
+# Table name: design_methods
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  overview   :text
+#  process    :text
+#  principle  :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  overview: MyText
+  process: MyText
+  principle: MyText
+  citation_id: 1
+
+two:
+  name: MyString
+  overview: MyText
+  process: MyText
+  principle: MyText
+  citation_id: 1

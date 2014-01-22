@@ -1,0 +1,26 @@
+<div class="inner">
+  <%= link_to "DX", root_url, class: "logo" %>
+  <%= form_tag "/search", method: "get" do %>
+    <%= text_field_tag :query, nil, class: "search_bar", placeholder: "Search for design methods" %>
+  <% end %>
+  <ul>
+    <% if current_user %>
+      <li>
+        <%= link_to 'All Methods', design_methods_path %>
+      </li>
+      <li>
+        <%= link_to 'My Profile', current_user %>
+      </li>
+      <li>
+        <%= link_to "Sign Out", destroy_user_session_url, method: "delete" %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to 'All Methods', design_methods_path %>
+      </li>
+      <li>
+        <%= link_to "Sign in", new_user_session_url %>
+      </li>
+    <% end %>
+  </ul>
+</div>

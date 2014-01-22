@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: method_citations
+#
+#  id               :integer          not null, primary key
+#  design_method_id :integer
+#  citation_id      :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  design_method_id: 1
+  citation_id: 1
+
+two:
+  design_method_id: 1
+  citation_id: 1

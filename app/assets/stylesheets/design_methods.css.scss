@@ -1,0 +1,49 @@
+.method {
+}
+
+.method p {
+  font-size: 11pt;
+  font-family: serif;
+  line-height: 1.2em;
+}
+
+.highlight {
+  color: #777;
+  font-size: 9pt;
+}
+
+.highlight p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.method h3 {
+  font-size: 13pt;
+}
+
+li.method {
+  border-bottom: 1px solid #e9e9e9;
+  border-right: 1px solid #e9e9e9;
+  border-left: 1px solid #e9e9e9;
+
+  margin: 0;
+  padding: 10px;
+}
+
+h1, h2, h3, h4 {
+  font-family: sans-serif;
+}
+
+h3, h4 {
+  font-weight: normal;
+}
+
+.inline {
+  display: inline;
+  margin: 10px 20px 10px 0;
+}
+
+.subtitle {
+  font-family: serif;
+  color: #777;
+}

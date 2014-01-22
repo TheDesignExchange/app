@@ -1,0 +1,9 @@
+<li class="method">
+  <h3 class="inline"><%= link_to hit.stored(:name).first, hit.result %></h3>
+  <h4 class="subtitle inline">by <%= link_to hit.result.owner.email, hit.result.owner %></h4>
+
+  <% hit.highlights.each do |text| %>
+    <div class="highlight"><%= simple_format text.format { |word| content_tag(:b, word) } %></div>
+  <% end %>
+
+</li>

@@ -1,0 +1,15 @@
+<h1> Search results </h1>
+<div class="search">
+    <div class="sidecolumn">
+        <ul>
+            <h3>Filters</h3>
+        </ul>
+    </div>
+    <div class="maincolumn">
+        <ul>
+          <% @hits.each do |hit| %>
+            <%= render 'design_methods/hit', hit: hit %>
+          <% end %>
+        </ul>
+    </div>
+</div>
