@@ -1,3 +1,12 @@
+== To Load the Design Exchnage Project
+Run
+
+rake db:migrate
+rake sunspot:solr:start
+rake db:seed
+
+rails server
+
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create

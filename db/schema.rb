@@ -13,6 +13,19 @@
 
 ActiveRecord::Schema.define(version: 20131024173832) do
 
+  create_table "case_studies", force: true do |t|
+    t.string   "company"
+    t.integer  "company_id"
+    t.string   "name"
+    t.string   "contact"
+    t.string   "contact_information"
+    t.string   "description"
+    t.string   "resources"
+    t.integer  "usability_rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "categorizations", force: true do |t|
     t.integer  "design_method_id"
     t.integer  "method_category_id"
