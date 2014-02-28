@@ -9123,3 +9123,4 @@ SQLite3::SQLException: no such column: mc_relations.children_id: SELECT "mc_rela
 DEPRECATION WARNING: Relation#all is deprecated. If you want to eager-load a relation, you can call #load (e.g. `Post.where(published: true).load`). If you want to get an array of records from a relation, you can call #to_a (e.g. `Post.where(published: true).to_a`). (called from irb_binding at (irb):41)
   [1m[35m (0.5ms)[0m  rollback transaction
   [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction

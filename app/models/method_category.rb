@@ -17,21 +17,22 @@ class MethodCategory < ActiveRecord::Base
   #To get all children, use self.children instead.
   def getchildren(depth = 1)
     to_return = Array.new
-    val = self.id
-    search = McRelations.where('parent_id = ? AND distance <= ?', val, depth)
-    search.each do |s|
-      to_return << MethodCategory.find(s.child_id)
+    self.children.each do |c|
+      if c.distance <= depth
+        to_return << c
+      end
     end
     return to_return
   end
 
   #Retrieves all parents with a distance <= DEPTH. Default is immediate parents (depth = 1).
-  #To get all parents, use self.parent instead.
+  #To get all parents, use self.parents instead.
   def getparents(depth = 1)
     to_return = Array.new
-    search = McRelations.where("child_id = ? AND distance <= ?", self.id, depth)
-    search.each do |s|
-      to_return << MethodCategory.find(s.parent_id)
+    self.parents.each do |c|
+      if c.distance <= depth
+        to_return << c
+      end
     end
     return to_return
   end
@@ -91,6 +92,26 @@ class MethodCategory < ActiveRecord::Base
       end
     end
   end
+
+  def distance(other, parent = true)
+    if parent
+      relation = McRelations.find_by(parent_id: self.id, child_id: other.id)
+    else
+      relation = McRelations.find_by(parent_id: other.id, child_id: self.id)
+    end
+      return relation.distance
+  end
+
+  def updatedist(other, distance, parent = true)
+    old_distance = self.distance(other, parent)
+    if parent
+      update_relation = McRelations.find_by(parent_id: self.id, child_id: other.id)
+    else
+      update_relation = McRelations.find_by(parent_id: other.id, child_id: self.id)
+    end
+      update_relation.distance = distance
+      update_relation.save
+    end
 
   has_many :descendants,  :class_name => "McRelations",
                           :foreign_key => "parent_id",
