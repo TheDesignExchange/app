@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024173832) do
+ActiveRecord::Schema.define(version: 20140215003559) do
 
   create_table "case_studies", force: true do |t|
     t.string   "company"
@@ -52,6 +52,19 @@ ActiveRecord::Schema.define(version: 20131024173832) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "mc_relations", force: true do |t|
+    t.integer  "parent_id"
+    t.integer  "child_id"
+    t.integer  "distance"
+    t.string   "description", default: "subclass"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mc_relations", ["child_id"], name: "index_mc_relations_on_child_id"
+  add_index "mc_relations", ["parent_id", "child_id"], name: "mcrelations_index", unique: true
+  add_index "mc_relations", ["parent_id"], name: "index_mc_relations_on_parent_id"
 
   create_table "method_categories", force: true do |t|
     t.string   "name"

@@ -8090,3 +8090,1036 @@ Binary data inserted for `string` type on column `encrypted_password`
   [1m[35mSQL (0.1ms)[0m  DELETE FROM "design_methods" WHERE "design_methods"."id" = ?  [["id", 2]]
   [1m[32mSOLR Request (2.7ms)[0m  [ path=[1m[1mupdate[0m parameters={} ]
   [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[36m (0.8ms)[0m  [1mbegin transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMcRelations (20140215003559)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMcRelations (20140215003559)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMcRelations (20140215003559)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMcRelations (20140215003559)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")[0m
+SQLite3::SQLException: no such table: main.mc_relations: CREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (150.7ms)[0m  [1mCREATE TABLE "case_studies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "company" varchar(255), "company_id" integer, "name" varchar(255), "contact" varchar(255), "contact_information" varchar(255), "description" varchar(255), "resources" varchar(255), "usability_rating" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (156.2ms)[0m  CREATE TABLE "categorizations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "design_method_id" integer, "method_category_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (167.2ms)[0m  [1mCREATE UNIQUE INDEX "cat_index" ON "categorizations" ("design_method_id", "method_category_id")[0m
+  [1m[35m (155.6ms)[0m  CREATE INDEX "index_categorizations_on_design_method_id" ON "categorizations" ("design_method_id")
+  [1m[36m (155.6ms)[0m  [1mCREATE INDEX "index_categorizations_on_method_category_id" ON "categorizations" ("method_category_id")[0m
+  [1m[35m (133.0ms)[0m  CREATE TABLE "citations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (133.1ms)[0m  [1mCREATE TABLE "design_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "overview" text NOT NULL, "process" text NOT NULL, "principle" text NOT NULL, "owner_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (133.1ms)[0m  CREATE TABLE "method_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (135.3ms)[0m  [1mCREATE TABLE "method_citations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "design_method_id" integer, "citation_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (156.2ms)[0m  CREATE INDEX "index_method_citations_on_citation_id" ON "method_citations" ("citation_id")
+  [1m[36m (155.5ms)[0m  [1mCREATE UNIQUE INDEX "index_method_citations_on_design_method_id_and_citation_id" ON "method_citations" ("design_method_id", "citation_id")[0m
+  [1m[35m (133.2ms)[0m  CREATE INDEX "index_method_citations_on_design_method_id" ON "method_citations" ("design_method_id")
+  [1m[36m (155.4ms)[0m  [1mCREATE TABLE "method_ownerships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "design_method_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (144.0ms)[0m  CREATE TABLE "user_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "design_method_id" integer NOT NULL, "type_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (144.9ms)[0m  [1mCREATE INDEX "index_user_methods_on_design_method_id" ON "user_methods" ("design_method_id")[0m
+  [1m[35m (144.4ms)[0m  CREATE UNIQUE INDEX "index_user_methods_on_user_id_and_design_method_id" ON "user_methods" ("user_id", "design_method_id")
+  [1m[36m (168.6ms)[0m  [1mCREATE INDEX "index_user_methods_on_user_id" ON "user_methods" ("user_id")[0m
+  [1m[35m (149.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (166.6ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (144.4ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (153.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (133.5ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (155.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20131024173832')
+  [1m[36m (145.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130819021258')[0m
+  [1m[35m (144.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130819014901')
+  [1m[36m (146.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20131023232842')[0m
+  [1m[35m (144.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130807164237')
+  [1m[36m (133.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20131003211347')[0m
+  [1m[35m (112.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20131003211409')
+  [1m[36m (123.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20131024171950')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMcRelations (20140215003559)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")[0m
+SQLite3::SQLException: no such table: main.mc_relations: CREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMcRelations (20140215003559)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")[0m
+SQLite3::SQLException: no such table: main.mc_relations: CREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (152.3ms)[0m  [1mCREATE TABLE "case_studies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "company" varchar(255), "company_id" integer, "name" varchar(255), "contact" varchar(255), "contact_information" varchar(255), "description" varchar(255), "resources" varchar(255), "usability_rating" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (145.2ms)[0m  CREATE TABLE "categorizations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "design_method_id" integer, "method_category_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (144.8ms)[0m  [1mCREATE UNIQUE INDEX "cat_index" ON "categorizations" ("design_method_id", "method_category_id")[0m
+  [1m[35m (155.5ms)[0m  CREATE INDEX "index_categorizations_on_design_method_id" ON "categorizations" ("design_method_id")
+  [1m[36m (144.4ms)[0m  [1mCREATE INDEX "index_categorizations_on_method_category_id" ON "categorizations" ("method_category_id")[0m
+  [1m[35m (144.2ms)[0m  CREATE TABLE "citations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (143.9ms)[0m  [1mCREATE TABLE "design_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "overview" text NOT NULL, "process" text NOT NULL, "principle" text NOT NULL, "owner_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (155.5ms)[0m  CREATE TABLE "method_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (144.5ms)[0m  [1mCREATE TABLE "method_citations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "design_method_id" integer, "citation_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (168.8ms)[0m  CREATE INDEX "index_method_citations_on_citation_id" ON "method_citations" ("citation_id")
+  [1m[36m (166.4ms)[0m  [1mCREATE UNIQUE INDEX "index_method_citations_on_design_method_id_and_citation_id" ON "method_citations" ("design_method_id", "citation_id")[0m
+  [1m[35m (155.6ms)[0m  CREATE INDEX "index_method_citations_on_design_method_id" ON "method_citations" ("design_method_id")
+  [1m[36m (177.5ms)[0m  [1mCREATE TABLE "method_ownerships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "design_method_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (155.1ms)[0m  CREATE TABLE "user_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "design_method_id" integer NOT NULL, "type_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (145.1ms)[0m  [1mCREATE INDEX "index_user_methods_on_design_method_id" ON "user_methods" ("design_method_id")[0m
+  [1m[35m (210.9ms)[0m  CREATE UNIQUE INDEX "index_user_methods_on_user_id_and_design_method_id" ON "user_methods" ("user_id", "design_method_id")
+  [1m[36m (168.1ms)[0m  [1mCREATE INDEX "index_user_methods_on_user_id" ON "user_methods" ("user_id")[0m
+  [1m[35m (176.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (199.9ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (166.7ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (175.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (178.2ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (189.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20131024173832')
+  [1m[36m (211.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130819021258')[0m
+  [1m[35m (144.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130819014901')
+  [1m[36m (147.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20131023232842')[0m
+  [1m[35m (167.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130807164237')
+  [1m[36m (211.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20131003211347')[0m
+  [1m[35m (167.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20131003211409')
+  [1m[36m (122.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20131024171950')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (181.1ms)[0m  [1mCREATE TABLE "case_studies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "company" varchar(255), "company_id" integer, "name" varchar(255), "contact" varchar(255), "contact_information" varchar(255), "description" varchar(255), "resources" varchar(255), "usability_rating" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (132.1ms)[0m  CREATE TABLE "categorizations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "design_method_id" integer, "method_category_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (202.5ms)[0m  [1mCREATE UNIQUE INDEX "cat_index" ON "categorizations" ("design_method_id", "method_category_id")[0m
+  [1m[35m (155.1ms)[0m  CREATE INDEX "index_categorizations_on_design_method_id" ON "categorizations" ("design_method_id")
+  [1m[36m (188.9ms)[0m  [1mCREATE INDEX "index_categorizations_on_method_category_id" ON "categorizations" ("method_category_id")[0m
+  [1m[35m (177.6ms)[0m  CREATE TABLE "citations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (155.4ms)[0m  [1mCREATE TABLE "design_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "overview" text NOT NULL, "process" text NOT NULL, "principle" text NOT NULL, "owner_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (199.9ms)[0m  CREATE TABLE "method_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (188.5ms)[0m  [1mCREATE TABLE "method_citations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "design_method_id" integer, "citation_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (146.8ms)[0m  CREATE INDEX "index_method_citations_on_citation_id" ON "method_citations" ("citation_id")
+  [1m[36m (144.6ms)[0m  [1mCREATE UNIQUE INDEX "index_method_citations_on_design_method_id_and_citation_id" ON "method_citations" ("design_method_id", "citation_id")[0m
+  [1m[35m (144.5ms)[0m  CREATE INDEX "index_method_citations_on_design_method_id" ON "method_citations" ("design_method_id")
+  [1m[36m (299.6ms)[0m  [1mCREATE TABLE "method_ownerships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "design_method_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (254.9ms)[0m  CREATE TABLE "user_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "design_method_id" integer NOT NULL, "type_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (156.1ms)[0m  [1mCREATE INDEX "index_user_methods_on_design_method_id" ON "user_methods" ("design_method_id")[0m
+  [1m[35m (155.7ms)[0m  CREATE UNIQUE INDEX "index_user_methods_on_user_id_and_design_method_id" ON "user_methods" ("user_id", "design_method_id")
+  [1m[36m (155.5ms)[0m  [1mCREATE INDEX "index_user_methods_on_user_id" ON "user_methods" ("user_id")[0m
+  [1m[35m (142.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (155.5ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (133.6ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (153.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (155.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (167.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20131024173832')
+  [1m[36m (145.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130819021258')[0m
+  [1m[35m (111.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130819014901')
+  [1m[36m (124.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20131023232842')[0m
+  [1m[35m (156.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130807164237')
+  [1m[36m (145.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20131003211347')[0m
+  [1m[35m (134.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20131003211409')
+  [1m[36m (133.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20131024171950')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMcRelations (20140215003559)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")[0m
+SQLite3::SQLException: no such table: main.mc_relations: CREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMcRelations (20140215003559)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "mc_relations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "parent_id" integer, "child_id" integer, "distance" integer, "type" varchar(255) DEFAULT 'subclass', "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140215003559"]]
+  [1m[36m (123.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (163.7ms)[0m  [1mCREATE TABLE "case_studies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "company" varchar(255), "company_id" integer, "name" varchar(255), "contact" varchar(255), "contact_information" varchar(255), "description" varchar(255), "resources" varchar(255), "usability_rating" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (154.7ms)[0m  CREATE TABLE "categorizations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "design_method_id" integer, "method_category_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (155.9ms)[0m  [1mCREATE UNIQUE INDEX "cat_index" ON "categorizations" ("design_method_id", "method_category_id")[0m
+  [1m[35m (299.9ms)[0m  CREATE INDEX "index_categorizations_on_design_method_id" ON "categorizations" ("design_method_id")
+  [1m[36m (133.7ms)[0m  [1mCREATE INDEX "index_categorizations_on_method_category_id" ON "categorizations" ("method_category_id")[0m
+  [1m[35m (166.8ms)[0m  CREATE TABLE "citations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (157.1ms)[0m  [1mCREATE TABLE "design_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "overview" text NOT NULL, "process" text NOT NULL, "principle" text NOT NULL, "owner_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (166.3ms)[0m  CREATE TABLE "mc_relations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "parent_id" integer, "child_id" integer, "distance" integer, "type" varchar(255) DEFAULT 'subclass', "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (144.2ms)[0m  [1mCREATE TABLE "method_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (133.4ms)[0m  CREATE TABLE "method_citations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "design_method_id" integer, "citation_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (133.7ms)[0m  [1mCREATE INDEX "index_method_citations_on_citation_id" ON "method_citations" ("citation_id")[0m
+  [1m[35m (133.3ms)[0m  CREATE UNIQUE INDEX "index_method_citations_on_design_method_id_and_citation_id" ON "method_citations" ("design_method_id", "citation_id")
+  [1m[36m (122.2ms)[0m  [1mCREATE INDEX "index_method_citations_on_design_method_id" ON "method_citations" ("design_method_id")[0m
+  [1m[35m (166.5ms)[0m  CREATE TABLE "method_ownerships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "design_method_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (146.1ms)[0m  [1mCREATE TABLE "user_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "design_method_id" integer NOT NULL, "type_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (155.8ms)[0m  CREATE INDEX "index_user_methods_on_design_method_id" ON "user_methods" ("design_method_id")
+  [1m[36m (166.8ms)[0m  [1mCREATE UNIQUE INDEX "index_user_methods_on_user_id_and_design_method_id" ON "user_methods" ("user_id", "design_method_id")[0m
+  [1m[35m (154.7ms)[0m  CREATE INDEX "index_user_methods_on_user_id" ON "user_methods" ("user_id")
+  [1m[36m (130.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (144.6ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (144.3ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (144.4ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (144.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (155.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140215003559')[0m
+  [1m[35m (133.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130819021258')
+  [1m[36m (145.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130819014901')[0m
+  [1m[35m (122.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20131023232842')
+  [1m[36m (122.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130807164237')[0m
+  [1m[35m (122.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20131003211347')
+  [1m[36m (145.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20131003211409')[0m
+  [1m[35m (145.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20131024171950')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'admin@thedesignexchange.org' LIMIT 1
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[36mSQL (21.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Fri, 21 Feb 2014 23:52:19 UTC +00:00], ["email", "admin@thedesignexchange.org"], ["encrypted_password", "$2a$10$iendQT4aVWaMxB38naVb8ObRiCBFy6FMsQdgD/V98e5ETVHgwU..O"], ["updated_at", Fri, 21 Feb 2014 23:52:19 UTC +00:00]]
+  [1m[35m (151.2ms)[0m  commit transaction
+  [1m[36mDesignMethod Load (0.3ms)[0m  [1mSELECT "design_methods".* FROM "design_methods"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mDesignMethod Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "design_methods" WHERE LOWER("design_methods"."name") = LOWER('METHODS For DESIGNEXCHANGE.ORG') LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "design_methods" ("created_at", "name", "overview", "owner_id", "principle", "process", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", Fri, 21 Feb 2014 23:52:20 UTC +00:00], ["name", "METHODS For DESIGNEXCHANGE.ORG"], ["overview", "YELLOW AND RED INDICATED FROM BOOK OF METHODS"], ["owner_id", 1], ["principle", ""], ["process", ""], ["updated_at", Fri, 21 Feb 2014 23:52:20 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateMcRelations (20140215003559)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  DROP TABLE "mc_relations"
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20140215003559'[0m
+  [1m[35m (176.7ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMcRelations (20140215003559)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")[0m
+SQLite3::SQLException: no such table: main.mc_relations: CREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMcRelations (20140215003559)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "mc_relations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "parent_id" integer, "child_id" integer, "distance" integer, "type" varchar(255) DEFAULT 'subclass', "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140215003559"]]
+  [1m[36m (155.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateMcRelations (20140215003559)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "mc_relations"
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20140215003559'[0m
+  [1m[35m (153.1ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMcRelations (20140215003559)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")[0m
+SQLite3::SQLException: no such table: main.mc_relations: CREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUserMethods (20131024171950)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  DROP INDEX "index_user_methods_on_design_method_id"
+  [1m[36m (0.2ms)[0m  [1mDROP INDEX "index_user_methods_on_user_id"[0m
+  [1m[35m (0.1ms)[0m  DROP INDEX "index_user_methods_on_user_id_and_design_method_id"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "user_methods"[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20131024171950'
+  [1m[36m (206.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUserMethods (20131024171950)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "user_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "design_method_id" integer NOT NULL, "type_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE UNIQUE INDEX "index_user_methods_on_user_id_and_design_method_id" ON "user_methods" ("user_id", "design_method_id")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_user_methods_on_user_id" ON "user_methods" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_user_methods_on_design_method_id" ON "user_methods" ("design_method_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20131024171950"]]
+  [1m[35m (201.5ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMcRelations (20140215003559)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")[0m
+SQLite3::SQLException: no such table: main.mc_relations: CREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMcRelations (20140215003559)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "mc_relations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "parent_id" integer, "child_id" integer, "distance" integer, "type" varchar(255) DEFAULT 'subclass', "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_mc_relations_on_parent_id" ON "mc_relations" ("parent_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_mc_relations_on_child_id" ON "mc_relations" ("child_id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140215003559"]]
+  [1m[35m (138.2ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35mMethodCategory Load (0.3ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."name" = 'a'
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."name" = 'b'[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (5.4ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 00:15:50 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 00:15:50 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 00:16:03 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 00:16:03 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "parent_id", "updated_at") VALUES (?, ?, ?, ?)  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 00:16:11 UTC +00:00], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 00:16:11 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.1ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateMcRelations (20140215003559)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  DROP INDEX "index_mc_relations_on_child_id"
+  [1m[36m (0.2ms)[0m  [1mDROP INDEX "index_mc_relations_on_parent_id"[0m
+  [1m[35m (0.1ms)[0m  DROP INDEX "mcrelations_index"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "mc_relations"[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20140215003559'
+  [1m[36m (182.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMcRelations (20140215003559)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "mc_relations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "parent_id" integer, "child_id" integer, "distance" integer, "description" varchar(255) DEFAULT 'subclass', "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE UNIQUE INDEX "mcrelations_index" ON "mc_relations" ("parent_id", "child_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_mc_relations_on_parent_id" ON "mc_relations" ("parent_id")[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_mc_relations_on_child_id" ON "mc_relations" ("child_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140215003559"]]
+  [1m[35m (196.0ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.8ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 00:19:03 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 00:19:03 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 00:19:11 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 00:19:11 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "parent_id", "updated_at") VALUES (?, ?, ?, ?)  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 00:19:15 UTC +00:00], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 00:19:15 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.2ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 00:19:56 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 00:19:56 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 00:20:06 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 00:20:06 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "parent_id", "updated_at") VALUES (?, ?, ?, ?)  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 00:20:08 UTC +00:00], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 00:20:08 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.2ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations"[0m
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 2 AND "mc_relations"."child_id" = 1 ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "parent_id", "updated_at") VALUES (?, ?, ?, ?)  [["child_id", 1], ["created_at", Sat, 22 Feb 2014 00:21:10 UTC +00:00], ["parent_id", 2], ["updated_at", Sat, 22 Feb 2014 00:21:10 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.2ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (5.5ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 00:24:46 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 00:24:46 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 00:24:54 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 00:24:54 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 00:25:52 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 00:25:52 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 00:26:09 UTC +00:00], ["name", "c"], ["updated_at", Sat, 22 Feb 2014 00:26:09 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 3 ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "parent_id", "updated_at") VALUES (?, ?, ?, ?)  [["child_id", 3], ["created_at", Sat, 22 Feb 2014 00:26:14 UTC +00:00], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 00:26:14 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.2ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 3 AND "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "parent_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 00:26:50 UTC +00:00], ["parent_id", 3], ["updated_at", Sat, 22 Feb 2014 00:26:50 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.2ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 2 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.2ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 3[0m
+  [1m[35mMethodCategory Load (0.3ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 2
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 2 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.2ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 3[0m
+  [1m[35mMethodCategory Load (0.2ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 1
+  [1m[36mMcRelations Load (0.4ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 3 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMethodCategory Load (0.2ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 1
+  [1m[36mMcRelations Load (0.4ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 3 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMethodCategory Load (0.2ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 2
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 00:27:47 UTC +00:00], ["name", "d"], ["updated_at", Sat, 22 Feb 2014 00:27:47 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.2ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.1ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 3[0m
+  [1m[35mMethodCategory Load (0.1ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 2
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 3 AND "mc_relations"."child_id" = 4 ORDER BY "mc_relations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "parent_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["child_id", 4], ["created_at", Sat, 22 Feb 2014 00:28:12 UTC +00:00], ["parent_id", 3], ["updated_at", Sat, 22 Feb 2014 00:28:12 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.2ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 3 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMethodCategory Load (0.2ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 1
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 1[0m
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 3 AND "mc_relations"."child_id" = 4 ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36mMcRelations Load (0.2ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 3 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMethodCategory Load (0.2ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations"[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."id" = 2
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (5.4ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 00:44:09 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 00:44:09 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 00:44:21 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 00:44:21 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 00:44:29 UTC +00:00], ["name", "c"], ["updated_at", Sat, 22 Feb 2014 00:44:29 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "parent_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 00:44:33 UTC +00:00], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 00:44:33 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "mc_relations" SET "distance" = ?, "updated_at" = ? WHERE "mc_relations"."id" = 1  [["distance", 1], ["updated_at", Sat, 22 Feb 2014 00:44:33 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.1ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.9ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 00:48:21 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 00:48:21 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 00:48:28 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 00:48:28 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 00:48:31 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 00:48:31 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.2ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 00:48:50 UTC +00:00], ["name", "c"], ["updated_at", Sat, 22 Feb 2014 00:48:50 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 3 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 3], ["created_at", Sat, 22 Feb 2014 00:49:02 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 00:49:02 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.2ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 00:49:15 UTC +00:00], ["name", "d"], ["updated_at", Sat, 22 Feb 2014 00:49:15 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 3 AND "mc_relations"."child_id" = 4 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 4], ["created_at", Sat, 22 Feb 2014 00:49:18 UTC +00:00], ["distance", 1], ["parent_id", 3], ["updated_at", Sat, 22 Feb 2014 00:49:18 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.2ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 3 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.2ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 1[0m
+  [1m[35m (0.9ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 00:52:39 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 00:52:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 00:52:48 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 00:52:48 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 00:52:56 UTC +00:00], ["name", "c"], ["updated_at", Sat, 22 Feb 2014 00:52:56 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.1ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 00:52:58 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 00:52:58 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parent_id_id" WHERE "mc_relations"."child_id" = ?[0m  [["child_id", 1]]
+SQLite3::SQLException: no such column: mc_relations.parent_id_id: SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parent_id_id" WHERE "mc_relations"."child_id" = ?
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 3 AND "mc_relations"."child_id" = 2 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 00:55:49 UTC +00:00], ["distance", 1], ["parent_id", 3], ["updated_at", Sat, 22 Feb 2014 00:55:49 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMethodCategory Load (0.3ms)[0m  SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parent_id_id" WHERE "mc_relations"."child_id" = ?  [["child_id", 3]]
+SQLite3::SQLException: no such column: mc_relations.parent_id_id: SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parent_id_id" WHERE "mc_relations"."child_id" = ?
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 00:56:02 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 00:56:02 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (5.4ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 00:56:26 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 00:56:26 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 00:56:34 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 00:56:34 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 00:56:44 UTC +00:00], ["name", "c"], ["updated_at", Sat, 22 Feb 2014 00:56:44 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 00:56:48 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 00:56:48 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.1ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 1 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 2 AND "mc_relations"."child_id" = 3 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 3], ["created_at", Sat, 22 Feb 2014 00:57:02 UTC +00:00], ["distance", 1], ["parent_id", 2], ["updated_at", Sat, 22 Feb 2014 00:57:02 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.2ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.2ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.8ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 00:59:00 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 00:59:00 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 00:59:08 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 00:59:08 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 00:59:15 UTC +00:00], ["name", "c"], ["updated_at", Sat, 22 Feb 2014 00:59:15 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.2ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 00:59:19 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 00:59:19 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parent_id_id" WHERE "mc_relations"."child_id" = ?[0m  [["child_id", 1]]
+SQLite3::SQLException: no such column: mc_relations.parent_id_id: SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parent_id_id" WHERE "mc_relations"."child_id" = ?
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.0ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 01:00:48 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 01:00:48 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 01:00:58 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 01:00:58 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 01:01:05 UTC +00:00], ["name", "c"], ["updated_at", Sat, 22 Feb 2014 01:01:05 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 2 AND "mc_relations"."child_id" = 1 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 1], ["created_at", Sat, 22 Feb 2014 01:01:14 UTC +00:00], ["distance", 1], ["parent_id", 2], ["updated_at", Sat, 22 Feb 2014 01:01:14 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.9ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 01:02:20 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 01:02:20 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 01:02:26 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 01:02:26 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.2ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 2 AND "mc_relations"."child_id" = 1 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 1], ["created_at", Sat, 22 Feb 2014 01:02:30 UTC +00:00], ["distance", 1], ["parent_id", 2], ["updated_at", Sat, 22 Feb 2014 01:02:30 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.2ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 01:03:00 UTC +00:00], ["name", "c"], ["updated_at", Sat, 22 Feb 2014 01:03:00 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 3 AND "mc_relations"."child_id" = 2 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 01:03:23 UTC +00:00], ["distance", 1], ["parent_id", 3], ["updated_at", Sat, 22 Feb 2014 01:03:23 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 2 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.2ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 1[0m
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.9ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 01:10:08 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 01:10:08 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 01:10:13 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 01:10:13 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 01:10:18 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 01:10:18 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.2ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 01:10:31 UTC +00:00], ["name", "c"], ["updated_at", Sat, 22 Feb 2014 01:10:31 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 2 AND "mc_relations"."child_id" = 3 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 3], ["created_at", Sat, 22 Feb 2014 01:10:37 UTC +00:00], ["distance", 1], ["parent_id", 2], ["updated_at", Sat, 22 Feb 2014 01:10:37 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."distance" ASC
+DEPRECATION WARNING: This dynamic method is deprecated. Please use e.g. Post.where(...).all instead. (called from block in parents at /home/candy/dev/design_exchange/Code/DesExSearch/app/models/method_category.rb:55)
+  [1m[36mMethodCategory Load (0.2ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = 1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" IN (1) AND "mc_relations"."child_id" = 3 ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" IN (1) AND "mc_relations"."child_id" = 3 AND "mc_relations"."parent_id" IS NULL AND "mc_relations"."child_id" = 2[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 01:16:14 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 01:16:14 UTC +00:00]]
+SQLite3::ConstraintException: columns parent_id, child_id are not unique: INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 3], ["created_at", Sat, 22 Feb 2014 01:16:29 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 01:16:29 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.9ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 01:17:43 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 01:17:43 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 01:17:50 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 01:17:50 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 01:17:54 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 01:17:54 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.2ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 01:18:04 UTC +00:00], ["name", "c"], ["updated_at", Sat, 22 Feb 2014 01:18:04 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 2 AND "mc_relations"."child_id" = 3 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 3], ["created_at", Sat, 22 Feb 2014 01:18:07 UTC +00:00], ["distance", 1], ["parent_id", 2], ["updated_at", Sat, 22 Feb 2014 01:18:07 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id_id" = 1 AND "mc_relations"."child_id" = 3 ORDER BY "mc_relations"."id" ASC LIMIT 1
+SQLite3::SQLException: no such column: mc_relations.parent_id_id: SELECT  "mc_relations".* FROM "mc_relations"  WHERE "mc_relations"."parent_id_id" = 1 AND "mc_relations"."child_id" = 3  ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 01:23:33 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 01:23:33 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 01:23:40 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 01:23:40 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 01:23:49 UTC +00:00], ["name", "c"], ["updated_at", Sat, 22 Feb 2014 01:23:49 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 01:23:51 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 01:23:51 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.1ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 1 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 2 AND "mc_relations"."child_id" = 3 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 3], ["created_at", Sat, 22 Feb 2014 01:23:55 UTC +00:00], ["distance", 1], ["parent_id", 2], ["updated_at", Sat, 22 Feb 2014 01:23:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.2ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.8ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 01:25:15 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 01:25:15 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 22 Feb 2014 01:25:24 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 01:25:24 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 01:25:31 UTC +00:00], ["name", "c"], ["updated_at", Sat, 22 Feb 2014 01:25:31 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 01:25:35 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 01:25:35 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parent_id_id" WHERE "mc_relations"."child_id" = ?[0m  [["child_id", 1]]
+SQLite3::SQLException: no such column: mc_relations.parent_id_id: SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parent_id_id" WHERE "mc_relations"."child_id" = ?
+  [1m[35mMethodCategory Load (0.3ms)[0m  SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parent_id_id" WHERE "mc_relations"."child_id" = ?  [["child_id", 1]]
+SQLite3::SQLException: no such column: mc_relations.parent_id_id: SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parent_id_id" WHERE "mc_relations"."child_id" = ?
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.0ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 01:29:00 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 01:29:00 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 1 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.0ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 01:30:02 UTC +00:00], ["name", "a"], ["updated_at", Sat, 22 Feb 2014 01:30:02 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.4ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE (child_id = 1 AND distance >= 2) ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 01:31:44 UTC +00:00], ["name", "b"], ["updated_at", Sat, 22 Feb 2014 01:31:44 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 2], ["created_at", Sat, 22 Feb 2014 01:31:48 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Sat, 22 Feb 2014 01:31:48 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.2ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 1 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE (parent_id = 1 AND distance <=1) ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 22 Feb 2014 01:32:12 UTC +00:00], ["name", "c"], ["updated_at", Sat, 22 Feb 2014 01:32:12 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 2 AND "mc_relations"."child_id" = 3 AND "mc_relations"."distance" = 1 AND "mc_relations"."description" = 'subclass' ORDER BY "mc_relations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 3], ["created_at", Sat, 22 Feb 2014 01:32:20 UTC +00:00], ["distance", 1], ["parent_id", 2], ["updated_at", Sat, 22 Feb 2014 01:32:20 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.2ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMethodCategory Load (0.1ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations"[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 2
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "mc_relations" SET "distance" = ?, "updated_at" = ? WHERE "mc_relations"."id" = 1[0m  [["distance", 2], ["updated_at", Sat, 22 Feb 2014 01:35:34 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (53.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (44.9ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Wed, 26 Feb 2014 21:53:13 UTC +00:00], ["name", "a"], ["updated_at", Wed, 26 Feb 2014 21:53:13 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Wed, 26 Feb 2014 21:53:20 UTC +00:00], ["name", "b"], ["updated_at", Wed, 26 Feb 2014 21:53:20 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 2], ["created_at", Wed, 26 Feb 2014 21:54:33 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Wed, 26 Feb 2014 21:54:33 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.4ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = ?[0m  [["child_id", 1]]
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.1ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ?  [["parent_id", 1]]
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMethodCategory Load (0.1ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mMcRelations Load (0.4ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ? AND "mc_relations"."distance" = 1[0m  [["parent_id", 1]]
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.1ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.1ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.1ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (9.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (181.8ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Thu, 27 Feb 2014 02:02:23 UTC +00:00], ["name", "a"], ["updated_at", Thu, 27 Feb 2014 02:02:23 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 27 Feb 2014 02:02:30 UTC +00:00], ["name", "b"], ["updated_at", Thu, 27 Feb 2014 02:02:30 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 2], ["created_at", Thu, 27 Feb 2014 02:02:45 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Thu, 27 Feb 2014 02:02:45 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 27 Feb 2014 02:02:56 UTC +00:00], ["name", "d"], ["updated_at", Thu, 27 Feb 2014 02:02:56 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 3], ["created_at", Thu, 27 Feb 2014 02:03:14 UTC +00:00], ["distance", 2], ["parent_id", 1], ["updated_at", Thu, 27 Feb 2014 02:03:14 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 3], ["created_at", Thu, 27 Feb 2014 02:03:27 UTC +00:00], ["distance", 1], ["parent_id", 2], ["updated_at", Thu, 27 Feb 2014 02:03:27 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.2ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mMethodCategory Load (0.1ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mMcRelations Load (0.4ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 2 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMethodCategory Load (0.1ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 3 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 3 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.1ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mMethodCategory Load (0.1ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMethodCategory Load (0.1ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mMcRelations Load (0.4ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."distance" ASC[0m
+  [1m[35mMethodCategory Load (0.1ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mMcRelations Load (0.4ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ?[0m  [["parent_id", 1]]
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 ORDER BY "mc_relations"."distance" ASC
+  [1m[36mMethodCategory Load (0.1ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mMethodCategory Load (0.1ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mMcRelations Load (0.2ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ?[0m  [["parent_id", 2]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "mc_relations" WHERE "mc_relations"."parent_id" = ?  [["parent_id", 1]]
+  [1m[36mMcRelations Load (0.2ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ?[0m  [["parent_id", 1]]
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ? AND "mc_relations"."parent_id" = 1  [["parent_id", 1]]
+  [1m[36mMcRelations Load (0.4ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ? AND "mc_relations"."child_id" = 2[0m  [["parent_id", 1]]
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (9.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (48.8ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Thu, 27 Feb 2014 22:28:55 UTC +00:00], ["name", "a"], ["updated_at", Thu, 27 Feb 2014 22:28:55 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 27 Feb 2014 22:29:04 UTC +00:00], ["name", "b"], ["updated_at", Thu, 27 Feb 2014 22:29:04 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Thu, 27 Feb 2014 22:29:13 UTC +00:00], ["name", "c"], ["updated_at", Thu, 27 Feb 2014 22:29:13 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 27 Feb 2014 22:29:20 UTC +00:00], ["name", "d"], ["updated_at", Thu, 27 Feb 2014 22:29:20 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36mMethodCategory Load (0.4ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."children_id" WHERE "mc_relations"."parent_id" = ?[0m  [["parent_id", 1]]
+SQLite3::SQLException: no such column: mc_relations.children_id: SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."children_id" WHERE "mc_relations"."parent_id" = ?
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.8ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Thu, 27 Feb 2014 22:32:18 UTC +00:00], ["name", "a"], ["updated_at", Thu, 27 Feb 2014 22:32:18 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 27 Feb 2014 22:32:27 UTC +00:00], ["name", "b"], ["updated_at", Thu, 27 Feb 2014 22:32:27 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Thu, 27 Feb 2014 22:32:33 UTC +00:00], ["name", "c"], ["updated_at", Thu, 27 Feb 2014 22:32:33 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 3 ORDER BY "mc_relations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 2], ["created_at", Thu, 27 Feb 2014 22:33:17 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Thu, 27 Feb 2014 22:33:17 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 3], ["created_at", Thu, 27 Feb 2014 22:33:37 UTC +00:00], ["distance", 1], ["parent_id", 2], ["updated_at", Thu, 27 Feb 2014 22:33:37 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMethodCategory Load (0.3ms)[0m  SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."children_id" WHERE "mc_relations"."parent_id" = ?  [["parent_id", 1]]
+SQLite3::SQLException: no such column: mc_relations.children_id: SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."children_id" WHERE "mc_relations"."parent_id" = ?
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parents_id" WHERE "mc_relations"."child_id" = ?[0m  [["child_id", 3]]
+SQLite3::SQLException: no such column: mc_relations.parents_id: SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parents_id" WHERE "mc_relations"."child_id" = ?
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ?  [["parent_id", 1]]
+  [1m[36mMethodCategory Load (0.4ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."children_id" WHERE "mc_relations"."parent_id" = ?[0m  [["parent_id", 1]]
+SQLite3::SQLException: no such column: mc_relations.children_id: SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."children_id" WHERE "mc_relations"."parent_id" = ?
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE (parent_id = 1 AND distance <= 1)
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.8ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Thu, 27 Feb 2014 22:45:23 UTC +00:00], ["name", "a"], ["updated_at", Thu, 27 Feb 2014 22:45:23 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 27 Feb 2014 22:45:29 UTC +00:00], ["name", "b"], ["updated_at", Thu, 27 Feb 2014 22:45:29 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories"[0m
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 2], ["created_at", Thu, 27 Feb 2014 22:46:39 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Thu, 27 Feb 2014 22:46:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.8ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.8ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Thu, 27 Feb 2014 22:54:47 UTC +00:00], ["name", "a"], ["updated_at", Thu, 27 Feb 2014 22:54:47 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 27 Feb 2014 22:54:53 UTC +00:00], ["name", "b"], ["updated_at", Thu, 27 Feb 2014 22:54:53 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+DEPRECATION WARNING: This dynamic method is deprecated. Please use e.g. Post.find_or_create_by(name: 'foo') instead. (called from addchild at /home/candy/dev/design_exchange/Code/DesExSearch/app/models/method_category.rb:41)
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 ORDER BY "mc_relations"."id" ASC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.8ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Thu, 27 Feb 2014 22:56:31 UTC +00:00], ["name", "a"], ["updated_at", Thu, 27 Feb 2014 22:56:31 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 27 Feb 2014 22:56:36 UTC +00:00], ["name", "b"], ["updated_at", Thu, 27 Feb 2014 22:56:36 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 LIMIT 1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "parent_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["child_id", 2], ["created_at", Thu, 27 Feb 2014 22:57:10 UTC +00:00], ["parent_id", 1], ["updated_at", Thu, 27 Feb 2014 22:57:10 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 LIMIT 1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 1 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "parent_id", "updated_at") VALUES (?, ?, ?, ?)  [["child_id", 1], ["created_at", Thu, 27 Feb 2014 23:00:32 UTC +00:00], ["parent_id", 1], ["updated_at", Thu, 27 Feb 2014 23:00:32 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (5.5ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Thu, 27 Feb 2014 23:02:48 UTC +00:00], ["name", "a"], ["updated_at", Thu, 27 Feb 2014 23:02:48 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 27 Feb 2014 23:02:54 UTC +00:00], ["name", "b"], ["updated_at", Thu, 27 Feb 2014 23:02:54 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 2], ["created_at", Thu, 27 Feb 2014 23:04:19 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Thu, 27 Feb 2014 23:04:19 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMethodCategory Load (0.3ms)[0m  SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."children_id" WHERE "mc_relations"."parent_id" = ?  [["parent_id", 1]]
+SQLite3::SQLException: no such column: mc_relations.children_id: SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."children_id" WHERE "mc_relations"."parent_id" = ?
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 LIMIT 1[0m
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = ?  [["child_id", 1]]
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.9ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Thu, 27 Feb 2014 23:06:40 UTC +00:00], ["name", "a"], ["updated_at", Thu, 27 Feb 2014 23:06:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 27 Feb 2014 23:06:48 UTC +00:00], ["name", "b"], ["updated_at", Thu, 27 Feb 2014 23:06:48 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "parent_id", "updated_at") VALUES (?, ?, ?, ?)  [["child_id", 2], ["created_at", Thu, 27 Feb 2014 23:06:50 UTC +00:00], ["parent_id", 1], ["updated_at", Thu, 27 Feb 2014 23:06:50 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.3ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Thu, 27 Feb 2014 23:08:19 UTC +00:00], ["name", "a"], ["updated_at", Thu, 27 Feb 2014 23:08:19 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 27 Feb 2014 23:08:27 UTC +00:00], ["name", "b"], ["updated_at", Thu, 27 Feb 2014 23:08:27 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 2], ["created_at", Thu, 27 Feb 2014 23:08:29 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Thu, 27 Feb 2014 23:08:29 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = ?  [["child_id", 1]]
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations"[0m
+  [1m[35mMethodCategory Load (0.3ms)[0m  SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."children_id" WHERE "mc_relations"."parent_id" = ?  [["parent_id", 1]]
+SQLite3::SQLException: no such column: mc_relations.children_id: SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."children_id" WHERE "mc_relations"."parent_id" = ?
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE (parent_id = 1 AND distance <= 1)[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ? AND "mc_relations"."children_id" = 2[0m  [["parent_id", 1]]
+SQLite3::SQLException: no such column: mc_relations.children_id: SELECT "mc_relations".* FROM "mc_relations"  WHERE "mc_relations"."parent_id" = ? AND "mc_relations"."children_id" = 2
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations"[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.8ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Thu, 27 Feb 2014 23:14:51 UTC +00:00], ["name", "a"], ["updated_at", Thu, 27 Feb 2014 23:14:51 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 27 Feb 2014 23:14:57 UTC +00:00], ["name", "b"], ["updated_at", Thu, 27 Feb 2014 23:14:57 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 2], ["created_at", Thu, 27 Feb 2014 23:15:01 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Thu, 27 Feb 2014 23:15:01 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = ?  [["child_id", 1]]
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE (parent_id = 1 AND distance <= 1)[0m
+  [1m[35mMethodCategory Load (0.3ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."children_id" WHERE "mc_relations"."parent_id" = ?[0m  [["parent_id", 1]]
+SQLite3::SQLException: no such column: mc_relations.children_id: SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."children_id" WHERE "mc_relations"."parent_id" = ?
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ?  [["parent_id", 1]]
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parents_id" WHERE "mc_relations"."child_id" = ?[0m  [["child_id", 1]]
+SQLite3::SQLException: no such column: mc_relations.parents_id: SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parents_id" WHERE "mc_relations"."child_id" = ?
+  [1m[35mMethodCategory Load (0.3ms)[0m  SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."children_id" WHERE "mc_relations"."parent_id" = ?  [["parent_id", 1]]
+SQLite3::SQLException: no such column: mc_relations.children_id: SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."children_id" WHERE "mc_relations"."parent_id" = ?
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ? AND "mc_relations"."children_id" = 2  [["parent_id", 1]]
+SQLite3::SQLException: no such column: mc_relations.children_id: SELECT "mc_relations".* FROM "mc_relations"  WHERE "mc_relations"."parent_id" = ? AND "mc_relations"."children_id" = 2
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.9ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Thu, 27 Feb 2014 23:24:17 UTC +00:00], ["name", "a"], ["updated_at", Thu, 27 Feb 2014 23:24:17 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 27 Feb 2014 23:24:23 UTC +00:00], ["name", "b"], ["updated_at", Thu, 27 Feb 2014 23:24:23 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 2], ["created_at", Thu, 27 Feb 2014 23:24:26 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Thu, 27 Feb 2014 23:24:26 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = ?  [["child_id", 1]]
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.8ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Thu, 27 Feb 2014 23:26:19 UTC +00:00], ["name", "a"], ["updated_at", Thu, 27 Feb 2014 23:26:19 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 27 Feb 2014 23:26:24 UTC +00:00], ["name", "b"], ["updated_at", Thu, 27 Feb 2014 23:26:24 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 2], ["created_at", Thu, 27 Feb 2014 23:26:27 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Thu, 27 Feb 2014 23:26:27 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = ?  [["child_id", 1]]
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."child_id" WHERE "mc_relations"."parent_id" = ?[0m  [["parent_id", 1]]
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE (parent_id = 1 AND distance <= 1)
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ? AND "mc_relations"."child_id" = 2[0m  [["parent_id", 1]]
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "mc_relations" WHERE "mc_relations"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 2], ["created_at", Thu, 27 Feb 2014 23:26:57 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Thu, 27 Feb 2014 23:26:57 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Thu, 27 Feb 2014 23:27:08 UTC +00:00], ["name", "c"], ["updated_at", Thu, 27 Feb 2014 23:27:08 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 2 AND "mc_relations"."child_id" = 3 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 3], ["created_at", Thu, 27 Feb 2014 23:27:13 UTC +00:00], ["distance", 1], ["parent_id", 2], ["updated_at", Thu, 27 Feb 2014 23:27:13 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.1ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = ?[0m  [["child_id", 2]]
+  [1m[35mMcRelations Load (0.2ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 3 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 3], ["created_at", Thu, 27 Feb 2014 23:27:13 UTC +00:00], ["distance", 2], ["parent_id", 1], ["updated_at", Thu, 27 Feb 2014 23:27:13 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 LIMIT 1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 LIMIT 1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations"
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE (parent_id = 1 AND distance <= 1)[0m
+  [1m[35mMethodCategory Load (0.1ms)[0m  SELECT "method_categories".* FROM "method_categories" WHERE "method_categories"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mMethodCategory Load (0.3ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parent_id" WHERE "mc_relations"."child_id" = ?[0m  [["child_id", 1]]
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ?  [["parent_id", 1]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "mc_relations" WHERE "mc_relations"."parent_id" = ?[0m  [["parent_id", 1]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."child_id" WHERE "mc_relations"."parent_id" = ?  [["parent_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.1ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ? AND "mc_relations"."child_id" = 2  [["parent_id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "mc_relations" WHERE "mc_relations"."id" = ?[0m  [["id", 2]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."child_id" WHERE "mc_relations"."parent_id" = ?[0m  [["parent_id", 1]]
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (8.9ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (56.5ms)[0m  [1mINSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Fri, 28 Feb 2014 01:12:55 UTC +00:00], ["name", "a"], ["updated_at", Fri, 28 Feb 2014 01:12:55 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Fri, 28 Feb 2014 01:13:02 UTC +00:00], ["name", "b"], ["updated_at", Fri, 28 Feb 2014 01:13:02 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 2 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 2], ["created_at", Fri, 28 Feb 2014 01:13:05 UTC +00:00], ["distance", 1], ["parent_id", 1], ["updated_at", Fri, 28 Feb 2014 01:13:05 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = ?  [["child_id", 1]]
+  [1m[36mMethodCategory Load (0.4ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."child_id" WHERE "mc_relations"."parent_id" = ?[0m  [["parent_id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."child_id" WHERE "mc_relations"."parent_id" = ?  [["parent_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "method_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Fri, 28 Feb 2014 01:13:29 UTC +00:00], ["name", "c"], ["updated_at", Fri, 28 Feb 2014 01:13:29 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 2 AND "mc_relations"."child_id" = 3 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["child_id", 3], ["created_at", Fri, 28 Feb 2014 01:13:33 UTC +00:00], ["distance", 1], ["parent_id", 2], ["updated_at", Fri, 28 Feb 2014 01:13:33 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.1ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = ?  [["child_id", 2]]
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = 1 AND "mc_relations"."child_id" = 3 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "mc_relations" ("child_id", "created_at", "distance", "parent_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["child_id", 3], ["created_at", Fri, 28 Feb 2014 01:13:33 UTC +00:00], ["distance", 2], ["parent_id", 1], ["updated_at", Fri, 28 Feb 2014 01:13:33 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMethodCategory Load (0.2ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."child_id" WHERE "mc_relations"."parent_id" = ?[0m  [["parent_id", 2]]
+  [1m[35mMcRelations Load (0.4ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ?  [["parent_id", 1]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "mc_relations" WHERE "mc_relations"."parent_id" = ?[0m  [["parent_id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."child_id" WHERE "mc_relations"."parent_id" = ?  [["parent_id", 1]]
+  [1m[36mMethodCategory Load (0.2ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."child_id" WHERE "mc_relations"."parent_id" = ?[0m  [["parent_id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.3ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ? AND "mc_relations"."child_id" = 2[0m  [["parent_id", 1]]
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "mc_relations" WHERE "mc_relations"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMethodCategory Load (0.2ms)[0m  SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."child_id" WHERE "mc_relations"."parent_id" = ?  [["parent_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "mc_relations" WHERE "mc_relations"."parent_id" = ?[0m  [["parent_id", 1]]
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations"
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mMcRelations Load (0.3ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ? AND "mc_relations"."child_id" = 3  [["parent_id", 2]]
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "mc_relations" WHERE "mc_relations"."id" = ?[0m  [["id", 2]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMcRelations Load (0.1ms)[0m  [1mSELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."parent_id" = ?[0m  [["parent_id", 2]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "mc_relations" WHERE "mc_relations"."parent_id" = ?  [["parent_id", 1]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "mc_relations" WHERE "mc_relations"."child_id" = ?[0m  [["child_id", 2]]
+  [1m[35mMethodCategory Load (0.4ms)[0m  SELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parent_id" WHERE "mc_relations"."child_id" = ?  [["child_id", 2]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parent_id" WHERE "mc_relations"."child_id" = ?[0m  [["child_id", 2]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "mc_relations" WHERE "mc_relations"."child_id" = ?  [["child_id", 2]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "mc_relations" WHERE "mc_relations"."child_id" = ?[0m  [["child_id", 3]]
+  [1m[35mMcRelations Load (0.2ms)[0m  SELECT "mc_relations".* FROM "mc_relations" WHERE "mc_relations"."child_id" = ?  [["child_id", 3]]
+  [1m[36mMethodCategory Load (0.2ms)[0m  [1mSELECT "method_categories".* FROM "method_categories" INNER JOIN "mc_relations" ON "method_categories"."id" = "mc_relations"."parent_id" WHERE "mc_relations"."child_id" = ?[0m  [["child_id", 3]]
+DEPRECATION WARNING: Relation#all is deprecated. If you want to eager-load a relation, you can call #load (e.g. `Post.where(published: true).load`). If you want to get an array of records from a relation, you can call #to_a (e.g. `Post.where(published: true).to_a`). (called from irb_binding at (irb):41)
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m

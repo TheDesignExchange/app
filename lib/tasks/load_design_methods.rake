@@ -11,10 +11,10 @@ namespace :methods do
       categories = Hash.new
 
       data.each do |row|
-        string = row[5]
+        string = row[6]
 
         if string and !string.include?('http') and !string.include?('pg')
-          row[5].downcase.split(/[\n,]/).each do |cat|
+          string.downcase.split(/[\n,]/).each do |cat|
             if !cat.blank?
               cat = cat.strip
               categories[cat] = categories[cat] ? categories[cat]+1 : 1
@@ -44,10 +44,10 @@ namespace :methods do
       categories = Hash.new
 
       data.each do |row|
-        string = row[5]
+        string = row[6]
 
         if string and !string.include?('http') and !string.include?('pg')
-          row[5].downcase.split(/[\n,]/).each do |cat|
+          string.downcase.split(/[\n,]/).each do |cat|
             if !cat.blank?
               cat = cat.strip
               keys.each do |key|
@@ -63,7 +63,5 @@ namespace :methods do
       p categories
 
     end
-
   end
-
 end

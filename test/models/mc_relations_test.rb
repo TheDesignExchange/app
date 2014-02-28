@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MethodOwnershipTest < ActiveSupport::TestCase
+class McRelationsTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

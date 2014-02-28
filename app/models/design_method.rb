@@ -3,12 +3,13 @@
 # Table name: design_methods
 #
 #  id         :integer          not null, primary key
-#  name       :string(255)
-#  overview   :text
-#  process    :text
-#  principle  :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  name       :string(255)      not null
+#  overview   :text             not null
+#  process    :text             not null
+#  principle  :text             not null
+#  owner_id   :integer          not null
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 class DesignMethod < ActiveRecord::Base

@@ -4,57 +4,104 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  created_at :datetime
+#  updated_at :datetime
 #
 
-# STUFF TO CONSIDER:
-# currently for add/remove: just removing child from lineage list.
-# --if the child gets completely deleted beforehand, then need to change
-#   the argument that gets passed (instead of method category, need the id only or something)
-# when a method category is created, does the parent id and lineage need to get filled out?
-# or should there be some method here that fills that in?
-# if a "root" method is added how is everything going to get filled? copy-paste lineage list from child?
-
 class MethodCategory < ActiveRecord::Base
+  before_destroy :changedistance
   validates :name, presence: true, length: { maximum: 255,
             too_long: "%{count} is the maximum character length."}
 
-  def parent
-    return MethodCategory.find(self.parent_id)
-  end
-
-  def immediatechildren
-    return MethodCategory.where(parent_id: self.id)
-  end
-
-  def children(depth = -1)
+  #Retrieves all children with a distance <= DEPTH. Default is immediate children (depth = 1).
+  #To get all children, use self.children instead.
+  def getchildren(depth = 1)
     to_return = Array.new
-    child_list = self.lineage
-    child_list.split(",").each do |id|
-      child = MethodCategory.find(id.to_i)
-      if child && (depth < 0 || child.depth >= depth)
-        to_return << child
-      end
+    val = self.id
+    search = McRelations.where('parent_id = ? AND distance <= ?', val, depth)
+    search.each do |s|
+      to_return << MethodCategory.find(s.child_id)
     end
     return to_return
   end
 
-  def addchild(child)
-    if MethodCategory.exists?(child.id)
-      self.lineage << ", " << child.id.to_s
+  #Retrieves all parents with a distance <= DEPTH. Default is immediate parents (depth = 1).
+  #To get all parents, use self.parent instead.
+  def getparents(depth = 1)
+    to_return = Array.new
+    search = McRelations.where("child_id = ? AND distance <= ?", self.id, depth)
+    search.each do |s|
+      to_return << MethodCategory.find(s.parent_id)
+    end
+    return to_return
+  end
+
+  #Creates relation between self and CHILD, modifies distances from any parents of SELF to CHILD
+  def addchild(child, distance = 1, type = "subclass")
+    McRelations.find_or_create_by(parent_id: self.id, child_id: child.id) do |r|
+      r.distance = distance
+      r.description = type
+    end
+
+    self.ancestors.each do |a|
+      new_dist = a.distance + distance
+      McRelations.find_or_create_by(parent_id: a.parent_id, child_id: child.id) do |u|
+        u.distance = new_dist
+        u.description = type
+      end
     end
   end
 
-  def removechild(child)
-    to_remove = MethodCategory.find(child.id)
-    if to_remove
-      value = child.id.to_s
-      regex = /(?:[^\d]|^)#{value}(?:[^\d]|$)/
-      self.lineage.slice!(regex)
+  #Creates relation between self and PARENT, modifies distances from any children of self to PARENT
+  def addparent(parent, distance = 1, type = "subclass")
+    McRelations.find_or_create_by(parent_id: parent.id, child_id: child.id) do |r|
+      r.distance = distance
+      r.description = description
+    end
+
+    self.descendants.each do |c|
+      new_dist = c.distance + distance
+      McRelations.find_or_create_by(parent_id: c.id, child_id: self.id)do |u|
+        u.distance = new_dist
+        u.description = type
+      end
     end
   end
+
+  # Removes CHILD from SELF's list of children. Modifies distances from any children or parents of self.
+  def removechild(child)
+    self.children.destroy(child)
+  end
+
+  # Removes parent from SELF's list of parents. Modifies distances from any parents or children of self.
+  def removeparent(parent)
+    self.parents.destroy(parent)
+  end
+
+  def changedistance
+    self.descendants.each do |d|
+      self.ancestors.each do |a|
+        dist = McRelations.find_by(parent_id: a.parent_id, child_id: d.child_id)
+        if !dist.empty?
+          if dist.distance > d.distance
+            dist.distance -= d.distance
+            dist.save
+          end
+        end
+      end
+    end
+  end
+
+  has_many :descendants,  :class_name => "McRelations",
+                          :foreign_key => "parent_id",
+                          :dependent => :destroy
+  has_many :children, :through => :descendants, :source => :child
+  has_many :ancestors,    :class_name => "McRelations",
+                          :foreign_key => "child_id",
+                          :dependent => :destroy
+  has_many :parents, :through => :ancestors, :source => :parent
 
   has_many :categorizations, dependent: :destroy
   has_many :design_methods, through: :categorizations
+
 end

@@ -35,7 +35,6 @@ data.each do |row|
   fields[:overview]  = row[2].to_s.strip
   fields[:process]   = row[3].to_s.strip
   fields[:principle] = row[4].to_s.strip
-  # FILL: load citations from spreadsheet
 
   design_method = DesignMethod.new(fields)
   design_method.owner = admin
@@ -85,5 +84,8 @@ data.each do |row|
 end
 
 header = DesignMethod.where(name: "Name").first
+header.destroy if header
+
+header = Citation.where(text: "Name").first
 header.destroy if header
 
