@@ -13,11 +13,12 @@ gem 'coffee-rails'
 gem 'uglifier'
 gem 'spreadsheet'
 gem 'sqlite3'
+gem 'acts_as_commentable_with_threading'
+gem 'activeadmin', github: 'gregbell/active_admin'
 
 group :development do
   gem 'thin'
   gem 'quiet_assets'
-  gem 'sqlite3'
   gem 'sunspot_solr'
 end
 
