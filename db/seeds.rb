@@ -86,6 +86,6 @@ end
 header = DesignMethod.where(name: "Name").first
 header.destroy if header
 
-header = Citation.where(text: "Name").first
+header = Citation.where(text: "Reference").first
 header.destroy if header
 

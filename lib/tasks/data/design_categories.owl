@@ -1,0 +1,393 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/howard/ontologies/2014/0/untitled-ontology-4"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.semanticweb.org/howard/ontologies/2014/0/untitled-ontology-4">
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Declaration>
+        <Class IRI="#About_Context"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#About_People"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#About_Trends"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Abstract"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Attitudes"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Behavior"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Behavioral_Sampling"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Book"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Building"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Client"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Communicating"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Consultant"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Data"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Data_Gathering"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Data_Processing"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Designer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Diary_Study"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Digital"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Facilitating_conversations"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Framing_Ideas"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Ideating"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Images"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Interactive"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Interview"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Introducing_ideas"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Key_References"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Method"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Person"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Qualitative"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Quantitative"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Researcher"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Respondent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Statements"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Subjective_assessment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Survey"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Tangible"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Targeting_the_audience"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Website"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Collects"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasAuthor"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#requiresPerson"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasAuthor"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#101_Design_Methods"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Communicating_the_New"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Design_Thinking:process_and_methods_manual"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#GameStorming"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#Data_Gathering"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Method"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#Collects"/>
+                <Class IRI="#Data"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Interactive"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#requiresPerson"/>
+            <Class IRI="#Researcher"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Interview"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#Collects"/>
+            <Class IRI="#Statements"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#About_Context"/>
+        <Class IRI="#Data_Gathering"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#About_People"/>
+        <Class IRI="#Data_Gathering"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#About_Trends"/>
+        <Class IRI="#Data_Gathering"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Abstract"/>
+        <Class IRI="#Building"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Attitudes"/>
+        <Class IRI="#About_People"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Behavior"/>
+        <Class IRI="#About_People"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Behavioral_Sampling"/>
+        <Class IRI="#Behavior"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Book"/>
+        <Class IRI="#Key_References"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Building"/>
+        <Class IRI="#Method"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Client"/>
+        <Class IRI="#Person"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Communicating"/>
+        <Class IRI="#Method"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Consultant"/>
+        <Class IRI="#Person"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Data_Gathering"/>
+        <Class IRI="#Method"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Data_Processing"/>
+        <Class IRI="#Method"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Designer"/>
+        <Class IRI="#Person"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Diary_Study"/>
+        <Class IRI="#Behavioral_Sampling"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Digital"/>
+        <Class IRI="#Building"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Facilitating_conversations"/>
+        <Class IRI="#Communicating"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Framing_Ideas"/>
+        <Class IRI="#Communicating"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Ideating"/>
+        <Class IRI="#Method"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Images"/>
+        <Class IRI="#Qualitative"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Interactive"/>
+        <Class IRI="#About_People"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Interview"/>
+        <Class IRI="#Attitudes"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Introducing_ideas"/>
+        <Class IRI="#Communicating"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Qualitative"/>
+        <Class IRI="#Data"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Quantitative"/>
+        <Class IRI="#Data"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Researcher"/>
+        <Class IRI="#Person"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Respondent"/>
+        <Class IRI="#Person"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Statements"/>
+        <Class IRI="#Qualitative"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Subjective_assessment"/>
+        <Class IRI="#Survey"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Survey"/>
+        <Class IRI="#Attitudes"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Tangible"/>
+        <Class IRI="#Building"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Targeting_the_audience"/>
+        <Class IRI="#Communicating"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Website"/>
+        <Class IRI="#Key_References"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Client"/>
+        <Class IRI="#Consultant"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Qualitative"/>
+        <Class IRI="#Quantitative"/>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#Book"/>
+        <NamedIndividual IRI="#101_Design_Methods"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Book"/>
+        <NamedIndividual IRI="#Communicating_the_New"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Book"/>
+        <NamedIndividual IRI="#Design_Thinking:process_and_methods_manual"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Book"/>
+        <NamedIndividual IRI="#GameStorming"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthor"/>
+        <NamedIndividual IRI="#101_Design_Methods"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Vijay Kumar
+</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthor"/>
+        <NamedIndividual IRI="#Communicating_the_New"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Kim Erwin
+</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthor"/>
+        <NamedIndividual IRI="#Design_Thinking:process_and_methods_manual"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Robert Curdale</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthor"/>
+        <NamedIndividual IRI="#GameStorming"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Sunni Brown
+</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthor"/>
+        <NamedIndividual IRI="#GameStorming"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">James Macanufo</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthor"/>
+        <NamedIndividual IRI="#GameStorming"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Dave Gray</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthor"/>
+        <AnonymousIndividual nodeID="_:http://www.semanticweb.org/howard/ontologies/2014/0/untitled-ontology-4#genid1390518163125879000"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral"></Literal>
+    </DataPropertyAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="owl:incompatibleWith"/>
+        <IRI>#101_Design_Methods</IRI>
+        <AnonymousIndividual nodeID="_:http://www.semanticweb.org/howard/ontologies/2014/0/untitled-ontology-4#genid1390518163125879000"/>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
