@@ -36,6 +36,8 @@ describe Comment do
   it { should respond_to(:commentable_type) }
   it { should respond_to(:commentable_id) }
 
+  it { should be_valid }
+
   describe "when body is not present" do
     before { @comment.body = "" }
     it {should_not be_valid }

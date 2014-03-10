@@ -50,8 +50,8 @@ describe DesignMethod do
 
   describe "when name is already taken" do
     before do
-      same_method = @design_method.dup
-      same_method.save
+      same_name = @design_method.dup
+      same_name.save
     end
     it { should_not be_valid }
   end

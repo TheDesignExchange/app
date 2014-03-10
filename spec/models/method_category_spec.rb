@@ -17,6 +17,8 @@ describe MethodCategory do
 
   it { should respond_to(:name) }
 
+  it { should be_valid}
+
   describe "name is not present" do
     before { @category.name = "" }
     it { should_not be_valid }
