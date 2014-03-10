@@ -31,7 +31,7 @@ class DesignMethodsController < ApplicationController
     @hits = []
 
     if params[:query]
-      search = DesignMethod.search do
+      search = DesignMethod.solr_search do
         fulltext params[:query] do
           highlight
           minimum_match 0

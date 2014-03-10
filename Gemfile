@@ -19,12 +19,12 @@ gem 'turbolinks'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'sunspot_solr'
 end
 
 group :development do
   gem 'thin'
   gem 'quiet_assets'
-  gem 'sunspot_solr'
 end
 
 group :production do
