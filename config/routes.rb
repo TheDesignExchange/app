@@ -3,7 +3,7 @@ DesignExchange::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
 
-  root to: "main_pages#home"
+  root "main_pages#home"
 
   get :about, to: "main_pages#about"
 
