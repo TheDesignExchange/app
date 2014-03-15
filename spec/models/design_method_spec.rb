@@ -57,7 +57,7 @@ describe DesignMethod do
   end
 
   describe "when method has no owner" do
-    before { @design_method.owner = nil }
+    before { design_method.owner = nil }
     it { should_not be_valid }
   end
 
