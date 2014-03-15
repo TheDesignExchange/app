@@ -19,12 +19,10 @@
 require 'spec_helper'
 
 describe Comment do
-  before do
-    @user = User.create(email: "comment@example.com", password: "comment123")
-    @comment = Comment.new(body: "some text", user_id: @user.id)
-  end
+  let(:user) { FactoryGirl.create(:user) }
+  let(:comment) { FactoryGirl.create(:comment) }
 
-  subject { @comment }
+  subject { comment }
 
   it { should respond_to(:body) }
   it { should respond_to(:user_id) }
@@ -39,12 +37,12 @@ describe Comment do
   it { should be_valid }
 
   describe "when body is not present" do
-    before { @comment.body = "" }
+    before { comment.body = "" }
     it {should_not be_valid }
   end
 
   describe "when user_id is not present" do
-    before { @comment.user = nil }
+    before { comment.user = nil }
     it { should_not be_valid }
   end
 

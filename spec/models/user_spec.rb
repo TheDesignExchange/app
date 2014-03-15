@@ -20,9 +20,9 @@
 require 'spec_helper'
 
 describe User do
-  before { @user = User.new(email: "user@example.com", password: "test1234") }
+  let(:user) {FactoryGirl.create(:user)}
 
-  subject { @user }
+  subject { user }
 
   it { should respond_to(:email) }
   it { should respond_to(:encrypted_password) }
@@ -33,23 +33,25 @@ describe User do
   it { should be_valid }
 
   describe "when email is not present" do
-    before { @user.email = " " }
+    before { user.email = " " }
     it { should_not be_valid }
   end
 
   describe "when password is too short" do
     before do
-      @user = User.create(email: "test#@example.com", password: "short")
+      user.password = "short"
+      user.password_confirmation = "short"
+      user.save
     end
-    it { should_not be_valid }
+    it {should_not be_valid}
   end
 
   describe "when email format is valid" do
     it "should be valid" do
       addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
       addresses.each do |valid_address|
-        @user.email = valid_address
-        expect(@user).to be_valid
+        user.email = valid_address
+        expect(user).to be_valid
       end
     end
   end

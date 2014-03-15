@@ -15,15 +15,10 @@
 require 'spec_helper'
 
 describe DesignMethod do
-  before do
-    @user = User.create(email: "creator@example.com", password: "create123")
-    @design_method = DesignMethod.new(name: "example", overview: "overview",
-                                      process: "process", principle: "principle",
-                                      owner_id: @user.id)
+  let(:user) { FactoryGirl.create(:user) }
+  let(:design_method) {FactoryGirl.build(:design_method, owner: user) }
 
-  end
-
-  subject { @design_method }
+  subject { design_method }
 
   it { should respond_to(:name) }
   it { should respond_to(:overview) }
@@ -39,30 +34,30 @@ describe DesignMethod do
   it { should be_valid }
 
   describe "when name is not present" do
-    before { @design_method.name = ""}
+    before { design_method.name = ""}
     it { should_not be_valid }
   end
 
   describe "when overview is not present" do
-    before { @design_method.overview = ""}
+    before { design_method.overview = ""}
     it { should_not be_valid }
   end
 
   describe "when name is too long" do
-    before { @design_method.name = "a" * 256}
+    before { design_method.name = "a" * 256}
     it { should_not be_valid }
   end
 
   describe "when name is already taken" do
     before do
-      same_name = @design_method.dup
+      same_name = design_method.dup
       same_name.save
     end
     it { should_not be_valid }
   end
 
   describe "when method has no owner" do
-    before { @design_method.owner = nil }
+    before { design_method.owner = nil }
     it { should_not be_valid }
   end
 

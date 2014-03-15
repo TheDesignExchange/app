@@ -12,14 +12,14 @@ require 'spec_helper'
 
 describe Citation do
   # TODO: add relationship tests
-  before { @citation = Citation.new(text: "text")}
+  let(:citation) { FactoryGirl.create(:citation) }
 
-  subject { @citation }
+  subject { citation }
 
   it { should respond_to(:text) }
 
   describe "when text is not present" do
-    before { @citation.text = "" }
+    before { citation.text = "" }
     it { should_not be_valid }
   end
 end
