@@ -11,13 +11,14 @@
 require 'spec_helper'
 
 describe MethodCategory do
+  # TODO: add relationship tests
   before { @category = MethodCategory.new(name: "category") }
 
   subject { @category }
 
   it { should respond_to(:name) }
 
-  it { should be_valid}
+  it { should be_valid }
 
   describe "name is not present" do
     before { @category.name = "" }

@@ -11,6 +11,7 @@
 require 'spec_helper'
 
 describe Citation do
+  # TODO: add relationship tests
   before { @citation = Citation.new(text: "text")}
 
   subject { @citation }

@@ -44,7 +44,7 @@ describe Comment do
   end
 
   describe "when user_id is not present" do
-    before { @comment.user_id = nil }
+    before { @comment.user = nil }
     it { should_not be_valid }
   end
 
