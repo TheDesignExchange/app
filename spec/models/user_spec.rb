@@ -25,7 +25,10 @@ describe User do
   subject { @user }
 
   it { should respond_to(:email) }
-  it { should respond_to(:encrypted_password)}
+  it { should respond_to(:encrypted_password) }
+  it { should respond_to(:commented_methods) }
+  it { should respond_to(:favorite_methods) }
+  it { should respond_to(:favorite) }
 
   it { should be_valid }
 

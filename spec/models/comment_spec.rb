@@ -48,4 +48,9 @@ describe Comment do
     it { should_not be_valid }
   end
 
+  describe "when user comments on a method" do
+    before { design_method.comments.add comment }
+    user.commented_methods.should include design_method
+  end
+
 end

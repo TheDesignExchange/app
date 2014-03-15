@@ -26,15 +26,15 @@ describe DesignMethod do
   subject { @design_method }
 
   it { should respond_to(:name) }
-  it { should respond_to(:overview)}
-  it { should respond_to(:process)}
-  it { should respond_to(:principle)}
-  it { should respond_to(:owner_id)}
+  it { should respond_to(:overview) }
+  it { should respond_to(:process) }
+  it { should respond_to(:principle) }
+  it { should respond_to(:owner_id) }
 
-  it { should respond_to(:method_categories)}
-  it { should respond_to(:citations)}
-  it { should respond_to(:owner)}
-
+  it { should respond_to(:method_categories) }
+  it { should respond_to(:citations) }
+  it { should respond_to(:owner) }
+  it { should respond_to(:favorited_users) }
 
   it { should be_valid }
 
@@ -64,6 +64,11 @@ describe DesignMethod do
   describe "when method has no owner" do
     before { @design_method.owner = nil }
     it { should_not be_valid }
+  end
+
+  describe "when user favorites method" do
+    before { user.favorite(design_methods) }
+    design_method.favorited_users.should include user
   end
 
 end
