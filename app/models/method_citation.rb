@@ -10,8 +10,10 @@
 #
 
 class MethodCitation < ActiveRecord::Base
-  validates :design_method_id, :citation_id, 
-            presence: true, numericality: { only_integer: true }
+  validates :design_method_id,
+            :citation_id,
+              presence: true,
+              numericality: { only_integer: true }
 
   belongs_to :design_method
   belongs_to :citation

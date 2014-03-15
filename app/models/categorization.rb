@@ -10,8 +10,10 @@
 #
 
 class Categorization < ActiveRecord::Base
-  validates :design_method_id, :method_category_id, 
-            presence: true, numericality: { only_integer: true }
+  validates :design_method_id,
+            :method_category_id,
+              presence: true,
+              numericality: { only_integer: true }
 
   belongs_to :design_method
   belongs_to :method_category

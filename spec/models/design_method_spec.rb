@@ -26,6 +26,11 @@ describe DesignMethod do
   it { should respond_to(:principle)}
   it { should respond_to(:owner_id)}
 
+  it { should respond_to(:method_categories)}
+  it { should respond_to(:citations)}
+  it { should respond_to(:owner)}
+
+
   it { should be_valid }
 
   describe "when name is not present" do
@@ -48,6 +53,11 @@ describe DesignMethod do
       same_name = design_method.dup
       same_name.save
     end
+    it { should_not be_valid }
+  end
+
+  describe "when method has no owner" do
+    before { @design_method.owner = nil }
     it { should_not be_valid }
   end
 
