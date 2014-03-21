@@ -28,7 +28,7 @@ describe User do
   it { should respond_to(:encrypted_password) }
   it { should respond_to(:commented_methods) }
   it { should respond_to(:favorite_methods) }
-  it { should respond_to(:favorite) }
+  it { should respond_to(:method_favorites) }
 
   it { should be_valid }
 

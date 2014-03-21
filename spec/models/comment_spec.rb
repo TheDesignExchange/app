@@ -20,7 +20,8 @@ require 'spec_helper'
 
 describe Comment do
   let(:user) { FactoryGirl.create(:user) }
-  let(:comment) { FactoryGirl.create(:comment) }
+  let(:comment) { FactoryGirl.create(:comment, user: user) }
+  let(:design_method) { FactoryGirl.create(:design_method, owner: user) }
 
   subject { comment }
 
@@ -46,8 +47,9 @@ describe Comment do
     it { should_not be_valid }
   end
 
-  describe "when user comments on a method" do
-    before { design_method.comments.add comment }
+  it "when user comments on a method" do
+    c = Comment.build_from(design_method, user.id, "This is a comment")
+    c.save
     user.commented_methods.should include design_method
   end
 

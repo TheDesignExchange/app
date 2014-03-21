@@ -13,6 +13,7 @@
 #
 
 class DesignMethod < ActiveRecord::Base
+  acts_as_commentable
   validates :name, :overview, presence: true
   validates :name, length: { maximum: 255,
             too_long: "%{count} is the maximum character length."}
@@ -35,6 +36,8 @@ class DesignMethod < ActiveRecord::Base
   has_many :method_categories, through: :categorizations
   has_many :method_citations, dependent: :destroy
   has_many :citations, through: :method_citations
+  has_many :method_favorites, dependent: :destroy
+  has_many :favorited_users, through: :method_favorites, :source => :user
 
   belongs_to :owner, class_name: "User", foreign_key: :owner_id
 end

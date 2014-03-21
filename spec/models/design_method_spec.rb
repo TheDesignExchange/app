@@ -16,7 +16,7 @@ require 'spec_helper'
 
 describe DesignMethod do
   let(:user) { FactoryGirl.create(:user) }
-  let(:design_method) {FactoryGirl.build(:design_method, owner: user) }
+  let(:design_method) { FactoryGirl.build(:design_method, owner: user) }
 
   subject { design_method }
 
@@ -61,8 +61,8 @@ describe DesignMethod do
     it { should_not be_valid }
   end
 
-  describe "when user favorites method" do
-    before { user.favorite(design_methods) }
+  it "when user favorites method" do
+    user.favorite(design_method)
     design_method.favorited_users.should include user
   end
 

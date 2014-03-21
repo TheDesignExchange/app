@@ -22,6 +22,23 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  def favorite(design_method)
+    if !self.favorite_methods.exists?(design_method)
+      self.favorite_methods << design_method
+    end
+  end
 
+  def commented_methods
+    method_list = Array.new
+    comments = Comment.find_comments_by_user(self)
+    comments.each do |c|
+      method = Comment.find_commentable(c.commentable_type, c.commentable_id)
+      if method
+        method_list << method
+      end
+    end
+  end
   has_many :owned_methods, dependent: :destroy, class_name: "DesignMethod", foreign_key: :owner_id
+  has_many :method_favorites, dependent: :destroy
+  has_many :favorite_methods, through: :method_favorites, :source => :design_method
 end
