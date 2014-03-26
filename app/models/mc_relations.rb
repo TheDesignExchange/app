@@ -12,6 +12,10 @@
 #
 
 class McRelations < ActiveRecord::Base
+  validates :parent_id,
+            :child_id,
+              presence: true,
+              numericality: { only_integer: true }
   belongs_to :parent, :class_name => "MethodCategory"
   belongs_to :child, :class_name => "MethodCategory"
 end

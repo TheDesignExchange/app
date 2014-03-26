@@ -35,6 +35,9 @@ describe Comment do
   it { should respond_to(:commentable_type) }
   it { should respond_to(:commentable_id) }
 
+  it { should respond_to(:user) }
+  it { should respond_to(:commentable) }
+
   it { should be_valid }
 
   describe "when body is not present" do

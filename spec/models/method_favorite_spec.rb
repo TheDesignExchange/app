@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: method_favorites
+#
+#  id               :integer          not null, primary key
+#  user_id          :integer
+#  design_method_id :integer
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+
 require 'spec_helper'
 
 describe MethodFavorite do
