@@ -9,7 +9,6 @@
 #
 
 class MethodCategory < ActiveRecord::Base
-  before_destroy :recalc_distance
   validates :name, presence: true, length: { maximum: 255,
             too_long: "%{count} is the maximum character length."}
 
@@ -30,7 +29,8 @@ class MethodCategory < ActiveRecord::Base
   def get_children_until(depth = 1)
     to_return = Array.new
     self.children.each do |child|
-      if self.distance_from(child) <= depth
+      dist = self.distance_from(child)
+      if dist > 0 && dist <= depth
         to_return << child
       end
     end
@@ -54,7 +54,8 @@ class MethodCategory < ActiveRecord::Base
   def get_parents_until(depth = 1)
     to_return = Array.new
     self.parents.each do |parent|
-      if parent.distance_from(self) <= depth
+      dist = parent.distance_from(self)
+      if dist > 0 && dist <= depth
         to_return << parent
       end
     end
@@ -63,10 +64,21 @@ class MethodCategory < ActiveRecord::Base
 
   #Creates relation between self and CHILD, modifies distances from any parents of SELF to CHILD
   def add_child(child, distance = 1, type = "subclass")
+    if !MethodCategory.exists?(child)
+      return
+    end
     if !self.children.exists?(child)
       self.children << child
     end
     self.update_all_fields(child, distance, type)
+
+    child.children.each do |grandchild|
+      if !self.children.exists?(grandchild)
+        self.children << grandchild
+      end
+      offset = child.distance_from(grandchild)
+      self.update_all_fields(grandchild, distance + offset, type)
+    end
 
     self.parents.each do |parent|
       if !parent.children.exists?(child)
@@ -74,23 +86,52 @@ class MethodCategory < ActiveRecord::Base
       end
       offset = parent.distance_from(self)
       parent.update_all_fields(child, distance + offset, type)
+
+      child.children.each do |grandchild|
+        if !parent.children.exists?(grandchild)
+          parent.children << grandchild
+        end
+        offset = parent.distance_from(self) + child.distance_from(grandchild)
+        parent.update_all_fields(grandchild, distance + offset, type)
+      end
     end
+    return child
   end
 
   #Creates relation between self and PARENT, modifies distances from any children of self to PARENT
   def add_parent(parent, distance = 1, type = "subclass")
+        if !MethodCategory.exists?(parent)
+      return
+    end
     if !self.parents.exists?(parent)
       self.parents << parent
     end
     self.update_all_fields(parent, distance, type)
 
+    parent.parents.each do |grandparents|
+      if !self.parents.exists?(grandparents)
+        self.parents << grandparents
+      end
+      offset = parent.distance_from(grandparents)
+      self.update_all_fields(grandparents, distance + offset, type)
+    end
+
     self.children.each do |child|
       if !child.parents.exists?(parent)
         child.parents << parent
       end
-      offset = self.distance_from(child)
+      offset = child.distance_from(self)
       child.update_all_fields(parent, distance + offset, type)
+
+      parent.parents.each do |grandparent|
+        if !child.parents.exists?(grandparent)
+          child.parents << grandparent
+        end
+        offset = child.distance_from(self) + parent.distance_from(grandparent)
+        child.update_all_fields(grandparent, distance + offset, type)
+      end
     end
+    return parent
   end
 
   # Removes CHILD from SELF's list of children. Modifies distances from any children or parents of self.
@@ -142,9 +183,11 @@ class MethodCategory < ActiveRecord::Base
   # Updates DISTANCE and TYPE of relation for SELF and OTHER.
   def update_all_fields(other, distance, type)
     update_relation = self.return_relation(other)
-    update_relation.description = type
-    update_relation.distance = distance
-    update_relation.save
+    if update_relation
+      update_relation.description = type
+      update_relation.distance = distance
+      update_relation.save
+    end
   end
 
   # Returns the relation between SELF and OTHER.
@@ -156,7 +199,7 @@ class MethodCategory < ActiveRecord::Base
     return relation
   end
 
-  def recalc_distance(to_remove)
+  def recalc_after_remove(to_remove)
     to_remove.parents.each do |parent|
       to_remove.children.each do |child|
         old_dist = parent.distance_from(child)
@@ -166,19 +209,18 @@ class MethodCategory < ActiveRecord::Base
     end
   end
 
-
   has_many :child_relations,  :class_name => "McRelations",
                               :foreign_key => "parent_id",
                               :dependent => :destroy
   has_many :children, :through => :child_relations,
                       :source => :child,
-                      :before_remove => :recalc_distance
+                      :before_remove => :recalc_after_remove
   has_many :parent_relations, :class_name => "McRelations",
                               :foreign_key => "child_id",
                               :dependent => :destroy
   has_many :parents,  :through => :parent_relations,
                       :source => :parent,
-                      :before_remove => :recalc_distance
+                      :before_remove => :recalc_after_remove
 
   has_many :categorizations, dependent: :destroy
   has_many :design_methods, through: :categorizations

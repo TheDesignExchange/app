@@ -32,103 +32,321 @@ describe MethodCategory do
   it { should respond_to(:remove_parent) }
   it { should respond_to(:get_children) }
   it { should respond_to(:get_parents) }
-  it { should respond_to(:recalc_distance) }
+
   it { should respond_to(:update_distance) }
   it { should respond_to(:distance_from) }
   it { should respond_to(:relation_type) }
   it { should respond_to(:update_relation_type) }
+  it { should respond_to(:recalc_after_remove) }
 
   it { should be_valid }
 
-  describe "name is not present" do
+  context "when name is not present" do
     before { method_category.name = "" }
     it { should_not be_valid }
   end
 
-  describe "name is too long" do
+  context "when name is too long" do
     before { method_category.name = "a" * 256 }
-    it { should_not be_valid}
+    it { should_not be_valid }
   end
 
-  describe "children methods" do
+  describe "#add_child" do
+    let(:child_list) { method_category.children }
+
+    context "when child is valid" do
+      before { method_category.add_child(child_a) }
+
+      it "adds child to children list" do
+        expect(child_list).to include child_a
+      end
+
+      it "sets default distance" do
+        expect(method_category.distance_from(child_a)).to eq(1)
+      end
+    end
+
+    context "when child is not valid" do
+      before { method_category.add_child(child_a) }
+
+      it "does not raise error" do
+        not_child = "not a child"
+        expect(method_category.add_child(not_child)).to_not raise_error
+      end
+    end
+
+    context "when child is already in list" do
+      before { method_category.add_child(child_a) }
+
+      it "does not add child twice" do
+        method_category.add_child(child_a)
+        expect(child_list.size).to eq(1)
+        expect(child_list).to include child_a
+      end
+    end
+
+    context "when child adds its own child" do
+      before do
+        method_category.add_child(child_a)
+        child_a.add_child(child_b)
+      end
+
+      it "adds grandchild to children list" do
+        expect(child_list).to include child_b
+      end
+
+      it "recalculates correct distances to children" do
+        expect(method_category.distance_from(child_b)).to eq(2)
+      end
+    end
+
+    context "when adding a child with existing children" do
+      before do
+        child_a.add_child(child_b)
+        method_category.add_child(child_a)
+      end
+
+      it "adds all children to list" do
+        expect(child_list).to include(child_a, child_b)
+      end
+
+      it "recalculates correct distances to children" do
+        expect(method_category.distance_from(child_a)).to eq(1)
+        expect(method_category.distance_from(child_b)).to eq(2)
+      end
+    end
+  end
+
+  describe "#get_children" do
     before do
       method_category.add_child(child_a)
       child_a.add_child(child_b)
     end
 
-    it "should add children" do
-      method_category.children.should include child_a
-      method_category.distance_from(child_a).should eq(1)
+    context "when called with default argument" do
+      let(:results) { method_category.get_children }
+      it "gets immediate children" do
+        expect(results).to include child_a
+      end
+
+      it "does not get grandchildren" do
+        expect(results).to_not include child_b
+      end
     end
 
-    it "should add grandchildren" do
-      method_category.children.should include child_b
-      method_category.distance_from(child_b).should eq(2)
-    end
+    context "when called with argument n" do
+      let(:results) { method_category.get_children(2) }
 
-    it "should get immediate children" do
-      results = method_category.get_children
-      results.should include child_a
-      results.should_not include child_b
-    end
+      it "gets children at level n" do
+        expect(results).to include child_b
+      end
 
-    it "should get specific children" do
-      results = method_category.get_children(2)
-      results.should include child_b
-      results.should_not include child_a
-    end
-
-    it "should get all children up to some depth" do
-      results = method_category.get_children_until(2)
-      results.should include child_a
-      results.should include child_b
-    end
-
-    it "should remove children" do
-      method_category.remove_child(child_a)
-      method_category.children.should_not include child_a
-      method_category.distance_from(child_b).should eq(1)
+      it "does not get children at levels != n" do
+        expect(results).to_not include child_a
+      end
     end
   end
 
-  describe "parent methods" do
+  describe "#get_children_until" do
+    before do
+      method_category.add_child(child_a)
+      child_a.add_child(child_b)
+      parent_a.add_child(method_category)
+    end
+
+    it "gets children up to depth n" do
+      expect(parent_a.get_children_until(3)).to include(child_a, child_b, method_category)
+    end
+  end
+
+  describe "#remove_child" do
+    before do
+      method_category.add_child(child_a)
+      child_a.add_child(child_b)
+      parent_a.add_child(method_category)
+      method_category.remove_child(child_a)
+    end
+
+    context "when child is caller's child" do
+      it "removes relation" do
+        expect(method_category.children).to_not include child_a
+      end
+
+      it "recalculates grandchildren distances" do
+        expect(method_category.distance_from(child_b)).to eq(1)
+      end
+
+      it "recalculates grandparent distances" do
+        expect(parent_a.distance_from(child_b)).to eq(2)
+      end
+
+      it "does not destroy child" do
+        expect(MethodCategory.where(id: child_a.id)).to exist
+      end
+    end
+
+    context "when child is not caller's child" do
+      before do
+        parent_b.add_child(child_b)
+        method_category.remove_child(parent_b)
+      end
+
+      it "does not remove relations" do
+        expect(McRelations.where(parent_id: parent_b.id, child_id: child_b.id)).to exist
+      end
+
+      it "does not recalculate distances" do
+        expect(parent_b.distance_from(child_b)).to eq(1)
+      end
+    end
+  end
+
+  describe "#add_parent" do
+    let(:parent_list) { method_category.parents }
+
+    context "when parent is valid" do
+      before { method_category.add_parent(parent_a) }
+
+      it "adds parent to parent list" do
+        expect(parent_list).to include parent_a
+      end
+
+      it "sets default distance" do
+        expect(method_category.distance_from(parent_a)).to eq(1)
+      end
+    end
+
+    context "when parent is not valid" do
+      before { method_category.add_parent(parent_a) }
+
+      it "does not raise error" do
+        not_parent = "not a parent"
+        expect(method_category.add_parent(not_parent)).to_not raise_error
+      end
+    end
+
+    context "when parent is already in list" do
+      before { method_category.add_parent(parent_a) }
+
+      it "does not add child twice" do
+        method_category.add_parent(parent_a)
+        expect(parent_list.size).to eq(1)
+      end
+    end
+
+    context "when parent adds its own parent" do
+      before do
+        method_category.add_parent(parent_a)
+        parent_a.add_parent(parent_b)
+      end
+
+      it "adds grandparents to parent list" do
+        expect(parent_list).to include parent_b
+      end
+
+      it "recalculates correct distances to parents" do
+        expect(method_category.distance_from(parent_b)).to eq(2)
+      end
+    end
+
+    context "when adding a parent with existing parents" do
+      before do
+        parent_a.add_parent(parent_b)
+        method_category.add_parent(parent_a)
+      end
+
+      it "adds all parents to list" do
+        expect(parent_list).to include(parent_a, parent_b)
+      end
+
+      it "recalculates correct distances to parents" do
+        expect(method_category.distance_from(parent_a)).to eq(1)
+        expect(method_category.distance_from(parent_b)).to eq(2)
+      end
+    end
+  end
+
+  describe "#get_parents" do
     before do
       method_category.add_parent(parent_a)
       parent_a.add_parent(parent_b)
     end
 
-    it "should add parents" do
-      method_category.parents.should include parent_a
-      method_category.distance_from(parent_a).should eq(1)
+    context "when called with no arguments" do
+      let(:results) { method_category.get_parents }
+      it "gets immediate parents" do
+        expect(results).to include parent_a
+      end
+
+      it "does not get grandparents" do
+        expect(results).to_not include parent_b
+      end
     end
 
-    it "should add grandparents" do
-      method_category.parents.should include parent_b
-      method_category.distance_from(parent_b).should eq(2)
+    context "when called with argument n" do
+      let(:results) { method_category.get_parents(2) }
+
+      it "gets parents at level n" do
+        expect(results).to include parent_b
+      end
+
+      it "does not get parents at levels != n" do
+        expect(results).to_not include parent_a
+      end
+    end
+  end
+
+  describe "#get_parents_until" do
+    before do
+      child_a.add_parent(method_category)
+      method_category.add_parent(parent_a)
+      parent_a.add_parent(parent_b)
     end
 
-    it "should get immediate parents" do
-      results = method_category.get_parents
-      results.should include parent_a
-      results.should_not include parent_b
+    it "gets parents up to depth n" do
+      expect(child_a.get_parents_until(3)).to include(parent_a, parent_b, method_category)
     end
+  end
 
-    it "should get specific parents" do
-      results = method_category.get_parents(2)
-      results.should include parent_b
-      results.should_not include parent_a
-    end
-
-    it "should get all parents up until some depth" do
-      results = method_category.get_parents_until(2)
-      results.should include parent_a
-      results.should include parent_b
-    end
-
-    it "should remove parents" do
+  describe "#remove_parent" do
+    before do
+      method_category.add_parent(parent_a)
+      parent_a.add_parent(parent_b)
+      child_a.add_parent(method_category)
       method_category.remove_parent(parent_a)
-      method_category.parents.should_not include parent_a
-      method_category.distance_from(parent_b).should eq(1)
+    end
+
+    context "when parent is caller's parent" do
+      it "removes relation" do
+        expect(method_category.children).to_not include parent_a
+      end
+
+      it "recalculates grandparents distances" do
+        expect(method_category.distance_from(parent_b)).to eq(1)
+      end
+
+      it "recalculates grandchildren distances" do
+        expect(child_a.distance_from(parent_b)).to eq(2)
+      end
+
+      it "does not destroy parent" do
+        expect(MethodCategory.where(id: parent_a.id)).to exist
+      end
+    end
+
+    context "when parent is not caller's parent" do
+      before do
+        child_b.add_parent(parent_b)
+        method_category.remove_parent(parent_b)
+      end
+
+      it "does not remove relations" do
+        expect(McRelations.where(parent_id: parent_b.id, child_id: child_b.id)).to exist
+      end
+
+      it "does not recalculate distances" do
+        expect(parent_b.distance_from(child_b)).to eq(1)
+      end
     end
   end
 
