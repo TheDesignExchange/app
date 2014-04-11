@@ -29,4 +29,10 @@ FactoryGirl.define do
     body  { Faker::Lorem.sentence }
     user
   end
+
+  factory :method_favorite do
+    user
+    design_method
+  end
+
 end
