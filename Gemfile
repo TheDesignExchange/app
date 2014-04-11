@@ -16,6 +16,10 @@ gem 'sqlite3'
 gem 'acts_as_commentable_with_threading'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'turbolinks'
+gem 'rdf'
+gem 'rdf-raptor'
+gem 'sparql'
+gem 'equivalent-xml'
 
 group :development, :test do
   gem 'rspec-rails'
