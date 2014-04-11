@@ -63,8 +63,9 @@ class MethodCategory < ActiveRecord::Base
   end
 
   #Creates relation between self and CHILD, modifies distances from any parents of SELF to CHILD
+  #helpers/more documentation. follow rdoc format.
   def add_child(child, distance = 1, type = "subclass")
-    if !MethodCategory.exists?(child)
+    if !MethodCategory.exists?(child) || distance < 0
       return
     end
     if !self.children.exists?(child)
@@ -100,7 +101,7 @@ class MethodCategory < ActiveRecord::Base
 
   #Creates relation between self and PARENT, modifies distances from any children of self to PARENT
   def add_parent(parent, distance = 1, type = "subclass")
-        if !MethodCategory.exists?(parent)
+        if !MethodCategory.exists?(parent) || distance < 0
       return
     end
     if !self.parents.exists?(parent)
@@ -199,7 +200,7 @@ class MethodCategory < ActiveRecord::Base
     return relation
   end
 
-  def recalc_after_remove(to_remove)
+  def recalc_for_remove(to_remove)
     to_remove.parents.each do |parent|
       to_remove.children.each do |child|
         old_dist = parent.distance_from(child)
@@ -214,13 +215,13 @@ class MethodCategory < ActiveRecord::Base
                               :dependent => :destroy
   has_many :children, :through => :child_relations,
                       :source => :child,
-                      :before_remove => :recalc_after_remove
+                      :before_remove => :recalc_for_remove
   has_many :parent_relations, :class_name => "McRelations",
                               :foreign_key => "child_id",
                               :dependent => :destroy
   has_many :parents,  :through => :parent_relations,
                       :source => :parent,
-                      :before_remove => :recalc_after_remove
+                      :before_remove => :recalc_for_remove
 
   has_many :categorizations, dependent: :destroy
   has_many :design_methods, through: :categorizations

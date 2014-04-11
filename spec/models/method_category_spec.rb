@@ -37,7 +37,7 @@ describe MethodCategory do
   it { should respond_to(:distance_from) }
   it { should respond_to(:relation_type) }
   it { should respond_to(:update_relation_type) }
-  it { should respond_to(:recalc_after_remove) }
+  it { should respond_to(:recalc_for_remove) }
 
   it { should be_valid }
 
@@ -167,7 +167,7 @@ describe MethodCategory do
       method_category.remove_child(child_a)
     end
 
-    context "when child is caller's child" do
+    context "when is child" do
       it "removes relation" do
         expect(method_category.children).to_not include child_a
       end
@@ -185,7 +185,7 @@ describe MethodCategory do
       end
     end
 
-    context "when child is not caller's child" do
+    context "when is not child" do
       before do
         parent_b.add_child(child_b)
         method_category.remove_child(parent_b)
@@ -316,7 +316,7 @@ describe MethodCategory do
       method_category.remove_parent(parent_a)
     end
 
-    context "when parent is caller's parent" do
+    context "when parent is parent" do
       it "removes relation" do
         expect(method_category.children).to_not include parent_a
       end
@@ -334,7 +334,7 @@ describe MethodCategory do
       end
     end
 
-    context "when parent is not caller's parent" do
+    context "when is not parent" do
       before do
         child_b.add_parent(parent_b)
         method_category.remove_parent(parent_b)
