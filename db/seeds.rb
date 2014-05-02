@@ -29,8 +29,6 @@ root_prefix = "PREFIX : <http://www.semanticweb.org/howard/ontologies/2014/0/Des
 # This should be fixed w/something more convenient -- have some kind of predicate I can search on.
 # Hm, based on how this looks, might need to add descriptions to the method categories as well.
 
-# Also, currently stores method_characteristics, person, process, etc as design methods. Is this
-# what is needed?
 methods = SPARQL.parse("SELECT ?subj ?obj { ?subj <#{RDF::RDFS.subClassOf}> ?obj }")
 all_objects = Set.new
 all_subjects = Set.new
@@ -77,6 +75,28 @@ method_categories.each do |cat|
   end
 end
 
+def remove_unwanted(method)
+  method.children.each do |child|
+    name = child.name
+    child.destroy
+    p "    Removed #{name}"
+  end
+  m_name = method.name
+  method.destroy
+  p "    Removed #{m_name}"
+end
+
+# Remove any of the classes that don't fall under the Method umbrella. If property paths gets added to the SPARQL gem then this won't be necessary
+to_delete = MethodCategory.where(name: "Person").first
+remove_unwanted(to_delete)
+to_delete = MethodCategory.where(name: "Method_Characteristics").first
+remove_unwanted(to_delete)
+to_delete = MethodCategory.where(name: "Processes").first
+remove_unwanted(to_delete)
+to_delete = MethodCategory.where(name: "Skills").first
+remove_unwanted(to_delete)
+
+
 # Instantiating design methods; currently filling in contents w/ "default" so that things can get loaded.
 # Fix this once more of the ontology is ready, and we want to catch entries that need to get fixed.
 only_methods.each do |method|
@@ -121,9 +141,15 @@ only_methods.each do |method|
     cat_name = results.obj.to_s.split('#')[1]
     if cat_name
       category = MethodCategory.where(name: cat_name).first
-      if !design_method.method_categories.include?(category)
+      if category && !design_method.method_categories.include?(category)
         design_method.method_categories << category
         p "    Added category #{cat_name}"
+        category.parents.each do |gparents|
+          if gparents && !design_method.method_categories.include?(gparents)
+            design_method.method_categories << gparents
+            p "    Added category #{gparents.name}"
+          end
+        end
       end
     end
   end
