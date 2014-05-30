@@ -1,0 +1,298 @@
+<%= stylesheet_link_tag    "collection", :media => "all" %>
+
+
+<h1> <%= @cs.title %>
+
+<div id="form2" class="slide">
+   <div class="container">
+      <div class="row">
+            <p name="Main Image" class="label full-label">Main Image</p>
+            <div class="files">
+            	<img src="<%= @cs.mainImage%>">
+            </div>
+         <br class="clearfix">
+      </div>
+
+      <div class="multiple row">
+         <div class="row">
+               <p class="label full-label">Title</p>
+               <p class="label"></p>
+               <input value="<%= @cs.title %>">
+            <br class="clearfix">
+         </div>
+      </div>
+
+      <div class="multiple row">
+         <div class="row">
+               <p class="label full-label">Subtitle</p>
+               <p class="label"></p>
+               <input value="<%= @cs.subTitle %>">
+            <br class="clearfix">
+         </div>
+      </div>
+
+        <div class="multiple row">
+         <div class="row">
+               <p class="label full-label">Company Name</p>
+               <p class="label"></p>
+               <input value="<%= @cs.companyName %>">
+            <br class="clearfix">
+         </div>
+      </div>
+
+      <div class="multiple row">
+         <div class="row">  
+               <p class="label">Development Cycle</p>
+               <ul class="menu dropit">
+                  <li class="dropit-trigger">
+                     <a href="#">Development Cycle</a>
+                     <ul class="dropit-submenu" style="display: none;">
+                        <li><a>Product Update</a></li>
+                        <li><a>Product Refinement</a></li>
+                        <li><a>New Product</a></li>
+                        <li><a>Other</a></li>
+                     </ul>
+                  </li>
+               </ul>
+            <br class="clearfix">
+         </div>
+      </div>
+
+      <div class="multiple row">
+         <div class="row">
+               <p class="label">Design Phase</p>
+               <ul class="menu dropit">
+                  <li class="dropit-trigger">
+                     <a href="#">Design Phase</a>
+                     <ul class="dropit-submenu" style="display: none;">
+                        <li><a>Problem Assessment</a></li>
+                        <li><a>Conceptual Design</a></li>
+                        <li><a>Detailed Design</a></li>
+                        <li><a>Other</a></li>
+                     </ul>
+                  </li>
+               </ul>
+            <br class="clearfix">
+         </div>
+      </div>
+
+      <div class="multiple row">
+         <div class="row">
+               <p class="label">Project Domain</p>
+               <ul class="menu dropit">
+                  <li class="dropit-trigger">
+                     <a href="#">Project Domain</a>
+                     <ul class="dropit-submenu" style="display: none;">
+                        <li><a>Built Environment</a></li>
+                        <li><a>Product</a></li>
+                        <li><a>Service</a></li>
+                        <li><a>Web</a></li>
+                        <li><a>Mobile</a></li>
+                        <li><a>Graphic</a></li>
+                        <li><a>Fashion</a></li>
+                        <li><a>Other</a></li>
+                     </ul>
+                  </li>
+               </ul>
+            <br class="clearfix">
+         </div>
+      </div>
+
+	  <div class="multiple row">
+         <div class="row">
+               <p class="label">Remote Project</p>
+      			<form action="">
+					<input type="radio" name="choice" value="Yes">Yes<br>
+					<input type="radio" name="choice" value="No">No
+				</form>
+	     		<br class="clearfix">
+         </div>
+      </div>
+
+      <div class="multiple row">
+         <div class="row">
+               <p class="label">Customer is User</p>
+      			<form action="">
+					<input type="radio" name="choice" value="Yes">Yes<br>
+					<input type="radio" name="choice" value="No">No
+				</form>
+	     		<br class="clearfix">
+         </div>
+      </div>
+
+      <div class="multiple row">
+         <div class="row">
+               <p class="label">Customer Type</p>
+               <form action="">
+					<input type="checkbox" name="CustomerType" value="Government">Government<br>
+					<input type="checkbox" name="CustomerType" value="EducationalGroup">Educational Group<br>
+					<input type="checkbox" name="CustomerType" value="Business">Business<br>
+					<input type="checkbox" name="CustomerType" value="NGO">NGO<br>
+					<input type="checkbox" name="CustomerType" value="Other">Other 
+				</form>
+				<br class="clearfix">
+         </div>
+      </div>
+
+
+      <div class="multiple row">
+         <div class="row">
+               <p class="label">Age Group of User</p>
+               <form action="">
+					<input type="checkbox" name="UserAge" value="Child">Child<br>
+					<input type="checkbox" name="UserAge" value="Teen">Teen<br>
+					<input type="checkbox" name="UserAge" value="Young Adult">Young Adult<br>
+					<input type="checkbox" name="UserAge" value="Middle Aged">Middle Aged<br>
+					<input type="checkbox" name="UserAge" value="Elderly">Elderly
+				</form>
+            <br class="clearfix">
+         </div>
+      </div>
+
+      <div class="multiple row">
+         <div class="row">
+               <p class="label">Privacy Level</p>
+               <form action="">
+					<input type="checkbox" name="Privacy" value="Public">Public<br>
+					<input type="checkbox" name="Privacy" value="Private">Private		
+				</form>
+            <br class="clearfix">
+         </div>
+      </div>
+
+      <div class="multiple row">
+         <div class="row">
+               <p class="label">Social Setting</p>
+               <form action="">
+					<input type="checkbox" name="SocialSetting" value="Personal">Personal<br>
+					<input type="checkbox" name="SocialSetting" value="Social">Social<br>
+					<input type="checkbox" name="SocialSetting" value="Professional">Professioal<br>
+				</form>
+            <br class="clearfix">
+         </div>
+      </div>
+
+      <div class="row">
+            <p name="Problem Description" class="label full-label">Problem Description</p>
+            <textarea rows="4" name="description" ><%= @cs.description %></textarea>
+         <br class="clearfix">
+      </div>
+      
+	<div class="row">
+		 <p class="label">Methods</p>
+    		<div class="input-group">
+      			<span class="input-group-addon">
+        			<input type="checkbox">
+      			</span>
+      			<input type="text" class="form-control">
+    		</div>
+  		</div>
+
+
+      <div class="multiple row">
+         <div class="row">
+               <p class="label">Sub Methods</p>
+               <input value="<%= @cs.subMethods %>">
+            <br class="clearfix">
+         </div>
+
+
+      <div class="multiple row">
+         <div class="row">
+               <p class="label">More Details</p>
+               <input value="<%= @cs.detailMethods %>">
+            <br class="clearfix">
+         </div>
+
+
+      <div class="multiple row">
+         <div class="row">
+               <p class="label full-label">Contact Info</p>
+               <p class="label">Author</p>
+               <input value="<%= @cs.authorName %>">
+            <br class="clearfix">
+         </div>
+
+         <div class="row">
+               <p class="label">Email</p>
+               <input value="<%= @cs.authorEmail %>">
+            <br class="clearfix">
+         </div>
+
+         <div class="row">
+               <p class="label">Other</p>
+               <input value="<%= @cs.authorOther %>">
+            <br class="clearfix">
+         </div>
+      </div>
+
+      <div class="multiple row">
+         <div class="row">
+               <p class="label">Permission to Use</p>
+      			<form action="">
+					<input type="radio" name="choice" value="Yes">Yes<br>
+					<input type="radio" name="choice" value="No">No
+				</form>
+	     		<br class="clearfix">
+         </div>
+      </div>
+
+      <div class="row">
+            <p name="Resources" class="label full-label">Image Resources</p>
+            <div class="files"><input type="file" name="ImageResources" id="ImageResources">
+            	<br>
+            	<input type="submit" name="Resourcesupload" id="Resourcesupload" value="<%= @cs.imageResource %>">
+            </div>
+         <br class="clearfix">
+      </div>
+
+
+      <div class="row">
+            <p name="Resources" class="label full-label">PDF Resources</p>
+            <div class="files"><input type="file" name="PDFResources" id="PDFResources">
+            	<br>
+            	<input type="submit" name="Resourcesupload" id="Resourcesupload" value="<%= @cs.PDFResource %>">
+            </div>
+         <br class="clearfix">
+      </div>
+
+      <div class="row">
+            <p name="Website" class="label full-label">Website</p>
+            <input name="url" value="<%=@cs.url %>" >
+         <br class="clearfix">
+      </div>
+
+      <div class="multiple row">
+         <div class="row">
+               <p name="Time Period" class="label full-label">Time Period</p>
+               <input value="<%= @cs.timePeriod %>" class="time" >
+               <p class="label time label-right">Hours</p>
+            <br class="clearfix">
+         </div>
+
+         <div class="row">
+               <input value="<%= @cs.timePeriod %>" class="time">
+               <p class="label time label-right">Days</p>
+            <br class="clearfix">
+         </div>
+
+         <div class="row">
+               <input value="<%= @cs.timePeriod %>" class="time">
+               <p class="label time label-right">Weeks</p>
+            <br class="clearfix">
+         </div>
+
+         <div class="row">
+               <input value="<%= @cs.timePeriod %>" class="time">
+               <p class="label time label-right">Months</p>
+            <br class="clearfix">
+         </div>
+
+         <div class="row">
+               <input value="<%= @cs.timePeriod %>" class="time">
+               <p class="label time label-right">Years</p>
+            <br class="clearfix">
+         </div>
+      </div>
+   </div>
+</div>

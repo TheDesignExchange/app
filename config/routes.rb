@@ -5,6 +5,10 @@ DesignExchange::Application.routes.draw do
 
   root "main_pages#home"
 
+  get "collection/casestudies"
+  get "collection/form"
+
+
   get :about, to: "main_pages#about"
 
   get :contact, to: "main_pages#contact"

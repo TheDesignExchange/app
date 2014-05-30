@@ -1,14 +1,25 @@
+#rake db:migrate:reset
+#rake db:seed:casestudies
+
 [
     {
-        "title": "A Case Study of Non-User-Centered Design for a Police Emergency-Response SystemAaron",
+        "title": "A Case Study of Non-User-Centered Design for a Police Emergency-Response System Aaron",
+        "subTitle": 
         "projectDomain": "interaction design, research",
+        "remoteProject": "No",
+        "customerType":"government",
+        "userAge":"middle aged",
+        "privacyLevel":"public",
+        "socialSetting":"professional",
+        "timePeriod":"2 months",
+        "authorName": "Aaron Marcus, Jim Gasperini",
         "url": "http://www.amanda.com/joomla_uploads/whitepapers/Intrxns.SJPD.Art.pp12ff.120906%282%29.pdf",
         "companyName": "Aaron Marcus and Associates",
         "companyID": 6,
         "PDFResource": "AMA1",
         "description": "Evaluate the software: The government had been spent more than $4 million  on the software, and it was performing poorly, with many usability problems.",
         "authorEmail": "aaron.marcus@amanda.com",
-        "authorOther": "jim.gasperini@amanda.com"
+        "authorOther": "jim.gasperini@amanda.com",
     },
     {
         "title": "A Behind-the-Scenes Look at Developing iWitness",

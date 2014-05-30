@@ -1,0 +1,172 @@
+<%= stylesheet_link_tag    "collection", :media => "all" %>
+<style>
+h3 {margin: 0;}
+h4 {margin: 0.33em 0;}
+</style>
+
+
+<div class="grid_12">
+	<div class="grid_2 omega">
+         <button type="all" class="btn btn-info">Show All</button>
+	</div>
+	<div class="grid_2 omega">	
+		 <h4>Project Domain</h4>
+	</div>	
+	<div class="grid_3 omega">	
+		<div class="btn-group">
+			<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+			Choose one<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+			<li><a href="#"></a>Built Environment</li>
+			<li><a href="#">Product</a></li>
+			<li><a href="#">Service</a></li>
+			<li><a href="#">Web</a></li>
+			<li><a href="#">Mobile</a></li>
+			<li><a href="#">Graphic</a></li>
+			<li><a href="#">Fashion</a></li>
+			<li><a href="#">Other</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="grid_1 omega">	
+		<h4>Method</h4>
+	</div>
+	<div class="grid_2 omega">
+		<input id="submethod-text" ></input>
+	</div>	
+</div>
+
+<hr width="3000" height="100" align="left">
+<br>
+
+<% @casestudies.each do |cs| %>
+<div class="grid_12">
+	<div class="grid_4 omega">
+		<img src="/FedEx2.png" alt="FedEx2" width="250" height="250">
+	</div>	
+
+	<div class="grid_8 omega">
+		<h3><%= cs.title %> </h3>
+		<a href="<%=cs.url %>"> <%=cs.url %></a>	
+		<p><%=cs.description %></p>	
+	</div>	
+</div>		
+
+<div class="grid_12">	
+	<div class="grid_4 omega">
+         <button type="all" class="btn btn-info">Change</button>
+         <table style="width:300px">
+			<tr>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+			</tr>
+			<tr>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+			</tr>
+		</table>
+
+	</div>
+	<div class="grid_8 omega">
+		<h3>Resources</h3>
+
+		<table style="width:300px">
+		<tr>
+  		<td>FedEx_CaseStudy1.pdf</td>
+  		<td></td>		
+  		<td><button type="all" class="btn btn-info">Remove</button></td>
+		</tr>
+		<tr>
+  		<td bgcolor="#E0E0EB">FedEx_CaseStudy2.pdf</td>
+  		<td></td>		
+  		<td><button type="all" class="btn btn-info">Remove</button></td>
+		</tr>
+		<td>FedEx_CaseStudy3.pdf</td>
+  		<td></td>		
+  		<td><button type="all" class="btn btn-info">Remove</button></td>
+		</tr>
+		<tr>
+ 		<td><input id="submethod-text" ></input></td>
+  		<td></td>		
+  		<td><button type="all" class="btn btn-info">Upload</button></td>
+		</tr>
+		</table>
+
+	</div>	
+</div>		
+
+
+
+<br>
+<hr width="3000" size="50" align="left">
+
+<% end %>
+<!-- 
+<div class="grid_12">
+	<div class="grid_4 omega">
+		<img src="/HIVTreatment.jpg" alt="HIVT" width="250" height="250">
+	</div>	
+
+	<div class="grid_8 omega">
+		<h3>Improving Global Access to HIV Treatment Using Smarter Data: OptimizeARV</h3>
+		<p>Anti-retroviral therapies (ART) remain the principal mechanism for saving the lives of those infected with HIV/AIDS. The ability of national governments to effectively scale-up their ART treatment programs relies on the recommendations, guidelines, and data produced by global stakeholders such as WHO, PEPFAR. National governments struggle to assimilate this knowledge effectively because of information fragmentation and limited analytical capacity.</p>
+	</div>	
+</div>	
+
+<div class="grid_12">	
+	<div class="grid_4 omega">
+         <button type="all" class="btn btn-info">Change</button>
+
+         <table style="width:300px">
+			<tr>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+			</tr>
+			<tr>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+			</tr>
+		</table>
+
+	</div>
+	<div class="grid_8 omega">
+		<h3>Resources</h3>
+
+		<table style="width:300px">
+		<tr>
+  		<td>OptimizeARV1.pdf</td>
+  		<td></td>		
+  		<td><button type="all" class="btn btn-info">Remove</button></td>
+		</tr>
+		<tr>
+  		<td bgcolor="#E0E0EB">OptimizeARV2.pdf</td>
+  		<td></td>		
+  		<td><button type="all" class="btn btn-info">Remove</button></td>
+		</tr>
+		<tr>
+  		<td>OptimizeARV3.pdf</td>
+  		<td></td>		
+  		<td><button type="all" class="btn btn-info">Remove</button></td>
+		</tr>
+		<tr>
+ 		<td><input id="submethod-text" ></input></td>
+  		<td></td>		
+  		<td><button type="all" class="btn btn-info">Upload</button></td>
+		</tr>
+		</table>
+
+	</div>	
+</div>		 -->
+
+		          	
+
+<%# @casestudies.each do |cs| %>
+<%#=img src="FedEx.png" alt="FedEx" width="42" height="42"%>
+<h3><%#= cs[:name] %></h3>
+<p><%#= cs[:description] %></p>
+<%#end%>
