@@ -1,4 +1,6 @@
-
+# require "rdf"
+# require "rdf/raptor"
+# include RDF
 # Reset users
 
 User.destroy_all
@@ -165,3 +167,4 @@ only_methods.each do |method|
     end
   end
 end
+

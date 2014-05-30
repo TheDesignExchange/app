@@ -20,6 +20,7 @@ gem 'rdf'
 gem 'rdf-raptor'
 gem 'sparql'
 gem 'equivalent-xml'
+gem 'ffi'
 
 group :development, :test do
   gem 'rspec-rails'

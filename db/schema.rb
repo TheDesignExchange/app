@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321073006) do
+ActiveRecord::Schema.define(version: 20140529195539) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -47,14 +47,31 @@ ActiveRecord::Schema.define(version: 20140321073006) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "case_studies", force: true do |t|
-    t.string   "company"
-    t.integer  "company_id"
-    t.string   "name"
-    t.string   "contact"
-    t.string   "contact_information"
+    t.string   "mainImage"
+    t.string   "title"
+    t.string   "subTitle"
+    t.string   "companyName"
+    t.string   "developmentCycle"
+    t.string   "designPhase"
+    t.string   "projectDomain"
+    t.string   "customerIsUser"
+    t.string   "remoteProject"
+    t.string   "customerType"
+    t.string   "userAge"
+    t.string   "privacyLevel"
+    t.string   "socialSetting"
     t.string   "description"
-    t.string   "resources"
-    t.integer  "usability_rating"
+    t.string   "methods"
+    t.string   "subMethods"
+    t.string   "detailMethods"
+    t.string   "authorName"
+    t.string   "authorEmail"
+    t.string   "authorOther"
+    t.string   "permissionToUse"
+    t.string   "imageResource"
+    t.string   "PDFResource"
+    t.string   "url"
+    t.string   "timePeriod"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -134,13 +151,6 @@ ActiveRecord::Schema.define(version: 20140321073006) do
   add_index "method_citations", ["design_method_id"], name: "index_method_citations_on_design_method_id"
 
   create_table "method_favorites", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "design_method_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "method_ownerships", force: true do |t|
     t.integer  "user_id"
     t.integer  "design_method_id"
     t.datetime "created_at"

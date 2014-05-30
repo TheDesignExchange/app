@@ -276,6 +276,7 @@ DEPENDENCIES
   equivalent-xml
   factory_girl_rails
   faker
+  ffi
   jquery-rails
   jquery-ui-rails
   kaminari
