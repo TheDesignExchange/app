@@ -1,0 +1,310 @@
+[
+    {
+        "methodName": "Customer Journey Map",
+        "versionID":"1",
+        "designer":"Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"Customer Journey Mapping is a tool for visualizing how customers interact with people and organizations in order to make a purchase or experience a service. Customer Journey Mapping comes from the corporate sector and market research. It can be used as a form of consultation to improve a service through finding out how people use the service and how they interact with the service provider. It provides a map of the interactions and emotions that take place, and can help an organization provide its customers with the experience it wants them to have. ",
+        "methodProcess":"1. Set up: Executive director sponsor identified, Cross functional team created, Kick-off workshop with set expectations and process description. 2. Map: Identify channels and key individuals, Workshop to map touch points, Sense and check results, Create a customer Journey dashboard. 3. Size the prize: Identify drop out hot-spots, Quantify opportunity cost, explore route causes for drop out, present map and hot spots to cross functional group. 4. Design: Workshops to develop ideal touch-points and prioritize changes. 5. Act and embed: management board support for long-term programmer, Performance targets set, Identify project champions, Implement changes, review and revise.",  
+        "image":"customerJourneyMap_1.png",
+    },
+
+    {
+        "methodName": "Customer Journey Map",
+        "versionID":"2",
+        "designer":"Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"Customer Journey Mapping is a tool for visualizing how customers interact with people and organizations in order to make a purchase or experience a service. Customer Journey Mapping comes from the corporate sector and market research. It can be used as a form of consultation to improve a service through finding out how people use the service and how they interact with the service provider. It provides a map of the interactions and emotions that take place, and can help an organization provide its customers with the experience it wants them to have. ",
+        "methodProcess":"1. Set up: Executive director sponsor identified, Cross functional team created, Kick-off workshop with set expectations and process description. 2. Map: Identify channels and key individuals, Workshop to map touch points, Sense and check results, Create a customer Journey dashboard. 3. Size the prize: Identify drop out hot-spots, Quantify opportunity cost, explore route causes for drop out, present map and hot spots to cross functional group. 4. Design: Workshops to develop ideal touch-points and prioritize changes. 5. Act and embed: management board support for long-term programmer, Performance targets set, Identify project champions, Implement changes, review and revise.",      
+        "image":"customerJourneyMap_2.png",
+    },
+
+    {
+        "methodName": "Customer Journey Map",
+        "versionID":"3",
+        "designer":"Cesar Torres",
+        "evaluator": "",
+        "Date":"",
+        "methodDescription":"Customer Journey Mapping is a tool for visualizing how customers interact with people and organizations in order to make a purchase or experience a service. Customer Journey Mapping comes from the corporate sector and market research. It can be used as a form of consultation to improve a service through finding out how people use the service and how they interact with the service provider. It provides a map of the interactions and emotions that take place, and can help an organization provide its customers with the experience it wants them to have. ",
+        "methodProcess":"1. Set up: Executive director sponsor identified, Cross functional team created, Kick-off workshop with set expectations and process description. 2. Map: Identify channels and key individuals, Workshop to map touch points, Sense and check results, Create a customer Journey dashboard. 3. Size the prize: Identify drop out hot-spots, Quantify opportunity cost, explore route causes for drop out, present map and hot spots to cross functional group. 4. Design: Workshops to develop ideal touch-points and prioritize changes. 5. Act and embed: management board support for long-term programmer, Performance targets set, Identify project champions, Implement changes, review and revise.",      
+        "image":"customerJourneyMap_3.png",
+       
+    },
+
+    {
+        "methodName": "Wireframes",
+        "versionID":"1",
+        "designer":"Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"A website wireframe, also known as a page schematic or screen blueprint, is a visual guide that represents the skeletal framework of a website.",
+        "methodProcess":"Wireframes are created for the purpose of arranging elements to best accomplish a particular purpose. The purpose is usually being informed by a business objective and a creative idea. The wireframe depicts the page layout or arrangement of the website’s content, including interface elements and navigational systems, and how they work together.",
+        "image":"wireframes_1.png",
+    },
+
+    {
+        
+        "methodName": "Wireframes",
+        "versionID":"2",
+        "designer":"Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"A website wireframe, also known as a page schematic or screen blueprint, is a visual guide that represents the skeletal framework of a website.",
+        "methodProcess":"Wireframes are created for the purpose of arranging elements to best accomplish a particular purpose. The purpose is usually being informed by a business objective and a creative idea. The wireframe depicts the page layout or arrangement of the website’s content, including interface elements and navigational systems, and how they work together.",
+        "image":"wireframes_2.png",
+    },
+
+    {
+        "methodName": "Wireframes",
+        "versionID":"3",
+        "designer":"Cesar Torres",
+        "evaluator": "",
+        "Date":"",
+        "methodDescription":"A website wireframe, also known as a page schematic or screen blueprint, is a visual guide that represents the skeletal framework of a website.",
+        "methodProcess":"Wireframes are created for the purpose of arranging elements to best accomplish a particular purpose. The purpose is usually being informed by a business objective and a creative idea. The wireframe depicts the page layout or arrangement of the website’s content, including interface elements and navigational systems, and how they work together.",
+        "image":"wireframes_3.png",
+    },
+
+    {
+        "methodName": "Fused Deposition Models (FDM)",
+        "versionID":"1",
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"Fused Deposition Modeling is the most common 3D printing method. FDM printers use a thermoplastic filament, which is heated to its melting point and then extruded, layer by layer, to create a three dimensional object.",
+        "methodProcess":"FDM is popular with companies in a variety of industries, from automotive (BMW, Hyundai, Lamborghini) to consumer goods manufacturing (Black and Decker, Dial, Nestle). These companies use FDM throughout their product development, prototyping and manufacturing processes.",
+        "image":"fuseDepositionModeling_1.png",
+    },
+
+    {
+        "methodName": "Fused Deposition Models (FDM)",
+        "versionID":"2",
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"Fused Deposition Modeling is the most common 3D printing method. FDM printers use a thermoplastic filament, which is heated to its melting point and then extruded, layer by layer, to create a three dimensional object.",
+        "methodProcess":"FDM is popular with companies in a variety of industries, from automotive (BMW, Hyundai, Lamborghini) to consumer goods manufacturing (Black and Decker, Dial, Nestle). These companies use FDM throughout their product development, prototyping and manufacturing processes.",
+        "image":"fuseDepositionModeling_2.png",
+    },
+    
+    {
+        "methodName": "Fused Deposition Models (FDM)",
+        "versionID":"3",
+        "designer": "Cesar Torres",
+        "evaluator": "",
+        "Date":"",
+        "methodDescription":"Fused Deposition Modeling is the most common 3D printing method. FDM printers use a thermoplastic filament, which is heated to its melting point and then extruded, layer by layer, to create a three dimensional object.",
+        "methodProcess":"FDM is popular with companies in a variety of industries, from automotive (BMW, Hyundai, Lamborghini) to consumer goods manufacturing (Black and Decker, Dial, Nestle). These companies use FDM throughout their product development, prototyping and manufacturing processes.",
+        "image":"fuseDepositionModeling_3.png",
+    },
+
+
+    {
+        "methodName": "Evidencing",
+        "versionID":"1",
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"The methodology called evidencing, pioneered by the UK firm Livework, involves creating objects and images exploring the way a proposed design innovation will feel and work through its touch-points. Evidencing means taking the ideas and animating them as tangible evidence of the future.",
+        "methodProcess":"Illustrate a service’s touch-points through images or objects, in order to understand how a service will look and feel.",
+        "image":"evidencing_1.png",
+    }, 
+
+    {
+        "methodName": "Evidencing",
+        "versionID":"2",
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"The methodology called evidencing, pioneered by the UK firm Livework, involves creating objects and images exploring the way a proposed design innovation will feel and work through its touch-points. Evidencing means taking the ideas and animating them as tangible evidence of the future.",
+        "methodProcess":"Illustrate a service’s touch-points through images or objects, in order to understand how a service will look and feel.",
+        "image":"evidencing_2.png",
+   }, 
+
+    {
+        "methodName": "Evidencing",
+        "versionID":"3",
+        "designer": "Cesar Torres",
+        "evaluator": "",
+        "Date":"",
+        "methodDescription":"The methodology called evidencing, pioneered by the UK firm Livework, involves creating objects and images exploring the way a proposed design innovation will feel and work through its touch-points. Evidencing means taking the ideas and animating them as tangible evidence of the future.",
+        "methodProcess":"Illustrate a service’s touch-points through images or objects, in order to understand how a service will look and feel.",
+        "image":"evidencing_3.png",
+   }, 
+
+   {
+        "methodName": "Storyboard",
+        "versionID":"1",
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"The storyboard is a tool derived from the cinematographic tradition; it is the representation of use cases through a series of drawings or pictures, put together in a narrative sequence.The service storyboard shows the manifestation of every touch-points and the relationships between them and the user in the creation of the experience.",
+        "methodProcess":"1. Before the meeting, decide on the topic around which you want players to share stories. Set up a flat surface area where you can write and post images. Write the name of the topic in this area. 2. Participants will describe in picture what they perceive to be the values underlying the topic. Next, they'll share a work-related story that's indicative of those values. 3. Give the players 10 minutes to cut out one or more images that represent their perception of the underlying values.",
+        "image":"storyboard_1.png",
+   }, 
+
+    {
+        "methodName": "Storyboard",
+        "versionID":"2",
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"The storyboard is a tool derived from the cinematographic tradition; it is the representation of use cases through a series of drawings or pictures, put together in a narrative sequence.The service storyboard shows the manifestation of every touch-points and the relationships between them and the user in the creation of the experience.",
+        "methodProcess":"1. Before the meeting, decide on the topic around which you want players to share stories. Set up a flat surface area where you can write and post images. Write the name of the topic in this area. 2. Participants will describe in picture what they perceive to be the values underlying the topic. Next, they'll share a work-related story that's indicative of those values. 3. Give the players 10 minutes to cut out one or more images that represent their perception of the underlying values.",
+        "image":"storyboard_2.png",
+   }, 
+
+    {
+        "methodName": "Storyboard",
+        "versionID":"3",
+        "designer": "Cesar Torres",
+        "evaluator": "",
+        "Date":"",
+        "methodDescription":"The storyboard is a tool derived from the cinematographic tradition; it is the representation of use cases through a series of drawings or pictures, put together in a narrative sequence.The service storyboard shows the manifestation of every touch-points and the relationships between them and the user in the creation of the experience.",
+        "methodProcess":"1. Before the meeting, decide on the topic around which you want players to share stories. Set up a flat surface area where you can write and post images. Write the name of the topic in this area. 2. Participants will describe in picture what they perceive to be the values underlying the topic. Next, they'll share a work-related story that's indicative of those values. 3. Give the players 10 minutes to cut out one or more images that represent their perception of the underlying values.",
+        "image":"storyboard_3",
+   }, 
+
+    {
+        "methodName": "Offering Map",
+        "versionID":"1",
+        "designer": "Lyra Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"The aim of an offering map is to describe in a synthetic way what the service offers to its users.",
+        "methodProcess":"There is not a standard format for this tool: the offering could be described by words or could be illustrated by images, but most frequently it is visualized through a graph. This instrument could support the elaboration of the service idea as well the development of some specific solutions, it could be a tool for the implementation of the concept but also for the communication of the service to the final user. In each one of these situations, the offering map will assume different configurations and languages with reference to the specific aims and receivers involved.",
+        "image":"offeringMap_1.png",
+   }, 
+
+  {
+        "methodName": "Offering Map",
+        "versionID":"2",
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"The aim of an offering map is to describe in a synthetic way what the service offers to its users.",
+        "methodProcess":"There is not a standard format for this tool: the offering could be described by words or could be illustrated by images, but most frequently it is visualized through a graph. This instrument could support the elaboration of the service idea as well the development of some specific solutions, it could be a tool for the implementation of the concept but also for the communication of the service to the final user. In each one of these situations, the offering map will assume different configurations and languages with reference to the specific aims and receivers involved.",
+        "image":"offeringMap_2.png",
+   }, 
+
+   {
+        "methodName": "Offering Map",
+        "versionID":"3",
+        "designer": "Cesar Torres",
+        "evaluator": "",
+        "Date":"",
+        "methodDescription":"The aim of an offering map is to describe in a synthetic way what the service offers to its users.",
+        "methodProcess":"There is not a standard format for this tool: the offering could be described by words or could be illustrated by images, but most frequently it is visualized through a graph. This instrument could support the elaboration of the service idea as well the development of some specific solutions, it could be a tool for the implementation of the concept but also for the communication of the service to the final user. In each one of these situations, the offering map will assume different configurations and languages with reference to the specific aims and receivers involved.",
+        "image":"offeringMap_3.png",
+   }, 
+
+   {
+        "methodName": "Componential Analysis",
+        "versionID":"1",
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"Componential analysis is the systematic search for the attributes (components of meaning) associated with cultural categories. Whenever an ethnographer discovers contrasts among the members of a domain, these contrasts are best thought of as attributes or components of meaning. The purpose of Componential Analysis is to organize and represent contrasts discovered through ethnographies and taxonomies. This method of organizing information should be used with ethnographic research, specifically with the methods of Participant Observation and Taxonomies.",
+        "methodProcess":"1. Select a domain for analysis. 2. Inventory all contrasts previously discovered - Possibly start  with notes complied from asking contrast questions and/or making selective observations. (e.g. Aremnian Catholics speak Armenian as a first language; Shunni speak Arabic as a first language.) 3. Prepare a paradigm worksheet - consists of an empty paradigm in which you enter the cultural categories of the domain down the lefthand column, while making notes about the relationships between the paradigm and the other domains. 4. Identify dimensions of contrast that have binary values - A dimension of contrast is an idea or concept that has at least two parts, although in this case it specifically has two parts since the values must be binary. (e.g. If you were analyzing the domain "kinds of trees," you would come up with one dimension of contrast that might be stated "characterized by the presence of leaves." This is a dimension of contrast related to trees and has two values or parts: "yes" or "no.") 5. Combine closely related dimensions of contrast into ones that have multiple values - Instead of "yes" or "no" dimensions of contrast, add more complex ones.", 
+        "image":"componentialAnalysis_1.png",
+
+   },
+
+   {
+        "methodName": "Componential Analysis",
+        "versionID":"2",
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"Componential analysis is the systematic search for the attributes (components of meaning) associated with cultural categories. Whenever an ethnographer discovers contrasts among the members of a domain, these contrasts are best thought of as attributes or components of meaning. The purpose of Componential Analysis is to organize and represent contrasts discovered through ethnographies and taxonomies. This method of organizing information should be used with ethnographic research, specifically with the methods of Participant Observation and Taxonomies.",
+        "methodProcess":"1. Select a domain for analysis. 2. Inventory all contrasts previously discovered - Possibly start  with notes complied from asking contrast questions and/or making selective observations. (e.g. Aremnian Catholics speak Armenian as a first language; Shunni speak Arabic as a first language.) 3. Prepare a paradigm worksheet - consists of an empty paradigm in which you enter the cultural categories of the domain down the lefthand column, while making notes about the relationships between the paradigm and the other domains. 4. Identify dimensions of contrast that have binary values - A dimension of contrast is an idea or concept that has at least two parts, although in this case it specifically has two parts since the values must be binary. (e.g. If you were analyzing the domain "kinds of trees," you would come up with one dimension of contrast that might be stated "characterized by the presence of leaves." This is a dimension of contrast related to trees and has two values or parts: "yes" or "no.") 5. Combine closely related dimensions of contrast into ones that have multiple values - Instead of "yes" or "no" dimensions of contrast, add more complex ones.", 
+        "image":"componentialAnalysis_2.png",
+
+   },
+
+   {
+        "methodName": "Componential Analysis",
+        "versionID":"3",
+        "designer": "Yipu Zheng",
+        "evaluator": "",
+        "Date":"",
+        "methodDescription":"Componential analysis is the systematic search for the attributes (components of meaning) associated with cultural categories. Whenever an ethnographer discovers contrasts among the members of a domain, these contrasts are best thought of as attributes or components of meaning. The purpose of Componential Analysis is to organize and represent contrasts discovered through ethnographies and taxonomies. This method of organizing information should be used with ethnographic research, specifically with the methods of Participant Observation and Taxonomies.",
+        "methodProcess":"1. Select a domain for analysis. 2. Inventory all contrasts previously discovered - Possibly start  with notes complied from asking contrast questions and/or making selective observations. (e.g. Aremnian Catholics speak Armenian as a first language; Shunni speak Arabic as a first language.) 3. Prepare a paradigm worksheet - consists of an empty paradigm in which you enter the cultural categories of the domain down the lefthand column, while making notes about the relationships between the paradigm and the other domains. 4. Identify dimensions of contrast that have binary values - A dimension of contrast is an idea or concept that has at least two parts, although in this case it specifically has two parts since the values must be binary. (e.g. If you were analyzing the domain "kinds of trees," you would come up with one dimension of contrast that might be stated "characterized by the presence of leaves." This is a dimension of contrast related to trees and has two values or parts: "yes" or "no.") 5. Combine closely related dimensions of contrast into ones that have multiple values - Instead of "yes" or "no" dimensions of contrast, add more complex ones.", 
+        "image":"componentialAnalysis_3.png",
+
+   },
+
+    {
+        "methodName": "Dot Voting",
+        "versionID":"1",
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"This process takes place when there are too many ideas developed through the brainstorming phase. Dot voting is one of the simplest ways to prioritize and converge upon an agreed solution. It could be used to hone a list of features, to agree on discussion topics, or to choose among strategies and concepts.",
+        "methodProcess":"1. The group needs to set a things to vote on. This may be something they have just developed, such as a wall of sticky notes, or it may be flip-chart list that captures the ideas in one place. Ask the group to cast their votes by placing a dot next to the items they feel strongly about. Participants have 5 votes to cast and may vote more than once for a single topic. 2. Once all votes are cast, tally them, and if necessary, make a list of the items by their new rank. 3. This prioritized list becomes the subject of discussion and decision making. in some cases, it may be useful to reflect on ideas that didn't receive votes to verify that they haven't been left behind without a cause.",
+        "image":"dotVoting_1.png",
+   },
+
+    {
+        "methodName": "Dot Voting",
+        "versionID":"2",
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"This process takes place when there are too many ideas developed through the brainstorming phase. Dot voting is one of the simplest ways to prioritize and converge upon an agreed solution. It could be used to hone a list of features, to agree on discussion topics, or to choose among strategies and concepts.",
+        "methodProcess":"1. The group needs to set a things to vote on. This may be something they have just developed, such as a wall of sticky notes, or it may be flip-chart list that captures the ideas in one place. Ask the group to cast their votes by placing a dot next to the items they feel strongly about. Participants have 5 votes to cast and may vote more than once for a single topic. 2. Once all votes are cast, tally them, and if necessary, make a list of the items by their new rank. 3. This prioritized list becomes the subject of discussion and decision making. in some cases, it may be useful to reflect on ideas that didn't receive votes to verify that they haven't been left behind without a cause.",
+        "image":"dotVoting_2.png",
+   },
+
+
+    {
+        "methodName": "Dot Voting",
+        "versionID":"3",
+        "designer": "Yipu Zheng",
+        "evaluator": "",
+        "Date":"",
+        "methodDescription":"This process takes place when there are too many ideas developed through the brainstorming phase. Dot voting is one of the simplest ways to prioritize and converge upon an agreed solution. It could be used to hone a list of features, to agree on discussion topics, or to choose among strategies and concepts.",
+        "methodProcess":"1. The group needs to set a things to vote on. This may be something they have just developed, such as a wall of sticky notes, or it may be flip-chart list that captures the ideas in one place. Ask the group to cast their votes by placing a dot next to the items they feel strongly about. Participants have 5 votes to cast and may vote more than once for a single topic. 2. Once all votes are cast, tally them, and if necessary, make a list of the items by their new rank. 3. This prioritized list becomes the subject of discussion and decision making. in some cases, it may be useful to reflect on ideas that didn't receive votes to verify that they haven't been left behind without a cause.",
+        "image":"dotVoting_3.png",
+   },
+
+ {
+        "methodName": "Oral History",
+        "versionID":"1",
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"Oral history is a field of study and a method of gathering, preserving and interpreting the voices and memories of people, communities, and participants in past events. Oral history is both the oldest type of historical inquiry, predating the written word, and one of the most modern, initiated with tape recorders in the 1940s and now using 21st-century digital technologies.",
+        "methodProcess":"An oral history interview generally consists of a well-prepared interviewer questioning an interviewee and recording their exchange in audio or video format.  Recordings of the interview are transcribed, summarized, or indexed and then placed in a library or archives. These interviews may be used for research or excerpted in a publication, radio or video documentary, museum exhibition, dramatization or other form of public presentation. Recordings, transcripts, catalogs, photographs and related documentary materials can also be posted on the Internet.",
+        "image":"oralHistory_1.png",
+   },
+
+    {
+        "methodName": "Oral History",
+        "versionID":"2",
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "methodDescription":"Oral history is a field of study and a method of gathering, preserving and interpreting the voices and memories of people, communities, and participants in past events. Oral history is both the oldest type of historical inquiry, predating the written word, and one of the most modern, initiated with tape recorders in the 1940s and now using 21st-century digital technologies.",
+        "methodProcess":"An oral history interview generally consists of a well-prepared interviewer questioning an interviewee and recording their exchange in audio or video format.  Recordings of the interview are transcribed, summarized, or indexed and then placed in a library or archives. These interviews may be used for research or excerpted in a publication, radio or video documentary, museum exhibition, dramatization or other form of public presentation. Recordings, transcripts, catalogs, photographs and related documentary materials can also be posted on the Internet.",
+        "image":"oralHistory_2.png",
+   },
+
+    {
+        "methodName": "Oral History",
+        "versionID":"3",
+        "designer": "Yipu Zheng",
+        "evaluator": "",
+        "Date":"",
+        "methodDescription":"Oral history is a field of study and a method of gathering, preserving and interpreting the voices and memories of people, communities, and participants in past events. Oral history is both the oldest type of historical inquiry, predating the written word, and one of the most modern, initiated with tape recorders in the 1940s and now using 21st-century digital technologies.",
+        "methodProcess":"An oral history interview generally consists of a well-prepared interviewer questioning an interviewee and recording their exchange in audio or video format.  Recordings of the interview are transcribed, summarized, or indexed and then placed in a library or archives. These interviews may be used for research or excerpted in a publication, radio or video documentary, museum exhibition, dramatization or other form of public presentation. Recordings, transcripts, catalogs, photographs and related documentary materials can also be posted on the Internet.",
+        "image":"oralHistory_3.png",
+   },
+
+]
+
+
+
+

@@ -7,10 +7,17 @@ layout "custom"
   	# ]
 
   	@casestudies = CaseStudy.all
+    # test = @casestudies
+    # render :json => test
   end
   def form
   	id = params["n"] == nil ? 1 : params["n"].to_i
     # render :text => id
   	@cs = CaseStudy.where("id=?", id).first;
+    # render :json => @cs
+  end
+
+  def send_casestudy
+    render :json => params
   end
 end

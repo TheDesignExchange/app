@@ -9,6 +9,9 @@ DesignExchange::Application.routes.draw do
   get "collection/form"
 
 
+  post "collection/send_casestudy"
+
+
   get :about, to: "main_pages#about"
 
   get :contact, to: "main_pages#contact"

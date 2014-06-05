@@ -1,8 +1,57 @@
 <%= stylesheet_link_tag    "collection", :media => "all" %>
 
+<script> 
+// find the element $("form input");
+// FOR ALL THE INPUTS, GET THE VALUES $(input1).val()
+// same format .json { title: b}
+// MAIN
+$(function(){
 
+	var data = {
+	        "title": "A Case Study of Non-User-Centered Design for a Police Emergency-Response System Aaron",
+	        "mainImage":"AMA1.png",
+	        "developmentCycle":"Product Refinement",
+	        "designPhase":"Problem Assessment"
+	    }
+	$('#submit').click(function(){
+
+		// TODO
+		var allInputs = $('input');
+
+		for(var i = 0; i < allInputs.length; i++) { 
+			// console.log($(allInputs[i]).attr('data-name'),$(allInputs[i]).val() ); 
+
+		// 	//title
+		// 	// val
+			var el = allInputs[i]
+			var name = $(el).attr('data-name'); 
+			var val = $(el).val();
+
+			if(typeof name !== undefined)
+				data[name] = val;
+ 		}
+
+
+
+		///
+		$.ajax({
+		  type: "POST",
+		  url: "/collection/send_casestudy",
+		  data: data,
+		  success: function(data){
+		  		console.log(data);
+		  },
+		  dataType: "json"
+		});
+
+
+	});
+
+
+})
+</script>
 <h1> <%= @cs.title %>
-
+<button id='submit'> Submit </button>
 <div id="form2" class="slide">
    <div class="container">
       <div class="row">
@@ -17,25 +66,18 @@
          <div class="row">
                <p class="label full-label">Title</p>
                <p class="label"></p>
-               <input value="<%= @cs.title %>">
+               <input data-name="title" value="<%= @cs.title %>">
             <br class="clearfix">
          </div>
       </div>
 
-      <div class="multiple row">
-         <div class="row">
-               <p class="label full-label">Subtitle</p>
-               <p class="label"></p>
-               <input value="<%= @cs.subTitle %>">
-            <br class="clearfix">
-         </div>
-      </div>
+
 
         <div class="multiple row">
          <div class="row">
                <p class="label full-label">Company Name</p>
                <p class="label"></p>
-               <input value="<%= @cs.companyName %>">
+               <input data-name="companyName" value="<%= @cs.companyName %>">
             <br class="clearfix">
          </div>
       </div>
@@ -191,22 +233,6 @@
 
       <div class="multiple row">
          <div class="row">
-               <p class="label">Sub Methods</p>
-               <input value="<%= @cs.subMethods %>">
-            <br class="clearfix">
-         </div>
-
-
-      <div class="multiple row">
-         <div class="row">
-               <p class="label">More Details</p>
-               <input value="<%= @cs.detailMethods %>">
-            <br class="clearfix">
-         </div>
-
-
-      <div class="multiple row">
-         <div class="row">
                <p class="label full-label">Contact Info</p>
                <p class="label">Author</p>
                <input value="<%= @cs.authorName %>">
@@ -296,3 +322,5 @@
       </div>
    </div>
 </div>
+
+

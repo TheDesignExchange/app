@@ -1,7 +1,25 @@
 <%= stylesheet_link_tag    "collection", :media => "all" %>
 <style>
 h3 {margin: 0;}
-h4 {margin: 0.33em 0;}
+h4 {margin: 0.33em 0; font-size: 13pt;}
+p {font-size: 12pt;}
+hr {border-top: 3px solid #eee;
+	width: 100%;
+}
+.thumbnail{
+	width: 100px;
+	height: 100px;
+}
+
+.mainPic{
+	/*width: 100%;*/
+	max-height: 200px;
+	/*height: 250px;*/
+}
+
+#attributes tr:nth-child(odd)		{ background-color:#eee; }
+#attributes tr:nth-child(even)		{ background-color:#fff; }
+
 </style>
 
 
@@ -37,12 +55,32 @@ h4 {margin: 0.33em 0;}
 	</div>	
 </div>
 
-<hr width="3000" height="100" align="left">
+<hr>
 <br>
 
 <% @casestudies.each do |cs| %>
 <div class="grid_12 omega">
-		<img src="/FedEx2.png" alt="FedEx2" width="250" height="250">
+	<div class="grid_5 omega">
+		<img src="/AMA2.png" alt="AMA2" class='mainPic'>
+	</div>
+
+	<div class="grid_2 omega">	
+	</div>
+
+	<div class="grid_5 omega">
+		<table>
+	    	<tr>
+  			<td><img src="/" alt="AMA2" class='thumbnail'></td>
+  			<td><img src="/" alt="AMA2" class='thumbnail'></td>
+  			<td><img src="/" alt="AMA2" class='thumbnail'></td>
+			</tr>
+			<tr>
+  			<td><img src="/" alt="AMA2" class='thumbnail'></td>
+  			<td><img src="/" alt="AMA2" class='thumbnail'></td>
+  			<td><img src="/" alt="AMA2" class='thumbnail'></td>
+			</tr>
+		</table>
+	</div>
 </div>	
 
 <div class="grid_12 omega">
@@ -54,64 +92,83 @@ h4 {margin: 0.33em 0;}
 <div class="grid_12">	
 	<div class="grid_5 omega">
 		<p><%=cs.description %></p>	
+
+		<br>
+		<br>
+
+		<h3>Methods</h3>
+		<br>
+  		<p>Brainstormimg</p>
+  		<p>Focus Group</p>
+		<p>Storyboarding</p>
+		<p>Wireframe</p>
+		
+		<br>
+		<br>
+
+		<h3>Resources</h3>
+		<br>
+  		<p>AMA_CaseStudy1.pdf</p>
+  		<p>AMA_CaseStudy2.pdf</p>
+		<p>AMA_CaseStudy3.pdf</p>   
 	</div>
 
 	<div class="grid_2 omega">
 	</div>
 
 	<div class="grid_5 omega">
-		<table style="width:300px">
+		<table id="attributes">
 		<tr>
   		<td>Develepment Cycle</td>	
-  		<td><%= @cs.developmentCycle %></td>
+  		<td><%= cs.developmentCycle.humanize %></td>
 		</tr>
 
 		<tr>
-  		<td bgcolor="#E0E0EB"> Design Phase</td>
-  		<td><%=@cs.designPhase%></td>		
+  		<td> Design Phase</td>
+  		<td><%=cs.designPhase.humanize%></td>		
 		</tr>
 		<td>Project Domain</td>
-  		<td><%=@cs.rojectDomain%></td>		
+  		<td><%=cs.projectDomain.humanize%></td>		
 		</tr>
 		<tr>
- 		<td bgcolor="#E0E0EB">Remote Project</td>		
-  		<td><%=@cs.remoteProject%></td>
+ 		<td>Remote Project</td>		
+  		<td><%=cs.remoteProject.humanize%></td>
 		</tr>
 		<tr>
  		<td>Customer is User</td>		
-  		<td><%=@cs.customerIsUser%></td>
+  		<td><%=cs.customerIsUser.humanize%></td>
 		</tr>
 		<tr>
- 		<td bgcolor="#E0E0EB">Customer Type</td>	
-  		<td><%=@customerType%></td>
+ 		<td>Customer Type</td>	
+  		<td><%=cs.customerType.humanize%></td>
 		</tr>
 		<tr>
  		<td>Age Group of User</td>	
-  		<td><%=userAge%></td>
+  		<td><%=cs.userAge.humanize%></td>
 		</tr>
 		<tr>
- 		<td bgcolor="#E0E0EB">Privacy Level</td>
-  		<td><%=privacyLevel%></td>		
+ 		<td>Privacy Level</td>
+  		<td><%=cs.privacyLevel.humanize%></td>		
 		</tr>
 		<tr>
  		<td>Social Setting</td>
-  		<td><%=socialSetting%></td>		
+  		<td><%=cs.socialSetting.humanize%></td>		
 		</tr>
 		<tr>
- 		<td bgcolor="#E0E0EB">Company Name</td>	
-  		<td><%=companyName%></td>
+ 		<td>Company Name</td>	
+  		<td><%=cs.companyName.humanize%></td>
 		</tr>
 		<tr>
  		<td>Author Name</td>
-  		<td><%=authorName%></td>		
+  		<td><%=cs.authorName%></td>		
 		</tr>
 		<tr>
- 		<td bgcolor="#E0E0EB">Author Email</td>
-  		<td><%=authorEmail%></td>		
+ 		<td>Author Email</td>
+  		<td><%=cs.authorEmail.humanize%></td>		
 		</tr>
 		<tr>
  		<td>Other Contact Info</td>
-  		<td><%=authorOther%></td>		
+  		<td><%=cs.authorOther.humanize%></td>		
 		</tr>
 
 
@@ -124,7 +181,7 @@ h4 {margin: 0.33em 0;}
 </div>		
 
 
-
+<br>
 <br>
 <hr width="3000" size="50" align="left">
 
