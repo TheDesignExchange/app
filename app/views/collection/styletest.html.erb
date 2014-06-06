@@ -7,7 +7,9 @@
           <% @attr.each do |a, p| %>
             <div class="form-group">
               <label for="<%= a %>"><%= a.underscore.humanize %></label>
-              <input type='<%= p.type == :string ? "text" : "checkbox" %>' 
+              <input type='<%= p.type == :string 
+                ? "text" 
+                : "checkbox" %>' 
                   class="form-control" id="<%= a %>" value="<%= @cs[a] %>">
                   <p class="help-block"> <%= p.inspect %></p>
             </div>
@@ -33,6 +35,22 @@
     <td> <span class="glyphicon glyphicon-edit"></span> </td>
    </tr>
   </table>
+  <!-- <table class="table table-striped"> 
+   <tr> 
+    <th> Contacts </th> 
+    <td> <%= @company.name %> </td> 
+    <td> <%= @company.domain %> </td>
+    <td> <span class="glyphicon glyphicon-edit"></span> </td>
+   </tr>
+  </table> -->
+<!--   <table class="table table-striped"> 
+   <tr> 
+    <th> Methods </th> 
+    <td> <%= @company.name %> </td> 
+    <td> <%= @company.domain %> </td>
+    <td> <span class="glyphicon glyphicon-edit"></span> </td>
+   </tr>
+  </table> -->
 </div>
 
 
