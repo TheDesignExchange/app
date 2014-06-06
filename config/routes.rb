@@ -7,6 +7,7 @@ DesignExchange::Application.routes.draw do
 
   get "collection/casestudies"
   get "collection/form"
+  get "collection/styletest"
 
 
   post "collection/send_casestudy"

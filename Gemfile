@@ -22,6 +22,12 @@ gem 'sparql'
 gem 'equivalent-xml'
 gem 'ffi'
 
+
+
+# Styling
+gem 'bootstrap-sass'
+gem 'normalize-rails'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'sunspot_solr'

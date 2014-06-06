@@ -1,0 +1,44 @@
+
+<div class='grid_7'>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Case Study Editing Form</div>
+      <div class="panel-body">
+        <form role="form">
+          <% @attr.each do |a, p| %>
+            <div class="form-group">
+              <label for="<%= a %>"><%= a.underscore.humanize %></label>
+              <input type='<%= p.type == :string ? "text" : "checkbox" %>' 
+                  class="form-control" id="<%= a %>" value="<%= @cs[a] %>">
+                  <p class="help-block"> <%= p.inspect %></p>
+            </div>
+  		    <% end %>
+		
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> I give permission to the Design Exchange to use the information from this case study for the DesignExchange Database. </input>
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+  </div>
+</div>
+
+<div class='grid_5 omega'>
+  <table class="table table-striped"> 
+   <tr> 
+    <th> Company </th> 
+    <td> <%= @company.name %> </td> 
+    <td> <%= @company.domain %> </td>
+    <td> <span class="glyphicon glyphicon-edit"></span> </td>
+   </tr>
+  </table>
+</div>
+
+
+
+
+
+
+
+
