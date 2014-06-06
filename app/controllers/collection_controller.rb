@@ -17,6 +17,22 @@ layout "custom"
     # render :json => @cs
   end
 
+  def styletest
+    id = params["n"] == nil ? 1 : params["n"].to_i
+    # render :text => id
+    @cs = CaseStudy.where("id=?", id).first;
+    @attr = CaseStudy.columns_hash;
+    @attr.delete("id")
+    @attr.delete("company_id")
+    @attr.delete("created_at")
+    @attr.delete("updated_at")
+    @company = @cs.company
+    # @company = Company.new({:domain => "Education", :name => "University of California at Berkeley"});
+    # @company.save
+    # @company = Company.where("name = ?", "University of California at Berkeley").first.contacts
+  end
+
+
   def send_casestudy
     render :json => params
   end

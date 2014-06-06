@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529195539) do
+ActiveRecord::Schema.define(version: 20140605220437) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -47,28 +47,15 @@ ActiveRecord::Schema.define(version: 20140529195539) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "case_studies", force: true do |t|
-    t.string   "mainImage",        default: ""
-    t.string   "title",            default: ""
-    t.string   "companyName",      default: ""
-    t.string   "developmentCycle", default: ""
-    t.string   "designPhase",      default: ""
-    t.string   "projectDomain",    default: ""
-    t.string   "customerIsUser",   default: ""
-    t.string   "remoteProject",    default: ""
-    t.string   "customerType",     default: ""
-    t.string   "userAge",          default: ""
-    t.string   "privacyLevel",     default: ""
-    t.string   "socialSetting",    default: ""
-    t.string   "description",      default: ""
-    t.string   "methods",          default: ""
-    t.string   "authorName",       default: ""
-    t.string   "authorEmail",      default: ""
-    t.string   "authorOther",      default: ""
-    t.string   "permissionToUse",  default: ""
-    t.string   "imageResource",    default: ""
-    t.string   "PDFResource",      default: ""
-    t.string   "url",              default: ""
-    t.string   "timePeriod",       default: ""
+    t.string   "mainImage",      default: ""
+    t.string   "title",          default: ""
+    t.string   "description",    default: ""
+    t.string   "methods",        default: ""
+    t.string   "url",            default: ""
+    t.string   "timePeriod",     default: ""
+    t.boolean  "customerIsUser", default: false
+    t.boolean  "remoteProject",  default: false
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -106,6 +93,22 @@ ActiveRecord::Schema.define(version: 20140529195539) do
 
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "companies", force: true do |t|
+    t.string   "name",       default: ""
+    t.string   "domain",     default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contacts", force: true do |t|
+    t.string   "name",       default: ""
+    t.string   "email",      default: ""
+    t.string   "phone",      default: ""
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "design_methods", force: true do |t|
     t.string   "name",       null: false
@@ -150,6 +153,15 @@ ActiveRecord::Schema.define(version: 20140529195539) do
   create_table "method_favorites", force: true do |t|
     t.integer  "user_id"
     t.integer  "design_method_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resources", force: true do |t|
+    t.string   "name",              default: ""
+    t.boolean  "permission_to_use", default: false
+    t.string   "type",              default: ""
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
