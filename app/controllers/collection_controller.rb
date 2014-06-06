@@ -7,6 +7,14 @@ layout "custom"
   	# ]
 
   	@casestudies = CaseStudy.all
+    # [title=casjdlkjaslkd, desc, adlkasjdlkj]
+    @companies = CaseStudy.all.map{|c| c.company }
+    # @companies = CaseStudy.all.map{|c| c.contacts }
+    # @companies = CaseStudy.all.map{|c| c.methods }
+    # [Aegis, Ideo, ]
+    
+    #MAP DESIGN PATTERN
+
     # test = @casestudies
     # render :json => test
   end
@@ -14,6 +22,7 @@ layout "custom"
   	id = params["n"] == nil ? 1 : params["n"].to_i
     # render :text => id
   	@cs = CaseStudy.where("id=?", id).first;
+
     # render :json => @cs
   end
 
@@ -21,12 +30,16 @@ layout "custom"
     id = params["n"] == nil ? 1 : params["n"].to_i
     # render :text => id
     @cs = CaseStudy.where("id=?", id).first;
+
     @attr = CaseStudy.columns_hash;
+    @company = @cs.company
+    
+
     @attr.delete("id")
     @attr.delete("company_id")
     @attr.delete("created_at")
     @attr.delete("updated_at")
-    @company = @cs.company
+    
     # @company = Company.new({:domain => "Education", :name => "University of California at Berkeley"});
     # @company.save
     # @company = Company.where("name = ?", "University of California at Berkeley").first.contacts
