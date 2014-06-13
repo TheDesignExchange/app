@@ -24,12 +24,30 @@ data.each do |raw|
 
 
 	if(comp == nil)
-		comp = Company.new({:name => raw["companyName"], :domain => raw["projectDomain"]})
+		if raw["authorName"]
+			comp = Company.new({:name => raw["companyName"], :domain => raw["projectDomain"]})
+		else
+			comp = Company.new({:name => raw["companyName"], :domain => raw["projectDomain"], :email =>raw["authorEmail"]})
+		end
 		comp.save
 		p comp.name
 	end
 
-	
+	# class CreateContacts < ActiveRecord::Migration
+ #  def change
+ #    create_table :contacts do |t|
+ #      t.string :name,  :default => ""
+ #      t.string :email,  :default => ""
+ #      t.string :phone, :default => ""
+ #      t.integer :company_id
+ #      t.timestamps
+ #    end
+ #  end
+  	if raw["authorName"]
+ 		id = Company.where("name = ?", raw["companyName"]).first.id
+ 		ct = Contact.new({:name => raw["authorName"].split(',')[0], :email => raw["authorEmail"], :company_id => id})
+		ct.save
+	end 
 
 	raw.delete("companyName")
 	raw.delete("projectDomain")
@@ -40,6 +58,7 @@ data.each do |raw|
 	c = CaseStudy.new(raw)
 	c.company = comp
 	p c.title
-	c.save
+
+	p c.save
 
 end

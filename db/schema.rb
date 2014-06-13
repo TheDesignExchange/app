@@ -47,14 +47,21 @@ ActiveRecord::Schema.define(version: 20140605220437) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "case_studies", force: true do |t|
-    t.string   "mainImage",      default: ""
-    t.string   "title",          default: ""
-    t.string   "description",    default: ""
-    t.string   "methods",        default: ""
-    t.string   "url",            default: ""
-    t.string   "timePeriod",     default: ""
-    t.boolean  "customerIsUser", default: false
-    t.boolean  "remoteProject",  default: false
+    t.string   "mainImage",         default: ""
+    t.string   "title",             default: ""
+    t.string   "methods",           default: ""
+    t.string   "url",               default: ""
+    t.string   "timePeriod",        default: ""
+    t.integer  "development_cycle"
+    t.integer  "design_phase"
+    t.integer  "project_domain"
+    t.integer  "customer_type"
+    t.integer  "user_age"
+    t.integer  "privacy_level"
+    t.integer  "social_setting"
+    t.text     "description"
+    t.boolean  "customerIsUser",    default: false
+    t.boolean  "remoteProject",     default: false
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -97,6 +104,7 @@ ActiveRecord::Schema.define(version: 20140605220437) do
   create_table "companies", force: true do |t|
     t.string   "name",       default: ""
     t.string   "domain",     default: ""
+    t.string   "email",      default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end

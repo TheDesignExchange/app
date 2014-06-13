@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: 3d7605f82706c8e107852f44c61ba6d8e9f2100d
+  revision: 6e226154625485fea9a9ad915f082a8a0dc45400
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0)
@@ -92,7 +92,7 @@ GEM
       nokogiri (>= 1.4.3)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    execjs (2.1.0)
+    execjs (2.2.0)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.4.1)
@@ -109,7 +109,7 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hike (1.2.3)
-    i18n (0.6.10)
+    i18n (0.6.9)
     inherited_resources (1.5.0)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0)

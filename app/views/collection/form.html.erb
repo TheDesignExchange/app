@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag    "collection", :media => "all" %>
+
 <script> 
 // find the element $("form input");
 // FOR ALL THE INPUTS, GET THE VALUES $(input1).val()
@@ -48,9 +50,6 @@ $(function(){
 
 })
 </script>
-
-
-
 <h1> <%= @cs.title %>
 <button id='submit'> Submit </button>
 <div id="form2" class="slide">
@@ -58,7 +57,7 @@ $(function(){
       <div class="row">
             <p name="Main Image" class="label full-label">Main Image</p>
             <div class="files">
-            	<img data-name="mainImage"src="<%= @cs.mainImage%>">
+            	<img data-name="mainImage" src="<%= @cs.mainImage%>">
             </div>
          <br class="clearfix">
       </div>
@@ -74,11 +73,11 @@ $(function(){
 
 
 
-      <div class="multiple row">
+        <div class="multiple row">
          <div class="row">
                <p class="label full-label">Company Name</p>
                <p class="label"></p>
-               <input data-name="companyName" value="<%= @cs.companyName %>">
+               <input data-name="companyName" value="<%= @cs.company %>">
             <br class="clearfix">
          </div>
       </div>
@@ -145,8 +144,8 @@ $(function(){
          <div class="row">
                <p class="label">Remote Project</p>
       			<form action="">
-					<input type="radio" name="choice" value="Yes">Yes<br>
-					<input type="radio" name="choice" value="No">No
+					<input data-name="mainImage" type="radio" name="choice" value="Yes">Yes<br>
+					<input data-name="mainImage" type="radio" name="choice" value="No">No
 				</form>
 	     		<br class="clearfix">
          </div>
@@ -156,8 +155,8 @@ $(function(){
          <div class="row">
                <p class="label">Customer is User</p>
       			<form action="">
-					<input type="radio" name="choice" value="Yes">Yes<br>
-					<input type="radio" name="choice" value="No">No
+					<input data-name="mainImage" type="radio" name="choice" value="Yes">Yes<br>
+					<input data-name="mainImage" type="radio" name="choice" value="No">No
 				</form>
 	     		<br class="clearfix">
          </div>
@@ -232,26 +231,14 @@ $(function(){
   		</div>
 
 
-      <div class="multiple row">
-         <div class="row">
-               <p class="label full-label">Contact Info</p>
-               <p class="label">Author</p>
-               <input value="<%= @cs.authorName %>">
-            <br class="clearfix">
-         </div>
 
          <div class="row">
                <p class="label">Email</p>
-               <input value="<%= @cs.authorEmail %>">
+               <input value="<%= @cs.contacts %>">
             <br class="clearfix">
          </div>
 
-         <div class="row">
-               <p class="label">Other</p>
-               <input value="<%= @cs.authorOther %>">
-            <br class="clearfix">
-         </div>
-      </div>
+    
 
       <div class="multiple row">
          <div class="row">
@@ -265,23 +252,16 @@ $(function(){
       </div>
 
       <div class="row">
-            <p name="Resources" class="label full-label">Image Resources</p>
-            <div class="files"><input type="file" name="ImageResources" id="ImageResources">
+            <p name="Resources" class="label full-label">Resources</p>
+            <div class="files"><input type="file" name="Resources" id="Resources">
             	<br>
-            	<input type="submit" name="Resourcesupload" id="Resourcesupload" value="<%= @cs.imageResource %>">
+            	<input type="submit" name="Resourcesupload" id="Resourcesupload" value="<%= @cs.resources %>">
             </div>
          <br class="clearfix">
       </div>
 
 
-      <div class="row">
-            <p name="Resources" class="label full-label">PDF Resources</p>
-            <div class="files"><input type="file" name="PDFResources" id="PDFResources">
-            	<br>
-            	<input type="submit" name="Resourcesupload" id="Resourcesupload" value="<%= @cs.PDFResource %>">
-            </div>
-         <br class="clearfix">
-      </div>
+      
 
       <div class="row">
             <p name="Website" class="label full-label">Website</p>
