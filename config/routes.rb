@@ -1,4 +1,6 @@
 DesignExchange::Application.routes.draw do
+  resources :method_case_studies
+
   get "de/index"
   get "de/search"
 
@@ -34,6 +36,7 @@ DesignExchange::Application.routes.draw do
   get "collection/casestudies"
   get "collection/form"
   get "collection/styletest"
+  get "collection/linkmethods"
 
 
   post "collection/send_casestudy"

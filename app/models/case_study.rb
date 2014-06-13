@@ -3,6 +3,9 @@ class CaseStudy < ActiveRecord::Base
 	has_many :contacts
 	has_many :resources
 
+    # METHOD LINKING 
+    has_many :method_case_studies
+    has_many :design_methods, :through => :method_case_studies
 	# validates :development_cycle,
  #    :inclusion  => { :in => ["Product Update", "Product Refinement", "New Product", "Other"],
  #    :message    => "%{value} is not a development cycle" }
@@ -17,5 +20,11 @@ class CaseStudy < ActiveRecord::Base
   	 			:social_setting => ["Personal", "Social", "Professional"]
 
     	}
+    end
+    def self.helper_text
+        return {
+            :development_cycle => "Do something"
+
+        }
     end
 end

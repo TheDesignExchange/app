@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140605220437) do
+ActiveRecord::Schema.define(version: 20140613214505) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -140,6 +140,13 @@ ActiveRecord::Schema.define(version: 20140605220437) do
   add_index "mc_relations", ["child_id"], name: "index_mc_relations_on_child_id"
   add_index "mc_relations", ["parent_id", "child_id"], name: "mcrelations_index", unique: true
   add_index "mc_relations", ["parent_id"], name: "index_mc_relations_on_parent_id"
+
+  create_table "method_case_studies", force: true do |t|
+    t.integer  "case_study_id"
+    t.integer  "design_method_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "method_categories", force: true do |t|
     t.string   "name"

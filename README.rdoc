@@ -4,6 +4,7 @@ Run
 rake db:migrate
 rake sunspot:solr:start
 rake db:seed
+rake db:seed:casestudies
 
 rails server
 
