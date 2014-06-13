@@ -1,6 +1,5 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: 3d7605f82706c8e107852f44c61ba6d8e9f2100d
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0)
@@ -92,7 +91,7 @@ GEM
       nokogiri (>= 1.4.3)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    execjs (2.1.0)
+    execjs (2.2.0)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.4.1)
@@ -109,7 +108,7 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hike (1.2.3)
-    i18n (0.6.10)
+    i18n (0.6.9)
     inherited_resources (1.5.0)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0)
@@ -119,7 +118,7 @@ GEM
     jquery-ui-rails (4.2.1)
       railties (>= 3.2.16)
     json (1.8.1)
-    kaminari (0.15.1)
+    kaminari (0.16.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.2)
@@ -182,7 +181,7 @@ GEM
     rspec-expectations (3.0.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.0.0)
-    rspec-mocks (3.0.0)
+    rspec-mocks (3.0.1)
       rspec-support (~> 3.0.0)
     rspec-rails (3.0.1)
       actionpack (>= 3.0)

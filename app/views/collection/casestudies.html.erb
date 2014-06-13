@@ -58,7 +58,7 @@ hr {border-top: 3px solid #eee;
 <hr>
 <br>
 
-<% @casestudies.each do |cs| %>
+<% @casestudies.each_with_index do |cs, i| %>
 <div class="grid_12 omega">
 	<div class="grid_5 omega">
 		<img src="/AMA2.png" alt="AMA2" class='mainPic'>
@@ -156,7 +156,7 @@ hr {border-top: 3px solid #eee;
 		</tr>
 		<tr>
  		<td>Company Name</td>	
-  		<td><%=cs.companyName.humanize%></td>
+  		<td><%=@companies[i].name.humanize%></td>
 		</tr>
 		<tr>
  		<td>Author Name</td>

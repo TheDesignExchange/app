@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,6 +6,92 @@
   <%= javascript_include_tag "application" %>
   <%= stylesheet_link_tag    "collection", :media => "all" %>
   <%= csrf_meta_tags %>
+  <script> 
+
+    $(function(){
+      $('button').click(function(e){
+        e.preventDefault();
+      });
+
+    })
+  </script>
+  <style>
+  .navbar{
+    margin-bottom: 0;
+  }
+  .jumbotron{
+    font-size: 17px;
+  }
+  .subtitle{
+    font-size: 20px;
+  }
+
+  .form-search{
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555555;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  }
+
+  .no-gap{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 30px;
+
+  }
+  .thumbnail{
+    padding: 0px;
+   
+    }
+    .thumbnail img{
+      width: 100%;
+    }
+    .thumbnail .image-wrapper{ 
+      overflow: hidden;
+      height: 150px;
+    }
+
+    .profile div img{
+      height: 60px;
+      width: auto;
+      position: absolute;
+      left: 0px;
+    }
+
+    .label-research{
+      background-color: #d9534f;
+    }
+
+    .label-prototyping{
+      background-color: #f0829a;
+    }
+
+    .label-analysis{
+      background-color: #5bc0de;
+    }
+
+    .label-evaluating{
+      background-color: #5cb85c;
+    }
+
+    .label-user-testing{
+      background-color: #428bca;
+    }
+
+    .label-brainstorming{
+      background-color: #f0ad4e;
+    }
+
+  </style>
 </head>
 <body>
 
@@ -20,20 +107,42 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Design Exchange</a>
+      <a class="navbar-brand" href="/de/index">Design Exchange</a>
     </div>
-
+    <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default" onclick="window.location.href = '/de/search';">Submit</button>
+      </form>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class='active'><a href='/collection/casestudies?n=1'> View </a></li>
-		<li><a href='/collection/form?n=1'> Edit </a></li>
-
+        <li><%= link_to "Methods", "/methods/home" %></li>
+        <li><%= link_to "Case Studies", "/case_studies/home" %></li>
+        <li><%= link_to "Discussions", "/discussions/home" %></li>
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">User<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Profile", "/account/profile_user" %></li>
+            <li><a href="#">Sets</a></li>
+            <li><a href="#">Settings</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Log out</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
+<!-- Header for the de#index view -->
+<% if params[:controller] == "de" and params[:action] == "index" %>
+  <%= render "layouts/deheader" %>
+<% end %>
 <div class="container">
 	 <%= yield %>
 </div>

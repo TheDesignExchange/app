@@ -7,8 +7,11 @@ layout "custom"
   	# ]
 
   	@casestudies = CaseStudy.all
+
     # [title=casjdlkjaslkd, desc, adlkasjdlkj]
     @companies = CaseStudy.all.map{|c| c.company }
+    @contacts = @companies.all.map{|c| c.contacts }
+
     # @companies = CaseStudy.all.map{|c| c.contacts }
     # @companies = CaseStudy.all.map{|c| c.methods }
     # [Aegis, Ideo, ]
@@ -33,16 +36,18 @@ layout "custom"
 
     @attr = CaseStudy.columns_hash;
     @company = @cs.company
+    @contacts = @company.contacts()
     
 
     @attr.delete("id")
     @attr.delete("company_id")
     @attr.delete("created_at")
     @attr.delete("updated_at")
-    
+    @options = CaseStudy.options()
     # @company = Company.new({:domain => "Education", :name => "University of California at Berkeley"});
     # @company.save
     # @company = Company.where("name = ?", "University of California at Berkeley").first.contacts
+    # render :json => @contacts
   end
 
 

@@ -8,22 +8,23 @@
 </head>
 <body>
 
-<header>
+<!-- <header>
   <%= render "layouts/header" %>
-</header>
-
-<div class="content">
-  <ul>
+</header> 
+ -->
+<!-- <div class="content"> -->
+<!--   <ul>
     <% flash.each do |type, message| %>
       <li class="flash flash-<%= type %>"><%= message %></li>
     <% end %>
-  </ul>
-  <%= yield %>
-</div>
+  </ul> -->
 
-<footer>
+  <%= yield %>
+<!-- </div> -->
+
+<!-- <footer>
   <%= render "layouts/footer" %>
-</footer>
+</footer> -->
 
 </body>
 </html>

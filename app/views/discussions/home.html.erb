@@ -1,0 +1,32 @@
+
+<script> 
+	$(function(){
+		var pH = $('#discussion-btn').parent().parent().height()
+		var eH = $('#discussion-btn').height()
+		$('#discussion-btn').css('margin-top', (pH - eH)/2)
+	});
+</script>
+<div class="row row-margin">
+	<div class="col-md-6">
+		<h1>Discussions</h1>
+	</div>
+  	<div class="col-md-6">
+		<button id='discussion-btn' type="submit" class="btn btn-default pull-right"><span class="glyphicon glyphicon-comment"></span> Start Discussion</button>
+  	</div>
+</div>
+<ul class="nav nav-tabs nav-bar-margin">
+  			<li class="active"><a href="#">Most Recent</a></li>
+  			<li><a href="#">Popular</a></li>
+  			<li><a href="#">Old</a></li>
+  			<li><a href="#">Recently Viewed</a></li>
+</ul>
+<div class="row row-margin">
+	<div class="col-md-1">
+		<h2 align="center">0</h2>
+		<p align="center">likes</p>
+	</div>
+  	<div class="col-md-11">
+  	</div>
+</div>
+<hr class="hr-margin">
+</div>
