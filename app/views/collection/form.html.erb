@@ -77,7 +77,7 @@ $(function(){
          <div class="row">
                <p class="label full-label">Company Name</p>
                <p class="label"></p>
-               <input data-name="companyName" value="<%= @cs.company %>">
+               <input data-name="companyName" value="<%= @companies.name %>">
             <br class="clearfix">
          </div>
       </div>
@@ -155,8 +155,8 @@ $(function(){
          <div class="row">
                <p class="label">Customer is User</p>
       			<form action="">
-					<input data-name="mainImage" type="radio" name="choice" value="Yes">Yes<br>
-					<input data-name="mainImage" type="radio" name="choice" value="No">No
+					<input data-name="customer_is_user_1" type="radio" name="choice" value="Yes">Yes<br>
+					<input data-name="customer_is_user_2" type="radio" name="choice" value="No">No
 				</form>
 	     		<br class="clearfix">
          </div>
@@ -234,7 +234,7 @@ $(function(){
 
          <div class="row">
                <p class="label">Email</p>
-               <input value="<%= @cs.contacts %>">
+               <input value="<%= @contacts.email %>">
             <br class="clearfix">
          </div>
 
