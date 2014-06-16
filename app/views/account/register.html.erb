@@ -1,3 +1,10 @@
 <h1>Account#register</h1>
 <%= link_to "Home", "/de/index" %>
 </br><b>Warning Need To Add Image</b>
+
+<%= form_for(@user) do |f| %>
+
+  <%= f.bootsy_area :description %>
+
+  <%= f.submit %>
+<% end %>

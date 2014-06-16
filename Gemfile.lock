@@ -57,6 +57,10 @@ GEM
     bcrypt (3.1.7)
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
+    bootsy (2.0.9)
+      carrierwave (~> 0.10.0)
+      mini_magick (~> 3.7.0)
+      remotipart (~> 1.2.1)
     bourbon (4.0.2)
       sass (~> 3.3)
       thor
@@ -67,6 +71,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     childprocess (0.5.3)
       ffi (~> 1.0, >= 1.0.11)
     coffee-rails (4.0.1)
@@ -127,6 +136,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_magick (3.7.0)
+      subexec (~> 0.2.1)
     mini_portile (0.6.0)
     minitest (4.7.5)
     multi_json (1.10.1)
@@ -173,6 +184,7 @@ GEM
       rdf (>= 1.1.0)
     rdf-xsd (1.1.1)
       rdf (~> 1.1)
+    remotipart (1.2.1)
     responders (1.1.0)
       railties (>= 3.2, < 5)
     rsolr (1.0.10)
@@ -229,6 +241,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     sqlite3 (1.3.9)
+    subexec (0.2.3)
     sunspot (2.1.1)
       pr_geohash (~> 1.0)
       rsolr (~> 1.0.7)
@@ -277,6 +290,7 @@ DEPENDENCIES
   acts_as_commentable_with_threading
   annotate
   bootstrap-sass
+  bootsy
   capybara (= 2.1.0)
   coffee-rails
   devise

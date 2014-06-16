@@ -1,6 +1,7 @@
 DesignExchange::Application.routes.draw do
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   resources :method_case_studies
-
+  resources :case_studies
   get "de/index"
   get "de/search"
 

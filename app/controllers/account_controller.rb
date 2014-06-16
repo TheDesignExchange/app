@@ -9,5 +9,7 @@ class AccountController < ApplicationController
   end
 
   def register
+  	@user = CaseStudy.new
+  	render layout: "custom"
   end
 end

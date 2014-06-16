@@ -11,9 +11,10 @@
  *= require_self
  *= require grid
  * require normalize-rails
- *= require bootstrap
  *= require dropit
  * require form
+ *= require bootsy
+ *= require bootstrap
  */
 
  .content {

@@ -55,7 +55,7 @@ layout "custom"
     @attr = CaseStudy.columns_hash;
     @company = @cs.company
     @contacts = @company.contacts()
-    
+    @methods = @cs.design_methods();
 
     @attr.delete("id")
     @attr.delete("company_id")
@@ -66,7 +66,7 @@ layout "custom"
     # @company = Company.new({:domain => "Education", :name => "University of California at Berkeley"});
     # @company.save
     # @company = Company.where("name = ?", "University of California at Berkeley").first.contacts
-    # render :json => @company
+    # render :json => @methods
   end
 
 

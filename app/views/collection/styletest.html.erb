@@ -99,16 +99,7 @@ $(function(){
             </label>
           </div>
 
-          <div class="radiobox">
-          <h5>Remote project</h5>
-            <label class="radio-inline">
-              <input data-name= "remoteProject_yes" name="radioGroup" id="radio3" value="option3" type="radio"> Yes
-            </label>
-            <label class="radio-inline">
-              <input data-name= "remoteProject_no" name="radioGroup" id="radio4" value="option4" checked="checked" type="radio"> No
-            </label>
-          </div>
-
+          
           <div class="checkbox">
             <label>
               <input data-name= "permission" type="checkbox"> I give permission to the Design Exchange to use the information from this case study for the DesignExchange Database. </input>
@@ -122,22 +113,35 @@ $(function(){
 
 <div class='grid_5 omega'>
   <table class="table table-striped"> 
-   <tr> 
-    <th> Company </th> 
-    <td> <%= @company.name %> </td> 
-    <td> <%= @company.domain %> </td>
-    <td> <span class="glyphicon glyphicon-edit"></span> </td>
-   </tr>
-   <tr>
-   <th> Contacts </th> 
-   <% @contacts.each do |c| %>
-    <td> <%= c.name %> </td>
-    <td> <%= c.email %> </td>
-  <% end %>
-  </tr>
+    <tr> 
+      <th> Company </th> 
+      <td> <%= @company.name %> </td> 
+      <td> <%= @company.domain %> </td>
+      <td> <span class="glyphicon glyphicon-edit"></span> </td>
+    </tr>
+    <tr>
+      <th> Contacts </th> 
+      <% @contacts.each do |c| %>
+        <td> <%= c.name %> </td>
+        <td> <%= c.email %> </td>
+      <% end %>
+    </tr>
+
   </table>
 
-
+  <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Methods</h3>
+  </div>
+  <div class="panel-body">
+    <table>  
+        <% @methods.each do |c| %>
+          <tr> <th> <%= c.name.humanize %> </th></tr>
+          <tr> <td><%= c.overview %> </td></tr>
+        <% end %>
+    </table>
+  </div>
+</div>
 
 </div>
 

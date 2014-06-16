@@ -2,6 +2,7 @@ class DeController < ApplicationController
 
   def index
   	render layout: "custom"
+  	@user = User.new
   end
 
   def search
