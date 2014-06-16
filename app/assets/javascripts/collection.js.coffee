@@ -3,3 +3,4 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 //= require bootstrap.min
+//= require jquery.ui.autocomplete
