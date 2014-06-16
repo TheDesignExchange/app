@@ -10,11 +10,6 @@ class AccountController < ApplicationController
   end
 
   def register
-<<<<<<< HEAD
   	render layout: "custom" 
-=======
-  	@user = CaseStudy.new
-  	render layout: "custom"
->>>>>>> FETCH_HEAD
   end
 end
