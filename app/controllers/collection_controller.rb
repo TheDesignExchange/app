@@ -28,7 +28,7 @@ layout "custom"
 
     # [title=casjdlkjaslkd, desc, adlkasjdlkj]
     @companies = CaseStudy.all.map{|c| c.company }
-    @contacts = @companies.all.map{|c| c.contacts }
+    @contacts = @companies.map{|c| c.contacts }
 
     # @companies = CaseStudy.all.map{|c| c.contacts }
     # @companies = CaseStudy.all.map{|c| c.methods }

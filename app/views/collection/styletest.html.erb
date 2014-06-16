@@ -45,11 +45,16 @@ $(function(){
   });
 
 })
+
+$('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
+
+
 </script>
 
 
+
 <% @options %>
-<%= @helper_text %>
+<% @helper_text %>
 
 <div class='grid_7'>
   <div class="panel panel-primary">
@@ -60,9 +65,17 @@ $(function(){
             <div class="form-group">
               <label for="<%= name %>"><%= name.underscore.humanize %></label><br>
               <% @options[name.to_sym] %>
-              
+
+             <% if @helper_text.has_key?(name.to_sym) %>
+             <ul> 
+              <% @helper_text[name.to_sym].each do |help_text_option| %>
+                <li class="help-block"><%= help_text_option.html_safe %></li>
+              <% end %>
+            </ul>
+              <% end %>
+
               <% if @options.has_key?(name.to_sym) %>
-              <p class="help-block"> <%= @helper_text[name.to_sym] %></p>  
+              
                 <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 <%= name.humanize %> <span class="caret"></span>
@@ -81,7 +94,7 @@ $(function(){
                   <input data-name= "<%= name %>" value="option1" type="radio"> <%= name.underscore.humanize %>
                 </label>
               <% elsif metadata.type == :text %>   
-                <textarea data-name="<%= name %>" class="form-control" id="<%= name %>">
+                <textarea data-name="<%= name %>" class="form-control" id="<%= name %>" rows="4" cols="50"">
 <%= @cs[name] %>
                 </textarea>
               <% end %>
@@ -89,17 +102,7 @@ $(function(){
               </div>	  
 		      <% end %>
         
-          <div class="radiobox">
-          <h5>Customer is user</h5>
-            <label class="radio-inline">
-              <input data-name= "custmoerIsUser_yes" name="radioGroup" id="radio1" value="option1" type="radio"> Yes
-            </label>
-            <label class="radio-inline">
-              <input data-name= "custmoerIsUser_no" name="radioGroup" id="radio2" value="option2" checked="checked" type="radio"> No
-            </label>
-          </div>
 
-          
           <div class="checkbox">
             <label>
               <input data-name= "permission" type="checkbox"> I give permission to the Design Exchange to use the information from this case study for the DesignExchange Database. </input>
@@ -113,6 +116,7 @@ $(function(){
 
 <div class='grid_5 omega'>
   <table class="table table-striped"> 
+
     <tr> 
       <th> Company </th> 
       <td> <%= @company.name %> </td> 
@@ -126,6 +130,7 @@ $(function(){
         <td> <%= c.email %> </td>
       <% end %>
     </tr>
+
 
   </table>
 
@@ -142,6 +147,8 @@ $(function(){
     </table>
   </div>
 </div>
+
+
 
 </div>
 
