@@ -101,6 +101,10 @@
       background-color: #f0ad4e;
     }
 
+    .label-default{
+      background-color: #bababa;
+    }
+
     .label-gap{
       margin-right: 4px;
     }
@@ -125,7 +129,7 @@
       margin-top: 20px;
       margin-bottom: 10px;
       font-size: 30px;
-      
+
     }
 
   </style>
@@ -174,10 +178,6 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<!-- Header for the de#index view -->
-<% if params[:controller] == "de" and params[:action] == "index" %>
-  <%= render "layouts/deheader" %>
-<% end %>
    <%= yield %>
 </body>
 </html>

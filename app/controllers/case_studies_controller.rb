@@ -1,6 +1,6 @@
 class CaseStudiesController < ApplicationController
-layout "custom"
   def home
+  	render layout: "wide"
   end
 
   def create

@@ -22,6 +22,9 @@ gem 'sparql'
 gem 'equivalent-xml'
 gem 'ffi'
 
+# WYSIWYG
+gem 'bootsy'
+
 
 
 # Styling

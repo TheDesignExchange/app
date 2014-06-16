@@ -5,9 +5,11 @@ class AccountController < ApplicationController
   def settings
   end
 
-  def login 
+  def login
+  	render layout: "custom" 
   end
 
   def register
+  	render layout: "custom" 
   end
 end

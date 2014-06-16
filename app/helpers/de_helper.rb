@@ -27,6 +27,5 @@ module DeHelper
 				"<span class='label label-gap label-#{category}'>#{x}</span>"
 		end
 		"<p>"+str.join('')+"</p>"
-		
 	end
 end

@@ -1,4 +1,5 @@
 DesignExchange::Application.routes.draw do
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   get "de/index"
   get "de/search"
 
