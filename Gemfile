@@ -8,7 +8,7 @@ gem 'sunspot_with_kaminari'
 gem 'will_paginate'
 gem 'annotate'
 gem 'devise'
-gem 'sass-rails'
+gem 'sass-rails', '~> 4.0.2'
 gem 'coffee-rails'
 gem 'uglifier'
 gem 'spreadsheet'
@@ -22,7 +22,7 @@ gem 'sparql'
 gem 'equivalent-xml'
 gem 'ffi'
 
-
+gem 'sprockets', '2.11.0'
 
 # Styling
 gem 'bootstrap-sass'

@@ -1,8 +1,3 @@
-@import url("bootstrap.min.css");
-@import url("bootstrap-theme.min.css");
-@import url("normalize.css");
-@import url("grid.css");
-@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,700,600");
 
 .label-right{
 	margin-left: 10px !important;
