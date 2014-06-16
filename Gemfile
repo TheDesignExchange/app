@@ -22,8 +22,6 @@ gem 'sparql'
 gem 'equivalent-xml'
 gem 'ffi'
 
-# WYSIWYG
-gem 'bootsy'
 
 
 gem 'sprockets', '2.11.0'
@@ -56,3 +54,4 @@ end
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'bootsy'
+gem 'bourbon', '~> 3.2'

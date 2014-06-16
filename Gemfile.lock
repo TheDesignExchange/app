@@ -64,6 +64,9 @@ GEM
     bourbon (3.2.3)
       sass (~> 3.2)
       thor
+    bourbon (3.2.3)
+      sass (~> 3.2)
+      thor
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -292,6 +295,7 @@ DEPENDENCIES
   annotate
   bootstrap-sass
   bootsy
+  bourbon (~> 3.2)
   capybara (= 2.1.0)
   coffee-rails
   devise

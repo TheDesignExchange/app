@@ -11,8 +11,9 @@ layout "custom"
     debug = []
     m.each do |x|
       method = DesignMethod.where('name like  ?', "#{x}%").first;
+      debug << [x, method]
       if method
-        [cs.id, method.id]
+        debug << [cs.id, method.id]
         debug << MethodCaseStudy.new({:case_study_id => cs.id, :design_method_id => method.id}).save
       end
     end
