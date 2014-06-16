@@ -45,10 +45,16 @@ $(function(){
   });
 
 })
+
+$('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
+
+
 </script>
 
 
+
 <% @options %>
+<% @helper_text %>
 
 <div class='grid_7'>
   <div class="panel panel-primary">
@@ -57,10 +63,19 @@ $(function(){
         <form role="form">
           <% @attr.each do |name, metadata| %>
             <div class="form-group">
-              <label for="<%= name %>"><%= name.underscore.humanize %></label>
+              <label for="<%= name %>"><%= name.underscore.humanize %></label><br>
               <% @options[name.to_sym] %>
-              
+
+             <% if @helper_text.has_key?(name.to_sym) %>
+             <ul> 
+              <% @helper_text[name.to_sym].each do |help_text_option| %>
+                <li class="help-block"><%= help_text_option.html_safe %></li>
+              <% end %>
+            </ul>
+              <% end %>
+
               <% if @options.has_key?(name.to_sym) %>
+              
                 <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 <%= name.humanize %> <span class="caret"></span>
@@ -72,32 +87,21 @@ $(function(){
                 </ul>
                 </div>
 
-                <% else %>
-                <input data-name="<%= name %>" class="form-control" id="<%= name %>" value="<%= @cs[name] %>"/>
+              <% elsif metadata.type == :string %>   
+                <input data-name="<%= name %>" class="form-control" id="<%= name %>" value="<%= @cs[name] %>"/> 
+              <% elsif metadata.type == :boolean %>   
+                <label class="radio-inline">
+                  <input data-name= "<%= name %>" value="option1" type="radio"> <%= name.underscore.humanize %>
+                </label>
+              <% elsif metadata.type == :text %>   
+                <textarea data-name="<%= name %>" class="form-control" id="<%= name %>" rows="4" cols="50"">
+<%= @cs[name] %>
+                </textarea>
               <% end %>
-              <!-- <p class="help-block"> <%= metadata.inspect %></p> -->  	
+              <!-- <p class="help-block"> <%= metadata.type %></p>  	 -->
               </div>	  
 		      <% end %>
         
-          <div class="radiobox">
-          <h5>Customer is user</h5>
-            <label class="radio-inline">
-              <input data-name= "custmoerIsUser_yes" name="radioGroup" id="radio1" value="option1" type="radio"> Yes
-            </label>
-            <label class="radio-inline">
-              <input data-name= "custmoerIsUser_no" name="radioGroup" id="radio2" value="option2" checked="checked" type="radio"> No
-            </label>
-          </div>
-
-          <div class="radiobox">
-          <h5>Remote project</h5>
-            <label class="radio-inline">
-              <input data-name= "remoteProject_yes" name="radioGroup" id="radio3" value="option3" type="radio"> Yes
-            </label>
-            <label class="radio-inline">
-              <input data-name= "remoteProject_no" name="radioGroup" id="radio4" value="option4" checked="checked" type="radio"> No
-            </label>
-          </div>
 
           <div class="checkbox">
             <label>
@@ -112,35 +116,40 @@ $(function(){
 
 <div class='grid_5 omega'>
   <table class="table table-striped"> 
-   <tr> 
-    <th> Company </th> 
-    <td> <%= @company.name %> </td> 
-    <td> <%= @company.domain %> </td>
-    <td> <span class="glyphicon glyphicon-edit"></span> </td>
-   </tr>
-   <tr>
-   <th> Contacts </th> 
-    <td> <%= @company.email %> </td>
-  </tr>
+
+    <tr> 
+      <th> Company </th> 
+      <td> <%= @company.name %> </td> 
+      <td> <%= @company.domain %> </td>
+      <td> <span class="glyphicon glyphicon-edit"></span> </td>
+    </tr>
+    <tr>
+      <th> Contacts </th> 
+      <% @contacts.each do |c| %>
+        <td> <%= c.name %> </td>
+        <td> <%= c.email %> </td>
+      <% end %>
+    </tr>
+
+
   </table>
 
+  <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Methods</h3>
+  </div>
+  <div class="panel-body">
+    <table>  
+        <% @methods.each do |c| %>
+          <tr> <th> <%= c.name.humanize %> </th></tr>
+          <tr> <td><%= c.overview %> </td></tr>
+        <% end %>
+    </table>
+  </div>
+</div>
 
-  <!-- <table class="table table-striped"> 
-   <tr> 
-    <th> Contacts </th> 
-    <td> <%= @company.name %> </td> 
-    <td> <%= @company.domain %> </td>
-    <td> <span class="glyphicon glyphicon-edit"></span> </td>
-   </tr>
-  </table> -->
-<!--   <table class="table table-striped"> 
-   <tr> 
-    <th> Methods </th> 
-    <td> <%= @company.name %> </td> 
-    <td> <%= @company.domain %> </td>
-    <td> <span class="glyphicon glyphicon-edit"></span> </td>
-   </tr>
-  </table> -->
+
+
 </div>
 
 

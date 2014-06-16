@@ -1,5 +1,23 @@
 class CollectionController < ApplicationController
 layout "custom"
+  def linkmethods
+    prefix = "b"
+    search = DesignMethod.where('name like  ?', "#{prefix}%").map{|x| x.name}
+    query = "Focus Groups".gsub(' ', '_')
+    # search = DesignMethod.where('name like  ?', query)
+    # CaseStudy.first.design_methods()
+    cs = CaseStudy.first
+    m = cs.methods.split(',').map{|x| x.strip.gsub(' ', '_')}
+    debug = []
+    m.each do |x|
+      method = DesignMethod.where('name like  ?', "#{x}%").first;
+      if method
+        [cs.id, method.id]
+        debug << MethodCaseStudy.new({:case_study_id => cs.id, :design_method_id => method.id}).save
+      end
+    end
+    render :json => debug
+  end
   def casestudies
   	# @casestudies = [
   	# 	{:name => "FedEx Case Study: Leveraging Customer Voice For Co-Creation", :description => "FedEx Innovation spent over five years developing SenseAwareSM, a sensing device combined with a web-based application - a novel application without predecessors. FedEx and Conifer approached this product development using Co-Creation. The Conifer team acted as facilitators and mediators between a group of FedEx customers and the development team. They visited shipping sites and talked to and observed shipping clerks, logistics managers, quality assurance directors, and everyone in between, gaining insight into customers’ day-to-day operations and communication methods."},
@@ -10,7 +28,7 @@ layout "custom"
 
     # [title=casjdlkjaslkd, desc, adlkasjdlkj]
     @companies = CaseStudy.all.map{|c| c.company }
-    @contacts = @companies.all.map{|c| c.contacts }
+    @contacts = @companies.map{|c| c.contacts }
 
     # @companies = CaseStudy.all.map{|c| c.contacts }
     # @companies = CaseStudy.all.map{|c| c.methods }
@@ -37,17 +55,18 @@ layout "custom"
     @attr = CaseStudy.columns_hash;
     @company = @cs.company
     @contacts = @company.contacts()
-    
+    @methods = @cs.design_methods();
 
     @attr.delete("id")
     @attr.delete("company_id")
     @attr.delete("created_at")
     @attr.delete("updated_at")
     @options = CaseStudy.options()
+    @helper_text = CaseStudy.helper_text()
     # @company = Company.new({:domain => "Education", :name => "University of California at Berkeley"});
     # @company.save
     # @company = Company.where("name = ?", "University of California at Berkeley").first.contacts
-    # render :json => @contacts
+    # render :json => @methods
   end
 
 

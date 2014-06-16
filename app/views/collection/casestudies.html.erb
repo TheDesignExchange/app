@@ -115,62 +115,60 @@ hr {border-top: 3px solid #eee;
 
 	<div class="grid_2 omega">
 	</div>
-
+	
 	<div class="grid_5 omega">
 		<table id="attributes">
 		<tr>
   		<td>Develepment Cycle</td>	
-  		<td><%= cs.developmentCycle.humanize %></td>
+  		<td><%= cs.development_cycle%></td>
 		</tr>
 
 		<tr>
   		<td> Design Phase</td>
-  		<td><%=cs.designPhase.humanize%></td>		
+  		<td><%=cs.design_phase%></td>		
 		</tr>
 		<td>Project Domain</td>
-  		<td><%=cs.projectDomain.humanize%></td>		
+  		<td><%=cs.project_domain%></td>		
 		</tr>
 		<tr>
  		<td>Remote Project</td>		
-  		<td><%=cs.remoteProject.humanize%></td>
+  		<td><%=cs.remoteProject%></td>
 		</tr>
 		<tr>
  		<td>Customer is User</td>		
-  		<td><%=cs.customerIsUser.humanize%></td>
+  		<td><%=cs.customerIsUser%></td>
 		</tr>
 		<tr>
  		<td>Customer Type</td>	
-  		<td><%=cs.customerType.humanize%></td>
+  		<td><%=cs.customer_type%></td>
 		</tr>
 		<tr>
  		<td>Age Group of User</td>	
-  		<td><%=cs.userAge.humanize%></td>
+  		<td><%=cs.user_age%></td>
 		</tr>
 		<tr>
  		<td>Privacy Level</td>
-  		<td><%=cs.privacyLevel.humanize%></td>		
+  		<td><%=cs.privacy_level%></td>		
 		</tr>
 		<tr>
  		<td>Social Setting</td>
-  		<td><%=cs.socialSetting.humanize%></td>		
+  		<td><%=cs.social_setting%></td>		
 		</tr>
 		<tr>
  		<td>Company Name</td>	
-  		<td><%=@companies[i].name.humanize%></td>
+  		<td><%=@companies[i].name%></td>
 		</tr>
 		<tr>
- 		<td>Author Name</td>
-  		<td><%=cs.authorName%></td>		
+ 		<td>Contact Info</td>
+  		<td><%=@companies[i].email%></td>		
 		</tr>
 		<tr>
- 		<td>Author Email</td>
-  		<td><%=cs.authorEmail.humanize%></td>		
+ 		<td>Contact</td>
+ 		<% @contacts[i].each do |c| %>
+  		<td><%= c.name%></td>	
+  		<% end %>	
 		</tr>
-		<tr>
- 		<td>Other Contact Info</td>
-  		<td><%=cs.authorOther.humanize%></td>		
-		</tr>
-
+	
 
 
 		</table>

@@ -1,5 +1,10 @@
 DesignExchange::Application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
+<<<<<<< HEAD
+=======
+  resources :method_case_studies
+  resources :case_studies
+>>>>>>> FETCH_HEAD
   get "de/index"
   get "de/search"
 
@@ -35,6 +40,7 @@ DesignExchange::Application.routes.draw do
   get "collection/casestudies"
   get "collection/form"
   get "collection/styletest"
+  get "collection/linkmethods"
 
 
   post "collection/send_casestudy"
