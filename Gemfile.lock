@@ -61,13 +61,6 @@ GEM
       carrierwave (~> 0.10.0)
       mini_magick (~> 3.7.0)
       remotipart (~> 1.2.1)
-<<<<<<< HEAD
-    bourbon (4.0.2)
-      sass (~> 3.3)
-=======
-    bourbon (3.2.3)
-      sass (~> 3.2)
->>>>>>> FETCH_HEAD
       thor
     builder (3.1.4)
     capybara (2.1.0)

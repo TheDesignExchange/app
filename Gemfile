@@ -22,14 +22,11 @@ gem 'sparql'
 gem 'equivalent-xml'
 gem 'ffi'
 
-<<<<<<< HEAD
 # WYSIWYG
 gem 'bootsy'
 
 
-=======
 gem 'sprockets', '2.11.0'
->>>>>>> FETCH_HEAD
 
 # Styling
 gem 'bootstrap-sass'
