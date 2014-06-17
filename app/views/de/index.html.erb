@@ -2,26 +2,28 @@
 <!-- Methods -->
 <div class="row">
   <div class="col-md-4">
-  	<%= link_to "Methods", "/methods/home" %>
+  	<h3><%= link_to "Methods", "/methods/home" %></h3>
   	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna...</p>
   </div>
   <div class="col-md-8">
   	<div class="row">
+
+    <% @design_methods.each do |method| %>
   		<div class="col-sm-6 col-md-4 no-gap">
    		 <div class="thumbnail">
-   		 	<div class="image-wrapper">
+   		 	  <!-- <div class="image-wrapper">
 	  		    <img src="http://www.digitaltrends.com/wp-content/uploads/2013/02/eye-tracking.jpg">
-  		    </div>
+  		    </div> -->
   		    <div class="caption">
-  		      <h3><%= link_to "Eyetracking", "/methods/view" %></h3>
+  		      <h5 class='truncate'><%= link_to method.name.humanize, "/methods/view" %></h5>
   		      <p><span class="glyphicon glyphicon-star"></span> 392 Likes</p>
-  		      <p>A technology that analyzes the user's eye movements across</p>
+  		      <p class='truncate-multiline'><%= method.overview %></p>
   		      <p><span class="label label-user-testing">user testing</span></p>
   		    </div>
   		  </div>
   		</div>
-
-  	<div class="col-sm-6 col-md-4 no-gap">
+    <% end %>
+  	<!-- <div class="col-sm-6 col-md-4 no-gap">
    		<div class="thumbnail">
    			<div class="image-wrapper">
 	  		   <img src="http://transcribeme.com/wp-content/uploads/2012/07/focus_group.jpg">
@@ -47,7 +49,7 @@
   		     <p><span class="label label-brainstorming">brainstorming</span> <span class="label label-research">research</span></p>
   		   </div>
   	  </div>
-  	</div>
+  	</div> -->
   </div>
 </div>
 </div>
@@ -56,26 +58,27 @@
 <!-- Case Studies -->
 <div class="row">
   <div class="col-md-4">
-  	<%= link_to "Case Studies", "/case_studies/home" %>
+  	<h3><%= link_to "Case Studies", "/case_studies/home" %></h3>
   	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna...</p>
   </div>
   <div class="col-md-8">
   	<div class="row">
+      <% @case_studies.each do |cs| %>
   		<div class="col-sm-6 col-md-4 no-gap">
    		 <div class="thumbnail">
-  		    <div class="image-wrapper">	
+  		    <!-- <div class="image-wrapper">	
   		    	<img src="http://www.maxymiser.com/uploads/AB-Testing.jpg">
-  		    </div>
+  		    </div> -->
   		    <div class="caption">
-  		      <h3>A/B Test</h3>
-  		      <p><span class="glyphicon glyphicon-star"></span> 176 Likes</p>
-  		      <p>Offering alternative versions of your product to different users and</p>
+  		       <h5 class='truncate'><%= link_to cs.title, "/case_study/view" %></h5>
+  		      <p><span class="glyphicon glyphicon-star"></span> <%= (rand * 100).to_i%> Likes</p>
+  		      <p class='truncate-multiline'><%= cs.description %></p>
   		      <p><span class="label label-user-testing">user testing</span></p>
   		    </div>
   		  </div>
   		</div>
-
-  	<div class="col-sm-6 col-md-4 no-gap">
+    <% end %>
+ <!--  	<div class="col-sm-6 col-md-4 no-gap">
    		<div class="thumbnail">
   		   	<div class="image-wrapper">	
   		   		<img src="http://images.nationalgeographic.com/wpf/media-live/photos/000/202/cache/greendex-about-study-promo_20250_600x450.jpg">
@@ -101,7 +104,7 @@
   		     <p><span class="label label-brainstorming">brainstorming</span> <span class="label label-research">research</span></p>
   		   </div>
   	  </div>
-  	</div>
+  	</div> -->
   </div>
 
   </div>
@@ -111,7 +114,7 @@
 <div class="row">
 
   <div class="col-md-4">
-  	<%= link_to "Discussions", "/discussions/home" %>
+  	<h3><%= link_to "Discussions", "/discussions/home" %></h3>
   	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna...</p>
   </div>
 

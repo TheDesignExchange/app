@@ -40,8 +40,11 @@ DesignExchange::Application.routes.draw do
 
   get "collection/casestudies"
   get "collection/form"
-  get "collection/styletest"
   get "collection/linkmethods"
+  get "collection/autocomplete_design_methods"
+  post "collection/linkmethod"
+  delete "collection/removemethod"
+  get "collection/links"
 
 
   post "collection/send_casestudy"

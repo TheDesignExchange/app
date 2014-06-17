@@ -8,6 +8,10 @@ class MethodsController < ApplicationController
   end
 
   def view
+    id = params['n'].to_i
+    dm = DesignMethod.find(id)
+    @method = dm
+    render layout: "custom"
   end
 
   def search

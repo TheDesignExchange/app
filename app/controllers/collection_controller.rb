@@ -1,5 +1,40 @@
 class CollectionController < ApplicationController
 layout "custom"
+  def links
+     if not params["n"] 
+      render :json => "Fail" 
+    else 
+      id = params["n"]
+      cs = CaseStudy.where("id=?", id).first;
+      methods = cs.design_methods().each{|x| x.name = x.name.humanize() }.reverse;
+      render :json => methods
+    end
+  end
+  def removemethod
+    if not params["m"] or not params["cs"] 
+      render :json => "Fail" 
+    else 
+      mname= params["m"].strip().gsub(' ', '_');
+      csid = params["cs"];
+      m = DesignMethod.where('name like  ?', "#{mname}%").first
+      mid = m.id
+      r = MethodCaseStudy.where("case_study_id = ? and design_method_id = ?", csid, mid).first()
+      r.destroy
+      render :json => r
+    end
+  end
+  def linkmethod
+    if not params["m"] or not params["cs"] 
+      render :json => "Fail" 
+    else 
+      mname= params["m"].gsub(' ', '_');
+      csid = params["cs"];
+      m = DesignMethod.where('name like  ?', "#{mname}%").first
+      mid = m.id
+      link = MethodCaseStudy.new({:case_study_id => csid, :design_method_id => mid}).save
+      render :json => link
+    end
+  end
   def linkmethods
     prefix = "b"
     search = DesignMethod.where('name like  ?', "#{prefix}%").map{|x| x.name}
@@ -40,15 +75,9 @@ layout "custom"
     # test = @casestudies
     # render :json => test
   end
+
+
   def form
-  	id = params["n"] == nil ? 1 : params["n"].to_i
-    # render :text => id
-  	@cs = CaseStudy.where("id=?", id).first;
-
-    # render :json => @cs
-  end
-
-  def styletest
     id = params["n"] == nil ? 1 : params["n"].to_i
     # render :text => id
     @cs = CaseStudy.where("id=?", id).first;
@@ -56,7 +85,7 @@ layout "custom"
     @attr = CaseStudy.columns_hash;
     @company = @cs.company
     @contacts = @company.contacts()
-    @methods = @cs.design_methods();
+    @methods = @cs.design_methods().reverse;
 
     @attr.delete("id")
     @attr.delete("company_id")
@@ -73,5 +102,10 @@ layout "custom"
 
   def send_casestudy
     render :json => params
+  end
+
+  def autocomplete_design_methods
+    prefix = params['term']
+    render :json => DesignMethod.where('name like  ?', "#{prefix}%").map{|x| x.name.humanize}
   end
 end

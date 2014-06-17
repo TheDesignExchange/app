@@ -1,0 +1,108 @@
+ /*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require jquery.ui.autocomplete
+ * require_tree .
+ *= require grid
+ *= require normalize-rails
+ *= require dropit
+ * require bootsy
+ *= require bootstrap
+ *= require_self
+ */
+
+
+ .content {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto;
+  color: #333;
+  padding-bottom: 10px;
+  min-height: 1500px;
+}
+
+
+img{
+  width: 50%;
+  display: block;
+}
+
+  .jumbotron{
+    font-size: 17px;
+  }
+  .subtitle{
+    font-size: 20px;
+  }
+
+  .form-search{
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555555;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  }
+
+  .no-gap{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 30px;
+
+  }
+  .thumbnail{
+    padding: 0px;
+   
+    }
+    .thumbnail img{
+      width: 100%;
+    }
+    .thumbnail .image-wrapper{ 
+      overflow: hidden;
+      height: 150px;
+    }
+
+    .profile div img{
+      height: 60px;
+      width: auto;
+      position: absolute;
+      left: 0px;
+    }
+
+    .label-research{
+      background-color: #d9534f;
+    }
+
+    .label-prototyping{
+      background-color: #f0829a;
+    }
+
+    .label-analysis{
+      background-color: #5bc0de;
+    }
+
+    .label-evaluating{
+      background-color: #5cb85c;
+    }
+
+    .label-user-testing{
+      background-color: #428bca;
+    }
+
+    .label-brainstorming{
+      background-color: #f0ad4e;
+    }

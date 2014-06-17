@@ -14,8 +14,16 @@
  *= require dropit
  * require bootsy
  *= require bootstrap
+ *= require jquery.ui.autocomplete
  */
 
+
+
+.search-item{
+	background: #FCFCFC !important;
+	height: 270px;
+	overflow: hidden;
+}
 
  .content {
   width: 960px;

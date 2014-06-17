@@ -18,3 +18,8 @@
 //= require validate
 //= require expander
 //= require_tree .
+
+function DOM(){}
+DOM.tag = function(t){
+	return $("<"+ t +"/>");
+}

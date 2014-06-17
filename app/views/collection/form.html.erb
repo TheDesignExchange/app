@@ -1,4 +1,3 @@
-<%= stylesheet_link_tag    "collection", :media => "all" %>
 
 <script> 
 // find the element $("form input");
@@ -6,302 +5,305 @@
 // same format .json { title: b}
 // MAIN
 $(function(){
+  $('textarea').unbind();
+  $('.help-block').children().hide();
+    var data = {
+            "title": "A Case Study of Non-User-Centered Design for a Police Emergency-Response System Aaron",
+            "mainImage":"AMA1.png",
+            "developmentCycle":"Product Refinement",
+            "designPhase":"Problem Assessment"
+        }
+    $('#submit').click(function(){
 
-	var data = {
-	        "title": "A Case Study of Non-User-Centered Design for a Police Emergency-Response System Aaron",
-	        "mainImage":"AMA1.png",
-	        "developmentCycle":"Product Refinement",
-	        "designPhase":"Problem Assessment"
-	    }
-	$('#submit').click(function(){
+      // TODO
+      var allInputs = $('input');
 
-		// TODO
-		var allInputs = $('input');
+      for(var i = 0; i < allInputs.length; i++) { 
+        // console.log($(allInputs[i]).attr('data-name'),$(allInputs[i]).val() ); 
 
-		for(var i = 0; i < allInputs.length; i++) { 
-			// console.log($(allInputs[i]).attr('data-name'),$(allInputs[i]).val() ); 
+      //  //title
+      //  // val
+        var el = allInputs[i]
+        var name = $(el).attr('data-name'); 
+        var val = $(el).val();
 
-		// 	//title
-		// 	// val
-			var el = allInputs[i]
-			var name = $(el).attr('data-name'); 
-			var val = $(el).val();
+        if(typeof name !== undefined)
+          data[name] = val;
+      }
 
-			if(typeof name !== undefined)
-				data[name] = val;
- 		}
-
-
-
-		///
-		$.ajax({
-		  type: "POST",
-		  url: "/collection/send_casestudy",
-		  data: data,
-		  success: function(data){
-		  		console.log(data);
-		  },
-		  dataType: "json"
-		});
+      ///
+      $.ajax({
+        type: "POST",
+        url: "/collection/send_casestudy",
+        data: data,
+        success: function(data){
+            console.log(data);
+        },
+        dataType: "json"
+      });
 
 
-	});
-
+    });
 
 })
+
+$('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
+
+
 </script>
-<h1> <%= @cs.title %>
-<button id='submit'> Submit </button>
-<div id="form2" class="slide">
-   <div class="container">
-      <div class="row">
-            <p name="Main Image" class="label full-label">Main Image</p>
-            <div class="files">
-            	<img data-name="mainImage" src="<%= @cs.mainImage%>">
-            </div>
-         <br class="clearfix">
+<style>
+.help-block{
+  list-style: none;
+  /*height: 30px;*/
+  padding-left: 0;
+
+}
+.dropdown-menu li{
+  cursor: pointer;
+}
+textarea{
+  resize: none;
+}
+.btn-fixed{
+  width: 170px;
+  text-align: left;
+}
+.btn-fixed span{
+
+  margin-left: 15px;
+}
+</style>
+
+
+<% @options %>
+<% @helper_text %>
+
+<div class='grid_7'>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Case Study Editing Form</div>
+      <div class="panel-body">
+        <form role="form">
+          <% @attr.each do |name, metadata| %>
+            
+             
+
+             
+
+              <% if @options.has_key?(name.to_sym) %>
+              <% elsif metadata.type == :string %>
+              
+              <div class="form-group">   
+               <label for="<%= name %>"><%= name.underscore.humanize %></label><br>
+            
+                <input data-name="<%= name %>" class="form-control" id="<%= name %>" value="<%= @cs[name] %>"/> 
+              </div>
+
+              <% elsif metadata.type == :boolean %>   
+              <div class="form-group grid_12">
+                <label class="radio-inline">
+                  <input data-name= "<%= name %>" value="option1" type="radio"> <%= name.underscore.humanize %>
+                </label>
+              </div>
+              <% elsif metadata.type == :text %>   
+              <div class="form-group grid_12">
+                <label for="<%= name %>"><%= name.underscore.humanize %></label><br>
+                <textarea data-name="<%= name %>" class="form-control" id="<%= name %>" rows="5" cols="50">
+                <%= @cs[name] %>
+                </textarea>
+                 </div> 
+              <% end %>
+              <!-- <p class="help-block"> <%= metadata.type %></p>  	 -->
+               
+
+		      <% end %>
+          <% dropdowns = ["development_cycle", "design_phase", "project_domain", "customer_type", "user_age", "privacy_level", "social_setting"] %>
+          <div class="form-group">
+            <table class="table">
+            <% dropdowns.each do |name| %>
+                  <tr>
+                   <td><label for="<%= name %>"><%= name.underscore.humanize %>
+                    <span class='glyphicon glyphicon-question-sign'></span>
+                    </label></td>
+                        <!-- 
+                        <% if @helper_text.has_key?(name.to_sym) %>
+                         <ul class="help-block"> 
+                          <% @helper_text[name.to_sym].each_with_index do |help_text_option, i| %>
+                            <li data-index="<%=i%>"><%= help_text_option.html_safe %></li>
+                          <% end %>
+                        </ul>
+                        <% end %> -->
+                  <td>
+                        <div class="btn-group">
+                        <button type="button" class="btn-fixed btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <%= @options[name.to_sym][0] %>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <% @options[name.to_sym].each_with_index do |choice, i| %>
+                          <li data-index="<%=i%>" data-name="<%= choice %>"><a><%= choice %></a></li> 
+                          <% end %>
+                        </ul>
+                        </div>
+                  </td>
+                  <td><%= @cs[name] %></td>
+              </tr>
+              <tr class='info'><td colspan="3">djflksdajflkj</td></tr>
+          <% end %>
+        </table>
       </div>
+        
 
-      <div class="multiple row">
-         <div class="row">
-               <p class="label full-label">Title</p>
-               <p class="label"></p>
-               <input data-name="title" value="<%= @cs.title %>">
-            <br class="clearfix">
-         </div>
-      </div>
-
-
-
-        <div class="multiple row">
-         <div class="row">
-               <p class="label full-label">Company Name</p>
-               <p class="label"></p>
-               <input data-name="companyName" value="<%= @companies.name %>">
-            <br class="clearfix">
-         </div>
-      </div>
-
-      <div class="multiple row">
-         <div class="row">  
-               <p class="label">Development Cycle</p>
-               <ul class="menu dropit">
-                  <li class="dropit-trigger">
-                     <a href="#">Development Cycle</a>
-                     <ul class="dropit-submenu" style="display: none;">
-                        <li><a>Product Update</a></li>
-                        <li><a>Product Refinement</a></li>
-                        <li><a>New Product</a></li>
-                        <li><a>Other</a></li>
-                     </ul>
-                  </li>
-               </ul>
-            <br class="clearfix">
-         </div>
-      </div>
-
-      <div class="multiple row">
-         <div class="row">
-               <p class="label">Design Phase</p>
-               <ul class="menu dropit">
-                  <li class="dropit-trigger">
-                     <a href="#">Design Phase</a>
-                     <ul class="dropit-submenu" style="display: none;">
-                        <li><a>Problem Assessment</a></li>
-                        <li><a>Conceptual Design</a></li>
-                        <li><a>Detailed Design</a></li>
-                        <li><a>Other</a></li>
-                     </ul>
-                  </li>
-               </ul>
-            <br class="clearfix">
-         </div>
-      </div>
-
-      <div class="multiple row">
-         <div class="row">
-               <p class="label">Project Domain</p>
-               <ul class="menu dropit">
-                  <li class="dropit-trigger">
-                     <a href="#">Project Domain</a>
-                     <ul class="dropit-submenu" style="display: none;">
-                        <li><a>Built Environment</a></li>
-                        <li><a>Product</a></li>
-                        <li><a>Service</a></li>
-                        <li><a>Web</a></li>
-                        <li><a>Mobile</a></li>
-                        <li><a>Graphic</a></li>
-                        <li><a>Fashion</a></li>
-                        <li><a>Other</a></li>
-                     </ul>
-                  </li>
-               </ul>
-            <br class="clearfix">
-         </div>
-      </div>
-
-	  <div class="multiple row">
-         <div class="row">
-               <p class="label">Remote Project</p>
-      			<form action="">
-					<input data-name="mainImage" type="radio" name="choice" value="Yes">Yes<br>
-					<input data-name="mainImage" type="radio" name="choice" value="No">No
-				</form>
-	     		<br class="clearfix">
-         </div>
-      </div>
-
-      <div class="multiple row">
-         <div class="row">
-               <p class="label">Customer is User</p>
-      			<form action="">
-					<input data-name="customer_is_user_1" type="radio" name="choice" value="Yes">Yes<br>
-					<input data-name="customer_is_user_2" type="radio" name="choice" value="No">No
-				</form>
-	     		<br class="clearfix">
-         </div>
-      </div>
-
-      <div class="multiple row">
-         <div class="row">
-               <p class="label">Customer Type</p>
-               <form action="">
-					<input type="checkbox" name="CustomerType" value="Government">Government<br>
-					<input type="checkbox" name="CustomerType" value="EducationalGroup">Educational Group<br>
-					<input type="checkbox" name="CustomerType" value="Business">Business<br>
-					<input type="checkbox" name="CustomerType" value="NGO">NGO<br>
-					<input type="checkbox" name="CustomerType" value="Other">Other 
-				</form>
-				<br class="clearfix">
-         </div>
-      </div>
-
-
-      <div class="multiple row">
-         <div class="row">
-               <p class="label">Age Group of User</p>
-               <form action="">
-					<input type="checkbox" name="UserAge" value="Child">Child<br>
-					<input type="checkbox" name="UserAge" value="Teen">Teen<br>
-					<input type="checkbox" name="UserAge" value="Young Adult">Young Adult<br>
-					<input type="checkbox" name="UserAge" value="Middle Aged">Middle Aged<br>
-					<input type="checkbox" name="UserAge" value="Elderly">Elderly
-				</form>
-            <br class="clearfix">
-         </div>
-      </div>
-
-      <div class="multiple row">
-         <div class="row">
-               <p class="label">Privacy Level</p>
-               <form action="">
-					<input type="checkbox" name="Privacy" value="Public">Public<br>
-					<input type="checkbox" name="Privacy" value="Private">Private		
-				</form>
-            <br class="clearfix">
-         </div>
-      </div>
-
-      <div class="multiple row">
-         <div class="row">
-               <p class="label">Social Setting</p>
-               <form action="">
-					<input type="checkbox" name="SocialSetting" value="Personal">Personal<br>
-					<input type="checkbox" name="SocialSetting" value="Social">Social<br>
-					<input type="checkbox" name="SocialSetting" value="Professional">Professioal<br>
-				</form>
-            <br class="clearfix">
-         </div>
-      </div>
-
-      <div class="row">
-            <p name="Problem Description" class="label full-label">Problem Description</p>
-            <textarea rows="4" name="description" ><%= @cs.description %></textarea>
-         <br class="clearfix">
-      </div>
-      
-	<div class="row">
-		 <p class="label">Methods</p>
-    		<div class="input-group">
-      			<span class="input-group-addon">
-        			<input type="checkbox">
-      			</span>
-      			<input type="text" class="form-control">
-    		</div>
-  		</div>
-
-
-
-         <div class="row">
-               <p class="label">Email</p>
-               <input value="<%= @contacts.email %>">
-            <br class="clearfix">
-         </div>
-
-    
-
-      <div class="multiple row">
-         <div class="row">
-               <p class="label">Permission to Use</p>
-      			<form action="">
-					<input type="radio" name="choice" value="Yes">Yes<br>
-					<input type="radio" name="choice" value="No">No
-				</form>
-	     		<br class="clearfix">
-         </div>
-      </div>
-
-      <div class="row">
-            <p name="Resources" class="label full-label">Resources</p>
-            <div class="files"><input type="file" name="Resources" id="Resources">
-            	<br>
-            	<input type="submit" name="Resourcesupload" id="Resourcesupload" value="<%= @cs.resources %>">
-            </div>
-         <br class="clearfix">
-      </div>
-
-
-      
-
-      <div class="row">
-            <p name="Website" class="label full-label">Website</p>
-            <input name="url" value="<%=@cs.url %>" >
-         <br class="clearfix">
-      </div>
-
-      <div class="multiple row">
-         <div class="row">
-               <p name="Time Period" class="label full-label">Time Period</p>
-               <input value="<%= @cs.timePeriod %>" class="time" >
-               <p class="label time label-right">Hours</p>
-            <br class="clearfix">
-         </div>
-
-         <div class="row">
-               <input value="<%= @cs.timePeriod %>" class="time">
-               <p class="label time label-right">Days</p>
-            <br class="clearfix">
-         </div>
-
-         <div class="row">
-               <input value="<%= @cs.timePeriod %>" class="time">
-               <p class="label time label-right">Weeks</p>
-            <br class="clearfix">
-         </div>
-
-         <div class="row">
-               <input value="<%= @cs.timePeriod %>" class="time">
-               <p class="label time label-right">Months</p>
-            <br class="clearfix">
-         </div>
-
-         <div class="row">
-               <input value="<%= @cs.timePeriod %>" class="time">
-               <p class="label time label-right">Years</p>
-            <br class="clearfix">
-         </div>
-      </div>
-   </div>
+          <div class="checkbox">
+            <label>
+              <input data-name= "permission" type="checkbox"> I give permission to the Design Exchange to use the information from this case study for the DesignExchange Database. </input>
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+  </div>
 </div>
 
+<div class='grid_5 omega'>
+
+   <div class="panel panel-default">
+  <div class="panel-heading">
+    Author Information 
+  </div>
+  <div class="panel-body">
+    <h5> Company </h5> 
+    <table class="table table-striped"> 
+    <!--  -->
+        <tr> 
+          <td> <%= @company.name %> </td> 
+          <td> <%= @company.domain %> </td>
+          <td> <span class="glyphicon glyphicon-edit"></span> </td>
+        </tr>
+       
+    </table>
+    <h5> Contacts </h5> 
+    <table class="table table-striped">
+         <tr>
+          <% @contacts.each do |c| %>
+            <td> <%= c.name %> </td>
+            <td> <%= c.email %> </td>
+            <td> <span class="glyphicon glyphicon-edit"></span> </td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="panel panel-default">
+  <div class="panel-heading">
+    Methods 
+  </div>
+  <div class="panel-body">
+    <div class="input-group">
+              <input id="design_method_search" type="text" class="form-control">
+              <div class="input-group-btn">
+                <button type="button" data-csid="<%=@cs.id %>" class="btn btn-default add-method"> <span class="glyphicon glyphicon-plus"></span> Add </button>
+              </div><!-- /btn-group -->
+            </div><!-- /input-group -->
+    <br>
+    <table id="methods" class="table table-striped"> 
+      
+      <tbody>
+        <% @methods.each do |c| %>
+          <tr> <th> <%= c.name.humanize %> <span class="remove-method glyphicon glyphicon-remove pull-right"> </span></th></tr>
+          <tr> <td><%= c.overview %>  </td></tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+</div>
+
+
+
+<script> 
+  $(function(){
+    
+    var cache = {};
+    $('#design_method_search').autocomplete({
+          source: function( request, response ) {
+            var term = request.term;
+            if ( term in cache ) {
+              response( cache[ term ] );
+              return;
+            }
+     
+            $.getJSON( "/collection/autocomplete_design_methods", request, function( data, status, xhr ) {
+              cache[ term ] = data;
+              response( data );
+            });
+          },
+          minLength: 1
+          // select: function( event, ui ) {
+          //   log( ui.item ?
+          //     "Selected: " + ui.item.value + " aka " + ui.item.id :
+          //     "Nothing selected, input was " + this.value );
+          // }
+    });
+    $('button.add-method').click(function(){
+      val = $('#design_method_search').val();
+      if(val == "") return;
+      data = {"m" : val, "cs" : $(this).attr('data-csid')};
+      $.ajax({
+        type: "POST",
+        url: "/collection/linkmethod",
+        data: data,
+        success: function(data){updateTable();},
+        dataType: "json"
+      });
+    })
+
+    
+    $("span.remove-method").click(function(){ removeMethod($(this).parent().html().split('<')[0])});
+  });
+
+function updateTable(){
+  $.get("/collection/links?n=<%= @cs.id %>", function(data){
+      var methods = [];
+      for(var i in data){
+        var method = [];
+        console.log(data[i]);
+        method[0] = DOM.tag("tr").append(DOM.tag("th").html(data[i].name).append(DOM.tag("span").addClass("remove-method glyphicon glyphicon-remove pull-right").click(function(){
+            removeMethod($(this).parent().html().split('<')[0]);
+        })));
+        method[1] = DOM.tag("tr").append(DOM.tag("td").html(data[i].overview));
+        methods.push(method);
+      }
+      $('table#methods tbody').html("");
+      for(var i in methods)
+        $('table#methods tbody').append(methods[i]);
+  });
+}
+function removeMethod(name){
+  console.log(name);
+  var data = {"m" : name, "cs" : <%= @cs.id %>};
+  $.ajax({
+        type: "DELETE",
+        url: "/collection/removemethod",
+        data: data,
+        success: function(data){ updateTable(); },
+        dataType: "json"
+      });
+}
+
+$('form').find('.dropdown-menu li').hover(function(){
+  var help_id = $(this).attr('data-index');
+
+  var helper_text = $(this).parent().parent().siblings('ul');
+  if(helper_text.length > 0){
+    var htext = helper_text.children('li[data-index="'+ help_id +'"]');
+    if(htext.length > 0)
+      htext.show().siblings().hide();
+    else
+      helper_text.children().hide();
+  }
+});
+</script>
 
