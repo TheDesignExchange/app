@@ -3,7 +3,7 @@ DesignExchange::Application.routes.draw do
 
 
   resources :method_case_studies
-  resources :case_studies
+  # resources :case_studies
 
 
   get "de/index"

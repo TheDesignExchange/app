@@ -1,20 +1,21 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <title>CustomDesignExchange</title>
   <%= javascript_include_tag "application" %>
-  <%= stylesheet_link_tag    "collection", :media => "all" %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
   <script> 
     $(function(){
       $('button').click(function(e){
         e.preventDefault();
       });
-
     })
+
+
   </script>
   <style>
+  /**/
   .navbar{
     margin-bottom: 0;
   }
