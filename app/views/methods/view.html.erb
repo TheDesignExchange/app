@@ -1,3 +1,9 @@
-<h1>Methods#view</h1>
+
+<h1><b><%= @method.name.humanize().split.map(&:capitalize).join(' ') %></b></h1>
+<h2> Overview </h2>
+<p class='lead'><%= @method.overview %></p>
+<h2> Process </h2>
+<p class='lead'><%= @method.process %></p>
+
 <%= link_to "Home", "/de/index" %>
 <img src="https://designexchange.mybalsamiq.com/projects/de/Methods%20-%20View.jpeg?version=39&etag=SJ3B5Sr.TiQYBhvsI1Ba0j8PX0LZrLy9"/>

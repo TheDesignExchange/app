@@ -1,16 +1,13 @@
 module DeHelper
 	def thumbnail(obj)
 
-		str = "<div class='col-sm-6 col-md-4 left-top-padding'>
-   			<div class='thumbnail'>
-   				<div class='image-wrapper'>
-	  		   		<img src='#{obj[:url]}'>
-	  			</div>
+		str = "<div class='col-sm-6 col-md-3 left-top-padding'>
+   			<div class='thumbnail search-item'>
   		   		<div class='caption'>
   		     		<h3>"+
-  		(link_to "#{obj[:name]}", "/methods/view")+ 
+  		(link_to "#{obj[:name]}", "/methods/view?n=#{obj[:method_id]}" )+ 
   		"</h3><p><span class='glyphicon glyphicon-star'></span> #{obj[:likes]} Likes</p>
-  		     		<p> #{obj[:description]}</p>"+ 
+  		     		<p class='truncate-multiline'> #{obj[:description]}</p>"+ 
   		     		tagifier(obj[:tags])+
   		   		"</div>
   	  		</div>
@@ -29,3 +26,6 @@ module DeHelper
 		"<p>"+str.join('')+"</p>"
 	end
 end
+# <div class='image-wrapper'>
+# <img src='#{obj[:url]}'>
+# </div>

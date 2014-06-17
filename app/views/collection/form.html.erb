@@ -5,44 +5,45 @@
 // same format .json { title: b}
 // MAIN
 $(function(){
+  $('textarea').unbind();
+  $('.help-block').children().hide();
+    var data = {
+            "title": "A Case Study of Non-User-Centered Design for a Police Emergency-Response System Aaron",
+            "mainImage":"AMA1.png",
+            "developmentCycle":"Product Refinement",
+            "designPhase":"Problem Assessment"
+        }
+    $('#submit').click(function(){
 
-  var data = {
-          "title": "A Case Study of Non-User-Centered Design for a Police Emergency-Response System Aaron",
-          "mainImage":"AMA1.png",
-          "developmentCycle":"Product Refinement",
-          "designPhase":"Problem Assessment"
+      // TODO
+      var allInputs = $('input');
+
+      for(var i = 0; i < allInputs.length; i++) { 
+        // console.log($(allInputs[i]).attr('data-name'),$(allInputs[i]).val() ); 
+
+      //  //title
+      //  // val
+        var el = allInputs[i]
+        var name = $(el).attr('data-name'); 
+        var val = $(el).val();
+
+        if(typeof name !== undefined)
+          data[name] = val;
       }
-  $('#submit').click(function(){
 
-    // TODO
-    var allInputs = $('input');
+      ///
+      $.ajax({
+        type: "POST",
+        url: "/collection/send_casestudy",
+        data: data,
+        success: function(data){
+            console.log(data);
+        },
+        dataType: "json"
+      });
 
-    for(var i = 0; i < allInputs.length; i++) { 
-      // console.log($(allInputs[i]).attr('data-name'),$(allInputs[i]).val() ); 
 
-    //  //title
-    //  // val
-      var el = allInputs[i]
-      var name = $(el).attr('data-name'); 
-      var val = $(el).val();
-
-      if(typeof name !== undefined)
-        data[name] = val;
-    }
-
-    ///
-    $.ajax({
-      type: "POST",
-      url: "/collection/send_casestudy",
-      data: data,
-      success: function(data){
-          console.log(data);
-      },
-      dataType: "json"
     });
-
-
-  });
 
 })
 
@@ -50,7 +51,28 @@ $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
 
 
 </script>
+<style>
+.help-block{
+  list-style: none;
+  /*height: 30px;*/
+  padding-left: 0;
 
+}
+.dropdown-menu li{
+  cursor: pointer;
+}
+textarea{
+  resize: none;
+}
+.btn-fixed{
+  width: 170px;
+  text-align: left;
+}
+.btn-fixed span{
+
+  margin-left: 15px;
+}
+</style>
 
 
 <% @options %>
@@ -62,45 +84,73 @@ $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
       <div class="panel-body">
         <form role="form">
           <% @attr.each do |name, metadata| %>
-            <div class="form-group">
-              <label for="<%= name %>"><%= name.underscore.humanize %></label><br>
-              <% @options[name.to_sym] %>
+            
+             
 
-             <% if @helper_text.has_key?(name.to_sym) %>
-             <ul> 
-              <% @helper_text[name.to_sym].each do |help_text_option| %>
-                <li class="help-block"><%= help_text_option.html_safe %></li>
-              <% end %>
-            </ul>
-              <% end %>
+             
 
               <% if @options.has_key?(name.to_sym) %>
+              <% elsif metadata.type == :string %>
               
-                <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <%= name.humanize %> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <% @options[name.to_sym].each do |choice| %>
-                  <li><a href="#"><%= choice %></a></li> 
-                  <% end %>
-                </ul>
-                </div>
-
-              <% elsif metadata.type == :string %>   
+              <div class="form-group">   
+               <label for="<%= name %>"><%= name.underscore.humanize %></label><br>
+            
                 <input data-name="<%= name %>" class="form-control" id="<%= name %>" value="<%= @cs[name] %>"/> 
+              </div>
+
               <% elsif metadata.type == :boolean %>   
+              <div class="form-group grid_12">
                 <label class="radio-inline">
                   <input data-name= "<%= name %>" value="option1" type="radio"> <%= name.underscore.humanize %>
                 </label>
+              </div>
               <% elsif metadata.type == :text %>   
-                <textarea data-name="<%= name %>" class="form-control" id="<%= name %>" rows="4" cols="50">
-<%= @cs[name] %>
+              <div class="form-group grid_12">
+                <label for="<%= name %>"><%= name.underscore.humanize %></label><br>
+                <textarea data-name="<%= name %>" class="form-control" id="<%= name %>" rows="5" cols="50">
+                <%= @cs[name] %>
                 </textarea>
+                 </div> 
               <% end %>
               <!-- <p class="help-block"> <%= metadata.type %></p>  	 -->
-              </div>	  
+               
+
 		      <% end %>
+          <% dropdowns = ["development_cycle", "design_phase", "project_domain", "customer_type", "user_age", "privacy_level", "social_setting"] %>
+          <div class="form-group">
+            <table class="table">
+            <% dropdowns.each do |name| %>
+                  <tr>
+                   <td><label for="<%= name %>"><%= name.underscore.humanize %>
+                    <span class='glyphicon glyphicon-question-sign'></span>
+                    </label></td>
+                        <!-- 
+                        <% if @helper_text.has_key?(name.to_sym) %>
+                         <ul class="help-block"> 
+                          <% @helper_text[name.to_sym].each_with_index do |help_text_option, i| %>
+                            <li data-index="<%=i%>"><%= help_text_option.html_safe %></li>
+                          <% end %>
+                        </ul>
+                        <% end %> -->
+                  <td>
+                        <div class="btn-group">
+                        <button type="button" class="btn-fixed btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <%= @options[name.to_sym][0] %>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <% @options[name.to_sym].each_with_index do |choice, i| %>
+                          <li data-index="<%=i%>" data-name="<%= choice %>"><a><%= choice %></a></li> 
+                          <% end %>
+                        </ul>
+                        </div>
+                  </td>
+                  <td><%= @cs[name] %></td>
+              </tr>
+              <tr class='info'><td colspan="3">djflksdajflkj</td></tr>
+          <% end %>
+        </table>
+      </div>
         
 
           <div class="checkbox">
@@ -175,6 +225,7 @@ $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
 
 <script> 
   $(function(){
+    
     var cache = {};
     $('#design_method_search').autocomplete({
           source: function( request, response ) {
@@ -241,5 +292,18 @@ function removeMethod(name){
         dataType: "json"
       });
 }
+
+$('form').find('.dropdown-menu li').hover(function(){
+  var help_id = $(this).attr('data-index');
+
+  var helper_text = $(this).parent().parent().siblings('ul');
+  if(helper_text.length > 0){
+    var htext = helper_text.children('li[data-index="'+ help_id +'"]');
+    if(htext.length > 0)
+      htext.show().siblings().hide();
+    else
+      helper_text.children().hide();
+  }
+});
 </script>
 
