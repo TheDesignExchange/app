@@ -18,6 +18,11 @@
  *= require_self
  */
 
+.search-item{
+  background: #FCFCFC !important;
+  height: 270px;
+  overflow: hidden;
+}
 
  .content {
   width: 960px;
@@ -35,11 +40,21 @@ img{
   display: block;
 }
 
-  .jumbotron{
-    font-size: 17px;
+  .truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  .subtitle{
-    font-size: 20px;
+  .truncate-multiline {
+    height: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    font-size: 10pt;
+  }
+
+  .navbar{
+    margin-bottom: 0;
   }
 
   .form-search{

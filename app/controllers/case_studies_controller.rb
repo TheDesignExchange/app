@@ -7,6 +7,10 @@ class CaseStudiesController < ApplicationController
   end
 
   def view
+    id = params['n'].to_i
+    dm = CaseStudy.find(id)
+    @casestudy = dm
+    render layout: "custom"
   end
 
   def search

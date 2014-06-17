@@ -55,7 +55,7 @@ data.each do |raw|
 	raw.delete("authorEmail")
 	raw.delete("authorOther")
 	
-	raw.each{|k, v| raw[k] = v.trim }
+	raw.each{|k, v| raw[k] = v.strip }
 
 	c = CaseStudy.new(raw)
 	c.company = comp

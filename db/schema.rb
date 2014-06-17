@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140616221028) do
+ActiveRecord::Schema.define(version: 20140613234513) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20140616221028) do
   create_table "case_studies", force: true do |t|
     t.string   "mainImage",         default: ""
     t.string   "title",             default: ""
+    t.string   "methods",           default: ""
     t.string   "url",               default: ""
     t.string   "timePeriod",        default: ""
     t.integer  "development_cycle"
