@@ -100,7 +100,7 @@
   	<div class="col-md-10 left-pad">
   		
       <% @design_methods.each do |method| %>
-  		<%= thumbnail ({:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg", :name => method.name.humanize, :tags => method.method_categories.map{|x| x.name}[0..2], :likes => (rand * 100).to_i, :description => method.overview, :method_id => method.id}) %>
+  		<%= thumbnail ({:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg", :name => method.name.humanize, :tags => method.method_categories.map{|x| x.name}[0..2], :likes => (rand * 100).to_i, :description => method.overview, :id => method.id}) %>
       <% end %>
 
   	</div>

@@ -1,5 +1,6 @@
 class CaseStudiesController < ApplicationController
   def home
+    @case_studies = CaseStudy.take(24)
   	render layout: "wide"
   end
 
@@ -14,5 +15,6 @@ class CaseStudiesController < ApplicationController
   end
 
   def search
+
   end
 end

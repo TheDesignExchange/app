@@ -1,10 +1,11 @@
 class MethodsController < ApplicationController
+  layout "wide"
+
   def home
-  	render layout: "wide"
+    @design_methods = DesignMethod.where("overview != ?", "default" ).take(24)
   end
 
   def create
-  	render layout: "wide"
   end
 
   def view
@@ -12,7 +13,6 @@ class MethodsController < ApplicationController
     if id == 0 then id = 1 end
     dm = DesignMethod.find(id)
     @method = dm
-    render layout: "wide"
     # render :json => dm
   end
 
