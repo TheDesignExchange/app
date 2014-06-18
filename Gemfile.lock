@@ -42,18 +42,12 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
-    acts_as_commentable_with_threading (1.2.0)
-      activerecord (>= 3.0)
-      activesupport (>= 3.0)
-      awesome_nested_set (>= 2.0)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (4.0.2)
-    awesome_nested_set (2.1.6)
-      activerecord (>= 3.0.0)
     bcrypt (3.1.7)
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
@@ -65,7 +59,7 @@ GEM
       sass (~> 3.2)
       thor
     builder (3.1.4)
-    capybara (2.1.0)
+    capybara (2.3.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
@@ -206,17 +200,17 @@ GEM
       rspec-support (~> 3.0.0)
     rspec-support (3.0.0)
     ruby-ole (1.2.11.7)
-    rubyzip (0.9.9)
+    rubyzip (1.1.4)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
-    selenium-webdriver (2.35.1)
-      childprocess (>= 0.2.5)
+    selenium-webdriver (2.42.0)
+      childprocess (>= 0.5.0)
       multi_json (~> 1.0)
-      rubyzip (< 1.0.0)
+      rubyzip (~> 1.0)
       websocket (~> 1.0.4)
     sparql (1.1.3)
       builder (~> 3.0)
@@ -288,12 +282,11 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
-  acts_as_commentable_with_threading
   annotate
   bootstrap-sass
   bootsy
   bourbon (~> 3.2)
-  capybara (= 2.1.0)
+  capybara
   coffee-rails
   devise
   equivalent-xml
@@ -310,7 +303,7 @@ DEPENDENCIES
   rdf-raptor
   rspec-rails
   sass-rails (~> 4.0.2)
-  selenium-webdriver (= 2.35.1)
+  selenium-webdriver
   sparql
   spreadsheet
   sprockets (= 2.11.0)

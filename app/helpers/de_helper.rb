@@ -4,9 +4,9 @@ module DeHelper
 		str = "<div class='col-sm-6 col-md-3 left-top-padding'>
    			<div class='thumbnail search-item'>
   		   		<div class='caption'>
-  		     		<h3>"+
-  		(link_to "#{obj[:name]}", "/methods/view?n=#{obj[:method_id]}" )+ 
-  		"</h3><p><span class='glyphicon glyphicon-star'></span> #{obj[:likes]} Likes</p>
+  		     		<h5>"+
+  		(link_to "#{obj[:name]}", "#{obj[:link]}?n=#{obj[:id]}" )+ 
+  		"</h5><p><span class='glyphicon glyphicon-star'></span> #{obj[:likes]} Likes</p>
   		     		<p class='truncate-multiline'> #{obj[:description]}</p>"+ 
   		     		tagifier(obj[:tags])+
   		   		"</div>

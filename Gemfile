@@ -13,7 +13,6 @@ gem 'coffee-rails'
 gem 'uglifier'
 gem 'spreadsheet'
 gem 'sqlite3'
-gem 'acts_as_commentable_with_threading'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'turbolinks'
 gem 'rdf'
@@ -45,8 +44,8 @@ group :production do
 end
 
 group :test do
-  gem 'selenium-webdriver', '2.35.1'
-  gem 'capybara', '2.1.0'
+  gem 'selenium-webdriver'
+  gem 'capybara'
   gem 'factory_girl_rails'
   gem 'faker'
 end

@@ -1,8 +1,125 @@
-<h1><b><%= @casestudy.title.humanize().split.map(&:capitalize).join(' ') %></b></h1>
-<h2> Description </h2>
-<p class='lead'><%= @casestudy.description %></p>
+<div class = "row">
+	
+  <div class="col-md-3"></div>
+	<div class="col-md-9 left-pad">
+    <!-- <div class="col-md-6"> -->
+    <h3><b><%= @casestudy.title.humanize().split.map(&:capitalize).join(' ') %></b></h3>
+    <p>By <a><%= @author.email %></a></p>
+    <!-- </div> -->
+    <!-- <div class="col-md-6"> -->
+    <!-- </div> -->
+	</div>
+
+</div>
+
+<div class = "row row-margin">
+  <!-- SIDEBAR -->
+  <div id="sidebar" class="col-md-3">
+		<div class = "row row-margin">
+			<h3>What You'll Need</h3>
+		</div>
+		<div class="row row-margin">
+			<h4>People</h4>
+			<p>
+				<span class="glyphicon glyphicon-user"></span>
+				1 designer
+			</p>
+			<p>
+				<span class="glyphicon glyphicon-user"></span>
+				0 users
+			</p>
+		</div>
+
+  		<div class="row row-margin">
+			<h4>Tools</h4>
+			<p>
+				<span class="glyphicon glyphicon-pencil"></span>
+				Pen, Paper, Wireframe tool
+			</p>
+		</div>
+
+  		<div class="row row-margin">
+			<h4>Time</h4>
+			<p>
+				<span class="glyphicon glyphicon-time"></span>
+				~ 1 hour
+			</p>
+  		</div>
+
+  		<div class="row row-margin">
+			<div class="panel panel-primary">
+      			<div class="panel-heading">
+        			Tags
+      			</div>
+      			<div class="panel-body">
+        			<span class="label label-brainstorming">brainstorming 
+        			</span> 
+        			<span class="label label-research">research 
+        			</span>
+      			</div>
+    		</div>
+  		</div>
+	</div>
+
+  <!-- END SIDBAR -->
 
 
-<h1>Case Studies#view</h1>
-<%= link_to "Home", "/de/index" %>
-<img src="https://designexchange.mybalsamiq.com/projects/de/Cases%20-%20View.jpeg?version=3&etag=t6GzCQY9ENDWnFG_XXdCU3fiOQhCvJlI"/>
+  <!-- MAIN VIEW  -->
+  	<div class="col-md-9 add-padding">
+      <!-- MENU BAR -->
+  		<div class="row">
+  			<div class="col-md-3">
+  				<span class="glyphicon glyphicon-star"></span>
+  				382 likes
+  			</div>
+  			<div class="col-md-3">
+          		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          			<span class="glyphicon glyphicon-folder-open"></span>
+          				Add to Set
+          			<b class="caret"></b>
+          		</a>
+          		<ul class="dropdown-menu">
+            		<li><a href="">Add To Set</a></li>
+            		<li class="divider"></li>
+            		<li><a href="#">My Favorites </a></li>
+          		</ul>
+  			</div>
+  			<div class="col-md-3">
+  				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          				<span class="glyphicon glyphicon-share"></span>
+          					Share
+          				<b class="caret"></b>
+          		</a>
+          			<ul class="dropdown-menu">
+            			<li><a href="#">Email</a></li>
+          			</ul>
+  			</div>
+  			<div class="col-md-3">
+  				<a href="#" class="pull-right">
+          				<span class="glyphicon glyphicon-pencil"></span>
+          					Edit
+          		</a>
+  			</div>
+  		</div>
+      <!-- END MENU BAR -->
+      <!-- CONTENT -->
+  		<div class="row">
+  			<!-- <img src="#" style="width: 100%; height: 385px;"></img> -->
+
+		<h2> Description </h2>
+		<p><%= @casestudy.description %></p>
+      </div>
+      <!-- END CONTENT -->
+  	</div>
+
+    <!-- END MAIN VIEW -->
+</div>
+
+
+
+
+
+
+
+
+

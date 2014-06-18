@@ -12,7 +12,7 @@
 	</div>
   	<div class="col-md-10 left-pad">
 	<div class="col-md-6">
-		<h1>Popular Methods</h1>
+		<h3>Popular Methods</h3>
 	</div>
   	<div class="col-md-6">
 		<button id='create-btn' type="submit" class="btn btn-default pull-right"><span class="glyphicon glyphicon-plus"></span> Create Method</button>
@@ -106,17 +106,9 @@
         </div>
 	</div>
   	<div class="col-md-10 left-pad">
-  		<%= thumbnail ({:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg", :name => "Storyboard", :tags => ["evaluating","research"], :likes => "360", :description => "Bla bla bla"}) %>
-
-  		<%= thumbnail ({:url => "https://evbdn.eventbrite.com/s3-s3/eventlogos/26645807/smallbusinessneed1.jpg", :name => "Evidencing", :tags => ["user testing","research"], :likes => "387", :description => "Bla bla bla"}) %>
-
-  		<%= thumbnail ({:url => "https://evbdn.eventbrite.com/s3-s3/eventlogos/26645807/smallbusinessneed1.jpg", :name => "Evidencing", :tags => ["brainstorming","prototyping"], :likes => "387", :description => "Bla bla bla"}) %>
-
-  		<%= thumbnail ({:url => "https://evbdn.eventbrite.com/s3-s3/eventlogos/26645807/smallbusinessneed1.jpg", :name => "Evidencing", :tags => ["analysis"], :likes => "387", :description => "Bla bla bla"}) %>
-
-  		<%= thumbnail ({:url => "https://evbdn.eventbrite.com/s3-s3/eventlogos/26645807/smallbusinessneed1.jpg", :name => "Evidencing", :tags => ["evaluating"], :likes => "387", :description => "Bla bla bla"}) %>
-
-  		<%= thumbnail ({:url => "https://evbdn.eventbrite.com/s3-s3/eventlogos/26645807/smallbusinessneed1.jpg", :name => "Evidencing", :tags => ["research"], :likes => "387", :description => "Bla bla bla"}) %>
+  		 <% @design_methods.each do |method| %>
+      <%= thumbnail ({:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg", :name => method.name.humanize, :tags => method.method_categories.map{|x| x.name}[0..2], :likes => (rand * 100).to_i, :description => method.overview, :id => method.id, :link => "/methods/view"}) %>
+      <% end %>
   	</div>
 </div>
 

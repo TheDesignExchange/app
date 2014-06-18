@@ -1,21 +1,25 @@
 class MethodsController < ApplicationController
+  layout "custom"
+
   def home
-  	render layout: "wide"
+    @design_methods = DesignMethod.where("overview != ?", "default" ).take(24)
+    render :layout => "wide"
   end
 
   def create
-  	render layout: "wide"
   end
 
   def view
     id = params['n'].to_i
+    #default to method id #1 TODO remove
     if id == 0 then id = 1 end
     dm = DesignMethod.find(id)
     @method = dm
-    render layout: "wide"
-    # render :json => dm
+    @author = dm.owner
+    @citations = dm.citations
   end
 
   def search
+    render :layout => "wide"
   end
 end

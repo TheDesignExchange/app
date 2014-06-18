@@ -106,17 +106,9 @@
         </div>
 	</div>
   	<div class="col-md-10 left-pad">
-  		<%= thumbnail ({:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg", :name => "Storyboard", :tags => ["evaluating","research"], :likes => "360", :description => "Bla bla bla"}) %>
-
-  		<%= thumbnail ({:url => "https://evbdn.eventbrite.com/s3-s3/eventlogos/26645807/smallbusinessneed1.jpg", :name => "Evidencing", :tags => ["user testing","research"], :likes => "387", :description => "Bla bla bla"}) %>
-
-  		<%= thumbnail ({:url => "https://evbdn.eventbrite.com/s3-s3/eventlogos/26645807/smallbusinessneed1.jpg", :name => "Evidencing", :tags => ["brainstorming","prototyping"], :likes => "387", :description => "Bla bla bla"}) %>
-
-  		<%= thumbnail ({:url => "https://evbdn.eventbrite.com/s3-s3/eventlogos/26645807/smallbusinessneed1.jpg", :name => "Evidencing", :tags => ["analysis"], :likes => "387", :description => "Bla bla bla"}) %>
-
-  		<%= thumbnail ({:url => "https://evbdn.eventbrite.com/s3-s3/eventlogos/26645807/smallbusinessneed1.jpg", :name => "Evidencing", :tags => ["evaluating"], :likes => "387", :description => "Bla bla bla"}) %>
-
-  		<%= thumbnail ({:url => "https://evbdn.eventbrite.com/s3-s3/eventlogos/26645807/smallbusinessneed1.jpg", :name => "Evidencing", :tags => ["research"], :likes => "387", :description => "Bla bla bla"}) %>
-  	</div>
+  	  <% @case_studies.each do |cs| %>
+      <%= thumbnail ({:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg", :name => cs.title, :tags => [cs.development_cycle.to_s], :likes => (rand * 100).to_i, :description => cs.description, :id => cs.id, :link => "/case_studies/view"}) %>
+      <% end %>
+    </div>
 </div>
 
