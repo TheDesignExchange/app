@@ -10,8 +10,13 @@ class DeController < ApplicationController
   def search
     query = params["q"] ? params['q'].gsub(' ', '_') : "";
   	# @design_methods = 
-  	@design_methods = search_db(query, 24)[:results]
-    # render :json => @design_methods.map{|x| x.name}
+    design_methods = search_db(:dm, query, 24)[:results]
+  	case_studies = search_db(:cs, query, 24)[:results]
+    discussions = search_db(:disc, query, 24)[:results]
+
+    @results = {:all => [design_methods, case_studies, discussions].flatten.shuffle[0..24],
+      :dm => design_methods, :cs => case_studies, :disc => discussions}
+    # render :json => params["q"].length
     render layout: "wide"
   end
 
@@ -22,22 +27,18 @@ class DeController < ApplicationController
   #
   # === Variables
   # - @results: list of design methods from the search result
-  def search_db(query, limit)
+  def search_db(type, query, limit)
     hits = []
     if query
-      results = DesignMethod.where("LOWER( design_methods.name ) LIKE ?", "%#{query}%")
-      .order('name = "'+ query +'" DESC, name LIKE "'+ query +'%" DESC'); 
-
-      # DesignMethod.where("name LIKE ? and overview != ?", "%#{query}%", "default").limit(limit);
-      # search = DesignMethod.solr_search do
-      #   fulltext params[:query] do
-      #     highlight
-      #     minimum_match 0
-      #   end
-      # end
-      # store_location
-      # hits = search.hits
-      # results = search.results
+      if type == :dm
+        results = DesignMethod.where("LOWER( design_methods.name ) LIKE ?", "%#{query}%")
+        .order('name = "'+ query +'" DESC, name LIKE "'+ query +'%" DESC'); 
+      elsif type == :cs
+        results = CaseStudy.where("LOWER( case_studies.title ) LIKE ?", "%#{query}%")
+        .order('title = "'+ query +'" DESC, title LIKE "'+ query +'%" DESC'); 
+      else
+        results = []
+      end
       return {:hits => hits, :results => results}
     else
       return {:hits => [], :results => []}
