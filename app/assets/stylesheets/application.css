@@ -18,6 +18,13 @@
  *= require_self
  */
 
+
+/* GENERAL FORMATTING */
+.add-padding {
+   margin-left: 15px; 
+   margin-right: -15px; 
+}
+
 .search-item{
   background: #FCFCFC !important;
   height: 270px;

@@ -5,7 +5,7 @@ module DeHelper
    			<div class='thumbnail search-item'>
   		   		<div class='caption'>
   		     		<h5>"+
-  		(link_to "#{obj[:name]}", "/methods/view?n=#{obj[:method_id]}" )+ 
+  		(link_to "#{obj[:name]}", "#{obj[:link]}?n=#{obj[:id]}" )+ 
   		"</h5><p><span class='glyphicon glyphicon-star'></span> #{obj[:likes]} Likes</p>
   		     		<p class='truncate-multiline'> #{obj[:description]}</p>"+ 
   		     		tagifier(obj[:tags])+

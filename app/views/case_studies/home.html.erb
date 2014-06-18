@@ -107,7 +107,7 @@
 	</div>
   	<div class="col-md-10 left-pad">
   	  <% @case_studies.each do |cs| %>
-      <%= thumbnail ({:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg", :name => cs.title, :tags => [cs.development_cycle.to_s], :likes => (rand * 100).to_i, :description => cs.description, :id => cs.id}) %>
+      <%= thumbnail ({:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg", :name => cs.title, :tags => [cs.development_cycle.to_s], :likes => (rand * 100).to_i, :description => cs.description, :id => cs.id, :link => "/case_studies/view"}) %>
       <% end %>
     </div>
 </div>
