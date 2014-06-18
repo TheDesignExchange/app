@@ -1,0 +1,119 @@
+<div class = "row">
+	<div class="col-md-2"></div>
+  	<div class="col-md-10 left-pad">
+	<div class="col-md-6">
+		<h1>NAME OF METHOD</h1>
+		<p>By <a>Dan Thomson</a>, <a>Shana Lee</a></p>
+	</div>
+  	<div class="col-md-6">
+  	</div>
+  	</div>
+</div>
+<div class = "row row-margin">
+	<div class="col-md-2">
+		<div class = "row row-margin">
+			<h3>What You'll Need</h3>
+		</div>
+		<div class="row row-margin">
+			<h4>People</h4>
+			<p>
+				<span class="glyphicon glyphicon-user"></span>
+				1 designer
+			</p>
+			<p>
+				<span class="glyphicon glyphicon-user"></span>
+				0 users
+			</p>
+		</div>
+
+  		<div class="row row-margin">
+			<h4>Tools</h4>
+			<p>
+				<span class="glyphicon glyphicon-pencil"></span>
+				Pen, Paper, Wireframe tool
+			</p>
+		</div>
+
+  		<div class="row row-margin">
+			<h4>Time</h4>
+			<p>
+				<span class="glyphicon glyphicon-time"></span>
+				~ 1 hour
+			</p>
+  		</div>
+
+  		<div class="row row-margin">
+			<div class="panel panel-primary">
+      			<div class="panel-heading">
+        			Tags
+      			</div>
+      			<div class="panel-body">
+        			<span class="label label-brainstorming">brainstorming 
+        			</span> 
+        			<span class="label label-research">research 
+        			</span>
+      			</div>
+    		</div>
+  		</div>
+	</div>
+  	<div class="col-md-10 left-pad">
+  		<div class="row">
+  			<div class="col-md-3">
+  				<span class="glyphicon glyphicon-star"></span>
+  				382 likes
+  			</div>
+  			<div class="col-md-3">
+          		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          			<span class="glyphicon glyphicon-folder-open"></span>
+          				Add to Set
+          			<b class="caret"></b>
+          		</a>
+          		<ul class="dropdown-menu">
+            		<li><a href="/account/profile_user">Profile</a></li>
+            		<li><a href="#">Sets</a></li>
+            		<li><a href="#">Settings</a></li>
+            		<li class="divider"></li>
+            		<li><a href="#">Log out</a></li>
+          		</ul>
+  			</div>
+  			<div class="col-md-3">
+  				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          				<span class="glyphicon glyphicon-share"></span>
+          					Share
+          				<b class="caret"></b>
+          		</a>
+          			<ul class="dropdown-menu">
+            			<li><a href="/account/profile_user">Profile</a></li>
+            			<li><a href="#">Sets</a></li>
+            			<li><a href="#">Settings</a></li>
+            			<li class="divider"></li>
+            			<li><a href="#">Log out</a></li>
+          			</ul>
+  			</div>
+  			<div class="col-md-3">
+  				<a href="#" class="pull-right">
+          				<span class="glyphicon glyphicon-pencil"></span>
+          					Edit
+          		</a>
+  			</div>
+  		</div>
+  		<div class="row">
+  			<img src="#" style="width: 100%; height: 385px;"></img>
+  		</div>
+  	</div>
+</div>
+
+
+
+
+<h1><b><%= @method.name.humanize().split.map(&:capitalize).join(' ') %></b></h1>
+<h2> Overview </h2>
+<p class='lead'><%= @method.overview %></p>
+<h2> Process </h2>
+<p class='lead'><%= @method.process %></p>
+
+<%= link_to "Home", "/de/index" %>
+<img src="https://designexchange.mybalsamiq.com/projects/de/Methods%20-%20View.jpeg?version=39&etag=SJ3B5Sr.TiQYBhvsI1Ba0j8PX0LZrLy9"/>
+
+
+

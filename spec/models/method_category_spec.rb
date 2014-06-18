@@ -37,7 +37,6 @@ describe MethodCategory do
   it { should respond_to(:distance_from) }
   it { should respond_to(:relation_type) }
   it { should respond_to(:update_relation_type) }
-  it { should respond_to(:recalc_after_remove) }
 
   it { should be_valid }
 
@@ -51,12 +50,20 @@ describe MethodCategory do
     it { should_not be_valid }
   end
 
+  context "when destroyed" do
+    it "destroys all related associations" do
+      mc_id = method_category.id
+      method_category.destroy
+      expect(McRelations.where(parent_id: mc_id)).to be_empty
+      expect(McRelations.where(child_id: mc_id)).to be_empty
+    end
+  end
+
   describe "#add_child" do
     let(:child_list) { method_category.children }
+    before { method_category.add_child(child_a) }
 
     context "when child is valid" do
-      before { method_category.add_child(child_a) }
-
       it "adds child to children list" do
         expect(child_list).to include child_a
       end
@@ -66,18 +73,26 @@ describe MethodCategory do
       end
     end
 
-    context "when child is not valid" do
-      before { method_category.add_child(child_a) }
-
-      it "does not raise error" do
+    context "when child is invalid" do
+      it "does not add child" do
         not_child = "not a child"
-        expect(method_category.add_child(not_child)).to_not raise_error
+        expect(method_category.add_child(not_child)).to be_false
+      end
+    end
+
+    context "when distance is invalid" do
+      it "does not add child" do
+        expect(method_category.add_child(child_a, -1)).to be_false
+      end
+    end
+
+    context "when a cycle will form" do
+      it "does not add child" do
+        expect(child_a.add_child(method_category)).to be_false
       end
     end
 
     context "when child is already in list" do
-      before { method_category.add_child(child_a) }
-
       it "does not add child twice" do
         method_category.add_child(child_a)
         expect(child_list.size).to eq(1)
@@ -86,10 +101,7 @@ describe MethodCategory do
     end
 
     context "when child adds its own child" do
-      before do
-        method_category.add_child(child_a)
-        child_a.add_child(child_b)
-      end
+      before { child_a.add_child(child_b) }
 
       it "adds grandchild to children list" do
         expect(child_list).to include child_b
@@ -101,18 +113,15 @@ describe MethodCategory do
     end
 
     context "when adding a child with existing children" do
-      before do
-        child_a.add_child(child_b)
-        method_category.add_child(child_a)
-      end
+      before { parent_a.add_child(method_category) }
 
       it "adds all children to list" do
-        expect(child_list).to include(child_a, child_b)
+        expect(parent_a.children).to include(child_a, method_category)
       end
 
       it "recalculates correct distances to children" do
-        expect(method_category.distance_from(child_a)).to eq(1)
-        expect(method_category.distance_from(child_b)).to eq(2)
+        expect(parent_a.distance_from(method_category)).to eq(1)
+        expect(parent_a.distance_from(child_a)).to eq(2)
       end
     end
   end
@@ -167,7 +176,7 @@ describe MethodCategory do
       method_category.remove_child(child_a)
     end
 
-    context "when child is caller's child" do
+    context "when is child" do
       it "removes relation" do
         expect(method_category.children).to_not include child_a
       end
@@ -185,7 +194,7 @@ describe MethodCategory do
       end
     end
 
-    context "when child is not caller's child" do
+    context "when is not child" do
       before do
         parent_b.add_child(child_b)
         method_category.remove_child(parent_b)
@@ -203,9 +212,9 @@ describe MethodCategory do
 
   describe "#add_parent" do
     let(:parent_list) { method_category.parents }
+    before { method_category.add_parent(parent_a) }
 
     context "when parent is valid" do
-      before { method_category.add_parent(parent_a) }
 
       it "adds parent to parent list" do
         expect(parent_list).to include parent_a
@@ -217,7 +226,6 @@ describe MethodCategory do
     end
 
     context "when parent is not valid" do
-      before { method_category.add_parent(parent_a) }
 
       it "does not raise error" do
         not_parent = "not a parent"
@@ -226,7 +234,6 @@ describe MethodCategory do
     end
 
     context "when parent is already in list" do
-      before { method_category.add_parent(parent_a) }
 
       it "does not add child twice" do
         method_category.add_parent(parent_a)
@@ -235,10 +242,7 @@ describe MethodCategory do
     end
 
     context "when parent adds its own parent" do
-      before do
-        method_category.add_parent(parent_a)
-        parent_a.add_parent(parent_b)
-      end
+      before { parent_a.add_parent(parent_b) }
 
       it "adds grandparents to parent list" do
         expect(parent_list).to include parent_b
@@ -250,18 +254,15 @@ describe MethodCategory do
     end
 
     context "when adding a parent with existing parents" do
-      before do
-        parent_a.add_parent(parent_b)
-        method_category.add_parent(parent_a)
-      end
+      before { child_a.add_parent(method_category) }
 
       it "adds all parents to list" do
-        expect(parent_list).to include(parent_a, parent_b)
+        expect(child_a.parents).to include(parent_a, method_category)
       end
 
       it "recalculates correct distances to parents" do
-        expect(method_category.distance_from(parent_a)).to eq(1)
-        expect(method_category.distance_from(parent_b)).to eq(2)
+        expect(child_a.distance_from(method_category)).to eq(1)
+        expect(child_a.distance_from(parent_a)).to eq(2)
       end
     end
   end
@@ -316,7 +317,7 @@ describe MethodCategory do
       method_category.remove_parent(parent_a)
     end
 
-    context "when parent is caller's parent" do
+    context "when parent is parent" do
       it "removes relation" do
         expect(method_category.children).to_not include parent_a
       end
@@ -334,7 +335,7 @@ describe MethodCategory do
       end
     end
 
-    context "when parent is not caller's parent" do
+    context "when is not parent" do
       before do
         child_b.add_parent(parent_b)
         method_category.remove_parent(parent_b)

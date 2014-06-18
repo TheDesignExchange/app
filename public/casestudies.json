@@ -1,0 +1,1566 @@
+// rake db:migrate:reset
+// rake db:seed:casestudies
+
+[
+    {
+        "title": "A Case Study of Non-User-Centered Design for a Police Emergency-Response System Aaron",
+        "mainImage":"AMA1.png",
+        "developmentCycle":"Product Refinement",
+        "designPhase":"Problem Assessment",
+        "projectDomain": "interaction design, research",
+        "customerIsUser":"Yes",
+        "remoteProject": "No",
+        "customerType":"government",
+        "userAge":"middle aged",
+        "privacyLevel":"public",
+        "socialSetting":"professional",
+        "timePeriod":"2 months",
+        "methods": "Brainstorming, Focus Group",
+        "permissionToUse":"Yes",
+        "imageResource": "AMA2.png",
+        "authorName": "Aaron Marcus, Jim Gasperini",
+        "url": "http://www.amanda.com/joomla_uploads/whitepapers/Intrxns.SJPD.Art.pp12ff.120906%282%29.pdf",
+        "companyName": "Aaron Marcus and Associates",
+        "companyID": 6,
+        "PDFResource": "AMA1",
+        "description": "Evaluate the software: The government had been spent more than $4 million  on the software, and it was performing poorly, with many usability problems.",
+        "authorEmail": "aaron.marcus@amanda.com",
+        "authorOther": "jim.gasperini@amanda.com"
+    },
+    {
+        "title": "A Behind-the-Scenes Look at Developing iWitness",
+        "projectDomain": "interaction design, user research",
+        "url": "http://www.adaptivepath.com/ideas/behind-the-scenes-look-developing-iwitness/",
+        "companyName": "Adaptive Path",
+        "companyID": 8,
+        "description": "iWitness, our project to create a tool to aggregate social media by time and place",
+        "authorEmail": "http://www.adaptivepath.com/contact/"
+    },
+    {
+        "title": "Argyle Design: Our Process",
+        "projectDomain": "museum exhibitions",
+        "url": "http://www.argyledesign.com/ourprocess.php",
+        "companyName": "Argyle Design(museum)",
+        "companyID": 10,
+        "description": " Develop \"Scholastic's The Magic School Bus Kicks Up a Storm\" exhibition for The Children's Museum of Houston",
+        "authorEmail": "\nCheryl Bartholow\ncheryl@argyledesign.com\n",
+        "authorOther": "Michael Joyce\nmichael@argyledesign.com"
+    },
+    {
+        "title": "Rheumatoid Arthritis Speakers Bureau Program—Envisioning Advanced Concepts",
+        "projectDomain": "health",
+        "url": "http://aegiscreative.com/resources/",
+        "companyName": "Aegis",
+        "companyID": 10,
+        "PDFResource": "A1",
+        "description": "Our client came to us seeking to develop a new and compelling speakers bureau program for rheumatoid arthritis (RA). The existing materials relating to the target of their drug weren’t sophisticated enough to address leaders in the field. They wanted something with cutting-edge information and graphics.",
+        "authorEmail": "info@aegiscreative.com\n"
+    },
+    {
+        "title": "\nLupus Interactive Educational Tool",
+        "subTitle": "Shifting the Paradigm for Disease Education",
+        "projectDomain": "health",
+        "url": "http://aegiscreative.com/resources/",
+        "companyName": "Aegis",
+        "companyID": 10,
+        "PDFResource": "A2",
+        "description": "Our client was working to to prepare the market for a potential new lupus therapy, and ultimately to show its commitment to developing therapeutics for autoimmune diseases. The team sought Aegis’s help in developing an educational tool to explain the complexity of lupus as a disease state with multiple organ manifestations.",
+        "authorEmail": "info@aegiscreative.com"
+    },
+    {
+        "title": "Oncology Nurse Navigators—Reaching an Influential New Audience",
+        "projectDomain": "health",
+        "url": "http://aegiscreative.com/resources/",
+        "companyName": "Aegis",
+        "companyID": 10,
+        "PDFResource": "A3",
+        "description": "Our client saw the opportunity to both improve patient outcomes and increase sales by supporting ONNs in ensuring that all eligible patients receive appropriate treatment and adhere to their prescribed regimens over time. They needed an program to reach their new and potentially influential audience.",
+        "authorEmail": "info@aegiscreative.com"
+    },
+    {
+        "title": "CladeHealth—Bringing a Mobile Health App to Market",
+        "projectDomain": "health",
+        "url": "http://aegiscreative.com/resources/",
+        "companyName": "Aegis",
+        "companyID": 14,
+        "PDFResource": "A4",
+        "description": "Medical decisions are made based on data. But online data storage in the medical field is chaotic and disjointed.  Technology providers have recognized an opportunity to leverage emerging mobile platforms; And we are trying to offer a solution that provides real value to consumers.",
+        "authorEmail": "info@aegiscreative.com"
+    },
+    {
+        "title": "Yamaha: Setting the dolphines free",
+        "projectDomain": "user research",
+        "url": "http://www.added-value.com/#en-us//what_we_do/the_work/yamaha",
+        "companyName": "\nAdded value\n",
+        "companyID": 16,
+        "PDFResource": "AV1",
+        "description": "In the personal watercraft race, Yamaha was stuck in second place. Their boats were innovative, but not making waves. Year after year, it was the same. A solid second place with a steady 32% share. The question was how to gain share and increase boat sales.",
+        "authorEmail": "avus-info@added-value.com\n"
+    },
+    {
+        "title": "Unilever: Every cuppa counts",
+        "projectDomain": "user research",
+        "url": "http://www.added-value.com/#en-us//what_we_do/the_work/unilever",
+        "companyName": "\nAdded value\n",
+        "companyID": 19,
+        "PDFResource": "AV2",
+        "description": "Unilever asked us to help them express their commitment:To ensure the production of those brands is both healthy and respectful of local producers and the environment. To find a way to communicate what they're doing in way that is relevant to the two different brands.",
+        "authorEmail": "\navus-info@added-value.com"
+    },
+    {
+        "title": "Advil: Taking the pain out of positioning",
+        "projectDomain": "user research",
+        "url": "http://www.added-value.com/#en-us//what_we_do/the_work/advil",
+        "companyName": "\nAdded value\n",
+        "companyID": 20,
+        "PDFResource": "AV3",
+        "description": "Positioning can be a real headache. And for many brands, positioning on purely functional benefits can cause heartache too. This was the case for Advil, the number two brand in the highly competitive and commodified US analgesics category. Pharmaceutical giant, Wyeth, were concerned that Advil might be lacking an emotional connection with consumers. Private Label was hammering away at the market. And the opportunity was open for something new. For a brand to offer value beyond what was generic to the category.",
+        "authorEmail": "\navus-info@added-value.com"
+    },
+    {
+        "title": "PERON: Bottling Italian Style",
+        "projectDomain": "user research",
+        "url": "http://www.added-value.com/#en-us//what_we_do/the_work/peroni",
+        "companyName": "Added value",
+        "companyID": 20,
+        "PDFResource": "AV4",
+        "description": "SABMiller had acquired a new brewery. Peroni. A little known niche brand that was mostly sold in a pizza franchise.\nBut there was something about this brand. And SABMiller wanted to unleash its potential. How do you create a different kind of beer brand? One that would work globally? One that would appeal across cultures?",
+        "authorEmail": "\navus-info@added-value.com"
+    },
+    {
+        "title": "AUDI: The 'technik' of insight",
+        "projectDomain": "user research",
+        "url": "http://www.added-value.com/#en-us//what_we_do/the_work/audi",
+        "companyName": "Added value",
+        "companyID": 20,
+        "PDFResource": "AV5",
+        "description": "For the last 10 years, we have partnered Audi on the road. Around strategic brand management and brand development issues. Charted answers to some of the key questions about direction. Questions around brand iconography. Consumer engagement and brand feelings. Intensifying the brand experience and fine tuning the proposition. Questions with answers that push the brand beyond just the functional benefits of a well built car and into the territory of emotionally resonant and connected brand.",
+        "authorEmail": "\navus-info@added-value.com"
+    },
+    {
+        "title": "Understanding the Pathways to Sustainable Consumption",
+        "projectDomain": "social innovation",
+        "url": "http://www.collectiveinvention.com/wp-content/uploads/2011/09/WBCSD.pdf",
+        "companyName": "Collective Invention",
+        "companyID": 20,
+        "PDFResource": "CL1",
+        "description": "As part of its global initiative to chart pathways to sustainable change, The World Business Council for Sustainable Development (WBCSD) asked Collective Invention to help them better understand how to gain insight into human behavior change and how to more effectively motivate people toward what we call, “Enlightened Mutual Interest.”",
+        "authorEmail": "http://collectiveinvention.com/contact-us/"
+    },
+    {
+        "title": "Filling the Innovation Pipeline with Breakthrough Ideas",
+        "projectDomain": "social innovation",
+        "url": "http://www.collectiveinvention.com/wp-content/uploads/2011/09/Grundfos.pdf",
+        "companyName": "Collective Invention",
+        "companyID": 20,
+        "PDFResource": "CL2",
+        "description": "Recognizing that their past success does not a guarantee their future performance, Grundfos has formed a Rapid Innovation Team and asked Collective Invention to help them discover viable business opportunities for the year 2020.",
+        "authorEmail": "http://collectiveinvention.com/contact-us/"
+    },
+    {
+        "title": "Charting a Course to Sustainable Use of Materials",
+        "projectDomain": "social innovation",
+        "url": "http://www.collectiveinvention.com/wp-content/uploads/2011/09/US-EPA.pdf",
+        "companyName": "Collective Invention",
+        "companyID": 23,
+        "PDFResource": "CL3",
+        "description": "The EPA’s Resource Conservation and Sustainability Division (RCSD) asked Collective Invention to help them take the first step toward a national dialogue on sustainable materials management and expanding existing environmental\nprograms to encompass more fully life-cycle materials management.",
+        "authorEmail": "http://collectiveinvention.com/contact-us/"
+    },
+    {
+        "title": "FedEx Case Study: Leveraging Customer Voice For Co-Creation",
+        "projectDomain": "user research",
+        "url": "http://www.coniferresearch.com/fedex-case-study/",
+        "companyName": "Conifer",
+        "companyID": 23,
+        "description": "FedEx Innovation, a small cross-disciplinary group within the larger FedEx Corporation, spent over five years developing SenseAware℠ a first-of-its-kind sensing device combined with a web-based application that was poised to revolutionize the logistics industry. The offering was like nothing on the market, but the question was what could the use of sensors do for their customers? ",
+        "authorEmail": "info@coniferresearch.com\n",
+        "authorOther": "partners@coniferresearch.com"
+    },
+    {
+        "title": "McGraw-Hill Case Study: Deconstructing The Textbook",
+        "projectDomain": "user research",
+        "url": "http://www.coniferresearch.com/mcgraw-hill-case-study/",
+        "companyName": "Conifer",
+        "companyID": 23,
+        "description": "McGraw-Hill approached Conifer with a puzzling dilemma. Despite increased college enrollment, textbook sales were decreasing. McGraw-Hill was becoming less central to the consumption of educational materials both in terms of sales of actual textbooks and the way students interfaced with both texts and study materials.",
+        "authorEmail": "info@coniferresearch.com",
+        "authorOther": "partners@coniferresearch.com"
+    },
+    {
+        "title": "Wrigley Case Study: Getting Gum In The Zone",
+        "projectDomain": "user research",
+        "url": "http://www.coniferresearch.com/wrigley-case-study/",
+        "companyName": "Conifere",
+        "companyID": 24,
+        "description": "Wrigley approached Conifer with the question: how do people use gum in different spaces, specifically when driving in their cars or sitting at their desks? They wanted to understand eating and snacking behaviors in those target environments and to identify some opportunities for Wrigley to support or even influence these behaviors.",
+        "authorEmail": "info@coniferresearch.com",
+        "authorOther": "partners@coniferresearch.com"
+    },
+    {
+        "title": "Accuray",
+        "url": "http://www.brandjuice.com/case-study-accuray/thank-you/",
+        "companyName": "BrandJuice",
+        "companyID": 24,
+        "PDFResource": "BJ1",
+        "authorEmail": "http://www.brandjuice.com/contact/"
+    },
+    {
+        "title": "RuRoc - Full face Snowboard helmet",
+        "projectDomain": "product design",
+        "url": "http://www.curventa.co.uk/what/snowboard-headgear/",
+        "companyName": "Curventa",
+        "companyID": 26,
+        "PDFResource": "C1",
+        "description": "Snowboarders suffer wind chill to exposed areas of skin when at altitude or under severe weather conditions. However, the only device for protection at present is an elasticated piece of fabric called a snood that wraps around the lower face.",
+        "authorEmail": "info@curventa.co.uk"
+    },
+    {
+        "title": "The Gadget Show - Compact Fashion Camera",
+        "projectDomain": "product design",
+        "url": "http://www.curventa.co.uk/what/compact-fashion-camera/",
+        "companyName": "Curventa",
+        "companyID": 26,
+        "PDFResource": "C2",
+        "description": "The digital camera market is saturated with similar functioning and looking products, very often packed with functions and confusing interfaces which are frustrating to use. Digital cameras have generally remained the same, technologically, and aesthetically for years.",
+        "authorEmail": "info@curventa.co.uk"
+    },
+    {
+        "title": "Smartphone Native Application for Qualcomm",
+        "projectDomain": "research, design",
+        "url": "http://www.echouser.com/casestudies/qualcomm.php",
+        "companyName": "Echo User",
+        "companyID": 32,
+        "description": "Developing a new Smartphone platform with all-new native applications. They wanted us to help them design, initially, four new native applications for their platform, as well as think through their current design paradigms & specifications.",
+        "methods": "Quick & Dirty Testing *, User Research Wireframing, Visual Design, Prototyping",
+        "authorEmail": "info@echouser.com",
+        "authorOther": "http://www.echouser.com/whoweare.php"
+    },
+    {
+        "title": "Chemical Engineering Design",
+        "projectDomain": "research, design",
+        "url": "http://www.echouser.com/casestudies/chemical-plant.php",
+        "companyName": "Echo User",
+        "companyID": 32,
+        "description": "We worked with a client that makes software to automate chemical engineering processes for everything from oil refineries to power stations. The goal was to redesign their full software suite, in an effort to provide a more unified user experience.",
+        "methods": "User Research, Personas, Interdisciplinary Team, Concept Designs, UI Specification",
+        "authorEmail": "info@echouser.com",
+        "authorOther": "http://www.echouser.com/whoweare.php"
+    },
+    {
+        "title": "BART Riding Experience",
+        "projectDomain": "research, design",
+        "url": "http://www.echouser.com/casestudies/bart.php",
+        "companyName": "Echo User",
+        "companyID": 32,
+        "description": "BART (Bay Area Rapid Transit) and AC Transit had thousands of data points from their survey teams on the “rider experience”, but needed help sorting the wheat from the chaff.",
+        "methods": "Field Study\nObservation\nRide-along Studies\nEvent-style Usability\n",
+        "authorEmail": "info@echouser.com",
+        "authorOther": "http://www.echouser.com/whoweare.php"
+    },
+    {
+        "title": "Endless Closet for Threadflip",
+        "projectDomain": "research, design",
+        "url": "http://www.echouser.com/casestudies/threadflip.php",
+        "companyName": "Echo User",
+        "companyID": 32,
+        "description": " They came to us with two UX challenges: Find out how women swap clothes offline, then discover women’s needs and wants when that experience gets transformed to an online setting.",
+        "methods": "\nResearch\nVisual Design\nInteraction Design\n",
+        "authorEmail": "info@echouser.com",
+        "authorOther": "http://www.echouser.com/whoweare.php"
+    },
+    {
+        "title": "Cisco Dual Monitors",
+        "projectDomain": "research, design",
+        "url": "http://www.echouser.com/casestudies/dualmonitors.php",
+        "companyName": "Echo User",
+        "companyID": 32,
+        "description": "Cisco approached us to help them quantify performance advantages of using two monitors over one, and whether this could lead to cost savings.",
+        "methods": "Benchmarking\nMagnitude Estimation Measure\nExperimental Design\n",
+        "authorEmail": "info@echouser.com",
+        "authorOther": "http://www.echouser.com/whoweare.php"
+    },
+    {
+        "title": "Plug and Play Tech Center",
+        "projectDomain": "research, design",
+        "url": "http://www.echouser.com/casestudies/pnp.php",
+        "companyName": "Echo User",
+        "companyID": 32,
+        "description": "Capturing the right user experience for startups",
+        "methods": "Startup Service Partners\nOffice Hours\nWorkshops\nStartup UX\n",
+        "authorEmail": "info@echouser.com",
+        "authorOther": "http://www.echouser.com/whoweare.php"
+    },
+    {
+        "title": "Cisco Telepresence",
+        "projectDomain": "research, design",
+        "url": "http://www.echouser.com/casestudies/telepresence.php",
+        "companyName": "Echo User",
+        "companyID": 32,
+        "description": "We worked with Cisco in the development phase of translating the business system into the consumer system. A series of 6 large iterative usability studies was conducted to assess and improve the experience of the system with a variety of real consumers.",
+        "methods": "6 Usability Tests\nMulti-room Simultaneous Users\nIterative Testing\nRecruiting\n",
+        "authorEmail": "info@echouser.com",
+        "authorOther": "http://www.echouser.com/whoweare.php"
+    },
+    {
+        "title": "Stitcher iPhone App",
+        "projectDomain": "research, design",
+        "url": "http://www.echouser.com/casestudies/stitcher.php",
+        "companyName": "Echo User",
+        "companyID": 32,
+        "description": "Stitcher, Inc., came to us with a unique challenge: improve the overall first-time user experience of the Stitcher iPhone application without alienating their existing user base. the team was having trouble understanding what made someone switch from casual to habitual user, and why new user churn numbers seemed a little high.",
+        "methods": "Diary Study\nRapid Usability\nWireframing\nMobile Design\n",
+        "authorEmail": "info@echouser.com",
+        "authorOther": "http://www.echouser.com/whoweare.php"
+    },
+    {
+        "title": "Life Technologies - Iterative Testing with Eyetracking",
+        "projectDomain": "research, design",
+        "url": "http://www.echouser.com/casestudies/lifetech.php",
+        "companyName": "Echo User",
+        "companyID": 32,
+        "description": "Life Technologies deals with 1,000's of medical supplies and equipment that suppliers need to understand in great detail to make sure they are purchasing the right items. Life Technologies' search tools need to be bullet-proof. They were about to launch a live version of their search and wanted to make sure through user testing that the new search paradigm worked with users.",
+        "methods": "Benchmark Usability\nEyetracking\nMagnitude Estimation Measure\n",
+        "authorEmail": "info@echouser.com",
+        "authorOther": "http://www.echouser.com/whoweare.php"
+    },
+    {
+        "title": "Salesforce Dreamforce",
+        "projectDomain": "research, design",
+        "url": "http://www.echouser.com/casestudies/dreamforce.php",
+        "companyName": "Echo User",
+        "companyID": 32,
+        "description": "Salesforce asked us to come up with a new way of engaging their customers during the 2010 Dreamforce Global Gathering in San Francisco, with a specific mandate to get user input into the redesign of the Salesforce.com login page. ",
+        "methods": "Guerilla Usability Study\nWireframing\nPrototyping\nContextual Inquiry\n",
+        "authorEmail": "info@echouser.com",
+        "authorOther": "http://www.echouser.com/whoweare.php"
+    },
+    {
+        "title": "Linksys In-Home Router",
+        "projectDomain": "research, design",
+        "url": "http://www.echouser.com/casestudies/linksys.php",
+        "companyName": "Echo User",
+        "companyID": 32,
+        "description": "Linksys wanted to usability test the setup experience with their EasyLink Advisor software and associated usability affordances (labels and a physical startup guide).",
+        "methods": "\nUser Research\nRecruiting\nAffinity Diagramming\nUsability Testing\n",
+        "authorEmail": "info@echouser.com",
+        "authorOther": "http://www.echouser.com/whoweare.php"
+    },
+    {
+        "title": "Samsung Electronics: Defining new market opportunities for existing and emerging technologies",
+        "projectDomain": "Commercial Electronics",
+        "url": "http://www.fahrenheit-212.com/samsung-electronics/",
+        "companyName": "Farenheit 212",
+        "companyID": 34,
+        "description": "Identifying and commercializing new applications for LCD technology was critical for Samsung’s LCD division in its pursuit of sustainable and margin accretive growth in what had become a technically complex yet commercially commoditized industry.",
+        "authorEmail": "info@fahrenheit-212.com",
+        "authorOther": "press@fahrenheit-212.com"
+    },
+    {
+        "title": "Samsung PrimaSee: Finding Commercial Applications for Breakthrough Technologies",
+        "projectDomain": "Display Technology",
+        "url": "http://www.fahrenheit-212.com/illumina-for-samsung/",
+        "companyName": "Farenheit 212",
+        "companyID": 34,
+        "description": "To identify profitable market applications for a breakthrough new Transparent LCD (TLCD) technology.",
+        "authorEmail": "info@fahrenheit-212.com",
+        "authorOther": "press@fahrenheit-212.com"
+    },
+    {
+        "title": "Pringles Rice Infusions: Resolving the Tension between Health and Pleasure",
+        "url": "http://www.fahrenheit-212.com/our-experience-with-pringles-rice-infusions/",
+        "companyName": "Farenheit 212",
+        "companyID": 34,
+        "description": "To make a better-for-you technology proposition relevant for health-indifferent mainstream consumers.",
+        "authorEmail": "info@fahrenheit-212.com",
+        "authorOther": "press@fahrenheit-212.com"
+    },
+    {
+        "title": "Lean Cuisine Salad Additions: Introducing a new product platform to an established category",
+        "projectDomain": "Consumer Packaged Goods",
+        "url": "http://www.fahrenheit-212.com/salad-additions-for-nestles-lean-cuisine/",
+        "companyName": "Farenheit 212",
+        "companyID": 34,
+        "description": "To define a new platform for an out-moded category leader with the potential for double-digit growth.",
+        "authorEmail": "info@fahrenheit-212.com",
+        "authorOther": "press@fahrenheit-212.com"
+    },
+    {
+        "title": "SPG Lifetime Loyalty: Creating New Differentiation for an Established Loyalty Program",
+        "projectDomain": "Travel and Hospitality",
+        "url": "http://www.fahrenheit-212.com/spg-lifetime-for-starwood-hotels/",
+        "companyName": "Farenheit 212",
+        "companyID": 34,
+        "description": "To grow SPG’s ‘share of wallet’ by 50%, representing $250M in new revenues.",
+        "authorEmail": "info@fahrenheit-212.com",
+        "authorOther": "press@fahrenheit-212.com"
+    },
+    {
+        "title": "Coca-Cola Freestyle: Branding a Revolution in Fountain Technology",
+        "url": "http://www.fahrenheit-212.com/coca-cola-freestyle/",
+        "companyName": "Farenheit 212",
+        "companyID": 34,
+        "description": "to transform a ground-breaking new beverage dispensing technology into a complete consumer and customer value proposition.  ",
+        "authorEmail": "info@fahrenheit-212.com",
+        "authorOther": "press@fahrenheit-212.com"
+    },
+    {
+        "title": "Coca-Cola PlantBottle: Defining the Consumer Proposition for Bio-PET",
+        "url": "http://www.fahrenheit-212.com/coca-cola-plantbottle/",
+        "companyName": "Farenheit 212",
+        "companyID": 34,
+        "description": "worked with Coca-Cola’s global packaging team to translate a complex and contentious advance in polymer production into a clear and compelling consumer proposition.  ",
+        "authorEmail": "info@fahrenheit-212.com",
+        "authorOther": "press@fahrenheit-212.com"
+    },
+    {
+        "title": "Mashreq Salaam Mosaic: Uniting Multiple Business Units into a Single Loyalty Platform",
+        "url": "http://www.fahrenheit-212.com/salaam-mosaic-rewards-for-mashreq/",
+        "companyName": "Farenheit 212",
+        "companyID": 34,
+        "description": "To create a bank-wide reward and loyalty program to the double the number of products per customer.",
+        "authorEmail": "info@fahrenheit-212.com",
+        "authorOther": "press@fahrenheit-212.com"
+    },
+    {
+        "title": "Nature’s Variety Instinct: Creating New Consumer Relevance for Raw Pet Food",
+        "url": "http://www.fahrenheit-212.com/instinct-raw-bites-for-natures-variety/",
+        "companyName": "Farenheit 212",
+        "companyID": 34,
+        "description": "To drive profitable growth and create new channel opportunities for the market leader in raw pet food.",
+        "authorEmail": "info@fahrenheit-212.com",
+        "authorOther": "press@fahrenheit-212.com"
+    },
+    {
+        "title": "Instinct Raw Boost for Nature’s Variety: The ultimate dose of vitality",
+        "url": "http://www.fahrenheit-212.com/instinct-raw-boost-for-natures-variety/",
+        "companyName": "Farenheit 212",
+        "companyID": 34,
+        "description": "Double revenue growth derived from Raw pet food sales. New products needed to be in market within 18 months with minimal disruption to the business, requiring little to no capital expenditure",
+        "authorEmail": "info@fahrenheit-212.com",
+        "authorOther": "press@fahrenheit-212.com"
+    },
+    {
+        "title": "Noodles & Company PLUS: Reinventing the Guest Experience to Drive Profitability",
+        "url": "ww.fahrenheit-212.com/p-l-u-s-for-noodles-company/",
+        "companyName": "Farenheit 212",
+        "companyID": 34,
+        "description": "By funneling customers through a single point of sale in the journey (taking orders at the counter rather than at the table), they remained limited to customer throughput as the predominant lever to drive revenue per restaurant.",
+        "authorEmail": "info@fahrenheit-212.com",
+        "authorOther": "press@fahrenheit-212.com"
+    },
+    {
+        "title": "Nutrisystem Jumpstart: Extending a Legacy Business into a New Channel",
+        "url": "http://www.fahrenheit-212.com/jumpstart-for-nutrisystem/",
+        "companyName": "Farenheit 212",
+        "companyID": 34,
+        "description": "To sustainably future-proof a direct-response business by expanding into new channels.",
+        "authorEmail": "info@fahrenheit-212.com",
+        "authorOther": "press@fahrenheit-212.com"
+    },
+    {
+        "title": "Jawbone Bluetooth Headset: From Geek to Chic",
+        "url": "http://www.fuseproject.com/study-overview-1",
+        "companyName": "fuseproject",
+        "companyID": 38,
+        "PDFResource": "F1",
+        "authorEmail": "info@fuseproject.com",
+        "authorOther": "press@fuseproject.com"
+    },
+    {
+        "title": "Y Water: Inventing an Acceptable Alternative",
+        "url": "http://www.fuseproject.com/study-overview-2",
+        "companyName": "fuseproject",
+        "companyID": 38,
+        "PDFResource": "F2",
+        "authorEmail": "info@fuseproject.com",
+        "authorOther": "press@fuseproject.com"
+    },
+    {
+        "title": "One Laptop Per Child (OLPC): The Power of Access",
+        "url": "http://www.fuseproject.com/study-overview-3",
+        "companyName": "fuseproject",
+        "companyID": 38,
+        "PDFResource": "F3",
+        "authorEmail": "info@fuseproject.com",
+        "authorOther": "press@fuseproject.com"
+    },
+    {
+        "title": "NYC Condom Dispenser and Wrapper",
+        "url": "http://www.fuseproject.com/study-solution-4",
+        "companyName": "fuseproject",
+        "companyID": 38,
+        "PDFResource": "F4",
+        "authorEmail": "info@fuseproject.com",
+        "authorOther": "press@fuseproject.com"
+    },
+    {
+        "title": "Footprints & Birkies: Reinventing the Heel",
+        "url": "http://www.fuseproject.com/study-overview-5",
+        "companyName": "fuseproject",
+        "companyID": 38,
+        "PDFResource": "F5",
+        "authorEmail": "info@fuseproject.com",
+        "authorOther": "press@fuseproject.com"
+    },
+    {
+        "title": "LEAF Lamp/Ardea: The Definition of Forward Thinking",
+        "url": "http://www.fuseproject.com/study-overview-6",
+        "companyName": "fuseproject",
+        "companyID": 38,
+        "PDFResource": "F6",
+        "authorEmail": "info@fuseproject.com",
+        "authorOther": "press@fuseproject.com"
+    },
+    {
+        "title": "Coca-Cola Brand and Coca-Cola Refresh Recycling Bin",
+        "url": "http://www.fuseproject.com/study-overview-7",
+        "companyName": "fuseproject",
+        "companyID": 38,
+        "PDFResource": "F7",
+        "authorEmail": "info@fuseproject.com",
+        "authorOther": "press@fuseproject.com"
+    },
+    {
+        "title": "Canal+(the premium pay television channel in France): Le Cube",
+        "url": "http://www.fuseproject.com/study-overview-8",
+        "companyName": "fuseproject",
+        "companyID": 38,
+        "PDFResource": "F8",
+        "authorEmail": "info@fuseproject.com",
+        "authorOther": "press@fuseproject.com"
+    },
+    {
+        "title": "Translating Research into Innovative Mobile Services in the Middle East",
+        "url": "http://www.gobeegroup.com/archives/translating-research-into-innovative-mobile-services-in-the-middle-east",
+        "companyName": "Gobee Consulting",
+        "companyID": 39,
+        "description": "A global mobile service provider needed to turn an idea in its research arm into a mobile service for the Egyptian market (80 million mobile phone subscriptions) and obtain the buy-in from the local CEO.",
+        "authorEmail": "info @ gobeegroup.com",
+        "authorOther": "http://www.gobeegroup.com/contact"
+    },
+    {
+        "title": "Rethinking Technology Capacity-Building in Africa",
+        "url": "http://www.gobeegroup.com/archives/rethinking-technology-capacity-building-in-africa",
+        "companyName": "Gobee Consulting",
+        "companyID": 39,
+        "description": "Non-governmental organizations (NGOs) are responsible for providing social and economic services for communities in need. To improve their reach and impact, NGOs need to build a strong knowledge base of how to link technology effectively to their missions and how to manage technology-supported programs.",
+        "authorEmail": "info @ gobeegroup.com",
+        "authorOther": "http://www.gobeegroup.com/contact"
+    },
+    {
+        "title": "Improving Global Access to HIV Treatment Using Smarter Data: OptimizeARV",
+        "url": "http://www.gobeegroup.com/archives/improving-global-access-to-hiv-treatment-using-smarter-data-optimizearv",
+        "companyName": "Gobee Consulting",
+        "companyID": 39,
+        "description": "Anti-retroviral therapies remain the principal mechanism for saving the lives of those infected with HIV/AIDS. The ability of national governments to effectively scale-up their ART treatment programs relies on the recommendations, guidelines, and data produced by global stakeholders such as WHO, PEPFAR. National governments struggle to assimilate this knowledge effectively because of information fragmentation and limited analytical capacity.",
+        "authorEmail": "info @ gobeegroup.com",
+        "authorOther": "http://www.gobeegroup.com/contact"
+    },
+    {
+        "title": "Subsidizing Laptops for Higher Education in Ghana",
+        "url": "http://www.gobeegroup.com/archives/subsidizing-laptops-for-higher-education-in-ghana",
+        "companyName": "Gobee Consulting",
+        "companyID": 39,
+        "description": "The government of Ghana, in partnership with a multilateral development bank and a multinational technology corporation, is planning a nationwide program to strengthen tertiary education through improved access to information technology. The program needed to understand the demand and need for laptops among students and educators in order to design the program that would support their subsidization and distribution. In its first phase, the program aims to reach ten institutions representing more than 130,000 students.",
+        "authorEmail": "info @ gobeegroup.com",
+        "authorOther": "http://www.gobeegroup.com/contact"
+    },
+    {
+        "title": "Strengthening Monitoring and Evaluation for Reproductive Health Voucher Programs",
+        "url": "http://www.gobeegroup.com/archives/strengthening-monitoring-and-evaluation-for-reproductive-health-voucher-programs",
+        "companyName": "Gobee Consulting",
+        "companyID": 39,
+        "description": "Voucher and accreditation programs are relatively new approaches to effective delivery of reproductive health services, such as safe delivery and STI (sexually-transmitted infection) treatment. They have not yet been systematically monitored or evaluated, but the non-governmental organization (NGO) has recently been funded by a major foundation to evaluate five reproductive health voucher programs in Africa and Asia. These programs are at various stages of development and implementation, but across the programs there is a need for stronger information systems to support monitoring and evaluation (M&E).",
+        "authorEmail": "info @ gobeegroup.com",
+        "authorOther": "http://www.gobeegroup.com/contact"
+    },
+    {
+        "title": "Scaling Mobile Literacy for Women, Worldwide",
+        "url": "http://www.gobeegroup.com/archives/scaling-mobile-literacy-for-women-worldwide",
+        "companyName": "Gobee Consulting",
+        "companyID": 39,
+        "description": "Of the 800 million adults in the world who lack literacy, two-thirds are women. Recognizing this opportunity, a social venture, developed and tested an innovative service to offer an accessible, scalable, quality adult education program on any phone and in any language. After completing a successful pilot in the United States, the social venture wanted to know whether they should launch and scale their mobile adult literacy education program – and if so, how.",
+        "authorEmail": "info @ gobeegroup.com",
+        "authorOther": "http://www.gobeegroup.com/contact"
+    },
+    {
+        "title": "Sparking Innovation in the Health Care Safety Net",
+        "url": "http://www.gobeegroup.com/archives/sparking-innovation-in-the-health-care-safety-net",
+        "companyName": "Gobee Consulting",
+        "companyID": 39,
+        "description": "In 2014, the public health insurance program Medi-Cal (Medicaid) will enroll an additional 1.4 million Californians. This massive Medicaid expansion, in addition to existing strains on the system, necessitates different, more cost-effective models of delivering care. Safety net patients have less access to preventive care, typically do not have a regular point of contact with the health system, and pay more out-of-pocket than other Americans, all reasons that innovative solutions are needed.",
+        "authorEmail": "info @ gobeegroup.com",
+        "authorOther": "http://www.gobeegroup.com/contact"
+    },
+    {
+        "title": "Telling Stories About Liberia’s Youth with Census Data",
+        "url": "http://www.gobeegroup.com/archives/telling-stories-about-liberia%E2%80%99s-youth-with-census-data",
+        "companyName": "Gobee Consulting",
+        "companyID": 39,
+        "description": "Liberia completed its first postwar census in 2008, its first since 1984, and only its second since 1962. There has been tremendous interest from inside and outside Liberia in examining the census, especially for ordinary citizens. Census datasets are immense and complex, even in a country of four million. Because of the civil wars, the youth and adolescent population faces serious social and economic challenges when compared to other countries. The census provided an opportunity to use evidence to address these challenges.",
+        "authorEmail": "info @ gobeegroup.com",
+        "authorOther": "http://www.gobeegroup.com/contact"
+    },
+    {
+        "title": "Bill & Melinda Gates Foundation",
+        "url": "http://www.gravitytank.com/work#slideshow-gates",
+        "companyName": "Gravity Tank",
+        "companyID": 41,
+        "description": "The Gates Foundation asked gravitytank to visit schools across the country to better understand when and how teachers receive meaningful feedback and to provide a framing and direction for its future investments in this area.",
+        "authorEmail": "marketing@gravitytank.com",
+        "authorOther": "collaborate@gravitytank.com"
+    },
+    {
+        "title": "OfficeMax",
+        "url": "http://www.gravitytank.com/work#slideshow-gates",
+        "companyName": "Gravity Tank",
+        "companyID": 41,
+        "description": "If OfficeMax created a highly visible and sought-after private label, it could be a differentiator and instigate growth. Diving deep into its business, core users and sales data, gravitytank developed a suite of products supported by a business model geared toward lasting value for customers and long-term recognition for OfficeMax.",
+        "authorEmail": "marketing@gravitytank.com",
+        "authorOther": "collaborate@gravitytank.com"
+    },
+    {
+        "title": "Cricket",
+        "url": "http://www.gravitytank.com/work#slideshow-gates",
+        "companyName": "Gravity Tank",
+        "companyID": 41,
+        "description": "Cricket and gravitytank developed an ecosystem of rate plan fixtures, menu boards and countertop mats. Throughout the process, prototypes were evaluated not only for representing Cricket’s brand values, but for their effectiveness at improving customer service.",
+        "authorEmail": "marketing@gravitytank.com",
+        "authorOther": "collaborate@gravitytank.com"
+    },
+    {
+        "title": "W.K. Kellogg Foundation",
+        "url": "http://www.gravitytank.com/work#slideshow-gates",
+        "companyName": "Gravity Tank",
+        "companyID": 41,
+        "description": "Entry level employers like CVS and UPS struggle to identify and retain talent. Gravitytank is creating a new ecosystem for entry-level employment. A web-based portal serves young adults preparing for entry level employment, businesses seeking to identify and retain talent, and the agencies serving youth with job readiness programs.",
+        "authorEmail": "marketing@gravitytank.com",
+        "authorOther": "collaborate@gravitytank.com"
+    },
+    {
+        "title": "Johnson & Johnson",
+        "projectDomain": "medical",
+        "url": "http://hlb.com/whatwedo/ethicon.php",
+        "companyName": "Herbst Lazar Bell",
+        "companyID": 44,
+        "description": "Johnson & Johnson Ethicon CardioVations turned to HLB to help them define and develop technology for a best-in-class heart stabilization device during off-pump coronary artery bypass sur Our designers and engineers worked closely to accommodate challenging space restrictions inherent to this delicate and critical operation.",
+        "authorEmail": "  cgregory@hlb.com",
+        "authorOther": "http://hlb.com/contact/"
+    },
+    {
+        "title": "Everest",
+        "projectDomain": "medical",
+        "url": "http://hlb.com/whatwedo/everest.php",
+        "companyName": "Herbst Lazar Bell",
+        "companyID": 44,
+        "description": "For a long time, brain-data assessments devices fell into one of two categories. They were either too big and expensive or too small and rudimentary. Everest (now Brainscope) sought to change this. They envisioned a handheld brain-state assessment device that was compact, yet powerful. So, they asked HLB to conceive a game-changing experience.",
+        "authorEmail": "cgregory@hlb.com",
+        "authorOther": "http://hlb.com/contact/"
+    },
+    {
+        "title": "Smith & Nephew",
+        "projectDomain": "medical",
+        "url": "http://hlb.com/whatwedo/sn.php",
+        "companyName": "Herbst Lazar Bell",
+        "companyID": 44,
+        "description": "Smith & Nephew, a leading medical instrument company, wanted to create the pre-eminent tool-kit for artificial knee surgery; one that would command a premium in the market. So they turned to HLB.",
+        "authorEmail": "cgregory@hlb.com",
+        "authorOther": "http://hlb.com/contact/"
+    },
+    {
+        "title": "Central Garden & Pet - Success Spotlight",
+        "projectDomain": "consumer",
+        "url": "http://hlb.com/whatwedo2/CentralGardenPet.php",
+        "companyName": "Herbst Lazar Bell",
+        "companyID": 44,
+        "description": "Limited ways to communicate formula benefits and nearly identical delivery methods created a unique challenge for communicating their value proposition. Central Garden & Pet partnered with HLB to research unmet consumer needs, design an innovative solution, and develop a market viable product.",
+        "authorEmail": "cgregory@hlb.com",
+        "authorOther": "http://hlb.com/contact/"
+    },
+    {
+        "title": "Dove",
+        "projectDomain": "consumer",
+        "url": "http://hlb.com/whatwedo2/dove.php",
+        "companyName": "Herbst Lazar Bell",
+        "companyID": 44,
+        "description": "When Dove set out to enhance their competitive position in the beauty and skin care market, they knew they had significant brand equity and an exceptional product. But they also knew that the competitive category was largely undifferentiated at the point-of-sale retail place. So they asked HLB to help.\n",
+        "authorEmail": "cgregory@hlb.com",
+        "authorOther": "http://hlb.com/contact/"
+    },
+    {
+        "title": "First Years",
+        "projectDomain": "consumer",
+        "url": "http://hlb.com/whatwedo2/firstyears.php",
+        "companyName": "Herbst Lazar Bell",
+        "companyID": 44,
+        "description": "The First Years Company was looking to create and introduce the most innovative baby care products on the market. So they asked HLB to transform utilitarian health and grooming tools into a ground-breaking line of exceptional baby care products.",
+        "authorEmail": "cgregory@hlb.com",
+        "authorOther": "http://hlb.com/contact/"
+    },
+    {
+        "title": "Gilbarco",
+        "projectDomain": "industrial",
+        "url": "http://hlb.com/whatwedo3/gilbarco.php",
+        "companyName": "Herbst Lazar Bell",
+        "companyID": 44,
+        "description": "Gilbarco is a producer of forward-thinking petroleum distribution technology. They invited HLB to imagine and engineer the gas station fuel pump of tomorrow.\n",
+        "authorEmail": "cgregory@hlb.com",
+        "authorOther": "http://hlb.com/contact/"
+    },
+    {
+        "title": "Motorola",
+        "projectDomain": "industrial",
+        "url": "http://hlb.com/whatwedo3/motorola.php",
+        "companyName": "Herbst Lazar Bell",
+        "companyID": 44,
+        "description": "NFL football is watched by 1 billion people each season. Motorola saw an opportunity to increase brand impression through the development of advanced headsets to be worn on-field (and on-screen) by all NFL coaches. Motorola drafted HLB to create a reconfigured headset that would meet both the communication needs of NFL coaches and, as importantly, heighten consumer awareness of the Motorola brand. We had just four months to complete the project.",
+        "authorEmail": "cgregory@hlb.com",
+        "authorOther": "http://hlb.com/contact/"
+    },
+    {
+        "title": "The Hospital for Sick Children",
+        "projectDomain": "healthcare",
+        "url": "http://www.innosight.com/impact-stories/The-Hospital-for-Sick-Children-Innovation-Case-Study.cfm",
+        "companyName": "Innosight",
+        "companyID": 47,
+        "description": "Healthcare faces major challenges in reducing costs and achieving better outcomes. The Hospital for Sick Children turned to Innosight to see how it could marshal its human capital to build innovation into everything they do. ",
+        "authorEmail": " colofson@innosight.com",
+        "authorOther": "inquiries@innosight.com"
+    },
+    {
+        "title": "P&G's New Growth Factory",
+        "projectDomain": "consumer",
+        "url": "http://www.innosight.com/impact-stories/procter-and-gamble-growth-factory-case-study.cfm",
+        "companyName": "Innosight",
+        "companyID": 47,
+        "description": "Due to its sheer size, Procter & Gamble faces an especially steep growth challenge. With a stated annual growth goal of between 4% and 6%, the world's largest consumer products company needs to boost sales on the scale of its Tide brand each and every year. P&G called on Innosight to help meet this challenge by turning innovation from a serendipitous activity into a systematic discipline.",
+        "authorEmail": "colofson@innosight.com",
+        "authorOther": "inquiries@innosight.com"
+    },
+    {
+        "title": "Align, Procter & Gamble",
+        "projectDomain": "consumer",
+        "url": "http://www.innosight.com/impact-stories/procter-gamble-case-study.cfm",
+        "companyName": "Innosight",
+        "companyID": 47,
+        "description": "Procter & Gamble has 24 billion-dollar brands, up from just 10 in the year 2000. These franchises—such as Tide, Pampers, Olay and Gillette—account for 90 percent of the consumer giant's $80 billion in revenue. In its quest for the next billion-dollar brand, P&G tapped Innosight to tackle the question: what if a promising new opportunity appears too small?",
+        "authorEmail": "colofson@innosight.com",
+        "authorOther": "inquiries@innosight.com"
+    },
+    {
+        "title": "Healthy Heart for All, Medtronic\n ",
+        "projectDomain": "medical",
+        "url": "http://www.innosight.com/impact-stories/Medtronic-Healthy-Heart-for-All-Innovation-Case-Study.cfm",
+        "companyName": "Innosight",
+        "companyID": 47,
+        "description": "Heart disease is the number one killer in India, accounting for a quarter of deaths among those aged 25 to 69.  Millions are dying due to lack of access to treatments.  Medtronic, the world's largest maker of medical devices, called on Innosight to create a new business model that would expand access to technologies such as implantable pacemakers.",
+        "authorEmail": "colofson@innosight.com",
+        "authorOther": "inquiries@innosight.com"
+    },
+    {
+        "title": "Chevy Volt",
+        "projectDomain": "consumer",
+        "url": "http://www.innosight.com/impact-stories/chevy-volt-case-study.cfm",
+        "companyName": "Innosight",
+        "companyID": 47,
+        "description": "Facing dire declines in market share and market value, General Motors shifted gears in 2006 and embarked on an effort to build an electric car for the masses. The internal startup team that initiated the Chevy Volt project called on Innosight to help develop its go-to-market strategy.",
+        "authorEmail": "colofson@innosight.com",
+        "authorOther": "inquiries@innosight.com"
+    },
+    {
+        "title": "ChotuKool, Godrej & Boyce",
+        "projectDomain": "consumer",
+        "url": "http://www.innosight.com/impact-stories/chotokool-case-study.cfm",
+        "companyName": "Innosight",
+        "companyID": 47,
+        "description": "In India, leading manufacturer Godrej & Boyce wanted to reinvigorate growth in its venerable household appliance business. We helped find a way to attract non-consumers—the more than 80% of Indian households that lacked basic appliances such as refrigerators.",
+        "authorEmail": "colofson@innosight.com",
+        "authorOther": "inquiries@innosight.com"
+    },
+    {
+        "title": "Houghton Mifflin Harcourt",
+        "projectDomain": "education, consumer",
+        "url": "http://www.innosight.com/impact-stories/houghton-mifflin-harcourt-case-study.cfm",
+        "companyName": "Innosight",
+        "companyID": 47,
+        "description": "As the world's largest K-12 educational publisher, Houghton Mifflin Harcourt faced a severe disruption in the marketplace for textbooks. Kids and teachers have been turning to digital devices at the same time school districts have been hit with budget cuts. HMH collaborated with Innosight to institute a reliable innovation process for meeting the demand for new kinds of learning products that prepare kids for the future.",
+        "authorEmail": "colofson@innosight.com",
+        "authorOther": "inquiries@innosight.com"
+    },
+    {
+        "title": "Abbott Molecular - An Elegant Interface for an Innovative Technology",
+        "projectDomain": "medical, system design",
+        "url": "http://www.insightpd.com/case-studies/abbott-molecular/",
+        "companyName": "Insight",
+        "companyID": 48,
+        "description": "PLEX-ID is a high-throughput bio-identification system used to rapidly identify and characterize known and emerging organisms in biological research, biopharmaceutical development, and forensics. Abbott Molecular came to Insight with this new, advanced microbial-identification technology, which they aimed to embody in the most efficient and user-friendly manner possible.",
+        "authorEmail": "infochicago@insightpd.com",
+        "authorOther": "http://www.insightpd.com/contact/"
+    },
+    {
+        "title": "ALYX® - Making Blood Collection Mobile",
+        "projectDomain": "medical, system design, interface",
+        "url": "http://www.insightpd.com/case-studies/fenwal/",
+        "companyName": "Insight",
+        "companyID": 48,
+        "description": "Fenwal (formerly a division of Baxter Healthcare) wanted to develop a new-to-the-world portable, automated blood collection technology that would increase the efficiency and output of each donation to twice the normal amount of desired components. Insight helped Fenwal develop a mobile system that can be used easily and efficiently in a variety of environments without the support found in a typical clinic. ALYX® is currently the only system that combines two-unit collection, portable apheresis and an icon-based touch screen interface that supports flexible and efficient workflows in a wide variety of environments around the world.",
+        "authorEmail": "infochicago@insightpd.com",
+        "authorOther": "http://www.insightpd.com/contact/"
+    },
+    {
+        "title": "Hill-Rom  Envision® - Ultimate Control",
+        "projectDomain": "healthcare, system design, interface",
+        "url": "http://www.insightpd.com/case-studies/hill-rom/",
+        "companyName": "Insight",
+        "companyID": 48,
+        "description": "ill-Rom partnered with Insight to develop the control module for their Envision® wound care surface, a best-in-class solution for relieving dangerous side effects for bed-ridden patients. Because these systems are most often leased by a hospital from a distributor, the design had to address unique challenges beyond those typical to medical devices. Envision® needed to enable operation by caregivers not necessarily trained on the device as well as provide an easy installation workflow. Envision® successfully addresses these challenges with a robust design that withstands the demands of a mobile medical device while still being easy to transport, mount and use.",
+        "authorEmail": "infochicago@insightpd.com",
+        "authorOther": "http://www.insightpd.com/contact/"
+    },
+    {
+        "title": "t. Jude Medical  Merlin® - Patient Care System",
+        "projectDomain": "medical, hardware design",
+        "url": "http://www.insightpd.com/case-studies/st-jude-medical-2/",
+        "companyName": "Insight",
+        "companyID": 48,
+        "description": "St. Jude Medical, a leading developer of implanted cardiac rhythm management devices, partnered with Insight to develop the successor to their aging device programmer that clinicians considered too slow and too difficult to use. The goals for the effort were to achieve more than just a next generation design; St. Jude Medical’s aspirations were to create an entirely new platform design that would enable flexibility and maintain relevance over time in a constantly changing healthcare environment.",
+        "authorEmail": "infochicago@insightpd.com",
+        "authorOther": "http://www.insightpd.com/contact/"
+    },
+    {
+        "title": "ICON Health & Fitness® A Better Fitness Experience",
+        "projectDomain": "healthcare, consumer",
+        "url": "http://www.insightpd.com/case-studies/icon-health-fitness/",
+        "companyName": "Insight",
+        "companyID": 48,
+        "description": "FreeMotion Fitness™, the commercial fitness brand of ICON Health & Fitness®, had the opportunity to integrate advanced technologies into its line of health club fitness products by introducing a new touch screen display. Insight collaborated with ICON to develop a new incline trainer treadmill that integrated a touch screen interface with advanced technology and features. ICON’s goal was to provide customers with an exercise experience superior to other equipment brands.",
+        "authorEmail": "infochicago@insightpd.com",
+        "authorOther": "http://www.insightpd.com/contact/"
+    },
+    {
+        "title": "MEDRAD  AngioJet® Ultra - Reducing Size and Complexity",
+        "companyName": "Insight",
+        "companyID": 48
+    },
+    {
+        "title": "Cardinal Pulse Lavage\nEntering a New Market with an Improved Solution",
+        "companyName": "Insight",
+        "companyID": 48
+    },
+    {
+        "title": "Channel 5: Elevating the brand and content experience for a major broadcaster",
+        "url": "http://method.com/work/channel-5",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "Partnering with Method initially to redesign their two web properties, we helped Channel 5 arrive at a strategy for a unified website and extend that across web, mobile, tablet, and set-top box.",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "Teaching Channel: Building an inspired community around teaching",
+        "url": "http://method.com/work/teaching-channel",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "Teaching Channel partnered with Method to design a primary platform for educational videos and supplemental resource documents.",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "TED: Sharing inspiring content with billions, worldwide",
+        "url": "http://method.com/work/ted",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "Creating the digital platform for sharing this unique and innovative content, Method has helped TED reach over 1 billion worldwide video views, and counting. In designing TED.com, Method’s strategy focused on surfacing TED’s unique content, the TEDTalks, and creating a seamless and differentiated viewing experience.",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "Reuters The Wider Image: Reshaping the news experience",
+        "url": "http://method.com/work/reuters-the-wider-image",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "In the rapidly evolving media and technology landscape, Reuters wanted to establish a new approach to visual storytelling, combining the power of photography with deeper context to give greater impact, depth and engagement. The Wider Image, created exclusively for the iPad, brings images and information to life through a unique contextual storytelling experience.",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "NBC Politics: Engaging a broad audience with political news",
+        "url": "http://method.com/work/nbc-politics",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "n an effort to provide extensive coverage on the global political landscape and deliver a superior political news experience under one digital umbrella, NBC News and msnbc.com launched NBC Politics in late 2011. Method and NBC Politics partnered to design and develop iPad and iPhone applications that have been hailed by media as a top app for political news. ",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "TestTube: Rapidly developing a brand capable of finding brilliance in the ordinary",
+        "url": "http://method.com/work/testtube",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "Discovery Digital Network creates and produces original, community-driven content covering everything from tech and gaming to comedy and animals at the speed of the internet. TestTube is their launch channel, focusing on presenting science in a fun and irreverent way.",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "Basis: Developing an engaging wellness brand and product experience",
+        "url": "http://method.com/work/basis",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "Basis, a consumer health and wellness startup, partnered with Method to develop a new brand identity and digital experience across their key consumer touch points, including website and packaging. Their core product, the Basis band, is a watch embedded with sensors that track biometrics such as heart rate, sleep quality, and physical activity. Focusing on “wellness” as a brand differentiator, Method designed a scalable visual system able to contain large amounts of data, while still feeling human-centric and approachable.",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "Moonfruit: Repositioning a brand in a competitive market sector",
+        "url": "http://method.com/work/moonfruit",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "Moonfruit is a platform that helps people build, launch, and manage their own websites for free. Through the customization of Moonfruit’s extensive library of templates, backgrounds, images, and animations, anyone can set-up their business or project online and have it optimized for web or mobile, regardless of experience with code.",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "Viggle: Crafting an identity for cinematic discovery and innovation",
+        "url": "http://method.com/work/viggle",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "In order to successfully design and launch the app, Viggle collaborated with Method to help define their product, brand identity, and launch strategy. The design objective was to create a simple and intuitive interface that would seamlessly complement and add to the overall television experience, without disrupting it.",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "DivX: Redefining a brand and its products",
+        "url": "http://method.com/work/divx",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "DivX came to Method in need of a fresh rebrand to go along with the launch of their new TV product, DivX TV. Method delivered a refreshed, vibrant new DivX identity, a clearly defined DivX TV product, as well as an implementation plan and tool set for internal education on the product.",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "Nokia: Shaping a customer’s lifetime experience",
+        "url": "http://method.com/work/nokia",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "Method has worked with Nokia on a multi-phase, multi-year engagement to re-envision their end-to-end customer journey, informing the out-of-box and packaging experience, in-store and service experience, and the design of smartphone interfaces and ecosystems.",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "Heath Ceramics: Empowering an artisan brand with a robust e-commerce experience",
+        "url": "http://method.com/work/heath-ceramics",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "Method partnered with Heath Ceramics to design the user experience and visual design for a new site, as well as coordinate the development and backend integration of a new e-commerce solution. ",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "Boxee: Changing the home entertainment experience",
+        "url": "http://method.com/work/boxee",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "Method collaborated with Boxee to create a system allowing users to pull together all their favorite entertainment from the internet into one single location. ",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "AgVera: Improving the safety and efficiency of egg farms",
+        "url": "http://method.com/work/agvera",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "The food industry runs on trust, but low efficiency and a lack of checks and balances can have a significant impact on the welfare of customers: In 2011, 48 million Americans fell ill from food contamination, which led to a $152 million impact on health costs and a loss of productivity. Method partnered with a farm management system to design, build, and rollout a system, AgVera, that enables egg farms in the US to operate more safely, efficiently, and profitably.",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "Nissan: Defining the in-car experience for the next generation car",
+        "url": "http://method.com/work/nissan",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "For their new luxury hybrid concept car, Nissan asked Method to create an interface to be unveiled at the 2012 New York Auto Show. Using previous work for Nissan as the foundation for the interface’s design, Method created a unique and beautiful interface and visual language appropriate for a luxury Nissan vehicle, with supreme usability and safety at its core. ",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "BBC iPlayer: Innovating on a much-loved product",
+        "url": "http://method.com/work/bbc-iplayer",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "Despite the iPlayer’s success to date, the rapid convergence of entertainment and social media coupled with the growing appetite for access to programming across any platform - TV, web, or smartphone - dictated that the iPlayer get a boost. Method partnered with the BBC in 2010 to redesign the iPlayer to consider the content consumption experience across platforms in addition to enhancing the overall product to create a more personalized content discovery experience.",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "San Francisco International Film Festival: Crafting an identity for cinematic discovery and innovation",
+        "url": "http://method.com/work/sfiff",
+        "companyName": "Method Design",
+        "companyID": 53,
+        "description": "Founded in 1957 by the San Francisco Film Society, the San Francisco International Film Festival (SFIFF) is an extraordinary showcase of cinematic discovery and innovation. As one of San Francisco’s oldest traditions, SFIFF faces the challenge of conveying its message to new audiences each year in a fresh way, as well as delighting its longtime supporters.",
+        "authorEmail": "press@method.com",
+        "authorOther": "inquiries@method.com"
+    },
+    {
+        "title": "Adobe: Project Mighty 2013",
+        "url": "http://www.mindtribe.com/portfolio/",
+        "companyName": "MindTribe",
+        "companyID": 55,
+        "description": "Adobe's experience design team realized that a combination of tablet and pen could not only bring back the experience of working with pen and paper, but potentially even improve on the experience. To explore this, Adobe worked closely with MindTribe to evaluate and develop the potential of a connected pen for tablets. ",
+        "authorEmail": "info@mindtribe.com",
+        "authorOther": "http://www.mindtribe.com/contact/"
+    },
+    {
+        "title": "Adobe: Project Napoleon Digital Ruler 2013",
+        "url": "http://www.mindtribe.com/portfolio/",
+        "companyName": "MindTribe",
+        "companyID": 55,
+        "description": "As part of Adobe’s exploration of bringing natural drawing back into the creative process, MindTribe was asked to look into implementing a straightedge on a tablet. With little more than that to go on, MindTribe’s team explored and developed an initial physical prototype, including an accompanying tablet app with basic functionality, in a matter of days. ",
+        "authorEmail": "info@mindtribe.com",
+        "authorOther": "http://www.mindtribe.com/contact/"
+    },
+    {
+        "title": " 3M™ SpotOn™ temperature monitoring system 2012",
+        "url": "http://www.mindtribe.com/portfolio/",
+        "companyName": "MindTribe",
+        "companyID": 55,
+        "description": "Arizant developed a technique that uses active warming to create a zone of “perfect insulation”, allowing for the formation of an “isothermal tunnel” between the body’s core and the surface of the skin. MindTribe assisted Arizant with the development of this technique into a user friendly, production-ready design. ",
+        "authorEmail": "info@mindtribe.com",
+        "authorOther": "http://www.mindtribe.com/contact/"
+    },
+    {
+        "title": "ApniCure: Winx ® Sleep Therapy System 2011",
+        "url": "http://www.mindtribe.com/portfolio/",
+        "companyName": "MindTribe",
+        "companyID": 55,
+        "description": "ApniCure is a medical device start up with a new concept for treating sleep apnea without the encumbrance of traditional CPAP (Continuous Positive Airway Pressure) masks. Working in close collaboration, MindTribe architected and implemented the electrical and firmware design for ApniCure’s Winx, which is intended for home and clinical use. Key activities included the development of novel sensors and enabling the refinement of the final product specification and ID through multiple rounds of prototyping, review and user testing.",
+        "authorEmail": "info@mindtribe.com",
+        "authorOther": "http://www.mindtribe.com/contact/"
+    },
+    {
+        "title": "BMW Apps and MINI Connected 2011",
+        "url": "http://www.mindtribe.com/portfolio/",
+        "companyName": "MindTribe",
+        "companyID": 55,
+        "description": "BMW anticipates a need for agility in automotive environments to keep up with the rapid evolution of consumer smartphone features. To meet this need, MindTribe and BMW worked together to architect a new head unit software platform that rapidly integrates smartphone innovations into the automotive user experience.",
+        "authorEmail": "info@mindtribe.com",
+        "authorOther": "http://www.mindtribe.com/contact/"
+    },
+    {
+        "title": "ESNP ScoreCenter",
+        "url": "http://www.momentnyc.com/what-we-do/case-studies/espn-scorecenter-0",
+        "companyName": "Moment Design",
+        "companyID": 56,
+        "description": "ESPN worked with Moment to develop the new ScoreCenter, a completely customizable mobile app that delivers a different, personalized experience to millions of fans, from the die-hard Cubs and Bears fan to the fanatical Manchester United and Formula1 fan.",
+        "authorEmail": "sayhello@momentdesign.com",
+        "authorOther": "sayhello@momentdesign.com"
+    },
+    {
+        "title": "Bloomberg Businessweek+ app",
+        "url": "http://www.momentnyc.com/what-we-do/case-studies/bloomberg-businessweek-app-0",
+        "companyName": "Moment Design",
+        "companyID": 56,
+        "description": "With the purchase of Businessweek, Bloomberg sought to expand and extend their commitment to bringing the best news and market information to readers wherever and whenever they need it. Building on its successes, Bloomberg collaborated with Moment to bring its distinctive personality and content to the iPad and iPhone.",
+        "authorEmail": "sayhello@momentdesign.com",
+        "authorOther": "sayhello@momentdesign.com"
+    },
+    {
+        "title": "Compass: A Google Glass Concept",
+        "url": "http://www.momentnyc.com/what-we-do/case-studies/compass-google-glass-concept",
+        "companyName": "Moment Design",
+        "companyID": 56,
+        "description": "We are always exploring emerging technologies and how to design for them to create valuables experiences. One of these technologies is Google Glass. How can this dynamic device and what enhance a ‘real world’ experience at the Bronx Zoo would that experience look like?",
+        "authorEmail": "sayhello@momentdesign.com",
+        "authorOther": "sayhello@momentdesign.com"
+    },
+    {
+        "title": "Allscripts: Wand for iPad",
+        "url": "http://www.momentnyc.com/what-we-do/case-studies/allscripts-wand-ipad",
+        "companyName": "Moment Design",
+        "companyID": 56,
+        "description": "Allscripts is looking to change that. Allscripts’ Open architecture encourages developers to integrate software with the company’s solutions. This openness to collaboration leads to improved outcomes and enables care providers to navigate the changes underway in healthcare. We worked with Allscripts’ User Experience team to help create one of the first Electronic Health Record (EHR) tablet applications, the Allscripts WandTM iPad application.",
+        "authorEmail": "sayhello@momentdesign.com",
+        "authorOther": "sayhello@momentdesign.com"
+    },
+    {
+        "title": "WellDoc: DiabetesManager",
+        "url": "http://www.momentnyc.com/what-we-do/case-studies/welldoc-diabetesmanager",
+        "companyName": "Moment Design",
+        "companyID": 56,
+        "description": "Through several years of development and clinical trials, WellDoc had developed an application that enabled patients to more effectively control their diabetes by combining patient-entered information such as blood glucose levels and carb intake with real-time coaching on what users can do to change their levels if they are out of range. Our challenge was to bring a commercially viable user interface to that clinically proven piece of technology.",
+        "authorEmail": "sayhello@momentdesign.com",
+        "authorOther": "sayhello@momentdesign.com"
+    },
+    {
+        "title": "Building Capabilities That Drive Innovation",
+        "url": "http://peerinsight.com/healthcare-case-study",
+        "companyName": "Peer Insight",
+        "companyID": 57,
+        "description": "Peer Insight worked with the senior care provider to develop an innovation capability and methodology that could flourish in the organization’s unique culture and the inflexible industry environment.",
+        "authorEmail": "jdugan@peerinsight.com",
+        "authorOther": "info@peerinsight.com"
+    },
+    {
+        "title": "Launching a New Service",
+        "url": "http://peerinsight.com/association-case-study",
+        "companyName": "Peer Insight",
+        "companyID": 57,
+        "description": "Our client sought to identify the ideal platform to develop a relationship with a new client base, Generation Y, the adult children of its current client base. ",
+        "authorEmail": "jdugan@peerinsight.com",
+        "authorOther": "info@peerinsight.com"
+    },
+    {
+        "title": "SolarCity: SolarGuard Monitoring System",
+        "url": "http://www.pocobor.com/solarcity.html",
+        "companyName": "Pocobor",
+        "companyID": 60,
+        "description": "Design, prototype, develop and release a remote monitoring system that allows SolarCity and its customers to track the performance of each of their thousands of solar panel installations in real time.",
+        "authorEmail": "hello@pocobor.com"
+    },
+    {
+        "title": "VW: Smart Power Analysis",
+        "url": "http://www.pocobor.com/vw.html",
+        "companyName": "Pocobor",
+        "companyID": 60,
+        "description": "The design, manufacture, and installation of a high accuracy, portable electronic power monitoring system into Volkswagen Passat and Audi A6 test vehicles to explore inefficiencies in the vehicles' electric systems. ",
+        "authorEmail": "hello@pocobor.com"
+    },
+    {
+        "title": "Passage for Peace\n",
+        "url": "http://www.pocobor.com/pfp.html",
+        "companyName": "Pocobor",
+        "companyID": 60,
+        "description": " Passage For Peace is a proof-of-concept exhibit for a public art installation developed by Pocobor and KnoEnd. The installation is designed to utilize gestural interconnectivity technology to bring people together to hope for peace. The ultimate goal is a migratory set of installations that will be placed in prominent public plazas of major cities throughout the world.",
+        "authorEmail": "hello@pocobor.com"
+    },
+    {
+        "title": "Adobe: Increasing range of motion",
+        "url": "http://www.pointforward.com/case_adobe.htm",
+        "companyName": "Point Forward",
+        "companyID": 61,
+        "description": "After completely revamping their professional video applications to consolidate market position among video pro’s, Adobe wanted to explore new market segments for video and motion graphics. ",
+        "authorEmail": "info@pointforward.com"
+    },
+    {
+        "title": "Ericsson: Going mobile",
+        "url": "http://www.pointforward.com/case_ericcson_mobileworkers.htm",
+        "companyName": "Point Forward",
+        "companyID": 61,
+        "description": "Point Forward studied ten vertical markets across three countries (US, China, and Italy) to understand work-related mobile communication needs.",
+        "authorEmail": "info@pointforward.com"
+    },
+    {
+        "title": "Intel: The wisdom of crowds",
+        "url": "http://www.pointforward.com/case_intel_collaboration.htm",
+        "companyName": "Point Forward",
+        "companyID": 61,
+        "description": "Point forward studied the complex topic of workplace collaboration in eight large enterprises in a wide variety of industries and locations.",
+        "authorEmail": "info@pointforward.com"
+    },
+    {
+        "title": "Intel: Big needs for small business",
+        "url": "http://www.pointforward.com/case_intel_smalloffice.htm",
+        "companyName": "Point Forward",
+        "companyID": 61,
+        "description": "Do traditionally frugal small businesses represent a viable IT market for Intel? We conducted on-site ethnographic research at 20 small businesses in Chicago and Portland in order to answer that question. ",
+        "authorEmail": "info@pointforward.com"
+    },
+    {
+        "title": " \nEricsson: Making social networks tangible",
+        "url": "http://www.pointforward.com/case_ericsson_chinawireless.htm",
+        "companyName": "Point Forward",
+        "companyID": 61,
+        "description": "WuKong is a next-generation mobile communication platform for China. The unique ways that Chinese consumers communicate, socialize, and do business were uncovered and turned into new mobile features, applications, and products.",
+        "authorEmail": "info@pointforward.com"
+    },
+    {
+        "title": "HP LaserJet: Workflows are networks, not assembly lines\n",
+        "url": "http://www.pointforward.com/case_hplaserjet.htm",
+        "companyName": "Point Forward",
+        "companyID": 61,
+        "description": "As the dominant player in the office printing industry, HP was seeking ways to leverage its printing technology and customer loyalty to more broadly support document-intensive work. ",
+        "authorEmail": "info@pointforward.com"
+    },
+    {
+        "title": "Design For Multi-Device UI",
+        "url": "http://punchcut.com/solutions/devices/multi-device-ui",
+        "companyName": "Punchcut",
+        "companyID": 62,
+        "description": "People are mobile, and they are surrounded by devices in varying contexts, each with its own implications and user expectations. Experience design, in some ways, has yet to catch up. Companies understand users are mobile, but sometimes assume that consistency across devices — in essence consistency with the traditional, fixed devices — is enough to satisfy the \"mobile requirement.\"",
+        "authorEmail": "opportunity@punchcut.com."
+    },
+    {
+        "title": "Design For Wearable Device UI",
+        "url": "http://punchcut.com/solutions/devices/wearable-device-ui",
+        "companyName": "Punchcut",
+        "companyID": 62,
+        "description": "Consumers are open to new form factors, new device types, and cloud-connected services, and wearables are among them. Yet, wearable devices are not yet mainstream: not everyone feels the need or sees the value. Consumer adoption requires a product vision driven by the utility — and the fashion — afforded by modern wearables.",
+        "authorEmail": "opportunity@punchcut.com."
+    },
+    {
+        "title": "Design For Gesture And Voice UI",
+        "url": "http://punchcut.com/solutions/devices/touchgesture-device-ui",
+        "companyName": "Punchcut",
+        "companyID": 62,
+        "description": "New input mechanisms are more dynamic than ever before, and offer ways for people to establish a direct connection with their devices. Yet in a rush to stay competitive, the products hit the market without undergoing proper research, exploration and prototyping — and, as a result, fail to see how these new inputs are much more than just features.",
+        "authorEmail": "opportunity@punchcut.com."
+    },
+    {
+        "title": "Design For Kiosk/Wall UI",
+        "url": "http://punchcut.com/solutions/devices/kioskwall-ui",
+        "companyName": "Punchcut",
+        "companyID": 62,
+        "description": "Kiosks are fixed nodes. But in the context of a multi-device ecosystem, they are taking on new meaning. As screens become ubiquitous — embedded in car dashboards, home appliances, retail environments — there is opportunity for innovation, and increasing need for specialized research and design solutions that ensure these screens integrate seamlessly into their environment.",
+        "authorEmail": "opportunity@punchcut.com."
+    },
+    {
+        "title": "Design For Tablet UI",
+        "url": "http://punchcut.com/solutions/devices/television-set-top-ui",
+        "companyName": "Punchcut",
+        "companyID": 62,
+        "description": "In an evolving digital world, traditional television UI models are no longer relevant. Content options are expanding. Broadcast, on-demand, and internet TV are fusing into one television experience. This added complexity means frustration for viewers and users and companies can no longer design linear, one-dimensional, single-user experiences.",
+        "authorEmail": "opportunity@punchcut.com."
+    },
+    {
+        "title": "Design For Television & Set-Top UI",
+        "url": "http://punchcut.com/solutions/devices/tablet-ui",
+        "companyName": "Punchcut",
+        "companyID": 62,
+        "description": "Expectations are high and speculation run deep — manufacturers are under great pressure to get in on the “Tablet Gold Rush” before the market is saturated, and application developers are scrambling to ride the right wave. In the push to get to market, companies cannot afford to deliver experiences that lack a point of view, and therefore, a place in the consumer market.",
+        "authorEmail": "opportunity@punchcut.com."
+    },
+    {
+        "title": "Design For Portable Device UI",
+        "url": "http://punchcut.com/solutions/devices/portable-device-ui",
+        "companyName": "Punchcut",
+        "companyID": 62,
+        "description": "Smartphones are increasingly enveloping features and entertainment options that were once the domain of portable consumer electronics and before that TVs and PCs.Device makers have found opportunities in distinct form factors that make dedicated electronics desirable. Their singleness of purpose and their price point require unique design thinking. These dedicated devices exist alongside mobile phones, tablets, PCs and TVs in a growing digital ecosystem. Companies must measure a device’s success by its ability to play well in the ecosystem: to stay connected via the cloud or via local networks without losing their identity as distinct devices with a core value proposition.\n",
+        "authorEmail": "opportunity@punchcut.com."
+    },
+    {
+        "title": "Design For Mobile Handset UI",
+        "url": "http://punchcut.com/solutions/devices/mobile-handset-ui",
+        "companyName": "Punchcut",
+        "companyID": 62,
+        "description": "Every day, digital devices grow smaller, smarter and more powerful, yet users are still encountering the same issues of usability, feature-complexity and lack of relevant value. Companies often fail to extend the smarts of smartphones, building features and devices without a clear point of view. As a result, too many of today's handsets are still dumb devices, unable to sense the world around them.",
+        "authorEmail": "opportunity@punchcut.com."
+    },
+    {
+        "title": "Toshiba Libretto Premium Netbook",
+        "url": "http://smartdesignworldwide.com/work/toshiba-libretto-premium-netbook/",
+        "companyName": "\nSmart Design\n",
+        "companyID": 63,
+        "description": "Smart undertook a re-imagination of Toshiba’s super premium Libretto line of mobile devices. To create this innovative dual screen device, our team rethought how users would transition from a large screen experience into a compact touch environment, while meeting the time constraints of getting the device to market.",
+        "authorEmail": "thomas.isaacson@smartdesignworldwide.com"
+    },
+    {
+        "title": "New York City’s Taxi of Tomorrow",
+        "url": "http://smartdesignworldwide.com/work/new-york-city-taxi-of-tomorrow/",
+        "companyName": "Smart Design",
+        "companyID": 63,
+        "description": "The taxi is arguably NYC’s most ubiquitous symbol. However, there’s never been a vehicle that truly addressed the needs of the city’s millions of taxi riders — until now. Smart partnered with the Design Trust for Public Space to define the ideal taxi experience, leading to Mayor Bloomberg’s groundbreaking Taxi of Tomorrow initiative.",
+        "authorEmail": "thomas.isaacson@smartdesignworldwide.com"
+    },
+    {
+        "title": "Design Research in India",
+        "url": "http://smartdesignworldwide.com/work/design-research-in-india/",
+        "companyName": "Smart Design",
+        "companyID": 63,
+        "description": "When we helped our client, an established global brand, explore the home appliances category for the rapidly growing Indian market, we didn’t simply adapt models from their existing product line. ",
+        "authorEmail": "thomas.isaacson@smartdesignworldwide.com"
+    },
+    {
+        "title": "Sally Hansen Beauty Tool Experience",
+        "url": "http://smartdesignworldwide.com/work/sally-hansen-beauty-tool-experience/",
+        "companyName": "Smart Design",
+        "companyID": 63,
+        "description": "Sally Hansen came to Smart when its La Crosse brand began to fall out of favor with retailers and its SKUs were dropped from the shelf. La Crosse products were overlapping with those of its competitors and its once-unique positioning was badly eroded.",
+        "authorEmail": "thomas.isaacson@smartdesignworldwide.com"
+    },
+    {
+        "title": "OXO Tot",
+        "url": "http://smartdesignworldwide.com/work/oxo-tot/",
+        "companyName": "Smart Design",
+        "companyID": 63,
+        "description": "When OXO decided to expand into the children’s category, they came to Smart for a uniquely OXO approach. The kids’ category is crowded with bright and colorful cartoon characters and animals, so we knew the Tot offering would need to distinguish its offering. ",
+        "authorEmail": "thomas.isaacson@smartdesignworldwide.com"
+    },
+    {
+        "title": "Kate Spade: Qualitative Study",
+        "url": "http://www.thecuriouscompany.com/",
+        "companyName": "The Curios Company",
+        "companyID": 65,
+        "description": "After a decade of success, the stewards of kate spade asked what the next ten years might bring. Or, more precisely, what they might bring to the next ten years. So they hired Curious to explore the opinions of women loyal to the brand as well as those who aren't.",
+        "authorEmail": "diane@thecuriouscompany.com",
+        "authorOther": "pam@thecuriouscompany.com"
+    },
+    {
+        "title": "Jack in the Box: Brand Team Workshop",
+        "url": "http://www.thecuriouscompany.com/",
+        "companyName": "The Curios Company",
+        "companyID": 65,
+        "description": "Curious led a workshop for the leadership team at Jack in the Box during which the total experience of fast food was deconstructed and reconceived with fresh eyes.",
+        "authorEmail": "diane@thecuriouscompany.com",
+        "authorOther": "pam@thecuriouscompany.com"
+    },
+    {
+        "title": "Pepsi Cola/ Sierra Mist: Qualitative Study",
+        "url": "http://www.thecuriouscompany.com/",
+        "companyName": "The Curios Company",
+        "companyID": 65,
+        "description": "In preparation for repositioning Sierra Mist in the most compelling way, Pepsi contracted Curious to explore the emotional potential behind the concept of refreshment. ",
+        "authorEmail": "diane@thecuriouscompany.com",
+        "authorOther": "pam@thecuriouscompany.com"
+    },
+    {
+        "title": "Lexus: Brand Team Workshop",
+        "url": "http://www.thecuriouscompany.com/",
+        "companyName": "The Curios Company",
+        "companyID": 65,
+        "description": "In recent years, Curious has designed and facilitated an annual three-day offsite with the Lexus Extended Marketing Team, a group that includes almost 50 people from 20 different disciplines. The specific objectives are to create coherence and momentum as the team tackles the challenges facing the brand. ",
+        "authorEmail": "diane@thecuriouscompany.com",
+        "authorOther": "pam@thecuriouscompany.com"
+    },
+    {
+        "title": "Reebok Fit Hub",
+        "url": "http://www.ziba.com/#/work/reebok-fit-hub/",
+        "companyName": "Ziba Design",
+        "companyID": 67,
+        "description": "By 2010, the notion that fitness could be its own sport—not just preparation for something else—had gained widespread appeal, and Reebok had an opportunity to make their connection to the Sport of Fitness official. They came to Ziba that year for help in designing a new approach to retail, that would let the growing ranks of fitness-seekers know Reebok was the brand that understood them best. The result is an entirely new retail concept called the Fit Hub, that focuses on getting people to move, rather than pushing them to win.",
+        "authorEmail": "km@clearpr.com",
+        "authorOther": "http://www.ziba.com/#/contact/"
+    },
+    {
+        "title": "ViSi Mobile",
+        "url": "http://www.ziba.com/#/work/visi-mobile/",
+        "companyName": "Ziba Design",
+        "companyID": 67,
+        "description": "Patient monitoring in hospitals can literally make the difference between life and death. So when Sotera Wireless approached Ziba in 2009 to help design the interface for the first WiFi-enabled, full-suite, body-worn medical monitoring system, we knew it would have to live up to some very high expectations — not just for function and ease-of-use, but for familiarity to the caregivers who would depend on it.",
+        "authorEmail": "km@clearpr.com",
+        "authorOther": "http://www.ziba.com/#/contact/"
+    },
+    {
+        "title": "Logitech Multimedia Speaker",
+        "url": "http://www.ziba.com/#/work/logitech-multimedia-speakers/",
+        "companyName": "Ziba Design",
+        "companyID": 67,
+        "description": "Logitech needed to reinvigorate its line-up of multimedia speakers. Constraints were significant: the marketplace was well-saturated, and competitive offerings made matching price points a must. Logitech’s core value for speakers is sound quality, and the company was initially concerned that design changes would mean audio sacrifices, in order to stay on-price. Ziba responded with a completely differentiated family of speakers that provide excellent sound quality without increasing costs – in just four weeks.",
+        "authorEmail": "km@clearpr.com",
+        "authorOther": "http://www.ziba.com/#/contact/"
+    },
+    {
+        "title": "Adidas Gear Case",
+        "url": "http://www.ziba.com/#/work/adidas-gear-case/",
+        "companyName": "Ziba Design",
+        "companyID": 67,
+        "description": "With consumers expectations heightened by the quality multimedia brand experiences available on their home computers, pressure is on brick and mortar retail simply to keep up. The remedy is to make the most of people’s presence: do something in-store no PC can do. So when adidas wanted more ‘bang for buck’ out of digital content they were already producing for Chicago Bulls’ superstar Derrick Rose, they asked Ziba to design a multimedia solution for dedicated shop-in-shop retail environments.",
+        "authorEmail": "km@clearpr.com",
+        "authorOther": "http://www.ziba.com/#/contact/"
+    },
+    {
+        "title": "SAM Junctional Tourniquet",
+        "url": "http://www.ziba.com/#/work/sam-junctional-tourniquet/",
+        "companyName": "Ziba Design",
+        "companyID": 67,
+        "description": "On a chaotic battleground, a medic locates a wounded soldier, his pants soaked with blood. There’s a firefight in progress. The medic knows there could be less than 90 seconds to staunch hemorrhaging before the soldier dies. This hypothetical situation is exactly what the SAM Junctional Tourniquet is designed to deal with, in the real world. Ziba’s collaborative approach and experience in the medical field helped SAM hit an extremely tight deadline: they had just seven weeks before a crucial presentation for the Marine Corps.",
+        "authorEmail": "km@clearpr.com",
+        "authorOther": "http://www.ziba.com/#/contact/"
+    },
+    {
+        "title": "HTC Touch Diamond",
+        "url": "http://www.oneandco.com/casestudy_01.html",
+        "companyName": "One&Co Design",
+        "companyID": 68,
+        "description": "One & Co teamed with HTC to create the Touch Diamond, a flagship smartphone that establishes HTC as a global leader and harkens a new era for the mobile internet.",
+        "authorEmail": "hello@oneandco.com"
+    },
+    {
+        "title": "Nike Triax",
+        "url": "http://www.oneandco.com/casestudy_02.html",
+        "companyName": "One&Co Design",
+        "companyID": 68,
+        "description": "The Triax S Series employs Circadium curve construction, a revolutionary curved LCD technology enabling a larger display and making it easier to read, while at the same time dramatically reducing the overall thickness.",
+        "authorEmail": "hello@oneandco.com"
+    },
+    {
+        "title": "K2 Snowboards",
+        "url": "http://www.oneandco.com/casestudy_03.html",
+        "companyName": "One&Co Design",
+        "companyID": 68,
+        "description": "From function to fashion, One & Co has helped K2 refocus the brand on core innovations. ",
+        "authorEmail": "hello@oneandco.com"
+    },
+    {
+        "title": "Microsoft",
+        "url": "http://www.oneandco.com/casestudy_04.html",
+        "companyName": "One&Co Design",
+        "companyID": 68,
+        "description": "One & Co developed the Media Center PC that defines a new paradigm for computer hardware in the home. The design is optimized for both the two-foot experience (i.e. loading media or connecting peripherals) and the ten-foot experience (i.e. watching TV, gaming, or reviewing music and image libraries). ",
+        "authorEmail": "hello@oneandco.com"
+    },
+    {
+        "title": "HTC 2010",
+        "url": "http://www.oneandco.com/casestudy_05.html",
+        "companyName": "One&Co Design",
+        "companyID": 68,
+        "description": "One & Co’s collaboration with HTC has yielded a sophisticated and innovative lineup of smartphones for this global manufacturer.",
+        "authorEmail": "hello@oneandco.com"
+    },
+    {
+        "title": "Hewlett-Packard DVD Projector",
+        "url": "http://www.portigal.com/clients/",
+        "companyName": "Portigal Consulting",
+        "companyID": 69,
+        "description": "Hewlett-Packard was eager to enter the home entertainment market with a new low-cost DVD projector. ",
+        "authorEmail": "   contact@portigal.com"
+    },
+    {
+        "title": "Nestlé Infant Formula",
+        "url": "http://www.portigal.com/clients/",
+        "companyName": "Portigal Consulting",
+        "companyID": 69,
+        "description": "To improve the packaging of their infant formula products, Nestlé wanted to understand mothers' experiences around feeding and preparation.",
+        "authorEmail": "contact@portigal.com"
+    },
+    {
+        "title": "Sony Future Laptop Vision",
+        "url": "http://www.portigal.com/clients/",
+        "companyName": "Portigal Consulting",
+        "companyID": 69,
+        "description": "Sony asked us to provide insights that would inform their future vision for laptop computing.",
+        "authorEmail": "contact@portigal.com"
+    },
+    {
+        "title": "Intuit Intranet",
+        "url": "http://www.portigal.com/clients/",
+        "companyName": "Portigal Consulting",
+        "companyID": 69,
+        "description": "Intuit was redesigning their intranet and asked us to explore how they could use technology to further their collaborative culture.",
+        "authorEmail": "contact@portigal.com"
+    },
+    {
+        "title": "Belkin Go Studio",
+        "url": "http://www.portigal.com/clients/",
+        "companyName": "Portigal Consulting",
+        "companyID": 69,
+        "description": "Belkin was preparing to develop the second version of a mobile audio recording product.",
+        "authorEmail": "contact@portigal.com"
+    },
+    {
+        "title": "Media Master New Product Opportunities",
+        "url": "http://www.portigal.com/clients/",
+        "companyName": "Portigal Consulting",
+        "companyID": 69,
+        "description": "A digital music startup asked us to explore the market potential of several new product concepts.",
+        "authorEmail": "contact@portigal.com"
+    },
+    {
+        "title": "Beringer Wine Packaging",
+        "url": "http://www.portigal.com/clients/",
+        "companyName": "Portigal Consulting",
+        "companyID": 69,
+        "description": "Beringer Stone Cellars was looking for customer insights to inform an upcoming redesign of their wine labels.",
+        "authorEmail": "contact@portigal.com"
+    },
+    {
+        "title": "Chevron Newsletter",
+        "url": "http://www.portigal.com/clients/",
+        "companyName": "Portigal Consulting",
+        "companyID": 69,
+        "description": "Chevron asked us to evaluate several design directions for a new credit card newsletter.",
+        "authorEmail": "contact@portigal.com"
+    },
+    {
+        "title": "Shure Wireless Microphone System",
+        "url": "http://www.portigal.com/clients/",
+        "companyName": "Portigal Consulting",
+        "companyID": 69,
+        "description": "Before launching a new wireless microphone system aimed at audio system installers, Shure wanted to validate and refine their marketing strategy.",
+        "authorEmail": "contact@portigal.com"
+    },
+    {
+        "title": "My Special K",
+        "subTitle": "Kellogg",
+        "url": "http://www.razorfish.com/work/2012/my-special-k.htm",
+        "companyName": "Razorfish",
+        "companyID": 70,
+        "description": "Kellogg wanted to build a 24/7/365 relationship between the brand and its consumers, but wondered how to accomplish this without abandoning the equity they had in their “challenge” positioning.",
+        "authorEmail": "http://www.razorfish.com/contact/mediacontacts.htm",
+        "authorOther": "http://www.razorfish.com/contact/emailus.htm"
+    },
+    {
+        "title": "Unilever: Axe Anarchy: The Graphic Novel",
+        "url": "http://www.razorfish.com/work/2012/anarchy-the-graphic-novel.htm",
+        "companyName": "Razorfish",
+        "companyID": 70,
+        "description": "In 2012, AXE released Anarchy, the brand’s first male/female paired fragrance. The question then arose: Did the world really need another body spray variety? Our job was to drive sales of Anarchy in an already overcrowded category.",
+        "authorEmail": "http://www.razorfish.com/contact/mediacontacts.htm",
+        "authorOther": "http://www.razorfish.com/contact/emailus.htm"
+    },
+    {
+        "title": "Nike: 100,000 Fans",
+        "url": "http://www.razorfish.com/work/2012/100000-fans-nike.htm",
+        "companyName": "Razorfish",
+        "companyID": 70,
+        "description": "Nike invented the 10K run city attack more than a decade ago. Since then, attendance has dwindled amongst young athletes. Since running is the core of Nike’s business, we were hired to re-imagine the 2011 event to appeal to novice competitors who have been lured away from running in recent years by extreme sports.",
+        "authorEmail": "http://www.razorfish.com/contact/mediacontacts.htm",
+        "authorOther": "http://www.razorfish.com/contact/emailus.htm"
+    },
+    {
+        "title": "Audi City Configurator",
+        "subTitle": "Audi",
+        "url": "http://www.razorfish.com/work/2012/audi-city-configurator.htm",
+        "companyName": "Razorfish",
+        "companyID": 70,
+        "description": "Audi wanted to create a way to experience their full product offering in the heart of urban centers around the world — delivering an immersive, on-brand sales experience within a compact physical footprint.",
+        "authorEmail": "http://www.razorfish.com/contact/mediacontacts.htm",
+        "authorOther": "http://www.razorfish.com/contact/emailus.htm"
+    },
+    {
+        "title": "UNIQLO.com",
+        "url": "http://www.razorfish.com/work/2012/uniqlo.htm",
+        "companyName": "Razorfish",
+        "companyID": 70,
+        "description": "UNIQLO, Japan's leading clothing retail chain, has struggled to replicate this dominance in the US market. In the midst of this low awareness, we were hired in the spring of 2012 to launch UNIQLO.com, the brand’s first stateside commerce storefront. Our challenge was to deliver a digital flagship experience that immersed shoppers in the brand’s famous blend of utility and fun, while positing the site to achieve sales goals of $20MM within two years.",
+        "authorEmail": "http://www.razorfish.com/contact/mediacontacts.htm",
+        "authorOther": "http://www.razorfish.com/contact/emailus.htm"
+    },
+    {
+        "title": "Cyberknife Robotic Radiosurgery System",
+        "url": "http://speckdesign.com/projects/view/cyberknife_robotic_radiosurgery_system/work",
+        "companyName": "Speck Design",
+        "companyID": 72
+    },
+    {
+        "title": "Nike - Innovation Kitchen",
+        "url": "http://www.bassett.tv/clients/casestudy/39/",
+        "companyName": "Bassett & Co.",
+        "companyID": 87,
+        "description": "Nike iD asked the Innovation Kitchen to help design a relatively low volume product (a bag for basketball players; 10,000 units) to be sold exclusively on Nike iD.",
+        "authorEmail": "info@bassett.tv"
+    },
+    {
+        "title": "Wieden+Kennedy - Nike Golf Apparel",
+        "url": "http://www.bassett.tv/clients/casestudy/37/",
+        "companyName": "Bassett & Co.",
+        "companyID": 87,
+        "description": "Despite being a highly established performance sports brand overall, Nike was seen to be a relative newcomer in the sport of golf. And as a result, not seen to be as authentic as more traditional brands.",
+        "authorEmail": "info@bassett.tv"
+    },
+    {
+        "title": "Cutwater: Jeep",
+        "url": "http://www.bassett.tv/clients/casestudy/36/",
+        "companyName": "Bassett & Co.",
+        "companyID": 87,
+        "description": "Cutwater was invited to pitch the advertising business for Jeep.",
+        "authorEmail": "info@bassett.tv"
+    },
+    {
+        "title": "MNML - SonoSite M2 Redesign",
+        "url": "http://www.bassett.tv/clients/casestudy/38/",
+        "companyName": "Bassett & Co.",
+        "companyID": 87,
+        "description": "SonoSite is the leader in portable ultrasound devices.",
+        "authorEmail": "info@bassett.tv"
+    }
+]

@@ -63,8 +63,9 @@ class MethodCategory < ActiveRecord::Base
   end
 
   #Creates relation between self and CHILD, modifies distances from any parents of SELF to CHILD
+  #helpers/more documentation. follow rdoc format.
   def add_child(child, distance = 1, type = "subclass")
-    if !MethodCategory.exists?(child)
+    if !MethodCategory.exists?(child) || distance <= 0 || self.parents.exists?(child)
       return
     end
     if !self.children.exists?(child)
@@ -100,7 +101,7 @@ class MethodCategory < ActiveRecord::Base
 
   #Creates relation between self and PARENT, modifies distances from any children of self to PARENT
   def add_parent(parent, distance = 1, type = "subclass")
-        if !MethodCategory.exists?(parent)
+    if !MethodCategory.exists?(parent) || distance <= 0 || self.children.exists?(parent)
       return
     end
     if !self.parents.exists?(parent)
@@ -136,11 +137,13 @@ class MethodCategory < ActiveRecord::Base
 
   # Removes CHILD from SELF's list of children. Modifies distances from any children or parents of self.
   def remove_child(child)
+    recalc_removed_child(self, child)
     self.children.destroy(child)
   end
 
   # Removes parent from SELF's list of parents. Modifies distances from any parents or children of self.
   def remove_parent(parent)
+    recalc_removed_parent(self, parent)
     self.parents.destroy(parent)
   end
 
@@ -154,6 +157,9 @@ class MethodCategory < ActiveRecord::Base
 
   # Updates the distance from SELF to OTHER.
   def update_distance(other, distance)
+    if distance <= 0
+      return
+    end
     update_relation = self.return_relation(other)
     if update_relation
       update_relation.distance = distance
@@ -182,6 +188,9 @@ class MethodCategory < ActiveRecord::Base
 
   # Updates DISTANCE and TYPE of relation for SELF and OTHER.
   def update_all_fields(other, distance, type)
+    if distance <= 0
+      return
+    end
     update_relation = self.return_relation(other)
     if update_relation
       update_relation.description = type
@@ -199,12 +208,34 @@ class MethodCategory < ActiveRecord::Base
     return relation
   end
 
-  def recalc_after_remove(to_remove)
-    to_remove.parents.each do |parent|
-      to_remove.children.each do |child|
-        old_dist = parent.distance_from(child)
-        offset = parent.distance_from(to_remove)
-        parent.update_distance(child, old_dist - offset)
+  def recalc_removed_child(remover, to_remove)
+    #change dist. between remover and kids of to_remove
+    to_remove.children.each do |child|
+      if remover.children.exists?(child)
+        dist = child.distance_from(remover) - remover.distance_from(to_remove)
+        child.update_distance(remover, dist)
+      end
+    end
+
+    #change dist. between parents of remover and kids of remove
+    remover.parents.each do |parent|
+      to_remove.children.each do |gchild|
+        if parent.children.exists?(gchild)
+          dist = remover.distance_from(parent) + remover.distance_from(gchild)
+          parent.update_distance(gchild, dist)
+        end
+      end
+    end
+  end
+
+  def recalc_removed_parent(remover, to_remove)
+    offset = remover.distance_from(to_remove)
+    to_remove.children.each do |child|
+      dist = child.distance_from(to_remove)
+      child.update_distance(to_remove, dist - offset)
+      to_remove.parents.each do |parent|
+        dist = child.distance_from(parent)
+        child.update_distance(parent, dist - offset)
       end
     end
   end
@@ -213,14 +244,12 @@ class MethodCategory < ActiveRecord::Base
                               :foreign_key => "parent_id",
                               :dependent => :destroy
   has_many :children, :through => :child_relations,
-                      :source => :child,
-                      :before_remove => :recalc_after_remove
+                      :source => :child
   has_many :parent_relations, :class_name => "McRelations",
                               :foreign_key => "child_id",
                               :dependent => :destroy
   has_many :parents,  :through => :parent_relations,
-                      :source => :parent,
-                      :before_remove => :recalc_after_remove
+                      :source => :parent
 
   has_many :categorizations, dependent: :destroy
   has_many :design_methods, through: :categorizations

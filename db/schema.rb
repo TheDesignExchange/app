@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140618030506) do
+=======
+ActiveRecord::Schema.define(version: 20140613234513) do
+>>>>>>> 2851d6f3b5e252fc6745a99d7862edeeb619ee90
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -46,6 +50,44 @@ ActiveRecord::Schema.define(version: 20140618030506) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
+<<<<<<< HEAD
+=======
+  create_table "bootsy_image_galleries", force: true do |t|
+    t.integer  "bootsy_resource_id"
+    t.string   "bootsy_resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bootsy_images", force: true do |t|
+    t.string   "image_file"
+    t.integer  "image_gallery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "case_studies", force: true do |t|
+    t.string   "mainImage",         default: ""
+    t.string   "title",             default: ""
+    t.string   "methods",           default: ""
+    t.string   "url",               default: ""
+    t.string   "timePeriod",        default: ""
+    t.integer  "development_cycle"
+    t.integer  "design_phase"
+    t.integer  "project_domain"
+    t.integer  "customer_type"
+    t.integer  "user_age"
+    t.integer  "privacy_level"
+    t.integer  "social_setting"
+    t.text     "description"
+    t.boolean  "customerIsUser",    default: false
+    t.boolean  "remoteProject",     default: false
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+>>>>>>> 2851d6f3b5e252fc6745a99d7862edeeb619ee90
   create_table "categorizations", force: true do |t|
     t.integer  "design_method_id"
     t.integer  "method_category_id"
@@ -68,6 +110,29 @@ ActiveRecord::Schema.define(version: 20140618030506) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
+=======
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "companies", force: true do |t|
+    t.string   "name",       default: ""
+    t.string   "domain",     default: ""
+    t.string   "email",      default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contacts", force: true do |t|
+    t.string   "name",       default: ""
+    t.string   "email",      default: ""
+    t.string   "phone",      default: ""
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+>>>>>>> 2851d6f3b5e252fc6745a99d7862edeeb619ee90
   create_table "design_methods", force: true do |t|
     t.string   "name",       null: false
     t.text     "overview",   null: false
@@ -90,6 +155,13 @@ ActiveRecord::Schema.define(version: 20140618030506) do
   add_index "mc_relations", ["child_id"], name: "index_mc_relations_on_child_id"
   add_index "mc_relations", ["parent_id", "child_id"], name: "mcrelations_index", unique: true
   add_index "mc_relations", ["parent_id"], name: "index_mc_relations_on_parent_id"
+
+  create_table "method_case_studies", force: true do |t|
+    t.integer  "case_study_id"
+    t.integer  "design_method_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "method_categories", force: true do |t|
     t.string   "name"
@@ -115,6 +187,18 @@ ActiveRecord::Schema.define(version: 20140618030506) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
+=======
+  create_table "resources", force: true do |t|
+    t.string   "name",              default: ""
+    t.boolean  "permission_to_use", default: false
+    t.string   "type",              default: ""
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+>>>>>>> 2851d6f3b5e252fc6745a99d7862edeeb619ee90
   create_table "user_methods", force: true do |t|
     t.integer  "user_id",          null: false
     t.integer  "design_method_id", null: false

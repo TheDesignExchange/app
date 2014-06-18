@@ -1,0 +1,252 @@
+<%= stylesheet_link_tag    "collection", :media => "all" %>
+<style>
+h3 {margin: 0;}
+h4 {margin: 0.33em 0; font-size: 13pt;}
+p {font-size: 12pt;}
+hr {border-top: 3px solid #eee;
+	width: 100%;
+}
+.thumbnail{
+	width: 100px;
+	height: 100px;
+}
+
+.mainPic{
+	/*width: 100%;*/
+	max-height: 200px;
+	/*height: 250px;*/
+}
+
+#attributes tr:nth-child(odd)		{ background-color:#eee; }
+#attributes tr:nth-child(even)		{ background-color:#fff; }
+
+</style>
+
+
+<div class="grid_12">
+	<div class="grid_2 omega">
+         <button type="all" class="btn btn-info">Show All</button>
+	</div>
+	<div class="grid_2 omega">	
+		 <h4>Project Domain</h4>
+	</div>	
+	<div class="grid_3 omega">	
+		<div class="btn-group">
+			<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+			Choose one<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+			<li><a href="#"></a>Built Environment</li>
+			<li><a href="#">Product</a></li>
+			<li><a href="#">Service</a></li>
+			<li><a href="#">Web</a></li>
+			<li><a href="#">Mobile</a></li>
+			<li><a href="#">Graphic</a></li>
+			<li><a href="#">Fashion</a></li>
+			<li><a href="#">Other</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="grid_1 omega">	
+		<h4>Method</h4>
+	</div>
+	<div class="grid_2 omega">
+		<input id="submethod-text" ></input>
+	</div>	
+</div>
+
+<hr>
+<br>
+
+<% @casestudies.each_with_index do |cs, i| %>
+<div class="grid_12 omega">
+	<div class="grid_5 omega">
+		<img src="/AMA2.png" alt="AMA2" class='mainPic'>
+	</div>
+
+	<div class="grid_2 omega">	
+	</div>
+
+	<div class="grid_5 omega">
+		<table>
+	    	<tr>
+  			<td><img src="/" alt="AMA2" class='thumbnail'></td>
+  			<td><img src="/" alt="AMA2" class='thumbnail'></td>
+  			<td><img src="/" alt="AMA2" class='thumbnail'></td>
+			</tr>
+			<tr>
+  			<td><img src="/" alt="AMA2" class='thumbnail'></td>
+  			<td><img src="/" alt="AMA2" class='thumbnail'></td>
+  			<td><img src="/" alt="AMA2" class='thumbnail'></td>
+			</tr>
+		</table>
+	</div>
+</div>	
+
+<div class="grid_12 omega">
+		<h3><%= cs.title %> </h3>
+		<a href="<%=cs.url %>"> <%=cs.url %></a>
+</div>	
+
+
+<div class="grid_12">	
+	<div class="grid_5 omega">
+		<p><%=cs.description %></p>	
+
+		<br>
+		<br>
+
+		<h3>Methods</h3>
+		<br>
+  		<p>Brainstormimg</p>
+  		<p>Focus Group</p>
+		<p>Storyboarding</p>
+		<p>Wireframe</p>
+		
+		<br>
+		<br>
+
+		<h3>Resources</h3>
+		<br>
+  		<p>AMA_CaseStudy1.pdf</p>
+  		<p>AMA_CaseStudy2.pdf</p>
+		<p>AMA_CaseStudy3.pdf</p>   
+	</div>
+
+	<div class="grid_2 omega">
+	</div>
+	
+	<div class="grid_5 omega">
+		<table id="attributes">
+		<tr>
+  		<td>Develepment Cycle</td>	
+  		<td><%= cs.development_cycle%></td>
+		</tr>
+
+		<tr>
+  		<td> Design Phase</td>
+  		<td><%=cs.design_phase%></td>		
+		</tr>
+		<td>Project Domain</td>
+  		<td><%=cs.project_domain%></td>		
+		</tr>
+		<tr>
+ 		<td>Remote Project</td>		
+  		<td><%=cs.remoteProject%></td>
+		</tr>
+		<tr>
+ 		<td>Customer is User</td>		
+  		<td><%=cs.customerIsUser%></td>
+		</tr>
+		<tr>
+ 		<td>Customer Type</td>	
+  		<td><%=cs.customer_type%></td>
+		</tr>
+		<tr>
+ 		<td>Age Group of User</td>	
+  		<td><%=cs.user_age%></td>
+		</tr>
+		<tr>
+ 		<td>Privacy Level</td>
+  		<td><%=cs.privacy_level%></td>		
+		</tr>
+		<tr>
+ 		<td>Social Setting</td>
+  		<td><%=cs.social_setting%></td>		
+		</tr>
+		<tr>
+ 		<td>Company Name</td>	
+  		<td><%=@companies[i].name%></td>
+		</tr>
+		<tr>
+ 		<td>Contact Info</td>
+  		<td><%=@companies[i].email%></td>		
+		</tr>
+		<tr>
+ 		<td>Contact</td>
+ 		<% @contacts[i].each do |c| %>
+  		<td><%= c.name%></td>	
+  		<% end %>	
+		</tr>
+	
+
+
+		</table>
+	</div>	
+
+	
+
+</div>		
+
+
+<br>
+<br>
+<hr width="3000" size="50" align="left">
+
+<% end %>
+<!-- 
+<div class="grid_12">
+	<div class="grid_4 omega">
+		<img src="/HIVTreatment.jpg" alt="HIVT" width="250" height="250">
+	</div>	
+
+	<div class="grid_8 omega">
+		<h3>Improving Global Access to HIV Treatment Using Smarter Data: OptimizeARV</h3>
+		<p>Anti-retroviral therapies (ART) remain the principal mechanism for saving the lives of those infected with HIV/AIDS. The ability of national governments to effectively scale-up their ART treatment programs relies on the recommendations, guidelines, and data produced by global stakeholders such as WHO, PEPFAR. National governments struggle to assimilate this knowledge effectively because of information fragmentation and limited analytical capacity.</p>
+	</div>	
+</div>	
+
+<div class="grid_12">	
+	<div class="grid_4 omega">
+         <button type="all" class="btn btn-info">Change</button>
+
+         <table style="width:300px">
+			<tr>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+			</tr>
+			<tr>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  			<td><img src="/" alt="FedEx2" width="42" height="42"></td>
+			</tr>
+		</table>
+
+	</div>
+	<div class="grid_8 omega">
+		<h3>Resources</h3>
+
+		<table style="width:300px">
+		<tr>
+  		<td>OptimizeARV1.pdf</td>
+  		<td></td>		
+  		<td><button type="all" class="btn btn-info">Remove</button></td>
+		</tr>
+		<tr>
+  		<td bgcolor="#E0E0EB">OptimizeARV2.pdf</td>
+  		<td></td>		
+  		<td><button type="all" class="btn btn-info">Remove</button></td>
+		</tr>
+		<tr>
+  		<td>OptimizeARV3.pdf</td>
+  		<td></td>		
+  		<td><button type="all" class="btn btn-info">Remove</button></td>
+		</tr>
+		<tr>
+ 		<td><input id="submethod-text" ></input></td>
+  		<td></td>		
+  		<td><button type="all" class="btn btn-info">Upload</button></td>
+		</tr>
+		</table>
+
+	</div>	
+</div>		 -->
+
+		          	
+
+<%# @casestudies.each do |cs| %>
+<%#=img src="FedEx.png" alt="FedEx" width="42" height="42"%>
+<h3><%#= cs[:name] %></h3>
+<p><%#= cs[:description] %></p>
+<%#end%>

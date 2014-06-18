@@ -37,6 +37,9 @@ class DesignMethod < ActiveRecord::Base
   has_many :citations, through: :method_citations
   has_many :method_favorites, dependent: :destroy
   has_many :favorited_users, through: :method_favorites, :source => :user
-
   belongs_to :owner, class_name: "User", foreign_key: :owner_id
+
+  # CASE STUDY LINKING 
+  has_many :method_case_studies
+  has_many :case_studies, :through => :method_case_studies
 end

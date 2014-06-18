@@ -1,0 +1,85 @@
+/*
+ * Dropit v1.1.0
+ * http://dev7studios.com/dropit
+ *
+ * Copyright 2012, Dev7studios
+ * Free to use and abuse under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+
+/* These styles assume you are using ul and li */
+.dropit {
+    list-style: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.dropit .dropit-trigger { position: relative !important; }
+.dropit .dropit-trigger > a{ 
+    border-radius: 5px;
+    border: 1px solid #333;
+    padding: 4px 8px;
+    margin-top: 8px;
+    display: inline-block;
+    color: black;
+   background-color: #f5f5f5;
+background-image: -moz-linear-gradient(top, white, #e6e6e6);
+background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#e6e6e6));
+background-image: -webkit-linear-gradient(top, white, #e6e6e6);
+background-image: -o-linear-gradient(top, white, #e6e6e6);
+background-image: linear-gradient(to bottom, white, #e6e6e6);
+background-repeat: repeat-x;
+border: 1px solid #bbbbbb;
+border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+border-bottom-color: #a2a2a2;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.dropit .dropit-trigger > a:hover{
+    color: black;
+}
+.dropit .dropit-submenu {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important; /* dropdown left or right */
+    z-index: 1000 !important;
+    display: none !important;
+    min-width: 150px !important;
+    list-style: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+.dropit .dropit-open .dropit-submenu { display: block !important; }
+
+.menu ul { display: none !important; } /* Hide before plugin loads */
+.menu ul.dropit-submenu {
+    background-color: #fff !important;
+    border: 1px solid #b2b2b2 !important;
+    padding: 6px 0 !important;
+    margin: 3px 0 0 1px !important;
+    -webkit-border-radius: 3px !important;
+       -moz-border-radius: 3px !important;
+            border-radius: 3px !important;
+    -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.15) !important;
+       -moz-box-shadow: 0px 1px 3px rgba(0,0,0,0.15) !important;
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.15) !important;
+}          
+.menu ul.dropit-submenu a {
+    display: block !important;
+    font-size: 14px !important;
+    line-height: 25px !important;
+    color: #7a868e !important;
+    padding: 0 18px !important;
+}
+.menu ul.dropit-submenu a:hover {
+    background: #248fc1 !important;
+    color: #fff !important;
+    text-decoration: none !important;
+}

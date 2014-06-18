@@ -8,7 +8,7 @@ gem 'sunspot_with_kaminari'
 gem 'will_paginate'
 gem 'annotate'
 gem 'devise'
-gem 'sass-rails'
+gem 'sass-rails', '~> 4.0.2'
 gem 'coffee-rails'
 gem 'uglifier'
 gem 'spreadsheet'
@@ -19,6 +19,15 @@ gem 'rdf'
 gem 'rdf-raptor'
 gem 'sparql'
 gem 'equivalent-xml'
+gem 'ffi'
+
+
+
+gem 'sprockets', '2.11.0'
+
+# Styling
+gem 'bootstrap-sass'
+gem 'normalize-rails'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -43,3 +52,5 @@ end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'bootsy'
+gem 'bourbon', '~> 3.2'

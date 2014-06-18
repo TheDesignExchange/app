@@ -30,4 +30,10 @@ FactoryGirl.define do
     user
     design_method
   end
+
+  factory :method_favorite do
+    user
+    design_method
+  end
+
 end

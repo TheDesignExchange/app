@@ -1,0 +1,428 @@
+[
+    {
+        "methodName": "Customer Journey Map",
+        "parentID": 0,
+        "id": 1,
+        "designer":"Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"customerJourneyMap_1.png",
+        "size": 5,
+        "color": 2,
+        "effectiveness": 2,
+        "style": 5,
+        "comment":"I think path is conveyed perfectly. On a formal note, some of the paths don’t end in the “right” place (e.g. the computer screen).  Also, its unclear why some elements are purple while other are red. I think you can play more on map language though. I added a map you can put on the canvas. I’d recommend a faded beige background (it’s okay to use other colors, but try to stick to the palette).  Also, add a compass and a person at the start of the route. I’d also say you can remove one more element from the map, like end on the shopping cart (this really equates to the customer part). ",
+
+    },
+
+    {
+        "methodName": "Customer Journey Map",
+        "parentID": 1,
+        "id": 2,
+        "designer":"Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"customerJourneyMap_2.png",
+        "size": ,
+        "color": ,
+        "effectiveness": ,
+        "style": ,
+        "comment":
+    },
+
+    {
+        "methodName": "Customer Journey Map",
+        "parentID": 2,
+        "id": 3,
+        "designer":"Cesar Torres",
+        "evaluator": "",
+        "Date":"",
+        "image":"customerJourneyMap_3.png",
+        "size": ,
+        "color": ,
+        "effectiveness": ,
+        "style": ,
+        "comment":
+        
+    },
+
+    {
+        "methodName": "Wireframes",
+        "parentID": 0,
+        "id": 4,
+        "designer":"Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "Date":"",
+        "image":"wireframes_1.png",
+        "size": 5,
+        "color": 5,
+        "effectiveness": 3,
+        "style": 4,
+        "comment":"Look at other examples of how people represent wireframes. Usually, they use an X’d box to represent a picture. They used grayed blocks to represent buttons, or navigation elements. And they use thinner lines for columns. I do like the sparser number of elements that you have versus the ones in the example I posted. ",
+        
+    },
+
+    {
+        
+        "methodName": "Wireframes",
+        "parentID": 4,
+        "id": 5,
+        "designer":"Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"wireframes_2.png",
+        "size": ,
+        "color": ,
+        "effectiveness": ,
+        "style": ,
+        "comment":
+    },
+
+    {
+        "methodName": "Wireframes",
+        "parentID": 5,
+        "id": 6,
+        "designer":"Cesar Torres",
+        "evaluator": "",
+        "date":"",
+        "image":"wireframes_3.png",
+        "size": ,
+        "color": ,
+        "effectiveness": ,
+        "style": ,
+        "comment":
+    },
+
+    {
+        "methodName": "Fused Deposition Models (FDM)",
+        "parentID": 0,
+        "id": 7,
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"fuseDepositionModeling_1.png",
+        "size": 5,
+        "color": 4,
+        "effectiveness": 2,
+        "style": 4,
+        "comment":"Use this box in evidencing infographic. This is the symbol for 3d printing but most people don’t know it.  The key part of 3D printing, which is not mentioned in the description sadly, is that it is great for interation. I recommend a) showing the filament adding to an incomplete model, b) showing previous versions of the model to convey iteration, c) change the color of the box  :)I added an example icon for showing a part in process. ",
+        
+    },
+
+    {
+        "methodName": "Fused Deposition Models (FDM)",
+        "parentID": 7,
+        "id": 8,
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"fuseDepositionModeling_2.png",
+        "size": ,
+        "color": ,
+        "effectiveness": ,
+        "style": ,
+        "comment":
+    },
+    
+    {
+        "methodName": "Fused Deposition Models (FDM)",
+        "parentID": 8,
+        "id": 9,
+        "designer": "Cesar Torres",
+        "evaluator": "",
+        "date":"",
+        "image":"fuseDepositionModeling_3.png",
+        "size": ,
+        "color": ,
+        "effectiveness": ,
+        "style": ,
+        "comment":
+    },
+
+
+    {
+        "methodName": "Evidencing",
+        "parentID": 0,
+        "id": 10,
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"evidencing_1.png",
+        "size": 3,
+        "color": 3,
+        "effectiveness": 4,
+        "style": 5,
+        "comment":"The contrast of colors for the people icons to the box is low. Consider making the box a lighter hue, such as sky blue.  I understand that the person with the pencil represents the author, but it does not equate that they made the box. Perhaps adding a white black-outlined thought bubble with a wired box (the author is thinking of the box) to the author and drawing a dashed line from the bubble to the real box will make the connection of author. This might be too busy. Removing the author altogether will be best. I think the box as “evidencing” is great especially how you get at the tangibility aspect. Not a fan of the pencil. Also, make the white space representing the edge of the box large. At small sizes, aliasing makes it difficult to distinguish. ",
+       
+    }, 
+
+    {
+        "methodName": "Evidencing",
+        "parentID": 10,
+        "id": 11,
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"evidencing_2.png",
+        "size": ,
+        "color": ,
+        "effectiveness": ,
+        "style": ,
+        "comment":
+   }, 
+
+    {
+        "methodName": "Evidencing",
+        "parentID": 11,
+        "id": 12,
+        "designer": "Cesar Torres",
+        "evaluator": "",
+        "date":"",
+        "image":"evidencing_3.png",
+        "size": ,
+        "color": ,
+        "effectiveness": ,
+        "style": ,
+        "comment":
+   }, 
+
+   {
+        "methodName": "Storyboard",
+        "parentID": 0,
+        "id": 13,
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"storyboard_1.png",
+        "size": 4,
+        "color": 5,
+        "effectiveness": 3,
+        "style": 5,
+        "comment":"Great! I’d clean up the vector on the hands of the figures. I’d also make all of the boards have the four circles, but only fill in the ones to indicate the number. Move the circle numbers a bit more away from the margin of the board.  Also, make it a 3 by 2 grid, add it on a paper, and rotate everything by a couple of degrees. Storyboards are usually done on paper, so we want to convey that people are not coding an animation. ",
+   }, 
+
+    {
+        "methodName": "Storyboard",
+        "parentID": 13,
+        "id": 14,
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"storyboard_2.png",
+        "size": ,
+        "color": ,
+        "effectiveness": ,
+        "style": ,
+        "comment":
+   }, 
+
+    {
+        "methodName": "Storyboard",
+        "parentID": 14,
+        "id": 15,
+        "designer": "Cesar Torres",
+        "evaluator": "",
+        "date":"",
+        "image":"storyboard_3",
+        "size": ,
+        "color": ,
+        "effectiveness": ,
+        "style": ,
+        "comment":
+   }, 
+
+    {
+        "methodName": "Offering Map",
+        "parentID": 0,
+        "id": 16,
+        "designer": "Lyra Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"offeringMap_1.png",
+        "size": 5,
+        "color": 4,
+        "effectiveness": 2,
+        "style": 4,
+        "comment":"This was a tough one. I pulled one image from the internet. I’d say the chief thing we need to work on is conveying that each of those color blocks belongs to a certain user. A) I’d space out each user in a row. Make each of them a different type. (baby, child, mother, father), and have each of them hold a chunk of the aggregate map (displayed behind them). Color code the block they hold to the part of the map. I’d say no more than 4 users. ",
+        
+   }, 
+
+  {
+        "methodName": "Offering Map",
+        "parentID": 16,
+        "id": 17,
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"offeringMap_2.png",
+        "size": ,
+        "color": ,
+        "effectiveness": ,
+        "style": ,
+        "comment":
+   }, 
+
+   {
+        "methodName": "Offering Map",
+        "parentID": 17,
+        "id": 18,
+        "designer": "Cesar Torres",
+        "evaluator": "",
+        "date":"",
+        "image":"offeringMap_3.png",
+        "size": ,
+        "color": ,
+        "effectiveness": ,
+        "style": ,
+        "comment":    
+
+   }, 
+
+   {
+        "methodName": "Componential Analysis",
+        "parentID": 0,
+        "id": 19,
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"componentialAnalysis_1.png",
+        "size": 4,
+        "color": 1,
+        "effectiveness": 2,
+        "style": 4,
+        "comment": "Why are there crowds? Shapes are hard to make out. This is a mistake I made in mine. Really they should all by the same shape but differ in color or texture.Make the central element larger. Writing these comments makes me want to move parts of your canvas around. Maybe, this is an opportunity to say to the reviewer - you can either review or try to edit yourself. I had to go into the database and look up the definition and process. As a reviewer, this should be on the slides (I know that you know that I know where to go, but act like this was a different person who doesn’t know about the project) . ",
+
+   },
+
+   {
+        "methodName": "Componential Analysis",
+        "parentID": 19,
+        "id": 20,
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"componentialAnalysis_2.png",
+        "size": 3,
+        "color": 5,
+        "effectiveness": 3,
+        "style": 5,
+        "comment": "The process says that this is associated with ethnographic differences. Perhaps shapes are too abstract for this. The two quote clouds are great though for showing different interpretations. Is there a better way of conveying a cultural difference in an object. Off the top of my head, I think vases. where one vase is used ceremonially and another is used as an urn. If you decide to keep the shape, make the shape distinguishable at a small scale.",
+
+
+   },
+
+   {
+        "methodName": "Componential Analysis",
+        "parentID": 20,
+        "id": 21,
+        "designer": "Yipu Zheng",
+        "evaluator": "",
+        "date":"",
+        "image":"componentialAnalysis_3.png",
+        "size": ,
+        "color": ,
+        "effectiveness": ,
+        "style": ,
+        "comment":
+   },
+
+    {
+        "methodName": "Dot Voting",
+        "parentID": 0,
+        "id": 22,
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"dotVoting_1.png",
+        "size": 2,
+        "color": 1,
+        "effectiveness": 3,
+        "style": 4,
+        "comment": "So, I think we need to make the canvas smaller on the keynote. The problem with all your designs is that they are too busy. I say that there should not be more than 3 of anything. 3 colors, 3 shapes, etc.. A crowd is technically “1” object. In your designs, you have a top row and bottom section. This should only be a single section. In this particular one, it looks like you could make the crowd bigger so that part of it overlaps the items that are being choosen. Also, the shape of the items should be the same. This thing is call dots so I’d use dots. I’d make a ballot of some so showing a bar chart maybe?",
+   },
+
+    {
+        "methodName": "Dot Voting",
+        "parentID": 22,
+        "id": 23,
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"dotVoting_2.png",
+        "size": 3,
+        "color": 5,
+        "effectiveness": 5,
+        "style": 5,
+        "comment": "Too much horizontal space used. Make more of a square aspect ratio.",
+   },
+
+
+    {
+        "methodName": "Dot Voting",
+        "parentID": 23,
+        "id": 24,
+        "designer": "Yipu Zheng",
+        "evaluator": "",
+        "date":"",
+        "image":"dotVoting_3.png",
+        "size": ,
+        "color": ,
+        "effectiveness": ,
+        "style": ,
+        "comment":
+       
+   },
+
+ {
+        "methodName": "Oral History",
+        "parentID": 0,
+        "id": 25,
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"oralHistory_1.png",
+        "size": 3,
+        "color": 2,
+        "effectiveness": 4,
+        "style": 4,
+        "comment": "Gray arrows are too faint. Too many colors.  Maybe a good prompt is describe what you see:  I see a crowd that has thoughts, which get transferred to a person and then gets transfered onto a paper. “ When I read this method, it makes me think of a campfire story where someone is telling a story.",
+
+   },
+
+    {
+        "methodName": "Oral History",
+        "parentID": 25,
+        "id": 26,
+        "designer": "Yipu Zheng",
+        "evaluator": "Cesar Torres",
+        "date":"",
+        "image":"oralHistory_2.png",
+        "size": 3,
+        "color": 2,
+        "effectiveness": 4,
+        "style": 4,
+        "comment": "Can you make the figure in the center have more contrast by making the other figures lighter. Also, there shouldn’t be figures behind the main speaker. Is there a better pencil. It’s too detailed for a small infographic.",
+    },
+
+        
+
+    {
+        "methodName": "Oral History",
+        "parentID": 26,
+        "id": 27,
+        "designer": "Yipu Zheng",
+        "evaluator": "",
+        "date":"",
+        "image":"oralHistory_3.png",
+        "size": ,
+        "color": ,
+        "effectiveness": ,
+        "style": ,
+        "comment":
+   },
+
+]
+
+
+
+
