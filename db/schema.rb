@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140618030506) do
-=======
-ActiveRecord::Schema.define(version: 20140613234513) do
->>>>>>> 2851d6f3b5e252fc6745a99d7862edeeb619ee90
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -50,8 +46,6 @@ ActiveRecord::Schema.define(version: 20140613234513) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
-<<<<<<< HEAD
-=======
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
     t.string   "bootsy_resource_type"
@@ -87,7 +81,6 @@ ActiveRecord::Schema.define(version: 20140613234513) do
     t.datetime "updated_at"
   end
 
->>>>>>> 2851d6f3b5e252fc6745a99d7862edeeb619ee90
   create_table "categorizations", force: true do |t|
     t.integer  "design_method_id"
     t.integer  "method_category_id"
@@ -110,11 +103,6 @@ ActiveRecord::Schema.define(version: 20140613234513) do
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
-=======
-  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
-
   create_table "companies", force: true do |t|
     t.string   "name",       default: ""
     t.string   "domain",     default: ""
@@ -132,7 +120,6 @@ ActiveRecord::Schema.define(version: 20140613234513) do
     t.datetime "updated_at"
   end
 
->>>>>>> 2851d6f3b5e252fc6745a99d7862edeeb619ee90
   create_table "design_methods", force: true do |t|
     t.string   "name",       null: false
     t.text     "overview",   null: false
@@ -187,8 +174,6 @@ ActiveRecord::Schema.define(version: 20140613234513) do
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
-=======
   create_table "resources", force: true do |t|
     t.string   "name",              default: ""
     t.boolean  "permission_to_use", default: false
@@ -198,7 +183,6 @@ ActiveRecord::Schema.define(version: 20140613234513) do
     t.datetime "updated_at"
   end
 
->>>>>>> 2851d6f3b5e252fc6745a99d7862edeeb619ee90
   create_table "user_methods", force: true do |t|
     t.integer  "user_id",          null: false
     t.integer  "design_method_id", null: false
