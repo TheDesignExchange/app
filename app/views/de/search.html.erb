@@ -1,108 +1,64 @@
+<script>
+$(function(){
+  $('.tab-pane[data-link ="'+ "all" +'"]').show().siblings(".tab-pane").hide();
+  $('#tabs li a').click(function(e){
+    e.preventDefault();
+    // Alternate tabs
+    $(this).parent()
+           .addClass('active')
+           .siblings()
+           .removeClass('active');
+    var link = $(this).data('link');
+
+    // $('.tab-pane[data-link ~="'+ link +'"]').hide();
+    $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
+  })
+});
+</script>
+
+<style>
+.padding{
+  padding-top: 15px;
+}
+</style>
+
+<!-- TOP BAR -->
 <div class = "row">
 	<div class="col-md-2">
-
 	</div>
-  	<div class="col-md-10 left-pad">
-  		<h1>Results for "..."</h1>
+  <div class="col-md-10 left-pad">
+  		<h3><%= params['q'].length != 0 ? "Results for '#{params['q']}'": "" %></h3>
+      <div id="tabs">
   		<ul class="nav nav-tabs">
-  			<li class="active"><a href="#">All</a></li>
-  			<li><a href="#">Methods</a></li>
-  			<li><a href="#">Case Studies</a></li>
-  			<li><a href="#">Discussions</a></li>
+  			<li class="active"><a data-link="all">All</a></li>
+  			<li><a data-link="dm">Methods</a></li>
+  			<li><a data-link="cs">Case Studies</a></li>
+  			<li><a data-link="disc">Discussions</a></li>
 		</ul>
+  </div>
   	</div>
 </div>
+
+<!-- CONTENT -->
 <div class = "row">
 	<div class="col-md-2">
-		<div class="bs-docs-sidebar hidden-print affix-top" role="complementary" style=" padding-left: 10px;">
-            <ul class="nav bs-docs-sidenav">
-				<li class="active"><h5>Brainstorming</h5></li>
-				<li class=""><h5>Researching</h5></li>
-				<li class=""><h5>Prototyping</a>
-  					<ul class="nav" style="padding-left: 20px;">
-    					<li class=""><h4>Purpose</h4></li>
-    						<div class="checkbox">
-    							<label>
-      								<input type="checkbox">Look and Feel
-    							</label>
-  							</div>
-  							<div class="checkbox">
-    							<label>
-      								<input type="checkbox">Technical Implementation
-    							</label>
-    						</div>
-    						<div class="checkbox">
-    							<label>
-      								<input type="checkbox">User Interaction
-    							</label>
-    						</div>
-  						<li class=""><h4>Product Type</h4></li>
-    						<div class="checkbox">
-    							<label>
-      								<input type="checkbox">Web
-    							</label>
-    						</div>
-    						<div class="checkbox">
-    							<label>
-      								<input type="checkbox">Mobile
-    							</label>
-    						</div>
-    						<div class="checkbox">
-    							<label>
-      								<input type="checkbox">Physical
-    							</label>
-    						</div>
-    						<div class="checkbox">
-    							<label>
-      								<input type="checkbox">Service
-    							</label>
-    						</div>
-  						<li class=""><h4>Fidelity</h4></li>
-    						<div class="checkbox">
-    							<label>
-      								<input type="checkbox">Low
-    							</label>
-  							</div>
-  							<div class="checkbox">
-    							<label>
-      								<input type="checkbox">Medium
-    							</label>
-    						</div>
-    						<div class="checkbox">
-    							<label>
-      								<input type="checkbox">High
-    							</label>
-    						</div>
-  						<li class=""><h4>Design Stage</h4></li>
-    						<div class="checkbox">
-    							<label>
-      								<input type="checkbox">Mockup
-    							</label>
-  							</div>
-  							<div class="checkbox">
-    							<label>
-      								<input type="checkbox">Detail Design
-    							</label>
-  							</div>
-  							<div class="checkbox">
-    							<label>
-      								<input type="checkbox">Production Build
-    							</label>
-  							</div>
- 					 </ul>
-				</li>
-				<li class=""><h5>Analysis & Synthesis</h5></li>
-				<li class=""><h5>User Testing</h5></li> 
-				<li class=""><h5>Communicating Progress</h5></li>             
-            </ul>
-        </div>
+		<%= render "sidebar" %>
 	</div>
-  	<div class="col-md-10 left-pad">
-  		
-      <% @design_methods.each do |method| %>
-  		<%= thumbnail ({:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg", :name => method.name.humanize, :tags => method.method_categories.map{|x| x.name}[0..2], :likes => (rand * 100).to_i, :description => method.overview, :id => method.id, :link => "/methods/view"}) %>
-      <% end %>
-
-  	</div>
+	<div data-link="all" class="tab-pane col-md-10 padding">
+    <% @results[:dm].each do |method| %>
+		<%= thumbnail ({:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg", :name => method.name.humanize, :tags => method.method_categories.map{|x| x.name}[0..2], :likes => (rand * 100).to_i, :description => method.overview, :id => method.id, :link => "/methods/view"}) %>
+    <% end %>
+	</div>
+  <div data-link="dm" class="tab-pane col-md-10 padding">
+    <% @results[:dm].each do |method| %>
+    <%= thumbnail ({:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg", :name => method.name.humanize, :tags => method.method_categories.map{|x| x.name}[0..2], :likes => (rand * 100).to_i, :description => method.overview, :id => method.id, :link => "/methods/view"}) %>
+    <% end %>
+  </div>
+  <div data-link="cs" class="tab-pane col-md-10 padding">
+      <% @results[:cs].each do |cs| %>
+    <%= thumbnail ({:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg", :name => cs.title, :tags => [], :likes => (rand * 100).to_i, :description => cs.description, :id => cs.id, :link => "/case_studies/view"}) %>
+    <% end %>
+  </div>
+  <div data-link="disc" class="tab-pane col-md-10 padding"></div>
 </div>
 

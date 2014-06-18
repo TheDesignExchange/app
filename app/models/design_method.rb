@@ -42,4 +42,11 @@ class DesignMethod < ActiveRecord::Base
   # CASE STUDY LINKING 
   has_many :method_case_studies
   has_many :case_studies, :through => :method_case_studies
+
+  def overview
+    if self[:overview] == "default"
+      self[:overview] = "No overview available"
+    end
+    self[:overview]
+  end
 end

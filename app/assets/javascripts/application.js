@@ -23,3 +23,21 @@ function DOM(){}
 DOM.tag = function(t){
 	return $("<"+ t +"/>");
 }
+
+function DE(){}
+DE.cache = {};
+DE.Autocomplete = {
+	  source: function( request, response ) {
+	    var term = request.term;
+	    if ( term in DE.cache ) {
+	      response( DE.cache[ term ] );
+	      return;
+	    }
+
+	    $.getJSON( "/collection/autocomplete_design_methods", request, function( data, status, xhr ) {
+	      DE.cache[ term ] = data;
+	      response( data );
+	    });
+	  },
+	  minLength: 1
+}

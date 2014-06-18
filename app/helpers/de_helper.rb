@@ -1,6 +1,5 @@
 module DeHelper
 	def thumbnail(obj)
-
 		str = "<div class='col-sm-6 col-md-3 left-top-padding'>
    			<div class='thumbnail search-item'>
   		   		<div class='caption'>
