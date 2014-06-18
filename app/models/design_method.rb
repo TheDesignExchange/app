@@ -43,10 +43,15 @@ class DesignMethod < ActiveRecord::Base
   has_many :method_case_studies
   has_many :case_studies, :through => :method_case_studies
 
+
+  # Method variations
+  has_many :method_variations, dependent: :destroy
+  has_many :variations, through: :method_variations
+  
   def overview
     if self[:overview] == "default"
       self[:overview] = "No overview available"
     end
     self[:overview]
   end
-end
+end 
