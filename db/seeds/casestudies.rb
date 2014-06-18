@@ -54,6 +54,7 @@ data.each do |raw|
 	raw.delete("authorName")
 	raw.delete("authorEmail")
 	raw.delete("authorOther")
+	# raw.delete("methods")
 	
 	raw.each{|k, v| raw[k] = v.strip }
 

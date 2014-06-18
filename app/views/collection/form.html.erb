@@ -227,26 +227,8 @@ textarea{
   $(function(){
     
     var cache = {};
-    $('#design_method_search').autocomplete({
-          source: function( request, response ) {
-            var term = request.term;
-            if ( term in cache ) {
-              response( cache[ term ] );
-              return;
-            }
-     
-            $.getJSON( "/collection/autocomplete_design_methods", request, function( data, status, xhr ) {
-              cache[ term ] = data;
-              response( data );
-            });
-          },
-          minLength: 1
-          // select: function( event, ui ) {
-          //   log( ui.item ?
-          //     "Selected: " + ui.item.value + " aka " + ui.item.id :
-          //     "Nothing selected, input was " + this.value );
-          // }
-    });
+    $('#design_method_search').autocomplete(DE.Autocomplete);
+    
     $('button.add-method').click(function(){
       val = $('#design_method_search').val();
       if(val == "") return;

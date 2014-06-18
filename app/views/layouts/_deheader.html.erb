@@ -6,10 +6,10 @@
   			<p class="subtitle">where designers and researchers share methods and best practices</p>
   			</br>
   			<p>Search</p>
-  			<form  role="search">
-          		<input type="text" class="form-search" placeholder="Search">
-        		<button type="submit" class="btn btn-default" onclick="window.location.href = '/de/search';">Submit</button>
-      		</form>
+  			<form  id="search" role="search">
+          	<input type="text" class="form-search" placeholder="Search">
+        		<button type="submit" class="btn btn-default" onclick="window.location.href = '/de/search?q='+ $('form input.form-search').val();">Submit</button>
+      	</form>
   		</div>
   		<div class="col-md-4"><p>Sign In</p>
   			<div class="input">
@@ -28,3 +28,10 @@
 	</div>
   </div>
 </div>
+<script type="text/javascript">
+$(function(){
+  var cache = {};
+
+  $("form#search input").autocomplete(DE.Autocomplete);
+});
+</script>
