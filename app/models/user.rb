@@ -28,17 +28,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def commented_methods
-    method_list = Array.new
-    comments = Comment.find_comments_by_user(self)
-    comments.each do |c|
-      method = Comment.find_commentable(c.commentable_type, c.commentable_id)
-      if method
-        method_list << method
-      end
-    end
-    return method_list
-  end
   has_many :owned_methods, dependent: :destroy, class_name: "DesignMethod", foreign_key: :owner_id
   has_many :method_favorites, dependent: :destroy
   has_many :favorite_methods, through: :method_favorites, :source => :design_method

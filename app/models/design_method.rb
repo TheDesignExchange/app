@@ -13,7 +13,6 @@
 #
 
 class DesignMethod < ActiveRecord::Base
-  acts_as_commentable
   validates :name, :overview, presence: true
   validates :name, length: { maximum: 255,
             too_long: "%{count} is the maximum character length."}

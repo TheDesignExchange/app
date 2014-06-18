@@ -11,7 +11,6 @@
 #
 
 class UserMethod < ActiveRecord::Base
-  after_create :default_type_owned
-
+  after_create :default_type_owned # TODO does this do anything?
 
 end

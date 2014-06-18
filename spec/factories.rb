@@ -26,7 +26,8 @@ FactoryGirl.define do
   end
 
   factory :comment do
-    body  { Faker::Lorem.sentence }
+    text  { Faker::Lorem.sentence }
     user
+    design_method
   end
 end
