@@ -17,6 +17,7 @@ class MethodsController < ApplicationController
     @method = dm
     @author = dm.owner
     @citations = dm.citations
+    render :layout => "custom"
   end
 
   def search

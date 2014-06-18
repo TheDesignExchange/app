@@ -105,6 +105,7 @@ img{
       left: 0px;
     }
 
+    /* LABEL TAG COLOR */
     .label-research{
       background-color: #d9534f;
     }
@@ -128,3 +129,4 @@ img{
     .label-brainstorming{
       background-color: #f0ad4e;
     }
+    /* END LABEL TAG COLOR */
