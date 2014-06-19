@@ -7,6 +7,7 @@ class DiscussionsController < ApplicationController
   end
 
   def view
+  	render layout: "wide"
   end
 
   def search

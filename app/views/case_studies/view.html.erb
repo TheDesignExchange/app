@@ -1,71 +1,103 @@
+<!-- CASE STUDY TITLE -->
 <div class = "row">
-	
-  <div class="col-md-3"></div>
-	<div class="col-md-9 left-pad">
-    <!-- <div class="col-md-6"> -->
+	<div class="col-md-9 col-md-offset-3 left-pad">
     <h3><b><%= @casestudy.title %></b></h3>
     <p>By <a><%= @author.email %></a></p>
-    <!-- </div> -->
-    <!-- <div class="col-md-6"> -->
-    <!-- </div> -->
 	</div>
-
 </div>
+<!-- END CASE STUDY TITLE -->
 
 <div class = "row row-margin">
   <!-- SIDEBAR -->
   <div id="sidebar" class="col-md-3">
-		<div class = "row row-margin">
-			<h3>What You'll Need</h3>
-		</div>
 		<div class="row row-margin">
-			<h4>People</h4>
+      <!-- ORIGINAL CASE STUDY -->
+			<h4>Case Study</h4>
 			<p>
-				<span class="glyphicon glyphicon-user"></span>
-				1 designer
-			</p>
-			<p>
-				<span class="glyphicon glyphicon-user"></span>
-				0 users
+				<span class="glyphicon glyphicon-list-alt"></span>
+				<a src="#">Original Case Study</a>
 			</p>
 		</div>
+    <!-- END ORIGINAL CASE STUDY -->
 
-  		<div class="row row-margin">
-			<h4>Tools</h4>
+    <!-- PROJECT CHARACTERISTICS -->
+  	<div class="row row-margin">
+			<h4>Project Characteristics</h4>
 			<p>
-				<span class="glyphicon glyphicon-pencil"></span>
-				Pen, Paper, Wireframe tool
+			 	<span class="glyphicon glyphicon-pencil"></span>
+			 	Development Cycle: Pull db
 			</p>
+      <p>
+        <span class="glyphicon glyphicon-pencil"></span>
+        Design Phase: Pull db
+      </p>
+      <p>
+        <span class="glyphicon glyphicon-pencil"></span>
+        Privacy Level: Pull db
+      </p>
+      <p>
+        <span class="glyphicon glyphicon-pencil"></span>
+        Social Setting: Pull db
+      </p>
+      <p>
+        <span class="glyphicon glyphicon-ok"></span>
+        Customer Is User
+      </p>
+      <p>
+        <span class="glyphicon glyphicon-remove"></span>
+        Remote Project
+      </p>
 		</div>
+    <!-- END PROJECT CHARACTERISTICS -->
 
-  		<div class="row row-margin">
+    <!-- PROJECT DETAILS -->
+    <div class="row row-margin">
+      <h4>Project Details</h4>
+      <p>
+        <span class="glyphicon glyphicon-pencil"></span>
+        Project Domain: Pull db
+      </p>
+      <p>
+        <span class="glyphicon glyphicon-pencil"></span>
+        Customer Type: Pull db
+      </p>
+    </div>
+    <!-- END PROJECT CHARACTERISTICS -->
+
+    <!-- TIME -->
+  	<div class="row row-margin">
 			<h4>Time</h4>
 			<p>
 				<span class="glyphicon glyphicon-time"></span>
 				~ 1 hour
 			</p>
-  		</div>
+  	</div>
+    <!-- END TIME -->
 
-  		<div class="row row-margin">
+    <!-- METHODS TAGS -->
+  	<div class="row row-margin">
 			<div class="panel panel-primary">
       			<div class="panel-heading">
-        			Tags
+        		  Methods	
       			</div>
       			<div class="panel-body">
+              <!-- POSSIBLE DO WHILE FOR METHODS -->
         			<span class="label label-brainstorming">brainstorming 
         			</span> 
         			<span class="label label-research">research 
         			</span>
+              <!-- END POSSIBLE DO WHILE FOR METHODS -->
       			</div>
     		</div>
   		</div>
+      <!-- METHODS TAGS -->
 	</div>
-
   <!-- END SIDBAR -->
 
 
   <!-- MAIN VIEW  -->
   	<div class="col-md-9 add-padding">
+      
       <!-- MENU BAR -->
   		<div class="row">
   			<div class="col-md-3">
@@ -102,13 +134,54 @@
   			</div>
   		</div>
       <!-- END MENU BAR -->
-      <!-- CONTENT -->
-  		<div class="row">
-  			<!-- <img src="#" style="width: 100%; height: 385px;"></img> -->
 
-		<h2> Description </h2>
-		<p><%= @casestudy.description %></p>
+      <!-- CONTENT -->
+
+      <!-- DESCRIPTION -->
+  		<div class="row">
+        <h2> Description </h2>
+		    <p><%= @casestudy.description %></p>
       </div>
+      <!-- END DESCRIPTION -->
+
+      <!-- RELATED METHODS AND CASE STUDIES -->
+      <div class="row">
+        <h4>Related Case Studies</h4>
+          <!-- START POSSIBLE DO WHILE METHODS -->
+          <div class="row">
+            <div class="col-sm-6 col-md-4 left-top-padding">
+              <div class="thumbnail search-item">
+                  <div class="caption">
+                    <h5><a href="/methods/view?n=2">Title</a></h5>
+                    <p><span class="glyphicon glyphicon-star"></span> 13 Likes</p>
+                    <p class="truncate-multiline">This format for brainstorming compresses the  essentials of an ideation session into one short format. The numbers 3-12-3   refer to the amount of time in minutes given to each of three activities: 3   minutes for generating a pool of </span>
+                    <span class="label label-gap label-ideating">Ideating</span>
+                    <span class="label label-gap label-method">Method</span></p>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <!-- END START POSSIBLE DO WHILE METHODS -->
+          <h4>Related Methods</h4>
+          <!-- START POSSIBLE DO WHILE METHODS -->
+          <div class="row">
+            <div class="col-sm-6 col-md-4 left-top-padding">
+              <div class="thumbnail search-item">
+                  <div class="caption">
+                    <h5><a href="/methods/view?n=2">Title</a></h5>
+                    <p><span class="glyphicon glyphicon-star"></span> 13 Likes</p>
+                    <p class="truncate-multiline">This format for brainstorming compresses the  essentials of an ideation session into one short format. The numbers 3-12-3   refer to the amount of time in minutes given to each of three activities: 3   minutes for generating a pool of </span>
+                    <span class="label label-gap label-ideating">Ideating</span>
+                    <span class="label label-gap label-method">Method</span></p>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <!-- END START POSSIBLE DO WHILE METHODS -->
+      </div>
+      <!-- END RELATED METHODS AND CASE STUDIES -->
+
+
       <!-- END CONTENT -->
   	</div>
 

@@ -19,6 +19,13 @@
 //= require expander
 //= require_tree .
 
+
+// Fixing textarea bug
+$(function(){
+		$('textarea').unbind();
+})
+
+
 function DOM(){}
 DOM.tag = function(t){
 	return $("<"+ t +"/>");
