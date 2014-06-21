@@ -12,7 +12,7 @@
 #  updated_at :datetime
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe DesignMethod do
   let(:user) { FactoryGirl.create(:user) }
@@ -63,7 +63,7 @@ describe DesignMethod do
 
   it "when user favorites method" do
     user.favorite(design_method)
-    design_method.favorited_users.should include user
+    expect(design_method.favorited_users).to include user
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618140740) do
+ActiveRecord::Schema.define(version: 20140618030506) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 20140618140740) do
   create_table "case_studies", force: true do |t|
     t.string   "mainImage",         default: ""
     t.string   "title",             default: ""
-    t.string   "methods",           default: ""
     t.string   "url",               default: ""
     t.string   "timePeriod",        default: ""
     t.integer  "development_cycle"
@@ -99,6 +98,12 @@ ActiveRecord::Schema.define(version: 20140618140740) do
   end
 
   create_table "comments", force: true do |t|
+    t.text     "text"
+    t.integer  "user_id"
+    t.integer  "design_method_id"
+    t.integer  "parent_id"
+    t.integer  "display_order"
+    t.integer  "indent"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -126,6 +131,7 @@ ActiveRecord::Schema.define(version: 20140618140740) do
     t.text     "process",    null: false
     t.text     "principle",  null: false
     t.integer  "owner_id",   null: false
+    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -170,13 +176,6 @@ ActiveRecord::Schema.define(version: 20140618140740) do
   create_table "method_favorites", force: true do |t|
     t.integer  "user_id"
     t.integer  "design_method_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "method_variations", force: true do |t|
-    t.integer  "design_method_id", null: false
-    t.integer  "variation_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

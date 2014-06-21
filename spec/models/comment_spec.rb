@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Comment do
   let(:user) { FactoryGirl.create(:user) }
@@ -24,7 +24,7 @@ describe Comment do
     end
 
     it "should have the reply in its replies" do
-      comment.replies.should contain(reply)
+      expect(comment.replies).to include reply
     end
   end
 end

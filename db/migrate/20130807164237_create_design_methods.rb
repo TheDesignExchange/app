@@ -7,6 +7,7 @@ class CreateDesignMethods < ActiveRecord::Migration
       t.text :principle, null: false
 
       t.integer :owner_id, null: false
+      t.integer :parent_id
 
       t.timestamps
     end

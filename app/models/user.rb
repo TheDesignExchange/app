@@ -31,4 +31,5 @@ class User < ActiveRecord::Base
   has_many :owned_methods, dependent: :destroy, class_name: "DesignMethod", foreign_key: :owner_id
   has_many :method_favorites, dependent: :destroy
   has_many :favorite_methods, through: :method_favorites, :source => :design_method
+  has_many :comments, dependent: :destroy
 end

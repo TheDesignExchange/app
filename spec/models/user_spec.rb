@@ -17,7 +17,7 @@
 #  updated_at             :datetime
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe User do
   let(:user) {FactoryGirl.create(:user)}
@@ -30,7 +30,6 @@ describe User do
   it { should respond_to(:favorite_methods) }
   it { should respond_to(:owned_methods) }
 
-  it { should respond_to(:commented_methods) }
   it { should respond_to(:favorite) }
 
   it { should be_valid }
