@@ -31,6 +31,18 @@ FactoryGirl.define do
     design_method
   end
 
+  factory :discussion do
+    title  { Faker::Lorem.sentence }
+    description  { Faker::Lorem.sentence }
+    user
+  end
+
+  factory :discussion_reply do
+    text { Faker::Lorem.paragraph }
+    user
+    discussion
+  end
+
   factory :method_favorite do
     user
     design_method
