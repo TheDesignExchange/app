@@ -18,7 +18,7 @@
   		      <h5 class='truncate'><%= link_to method.name.humanize, "/methods/view?n=#{method.id}" %></h5>
   		      <p><span class="glyphicon glyphicon-star"></span> 392 Likes</p>
   		      <p class='truncate-multiline'><%= method.overview %></p>
-  		      <p><span class="label label-user-testing">user testing</span></p>
+  		      <p><span class="tag-label">user testing</span></p>
   		    </div>
   		  </div>
   		</div>
@@ -47,7 +47,7 @@
   		       <h5 class='truncate'><%= link_to cs.title, "/case_studies/view?n=#{cs.id}" %></h5>
   		      <p><span class="glyphicon glyphicon-star"></span> <%= (rand * 100).to_i%> Likes</p>
   		      <p class='truncate-multiline'><%= cs.description %></p>
-  		      <p><span class="label label-user-testing">user testing</span></p>
+  		      <p><span class="tag-label">user testing</span></p>
   		    </div>
   		  </div>
   		</div>

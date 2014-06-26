@@ -1,2 +1,71 @@
-<h1>Set#home</h1>
-<p>Find me in app/views/set/home.html.erb</p>
+<!-- BODY -->
+<div class="row">
+
+	<!-- NAVBAR -->
+	<div class="col-md-10 col-md-offset-2">
+		<h3></h3>
+		<ul class="nav nav-tabs nav-bar-margin">
+  			<li class="active"><a href="#">All</a></li>
+  			<li><a href="#">Methods</a></li>
+  			<li><a href="#">Case Studies</a></li>
+  			<li><a href="#">Discussions</a></li>
+		</ul>
+	</div>
+	<!-- END NAVBAR -->
+
+	<!-- LEFT COLUMN -->
+	<div class="col-md-2" style=" padding-left: 25px;">
+		<!-- BUTTON BECOME A FORM WHEN PRESSED -->
+		<!-- ADD NEW SET -->
+        <button type="button" class="btn btn-default">
+           	Add Set
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+        <!-- END ADD NEW SET -->
+
+		<!-- SETS -->
+		<div class="bs-docs-sidebar hidden-print affix-top" role="complementary" >
+  			<ul class="nav bs-docs-sidenav">
+  				<!-- POSSIBLE DO WHILE TO POPULATE SETS -->
+				<li class="active"><h5>Example of Set</h5></li>
+				<!-- END POSSIBLE DO WHILE TO POPULATE SETS -->
+  			</ul>
+		</div>
+		<!-- END SETS -->		
+	</div>
+	<!-- END OF LEFT COLUMN -->
+
+	<!-- CONTENT -->
+	<div class="col-md-10 padding">
+		<div class="col-md-12">
+			<div class="btn-group">
+        	    <button type="button" class="btn-fixed btn btn-default dropdown-toggle" data-toggle="dropdown">
+        	    	Select
+        	    	<span class="caret"></span>
+        	    </button>
+        	    <ul class="dropdown-menu" role="menu">
+        	      <li data-index="0" data-name="Problem Assessment"><a>Select All</a></li> 
+        	      <li data-index="1" data-name="Conceptual Design"><a>Deselect All</a></li> 
+        	    </ul>
+        	</div>
+    	</div>
+
+		<!-- POSSIBLE DO WHILE TO POPULATE THUMBNAILS -->
+			<div class="col-sm-6 col-md-3">
+   				<div class="thumbnail search-item">
+  		   			<div class="caption">
+  		     			<h5><a href="/methods/view?n=1">2x2</a></h5><p><span class="glyphicon glyphicon-star"></span> 72 Likes</p>
+  		     			<p class="truncate-multiline"> No overview available</p><p><span class="label label-gap label-matrix">Matrix</span><span class="label label-gap label-method">Method</span><span class="label label-gap label-framing">Framing</span></p></div>
+  	  			</div>
+  			</div>
+		<!-- ENF POSSIBLE DO WHILE TO POPULATE THUMBNAILS -->
+	</div>
+	<!-- END CONTENT -->
+</div>
+<!-- END BODY -->
+
+
+
+
+
+

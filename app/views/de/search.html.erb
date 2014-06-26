@@ -46,17 +46,17 @@ $(function(){
 	</div>
 	<div data-link="all" class="tab-pane col-md-10 padding">
     <% @results[:dm].each do |method| %>
-		<%= thumbnail ({:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg", :name => method.name.humanize, :tags => method.method_categories.map{|x| x.name}[0..2], :likes => (rand * 100).to_i, :description => method.overview, :id => method.id, :link => "/methods/view"}) %>
+      <%= thumbnail (method)%>
     <% end %>
 	</div>
   <div data-link="dm" class="tab-pane col-md-10 padding">
     <% @results[:dm].each do |method| %>
-    <%= thumbnail ({:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg", :name => method.name.humanize, :tags => method.method_categories.map{|x| x.name}[0..2], :likes => (rand * 100).to_i, :description => method.overview, :id => method.id, :link => "/methods/view"}) %>
+      <%= thumbnail (method)%>
     <% end %>
   </div>
   <div data-link="cs" class="tab-pane col-md-10 padding">
-      <% @results[:cs].each do |cs| %>
-    <%= thumbnail ({:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg", :name => cs.title, :tags => [], :likes => (rand * 100).to_i, :description => cs.description, :id => cs.id, :link => "/case_studies/view"}) %>
+    <% @results[:cs].each do |cs| %>
+      <%= thumbnail (cs) %>
     <% end %>
   </div>
   <div data-link="disc" class="tab-pane col-md-10 padding"></div>

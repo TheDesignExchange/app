@@ -1,4 +1,35 @@
-<h1>Discussions#create_edit</h1>
-<%= link_to "Home", "/de/index" %>
-<%= link_to "Add", "/discussions/home" %>
-<img src="https://designexchange.mybalsamiq.com/projects/de/Discussion%20-%20Create.jpeg?version=14&etag=uhOi2xEL8TJLCyOIYOrq83qAglGBmnSQ"/>
+<div class="row">
+	<!-- HEADER -->
+	<h3>Start Discussion</h3>
+	<!-- END HEADER -->
+
+	<!-- TITLE INPUT -->
+	<div class="input-group-lg" style="margin-top: 10px;margin-bottom: 10px;">
+  		<input type="text" class="form-control" placeholder="Discussion Title">
+	</div>
+	<!-- END TITLE INPUT -->
+
+	<!-- CONTENT -->
+	<textarea class="form-control noscroll" rows="10" placeholder="Content"></textarea>
+	<!-- END CONTENT -->
+
+	<!-- ADD TAGS -->
+	<br>
+
+	<div class="panel panel-primary">
+      	<div class="panel-heading">
+        	<input type="text" class="form-control" placeholder="Tag">
+      	</div>
+      	<div class="panel-body">
+        	<span class="label label-brainstorming">brainstorming 
+        		<span class="glyphicon glyphicon-remove-circle">
+        		</span>
+        	</span> 
+        	<span class="label label-research">research 
+        		<span class="glyphicon glyphicon-remove-circle"></span>
+        	</span>
+      	</div>
+  	</div>
+  	<!-- END ADD TAGS -->
+  	<button type="submit" class="btn publish-background-color btn-default pull-right">Start Discussion</button>
+<div>

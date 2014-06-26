@@ -25,7 +25,8 @@ DesignExchange::Application.routes.draw do
   get "discussions/search"
 
   get "account/profile_user"
-  get "account/settings"
+  get "account/profile_user_edit"
+  get "account/account_information"
   get "account/login"
   get "account/register"
 

@@ -1,14 +1,33 @@
-<div class="jumbotron">
-  <div class="container">
-  	<button type="submit" class="btn btn-default pull-right">Publish</button>
-  	<button type="submit" class="btn btn-default pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Save as Draft</button>
-  	<span class="pull-right">Auto-saved as draft 2 minutes ago</span>
-  </div>
+<script> 
+  $(function(){
+    var pH = $('#publish-btn').parent().height()
+    var eH = $('#publish-btn').height()
+    $('#publish-btn').css('margin-top', (pH - eH)/2)
+
+    //pH = $('#save-btn').parent().height()
+    eH = $('#save-btn').height()
+    $('#save-btn').css('margin-top', (pH - eH)/2)
+
+    pH = $('#auto-saved-text').parent().height()
+    eH = $('#auto-saved-text').height()
+    $('#auto-saved-text').css('margin-top', (pH - eH)/2)
+  });
+</script>
+
+<div class="row">
+  <button id="publish-btn" type="submit" class="btn btn-default publish-background-color pull-right">Publish</button>
+  <button id="save-btn" type="submit" class="btn btn-default pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Save as Draft</button>
+  <span id="auto-saved-text"class="pull-right">Auto-saved as draft 2 minutes ago</span>
 </div>
 
-<div class = "row row-margin">
-	<div class="col-md-2">
-		<div class="row row-margin">
+<!-- BODY -->
+<div class = "row">
+
+  <!-- LEFT CONTENT -->
+	<div class="col-md-4">
+
+    <!-- PEOPLE -->
+		<div class="row">
 			<h4>People</h4>
 			<div class="input-group">
   				<span class="input-group-addon">
@@ -24,8 +43,10 @@
   				<input type="text" class="form-control" placeholder="# of users">
 			</div>
 		</div>
+    <!-- END PEOPLE -->
 
-  		<div class="row row-margin">
+    <!-- TOOLS -->
+  	<div class="row">
 			<h4>Tools</h4>
 			<div class="input-group">
   				<span class="input-group-addon">
@@ -34,18 +55,22 @@
   				<input type="text" class="form-control" placeholder="Ex. paper, pen">
 			</div>
 		</div>
+    <!-- END TOOLS -->
 
-  		<div class="row row-margin">
+    <!-- TIME -->
+  	<div class="row">
 			<h4>Time</h4>
 			<div class="input-group">
   				<span class="input-group-addon">
   					<span class="glyphicon glyphicon-time" ></span>
   				</span>
-  				<input type="text" class="form-control" placeholder="Ex. paper, pen">
+  				<input type="text" class="form-control" placeholder="Ex. 1 hr">
 			</div>
-  		</div>
+  	</div>
+    <!-- END TIME -->
 
-  		<div class="row row-margin">
+    <!-- TAGS -->
+  	<div class="row">
 			<h4>Tags</h4>
 			<div class="panel panel-primary">
       			<div class="panel-heading">
@@ -63,16 +88,84 @@
     		</div>
   		</div>
 	</div>
-  	<div class="col-md-10 left-pad">
-  		<div class="input-group-lg">
-  			<input type="text" class="form-control" placeholder="Method Name">
-		</div>
-		<div style="border-style: dashed; border-radius: 10px; position: relative;">
-			<h1><span class="glyphicon glyphicon-plus" style="position:absolute; z-index: 100; pointer-events: none;"></span></h1>
-			<h3 style="position:absolute; z-index: 100; pointer-events: none;">Add Image/Video</h3>
-			<input type="file" id="exampleInputFile" style="opacity:0; height: 100%; width: 100%;">
-		</div>
-</div>
+  <!-- END OF TAGS -->
+  <!-- END LEFT CONTENT -->
 
-  	</div>
+  <!-- RIGHT CONTENT -->
+  <div class="col-md-8">
+      <!-- INPUT METHOD NAME -->
+  		<div class="input-group-lg" style="margin-top: 10px;margin-bottom: 10px;">
+  			<input type="text" class="form-control" placeholder="Method Name">
+		  </div>
+      <!-- END INPUT METHOD NAME -->
+
+      <!-- IMAGES -->
+      <div class="row">
+        <div class="col-xs-6 col-md-4">
+          <a href="#" class="thumbnail" style="height: 145px;">
+            <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+          </a>
+        </div>
+
+        <div class="col-xs-6 col-md-4">
+          <a href="#" class="thumbnail" style="height: 145px;">
+            <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+          </a>
+        </div>
+
+        <div class="col-xs-6 col-md-4">
+          <a href="#" class="thumbnail" style="height: 145px;">
+            <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+          </a>
+        </div>
+
+        <div class="col-xs-6 col-md-4">
+          <a href="#" class="thumbnail" style="height: 145px;">
+            <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+          </a>
+        </div>
+
+        <div class="col-xs-6 col-md-4">
+          <a href="#" class="thumbnail" style="height: 145px;">
+            <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+          </a>
+        </div>
+
+        <div class="col-xs-6 col-md-4">
+          <a href="#" class="thumbnail" style="height: 145px;">
+            <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+          </a>
+        </div>
+      </div>
+      <!-- END IMAGES -->
+
+      <!-- FORMS -->
+      <h3>Summary</h3>
+        <textarea class="form-control" rows="3"></textarea>
+      <h3>Benefits</h3>
+        <textarea class="form-control" rows="3"></textarea>
+      <h3>Process</h3>
+        <textarea class="form-control" rows="3"></textarea>
+
+      <h3>Citations</h3>
+
+        <div class="col-md-11">
+          <p>Example of Cit.</p>
+        </div>
+        <div class="col-md-1">
+          <a><span class="glyphicon glyphicon-minus"></span></a>
+        </div>
+
+        <div class="col-md-11">
+          <input type="text" class="form-control" placeholder="Tag">
+        </div>
+        <div class="col-md-1">
+          <a><span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+
+      <!-- END FORMS -->
 </div>
+<!-- END RIGHT CONTENT -->
+
+</div>
+<!-- END BODY -->
