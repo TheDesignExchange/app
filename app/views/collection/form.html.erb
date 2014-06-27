@@ -1,4 +1,3 @@
-
 <script> 
 // find the element $("form input");
 // FOR ALL THE INPUTS, GET THE VALUES $(input1).val()
@@ -100,9 +99,7 @@ textarea{
 
               <% elsif metadata.type == :boolean %>   
               <div class="form-group grid_12">
-                <label class="radio-inline">
-                  <input data-name= "<%= name %>" value="option1" type="radio"> <%= name.underscore.humanize %>
-                </label>
+                  <input data-name= "<%= name %>" value="option1" type="checkbox"> <%= name.underscore.humanize %>
               </div>
               <% elsif metadata.type == :text %>   
               <div class="form-group grid_12">
@@ -124,14 +121,7 @@ textarea{
                    <td><label for="<%= name %>"><%= name.underscore.humanize %>
                     <span class='glyphicon glyphicon-question-sign'></span>
                     </label></td>
-                        <!-- 
-                        <% if @helper_text.has_key?(name.to_sym) %>
-                         <ul class="help-block"> 
-                          <% @helper_text[name.to_sym].each_with_index do |help_text_option, i| %>
-                            <li data-index="<%=i%>"><%= help_text_option.html_safe %></li>
-                          <% end %>
-                        </ul>
-                        <% end %> -->
+        
                   <td>
                         <div class="btn-group">
                         <button type="button" class="btn-fixed btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -145,9 +135,8 @@ textarea{
                         </ul>
                         </div>
                   </td>
-                  <td><%= @cs[name] %></td>
               </tr>
-              <tr class='info'><td colspan="3">djflksdajflkj</td></tr>
+              <!-- <tr class='info'><td colspan="3">djflksdajflkj</td></tr> -->
           <% end %>
         </table>
       </div>

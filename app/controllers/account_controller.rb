@@ -1,8 +1,14 @@
 class AccountController < ApplicationController
   def profile_user
+    render layout: "wide"
   end
 
-  def settings
+  def profile_user_edit
+    render layout: "wide"
+  end
+
+  def account_information
+    render layout: "custom"
   end
 
   def login

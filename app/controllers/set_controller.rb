@@ -1,7 +1,5 @@
 class SetController < ApplicationController
   def home
-  end
-
-  def create
+  	render :layout => "wide"
   end
 end
