@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623201336) do
+ActiveRecord::Schema.define(version: 20140618030506) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -98,6 +98,12 @@ ActiveRecord::Schema.define(version: 20140623201336) do
   end
 
   create_table "comments", force: true do |t|
+    t.text     "text"
+    t.integer  "user_id"
+    t.integer  "design_method_id"
+    t.integer  "parent_id"
+    t.integer  "display_order"
+    t.integer  "indent"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -125,33 +131,10 @@ ActiveRecord::Schema.define(version: 20140623201336) do
     t.text     "process",    null: false
     t.text     "principle",  null: false
     t.integer  "owner_id",   null: false
+    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "discussion_replies", force: true do |t|
-    t.text     "text"
-    t.integer  "user_id"
-    t.integer  "discussion_id"
-    t.integer  "discussion_reply_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "discussion_replies", ["discussion_id"], name: "index_discussion_replies_on_discussion_id"
-  add_index "discussion_replies", ["discussion_reply_id"], name: "index_discussion_replies_on_discussion_reply_id"
-  add_index "discussion_replies", ["user_id"], name: "index_discussion_replies_on_user_id"
-
-  create_table "discussions", force: true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "user_id",     null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "discussions", ["title"], name: "index_discussions_on_title"
-  add_index "discussions", ["user_id"], name: "index_discussions_on_user_id"
 
   create_table "mc_relations", force: true do |t|
     t.integer  "parent_id"

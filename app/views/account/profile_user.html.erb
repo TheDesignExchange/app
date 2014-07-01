@@ -12,6 +12,7 @@
 		<!-- IN EDIT IS A FORM | IN VIEW MODE IS A TEXT -->
 		<div class="col-md-12" style="text-align: center;">
 			<h4>Name of person</h4>
+			<h5><a>username</a></h5>
 		</div>
 
 		<!-- IN EDIT MODE IS AN UPLOAD IMAGE | IN VIEW MODE IS AN IMAGE -->
@@ -50,16 +51,11 @@
 
 		<!-- IN EDIT MODE YOU NEED TO ADD | IN VIEW MODE IS JUST A PANEL  -->
 		<div class="col-md-12">
-			<div class="panel panel-primary">
-      			<div class="panel-heading">
-        			Expertise
-      			</div>
-      			<div class="panel-body">
-        			<span class="label label-brainstorming">brainstorming</span>
-        			</span> 
-        			<span class="label label-research">research</span>
-      			</div>
-    		</div>
+			<h4>Expertise</h4>
+    			<p>
+      				<span class="tag-label label-gap">brainstorming</span>
+      				<span class="tag-label label-gap">research</span>
+   	 			</p>
     	</div>
 
     	<!-- IN EDIT MODE YOU NEED TO ADD | IN VIEW MODE IS JUST A PANEL  -->
@@ -94,7 +90,7 @@
 	<!-- POSTED BY -->
 	<div class="col-md-9">
 		<h4>Posted by Name 
-			<button type="submit" class="btn btn-default pull-right">
+			<button type="submit" class="btn btn-default pull-right" onclick="window.location.href = '/account/profile_user_edit';">
 				Edit
 			</button>
 		</h4>

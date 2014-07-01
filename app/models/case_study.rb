@@ -6,9 +6,9 @@ class CaseStudy < ActiveRecord::Base
     # METHOD LINKING 
     has_many :method_case_studies
     has_many :design_methods, :through => :method_case_studies
-	validates :development_cycle,
-    :inclusion  => { :in => ["Product Update", "Product Refinement", "New Product", "Other"],
-    :message    => "%{value} is not a development cycle" }
+	# validates :development_cycle,
+ #    :inclusion  => { :in => ["Product Update", "Product Refinement", "New Product", "Other"],
+ #    :message    => "%{value} is not a development cycle" }
 
     def self.options
     	return {:development_cycle => ["Product Update", "Product Refinement", "New Product", "Other"],
