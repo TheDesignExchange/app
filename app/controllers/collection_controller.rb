@@ -17,6 +17,7 @@ layout "custom"
       mname= params["m"].strip().gsub(' ', '_');
       csid = params["cs"];
       m = DesignMethod.where('name like  ?', "#{mname}%").first
+      # render :json => m
       mid = m.id
       r = MethodCaseStudy.where("case_study_id = ? and design_method_id = ?", csid, mid).first()
       r.destroy

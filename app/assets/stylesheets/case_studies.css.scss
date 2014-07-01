@@ -1,3 +1,16 @@
 // Place all the styles related to the case_studies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$gray: #888;
+
+/* COLOR SCHEME */
+.panel-gray{
+  border-color: $gray;
+}
+
+.panel-gray>.panel-heading {
+  color: #fff;
+  background-color: $gray;
+  border-color: $gray;
+}

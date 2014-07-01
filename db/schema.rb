@@ -98,6 +98,12 @@ ActiveRecord::Schema.define(version: 20140623201336) do
   end
 
   create_table "comments", force: true do |t|
+    t.text     "text"
+    t.integer  "user_id"
+    t.integer  "design_method_id"
+    t.integer  "parent_id"
+    t.integer  "display_order"
+    t.integer  "indent"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -125,6 +131,7 @@ ActiveRecord::Schema.define(version: 20140623201336) do
     t.text     "process",    null: false
     t.text     "principle",  null: false
     t.integer  "owner_id",   null: false
+    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

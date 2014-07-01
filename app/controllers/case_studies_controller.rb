@@ -18,6 +18,20 @@ class CaseStudiesController < ApplicationController
 
     render :layout => "custom"
   end
+  def edit
+    id = params["n"] == nil ? 1 : params["n"].to_i
+    # render :text => id
+    @cs = CaseStudy.where("id=?", id).first;
+
+    @attr = CaseStudy.columns_hash;
+    @company = @cs.company
+    @contacts = @company.contacts()
+    @methods = @cs.design_methods().reverse;
+    @options = CaseStudy.options()
+    @helper_text = CaseStudy.helper_text()
+
+    render :layout => "custom"
+  end
 
   def view
     id = params['n'].to_i

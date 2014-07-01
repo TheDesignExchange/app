@@ -4,7 +4,9 @@
 <head>
   <title>CustomDesignExchange</title>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag params[:controller] %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag params[:controller] %>
   <%= csrf_meta_tags %>
   <script> 
 

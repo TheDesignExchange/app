@@ -1,6 +1,7 @@
 class DeController < ApplicationController
 
   def index
+    @user_sign_in = false
   	@design_methods = DesignMethod.where("overview != ?", "default" ).take(3)
   	@case_studies = CaseStudy.take(3)
   	# render :json => hm

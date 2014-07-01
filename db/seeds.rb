@@ -52,51 +52,51 @@ p only_methods
 method_categories = all_objects - only_methods
 p method_categories
 
-# Instantiating method categories
-method_categories.each do |cat|
-  method_category = MethodCategory.new(name: cat)
-  if method_category.save
-    p "Added method category: #{method_category.name}"
-  else
-    p "Error while creating a method category: "
-    method_category.errors.full_messages.each do |message|
-      p "\t#{message}"
-    end
-  end
-end
+# # Instantiating method categories
+# method_categories.each do |cat|
+#   method_category = MethodCategory.new(name: cat)
+#   if method_category.save
+#     p "Added method category: #{method_category.name}"
+#   else
+#     p "Error while creating a method category: "
+#     method_category.errors.full_messages.each do |message|
+#       p "\t#{message}"
+#     end
+#   end
+# end
 
-method_categories.each do |cat|
-  # Load in children of method category
-  method_category = MethodCategory.where(name: cat).first
-  children = SPARQL.parse("#{root_prefix} SELECT ?child { ?child <#{RDF::RDFS.subClassOf}> :#{cat} }")
-  data.query(children).each do |results|
-    child_name = results.child.to_s.split('#')[1]
-    if method_category.add_child(MethodCategory.where(name: child_name).first)
-      p "Added child of #{cat}: #{child_name}"
-    end
-  end
-end
+# method_categories.each do |cat|
+#   # Load in children of method category
+#   method_category = MethodCategory.where(name: cat).first
+#   children = SPARQL.parse("#{root_prefix} SELECT ?child { ?child <#{RDF::RDFS.subClassOf}> :#{cat} }")
+#   data.query(children).each do |results|
+#     child_name = results.child.to_s.split('#')[1]
+#     if method_category.add_child(MethodCategory.where(name: child_name).first)
+#       p "Added child of #{cat}: #{child_name}"
+#     end
+#   end
+# end
 
-def remove_unwanted(method)
-  method.children.each do |child|
-    name = child.name
-    child.destroy
-    p "    Removed #{name}"
-  end
-  m_name = method.name
-  method.destroy
-  p "    Removed #{m_name}"
-end
+# def remove_unwanted(method)
+#   method.children.each do |child|
+#     name = child.name
+#     child.destroy
+#     p "    Removed #{name}"
+#   end
+#   m_name = method.name
+#   method.destroy
+#   p "    Removed #{m_name}"
+# end
 
-# Remove any of the classes that don't fall under the Method umbrella. If property paths gets added to the SPARQL gem then this won't be necessary
-to_delete = MethodCategory.where(name: "Person").first
-remove_unwanted(to_delete)
-to_delete = MethodCategory.where(name: "Method_Characteristics").first
-remove_unwanted(to_delete)
-to_delete = MethodCategory.where(name: "Processes").first
-remove_unwanted(to_delete)
-to_delete = MethodCategory.where(name: "Skills").first
-remove_unwanted(to_delete)
+# # Remove any of the classes that don't fall under the Method umbrella. If property paths gets added to the SPARQL gem then this won't be necessary
+# to_delete = MethodCategory.where(name: "Person").first
+# remove_unwanted(to_delete)
+# to_delete = MethodCategory.where(name: "Method_Characteristics").first
+# remove_unwanted(to_delete)
+# to_delete = MethodCategory.where(name: "Processes").first
+# remove_unwanted(to_delete)
+# to_delete = MethodCategory.where(name: "Skills").first
+# remove_unwanted(to_delete)
 
 
 # Instantiating design methods; currently filling in contents w/ "default" so that things can get loaded.
@@ -137,34 +137,34 @@ only_methods.each do |method|
     p "Added design method: #{design_method.name}"
   end
 
-  # Read in categories
-  categories = SPARQL.parse("#{root_prefix} SELECT ?obj { :#{design_method.name} <#{RDF::RDFS.subClassOf}> ?obj }")
-  data.query(categories).each do |results|
-    cat_name = results.obj.to_s.split('#')[1]
-    if cat_name
-      category = MethodCategory.where(name: cat_name).first
-      if category && !design_method.method_categories.include?(category)
-        design_method.method_categories << category
-        p "    Added category #{cat_name}"
-        category.parents.each do |gparents|
-          if gparents && !design_method.method_categories.include?(gparents)
-            design_method.method_categories << gparents
-            p "    Added category #{gparents.name}"
-          end
-        end
-      end
-    end
-  end
+  # # Read in categories
+  # categories = SPARQL.parse("#{root_prefix} SELECT ?obj { :#{design_method.name} <#{RDF::RDFS.subClassOf}> ?obj }")
+  # data.query(categories).each do |results|
+  #   cat_name = results.obj.to_s.split('#')[1]
+  #   if cat_name
+  #     category = MethodCategory.where(name: cat_name).first
+  #     if category && !design_method.method_categories.include?(category)
+  #       design_method.method_categories << category
+  #       p "    Added category #{cat_name}"
+  #       category.parents.each do |gparents|
+  #         if gparents && !design_method.method_categories.include?(gparents)
+  #           design_method.method_categories << gparents
+  #           p "    Added category #{gparents.name}"
+  #         end
+  #       end
+  #     end
+  #   end
+  # end
 
-  # Read in citations
-  citations = SPARQL.parse("#{root_prefix} SELECT ?ref { :#{design_method.name} :references ?ref }")
-  data.query(citations).each do |results|
-    cit_text = results.ref.to_s
-    citation = Citation.where(text: cit_text).first_or_create!
-    if !design_method.citations.include?(citation)
-      design_method.citations << citation
-      p "    Added citation #{cit_text}"
-    end
-  end
+  # # Read in citations
+  # citations = SPARQL.parse("#{root_prefix} SELECT ?ref { :#{design_method.name} :references ?ref }")
+  # data.query(citations).each do |results|
+  #   cit_text = results.ref.to_s
+  #   citation = Citation.where(text: cit_text).first_or_create!
+  #   if !design_method.citations.include?(citation)
+  #     design_method.citations << citation
+  #     p "    Added citation #{cit_text}"
+  #   end
+  # end
 end
 

@@ -9,14 +9,28 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require jquery.ui.autocomplete
+ *= require_self
  * require_tree .
  *= require grid
  *= require normalize-rails
  *= require dropit
  * require bootsy
  *= require bootstrap
- *= require_self
+
  */
+
+
+.nav-row > *{
+  margin: 2px;
+}
+.picture-upload{
+  display: table;
+}
+.picture-upload a{
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+}
 
 
 /* GENERAL FORMATTING */
