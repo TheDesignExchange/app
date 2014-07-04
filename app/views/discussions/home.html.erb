@@ -20,8 +20,9 @@
   			<li><a href="#">Old</a></li>
   			<li><a href="#">Recently Viewed</a></li>
 </ul>
-<%= render "/layouts/discussion_content", locals: @discussion = {:likes => "0", :title => "What should one look out for when using netnography", :time => "1m", :name => "Mark Goldberg", :responses => "0", :tags => ["research"] } %>
-<%= render "/layouts/discussion_content", locals: @discussion = {:likes => "3", :title => "Rate your research methods!", :time => "2h", :name => "John Doe", :responses => "12", :tags => ["research","brainstorming"] } %>
-<%= render "/layouts/discussion_content", locals: @discussion = {:likes => "1", :title => "Amazingly well done website user flow", :time => "4h", :name => "Bob Ha", :responses => "16", :tags => ["user testing"] } %>
+
+<% @discussions.each do |disc| %>
+	<%= render "/layouts/discussion_content", locals: @discussion = disc %>
+<% end %>
 
 </div>

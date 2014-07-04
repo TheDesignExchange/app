@@ -23,7 +23,7 @@ class CaseStudiesController < ApplicationController
     id = params['n'].to_i
     cs = CaseStudy.find(id)
     @casestudy = cs
-    @author = cs.company()
+    @author = cs.company.name
     render layout: "custom"
   end
 

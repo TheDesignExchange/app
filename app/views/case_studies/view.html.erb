@@ -1,8 +1,8 @@
 <!-- CASE STUDY TITLE -->
 <div class = "row">
 	<div class="col-md-9 col-md-offset-3 left-pad">
-    <h3><b><%= @casestudy.title %></b></h3>
-    <p>By <a><%= @author.email %></a></p>
+    <h3><b><%= @casestudy.title != nil ? @casestudy.title : "-" %></b></h3>
+    <p>By <a><%= @author != nil ? @author : "-" %></a></p>
 	</div>
 </div>
 <!-- END CASE STUDY TITLE -->
@@ -15,7 +15,7 @@
 			<h4>Case Study</h4>
 			<p>
 				<span class="glyphicon glyphicon-list-alt"></span>
-				<a src="#">Original Case Study</a>
+				<a href= "<%= @casestudy.url != nil ? @casestudy.url : "#" %>" >Original Case Study</a>
 			</p>
 		</div>
     <!-- END ORIGINAL CASE STUDY -->
@@ -25,26 +25,38 @@
 			<h4>Project Characteristics</h4>
 			<p>
 			 	<span class="glyphicon glyphicon-pencil"></span>
-			 	Development Cycle: <%= @casestudy.development_cycle %>
+			 	Development Cycle: 
+        <%= @casestudy.development_cycle != nil ? @casestudy.development_cycle : "-" %>
 			</p>
       <p>
         <span class="glyphicon glyphicon-pencil"></span>
-        Design Phase: Pull db
+        Design Phase: 
+        <%= @casestudy.design_phase != nil ? @casestudy.design_phase : "-" %>
       </p>
       <p>
         <span class="glyphicon glyphicon-pencil"></span>
-        Privacy Level: Pull db
+        Privacy Level: 
+        <%= @casestudy.privacy_level != nil ? @casestudy.privacy_level : "-" %>
       </p>
       <p>
         <span class="glyphicon glyphicon-pencil"></span>
-        Social Setting: Pull db
+        Social Setting: 
+        <%= @casestudy.social_setting != nil ? @casestudy.social_setting : "-" %>
       </p>
       <p>
-        <span class="glyphicon glyphicon-ok"></span>
+        <% if @casestudy.customerIsUser %>
+          <span class="glyphicon glyphicon-ok"></span>
+        <% else %>
+          <span class="glyphicon glyphicon-remove"></span>
+        <% end %>
         Customer Is User
       </p>
       <p>
-        <span class="glyphicon glyphicon-remove"></span>
+        <% if @casestudy.remoteProject %>
+          <span class="glyphicon glyphicon-ok"></span>
+        <% else %>
+          <span class="glyphicon glyphicon-remove"></span>
+        <% end %>
         Remote Project
       </p>
 		</div>
@@ -55,11 +67,13 @@
       <h4>Project Details</h4>
       <p>
         <span class="glyphicon glyphicon-pencil"></span>
-        Project Domain: Pull db
+        Project Domain: 
+        <%= @casestudy.project_domain != nil ? @casestudy.project_domain : "-" %>
       </p>
       <p>
         <span class="glyphicon glyphicon-pencil"></span>
-        Customer Type: Pull db
+        Customer Type: 
+        <%= @casestudy.customer_type != nil ? @casestudy.customer_type : "-" %>
       </p>
     </div>
     <!-- END PROJECT CHARACTERISTICS -->
@@ -69,7 +83,7 @@
 			<h4>Time</h4>
 			<p>
 				<span class="glyphicon glyphicon-time"></span>
-				~ 1 hour
+				~ <%= @casestudy.timePeriod != nil ? @casestudy.timePeriod : "-" %>
 			</p>
   	</div>
     <!-- END TIME -->
@@ -77,8 +91,8 @@
     <!-- METHODS TAGS -->
     <h4>Tags</h4>
     <p>
-      <span class="tag-label label-gap">brainstorming</span>
-      <span class="tag-label label-gap">research</span>
+      <!-- DO WHILE FOR TAGS -->
+      No tags available
     </p>
       <!-- END METHODS TAGS -->
 	</div>
@@ -92,7 +106,7 @@
   		<div class="row">
   			<div class="col-md-3">
   				<span class="glyphicon glyphicon-star"></span>
-  				382 likes
+  				- likes
   			</div>
   			<div class="col-md-3">
           		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -130,7 +144,7 @@
       <!-- DESCRIPTION -->
   		<div class="row">
         <h2> Description </h2>
-		    <p><%= @casestudy.description %></p>
+		    <p><%= @casestudy.description != nil ? @casestudy.description : "-" %></p>
       </div>
       <!-- END DESCRIPTION -->
 

@@ -66,27 +66,19 @@
   </div>
 
   <div class="col-md-8">
-  	<div class="row profile">
-  	<div class="col-md-1">
-  		<img src="http://www.sv-hirrlingen.de/bilder/dummy_face.jpg">
-  	</div>
-  	<div class="col-md-11">
-  		<%= link_to "How should I conduct research on lorem ipsum", "/discussions/view" %>
-  		<p> Carla Nickelson 5 minutes ago </p>
-  		<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna... </p>
-  	</div>
-  </div>
 
-    <div class="row profile">
-  	<div class="col-md-1">
-  		<img src="http://www.sv-hirrlingen.de/bilder/dummy_face.jpg">
-  	</div>
-  	<div class="col-md-11">
-  		<%= link_to "How should I conduct research on lorem ipsum", "/discussions/view" %>
-  		<p>John Yee 2 hours ago</p>
-  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna...</p>
-  	</div>
-  </div>
+    <% @discussions.each do |disc| %>
+    	<div class="row profile">
+    	 <div class="col-md-1">
+    		<img src="http://www.sv-hirrlingen.de/bilder/dummy_face.jpg">
+    	 </div>
+    	 <div class="col-md-11">
+    		<h5><%= link_to disc.title, "/discussions/view?n=#{disc.id}" %></h5>
+    		<p> <a><%= disc.user.email %></a> <%= disc.created_at.to_s %>  ago </p>
+    		<p> <%= disc.description %> </p>
+    	 </div>
+      </div>
+    <% end %>
 
   </div>
 </div>

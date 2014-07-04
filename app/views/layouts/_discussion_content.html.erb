@@ -1,15 +1,21 @@
 <div class='row no-margin-left no-margin-right'>
 	<div class='col-md-1'>
-		<h2 align='center'><%= "#{@discussion[:likes]}" %></h2>
+    <!-- LIKES SHOULD BE ADDED HERE -->
+		<h2 align='center'>-</h2>
 		<p align='center'>likes</p>
 	</div>
   <div class='col-md-11'>
-  	<a class='font-discussion-tittle'> <%= "#{@discussion[:title]}" %> </a>
-      <%= "#{@discussion[:time]}" %> ago 
-      <a><%= "#{@discussion[:name]}" %></a>
-  		<p> <%= "#{@discussion[:responses]}" %> response</p>
+  	<h4>
+      <a class='font-discussion-tittle'> <%= link_to @discussion.title , "/discussions/view?n=#{@discussion.id}" %> </a>
+    </h4>
+
+      <%= @discussion.created_at != nil ? @discussion.created_at.to_s : "-" %>ago 
+      <a><%= @discussion.user.email != nil ? @discussion.user.email : "-" %> </a>
+      <!-- RESPONSES SHOULD BE ADDED HERE -->
+  		<p>- response</p>
       <p>
-        <% tagifier(@discussion[:tags]).each do |category| %>
+        <!-- TAGS SHOULD BE ADDED HERE -->
+        <% tagifier([]).each do |category| %>
           <span class="tag-label label-gap"> <%= "#{category}" %> </span>
         <% end %>
       </p>

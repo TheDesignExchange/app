@@ -3,6 +3,7 @@ class DeController < ApplicationController
   def index
   	@design_methods = DesignMethod.where("overview != ?", "default" ).take(3)
   	@case_studies = CaseStudy.take(3)
+    @discussions = Discussion.take(2)
   	# render :text => sidebar_hash(:methods)
   	render layout: "custom"
   end
@@ -36,7 +37,8 @@ class DeController < ApplicationController
         results = CaseStudy.where("LOWER( case_studies.title ) LIKE ?", "%#{query}%")
         .order('title = "'+ query +'" DESC, title LIKE "'+ query +'%" DESC'); 
       else
-        results = []
+        results = Discussion.where("LOWER( discussions.title ) LIKE ?", "%#{query}%")
+        .order('title = "'+ query +'" DESC, title LIKE "'+ query +'%" DESC'); 
       end
       return {:hits => hits, :results => results}
     else
