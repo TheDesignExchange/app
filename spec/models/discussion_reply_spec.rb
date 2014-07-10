@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: discussion_replies
+#
+#  id                  :integer          not null, primary key
+#  text                :text
+#  user_id             :integer
+#  discussion_id       :integer
+#  discussion_reply_id :integer
+#  created_at          :datetime
+#  updated_at          :datetime
+#
+
 require 'rails_helper'
 
 describe DiscussionReply do

@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id               :integer          not null, primary key
+#  text             :text
+#  user_id          :integer
+#  design_method_id :integer
+#  parent_id        :integer
+#  display_order    :integer
+#  indent           :integer
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+
 class Comment < ActiveRecord::Base
   validates :text, :user, :design_method, presence: true
 

@@ -1,3 +1,27 @@
+# == Schema Information
+#
+# Table name: case_studies
+#
+#  id                :integer          not null, primary key
+#  mainImage         :string(255)      default("")
+#  title             :string(255)      default("")
+#  url               :string(255)      default("")
+#  timePeriod        :string(255)      default("")
+#  development_cycle :integer
+#  design_phase      :integer
+#  project_domain    :integer
+#  customer_type     :integer
+#  user_age          :integer
+#  privacy_level     :integer
+#  social_setting    :integer
+#  description       :text
+#  customerIsUser    :boolean          default(FALSE)
+#  remoteProject     :boolean          default(FALSE)
+#  company_id        :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 class CaseStudy < ActiveRecord::Base
 	belongs_to :company
 	has_many :contacts

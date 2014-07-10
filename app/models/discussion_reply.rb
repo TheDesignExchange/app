@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: discussion_replies
+#
+#  id                  :integer          not null, primary key
+#  text                :text
+#  user_id             :integer
+#  discussion_id       :integer
+#  discussion_reply_id :integer
+#  created_at          :datetime
+#  updated_at          :datetime
+#
+
 class DiscussionReply < ActiveRecord::Base
   validates :text, :user, :discussion, presence: true
 
