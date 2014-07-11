@@ -73,4 +73,18 @@ FactoryGirl.define do
     company
   end
 
+  factory :contact do
+    name        { Faker::Name.name }
+    email       { Faker::Internet.email }
+    phone       { Faker::PhoneNumber.phone_number }
+    company_id  { Faker::Number.number(10) }
+  end
+
+  factory :resource do
+    name              { Faker::Lorem.word }
+    permission_to_use { true }
+    type              { Faker::Lorem.word }
+    company_id        { Faker::Number.number(10) }
+  end
+
 end

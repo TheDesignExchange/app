@@ -13,5 +13,7 @@
 
 class Contact < ActiveRecord::Base
 	has_many :case_studies
+	validates_presence_of :name, :email, :phone
 	validates_uniqueness_of :name, :email
+	#NOTE: Why is name unique?
 end
