@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623201336) do
+ActiveRecord::Schema.define(version: 20140715184342) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -204,6 +204,15 @@ ActiveRecord::Schema.define(version: 20140623201336) do
     t.datetime "updated_at"
   end
 
+  create_table "method_likes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "design_method_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "method_likes", ["user_id", "design_method_id"], name: "index_method_likes_on_user_id_and_design_method_id", unique: true
+
   create_table "resources", force: true do |t|
     t.string   "name",              default: ""
     t.boolean  "permission_to_use", default: false
@@ -236,6 +245,16 @@ ActiveRecord::Schema.define(version: 20140623201336) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "username"
+    t.string   "profile_picture"
+    t.string   "phone_number"
+    t.string   "website"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.string   "about_text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
