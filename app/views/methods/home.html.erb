@@ -21,11 +21,11 @@
 </div>
 <div class = "row">
 	<div class="col-md-2">
-		<%= render "sidebar" %>
+		WARNING: SIDEBAR UNDER CONSTRUCTION!
 	</div>
   	<div class="col-md-10 left-pad">
   		<% @design_methods.each do |method| %>
-  		 	<%= thumbnail (method)%>
+  		 	<%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method) %>
       	<% end %>
   	</div>
 </div>

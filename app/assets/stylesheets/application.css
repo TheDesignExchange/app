@@ -9,13 +9,13 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require jquery.ui.autocomplete
- *= require_self
  * require_tree .
  *= require grid
  *= require normalize-rails
  *= require dropit
  * require bootsy
  *= require bootstrap
+ *= require_self
 
  */
 

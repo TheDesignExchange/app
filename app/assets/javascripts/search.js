@@ -13,7 +13,6 @@ $(function() {
         $( this ).data( "ui-autocomplete" ).menu.active ) {
       event.defaultPrevented();
     } })
-
     .autocomplete({
       source: function( request, response ) {
         $.getJSON( "/design_methods/autocomplete", {

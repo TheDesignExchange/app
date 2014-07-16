@@ -1,0 +1,10 @@
+	{"Gathering":
+		[{"Researcher Location":
+			[{"Present":[]},{"Non-Interactive":[]},{"Remote":[]}]},
+		{"User Role":
+			[{"Creative":[]},{"Observed":[]},{"Expert Review":[]},{"Self-Reporting":[]}]},
+		{"User Setting":
+			[{"Natural":[]},{"Environment Independent":[]},{"Artificial Setting":[]}]},
+		{"Formality": 
+			[{"Formal":[]},{"Informal":[]}]}]
+	}

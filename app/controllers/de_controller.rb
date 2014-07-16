@@ -4,13 +4,12 @@ class DeController < ApplicationController
     @user_sign_in = false
   	@design_methods = DesignMethod.where("overview != ?", "default" ).take(3)
   	@case_studies = CaseStudy.take(3)
-  	# render :json => hm
+  	# render :text => sidebar_hash(:methods)
   	render layout: "custom"
   end
 
   def search
     query = params["q"] ? params['q'].gsub(' ', '_') : "";
-  	# @design_methods = 
     design_methods = search_db(:dm, query, 24)[:results]
   	case_studies = search_db(:cs, query, 24)[:results]
     discussions = search_db(:disc, query, 24)[:results]
