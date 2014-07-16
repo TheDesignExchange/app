@@ -6,7 +6,7 @@ class MethodsController < ApplicationController
   end
 
   def create
-    id = params["n"] == nil ? 1 : params["n"].to_i
+    id = params[:id] == nil ? 1 : params[:id].to_i
     # render :text => id
     @cs = CaseStudy.where("id=?", id).first;
 
@@ -27,7 +27,7 @@ class MethodsController < ApplicationController
   end
 
   def view
-    id = params['n'].to_i
+    id = params[:id].to_i
     #default to method id #1 TODO remove
     if id == 0 then id = 1 end
     dm = DesignMethod.find(id)

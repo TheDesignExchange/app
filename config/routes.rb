@@ -1,18 +1,14 @@
 DesignExchange::Application.routes.draw do
-  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
-
-
   resources :method_case_studies
-  # resources :case_studies
-
+  
+  root "de#index"
+  
 
   get "de/index"
   get "de/search"
 
-  get "methods/home"
-  get "methods/create"
-  get "methods/view"
-  get "methods/search"
+  get "methods/:action/:id", to: "methods##{:action}"
+  
 
   get "case_studies/home"
   get "case_studies/create"
@@ -24,6 +20,8 @@ DesignExchange::Application.routes.draw do
   get "discussions/create"
   get "discussions/view"
   get "discussions/search"
+
+
 
   get "account/profile_user"
   get "account/profile_user_edit"
@@ -38,7 +36,7 @@ DesignExchange::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
 
-  root "de#index"
+
 
   get "collection/casestudies"
   get "collection/form"
