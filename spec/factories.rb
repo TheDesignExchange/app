@@ -86,5 +86,4 @@ FactoryGirl.define do
     type              { Faker::Lorem.word }
     company_id        { Faker::Number.number(10) }
   end
-
 end

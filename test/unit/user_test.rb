@@ -13,6 +13,16 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
+#  first_name             :string(255)
+#  last_name              :string(255)
+#  username               :string(255)
+#  profile_picture        :string(255)
+#  phone_number           :string(255)
+#  website                :string(255)
+#  facebook               :string(255)
+#  twitter                :string(255)
+#  linkedin               :string(255)
+#  about_text             :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
 #

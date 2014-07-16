@@ -13,6 +13,16 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
+#  first_name             :string(255)
+#  last_name              :string(255)
+#  username               :string(255)
+#  profile_picture        :string(255)
+#  phone_number           :string(255)
+#  website                :string(255)
+#  facebook               :string(255)
+#  twitter                :string(255)
+#  linkedin               :string(255)
+#  about_text             :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
 #
@@ -21,6 +31,7 @@ require 'rails_helper'
 
 describe User do
   let(:user) {FactoryGirl.create(:user)}
+  let(:design_method) {FactoryGirl.create(:design_method, owner: user)}
 
   subject { user }
 
@@ -31,6 +42,10 @@ describe User do
   it { should respond_to(:owned_methods) }
 
   it { should respond_to(:favorite) }
+
+  it { should respond_to(:like) }
+  it { should respond_to(:unlike) }
+  it { should respond_to(:liked?) }
 
   it { should be_valid }
 
@@ -55,6 +70,77 @@ describe User do
         user.email = valid_address
         expect(user).to be_valid
       end
+    end
+  end
+
+  describe "when user likes a design method" do
+    it "should create one method like record" do
+      method_like = user.like(design_method)
+      method_like_list = MethodLike.where(
+        user_id: user.id,
+        design_method_id: design_method.id
+      )
+
+      expect(method_like_list.count).to eq 1
+    end
+    it "should return the correct method like" do
+      method_like = user.like(design_method)
+      method_like_list = MethodLike.where(
+        user_id: user.id,
+        design_method_id: design_method.id
+      )
+
+      expect(method_like_list.take).to eq method_like
+    end
+  end
+
+  describe "when user unlikes a design method" do
+    it "should have no method like record" do
+      method_like = user.like(design_method)
+      user.unlike(design_method)
+
+      method_like_list = MethodLike.where(
+        user_id: user.id,
+        design_method_id: design_method.id
+      )
+      
+      expect(method_like_list).to be_empty
+    end
+  end
+
+  describe "when user likes an already liked design method" do
+    it "should return false" do
+      user.like(design_method)
+      method_like = user.like(design_method)
+
+      expect(method_like).to eq false
+    end
+  end
+
+  describe "when user unlikes a design method not liked" do
+    it "should return false" do
+      method_like = user.unlike(design_method)
+
+      expect(method_like).to eq false
+    end
+  end
+
+  describe "when user checks if method is liked" do
+    it "should return true" do
+      user.like(design_method)
+
+      expect(user.liked?(design_method)).to eq true
+    end
+    it "should return false" do
+      user.like(design_method)
+
+      user.unlike(design_method)
+      expect(user.liked?(design_method)).to eq false
+    end
+    it "should return false" do
+      other_method = FactoryGirl.create(:design_method, owner: user)
+
+      expect(user.liked?(other_method)).to eq false
     end
   end
 end
