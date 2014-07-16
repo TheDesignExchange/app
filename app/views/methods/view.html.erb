@@ -84,7 +84,7 @@
           		<ul class="dropdown-menu">
             		<li><a href="">Add To Set</a></li>
             		<li class="divider"></li>
-            		<li><a href="#">My Favorites </a></li>
+            		<li><%= link_to "My Favorite", "/set/home" %></li>
           		</ul>
   			</div>
   			<div class="col-md-3">
@@ -98,10 +98,7 @@
           			</ul>
   			</div>
   			<div class="col-md-3">
-  				<a href="#" class="pull-right">
-          				<span class="glyphicon glyphicon-pencil"></span>
-          					Edit
-          		</a>
+          <a href="/methods/edit"><span class="glyphicon glyphicon-pencil pull-right">Edit</span></a>
   			</div>
   		</div>
       	<!-- END MENU BAR -->

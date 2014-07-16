@@ -6,6 +6,10 @@ class MethodsController < ApplicationController
   end
 
   def create
+    render :layout => "custom"
+  end
+
+  def edit
     id = params[:id] == nil ? 1 : params[:id].to_i
     # render :text => id
     @cs = CaseStudy.where("id=?", id).first;
@@ -23,7 +27,6 @@ class MethodsController < ApplicationController
     @helper_text = CaseStudy.helper_text()
 
     render :layout => "custom"
-
   end
 
   def view

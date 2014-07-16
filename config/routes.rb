@@ -8,6 +8,7 @@ DesignExchange::Application.routes.draw do
   get "de/search"
 
   get "methods/:action/:id", to: "methods##{:action}"
+  get "methods/:action/", to: "methods##{:action}"
   
 
   get "case_studies/home"
