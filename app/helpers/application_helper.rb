@@ -1,6 +1,8 @@
+require 'similarity'
+
 module ApplicationHelper
 
-	@@methods_file = "categories.json"
+	@@methods_file = "method_categories.json"
 
 	def sidebar_hash(symbol)
 		if symbol == :methods
@@ -16,4 +18,6 @@ module ApplicationHelper
 	def human_boolean(boolean)
 	    boolean ? 'Yes' : 'No'
 	end
+
 end
+

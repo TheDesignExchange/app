@@ -1,7 +1,7 @@
 class MethodsController < ApplicationController
 
   def home
-    @design_methods = DesignMethod.where("overview != ?", "default" ).take(24)
+    @design_methods = DesignMethod.where("overview != ?", "No overview available" ).take(24)
     render :layout => "wide"
   end
 
@@ -34,7 +34,10 @@ class MethodsController < ApplicationController
     @method = dm
     @author = dm.owner
     @citations = dm.citations
+    @similar_methods = @method.similar_methods(100,6)
+    @similar_case_studies = @method.similar_case_studies(100,6)
     render :layout => "custom"
+    # render :json => @method.neighbors(100, 6)
   end
 
   def search

@@ -1,6 +1,6 @@
 class CaseStudiesController < ApplicationController
   def home
-    @case_studies = CaseStudy.take(24)
+    @case_studies = CaseStudy.where("description != ?", "No description available" ).take(24)
   	render layout: "wide"
   end
 
@@ -38,6 +38,9 @@ class CaseStudiesController < ApplicationController
     cs = CaseStudy.find(id)
     @casestudy = cs
     @author = cs.company.name
+
+    @similar_methods = @casestudy.similar_methods(100,6)
+    @similar_case_studies = @casestudy.similar_case_studies(100,6)
     render layout: "custom"
   end
 

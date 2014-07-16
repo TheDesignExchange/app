@@ -1,0 +1,48 @@
+{"Gathering":
+		[{"Researcher Location":
+			[{"Present":[]},{"Non-Interactive":[]},{"Remote":[]}]},
+		{"User Role":
+			[{"Creative":[]},{"Observed":[]},{"Expert Review":[]},{"Self-Reporting":[]}]},
+		{"User Setting":
+			[{"Natural":[]},{"Environment Independent":[]},{"Artificial Setting":[]}]},
+		{"Formality": 
+			[{"Formal":[]},{"Informal":[]}]}],
+"Analysis":
+		[{"Input":
+			[{"Audio":[]},{"Images":[]},{"Text":[]},{"Themes or Patterns":[]},{"Concepts or Insights":[]}, {"Quantitative Data":[]}]},
+		{"Output":
+			[{"Unstructured":[]},{"Clusters":[]},{"Venn Diagrams":[]},{"Network Diagrams":[]},
+			{"Flowcharts":[]},{"Timeline":[]},{"Matrix":[]},{"Hierarchy/Tree":[]},{"Chart":[]},{"Schematic":[]}]},
+		{"Time":
+			[{"Past":[]},{"Presemt":[]},{"Future":[]}]},
+		{"Flexibility":
+			[{"Very Flexible":[]}, {"Rigid":[]}]}],
+"Ideation":
+		[{"Activity Basis":
+			[{"Conversations":[]},{"Brainstorming":[]},{"Games":[]},{"Mind Map":[]},{"Creative Writing":[]}]},
+		{"Purpose":
+			[{"Increase Creativity":[]},{"Creating Ideas":[]},{"Building Ideas":[]},{"Idea Selection":[]}]},
+		{"Scope":
+			[{"Impact":[]},{"System":[]},{"Product":[]},{"Feature":[]}]},
+		{"Involves End Users":
+			[{"Yes":[]},{"No":[]}]},
+		{"Number of Participants":
+			[{"1":[]},{"2-5":[]},{"6-10":[]},{"10+":[]}]},
+		{"Procedural Flexibility":
+			[{"Flexible":[]},{"Somewhat Flexible":[]},{"Inflexible":[]},{"Rigid":[]}]}],
+	"Building":
+		[{"Output":
+			[{"Digital":[]},{"Tangible":[]},{"Abstract":[]},{"Low Fidelity":[]},{"Med Fidelity":[]},
+			{"High Fidelity":[]},{"Mockup":[]},{"Operational":[]},{"Production Build":[]}]},
+		{"Input":
+			[{"Digital":[]},{"Tangible":[]},{"Product":[]},{"Service":[]}]},
+		{"Purpose":
+			[{"Role":[]},{"Look and Feel":[]},{"Function":[]},{"Communicate":[]}]}],
+	"Communication":
+		[{"Medium":
+			[{"Document":[]},{"Conversation":[]},{"Presentation":[]}]},
+		{"Audience":
+			[{"Outer Ring":[]},{"Users":[]},{"Mass":[]}]},
+		{"Purpose":
+			[{"Inform":[]},{"Resolve Conflict":[]},{"Facilitate discussion":[]},{"Inspire":[]},{"Plan":[]}]}]
+}

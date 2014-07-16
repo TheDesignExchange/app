@@ -1,12 +1,27 @@
+== Install ==
 
-== Dependencies ==
+== Dependencies 
 RDFRaptor
 brew install raptor
 
 Java RE - should auto install when running sunspot
+==
+
+GSL 1.14
+ftp://ftp.unicamp.br/pub/gnu/gsl/gsl-1.14.tar.gz
+
+Navigate to installed folder and run
+
+./configure
+make clean
+make
+sudo make install
+sudo gem install gsl
 
 == To Load the Design Exchnage Project
-Run
+Navigate to rails project
+
+bundle install
 
 rake db:migrate
 rake sunspot:solr:start

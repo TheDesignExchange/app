@@ -1,6 +1,7 @@
 <script>
 $(function(){
   $('.tab-pane[data-link ="'+ "all" +'"]').show().siblings(".tab-pane").hide();
+  $('.sidebar[data-link ="'+ "all" +'"]').show().siblings(".sidebar").hide();
   $('#tabs li a').click(function(e){
     e.preventDefault();
     // Alternate tabs
@@ -12,6 +13,7 @@ $(function(){
 
     // $('.tab-pane[data-link ~="'+ link +'"]').hide();
     $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
+    $('.sidebar[data-link ="'+ link +'"]').show().siblings(".sidebar").hide();
   })
 });
 </script>
@@ -39,30 +41,47 @@ $(function(){
   	</div>
 </div>
 
+
+<!-- #sidebar > div{ aoihdlkhasklfhjklh} -->
 <!-- CONTENT -->
 <div class = "row">
 	<div class="col-md-2">
     <!-- WARNING SIDEBAR UNDERCONSTRUCTION -->
-    <!-- %= render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods) %> -->
-	</div>
-	<div data-link="all" class="tab-pane col-md-10 padding">
+    <div data-link="all" class="sidebar" >
+      <!-- SIDEBAR FOR ALL -->
+    </div>
+    <div data-link="dm" class="sidebar" >
+      <%= render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods) %>
+    </div>  
+    <div data-link="cs" class="sidebar" >
+      <!-- SIDEBAR FOR CASE STUDY -->
+    </div>  
+    <div data-link="disc" class="sidebar" >
+      <!-- SIDEBAR FOR DISCUSSION -->
+    </div>  	
+  </div>
+  <!-- All Search Tab -->
+	<div data-link="all" class="tab-pane col-md-10 padding" >
     <% @results[:dm].each do |method| %>
-      <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method) %>
+      <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3") %>
     <% end %>
 	</div>
-  <div data-link="dm" class="tab-pane col-md-10 padding">
+  <!-- Method Search Tab -->
+  <div data-link="dm" class="tab-pane col-md-10 padding" >
     <% @results[:dm].each do |method| %>
-      <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method) %>
+      <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3") %>
     <% end %>
   </div>
-  <div data-link="cs" class="tab-pane col-md-10 padding">
+  <!-- Case Study Search Tab -->
+  <div data-link="cs" class="tab-pane col-md-10 padding" >
     <% @results[:cs].each do |cs| %>
-      <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs) %>
+      <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3") %>
     <% end %>
   </div>
-  <div data-link="disc" class="tab-pane col-md-10 padding">
+  <!-- Discussion Search Tap -->
+  <div data-link="disc" class="tab-pane col-md-10 padding" >
     <% @results[:disc].each do |disc| %>
-      <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc) %>
+      <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"3") %>
     <% end %>
   </div>
 </div>

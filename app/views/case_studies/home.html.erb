@@ -25,7 +25,7 @@
 	</div>
   	<div class="col-md-10 left-pad">
   	  <% @case_studies.each do |cs| %>
-  	  	<%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs) %>
+  	  	<%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3") %>
       <% end %>
     </div>
 </div>

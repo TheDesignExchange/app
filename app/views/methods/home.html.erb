@@ -21,11 +21,11 @@
 </div>
 <div class = "row">
 	<div class="col-md-2">
-		<!-- WARNING: SIDEBAR UNDER CONSTRUCTION! -->
+		<%= render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods) %>
 	</div>
   	<div class="col-md-10 left-pad">
   		<% @design_methods.each do |method| %>
-  		 	<%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method) %>
+  		 	<%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3") %>
       	<% end %>
   	</div>
 </div>
