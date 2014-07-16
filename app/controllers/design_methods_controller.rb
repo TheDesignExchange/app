@@ -1,6 +1,6 @@
 class DesignMethodsController < ApplicationController
 
-  def home
+  def index
     @design_methods = DesignMethod.where("overview != ?", "No overview available" ).take(24)
     render :layout => "wide"
   end
