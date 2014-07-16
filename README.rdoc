@@ -5,6 +5,7 @@ rake db:migrate
 rake sunspot:solr:start
 rake db:seed
 rake db:seed:casestudies
+rake db:seed:discussions
 
 rails server
 

@@ -42,8 +42,8 @@ $(function(){
 <!-- CONTENT -->
 <div class = "row">
 	<div class="col-md-2">
-    WARNING: SIDEBAR UNDER CONSTRUCTION!
-    <%= render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods) %>
+    <!-- WARNING SIDEBAR UNDERCONSTRUCTION -->
+    <!-- %= render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods) %> -->
 	</div>
 	<div data-link="all" class="tab-pane col-md-10 padding">
     <% @results[:dm].each do |method| %>
@@ -60,6 +60,10 @@ $(function(){
       <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs) %>
     <% end %>
   </div>
-  <div data-link="disc" class="tab-pane col-md-10 padding"></div>
+  <div data-link="disc" class="tab-pane col-md-10 padding">
+    <% @results[:disc].each do |disc| %>
+      <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc) %>
+    <% end %>
+  </div>
 </div>
 

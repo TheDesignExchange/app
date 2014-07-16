@@ -18,6 +18,11 @@ describe Citation do
 
   it { should respond_to(:text) }
 
+  it { should respond_to(:method_citations) }
+  it { should respond_to(:design_methods) }
+
+  it { should be_valid }
+
   describe "when text is not present" do
     before { citation.text = "" }
     it { should_not be_valid }

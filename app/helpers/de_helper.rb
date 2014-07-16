@@ -23,6 +23,17 @@ module DeHelper
 					:id => obj.id,
 					:link => "/case_studies/view"	
 				}
+		elsif obj.is_a?(Discussion)
+			thumb_obj=	
+				{
+					:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg",
+					:name => obj.title,
+					:tags => [],
+					:likes => (rand*100).to_i,
+					:description => obj.description,
+					:id => obj.id,
+					:link => "/discussions/view"	
+				}
 		end
 		return thumb_obj
 	end

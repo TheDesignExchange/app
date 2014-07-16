@@ -8,6 +8,7 @@
 #  process    :text             not null
 #  principle  :text             not null
 #  owner_id   :integer          not null
+#  parent_id  :integer
 #  created_at :datetime
 #  updated_at :datetime
 #
@@ -35,7 +36,14 @@ class DesignMethod < ActiveRecord::Base
     if self[:overview] == "default"
       self[:overview] = "No overview available"
     end
-    self[:overview]
+    return self[:overview]
+  end
+
+  def process
+    if self[:process] == "default"
+      self[:process] = "No process available"
+    end
+    return self[:process]
   end
 
   has_many :categorizations, dependent: :destroy

@@ -1,5 +1,6 @@
 class DiscussionsController < ApplicationController
   def home
+    @discussions = Discussion.take(20)
   	render layout: "custom"
   end
 
@@ -8,7 +9,11 @@ class DiscussionsController < ApplicationController
   end
 
   def view
-  	render layout: "wide"
+    id = params['n'].to_i
+    disc = Discussion.find(id)
+    @discussion = disc
+    @author = disc.user.email
+  	render layout: "custom"
   end
 
   def search
