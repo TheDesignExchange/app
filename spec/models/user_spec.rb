@@ -35,6 +35,20 @@ describe User do
 
   subject { user }
 
+  it { should respond_to(:first_name) }
+  it { should respond_to(:last_name) }
+  it { should respond_to(:username) }
+
+  it { should respond_to(:profile_picture) }
+  it { should respond_to(:phone_number) }
+
+  it { should respond_to(:website) }
+  it { should respond_to(:facebook) }
+  it { should respond_to(:twitter) }
+  it { should respond_to(:linkedin) }
+
+  it { should respond_to(:about_text) }
+
   it { should respond_to(:email) }
   it { should respond_to(:encrypted_password) }
 

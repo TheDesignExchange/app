@@ -1,7 +1,17 @@
 FactoryGirl.define do
   factory :user do
-    email     { Faker::Internet.email }
-    password  'password'
+    email           { Faker::Internet.email }
+    password        'password'
+    first_name      { Faker::Name.first_name }
+    last_name       { Faker::Name.last_name }
+    username        { Faker::Internet.user_name }
+    profile_picture { Faker::Internet.url }
+    phone_number    { Faker::PhoneNumber.phone_number }
+    website         { Faker::Internet.url }
+    facebook        { Faker::Internet.url }
+    twitter         { Faker::Internet.url }
+    linkedin        { Faker::Internet.url }
+    about_text      { Faker::Lorem.paragraph }
   end
 
   factory :owner do
