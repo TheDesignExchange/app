@@ -4,9 +4,7 @@
 <head>
   <title>CustomDesignExchange</title>
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag params[:controller] %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= stylesheet_link_tag params[:controller] %>
   <%= csrf_meta_tags %>
   <script> 
 
@@ -16,6 +14,7 @@
       });
     })
   </script>
+
   <style>
 
   .jumbotron{
@@ -40,10 +39,12 @@
 
 
 <%= render "layouts/headernav" %>
-<!-- Header for the de#index view -->
+<!-- Header for the application#index view -->
 <% if params[:controller] == "application" and params[:action] == "index" %>
   <%= render "layouts/deheader" %>
 <% end %>
+<!-- End of header for application#index -->
+
 <div class="container">
 	 <%= yield %>
 </div>

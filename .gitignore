@@ -33,3 +33,4 @@ pickle-email-*.html
 solr/
 *.swp
 
+.DS_Store
