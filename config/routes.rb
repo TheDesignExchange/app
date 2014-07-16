@@ -7,14 +7,14 @@ DesignExchange::Application.routes.draw do
   get "de/index"
   get "de/search"
 
-  get "methods/:action/:id", to: "methods##{:action}"
   
+  get "methods/home"
+  get "methods/create"
+  get "methods/view"
+  get "methods/search"
 
-  get "case_studies/home"
-  get "case_studies/create"
-  get "case_studies/view"
-  get "case_studies/search"
-  get "case_studies/edit"
+
+  resources :case_studies
 
   get "discussions/home"
   get "discussions/create"

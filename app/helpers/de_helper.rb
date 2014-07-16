@@ -71,7 +71,7 @@ module DeHelper
 					:likes => (rand*100).to_i,
 					:description => obj.overview,
 					:id => obj.id,
-					:link => "/methods/view",
+					:link => "design_method",
 					:col_md_value => col_md_value	
 				}
 		elsif obj.is_a?(CaseStudy)
@@ -83,7 +83,7 @@ module DeHelper
 					:likes => (rand*100).to_i,
 					:description => obj.description,
 					:id => obj.id,
-					:link => "/case_studies/view",
+					:link => "case_study",
 					:col_md_value => col_md_value		
 				}
 		elsif obj.is_a?(Discussion)
@@ -95,7 +95,7 @@ module DeHelper
 					:likes => (rand*100).to_i,
 					:description => obj.description,
 					:id => obj.id,
-					:link => "/discussions/view",
+					:link => "discussion",
 					:col_md_value => col_md_value	
 				}
 		end

@@ -1,11 +1,11 @@
 class CaseStudiesController < ApplicationController
-  def home
+  def index
     @case_studies = CaseStudy.where("description != ?", "No description available" ).take(24)
   	render layout: "wide"
   end
 
-  def create
-    id = params["n"] == nil ? 1 : params["n"].to_i
+  def new
+    id = params[:id] == nil ? 1 : params[:id].to_i
     # render :text => id
     @cs = CaseStudy.where("id=?", id).first;
 
@@ -18,8 +18,9 @@ class CaseStudiesController < ApplicationController
 
     render :layout => "custom"
   end
+
   def edit
-    id = params["n"] == nil ? 1 : params["n"].to_i
+    id = params[:id] == nil ? 1 : params[:id].to_i
     # render :text => id
     @cs = CaseStudy.where("id=?", id).first;
 
@@ -33,8 +34,8 @@ class CaseStudiesController < ApplicationController
     render :layout => "custom"
   end
 
-  def view
-    id = params['n'].to_i
+  def show
+    id = params[:id].to_i
     cs = CaseStudy.find(id)
     @casestudy = cs
     @author = cs.company.name

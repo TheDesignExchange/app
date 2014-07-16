@@ -1,0 +1,24 @@
+<h2><%= @design_method.name %></h2>
+
+<p>
+  <b>Overview:</b> <%= simple_format @design_method.overview %>
+</p>
+
+<p>
+  <b>Process:</b> <%= simple_format @design_method.process %>
+</p>
+
+<p>
+  <b>Principle:</b> <%= simple_format @design_method.principle %>
+</p>
+
+<p>
+  <b>Categories:</b> <%= render @categories %>
+</p>
+
+<p>
+  <b>Citations:</b> <%= render @citations %>
+</p>
+
+<%= link_to 'Back', @back %> |
+<%= link_to 'Index', design_methods_path %>
