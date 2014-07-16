@@ -1,0 +1,125 @@
+<style>
+	.no-top-margin{
+		margin-top: 0px;
+	}
+
+	.no-bottom-margin{
+		margin-bottom: 0px;
+	}
+</style>
+
+<!-- HEADER -->
+<div class="row no-margin-left no-margin-right">
+	<div class="col-md-1">
+		<a src="#"><h2 align="center" class="no-bottom-margin"><span class="glyphicon glyphicon-chevron-up"/></h2></a>
+    <!-- LIKES SHOULD BE ADDED HERE -->
+		<h1 align="center" class="no-top-margin">-</h1>
+		<p align="center">likes</p>
+	</div>
+  	<div class="col-md-11">
+  		<h1 class="font-discussion-tittle">
+  			<%= @discussion.title %>
+  		</h1> 
+  			<%= @discussion.created_at.to_s %> ago 
+  		<a>
+  			<%= @author %>
+  		</a>
+  		<p>
+        <!-- TAGS SHOULD BE HERE -->
+  			<% tagifier([]).each do |category| %>
+          <span class="tag-label label-gap"> <%= "#{category}" %> </span>
+        <% end %>
+  		</p>
+  	</div>
+</div>
+<!-- END HEADER -->
+
+<!-- DISCUSSION -->
+<div class="row no-margin-left no-margin-right">
+	<div class="col-md-12">
+		<%= @discussion.description %>
+	</div>
+</div>
+<!-- END DISCUSSION -->
+
+<!-- DISCUSSION FIELD -->
+<div class="row no-margin-left no-margin-right">
+	<div class="col-md-12">
+		<hr/>
+  		<h4>Discussions</h4>
+  		<textarea class="form-control" rows="3" placeholder="Questions or comments about this discussion?"></textarea>
+  		<button type="submit" class="btn btn-default">Submit</button>
+  	</div>
+
+  	<div class="col-md-12">
+  		<div class="dropdown pull-right">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sort By<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Most Recent</a></li>
+            <li><a href="#">Most Likes</a></li>
+          </ul>
+        </div>
+  	</div>
+ </div>
+ <!-- END DISCUSSION FIELD -->
+
+ <!-- DISCUSSIONS BY PEOPLE -->
+<div class="row no-margin-left no-margin-right">
+  	<!-- !!! PROBABLY A DO WHILE HERE TO LOAD DISCUSSIONS !!! -->
+  	<hr>
+  	<div class="col-md-3">
+  		<div class="row">
+  			<div class="col-md-5 no-padding">
+  				<img alt="" src="http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg" class="fit-all"/>
+  			</div>
+  			<div class="col-md-7">
+  				<a href="#">
+          			Example of a Name
+          		</a>
+          		<p>
+          			Example of City
+          		</p>
+  			</div>
+  		</div>
+  		<a href="#">
+          	<span class="glyphicon glyphicon-share"></span>
+          	Share
+        </a>
+        <br>
+        <a href="#">
+          	<span class="glyphicon glyphicon-comment"></span>
+          	Message
+        </a>
+        <br>
+        <a href="#">
+          	<span class="glyphicon glyphicon-heart"></span>
+          	Follow
+         </a>
+    </div>
+  	<div class="col-md-9 no-padding">
+ 		<p>
+ 			Date
+ 		</p>
+ 		<p>
+ 			Message
+ 		</p>
+ 	</div>
+ 	<div class="row">
+ 		<div class="col-md-9 col-md-offset-3">
+ 			<button type="submit" class="btn btn-default">Useful (#)</button>
+ 			<button type="submit" class="btn btn-default">Interesting (#)</button>
+ 			<button type="submit" class="btn btn-default pull-right">Reply</button>
+ 		</div>
+ 	</div>
+  	<!-- END OF POSSIBLE DO WHILE -->
+	
+  	<!-- LOAD MORE DISCUSSIONS -->
+  	<hr>
+  	<div style="text-align: center;">
+  		<a href="#">
+         	See More Discussions <b class="caret"></b>
+        </a>
+    </div>
+    <hr>
+  	<!-- END LOAD MORE DISCUSSIONS -->
+</div>

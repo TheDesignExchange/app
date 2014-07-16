@@ -1,0 +1,30 @@
+<% if current_user %>
+  <h1>Welcome, <%= current_user.email %></h1>
+  <div class="twocolumn">
+    <div class= "sidecolumn">
+      <ul>
+        <li>
+          <%= link_to "Edit Profile", root_url %>
+        </li>
+        <li>
+          <%= link_to 'New Design Method', new_design_method_path %>
+        </li>
+        <li>
+          <%= link_to 'My Methods', "#" %>
+        </li>
+      </ul>
+    </div>
+    <div class="maincolumn">
+      <h2>Recently Created Methods</h2>
+      <ul>
+          <%= render "recently_created_methods"%>
+      </ul>
+    </div>
+  </div>
+<% else %>
+  <div class="home">
+    <h1 class="huge">Welcome to The Design Exchange</h1>
+    <h2 class="inline"><%= link_to "Log In", new_user_session_url %></h2>
+    <h2 class="inline"><%= link_to "Sign Up", new_user_registration_url %></h2>
+  </div>
+<% end %>

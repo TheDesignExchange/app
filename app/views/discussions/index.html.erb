@@ -1,0 +1,28 @@
+
+<script> 
+	$(function(){
+		var pH = $('#create-btn').parent().parent().height()
+		var eH = $('#create-btn').height()
+		$('#create-btn').css('margin-top', (pH - eH)/2)
+	});
+</script>
+<div class="row no-margin-left no-margin-right">
+	<div class="col-md-6">
+		<h3>Discussions</h3>
+	</div>
+  	<div class="col-md-6">
+		<button id='create-btn' type="submit" class="btn btn-default pull-right" onclick="window.location.href = '/discussions/create';"><span class="glyphicon glyphicon-comment"></span> Start Discussion</button>
+  	</div>
+</div>
+<ul class="nav nav-tabs nav-bar-margin">
+  			<li class="active"><a href="#">Most Recent</a></li>
+  			<li><a href="#">Popular</a></li>
+  			<li><a href="#">Old</a></li>
+  			<li><a href="#">Recently Viewed</a></li>
+</ul>
+
+<% @discussions.each do |disc| %>
+	<%= render "/layouts/discussion_content", locals: @discussion = disc %>
+<% end %>
+
+</div>
