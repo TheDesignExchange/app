@@ -8,6 +8,7 @@
 #  process    :text             not null
 #  principle  :text             not null
 #  owner_id   :integer          not null
+#  parent_id  :integer
 #  created_at :datetime
 #  updated_at :datetime
 #
@@ -43,6 +44,71 @@ class DesignMethod < ActiveRecord::Base
       self[:process] = "No process available"
     end
     return self[:process]
+  end
+
+
+  class Document_Attach < Document
+    attr_reader :obj
+
+    def initialize(obj)
+        if obj.is_a?(DesignMethod)
+          super(:content => obj.overview+" "+obj.process)
+        elsif obj.is_a?(CaseStudy)
+          super(:content => obj.description)
+        end
+        @obj = obj
+    end
+  end
+
+  def similar_methods(limit, sample_size)
+    logger.info "Similar Methods running for: #{self[:name]}"
+    startTime = Time.now
+
+    methodsList = DesignMethod.where("design_methods.id != ?", self[:id])
+    .order("RANDOM()")
+    .limit(limit)
+
+    comparator = Corpus.new
+    comparingMethod = Document_Attach.new(self)
+    comparator << comparingMethod
+
+    methodsList.each do |dm|
+      comparator << Document_Attach.new(dm)
+    end
+
+    result = comparator.similar_documents(comparingMethod).sort {|tuple1, tuple2| tuple2[1] <=> tuple1[1] }
+    result = result.map {|tuple| tuple[0].obj}
+    result = result [1..sample_size]
+
+    endTime = Time.now
+    elapsed_time = endTime - startTime
+    logger.info "Similar Methods took #{elapsed_time}s to query #{limit} random sample from db."
+    return result
+  end
+
+  def similar_case_studies(limit, sample_size)
+    logger.info "Similar Case Studies running for: #{self[:name]}"
+    startTime = Time.now
+
+    caseStudiesList = CaseStudy.order("RANDOM()")
+    .limit(limit)
+
+    comparator = Corpus.new
+    comparingMethod = Document_Attach.new(self)
+    comparator << comparingMethod
+
+    caseStudiesList.each do |cs|
+      comparator << Document_Attach.new(cs)
+    end
+
+    result = comparator.similar_documents(comparingMethod).sort {|tuple1, tuple2| tuple2[1] <=> tuple1[1] }
+    result = result.map {|tuple| tuple[0].obj}
+    result = result [1..sample_size]
+
+    endTime = Time.now
+    elapsed_time = endTime - startTime
+    logger.info "Similar Case Studies took #{elapsed_time}s to query #{limit} random sample from db."
+    return result
   end
 
   has_many :categorizations, dependent: :destroy

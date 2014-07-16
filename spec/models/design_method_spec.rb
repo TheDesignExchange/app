@@ -8,6 +8,7 @@
 #  process    :text             not null
 #  principle  :text             not null
 #  owner_id   :integer          not null
+#  parent_id  :integer
 #  created_at :datetime
 #  updated_at :datetime
 #

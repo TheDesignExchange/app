@@ -18,6 +18,7 @@ DesignExchange::Application.routes.draw do
   get "case_studies/create"
   get "case_studies/view"
   get "case_studies/search"
+  get "case_studies/edit"
 
   get "discussions/home"
   get "discussions/create"
@@ -52,7 +53,6 @@ DesignExchange::Application.routes.draw do
 
 
   get :about, to: "main_pages#about"
-
   get :contact, to: "main_pages#contact"
 
   resources :design_methods do

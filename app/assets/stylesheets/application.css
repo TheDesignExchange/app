@@ -16,7 +16,21 @@
  * require bootsy
  *= require bootstrap
  *= require_self
+
  */
+
+
+.nav-row > *{
+  margin: 2px;
+}
+.picture-upload{
+  display: table;
+}
+.picture-upload a{
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+}
 
 
 /* GENERAL FORMATTING */

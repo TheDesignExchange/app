@@ -84,9 +84,6 @@ textarea{
         <form role="form">
           <% @attr.each do |name, metadata| %>
             
-             
-
-             
 
               <% if @options.has_key?(name.to_sym) %>
               <% elsif metadata.type == :string %>

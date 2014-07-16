@@ -1,3 +1,27 @@
+# == Schema Information
+#
+# Table name: case_studies
+#
+#  id                :integer          not null, primary key
+#  mainImage         :string(255)      default("")
+#  title             :string(255)      default("")
+#  url               :string(255)      default("")
+#  timePeriod        :string(255)      default("")
+#  development_cycle :integer
+#  design_phase      :integer
+#  project_domain    :integer
+#  customer_type     :integer
+#  user_age          :integer
+#  privacy_level     :integer
+#  social_setting    :integer
+#  description       :text
+#  customerIsUser    :boolean          default(FALSE)
+#  remoteProject     :boolean          default(FALSE)
+#  company_id        :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 class CaseStudy < ActiveRecord::Base
 	belongs_to :company
 	has_many :contacts
@@ -29,4 +53,74 @@ class CaseStudy < ActiveRecord::Base
             :social_setting => [" <em>Personal</em> includes individual, couple and family.", " <em>Social</em> includes friends, communities (religion, political group) and individual in social context.", " <em>Professional</em> includes work, education, medical and government."]
         }
     end
+
+    def description
+        if self[:description] == nil
+            self[:description] = "No description available"
+        end
+        return self[:description]
+    end
+
+    class Document_Attach < Document
+        attr_reader :obj
+        def initialize(obj)
+            if obj.is_a?(DesignMethod)
+              super(:content => obj.overview+" "+obj.process)
+            elsif obj.is_a?(CaseStudy)
+              super(:content => obj.description)
+            end
+            @obj = obj
+        end
+    end
+
+  def similar_methods(limit, sample_size)
+    logger.info "Similar Methods running for: #{self[:title]}"
+    startTime = Time.now
+
+    methodsList = DesignMethod.order("RANDOM()")
+    .limit(limit)
+
+    comparator = Corpus.new
+    comparingCaseStudy = Document_Attach.new(self)
+    comparator << comparingCaseStudy
+
+    methodsList.each do |dm|
+      comparator << Document_Attach.new(dm)
+    end
+
+    result = comparator.similar_documents(comparingCaseStudy).sort {|tuple1, tuple2| tuple2[1] <=> tuple1[1] }
+    result = result.map {|tuple| tuple[0].obj}
+    result = result [1..sample_size]
+
+    endTime = Time.now
+    elapsed_time = endTime - startTime
+    logger.info "Similar Methods took #{elapsed_time}s to query #{limit} random sample from db."
+    return result
+  end
+
+  def similar_case_studies(limit, sample_size)
+    logger.info "Similar Case Studies running for: #{self[:title]}"
+    startTime = Time.now
+
+    caseStudiesList = CaseStudy.where("case_studies.id != ?", self[:id])
+    .order("RANDOM()")
+    .limit(limit)
+
+    comparator = Corpus.new
+    comparingCaseStudy = Document_Attach.new(self)
+    comparator << comparingCaseStudy
+
+    caseStudiesList.each do |cs|
+      comparator << Document_Attach.new(cs)
+    end
+
+    result = comparator.similar_documents(comparingCaseStudy).sort {|tuple1, tuple2| tuple2[1] <=> tuple1[1] }
+    result = result.map {|tuple| tuple[0].obj}
+    result = result [1..sample_size]
+
+    endTime = Time.now
+    elapsed_time = endTime - startTime
+    logger.info "Similar Case Studies took #{elapsed_time}s to query #{limit} random sample from db."
+    return result
+  end
 end

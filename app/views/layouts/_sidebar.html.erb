@@ -1,26 +1,20 @@
-<div class="sidebar" role="complementary">
-  <ul class="nav sidenav">
-      <!-- CATEGORY -->
-      <li >
-        <a href="#titleCat">Overview</a>
-          <!-- SUB-CATEGORY -->
-          <ul class="nav">
-            <li>
+<script type="text/javascript">
+$(function(){
+  enableAccordion();
+});
+function enableAccordion(){
+  $('.category').find('.category-heading')
+             .click(function(){ 
+              var content = $(this).siblings();
+              content.toggleClass('in');
+            })
+}
+</script>
 
-              <!-- DO WHILE WITH ROOTS -->
-              <!-- ROOT -->
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox">Look and Feel
-                </label>
-              </div>
-              <!-- END DO WHILE WITH ROOTS -->
+<style>
+  .sidebar-element{
+    padding-left: 10px;
+  }
+</style>
 
-            </li>
-          </ul>
-      </li>
-
-  </ul>
-</div>
-
-<%= @category_hash %>
+<%= print_children(0,@category_hash).html_safe %>

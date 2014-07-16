@@ -12,12 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootsy
+//= require bootstrap
+// require bootsy
 //= require jquery.ui.autocomplete
 //= require search
 //= require validate
 //= require expander
-//= require_tree .
+// require_tree .
 
 
 // Fixing textarea bug

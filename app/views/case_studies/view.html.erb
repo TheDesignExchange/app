@@ -150,38 +150,19 @@
 
       <!-- RELATED METHODS AND CASE STUDIES -->
       <div class="row">
+        <!-- RELATED METHODS -->
+        <h4>Related Methods</h4>
+          <% @similar_methods.each do |method| %>
+            <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"4") %>
+          <% end %>
+        <!-- END RELATED METHODS -->
+        
+        <!-- RELATED CASE STUDIES -->
         <h4>Related Case Studies</h4>
-          <!-- START POSSIBLE DO WHILE METHODS -->
-          <div class="row">
-            <div class="col-sm-6 col-md-4 left-top-padding">
-              <div class="thumbnail search-item">
-                  <div class="caption">
-                    <h5><a href="/methods/view?n=2">Title</a></h5>
-                    <p><span class="glyphicon glyphicon-star"></span> 13 Likes</p>
-                    <p class="truncate-multiline">This format for brainstorming compresses the  essentials of an ideation session into one short format. The numbers 3-12-3   refer to the amount of time in minutes given to each of three activities: 3   minutes for generating a pool of </span>
-                    <span class="label label-gap label-ideating">Ideating</span>
-                    <span class="label label-gap label-method">Method</span></p>
-                  </div>
-                </div>
-            </div>
-          </div>
-          <!-- END START POSSIBLE DO WHILE METHODS -->
-          <h4>Related Methods</h4>
-          <!-- START POSSIBLE DO WHILE METHODS -->
-          <div class="row">
-            <div class="col-sm-6 col-md-4 left-top-padding">
-              <div class="thumbnail search-item">
-                  <div class="caption">
-                    <h5><a href="/methods/view?n=2">Title</a></h5>
-                    <p><span class="glyphicon glyphicon-star"></span> 13 Likes</p>
-                    <p class="truncate-multiline">This format for brainstorming compresses the  essentials of an ideation session into one short format. The numbers 3-12-3   refer to the amount of time in minutes given to each of three activities: 3   minutes for generating a pool of </span>
-                    <span class="label label-gap label-ideating">Ideating</span>
-                    <span class="label label-gap label-method">Method</span></p>
-                  </div>
-                </div>
-            </div>
-          </div>
-          <!-- END START POSSIBLE DO WHILE METHODS -->
+          <% @similar_case_studies.each do |cs| %>
+            <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"4") %>
+          <% end %>
+        <!-- ENF RELATED CASE STUDIES -->
       </div>
       <!-- END RELATED METHODS AND CASE STUDIES -->
 
