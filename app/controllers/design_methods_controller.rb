@@ -5,7 +5,7 @@ class DesignMethodsController < ApplicationController
     render :layout => "wide"
   end
 
-  def create
+  def new
     render :layout => "custom"
   end
 
