@@ -9,7 +9,7 @@ class DiscussionsController < ApplicationController
   end
 
   def show
-    id = params['n'].to_i
+    id = params[:id].to_i
     disc = Discussion.find(id)
     @discussion = disc
     @author = disc.user.email
