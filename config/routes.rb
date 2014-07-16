@@ -1,28 +1,22 @@
 DesignExchange::Application.routes.draw do
-  resources :method_case_studies
-  
-  root "de#index"
-  
 
-  get "de/index"
-  get "de/search"
+  root "application#index"
 
-  get "methods/:action/:id", to: "methods##{:action}"
-  get "methods/:action/", to: "methods##{:action}"
-  
+  resources :set 
 
-  get "case_studies/home"
-  get "case_studies/create"
-  get "case_studies/view"
-  get "case_studies/search"
-  get "case_studies/edit"
+  resources :case_studies do
+    collection do 
+      get "search/:query", to: "application#search", :as => "search"
+      get "search", to: "application#search"
+    end
+  end
 
-  get "discussions/home"
-  get "discussions/create"
-  get "discussions/view"
-  get "discussions/search"
-
-
+  resources :discussions do
+    collection do 
+      get "search/:query", to: "application#search", :as => "search"
+      get "search", to: "application#search"
+    end
+  end
 
   get "account/profile_user"
   get "account/profile_user_edit"
@@ -30,38 +24,24 @@ DesignExchange::Application.routes.draw do
   get "account/login"
   get "account/register"
 
-  get "set/home"
-  get "set/create"
   
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
 
-
-
-  get "collection/casestudies"
-  get "collection/form"
-  get "collection/linkmethods"
-  get "collection/autocomplete_design_methods"
-  post "collection/linkmethod"
-  delete "collection/removemethod"
-  get "collection/links"
-
-
-  post "collection/send_casestudy"
-
-
-  get :about, to: "main_pages#about"
-  get :contact, to: "main_pages#contact"
+  get :action, to:"application##{:action}"
 
   resources :design_methods do
     get :autocomplete, on: :collection
+    get :search
   end
 
   resources :method_categories, only: [:show]
   resources :citations, only: [:show]
+
   resources :users do
     resources :design_methods, only: [:index]
   end
-  get 'search/(:query)', controller: 'design_methods', action: 'search', as: 'search'
+
+  get 'search/(:query)', controller: 'case_studies', action: 'search', as: 'search'
 end

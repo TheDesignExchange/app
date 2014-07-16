@@ -2,7 +2,7 @@
   <div class="thumbnail search-item">
   	<div class="caption">
   		<h5> 
-        <%= link_to "#{@thumb_obj[:name]}", "#{@thumb_obj[:link]}?n=#{@thumb_obj[:id]}" %> 
+        <%= link_to "#{@thumb_obj[:name]}", eval("#{@thumb_obj[:link]}_path(#{@thumb_obj[:id]})") %> 
       </h5>
       <p>
         <span class="glyphicon glyphicon-star"></span> 
