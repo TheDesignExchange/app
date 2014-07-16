@@ -1,3 +1,10 @@
+
+== Dependencies ==
+RDFRaptor
+brew install raptor
+
+Java RE - should auto install when running sunspot
+
 == To Load the Design Exchnage Project
 Run
 
