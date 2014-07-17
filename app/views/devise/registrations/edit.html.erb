@@ -1,6 +1,6 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
 
   <div><%= f.label :email %><br />
@@ -19,7 +19,7 @@
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
   <%= f.password_field :current_password %></div>
 
-  <div><%= f.submit "Update" %></div>
+  <div><%= f.submit "Save" %></div>
 <% end %>
 
 <h3>Cancel my account</h3>
@@ -27,3 +27,48 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
 
 <%= link_to "Back", :back %>
+
+
+<div class="panel panel-default login-margin panel-primary">
+  <div class="panel-heading ">
+    <h3 class="panel-title ">Account Information</h3>
+  </div>
+  <div class="panel-body">
+
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+    <div class="input">
+          <input type="text" class="form-control" placeholder="Username">
+      </div>
+  </br>
+  <div class="input">
+          <input type="text" class="form-control" placeholder="First Name">
+      </div>
+  </br>
+  <div class="input">
+          <input type="text" class="form-control" placeholder="Last Name">
+      </div>
+  </br>
+  <div class="input">
+           <%= f.email_field :email, {:autofocus => true, :placeholder => "Email", :class => "form-control"} %>
+  </div>
+     
+  </br>
+  <div class="input">
+      <input type="password" class="form-control" placeholder="Old Password">
+  </div>
+  </br>
+  <div class="input">
+      <input type="password" class="form-control" placeholder="New Password">
+  </div>
+  </br>
+  <div class="input">
+      <input type="password" class="form-control" placeholder="New Password Confirmation" style="margin-bottom: 10px;">
+  </div>
+  <div class="row">
+      <div class="col-md-12" ><button type="submit" class="btn btn-default pull-right">Save</button>
+      </div>
+  </div>
+  <% end %>
+  </div>
+</div>
