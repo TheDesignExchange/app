@@ -58,5 +58,13 @@ module DesignExchange
     # Suppress warning
     I18n.enforce_available_locales = true
 
+    config.to_prepare do
+    Devise::SessionsController.layout "custom"
+    Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "custom"   : "custom" }
+    Devise::ConfirmationsController.layout "custom"
+    Devise::UnlocksController.layout "custom"            
+    Devise::PasswordsController.layout "custom"        
+    end
+
   end
 end

@@ -16,7 +16,7 @@
   			<p>Search</p>
   			<form  id="search" role="search">
           	<input type="text" class="form-search" placeholder="Search">
-        		<button type="submit" class="btn btn-default" onclick="window.location.href = '/de/search?q='+ $('form input.form-search').val();">Submit</button>
+        		<button type="submit" class="btn btn-default" onclick="window.location.href = '<%= search_design_methods_path %>/'+ $('form input.form-search').val();">Submit</button>
       	</form>
   		</div>
   		<div class="col-md-4"><p>Sign In</p>
@@ -29,7 +29,7 @@
 			</div>
 
 			<div class="row">
- 				<div class="col-md-8"><%= link_to "Create an account", "/account/register" %></div>
+ 				<div class="col-md-8"><%= link_to "Create an account", new_registration_path(:user) %></div>
   				<div class="col-md-4">
               <button type="submit" class="btn btn-default pull-right" onclick="window.location.href = '/account/login';">Log In</button>
           </div>

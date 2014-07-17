@@ -3,10 +3,17 @@
 == Dependencies 
 RDFRaptor
 brew install raptor
+//MAC
+apt-get install libraptor-dev
+apt-get install libraptor2-0
+apt-get install libraptor2-dev
+
 
 Java RE - should auto install when running sunspot
 ==
-
+//MAC
+brew install gsl
+// LINUX
 GSL 1.14
 ftp://ftp.unicamp.br/pub/gnu/gsl/gsl-1.14.tar.gz
 

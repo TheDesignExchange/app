@@ -26,10 +26,10 @@ data_discussions.each do |raw|
 	raw["user_id"] = User.where(email: raw["user_id"]).first.id
 
 	d = Discussion.new(raw)
-	p d.title
+	p  "Added discussion: #{d.name}" unless not d.save
+	p d.errors unless d.save
 
 	save_attempts_discussions.push(d.save)
-	p save_attempts_discussions.last 
 
 end
 

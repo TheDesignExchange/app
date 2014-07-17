@@ -6,20 +6,22 @@ DesignExchange::Application.routes.draw do
 
   resources :case_studies do
     collection do 
-      get "search/:query", to: "application#search", :as => "search"
-      get "search", to: "application#search"
+      get "search/:query", to: "application#search"
+      get "search", to: "application#search", :as => "search"
     end
   end
   resources :design_methods do
     get :autocomplete, on: :collection
-    get "search/:query", to: "application#search", :as => "search"
-    get "search", to: "application#search"
+    collection do 
+      get "search/:query", to: "application#search"
+      get "search", to: "application#search", :as => "search"
+    end
   end
 
   resources :discussions do
     collection do 
-      get "search/:query", to: "application#search", :as => "search"
-      get "search", to: "application#search"
+      get "search/:query", to: "application#search"
+      get "search", to: "application#search", :as => "search"
     end
   end
 

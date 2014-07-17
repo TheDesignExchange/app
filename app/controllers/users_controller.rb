@@ -10,4 +10,5 @@ class UsersController < ApplicationController
     @owned_methods = @user.owned_methods.limit(10)
     store_location
   end
+
 end
