@@ -15,6 +15,15 @@ function enableAccordion(){
   .sidebar-element{
     padding-left: 10px;
   }
+
+  .sidebar-leaf{
+  	font-weight: normal;
+  	display: block;
+  }
+
+  .sidebar-maincategory{
+  	font-weight: bold;
+  }
 </style>
 
 <%= print_children(0,@category_hash).html_safe %>

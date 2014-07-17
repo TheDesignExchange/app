@@ -7,57 +7,58 @@ module DeHelper
   			# Leaf Case
     		if v.empty?
     			str = leaf (k)
+    		# Header Case
     		else
-    			#Collapsed Headers
-    			if level == 0 || level >= 2
-    				#print subcategories
-    				str1 = ""
-    				v.each do |h|
-    					str1 = str1 + print_children(level+1,h)
-    				end
-    				str = str + collapsed_header(k, str1)
-    			#Not-collapsed Headers
-    			else
-    				#print subcatefories and/or leaves
-    				str1=""
-    				v.each do |h|
-	          			str1=str1+print_children(level+1,h)
-	          		end  
-    				str = str + header(k, str1)
-   				end
+    			str1 = ""
+    			v.each do |h|
+    				str1 = str1 + print_children(level+1,h)
+    			end
+    			str = str + header(k, str1,level)
     		end
   		end
   		return str
 	end
 
-	def header (key, options)
-		return "<ul class='sidebar-element'>
-  					<div class='category' >
-    					<a class='category-heading'> #{key} </a>
-    						<ul class='collapse sidebar-element in'>"+
-    							options + 
-    						"</ul>
-    				</div>
-    			</ul>"
-	end
-
-	def collapsed_header (key, options)
-		return "<ul class='sidebar-element'>
+	def header (key, options, level)
+		str = ""
+		# Main Category's  font is bold and  it is collapsed
+		if level == 0
+			str = "<ul class='sidebar-element'>
+						<div class='category' >
+						<a class='category-heading sidebar-maincategory'> #{key} </a>
+							<ul class='collapse sidebar-element'>"+
+							options + 
+						"</ul>
+					</div>
+		   		   </ul>"
+		# Headers level 2 and more are collapsed
+		elsif level >= 2
+			str = "<ul class='sidebar-element'>
   					<div class='category' >
     					<a class='category-heading'> #{key} </a>
     						<ul class='collapse sidebar-element'>"+
     							options + 
     						"</ul>
     				</div>
-    			</ul>"
-	end
+    			   </ul>"
+    	else
+    		str = "<ul class='sidebar-element'>
+  					<div class='category' >
+    					<a class='category-heading'> #{key} </a>
+    						<ul class='collapse sidebar-element in'>"+
+    							options + 
+    						"</ul>
+    				</div>
+    			   </ul>"
+    	end
+
+    	return str
+    end
 
 	def leaf (key)
-		return "<div class='checkbox'>
-              		<label>
-                		<input type='checkbox'> #{key}
-                	</label>
-            	</div>"
+		return "<label class='sidebar-leaf'>
+                	<input type='checkbox'> #{key}
+                </label>"
 	end
 
 	def thumbnail(obj,col_md_value)

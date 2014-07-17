@@ -33,7 +33,6 @@ class DesignMethodsController < ApplicationController
   def show
     id = params[:id].to_i
     #default to method id #1 TODO remove
-    if id == 0 then id = 1 end
     dm = DesignMethod.find(id)
     @method = dm
     @author = dm.owner

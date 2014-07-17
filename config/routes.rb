@@ -2,7 +2,12 @@ DesignExchange::Application.routes.draw do
 
   root "application#index"
 
-  resources :set 
+  resources :set do
+    collection do
+      get "search/:query", to: "application#search", :as => "search"
+      get "search", to: "application#search"
+    end
+  end
 
   resources :case_studies do
     collection do 
