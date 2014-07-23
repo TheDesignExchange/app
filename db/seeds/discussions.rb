@@ -1,38 +1,43 @@
 require "json"
 
-p " Starting Discussions Seed"
+users_file = 'users.json'
+discussion_file = 'discussions.json'
 
-p "Adding users"
-users_file = Rails.root.join('public', 'users.json');
-data_users = JSON.parse( IO.read(users_file) )
-
-p "Adding discussions"
-discussion_file = Rails.root.join('public', 'discussions.json');
-data_discussions = JSON.parse( IO.read(discussion_file) )
-
-save_attempts_users = []
-data_users.each do |raw|
-
-	u = User.new(raw)
-	p u.email
-
-	save_attempts_users.push(u.save)
-	p save_attempts_users.last 
+# File should be in public
+def get_data_user(json_file)
+	file = Rails.root.join('public', json_file);
+	data_users = JSON.parse(IO.read(file))
 end
 
-save_attempts_discussions = []
-data_discussions.each do |raw|
-
-	raw["user_id"] = User.where(email: raw["user_id"]).first.id
-
-	d = Discussion.new(raw)
-	p  "Added discussion: #{d.name}" unless not d.save
-	p d.errors unless d.save
-
-	save_attempts_discussions.push(d.save)
-
+def get_data_discussion(json_file)
+	file = Rails.root.join('public', json_file);
+	data_discussions = JSON.parse(IO.read(file))
 end
 
-p "Disussions Seed was Able to Finish"
-p save_attempts_users.count(true).to_s+" out of: "+save_attempts_users.length.to_s+" were saved correctly."
-p save_attempts_discussions.count(true).to_s+" out of: "+save_attempts_discussions.length.to_s+" were saved correctly."
+def process_users(data)
+	# User.destroy_all
+	p "===============  SEEDING USERS  ================"
+	data.each do |el|
+		user = User.new(el)
+		p "Added user: #{user.email}" unless not user.save 
+		# p user.errors unless user.save
+	end
+	p "==============================="
+end
+
+def process_discussions(data)
+	Discussion.destroy_all
+	p "===============  SEEDING DISCUSSIONS  ================"
+	data.each do |el|
+		el["user_id"] = User.where(email: el["user_id"]).first.id
+		disc = Discussion.new(el)
+		p "Added discussion: #{disc.title}" unless not disc.save 
+		# p disc.errors unless disc.save
+	end
+	p "==============================="
+end
+
+data_users = get_data_user(users_file)
+data_discussions = get_data_discussion(discussion_file)
+process_users(data_users)
+process_discussions(data_discussions)

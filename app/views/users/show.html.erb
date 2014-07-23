@@ -1,5 +1,165 @@
-<h1><%= @user.email %></h1>
-<h2>Methods by this user:</h2>
-<ul>
-  <%= render @owned_methods %>
-</ul>
+<script>
+$(function(){
+  $('.tab-pane[data-link ="'+ "all" +'"]').show().siblings(".tab-pane").hide();
+  $('#tabs li a').click(function(e){
+    e.preventDefault();
+    // Alternate tabs
+    $(this).parent()
+           .addClass('active')
+           .siblings()
+           .removeClass('active');
+    var link = $(this).data('link');
+
+    // $('.tab-pane[data-link ~="'+ link +'"]').hide();
+    $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
+  })
+});
+</script>
+
+<style>
+.padding{
+  	padding-top: 15px;
+}
+
+.social-icon{
+	width: 32px;
+	height: 32px;
+	margin: 10px;
+	display: inline;
+}
+</style>
+
+<!-- BODY -->
+<div class="row">
+	<!-- PROFILE INFO -->
+	<div class="col-md-3" style="border-right:1px solid #dddddd;">
+
+		<!-- IN EDIT IS A FORM | IN VIEW MODE IS A TEXT -->
+		<div class="col-md-12" style="text-align: center;">
+			<h4><%= @user.first_name %> <%= @user.last_name%></h4>
+			<h5><a><%= @user.username %></a></h5>
+		</div>
+
+		<!-- IN EDIT MODE IS AN UPLOAD IMAGE | IN VIEW MODE IS AN IMAGE -->
+		<div class="col-md-12">
+			<img  alt="" class="fit-all"src="http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg" style="padding:10%;"/>
+		</div>
+
+		<% if !@is_current_user %>
+			<div class="col-md-12">
+				<button type="submit" class="btn btn-default">
+					<span class="glyphicon glyphicon-plus"></span>
+					Follow
+				</button>
+				<button type="submit" class="btn btn-default pull-right">
+					<span class="glyphicon glyphicon-envelope"></span>
+					Message
+				</button>
+			</div>
+		<% end %>
+
+		<div class="col-md-12">
+			<h4>
+				<span class="glyphicon glyphicon-thumbs-up"></span>
+				Likes
+				<span class="pull-right">#</span>
+			</h4>
+			<h4>
+				<span class="glyphicon glyphicon-user"></span>
+				Followers
+				<span class="pull-right">#</span>
+			</h4>
+			<h4>
+				<span class="glyphicon glyphicon-user"></span>
+				Following
+				<span class="pull-right">#</span>
+			</h4>
+		</div>
+
+		<!-- IN EDIT MODE YOU NEED TO ADD | IN VIEW MODE IS JUST A PANEL  -->
+		<div class="col-md-12">
+			<h4>Expertise</h4>
+    			<p>
+      				<span class="tag-label label-gap">brainstorming</span>
+      				<span class="tag-label label-gap">research</span>
+   	 			</p>
+    	</div>
+
+    	<!-- IN EDIT MODE YOU NEED TO ADD | IN VIEW MODE IS JUST A PANEL  -->
+		<% if @user.about_text != nil %>
+			<div class="col-md-12">
+				<h4>About</h4>
+				<p><%= @user.about_text %></p>
+	    	</div>
+	    <% end %>
+
+    	<!-- IN EDIT MODE YOU NEED TO ADD | IN VIEW MODE IS JUST A PANEL  -->
+		<% if @user.email != nil || @user.website != nil || @user.phone_number != nil %>
+			<div class="col-md-12">
+				<h4>Contact</h4>
+				<p><%= @user.email %></p>
+				<p><%= @user.website %></p>
+				<p><%= @user.phone_number %></p>
+	    	</div>
+	    <% end %>
+
+    	<!-- SOCIAL ICONS -->
+    	<% if @user.facebook != nil && @user.facebook != "" %>
+    		<%= link_to image_tag("facebook_icon.png", class: "social-icon"), @user.facebook %>
+    	<% end %>
+    	<% if @user.twitter != nil && @user.twitter != "" %>
+    		<%= link_to image_tag("twitter_icon.ico", class: "social-icon"), @user.twitter %>
+    	<% end %>
+    	<% if @user.linkedin != nil && @user.linkedin != "" %>
+    		<%= link_to image_tag("linkedin_icon.png", class: "social-icon"), @user.linkedin %>
+    	<% end %>
+    	<!-- END SOCIAL ICONS -->
+
+	</div>
+	<!-- END PROFILE INFO -->
+
+	<!-- POSTED BY -->
+	<div class="col-md-9">
+		<h4>Posted by <%= @user.first_name != nil && @user.last_name != nil ? @user.first_name+" "+@user.last_name : @user.username %> 
+			<% if @is_current_user %>
+				<button type="submit" class="btn btn-default pull-right" onclick="window.location.href = '/account/profile_user_edit';">
+					Edit
+				</button>
+			<% end %>
+		</h4>
+		<!-- NAVBAR -->
+		<div id="tabs">
+			<ul class="nav nav-tabs">
+	  			<li class="active"><a data-link="all">All</a></li>
+	  			<li><a data-link="dm">Methods</a></li>
+	  			<li><a data-link="cs">Case Studies</a></li>
+	  			<li><a data-link="disc">Discussions</a></li>
+			</ul>
+		</div>
+		<!-- END NAVBAR -->
+		<!-- THUMBNAILS -->
+		 <div data-link="all" class="tab-pane col-md-12 padding">
+			<% @owned_methods.each do |dm| %>
+				<%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4") %>
+			<% end %>
+		</div>
+		<div data-link="dm" class="tab-pane col-md-12 padding" >
+		    <% @owned_methods.each do |dm| %>
+		      <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4") %>
+		    <% end %>
+		</div>
+	  	<!-- Case Study Search Tab -->
+	  	<div data-link="cs" class="tab-pane col-md-12 padding" >
+
+  		</div>
+  		<!-- Discussion Search Tap -->
+  		<div data-link="disc" class="tab-pane col-md-12 padding" >
+    		<% @owned_discussions.each do |disc| %>
+      			<%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"4") %>
+    		<% end %>
+  		</div>
+		<!-- END THUMBNAILS -->
+	</div>
+	<!-- END POSTED BY -->
+</div>
+<!-- END BODY -->

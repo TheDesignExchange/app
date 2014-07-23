@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+
     # The DesignExchange home page.
     #
     # If viewed without logging in, should display some information about the site and direct the
@@ -73,5 +74,14 @@ class ApplicationController < ActionController::Base
     end
   end
   def about
+  end
+
+
+  # Addinv new extra fields to Devise
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  protected
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :username << :first_name << :last_name
+    devise_parameter_sanitizer.for(:account_update) << :username << :first_name << :last_name
   end
 end

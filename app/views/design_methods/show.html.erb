@@ -8,7 +8,7 @@
 <div class = "row">
 	<div class="col-md-9 col-md-offset-3 left-pad">
     <h3><%= @method.name != nil ? @method.name.humanize().split.map(&:capitalize).join(' ') : "-" %></h3>
-    <p>By <a><%= @author.email != nil ? @author.email : "-" %></a></p>
+    <p>By <a href="<%= user_path(@author.id)%>"><%= @author.email != nil ? @author.email : "-" %></a></p>
 	</div>
 
 </div>
@@ -210,8 +210,8 @@
   		<div class="row">
         <!-- RELATED METHODS -->
   			<h4>Related Methods</h4>
-          <% @similar_methods.each do |method| %>
-            <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"4") %>
+          <% @similar_methods.each do |dm| %>
+            <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4") %>
           <% end %>
   			<!-- END RELATED METHODS -->
 
@@ -226,7 +226,7 @@
 
   		<!-- CITATIONS -->
   		<h4>Citations</h4>
-      <% if @citations.length != 0 && @citations !=nil %>
+      <% if @citations.length != 0 && @citations != nil %>
           <ol> 
           	<% @citations.each do |c| %>
           		<li><%= c.text %></li>

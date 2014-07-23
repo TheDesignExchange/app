@@ -5,8 +5,18 @@
   <div class="panel-body">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 	  <%= devise_error_messages! %>
-
-
+	  <div class="input">
+	  	<%= f.text_field :username, {:autofocus => true, :class => "form-control", :placeholder => "Username"}%>
+	  </div>
+	  <br>
+	  <div class="input">
+	  	<%= f.text_field :first_name, {:autofocus => true, :class => "form-control", :placeholder => "First name"}%>
+	  </div>
+	  <br>
+	  <div class="input">
+	  	<%= f.text_field :last_name, {:autofocus => true, :class => "form-control", :placeholder => "Last name"}%>
+	  </div>
+	  <br>
 	  <div class="input">
 	  	<%= f.email_field :email, {:autofocus => true, :class => "form-control", :placeholder => "Email"}%>
 	  </div>
@@ -31,10 +41,6 @@
   		</div>
 	</div>
 	<% end %>
-
-
-    
-
   </div>
 </div>
 

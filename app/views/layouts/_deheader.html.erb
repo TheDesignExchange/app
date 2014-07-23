@@ -19,23 +19,28 @@
         		<button type="submit" class="btn btn-default" onclick="window.location.href = '<%= search_design_methods_path %>/'+ $('form input.form-search').val();">Submit</button>
       	</form>
   		</div>
-  		<div class="col-md-4"><p>Sign In</p>
-  			<div class="input">
-  				<input type="text" class="form-control" placeholder="Username">
-			</div>
-			</br>
-			<div class="input">
-  				<input type="password" class="form-control" placeholder="Password" style="margin-bottom: 10px;">
-			</div>
 
-			<div class="row">
- 				<div class="col-md-8"><%= link_to "Create an account", new_registration_path(:user) %></div>
-  				<div class="col-md-4">
-              <button type="submit" class="btn btn-default pull-right" onclick="window.location.href = '/account/login';">Log In</button>
-          </div>
-			</div>
-  		</div>
-	</div>
+      <% if !user_signed_in? %>
+      		<div class="col-md-4"><p>Sign In</p>
+        		<%= form_for(:user, :url => {:controller => 'devise/sessions', :action => 'new'}) do |f| %>
+               <div class="input">
+                <%= f.email_field :email, {:autofocus => true, :placeholder => "Username", :class => "form-control"} %>
+      			   </div>
+      			   </br>
+      			   <div class="input">
+                  <%= f.password_field :password, {:placeholder => "Password", :class => "form-control"} %>
+      			   </div>
+      			   <div class="row">
+       				   <div class="col-md-8"><%= link_to "Create an account", new_registration_path(:user) %></div>
+        				    <div class="col-md-4">
+                      <%= f.submit "Log In", {:class=> "btn btn-default pull-right" } %>
+                  </div>
+      			   </div>
+          <% end %>
+      		</div>
+      <% end %> 
+
+	  </div>
   </div>
 </div>
 <script type="text/javascript">

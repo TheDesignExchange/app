@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+          validates :username, presence: true, uniqueness: true
+          validates :first_name, presence: true
+          validates :last_name, presence: true
+
   def favorite(design_method)
     if !self.favorite_methods.exists?(design_method)
       self.favorite_methods << design_method
@@ -82,5 +86,6 @@ class User < ActiveRecord::Base
   has_many :owned_methods, dependent: :destroy, class_name: "DesignMethod", foreign_key: :owner_id
   has_many :method_favorites, dependent: :destroy
   has_many :favorite_methods, through: :method_favorites, :source => :design_method
+  has_many :owned_discussions, dependent: :destroy, class_name: "Discussion", foreign_key: :user_id
   has_many :comments, dependent: :destroy
 end

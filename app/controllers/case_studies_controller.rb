@@ -38,7 +38,7 @@ class CaseStudiesController < ApplicationController
     id = params[:id].to_i
     cs = CaseStudy.find(id)
     @casestudy = cs
-    @author = cs.company.name
+    @author = @casestudy.company.name
 
     @similar_methods = @casestudy.similar_methods(100,6)
     @similar_case_studies = @casestudy.similar_case_studies(100,6)

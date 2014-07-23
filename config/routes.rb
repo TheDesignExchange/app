@@ -2,13 +2,6 @@ DesignExchange::Application.routes.draw do
 
   root "application#index"
 
-  resources :set do
-    collection do
-      get "search/:query", to: "application#search", :as => "search"
-      get "search", to: "application#search"
-    end
-  end
-
   resources :case_studies do
     collection do 
       get "search/:query", to: "application#search"
@@ -30,13 +23,13 @@ DesignExchange::Application.routes.draw do
     end
   end
 
-  get "account/profile_user"
-  get "account/profile_user_edit"
-  get "account/account_information"
-  get "account/login"
-  get "account/register"
+  resources :set do
+    collection do
+      get "search/:query", to: "application#search", :as => "search"
+      get "search", to: "application#search"
+    end
+  end
 
-  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
