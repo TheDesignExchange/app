@@ -1,8 +1,3 @@
-# require "rdf"
-# require "rdf/raptor"
-# include RDF
-# Reset users
-
 filename = File.join(Rails.root, 'lib/tasks/data/dx.owl')
 fields = Hash.new
 
@@ -155,4 +150,3 @@ only_methods.each do |method|
   #   end
   # end
 end
-

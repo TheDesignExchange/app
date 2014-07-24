@@ -32,7 +32,10 @@ bundle install
 
 rake db:migrate
 rake sunspot:solr:start
-rake db:seed
+
+Run in the following order
+rake db:seed:users
+rake db:seed:design_methods
 rake db:seed:casestudies
 rake db:seed:discussions
 

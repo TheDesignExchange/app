@@ -11,6 +11,7 @@
 #
 
 class Discussion < ActiveRecord::Base
+  attr_accessible :title, :description, :user_id
   validates :title, :description, :user, presence: true
 
   validates_uniqueness_of :title
