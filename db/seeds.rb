@@ -3,6 +3,23 @@
 # include RDF
 # Reset users
 
+User.destroy_all
+
+# Create default admin user
+
+admin = User.new(
+  username: "admin",
+  first_name: "TheDesignExchange",
+  last_name: "Admin",
+  email: "admin@thedesignexchange.org",
+  password: "thedesignexchange",
+  password_confirmation: "thedesignexchange",
+)
+
+p "Admin #{admin.username} created!" if admin.save
+p admin.errors unless admin.save
+# Read in the ontology
+
 filename = File.join(Rails.root, 'lib/tasks/data/dx.owl')
 fields = Hash.new
 
@@ -112,9 +129,10 @@ only_methods.each do |method|
   data.query(principle).each do |results|
     fields[:principle] = results.principle.to_s
   end
-  design_method.principle = ""
+
   design_method = DesignMethod.new(fields)
   design_method.owner = admin
+  design_method.principle = ""
 
   if !design_method.save
     p "Error while creating a design method: "
