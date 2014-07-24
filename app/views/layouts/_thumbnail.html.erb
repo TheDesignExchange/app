@@ -1,15 +1,17 @@
+<!-- STYLE at APPLICATION.CSS ... THUMBNAIL CSS -->
 <div class= "<%= "col-sm-6 col-md-#{@thumb_obj[:col_md_value]} left-top-padding" %>" >
   <div class="thumbnail search-item">
   	<div class="caption">
   		<h5> 
         <%= link_to "#{@thumb_obj[:name]}", eval("#{@thumb_obj[:link]}_path(#{@thumb_obj[:id]})") %> 
       </h5>
-      <p>
+      <p class="likes">
         <span class="glyphicon glyphicon-star"></span> 
         <%= "#{@thumb_obj[:likes]}" %> Likes
       </p>
   		<p class="truncate-multiline"> 
-        <%= "#{@thumb_obj[:description]}" %>
+        <%= "#{@thumb_obj[:description][0..300]}" %>
+        <%= link_to "[...]", eval("#{@thumb_obj[:link]}_path(#{@thumb_obj[:id]})") %>
       </p> 
       <p>
         <% tagifier(@thumb_obj[:tags]).each do |category| %>

@@ -131,27 +131,6 @@ class DesignMethodsController < ApplicationController
 
   # Update an existing DesignMethod corresponding to the ID in the URI
   #
-  # === Request Body
-  # - design_method: a hash containing information to update the DesignMethod with
-  #
-  # === Variables
-  # - @design_method: the updated design method
-  def update
-    @design_method = DesignMethod.find(params[:id])
-
-    respond_to do |format|
-      if @design_method.update_attributes(params[:design_method])
-        format.html { redirect_to @design_method, notice: 'Design method was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @design_method.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # Update an existing DesignMethod corresponding to the ID in the URI
-  #
   # === Variables
   # - design_method: the deleted design method
   def destroy

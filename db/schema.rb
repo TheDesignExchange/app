@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715184342) do
+ActiveRecord::Schema.define(version: 20140723234717) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -126,14 +126,20 @@ ActiveRecord::Schema.define(version: 20140715184342) do
   end
 
   create_table "design_methods", force: true do |t|
-    t.string   "name",       null: false
-    t.text     "overview",   null: false
-    t.text     "process",    null: false
-    t.text     "principle",  null: false
-    t.integer  "owner_id",   null: false
+    t.string   "name",                          null: false
+    t.text     "overview",                      null: false
+    t.text     "process",                       null: false
+    t.text     "principle",                     null: false
+    t.integer  "owner_id",                      null: false
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "num_of_designers", default: 1
+    t.integer  "num_of_users",     default: 1
+    t.integer  "time_period",      default: 0
+    t.string   "time_unit",        default: ""
+    t.string   "main_image"
+    t.integer  "likes",            default: 0
   end
 
   create_table "discussion_replies", force: true do |t|
@@ -245,16 +251,6 @@ ActiveRecord::Schema.define(version: 20140715184342) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "username"
-    t.string   "profile_picture"
-    t.string   "phone_number"
-    t.string   "website"
-    t.string   "facebook"
-    t.string   "twitter"
-    t.string   "linkedin"
-    t.string   "about_text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
