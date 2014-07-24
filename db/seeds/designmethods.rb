@@ -107,9 +107,10 @@ only_methods.each do |method|
   data.query(principle).each do |results|
     fields[:principle] = results.principle.to_s
   end
-  design_method.principle = ""
+
   design_method = DesignMethod.new(fields)
-  design_method.owner = admin
+  design_method.owner = User.where("username == ?", "admin").first
+  design_method.principle = ""
 
   if !design_method.save
     p "Error while creating a design method: "

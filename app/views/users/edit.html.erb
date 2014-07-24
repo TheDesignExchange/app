@@ -29,7 +29,7 @@ $(function(){
 
 <!-- BODY -->
 <div class="row">
-  <%= form_for(@user) do |f| %>
+  <%= form_for @user, :html => {:multipart => true} do |f| %>
   <!-- PROFILE INFO -->
   <div class="col-md-3" style="border-right:1px solid #dddddd;">
 
@@ -39,7 +39,12 @@ $(function(){
     </div>
 
     <div class="col-md-12">
-      <img  alt="" class="fit-all"src="http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg" style="padding:10%;"/>
+      <% if @user.profile_picture.present? %>
+          <%= image_tag(@user.profile_picture, class: "fit-all",:style => "padding: 10%")%>
+        <% else %>
+          <%= image_tag("no-profile-available.jpg", class: "fit-all",:style => "padding: 10%")%>
+        <% end %>
+      <%= f.file_field :profile_picture %>
     </div>
 
     <div class="col-md-12">
