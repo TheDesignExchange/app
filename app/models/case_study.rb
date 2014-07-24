@@ -23,6 +23,7 @@
 #
 
 class CaseStudy < ActiveRecord::Base
+    attr_accessible :mainImage, :title, :url, :timePeriod, :development_cycle, :design_phase, :project_domain, :customer_type, :user_age, :privacy_level, :social_setting, :description, :customerIsUser, :remoteProject, :company_id
 	belongs_to :company
 	has_many :contacts
 	has_many :resources
@@ -31,6 +32,7 @@ class CaseStudy < ActiveRecord::Base
     has_many :method_case_studies
     has_many :design_methods, :through => :method_case_studies
     has_many :tags
+
 	# validates :development_cycle,
  #    :inclusion  => { :in => ["Product Update", "Product Refinement", "New Product", "Other"],
  #    :message    => "%{value} is not a development cycle" }

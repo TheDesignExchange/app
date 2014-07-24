@@ -10,6 +10,7 @@
 #
 
 class MethodCitation < ActiveRecord::Base
+  attr_accessible :design_method_id, :citation_id
   validates :design_method_id,
             :citation_id,
               presence: true,

@@ -140,14 +140,14 @@ only_methods.each do |method|
   #   end
   # end
 
-  # # Read in citations
-  # citations = SPARQL.parse("#{root_prefix} SELECT ?ref { :#{design_method.name} :references ?ref }")
-  # data.query(citations).each do |results|
-  #   cit_text = results.ref.to_s
-  #   citation = Citation.where(text: cit_text).first_or_create!
-  #   if !design_method.citations.include?(citation)
-  #     design_method.citations << citation
-  #     p "    Added citation #{cit_text}"
-  #   end
-  # end
+  # Read in citations
+  citations = SPARQL.parse("#{root_prefix} SELECT ?ref { :#{design_method.name} :references ?ref }")
+  data.query(citations).each do |results|
+    cit_text = results.ref.to_s
+    citation = Citation.where(text: cit_text).first_or_create!
+    if !design_method.citations.include?(citation)
+      design_method.citations << citation
+      p "    Added citation #{cit_text}"
+    end
+  end
 end

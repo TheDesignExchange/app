@@ -10,6 +10,7 @@
 #
 
 class MethodFavorite < ActiveRecord::Base
+  attr_accessible :user_id, :design_method_id
   validates :user_id,
             :design_method_id,
               presence: true,

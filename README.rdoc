@@ -35,7 +35,7 @@ rake sunspot:solr:start
 
 Run in the following order
 rake db:seed:users
-rake db:seed:design_methods
+rake db:seed:designmethods
 rake db:seed:casestudies
 rake db:seed:discussions
 
