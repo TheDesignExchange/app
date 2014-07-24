@@ -1,61 +1,100 @@
 [
+  {
+  "email": "admin@thedesignexchange.org",
+    "password": "thedesignexchange",
+    "password_confirmation": "thedesignexchange",
+    "username": "admin",
+    "first_name": "TheDesignExchange",
+    "last_name": "Admin"
+  },
+
 	{
 		"email": "keien.ohta@thedesignexchange.org",
   		"password": "thedesignexchange",
-  		"password_confirmation": "thedesignexchange"
+  		"password_confirmation": "thedesignexchange",
+      "first_name": "Keien",
+      "last_name": "Ohta",
+      "username": "keien.ohta"
   	},
 
   	{
 		"email": "candy.chang@thedesignexchange.org",
   		"password": "thedesignexchange",
-  		"password_confirmation": "thedesignexchange"
+  		"password_confirmation": "thedesignexchange",
+      "first_name":  "Candy",
+      "last_name":  "Chang",
+      "username": "candy.chang"
   	},
 
   	{
 		"email": "angel.rivera@thedesignexchange.org",
   		"password": "thedesignexchange",
-  		"password_confirmation": "thedesignexchange"
+  		"password_confirmation": "thedesignexchange",
+      "first_name":  "Angel",
+      "last_name":  "Rivera",
+      "username": "angel.rivera"
   	},
 
   	{
 		"email": "cesar.torres@thedesignexchange.org",
   		"password": "thedesignexchange",
-  		"password_confirmation": "thedesignexchange"
+  		"password_confirmation": "thedesignexchange",
+      "first_name":  "Cesar",
+      "last_name":  "Torres",
+      "username": "cesar.torres"
   	},
 
   	{
 		"email": "yipu.zheng@thedesignexchange.org",
   		"password": "thedesignexchange",
-  		"password_confirmation": "thedesignexchange"
+  		"password_confirmation": "thedesignexchange",
+      "first_name":  "Yipu",
+      "last_name":  "Zheng",
+      "username": "yipu.zheng"
   	},
 
   	{
 		"email": "celeste.roschuni@thedesignexchange.org",
   		"password": "thedesignexchange",
-  		"password_confirmation": "thedesignexchange"
+  		"password_confirmation": "thedesignexchange",
+      "first_name":  "Celeste",
+      "last_name":  "Roschuni",
+      "username": "celeste.roschuni"
   	},
 
   	{
 		"email": "alice.agogino@thedesignexchange.org",
   		"password": "thedesignexchange",
-  		"password_confirmation": "thedesignexchange"
+  		"password_confirmation": "thedesignexchange",
+      "first_name":  "Alice",
+      "last_name":  "Agogino",
+      "username": "alice.agogino"
   	},
 
   	{
 		"email": "carina.boo@thedesignexchange.org",
   		"password": "thedesignexchange",
-  		"password_confirmation": "thedesignexchange"
+  		"password_confirmation": "thedesignexchange",
+      "first_name":  "Carina",
+      "last_name":  "Boo",
+      "username": "carina.boo"
   	},
 
   	{
 		"email": "gordon.yang@thedesignexchange.org",
   		"password": "thedesignexchange",
-  		"password_confirmation": "thedesignexchange"
+  		"password_confirmation": "thedesignexchange",
+      "first_name":  "Gordon",
+      "last_name":  "Yang",
+      "username": "gordon.yang"
   	},
 
   	{
 		"email": "bid@thedesignexchange.org",
   		"password": "thedesignexchange",
-  		"password_confirmation": "thedesignexchange"
+  		"password_confirmation": "thedesignexchange",
+      "first_name":  "Bid",
+      "last_name":  "Admin",
+      "username": "bid"
   	}
 ]
