@@ -26,11 +26,11 @@
 			<h4>People</h4>
 			<p>
 				<span class="glyphicon glyphicon-user"></span>
-				- designer
+				~<%= pluralize(@method.num_of_designers, "designer") %> 
 			</p>
 			<p>
 				<span class="glyphicon glyphicon-user"></span>
-				- user
+				~<%= pluralize(@method.num_of_users, "user") %> 
 			</p>
 		</div>
     <!-- END PEOPLE -->
@@ -50,7 +50,7 @@
 			<h4>Time</h4>
 			<p>
 				<span class="glyphicon glyphicon-time"></span>
-				~ -
+				<%= pluralize(@method.time_period, @method.time_unit) %> 
 			</p>
   	</div>
     <!-- END TIME -->
@@ -73,7 +73,7 @@
   		<div class="row">
   			<div class="col-md-3">
   				<span class="glyphicon glyphicon-star"></span>
-  				- likes
+  				<%= @method.likes %> likes
   			</div>
   			<div class="col-md-3">
           		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -104,8 +104,8 @@
   			</div>
   		</div>
       	<!-- END MENU BAR -->
-
-      	<!-- CONTENT -->
+      <br>
+      <!-- CONTENT -->
   		<div class="row">
         <% if @method.main_image.present? %>
           <%= image_tag(@method.main_image, :width => "100%")%>
@@ -113,13 +113,13 @@
           <%= image_tag("no-image-available.png", :width => "100%", :height => "385")%>
         <% end %>
   		</div>
-
+      <br>
   		<!-- OVERVIEW & PROCESS -->
   		<div class="row">
   			<h4> Overview </h4>
-        	<p><%= @method.overview != nil ? @method.overview : "-" %></p>
+        	<%= @method.overview != nil ? simple_format(@method.overview) : "-"%>
         	<h4> Process </h4>
-        	<p><%= @method.process != nil ? @method.process : "-" %></p>
+        	<p><%= @method.process != nil ? simple_format(@method.process) : "-" %></p>
     	</div>
     	<!-- END OF OVERVIEW & PROVESS -->
 
@@ -237,7 +237,7 @@
           	<% end %> 
           </ol>
       <% else %>
-        No citations available
+        No citations available. 
       <% end %>
         <!-- END CITATIONS -->
 

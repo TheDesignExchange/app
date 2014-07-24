@@ -24,7 +24,7 @@ describe DesignMethod do
   it { should respond_to(:name) }
   it { should respond_to(:overview) }
   it { should respond_to(:process) }
-  it { should respond_to(:principle) }
+  # it { should respond_to(:principle) }
   it { should respond_to(:owner_id) }
 
   it { should respond_to(:method_categories) }

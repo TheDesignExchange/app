@@ -5,6 +5,7 @@
   <title><%= "DEx - #{params[:controller].camelize}" %> </title>
   <%= javascript_include_tag "application" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    params[:controller], :media => "all" %>
   <%= csrf_meta_tags %>
   <script> 
 

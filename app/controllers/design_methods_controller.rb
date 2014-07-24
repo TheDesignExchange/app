@@ -6,6 +6,7 @@ class DesignMethodsController < ApplicationController
   end
 
   def new
+    @design_method = DesignMethod.new
     render :layout => "custom"
   end
 
@@ -21,7 +22,7 @@ class DesignMethodsController < ApplicationController
     render :layout => "custom"
   end
 
-  
+
   # Update an existing DesignMethod corresponding to the ID in the URI
   #
   # === Request Body
@@ -52,8 +53,9 @@ class DesignMethodsController < ApplicationController
   # === Variables
   # - @design_method: the newly created design method
   def create
-    @design_method = DesignMethod.new(design_method_params)
+    @design_method = DesignMethod.new(params[:design_method])
     @design_method.owner = current_user
+    @design_method.principle = ""
 
     respond_to do |format|
       if @design_method.save
