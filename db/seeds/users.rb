@@ -1,5 +1,5 @@
 require "json"
-
+User.destroy_all
 users_file = 'users.json'
 
 # File should be in public
