@@ -40,7 +40,11 @@ $(function(){
 		</div>
 
 		<div class="col-md-12">
-			<img  alt="" class="fit-all"src="http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg" style="padding:10%;"/>
+			<% if @user.profile_picture.present? %>
+          		<%= image_tag(@user.profile_picture, class: "fit-all", :style => "padding: 10%")%>
+        	<% else %>
+          		<%= image_tag("no-profile-available.jpg", class: "fit-all",:style => "padding: 10%")%>
+        	<% end %>
 		</div>
 
 		<% if !@is_current_user %>
