@@ -22,4 +22,13 @@ class AccountController < ApplicationController
   def register
   	render layout: "custom" 
   end
+
+  def tagify(content, options)
+    tag = "<span class='tag-label label-gap'>#{content}  " 
+      if options[:removable]
+        tag = tag + '<span class="glyphicon glyphicon-remove-circle"></span>' 
+      end
+      tag = tag + '</span>'
+    tag.html_safe
+  end
 end

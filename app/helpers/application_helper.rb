@@ -19,14 +19,13 @@ module ApplicationHelper
 	    boolean ? 'Yes' : 'No'
 	end
 
-	def tagify(content)
-		# tag << eos 
-		# 	<span class="tag-label label-gap">brainstorming 
-	 #         <span class="glyphicon glyphicon-remove-circle"></span>
-	 #        </span>
-  #       eos
-  		tag = content
-        tag.html_safe
+	def tagify(id, content, options)
+		tag = "<span class='tag-label label-gap'>#{content}  " 
+	    if options[:removable]
+	    	tag = tag + '<span onclick="removeTag('+ (id.to_s) +', this);" class="glyphicon glyphicon-remove-circle"></span>' 
+	    end
+	    tag = tag + '</span>'
+		tag.html_safe
 	end
 
 end

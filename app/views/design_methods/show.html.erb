@@ -59,7 +59,10 @@
   	<div class="row">
 			<h4>Tags</h4>
       <p>
-        No tags available
+        <% @method.tags.each do |t| %>
+         <%= tagify(t.id, t.content, {:removable => false}) %>
+        <% end %>
+        <%= "No tags available" unless not @method.tags.empty? %>
       </p>
       <!-- END TAGS -->
   	</div>

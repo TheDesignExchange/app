@@ -1,5 +1,9 @@
 <script> 
   $(function(){
+    adjustSaveBar();
+  });
+  
+  function adjustSaveBar(){
     var pH = $('#publish-btn').parent().height()
     var eH = $('#publish-btn').height()
     $('#publish-btn').css('margin-top', (pH - eH)/2)
@@ -11,7 +15,7 @@
     pH = $('#auto-saved-text').parent().height()
     eH = $('#auto-saved-text').height()
     $('#auto-saved-text').css('margin-top', (pH - eH)/2)
-  });
+  }
 </script>
 <%= form_for @design_method, :html => {:multipart => true} do |f| %>
 <!-- ERROR MESSAGES -->
@@ -92,9 +96,17 @@
     <!-- TAGS -->
   	<div class="row">
 			<h4>Tags</h4>  
-      <input type="text" class="form-control" placeholder="Tag">
-      <p>
-        <%= tagify("test") %>
+      <div class="input-group">
+      <input type="text" class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" onclick="createTag('design_method', <%=params[:id]%>, this);">Add Tag</button>
+      </span>
+    </div>
+    <br>
+      <p class='tag-list'>
+        <% @design_method.tags.each do |t| %>
+         <%= tagify(t.id, t.content, {:removable => true}) %>
+        <% end %>
       </p>
   	</div>
 	</div>

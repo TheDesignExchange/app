@@ -25,7 +25,32 @@
 $(function(){
 		$('textarea').unbind();
 })
+function removeTag(id, self){
+	console.log("/tags/" + id);
+	$.ajax({
+	  url: "/tags/" + id,
+	  type: "DELETE"
+	});
+	$(self).parent().remove();
+}
 
+function createTag(model, model_id, tag){
+	var value = $(tag).parent().siblings('input').val();
+	tag = {};
+	tag[model + "_id"] = model_id;
+	tag["content"] = value
+	// console.log(tag);
+	$.ajax({
+	  url: "/tags",
+	  type: "POST",
+	  data: {tag: tag, commit:"Create Tag"},
+	  success: function(html){
+	  	console.log(html);
+	  	$('.tag-list').append(html.tag);
+	  },
+	  dataType: "json"
+	});
+}
 
 function DOM(){}
 DOM.tag = function(t){
