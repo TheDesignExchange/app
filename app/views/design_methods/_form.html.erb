@@ -1,0 +1,178 @@
+<script> 
+  $(function(){
+    var pH = $('#publish-btn').parent().height()
+    var eH = $('#publish-btn').height()
+    $('#publish-btn').css('margin-top', (pH - eH)/2)
+
+    //pH = $('#save-btn').parent().height()
+    eH = $('#save-btn').height()
+    $('#save-btn').css('margin-top', (pH - eH)/2)
+
+    pH = $('#auto-saved-text').parent().height()
+    eH = $('#auto-saved-text').height()
+    $('#auto-saved-text').css('margin-top', (pH - eH)/2)
+  });
+</script>
+<%= form_for @design_method, :html => {:multipart => true} do |f| %>
+<!-- ERROR MESSAGES -->
+<% if @design_method.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@design_method.errors.count, "error") %> prohibited this design_method from being saved:</h2>
+
+      <ul>
+      <% @design_method.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+<% end %>
+<!-- INPUT FIELDS -->
+<div class="row">
+  <%= f.submit "Publish", :id => "publish-btn", :class => "btn btn-default publish-background-color pull-right" %>
+   <% save_draft = "<span class='glyphicon glyphicon-floppy-disk'></span> Save as Draft".html_safe %>
+   
+   
+ <button type="button" class="btn btn-default publish-background-color pull-right" id="save-btn" name="commit" type="submit">
+  <%= glyphyify("floppy-disk") %> Save as Draft
+  </button>
+
+    
+  <!-- </button> -->
+  <span id="auto-saved-text"class="pull-right">Auto-saved as draft 2 minutes ago</span>
+</div>
+
+<!-- BODY -->
+<div class = "row">
+
+  <!-- LEFT CONTENT -->
+	<div class="col-md-4">
+
+    <!-- PEOPLE -->
+		<div class="row">
+			<h4>People</h4>
+			<div class="input-group">
+  				<span class="input-group-addon">
+  					<span class="glyphicon glyphicon-user" > collaborators</span>
+  				</span>
+          <%= f.number_field :num_of_designers, :class => "form-control", :placeholder => "# of collaborators", in: 0...1000 %>
+			</div>
+      <br>
+			<div class="input-group">
+  				<span class="input-group-addon">
+  					<span class="glyphicon glyphicon-user" > users       </span>
+  				</span>
+          <%= f.number_field :num_of_users, :class => "form-control", :placeholder => "# of users", in: 0...1000 %>
+			</div>
+		</div>
+    <!-- END PEOPLE -->
+
+    <!-- TOOLS -->
+  	<div class="row">
+			<h4>Tools</h4>
+			<div class="input-group">
+  				<span class="input-group-addon">
+  					<span class="glyphicon glyphicon-pencil" ></span>
+  				</span>
+  				<input type="text" class="form-control" placeholder="Ex. paper, pen">
+			</div>
+		</div>
+    <!-- END TOOLS -->
+
+    <!-- TIME -->
+  	<div class="row">
+			<h4>Time</h4>
+			<div class="input-group">
+  				<span class="input-group-addon">
+  					<span class="glyphicon glyphicon-time" ></span>
+  				</span>
+  				 <%= f.number_field :time_period, :class => "form-control", in: 0...1000 %>
+          <%= f.select(:time_unit, options_for_select([['years', 'yr'], ['days', 'd'], ['hours', 'hr'], ['minutes', 'min']]), {}, {:class=> "form-control"})%>
+
+			</div>
+  	</div>
+    <!-- END TIME -->
+
+    <!-- TAGS -->
+  	<div class="row">
+			<h4>Tags</h4>  
+      <input type="text" class="form-control" placeholder="Tag">
+      <p>
+        <span class="tag-label label-gap">brainstorming 
+          <span class="glyphicon glyphicon-remove-circle"></span>
+        </span>
+      </p>
+  	</div>
+	</div>
+  <!-- END OF TAGS -->
+  <!-- END LEFT CONTENT -->
+
+  <!-- RIGHT CONTENT -->
+  <div class="col-md-8">
+      <!-- INPUT METHOD NAME -->
+  		<div class="input-group-lg" style="margin-top: 10px;margin-bottom: 10px;">
+  		  <%= f.text_field :name, :class=> "form-control", :placeholder => "Method Name" %>
+		  </div>
+      <!-- END INPUT METHOD NAME -->
+
+      <!-- IMAGES -->
+      <div class="row">
+        <div class="col-xs-6 col-md-4">
+          <a href="#" class="thumbnail" style="height: 145px;">
+            <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+          </a>
+        </div>
+
+        <div class="col-xs-6 col-md-4">
+          <a href="#" class="thumbnail" style="height: 145px;">
+            <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+          </a>
+        </div>
+
+        <div class="col-xs-6 col-md-4">
+          <a href="#" class="thumbnail" style="height: 145px;">
+            <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+          </a>
+        </div>
+
+        <div class="col-xs-6 col-md-4">
+          <a href="#" class="thumbnail" style="height: 145px;">
+            <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+          </a>
+        </div>
+
+        <div class="col-xs-6 col-md-4">
+          <a href="#" class="thumbnail" style="height: 145px;">
+            <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+          </a>
+        </div>
+
+        <div class="col-xs-6 col-md-4">
+          <a href="#" class="thumbnail" style="height: 145px;">
+            <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+          </a>
+        </div>
+      </div>
+
+      <%= f.file_field :main_image %>
+      <!-- END IMAGES -->
+
+      <!-- FORMS -->
+      <h3>Summary</h3>
+        <%= f.text_area :overview, :class => "form-control", :rows => 6 %>
+      
+          
+
+      <h3>Process</h3>
+      <%= f.text_area :process, :class => "form-control", :rows => 12 %>
+
+
+
+      <!-- END FORMS -->
+</div>
+<!-- END RIGHT CONTENT -->
+
+</div>
+<!-- END BODY -->
+<% end %>
+
+

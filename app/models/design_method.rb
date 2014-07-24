@@ -14,6 +14,8 @@
 #
 
 class DesignMethod < ActiveRecord::Base
+  mount_uploader :main_image, PictureUploader
+  attr_accessible :name, :process, :num_of_designers, :num_of_users, :overview, :main_image, :time_unit, :name
   validates :name, :overview, presence: true
   validates :name, length: { maximum: 255,
             too_long: "%{count} is the maximum character length."}

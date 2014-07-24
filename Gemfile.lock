@@ -294,6 +294,7 @@ DEPENDENCIES
   bootsy
   bourbon (~> 3.2)
   capybara
+  carrierwave
   coffee-rails
   devise
   equivalent-xml

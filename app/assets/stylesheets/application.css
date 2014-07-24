@@ -97,11 +97,8 @@ img{
     text-overflow: ellipsis;
   }
   .truncate-multiline {
-    height: 120px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: left;
-    font-size: 10pt;
+    text-align: justify;
+    font-size: 9pt;
   }
 
   .navbar{
@@ -134,6 +131,8 @@ img{
     padding-bottom: 30px;
 
   }
+  /* THUMBNAIL CSS*/
+
   .thumbnail{
     padding: 0px;
    
@@ -145,7 +144,10 @@ img{
       overflow: hidden;
       height: 150px;
     }
-
+    .thumbnail .likes{
+      font-size: 10pt;
+    }
+    
     .profile div img{
       height: 60px;
       width: auto;

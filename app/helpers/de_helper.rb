@@ -60,7 +60,7 @@ module DeHelper
                 	<input type='checkbox'> #{key}
                 </label>"
 	end
-
+	# CONVERTS OBJECTS TO THE LAYOUT/THUMBNAIL PARTIAL
 	def thumbnail(obj,col_md_value)
 		thumb_obj = {}
 		if obj.is_a?(DesignMethod)

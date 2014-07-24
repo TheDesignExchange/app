@@ -58,4 +58,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'bootsy'
 gem 'bourbon', '~> 3.2'
-gem 'protected_attributes
+
+# gem "rmagick"
+gem "carrierwave"
+gem "protected_attributes"

@@ -9,26 +9,62 @@ class DesignMethodsController < ApplicationController
     render :layout => "custom"
   end
 
+  # Edit an existing DesignMethod
+  #
+  # === Parameters
+  # - id: ID of the design method to be edited
+  #
+  # === Variables
+  # - @design_method: the design method to be edited
   def edit
-    id = params[:id] == nil ? 1 : params[:id].to_i
-    # render :text => id
-    @cs = CaseStudy.where("id=?", id).first;
-
-    @attr = CaseStudy.columns_hash;
-    @company = @cs.company
-    @contacts = @company.contacts()
-    @methods = @cs.design_methods().reverse;
-
-    @attr.delete("id")
-    @attr.delete("company_id")
-    @attr.delete("created_at")
-    @attr.delete("updated_at")
-    @options = CaseStudy.options()
-    @helper_text = CaseStudy.helper_text()
-
+    @design_method = DesignMethod.find(params[:id])
     render :layout => "custom"
   end
 
+  
+  # Update an existing DesignMethod corresponding to the ID in the URI
+  #
+  # === Request Body
+  # - design_method: a hash containing information to update the DesignMethod with
+  #
+  # === Variables
+  # - @design_method: the updated design method
+  def update
+    @design_method = DesignMethod.find(params[:id])
+
+    respond_to do |format|
+      if @design_method.update_attributes(params[:design_method])
+        format.html { redirect_to @design_method, notice: 'Design method was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @design_method.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+  # Creates a DesignMethod
+  #
+  # === Request Body
+  # - design_method: a hash containing the required fields for creating a DesignMethod
+  #
+  # === Variables
+  # - @design_method: the newly created design method
+  def create
+    @design_method = DesignMethod.new(design_method_params)
+    @design_method.owner = current_user
+
+    respond_to do |format|
+      if @design_method.save
+        format.html { redirect_to @design_method, notice: 'Design method was successfully created.' }
+        format.json { render json: @design_method, status: :created, location: @design_method }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @design_method.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   def show
     id = params[:id].to_i
