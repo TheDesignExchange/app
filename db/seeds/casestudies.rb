@@ -14,7 +14,7 @@ def process_companies(data)
 	p "===============  SEEDING COMPANIES  ================"
 	data.each do |el|
 		el["projectDomain"] ||= "design"
-		temp_email = "#{el['companyName'].gsub(' ','').downcase}@unknown.com"
+		temp_email = "#{el['companyName'].gsub(' ','').downcase.gsub('&', '')}@unknown.com"
 		comp = Company.new({:name => el["companyName"], :domain => el["projectDomain"], :email => temp_email })
 		p "Added company: #{comp.name}" unless not comp.save 
 		# p comp.errors unless comp.save
@@ -37,6 +37,7 @@ def process_contacts(data)
 	p "==============================="
 end
 def process_casestudies(data)
+	CaseStudy.destroy_all
 	p "===============  SEEDING CASE STUDIES  ================"
 	data.each do |el|
 		el.each{|k, v| el[k] = v.strip }
@@ -52,6 +53,7 @@ def process_casestudies(data)
 		c.company = comp
 		p "Added casestudy: #{c.title}" unless not c.save
 		p c.errors unless c.save
+		
 	end
 	p "==============================="
 end
