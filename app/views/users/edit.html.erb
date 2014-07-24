@@ -1,0 +1,154 @@
+<script>
+$(function(){
+  $('.tab-pane[data-link ="'+ "all" +'"]').show().siblings(".tab-pane").hide();
+  $('#tabs li a').click(function(e){
+    e.preventDefault();
+    // Alternate tabs
+    $(this).parent()
+           .addClass('active')
+           .siblings()
+           .removeClass('active');
+    var link = $(this).data('link');
+
+    // $('.tab-pane[data-link ~="'+ link +'"]').hide();
+    $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
+  })
+});
+</script>
+
+<style>
+.padding{
+    padding-top: 15px;
+}
+
+.social-icon{
+  width: 23px;
+  height: 23px;
+}
+</style>
+
+<!-- BODY -->
+<div class="row">
+  <%= form_for(@user) do |f| %>
+  <!-- PROFILE INFO -->
+  <div class="col-md-3" style="border-right:1px solid #dddddd;">
+
+    <div class="col-md-12" style="text-align: center;">
+      <h4><%= @user.first_name %> <%= @user.last_name%></h4>
+      <h5><a><%= @user.username %></a></h5>
+    </div>
+
+    <div class="col-md-12">
+      <img  alt="" class="fit-all"src="http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg" style="padding:10%;"/>
+    </div>
+
+    <div class="col-md-12">
+      <h4>
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        Likes
+        <span class="pull-right">#</span>
+      </h4>
+      <h4>
+        <span class="glyphicon glyphicon-user"></span>
+        Followers
+        <span class="pull-right">#</span>
+      </h4>
+      <h4>
+        <span class="glyphicon glyphicon-user"></span>
+        Following
+        <span class="pull-right">#</span>
+      </h4>
+    </div>
+    <div class="col-md-12">
+      <h4>Expertise</h4>
+      <input type="text" class="form-control" placeholder="Expertise">
+      <p>
+        <span class="tag-label label-gap">brainstorming 
+                <span class="glyphicon glyphicon-remove-circle"></span>
+        </span>
+      </p>
+    </div>
+
+    <div class="col-md-12">
+      <h4>About</h4>
+      <%= f.text_area :about_text, {:autofocus => true, :class => "form-control", :row => "3"}%>
+      </div>
+      <div class="col-md-12">
+        <h4>Contact</h4>
+        <%= f.text_field :website, {:autofocus => true, :class => "form-control", :placeholder => "Website"}%>
+        <%= f.phone_field :phone_number, {:autofocus => true, :class => "form-control", :placeholder => "Phone Number"}%>
+      </div>
+
+      <!-- SOCIAL ICONS -->
+      <div class="col-md-12" style="margin-top:10px;">
+        <h4>Social</h4>
+        <div class="input-group input-group-lg">
+          <span class="input-group-addon">
+            <%= image_tag("facebook_icon.png", class: "social-icon") %>
+          </span>
+          <%= f.text_field :facebook, {:autofocus => true, :class => "form-control", :placeholder => "Facebook"}%>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="input-group input-group-lg">
+          <span class="input-group-addon">
+            <%= image_tag("linkedin_icon.png", class: "social-icon") %>
+          </span>
+          <%= f.text_field :linkedin, {:autofocus => true, :class => "form-control", :placeholder => "Linkedin"}%>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="input-group input-group-lg">
+          <span class="input-group-addon">
+            <%= image_tag("twitter_icon.ico", class: "social-icon") %>
+          </span>
+          <%= f.text_field :twitter, {:autofocus => true, :class => "form-control", :placeholder => "Twitter"}%>
+        </div>
+      </div>
+      <!-- END SOCIAL ICONS -->
+  </div>
+  <!-- END PROFILE INFO -->
+
+  <!-- POSTED BY -->
+  <div class="col-md-9">
+    <h4>Posted by <%= @user.first_name != nil && @user.last_name != nil ? @user.first_name+" "+@user.last_name : @user.username %>
+      <%= f.submit "Save", {:class=> "btn btn-default publish-background-color pull-right" } %>
+    </h4>
+    <!-- NAVBAR -->
+    <div id="tabs">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-link="all">All</a></li>
+        <li><a data-link="dm">Methods</a></li>
+        <li><a data-link="cs">Case Studies</a></li>
+        <li><a data-link="disc">Discussions</a></li>
+      </ul>
+    </div>
+    <!-- END NAVBAR -->
+     <div data-link="all" class="tab-pane col-md-12 padding">
+      <% @owned_methods.each do |dm| %>
+        <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4") %>
+      <% end %>
+    </div>
+    <div data-link="dm" class="tab-pane col-md-12 padding" >
+        <% @owned_methods.each do |dm| %>
+          <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4") %>
+        <% end %>
+    </div>
+      <!-- Case Study Search Tab -->
+      <div data-link="cs" class="tab-pane col-md-12 padding" >
+
+      </div>
+      <!-- Discussion Search Tap -->
+      <div data-link="disc" class="tab-pane col-md-12 padding" >
+        <% @owned_discussions.each do |disc| %>
+            <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"4") %>
+        <% end %>
+      </div>
+    <!-- END THUMBNAILS -->
+  </div>
+  <!-- END POSTED BY -->
+  <% end %>
+</div>
+<!-- END BODY -->
