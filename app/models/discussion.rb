@@ -16,4 +16,5 @@ class Discussion < ActiveRecord::Base
   validates_uniqueness_of :title
   belongs_to :user
   has_many :replies, class_name: "DiscussionReply"
+  has_many :tags
 end

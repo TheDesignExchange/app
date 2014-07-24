@@ -1,5 +1,7 @@
 DesignExchange::Application.routes.draw do
 
+  resources :tags
+
   root "application#index"
 
   resources :case_studies do

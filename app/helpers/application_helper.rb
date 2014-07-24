@@ -19,5 +19,15 @@ module ApplicationHelper
 	    boolean ? 'Yes' : 'No'
 	end
 
+	def tagify(content)
+		# tag << eos 
+		# 	<span class="tag-label label-gap">brainstorming 
+	 #         <span class="glyphicon glyphicon-remove-circle"></span>
+	 #        </span>
+  #       eos
+  		tag = content
+        tag.html_safe
+	end
+
 end
 

@@ -91,4 +91,5 @@ class User < ActiveRecord::Base
   has_many :favorite_methods, through: :method_favorites, :source => :design_method
   has_many :owned_discussions, dependent: :destroy, class_name: "Discussion", foreign_key: :user_id
   has_many :comments, dependent: :destroy
+  has_many :tags
 end

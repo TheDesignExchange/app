@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723234717) do
+ActiveRecord::Schema.define(version: 20140724015008) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -224,6 +224,16 @@ ActiveRecord::Schema.define(version: 20140723234717) do
     t.boolean  "permission_to_use", default: false
     t.string   "type",              default: ""
     t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.integer  "design_method_id"
+    t.integer  "case_study_id"
+    t.integer  "discussion_id"
+    t.integer  "user_id"
+    t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

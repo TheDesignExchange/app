@@ -1,0 +1,20 @@
+<!-- STYLE at APPLICATION.CSS ... THUMBNAIL-CONDENSED CSS -->
+<div class="col-sm-6 col-md-4 no-gap">
+ <div class="thumbnail">
+    <div class="caption">
+      <h5 class='truncate'>
+        <%= link_to "#{@thumb_obj[:name]}", eval("#{@thumb_obj[:link]}_path(#{@thumb_obj[:id]})") %> 
+      </h5>
+      <p><span class="glyphicon glyphicon-star"></span> <%= "#{@thumb_obj[:likes]}" %> Likes</p>
+      <p class='truncate-multiline'>
+        <%= "#{@thumb_obj[:description][0..300]}" %>
+        <%= link_to "[...]", eval("#{@thumb_obj[:link]}_path(#{@thumb_obj[:id]})") %>
+      </p>
+      <p>
+        <% tagifier(@thumb_obj[:tags]).each do |category| %>
+          <span class="tag-label label-gap"> <%= "#{category}" %> </span>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>

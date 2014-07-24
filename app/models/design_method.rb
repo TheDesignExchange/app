@@ -131,5 +131,5 @@ class DesignMethod < ActiveRecord::Base
 
   # Comments
   has_many :comments, dependent: :destroy
-
+  has_many :tags
 end 

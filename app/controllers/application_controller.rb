@@ -29,12 +29,12 @@ class ApplicationController < ActionController::Base
   	end
 
   	def index
-  	@design_methods = DesignMethod.where("overview != ?", "No overview available" ).take(3)
-  	@case_studies = CaseStudy.where("description != ?", "No description available").take(3)
-    @discussions = Discussion.take(2)
-  	# render :text => sidebar_hash(:methods)
-  	render layout: "custom"
-  end
+    	@design_methods = DesignMethod.where("overview != ?", "No overview available" ).take(3)
+    	@case_studies = CaseStudy.where("description != ?", "No description available").take(3)
+      @discussions = Discussion.take(2)
+    	# render :text => sidebar_hash(:methods)
+    	render layout: "custom"
+    end
 
   def search
     query = params[:query] ? params[:query].gsub(' ', '_') : "";

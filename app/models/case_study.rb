@@ -30,6 +30,7 @@ class CaseStudy < ActiveRecord::Base
     # METHOD LINKING 
     has_many :method_case_studies
     has_many :design_methods, :through => :method_case_studies
+    has_many :tags
 	# validates :development_cycle,
  #    :inclusion  => { :in => ["Product Update", "Product Refinement", "New Product", "Other"],
  #    :message    => "%{value} is not a development cycle" }
