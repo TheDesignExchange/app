@@ -1,6 +1,7 @@
 class CaseStudiesController < ApplicationController
   def index
-    @case_studies = CaseStudy.where("description != ?", "No description available" ).take(24)
+    # @case_studies = CaseStudy.where("description != ?", "No description available" ).take(24)
+    @case_studies = CaseStudy.take(24)
   	render layout: "wide"
   end
 

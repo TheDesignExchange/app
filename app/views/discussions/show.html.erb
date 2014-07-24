@@ -21,9 +21,7 @@
   			<%= @discussion.title %>
   		</h1> 
   			<%= @discussion.created_at.to_s %> ago 
-  		<a>
-  			<%= @author %>
-  		</a>
+  			<%= link_to @author.email, user_path(@author.id) %>
   		<p>
         <!-- TAGS SHOULD BE HERE -->
   			<% tagifier([]).each do |category| %>

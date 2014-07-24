@@ -29,8 +29,10 @@ class ApplicationController < ActionController::Base
   	end
 
   	def index
-    	@design_methods = DesignMethod.where("overview != ?", "No overview available" ).take(3)
-    	@case_studies = CaseStudy.where("description != ?", "No description available").take(3)
+    	# @design_methods = DesignMethod.where("overview != ?", "No overview available" ).take(3)
+    	# @case_studies = CaseStudy.where("description != ?", "No description available").take(3)
+      @design_methods = DesignMethod.take(3)
+      @case_studies = CaseStudy.take(3)
       @discussions = Discussion.take(2)
     	# render :text => sidebar_hash(:methods)
     	render layout: "custom"
@@ -59,10 +61,12 @@ class ApplicationController < ActionController::Base
     hits = []
     if query
       if type == :dm
-        results = DesignMethod.where("LOWER( design_methods.name ) LIKE ? AND overview != ? ", "%#{query}%", "No overview available")
+        # results = DesignMethod.where("LOWER( design_methods.name ) LIKE ? AND overview != ? ", "%#{query}%", "No overview available")
+        results = DesignMethod.where("LOWER( design_methods.name ) LIKE ?", "%#{query}%")
         .order('name = "'+ query +'" DESC, name LIKE "'+ query +'%" DESC'); 
       elsif type == :cs
-        results = CaseStudy.where("LOWER( case_studies.title ) LIKE ? AND description != ?", "%#{query}%", "No description available")
+        # results = CaseStudy.where("LOWER( case_studies.title ) LIKE ? AND description != ?", "%#{query}%", "No description available")
+        results = CaseStudy.where("LOWER( case_studies.title ) LIKE ?", "%#{query}%")
         .order('title = "'+ query +'" DESC, title LIKE "'+ query +'%" DESC'); 
       else
         results = Discussion.where("LOWER( discussions.title ) LIKE ?", "%#{query}%")

@@ -50,7 +50,7 @@
     	 </div>
     	 <div class="col-md-11">
     		<h5><%= link_to disc.title, discussion_path(disc.id)  %></h5>
-    		<p> <a><%= disc.user.email %></a> <%= disc.created_at.to_s %>  ago </p>
+    		<p> <%= link_to disc.user.email, user_path(disc.user_id) %> <%= disc.created_at.to_s %>  ago </p>
     		<p> <%= disc.description %> </p>
     	 </div>
       </div>

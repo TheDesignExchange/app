@@ -6,11 +6,11 @@
 	</div>
   <div class='col-md-11'>
   	<h4>
-      <a class='font-discussion-tittle'> <%= link_to @discussion.title , "/discussions/view?n=#{@discussion.id}" %> </a>
+      <a class='font-discussion-tittle'> <%= link_to @discussion.title , discussion_path(@discussion.id) %> </a>
     </h4>
 
       <%= @discussion.created_at != nil ? @discussion.created_at.to_s : "-" %>ago 
-      <a><%= @discussion.user.email != nil ? @discussion.user.email : "-" %> </a>
+      <%= link_to @discussion.user.email, user_path(@discussion.user_id) %>
       <!-- RESPONSES SHOULD BE ADDED HERE -->
   		<p>- response</p>
       <p>

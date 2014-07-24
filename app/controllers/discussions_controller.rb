@@ -12,7 +12,7 @@ class DiscussionsController < ApplicationController
     id = params[:id].to_i
     disc = Discussion.find(id)
     @discussion = disc
-    @author = disc.user.email
+    @author = disc.user
   	render layout: "custom"
   end
 end
