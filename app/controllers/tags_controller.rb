@@ -6,7 +6,7 @@ class TagsController < InheritedResources::Base
       if @tag.save
         # format.html { redirect_to @tag, notice: 'Design method was successfully created.' }
         # format.json { render json: @tag, status: :created, location: @tag }
-        render :json => {:tag => tagify(@tag.content, {:removable => true})}
+        render :json => {:tag => tagify(@tag.id, @tag.content, {:removable => true})}
       else
         format.html { render action: "new" }
         format.json { render json: @tag.errors, status: :unprocessable_entity }
