@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Design method:</strong>
+  <%= @tag.design_method_id %>
+</p>
+
+<p>
+  <strong>Case study:</strong>
+  <%= @tag.case_study_id %>
+</p>
+
+<p>
+  <strong>Discussion:</strong>
+  <%= @tag.discussion_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tag.user_id %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @tag.content %>
+</p>
+
+<%= link_to 'Edit', edit_tag_path(@tag) %> |
+<%= link_to 'Back', tags_path %>
