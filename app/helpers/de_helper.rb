@@ -69,7 +69,7 @@ module DeHelper
 					:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg",
 					:name => obj.name.humanize,
 					:tags => obj.method_categories.map{|x| x.name}[0..1],
-					:likes => (rand*100).to_i,
+					:likes => obj.likes,
 					:description => obj.overview,
 					:id => obj.id,
 					:link => "design_method",

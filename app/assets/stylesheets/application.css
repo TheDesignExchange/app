@@ -135,7 +135,7 @@ img{
 
   .thumbnail{
     padding: 0px;
-   
+    min-height: 350px;
     }
     .thumbnail img{
       width: 100%;

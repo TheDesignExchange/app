@@ -9,19 +9,7 @@
   	<div class="row">
 
     <% @design_methods.each do |method| %>
-  		<div class="col-sm-6 col-md-4 no-gap">
-   		 <div class="thumbnail">
-   		 	  <!-- <div class="image-wrapper">
-	  		    <img src="http://www.digitaltrends.com/wp-content/uploads/2013/02/eye-tracking.jpg">
-  		    </div> -->
-  		    <div class="caption">
-  		      <h5 class='truncate'><%= link_to method.name.humanize, design_method_path(method.id)  %></h5>
-  		      <p><span class="glyphicon glyphicon-star"></span> 392 Likes</p>
-  		      <p class='truncate-multiline'><%= method.overview %></p>
-  		      <p><span class="tag-label">user testing</span></p>
-  		    </div>
-  		  </div>
-  		</div>
+      <%= render "/application/thumbnail_compact", locals: @thumb_obj = thumbnail(method, "3") %>
     <% end %>
   	
   </div>
@@ -38,20 +26,8 @@
   <div class="col-md-8">
   	<div class="row">
       <% @case_studies.each do |cs| %>
-  		<div class="col-sm-6 col-md-4 no-gap">
-   		 <div class="thumbnail">
-  		    <!-- <div class="image-wrapper">	
-  		    	<img src="http://www.maxymiser.com/uploads/AB-Testing.jpg">
-  		    </div> -->
-  		    <div class="caption">
-  		       <h5 class='truncate'><%= link_to cs.title, case_study_path(cs.id) %></h5>
-  		      <p><span class="glyphicon glyphicon-star"></span> <%= (rand * 100).to_i%> Likes</p>
-  		      <p class='truncate-multiline'><%= cs.description %></p>
-  		      <p><span class="tag-label">user testing</span></p>
-  		    </div>
-  		  </div>
-  		</div>
-    <% end %>
+  	   <%= render "/application/thumbnail_compact", locals: @thumb_obj = thumbnail(cs, "3") %>
+      <% end %>
   </div>
 
   </div>
