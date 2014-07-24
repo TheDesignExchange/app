@@ -34,13 +34,11 @@ $(function(){
 	<!-- PROFILE INFO -->
 	<div class="col-md-3" style="border-right:1px solid #dddddd;">
 
-		<!-- IN EDIT IS A FORM | IN VIEW MODE IS A TEXT -->
 		<div class="col-md-12" style="text-align: center;">
 			<h4><%= @user.first_name %> <%= @user.last_name%></h4>
 			<h5><a><%= @user.username %></a></h5>
 		</div>
 
-		<!-- IN EDIT MODE IS AN UPLOAD IMAGE | IN VIEW MODE IS AN IMAGE -->
 		<div class="col-md-12">
 			<img  alt="" class="fit-all"src="http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg" style="padding:10%;"/>
 		</div>
@@ -76,7 +74,6 @@ $(function(){
 			</h4>
 		</div>
 
-		<!-- IN EDIT MODE YOU NEED TO ADD | IN VIEW MODE IS JUST A PANEL  -->
 		<div class="col-md-12">
 			<h4>Expertise</h4>
     			<p>
@@ -85,7 +82,6 @@ $(function(){
    	 			</p>
     	</div>
 
-    	<!-- IN EDIT MODE YOU NEED TO ADD | IN VIEW MODE IS JUST A PANEL  -->
 		<% if @user.about_text != nil %>
 			<div class="col-md-12">
 				<h4>About</h4>
@@ -93,7 +89,6 @@ $(function(){
 	    	</div>
 	    <% end %>
 
-    	<!-- IN EDIT MODE YOU NEED TO ADD | IN VIEW MODE IS JUST A PANEL  -->
 		<% if @user.email != nil || @user.website != nil || @user.phone_number != nil %>
 			<div class="col-md-12">
 				<h4>Contact</h4>
@@ -122,9 +117,7 @@ $(function(){
 	<div class="col-md-9">
 		<h4>Posted by <%= @user.first_name != nil && @user.last_name != nil ? @user.first_name+" "+@user.last_name : @user.username %> 
 			<% if @is_current_user %>
-				<button type="submit" class="btn btn-default pull-right" onclick="window.location.href = '/account/profile_user_edit';">
-					Edit
-				</button>
+				<%= link_to "Edit", edit_user_path(@user), :class => "btn btn-default pull-right" %>
 			<% end %>
 		</h4>
 		<!-- NAVBAR -->

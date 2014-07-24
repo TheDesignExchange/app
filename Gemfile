@@ -21,6 +21,7 @@ gem 'sparql'
 gem 'equivalent-xml'
 gem 'ffi'
 
+
 # LSA
 gem  'gsl', '~> 1.15.3'
 gem 'similarity', '~> 0.2.5'
@@ -57,6 +58,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'bootsy'
 gem 'bourbon', '~> 3.2'
+
 # gem "rmagick"
 gem "carrierwave"
 gem "protected_attributes"

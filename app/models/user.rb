@@ -28,6 +28,8 @@
 #
 
 class User < ActiveRecord::Base
+   attr_accessible :email, :first_name, :last_name, :username, :phone_number, :website, 
+   :facebook, :twitter, :linkedin, :about_text , :profile_picture
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -35,6 +37,7 @@ class User < ActiveRecord::Base
           validates :username, presence: true, uniqueness: true
           validates :first_name, presence: true
           validates :last_name, presence: true
+
 
   def favorite(design_method)
     if !self.favorite_methods.exists?(design_method)
