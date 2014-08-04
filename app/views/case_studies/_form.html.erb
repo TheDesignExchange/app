@@ -1,0 +1,228 @@
+<script> 
+  $(function(){
+    var pH = $('#publish-btn').parent().height()
+    var eH = $('#publish-btn').height()
+    $('#publish-btn').css('margin-top', (pH - eH)/2)
+
+    eH = $('#save-btn').height()
+    $('#save-btn').css('margin-top', (pH - eH)/2)
+
+    pH = $('#auto-saved-text').parent().height()
+    eH = $('#auto-saved-text').height()
+    $('#auto-saved-text').css('margin-top', (pH - eH)/2)
+  });
+</script>
+
+<style>
+  .fill-width{
+    width: 100%;
+  }
+
+  .text-align-left{
+    text-align: left;
+  }
+</style>
+
+<%= form_for @case_study, :html => {:multipart => true} do |f| %>
+<!-- ERROR MESSAGES -->
+<% if @case_study.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@case_study.errors.count, "error") %> prohibited this case_study from being saved:</h2>
+
+      <ul>
+      <% @case_study.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+<% end %>
+
+  <div class="row">
+     <%= f.submit "Publish", :id => "publish-btn", 
+                             :class => "btn btn-primary pull-right" %>
+
+    <button type="button" class="btn btn-default pull-right" id="save-btn" name="commit" type="submit">
+      <%= glyphyify("floppy-disk") %> Save as Draft
+    </button>
+
+    <span id="auto-saved-text" class="pull-right">Auto-saved as draft 2 minutes ago</span>
+  </div>
+
+  <!-- BODY -->
+  <div class = "row">
+
+     <!-- LEFT CONTENT -->
+  <div class="col-md-4">
+
+    <!-- PEOPLE -->
+    <div class="row">
+      <h4>People</h4>
+      <div class="input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user" > collaborators</span>
+          </span>
+          <%= f.number_field :num_of_designers, :class => "form-control", :placeholder => "# of collaborators", in: 0...1000 %>
+      </div>
+      <br>
+      <div class="input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user" > users       </span>
+          </span>
+          <%= f.number_field :num_of_users, :class => "form-control", :placeholder => "# of users", in: 0...1000 %>
+      </div>
+    </div>
+    <!-- END PEOPLE -->
+
+    <!-- TOOLS -->
+    <div class="row">
+      <h4>Tools</h4>
+      <div class="input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-pencil" ></span>
+          </span>
+          <input type="text" class="form-control" placeholder="Ex. paper, pen">
+      </div>
+    </div>
+    <!-- END TOOLS -->
+
+    <!-- TIME -->
+    <div class="row">
+      <h4>Time</h4>
+      <div class="input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time" ></span>
+          </span>
+           <%= f.number_field :time_period, :class => "form-control", in: 0...1000 %>
+          <%= f.select(:time_unit, options_for_select([['years', 'yr'], ['days', 'd'], ['hours', 'hr'], ['minutes', 'min']], @case_study.time_unit), {}, {:class=> "form-control"})%>
+
+      </div>
+    </div>
+    <!-- END TIME -->
+
+    <!-- TAGS -->
+    <div class="row">
+      <h4>Tags</h4>  
+      <div class="input-group">
+      <input type="text" class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" onclick="createTag('case_study', <%=params[:id]%>, this);">Add Tag</button>
+      </span>
+    </div>
+    <br>
+      <p class='tag-list'>
+        <% @case_study.tags.each do |t| %>
+         <%= tagify(t.id, t.content, {:removable => true}) %>
+        <% end %>
+      </p>
+    </div>
+  <!-- END OF TAGS -->
+ 
+      <!-- CHECKBOX -->
+      <div class="row">
+        <%= f.check_box :customerIsUser %> Customer is User
+      </div>
+      <div class="row">
+        <%= f.check_box :remoteProject %> Remote Project
+      </div>
+      <!-- END CHECKBOX -->
+
+
+      <!-- DROPDOWNS -->
+      <div class="row">
+            <% dropdowns = ["development_cycle", "design_phase", "project_domain", "customer_type", "user_age", "privacy_level", "social_setting"] %>
+            <div class="form-group">
+              <table class="table">
+              <% dropdowns.each do |name| %>
+                <tr> 
+                  <!-- LABEL -->
+                  <td>
+                    <label for="<%= name %>">
+                      <%= name.underscore.humanize %>
+                      <%= glyphyify("question-sign") %>
+                    </label>
+                  </td>
+                  <td>
+                  <!-- SELECT -->
+                    <%= 
+                        select("case_study", name, 
+                        @options[name.to_sym], 
+                        {include_blank: 'None'}) 
+                    %>
+                  </td>
+                </tr>
+
+
+
+                    
+            <% end %>
+          </table>
+        </div>
+      </div>
+      <!-- END DROPDOWN -->
+    </div>
+    <!-- END OF TAGS -->
+    <!-- END LEFT CONTENT -->
+
+    <!-- RIGHT CONTENT -->
+    <div class="col-md-8">
+        <!-- INPUT METHOD NAME -->
+        <div class="input-group-lg" style="margin-top: 10px;margin-bottom: 10px;">
+          <h3> Title </h3>
+          <%= f.text_field :title, :class=> "form-control", :placeholder => "Case Study Name" %>
+        </div>
+        <!-- END INPUT METHOD NAME -->
+
+        <!-- IMAGES -->
+        <!-- <div class="row">
+          <div class="col-xs-6 col-md-4">
+            <a href="#" class="thumbnail" style="height: 145px;">
+              <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+            </a>
+          </div>
+
+          <div class="col-xs-6 col-md-4">
+            <a href="#" class="thumbnail" style="height: 145px;">
+              <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+            </a>
+          </div>
+
+          <div class="col-xs-6 col-md-4">
+            <a href="#" class="thumbnail" style="height: 145px;">
+              <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+            </a>
+          </div>
+
+          <div class="col-xs-6 col-md-4">
+            <a href="#" class="thumbnail" style="height: 145px;">
+              <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+            </a>
+          </div>
+
+          <div class="col-xs-6 col-md-4">
+            <a href="#" class="thumbnail" style="height: 145px;">
+              <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+            </a>
+          </div>
+
+          <div class="col-xs-6 col-md-4">
+            <a href="#" class="thumbnail" style="height: 145px;">
+              <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
+            </a>
+          </div>
+        </div> -->
+        <!-- END IMAGES -->
+
+        <!-- FORMS -->
+        <h3>Summary</h3>
+        <%= f.text_area :description, :class => "form-control", :rows => 6 %>
+       <!--  <h3>Benefits</h3>
+          <textarea class="form-control" rows="3"></textarea>
+        <h3>Process</h3>
+          <textarea class="form-control" rows="3"></textarea> -->
+        <!-- END FORMS -->
+  </div>
+  <!-- END RIGHT CONTENT -->
+
+  </div>
+  <!-- END BODY -->
+<% end %>
