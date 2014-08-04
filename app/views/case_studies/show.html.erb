@@ -1,7 +1,7 @@
 <!-- CASE STUDY TITLE -->
 <div class = "row">
 	<div class="col-md-9 col-md-offset-3 left-pad">
-    <h3><b><%= @casestudy.title != nil ? @casestudy.title : "-" %></b></h3>
+    <h3><b><%= @case_study.title != nil ? @case_study.title : "-" %></b></h3>
     <p>By <a><%= @author != nil ? @author : "-" %></a></p>
 	</div>
 </div>
@@ -15,9 +15,51 @@
 			<h4>Case Study</h4>
 			<p>
 				<span class="glyphicon glyphicon-list-alt"></span>
-				<a href= "<%= @casestudy.url != nil ? @casestudy.url : "#" %>" >Original Case Study</a>
+				<a href= "<%= @case_study.url != nil ? @case_study.url : "#" %>" >Original Case Study</a>
 			</p>
 		</div>
+
+    <div class = "row no-margin-left no-margin-right">
+      <h3>What You'll Need</h3>
+    </div>
+
+    <!-- PEOPLE -->
+    <div class="row no-margin-left no-margin-right">
+      <h4>People</h4>
+      <p>
+        <span class="glyphicon glyphicon-user"></span>
+        ~<%= pluralize(@case_study.num_of_designers, "designer") %> 
+      </p>
+      <p>
+        <span class="glyphicon glyphicon-user"></span>
+        ~<%= pluralize(@case_study.num_of_users, "user") %> 
+      </p>
+    </div>
+    <!-- END PEOPLE -->
+
+    <!-- TOOLS -->
+    <div class="row no-margin-left no-margin-right">
+      <h4>Tools</h4>
+      <p>
+        <span class="glyphicon glyphicon-pencil"></span>
+        -
+      </p>
+    </div>
+    <!-- END TOOLS -->
+
+   
+
+    <!-- TAGS -->
+    <div class="row no-margin-left no-margin-right">
+      <h4>Tags</h4>
+      <p>
+        <% @case_study.tags.each do |t| %>
+         <%= tagify(t.id, t.content, {:removable => false}) %>
+        <% end %>
+        <%= "No tags available" unless not @case_study.tags.empty? %>
+      </p>
+      <!-- END TAGS -->
+    </div>
     <!-- END ORIGINAL CASE STUDY -->
 
     <!-- PROJECT CHARACTERISTICS -->
@@ -26,25 +68,25 @@
 			<p>
 			 	<span class="glyphicon glyphicon-pencil"></span>
 			 	Development Cycle: 
-        <%= @casestudy.development_cycle != nil ? @casestudy.development_cycle : "-" %>
+        <%= @case_study.development_cycle != nil ? @lookup[:development_cycle][@case_study.development_cycle] : "-" %>
 			</p>
       <p>
         <span class="glyphicon glyphicon-pencil"></span>
         Design Phase: 
-        <%= @casestudy.design_phase != nil ? @casestudy.design_phase : "-" %>
+        <%= @case_study.design_phase != nil ? @lookup[:design_phase][@case_study.design_phase] : "-" %>
       </p>
       <p>
         <span class="glyphicon glyphicon-pencil"></span>
         Privacy Level: 
-        <%= @casestudy.privacy_level != nil ? @casestudy.privacy_level : "-" %>
+        <%= @case_study.privacy_level != nil ? @lookup[:privacy_level][@case_study.privacy_level] : "-" %>
       </p>
       <p>
         <span class="glyphicon glyphicon-pencil"></span>
         Social Setting: 
-        <%= @casestudy.social_setting != nil ? @casestudy.social_setting : "-" %>
+        <%= @case_study.social_setting != nil ? @lookup[:social_setting][@case_study.social_setting] : "-" %>
       </p>
       <p>
-        <% if @casestudy.customerIsUser %>
+        <% if @case_study.customerIsUser %>
           <span class="glyphicon glyphicon-ok"></span>
         <% else %>
           <span class="glyphicon glyphicon-remove"></span>
@@ -52,7 +94,7 @@
         Customer Is User
       </p>
       <p>
-        <% if @casestudy.remoteProject %>
+        <% if @case_study.remoteProject %>
           <span class="glyphicon glyphicon-ok"></span>
         <% else %>
           <span class="glyphicon glyphicon-remove"></span>
@@ -68,33 +110,26 @@
       <p>
         <span class="glyphicon glyphicon-pencil"></span>
         Project Domain: 
-        <%= @casestudy.project_domain != nil ? @casestudy.project_domain : "-" %>
+        <%= @case_study.project_domain != nil ? @lookup[:project_domain][@case_study.project_domain] : "-" %>
       </p>
       <p>
         <span class="glyphicon glyphicon-pencil"></span>
         Customer Type: 
-        <%= @casestudy.customer_type != nil ? @casestudy.customer_type : "-" %>
+        <%= @case_study.customer_type != nil ? @lookup[:customer_type][@case_study.customer_type] : "-" %>
       </p>
     </div>
     <!-- END PROJECT CHARACTERISTICS -->
 
-    <!-- TIME -->
-  	<div class="row no-margin-left no-margin-right">
-			<h4>Time</h4>
-			<p>
-				<span class="glyphicon glyphicon-time"></span>
-				~ <%= @casestudy.timePeriod != nil ? @casestudy.timePeriod : "-" %>
-			</p>
-  	</div>
+     <!-- TIME -->
+    <div class="row no-margin-left no-margin-right">
+      <h4>Time</h4>
+      <p>
+        <span class="glyphicon glyphicon-time"></span>
+        <%= pluralize(@case_study.time_period, @case_study.time_unit) %> 
+      </p>
+    </div>
     <!-- END TIME -->
 
-    <!-- METHODS TAGS -->
-    <h4>Tags</h4>
-    <p>
-      <!-- DO WHILE FOR TAGS -->
-      No tags available
-    </p>
-      <!-- END METHODS TAGS -->
 	</div>
   <!-- END SIDBAR -->
 
@@ -131,10 +166,8 @@
           			</ul>
   			</div>
   			<div class="col-md-3">
-  				<a href="#" class="pull-right">
-          				<span class="glyphicon glyphicon-pencil"></span>
-          					Edit
-          		</a>
+  					<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Edit'.html_safe, edit_case_study_path, :class => "pull right"%>
+          
   			</div>
   		</div>
       <!-- END MENU BAR -->
@@ -144,7 +177,7 @@
       <!-- DESCRIPTION -->
   		<div class="row">
         <h2> Description </h2>
-		    <p><%= @casestudy.description != nil ? @casestudy.description : "-" %></p>
+		    <p><%= @case_study.description != nil ? @case_study.description : "-" %></p>
       </div>
       <!-- END DESCRIPTION -->
 

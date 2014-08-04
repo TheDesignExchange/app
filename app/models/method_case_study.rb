@@ -13,5 +13,5 @@ class MethodCaseStudy < ActiveRecord::Base
 	belongs_to :case_study
 	belongs_to :design_method
 	validates_uniqueness_of :case_study, :scope => [:design_method]
-	attr_accesssible :case_study_id, :design_method_id
+	# attr_accesssible :case_study_id, :design_method_id
 end

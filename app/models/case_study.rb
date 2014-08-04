@@ -23,7 +23,11 @@
 #
 
 class CaseStudy < ActiveRecord::Base
-    attr_accessible :mainImage, :title, :url, :timePeriod, :development_cycle, :design_phase, :project_domain, :customer_type, :user_age, :privacy_level, :social_setting, :description, :customerIsUser, :remoteProject, :company_id
+    attr_accessible :mainImage, :title, :url, :timePeriod, :development_cycle, :design_phase, 
+                    :project_domain, :customer_type, :user_age, :privacy_level, 
+                    :social_setting, :description, :customerIsUser, :remoteProject, 
+                    :company_id, :num_of_designers, :num_of_users, :overview, :time_period, :time_unit
+                    
 	belongs_to :company
 	has_many :contacts
 	has_many :resources
@@ -38,16 +42,28 @@ class CaseStudy < ActiveRecord::Base
  #    :message    => "%{value} is not a development cycle" }
 
     def self.options
-    	return {:development_cycle => ["Product Update", "Product Refinement", "New Product", "Other"],
-    			:design_phase => [ "Problem Assessment", "Conceptual Design", "Detailed Design", "Other"] , 
-    			:project_domain => ["Built Environment", "Product", "Service", "Web", "Mobile", "Graphic", "Fashion", "Other"],
-    			:customer_type => ["Government", "Educational Group", "Business", "NGO", "Other"],
-    			:user_age => ["Child", "Teen", "Young Adult", "Middle Aged", "Elderly" ],
-    			:privacy_level => ["Private", "Public"],
-  	 			:social_setting => ["Personal", "Social", "Professional"]
-
-    	}
+        select_option = self.lookup
+        select_option.each do |name, op|
+            collection = []
+            op.each_with_index do |choice, i|
+                collection << [choice, i]
+            end
+            select_option[name] = collection
+        end
+    	return select_option
     end
+    def self.lookup
+        return  {:development_cycle => ["Product Update", "Product Refinement", "New Product", "Other"],
+                :design_phase => [ "Problem Assessment", "Conceptual Design", "Detailed Design", "Other"] , 
+                :project_domain => ["Built Environment", "Product", "Service", "Web", "Mobile", "Graphic", "Fashion", "Other"],
+                :customer_type => ["Government", "Educational Group", "Business", "NGO", "Other"],
+                :user_age => ["Child", "Teen", "Young Adult", "Middle Aged", "Elderly" ],
+                :privacy_level => ["Private", "Public"],
+                :social_setting => ["Personal", "Social", "Professional"]
+
+        }
+    end
+
     def self.helper_text
         return {
             :design_phase => ["The phase involves acquiring or processing information, or defining the problem.", "This phase involves generating or evaluating concepts or prototyping." ,"This phase involves prototyping, manufacturing and deployment."],
