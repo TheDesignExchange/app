@@ -5,12 +5,17 @@
   		<h5> 
         <%= link_to "#{@thumb_obj[:name]}", eval("#{@thumb_obj[:link]}_path(#{@thumb_obj[:id]})") %> 
       </h5>
+      <% if @thumb_obj[:image].present?  %>
+        <div class="image-wrapper">
+         <%= image_tag @thumb_obj[:image]%>
+        </div>
+      <% end  %>
       <p class="likes">
         <span class="glyphicon glyphicon-star"></span> 
         <%= "#{@thumb_obj[:likes]}" %> Likes
       </p>
   		<p class="truncate-multiline"> 
-        <%= "#{@thumb_obj[:description][0..300]}" %>
+        <%= "#{@thumb_obj[:description][0..@thumb_obj[:word_count]]}" %>
         <%= link_to "[...]", eval("#{@thumb_obj[:link]}_path(#{@thumb_obj[:id]})") %>
       </p> 
       <p>

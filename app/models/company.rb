@@ -1,15 +1,3 @@
-# == Schema Information
-#
-# Table name: companies
-#
-#  id         :integer          not null, primary key
-#  name       :string(255)      default("")
-#  domain     :string(255)      default("")
-#  email      :string(255)      default("")
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 class Company < ActiveRecord::Base
 	attr_accessible :name, :email, :domain, :id
 	before_save { self.email = email.downcase }

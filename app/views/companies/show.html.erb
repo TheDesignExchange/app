@@ -1,0 +1,25 @@
+<h1> Company </h1>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @company.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @company.email %>
+</p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @company.domain %>
+</p>
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %> |
+<%= link_to 'Add a Contact', new_company_contact_path(@company) %>
+
+<h2> Contacts </h2>
+<% @company.contacts.each do |c| %>
+<%= "#{c.name} (#{c.email})" %>
+<% end %>

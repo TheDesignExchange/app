@@ -1,0 +1,4 @@
+<h4>Related Methods</h4>
+<% @similar_methods.each do |method| %>
+	<%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"4", 800) %>
+<% end %>

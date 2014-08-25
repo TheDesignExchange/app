@@ -11,7 +11,9 @@
 		<h3>Discussions</h3>
 	</div>
   	<div class="col-md-6">
-		<button id='create-btn' type="submit" class="btn btn-default pull-right" onclick="window.location.href = '/discussions/create';"><span class="glyphicon glyphicon-comment"></span> Start Discussion</button>
+  		<%= link_to new_discussion_path, :class => "btn btn-default pull-right", :id => "create-btn" do %>
+			<span class="glyphicon glyphicon-comment"></span> Start Discussion
+		<% end %>
   	</div>
 </div>
 <ul class="nav nav-tabs nav-bar-margin">

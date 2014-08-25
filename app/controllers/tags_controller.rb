@@ -8,8 +8,7 @@ class TagsController < InheritedResources::Base
         # format.json { render json: @tag, status: :created, location: @tag }
         render :json => {:tag => tagify(@tag.id, @tag.content, {:removable => true})}
       else
-        format.html { render action: "new" }
-        format.json { render json: @tag.errors, status: :unprocessable_entity }
+        render json: @tag.errors, status: :unprocessable_entity
       end
     
   end

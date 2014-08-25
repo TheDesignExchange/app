@@ -61,43 +61,46 @@ module DeHelper
                 </label>"
 	end
 	# CONVERTS OBJECTS TO THE LAYOUT/THUMBNAIL PARTIAL
-	def thumbnail(obj,col_md_value)
+	def thumbnail(obj,col_md_value, word_count = 300)
 		thumb_obj = {}
 		if obj.is_a?(DesignMethod)
 			thumb_obj=	
 				{
-					:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg",
+					:image => obj.main_image,
 					:name => obj.name.humanize,
-					:tags => obj.method_categories.map{|x| x.name}[0..1],
+					:tags => obj.tags.map{|t| t.content},
 					:likes => obj.likes,
 					:description => obj.overview,
 					:id => obj.id,
 					:link => "design_method",
-					:col_md_value => col_md_value	
+					:col_md_value => col_md_value, 
+					:word_count => word_count	
 				}
 		elsif obj.is_a?(CaseStudy)
 			thumb_obj=	
 				{
-					:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg",
+					:image => obj.mainImage,
 					:name => obj.title,
-					:tags => [],
+					:tags => obj.tags.map{|t| t.content},
 					:likes => (rand*100).to_i,
 					:description => obj.description,
 					:id => obj.id,
 					:link => "case_study",
-					:col_md_value => col_md_value		
+					:col_md_value => col_md_value, 
+					:word_count => word_count		
 				}
 		elsif obj.is_a?(Discussion)
 			thumb_obj=	
 				{
-					:url => "http://web.mit.edu/2.009/www/resources/illustrator/crash-course/productstoryboardex.jpg",
+					:image => nil,
 					:name => obj.title,
 					:tags => [],
 					:likes => (rand*100).to_i,
 					:description => obj.description,
 					:id => obj.id,
 					:link => "discussion",
-					:col_md_value => col_md_value	
+					:col_md_value => col_md_value, 
+					:word_count => word_count	
 				}
 		end
 		return thumb_obj
@@ -105,14 +108,14 @@ module DeHelper
 
 
 	def tagifier(obj)
-		category_array = []
-		obj.map do |x|
-		  	category = x.split("_")
-		  	if category[1] then category[1] = category[1].humanize end
-		  	category = category.join(' ');
-		 	#category = category.underscore().dasherize
-		 	category_array.push(category)
-		end
+		category_array = obj
+		# obj.map do |x|
+		#   	category = x.split("_")
+		#   	if category[1] then category[1] = category[1].humanize end
+		#   	category = category.join(' ');
+		#  	#category = category.underscore().dasherize
+		#  	category_array.push(category)
+		# end
 		return category_array
 	end
 	

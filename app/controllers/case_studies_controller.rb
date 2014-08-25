@@ -8,16 +8,23 @@ class CaseStudiesController < ApplicationController
   def new
     id = params[:id] == nil ? 1 : params[:id].to_i
     # render :text => id
-    @cs = CaseStudy.where("id=?", id).first;
+    @case_study = CaseStudy.new
 
     @attr = CaseStudy.columns_hash;
-    @company = @cs.company
-    @contacts = @company.contacts
-    @methods = @cs.design_methods.reverse;
     @options = CaseStudy.options
     @helper_text = CaseStudy.helper_text()
-
+    @similar_methods = []
     render :layout => "custom"
+  end
+
+  def related_methods
+    @case_study = CaseStudy.where("id=?", params[:id]).first;
+    @similar_methods = @case_study.similar_methods(DesignMethod.all.length,6)
+
+    respond_to do |format|
+      format.html 
+      format.json { render text: @similar_methods.map{|x| x.name }}
+    end
   end
 
   def edit
@@ -27,19 +34,17 @@ class CaseStudiesController < ApplicationController
     @case_study = CaseStudy.find(params[:id])
     
     @attr = CaseStudy.columns_hash;
-    @company = @case_study.company
-    @contacts = @company.contacts
     @methods = @case_study.design_methods().reverse;
     @options = CaseStudy.options
     @helper_text = CaseStudy.helper_text
-
+    @similar_methods = @case_study.similar_methods(100,6)
     render :layout => "custom"
   end
 
   def show
     id = params[:id].to_i
     @case_study = CaseStudy.find(id)
-    @author = @case_study.company.name
+  
     @similar_methods = @case_study.similar_methods(100,6)
     @similar_case_studies = @case_study.similar_case_studies(100,6)
     @lookup = CaseStudy.lookup
@@ -49,6 +54,7 @@ class CaseStudiesController < ApplicationController
 
   def search
   end
+
 
   def update
     @case_study = CaseStudy.find(params[:id])
@@ -77,5 +83,7 @@ class CaseStudiesController < ApplicationController
       end
     end
   end
+
+  
 
 end

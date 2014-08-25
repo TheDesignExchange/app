@@ -2,29 +2,41 @@
 <div class = "row">
 	<div class="col-md-9 col-md-offset-3 left-pad">
     <h3><b><%= @case_study.title != nil ? @case_study.title : "-" %></b></h3>
-    <p>By <a><%= @author != nil ? @author : "-" %></a></p>
+    <p> by <%= link_to @case_study.company.name, company_path(@case_study.company) unless !@case_study.company %>
 	</div>
 </div>
 <!-- END CASE STUDY TITLE -->
 
-<div class = "row no-margin-left no-margin-right">
+<div class = "row">
   <!-- SIDEBAR -->
   <div id="sidebar" class="col-md-3">
-		<div class="row no-margin-left no-margin-right">
+		<div class="row">
       <!-- ORIGINAL CASE STUDY -->
-			<h4>Case Study</h4>
-			<p>
-				<span class="glyphicon glyphicon-list-alt"></span>
-				<a href= "<%= @case_study.url != nil ? @case_study.url : "#" %>" >Original Case Study</a>
-			</p>
+	   <h4> Materials </h4>
+      <p>
+        <span class="glyphicon glyphicon-list-alt"></span>
+        <% if @case_study.resource_url %>
+          <%= link_to "Permalink",  @case_study.resource_url, :target => "_blank"%>
+        <% else %>
+          No resources available.
+        <% end %>
+      </p>
+      <p>
+        <span class="glyphicon glyphicon-list-alt"></span>
+        <% if @case_study.url %>
+         <%= link_to "Original Website",  @case_study.url, :target => "_blank" %>
+        <% else %>
+          No website available.
+        <% end %>
+      </p>
 		</div>
 
-    <div class = "row no-margin-left no-margin-right">
+    <div class = "row">
       <h3>What You'll Need</h3>
     </div>
 
     <!-- PEOPLE -->
-    <div class="row no-margin-left no-margin-right">
+    <div class="row">
       <h4>People</h4>
       <p>
         <span class="glyphicon glyphicon-user"></span>
@@ -38,11 +50,14 @@
     <!-- END PEOPLE -->
 
     <!-- TOOLS -->
-    <div class="row no-margin-left no-margin-right">
+    <div class="row">
       <h4>Tools</h4>
       <p>
         <span class="glyphicon glyphicon-pencil"></span>
-        -
+        <% @case_study.tools.each do |t| %>
+         <%= tagify(t.id, t.content, {:removable => false}) %>
+        <% end %>
+        <%= "No tools available" unless not @case_study.tools.empty? %>
       </p>
     </div>
     <!-- END TOOLS -->
@@ -50,7 +65,7 @@
    
 
     <!-- TAGS -->
-    <div class="row no-margin-left no-margin-right">
+    <div class="row">
       <h4>Tags</h4>
       <p>
         <% @case_study.tags.each do |t| %>
@@ -60,10 +75,24 @@
       </p>
       <!-- END TAGS -->
     </div>
+
+    <div class="row">
+      <h4>Methods Used</h4>
+      <p>
+
+        <% @case_study.method_case_studies.each do |t| %>
+         <%= tagify(t.id, t.design_method.name, {:removable => false}) %>
+
+        <% end %>
+        <%= "No methods available" unless not @case_study.method_case_studies.empty? %>
+      </p>
+      <!-- END METHODS -->
+    </div>
+       
     <!-- END ORIGINAL CASE STUDY -->
 
     <!-- PROJECT CHARACTERISTICS -->
-  	<div class="row no-margin-left no-margin-right">
+  	<div class="row">
 			<h4>Project Characteristics</h4>
 			<p>
 			 	<span class="glyphicon glyphicon-pencil"></span>
@@ -105,23 +134,23 @@
     <!-- END PROJECT CHARACTERISTICS -->
 
     <!-- PROJECT DETAILS -->
-    <div class="row no-margin-left no-margin-right">
-      <h4>Project Details</h4>
-      <p>
-        <span class="glyphicon glyphicon-pencil"></span>
-        Project Domain: 
-        <%= @case_study.project_domain != nil ? @lookup[:project_domain][@case_study.project_domain] : "-" %>
-      </p>
-      <p>
-        <span class="glyphicon glyphicon-pencil"></span>
-        Customer Type: 
-        <%= @case_study.customer_type != nil ? @lookup[:customer_type][@case_study.customer_type] : "-" %>
-      </p>
+    <div class="row">
+    <h4>Project Details</h4>
+    <p>
+      <span class="glyphicon glyphicon-pencil"></span>
+      Project Domain: 
+      <%= @case_study.project_domain != nil ? @lookup[:project_domain][@case_study.project_domain] : "-" %>
+    </p>
+    <p>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Customer Type: 
+    <%= @case_study.customer_type != nil ? @lookup[:customer_type][@case_study.customer_type] : "-" %>
+    </p>
     </div>
     <!-- END PROJECT CHARACTERISTICS -->
 
      <!-- TIME -->
-    <div class="row no-margin-left no-margin-right">
+    <div class="row">
       <h4>Time</h4>
       <p>
         <span class="glyphicon glyphicon-time"></span>
@@ -173,11 +202,26 @@
       <!-- END MENU BAR -->
 
       <!-- CONTENT -->
-
+      <div class="row">
+        <% if @case_study.mainImage.present? %>
+          <%= image_tag(@case_study.mainImage, :width => "100%")%>
+        <% else %>
+          <%= image_tag("no-image-available.png", :width => "100%", :height => "385")%>
+        <% end %>
+      </div>
+      <br>
       <!-- DESCRIPTION -->
   		<div class="row">
-        <h2> Description </h2>
-		    <p><%= @case_study.description != nil ? @case_study.description : "-" %></p>
+        <h3> Problem </h3>
+		    <p><%= @case_study.description.blank? ? "-" : simple_format(@case_study.description) %></p>
+
+          <!-- FORMS -->
+        <h3>Process</h3>
+        <p><%= @case_study.process.blank? ? "-" : simple_format(@case_study.process) %></p>
+      
+        <h3>Outcome/Benefits</h3>
+        <p><%= @case_study.outcome.blank? ? "-" : simple_format(@case_study.outcome) %></p>
+      
       </div>
       <!-- END DESCRIPTION -->
 

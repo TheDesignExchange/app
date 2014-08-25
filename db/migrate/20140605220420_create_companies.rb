@@ -1,9 +1,10 @@
 class CreateCompanies < ActiveRecord::Migration
   def change
     create_table :companies do |t|
-      t.string :name, :default => ""
-      t.string :domain, :default => ""
-      t.string :email, :default => ""
+      t.string :name
+      t.string :email
+      t.string :domain
+
       t.timestamps
     end
   end

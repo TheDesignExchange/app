@@ -1,13 +1,23 @@
 DesignExchange::Application.routes.draw do
 
-  resources :tags
+  resources :companies do 
+    resources :contacts
+  end
 
+  
+
+  resources :tags
+  resources :method_case_studies
   root "application#index"
 
   resources :case_studies do
     collection do 
+      get "related_methods", to: "case_studies#related_methods"
       get "search/:query", to: "application#search"
       get "search", to: "application#search", :as => "search"
+    end
+    member do 
+      get "related_methods", to: "case_studies#related_methods", :as => "related_methods"
     end
   end
   resources :design_methods do

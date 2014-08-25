@@ -23,14 +23,17 @@
 #
 
 class CaseStudy < ActiveRecord::Base
+    mount_uploader :mainImage, PictureUploader
+    mount_uploader :resource, PictureUploader
     attr_accessible :mainImage, :title, :url, :timePeriod, :development_cycle, :design_phase, 
                     :project_domain, :customer_type, :user_age, :privacy_level, 
                     :social_setting, :description, :customerIsUser, :remoteProject, 
-                    :company_id, :num_of_designers, :num_of_users, :overview, :time_period, :time_unit
+                    :company_id, :num_of_designers, :num_of_users, :overview, :time_period, :time_unit, :resource, :process, :problem, :outcome
                     
 	belongs_to :company
-	has_many :contacts
+	has_many :contacts, :through => :company
 	has_many :resources
+
 
     # METHOD LINKING 
     has_many :method_case_studies
@@ -40,7 +43,17 @@ class CaseStudy < ActiveRecord::Base
 	# validates :development_cycle,
  #    :inclusion  => { :in => ["Product Update", "Product Refinement", "New Product", "Other"],
  #    :message    => "%{value} is not a development cycle" }
+    # def contacts
+    #     company = Company.where(:case_study_id, self[:id])
+    #     company ? company.contacts : nil
+    # end
+    def tags
+        Tag.where("case_study_id = ? and content_type = ?", self[:id], "tag");
+    end
 
+    def tools
+        Tag.where("case_study_id = ? and content_type = ?", self[:id], "tool");
+    end
     def self.options
         select_option = self.lookup
         select_option.each do |name, op|
@@ -100,14 +113,20 @@ class CaseStudy < ActiveRecord::Base
     .limit(limit)
 
     comparator = Corpus.new
-    comparingCaseStudy = Document_Attach.new(self)
-    comparator << comparingCaseStudy
+
+    query = Document_Attach.new(self)
+    comparator << query
 
     methodsList.each do |dm|
       comparator << Document_Attach.new(dm)
     end
 
-    result = comparator.similar_documents(comparingCaseStudy).sort {|tuple1, tuple2| tuple2[1] <=> tuple1[1] }
+    # debug = []
+    # comparator.similar_documents(comparingCaseStudy).each do |doc, similarity|
+    #     debug << "Similarity between doc #{comparingCaseStudy.id} and doc #{doc.id} is #{similarity}"
+    # end
+
+    result = comparator.similar_documents(query).sort {|tuple1, tuple2| tuple2[1] <=> tuple1[1] }
     result = result.map {|tuple| tuple[0].obj}
     result = result [1..sample_size]
 

@@ -56,6 +56,47 @@
 
     <!-- PEOPLE -->
     <div class="row">
+       <h4> Create Links </h4>
+      Company <%= link_to "Create", new_company_path , :target => "_blank" %> 
+      <% if @case_study.company %>
+        <%= link_to "Edit", edit_company_path(@case_study.company), :target => "_blank"%> 
+        <%= link_to "Show", company_path(@case_study.company), :target => "_blank" %> 
+      <% end %>
+      <br>
+      Design Research Method <%= link_to "Create", new_design_method_path , :target => "_blank" %> 
+      <h4> Materials </h4>
+      <p>
+        <span class="glyphicon glyphicon-list-alt"></span>
+        <% if @case_study.resource_url %>
+         <%= link_to "Permalink",  @case_study.resource_url, :target => "_blank" %>
+        <% else %>
+          No resources available
+          <br>
+        <% end %>
+         <%= f.file_field :resource %>
+      </p>
+      <p>
+        <span class="glyphicon glyphicon-list-alt"></span>
+        <% if @case_study.url %>
+          <%= link_to "Original Website",  @case_study.url, :target => "_blank" %>
+        <% else %>
+          No url available
+          <br/>
+        <% end %>
+        <%= f.text_field :url, :class => "form-control", :placeholder => "http://" %>
+      </p>
+      
+
+     
+     
+    </div>
+    <div class="row">
+      <h4>Contacts</h4>
+        <% @case_study.contacts.each do |c| %>
+          <p><%= "#{c.name} (#{c.email})" %></p>
+        <% end %>
+        <p><%= "No contacts available" unless !@case_study.contacts.empty? %></p>
+      
       <h4>People</h4>
       <div class="input-group">
           <span class="input-group-addon">
@@ -74,16 +115,24 @@
     <!-- END PEOPLE -->
 
     <!-- TOOLS -->
-    <div class="row">
-      <h4>Tools</h4>
+     <div class="row">
+      <h4>Tools</h4>  
       <div class="input-group">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-pencil" ></span>
-          </span>
-          <input type="text" class="form-control" placeholder="Ex. paper, pen">
-      </div>
+      <input type="text" class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" onclick="createTag('case_study', <%=params[:id]%>, this, 'tool');">Add Tool</button>
+      </span>
+    </div>
+    <br>
+      <p class='tool-list'>
+        <% @case_study.tools.each do |t| %>
+         <%= tagify(t.id, t.content, {:removable => true}) %>
+        <% end %>
+      </p>
     </div>
     <!-- END TOOLS -->
+
+    
 
     <!-- TIME -->
     <div class="row">
@@ -105,7 +154,7 @@
       <div class="input-group">
       <input type="text" class="form-control">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button" onclick="createTag('case_study', <%=params[:id]%>, this);">Add Tag</button>
+        <button class="btn btn-default" type="button" onclick="createTag('case_study', <%=params[:id]%>, this, 'tag');">Add Tag</button>
       </span>
     </div>
     <br>
@@ -117,18 +166,41 @@
     </div>
   <!-- END OF TAGS -->
  
-      <!-- CHECKBOX -->
-      <div class="row">
-        <%= f.check_box :customerIsUser %> Customer is User
-      </div>
-      <div class="row">
-        <%= f.check_box :remoteProject %> Remote Project
-      </div>
-      <!-- END CHECKBOX -->
+  <!-- METHODS -->
+    <div class="row">
+      <h4>Methods Used</h4>
+      <div class="input-group">
+      <!-- <input type="text" class="form-control"> -->
+      <%= select("method_case_study", "design_method_id", DesignMethod.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'}, {class: "form-control"}) %>
+      
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" onclick="createMethodLink(<%=params[:id]%>, this);">Add Method</button>
+      </span>
+    </div>
+    <%= link_to "Suggested Methods", related_methods_case_study_path(@case_study), :target => "_blank" %>
+      
+      <p class="method-list">
+        <% @case_study.method_case_studies.each do |t| %>
+         <%= tagify(t.id, t.design_method.name, {:removable => true, :method => true}) %>
+        <% end %>
+        <%= "No methods available" unless not @case_study.method_case_studies.empty? %>
+      </p>
+      <!-- END TAGS -->
+    </div>
+    <!-- END OF METHODS -->
+
+  <br>
+
+  <div class = "row">
+  <h4> Characteristics </h4>
+  <!-- CHECKBOX -->
+    <%= f.check_box :customerIsUser %> Customer is User
+    <%= f.check_box :remoteProject %> Remote Project
+  <!-- END CHECKBOX -->
 
 
       <!-- DROPDOWNS -->
-      <div class="row">
+     
             <% dropdowns = ["development_cycle", "design_phase", "project_domain", "customer_type", "user_age", "privacy_level", "social_setting"] %>
             <div class="form-group">
               <table class="table">
@@ -170,57 +242,36 @@
           <h3> Title </h3>
           <%= f.text_field :title, :class=> "form-control", :placeholder => "Case Study Name" %>
         </div>
-        <!-- END INPUT METHOD NAME -->
-
-        <!-- IMAGES -->
-        <!-- <div class="row">
-          <div class="col-xs-6 col-md-4">
-            <a href="#" class="thumbnail" style="height: 145px;">
-              <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
-            </a>
+        <div class="input-group-lg" style="margin-top: 10px;margin-bottom: 10px;">
+          <h3> Company </h3>
+              <%= select("case_study", "company_id", Company.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'}, :class => "form-control") %>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 col-md-12">
+          <% if @case_study.mainImage.present? %>
+            <%= image_tag(@case_study.mainImage)%>
+          <% else %>
+            <%= image_tag("no-image-available.png", :width => "100%", :height => "385")%>
+          <% end %>
           </div>
-
-          <div class="col-xs-6 col-md-4">
-            <a href="#" class="thumbnail" style="height: 145px;">
-              <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
-            </a>
-          </div>
-
-          <div class="col-xs-6 col-md-4">
-            <a href="#" class="thumbnail" style="height: 145px;">
-              <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
-            </a>
-          </div>
-
-          <div class="col-xs-6 col-md-4">
-            <a href="#" class="thumbnail" style="height: 145px;">
-              <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
-            </a>
-          </div>
-
-          <div class="col-xs-6 col-md-4">
-            <a href="#" class="thumbnail" style="height: 145px;">
-              <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
-            </a>
-          </div>
-
-          <div class="col-xs-6 col-md-4">
-            <a href="#" class="thumbnail" style="height: 145px;">
-              <img src="http://www.dreamslider.com/portals/0/images/Templates/no-image-available.png" alt="...">
-            </a>
-          </div>
-        </div> -->
-        <!-- END IMAGES -->
+        </div>
+        <br/>
+        <%= f.file_field :mainImage %>
 
         <!-- FORMS -->
-        <h3>Summary</h3>
-        <%= f.text_area :description, :class => "form-control", :rows => 6 %>
-       <!--  <h3>Benefits</h3>
-          <textarea class="form-control" rows="3"></textarea>
+        <h3>Problem</h3>
+        <%= f.text_area :description, :class => "form-control", :rows => 12 %>
         <h3>Process</h3>
-          <textarea class="form-control" rows="3"></textarea> -->
+        <%= f.text_area :process, :class => "form-control", :rows => 50 %>
+        <h3>Outcome/Benefits</h3>
+        <%= f.text_area :outcome, :class => "form-control", :rows => 50 %>
+      
+      
+
         <!-- END FORMS -->
+       
   </div>
+
   <!-- END RIGHT CONTENT -->
 
   </div>

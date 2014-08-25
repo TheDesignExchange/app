@@ -139,14 +139,15 @@ img{
 
   .thumbnail{
     padding: 0px;
-    min-height: 350px;
+    min-height: 360px;
     }
     .thumbnail img{
       width: 100%;
     }
     .thumbnail .image-wrapper{ 
       overflow: hidden;
-      height: 150px;
+      height: 100px;
+      margin: 12px 0 ;
     }
     .thumbnail .likes{
       font-size: 10pt;

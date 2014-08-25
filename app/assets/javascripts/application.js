@@ -25,6 +25,7 @@
 $(function(){
 		$('textarea').unbind();
 })
+
 function removeTag(id, self){
 	console.log("/tags/" + id);
 	$.ajax({
@@ -34,11 +35,12 @@ function removeTag(id, self){
 	$(self).parent().remove();
 }
 
-function createTag(model, model_id, tag){
+function createTag(model, model_id, tag, type){
 	var value = $(tag).parent().siblings('input').val();
 	tag = {};
 	tag[model + "_id"] = model_id;
-	tag["content"] = value
+	tag["content"] = value;
+	tag["content_type"] = type;
 	// console.log(tag);
 	$.ajax({
 	  url: "/tags",
@@ -46,7 +48,7 @@ function createTag(model, model_id, tag){
 	  data: {tag: tag, commit:"Create Tag"},
 	  success: function(html){
 	  	console.log(html);
-	  	$('.tag-list').append(html.tag);
+	  	$('.'+ type +'-list').append(html.tag);
 	  },
 	  dataType: "json"
 	});
@@ -73,4 +75,30 @@ DE.Autocomplete = {
 	    });
 	  },
 	  minLength: 1
+}
+function removeMethodLink(id, self){
+	console.log("/method_case_studies/" + id);
+	$.ajax({
+	  url: "/method_case_studies/" + id,
+	  type: "DELETE"
+	});
+	$(self).parent().remove();
+}
+
+function createMethodLink(case_study_id, tag){
+	var value = $(tag).parent().siblings('select').val();
+	tag = {};
+	tag["case_study_id"] = case_study_id;
+	tag["design_method_id"] = value;
+	console.log(tag);
+	$.ajax({
+	  url: "/method_case_studies",
+	  type: "POST",
+	  data: {tag: tag, commit:"Create Method Link"},
+	  success: function(html){
+	  	console.log(html);
+	  	$('.method-list').append(html.mcs);
+	  },
+	  dataType: "json"
+	});
 }

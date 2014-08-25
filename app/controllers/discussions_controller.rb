@@ -15,4 +15,7 @@ class DiscussionsController < ApplicationController
     @author = disc.user
   	render layout: "custom"
   end
+
+  def create
+  end
 end

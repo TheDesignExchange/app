@@ -18,4 +18,12 @@ class Discussion < ActiveRecord::Base
   belongs_to :user
   has_many :replies, class_name: "DiscussionReply"
   has_many :tags
+
+  def tags
+    Tag.where("discussion_id = ? and content_type = ?", self[:id], "tag");
+  end
+
+  def tools
+      Tag.where("discussion_id = ? and content_type = ?", self[:id], "tool");
+  end
 end

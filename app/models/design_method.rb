@@ -48,6 +48,13 @@ class DesignMethod < ActiveRecord::Base
     return self[:process]
   end
 
+  def tags
+        Tag.where("design_method_id = ? and content_type = ?", self[:id], "tag");
+  end
+
+  def tools
+      Tag.where("design_method_id = ? and content_type = ?", self[:id], "tool");
+  end
 
   class Document_Attach < Document
     attr_reader :obj

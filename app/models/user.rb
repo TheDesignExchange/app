@@ -71,7 +71,9 @@ class User < ActiveRecord::Base
       return false
     end
   end
-
+  def is_admin
+    self[:id] == 1
+  end
   def unlike(design_method)
     method_like = MethodLike.where(
       user_id: self.id,
