@@ -56,68 +56,72 @@ class DesignMethod < ActiveRecord::Base
       Tag.where("design_method_id = ? and content_type = ?", self[:id], "tool");
   end
 
-  class Document_Attach < Document
-    attr_reader :obj
+  # class Document_Attach < Document
+  #   attr_reader :obj
 
-    def initialize(obj)
-        if obj.is_a?(DesignMethod)
-          super(:content => obj.overview+" "+obj.process)
-        elsif obj.is_a?(CaseStudy)
-          super(:content => obj.description)
-        end
-        @obj = obj
-    end
-  end
+  #   def initialize(obj)
+  #       if obj.is_a?(DesignMethod)
+  #         super(:content => obj.overview+" "+obj.process)
+  #       elsif obj.is_a?(CaseStudy)
+  #         super(:content => obj.description)
+  #       end
+  #       @obj = obj
+  #   end
+  # end
 
   def similar_methods(limit, sample_size)
-    logger.info "Similar Methods running for: #{self[:name]}"
-    startTime = Time.now
 
-    methodsList = DesignMethod.where("design_methods.id != ?", self[:id])
-    .order("RANDOM()")
-    .limit(limit)
+    # logger.info "Similar Methods running for: #{self[:name]}"
+    # startTime = Time.now
 
-    comparator = Corpus.new
-    comparingMethod = Document_Attach.new(self)
-    comparator << comparingMethod
+    # methodsList = DesignMethod.where("design_methods.id != ?", self[:id])
+    # .order("RANDOM()")
+    # .limit(limit)
 
-    methodsList.each do |dm|
-      comparator << Document_Attach.new(dm)
-    end
+    # comparator = Corpus.new
+    # comparingMethod = Document_Attach.new(self)
+    # comparator << comparingMethod
 
-    result = comparator.similar_documents(comparingMethod).sort {|tuple1, tuple2| tuple2[1] <=> tuple1[1] }
-    result = result.map {|tuple| tuple[0].obj}
-    result = result [1..sample_size]
+    # methodsList.each do |dm|
+    #   comparator << Document_Attach.new(dm)
+    # end
 
-    endTime = Time.now
-    elapsed_time = endTime - startTime
-    logger.info "Similar Methods took #{elapsed_time}s to query #{limit} random sample from db."
-    return result
+    # result = comparator.similar_documents(comparingMethod).sort {|tuple1, tuple2| tuple2[1] <=> tuple1[1] }
+    # result = result.map {|tuple| tuple[0].obj}
+    # result = result [1..sample_size]
+
+    # endTime = Time.now
+    # elapsed_time = endTime - startTime
+    # logger.info "Similar Methods took #{elapsed_time}s to query #{limit} random sample from db."
+    # return result
+
   end
 
   def similar_case_studies(limit, sample_size)
-    logger.info "Similar Case Studies running for: #{self[:name]}"
-    startTime = Time.now
 
-    caseStudiesList = CaseStudy.order("RANDOM()")
-    .limit(limit)
+    # logger.info "Similar Case Studies running for: #{self[:name]}"
+    # startTime = Time.now
 
-    comparator = Corpus.new
-    comparingMethod = Document_Attach.new(self)
-    comparator << comparingMethod
+    # caseStudiesList = CaseStudy.order("RANDOM()")
+    # .limit(limit)
 
-    caseStudiesList.each do |cs|
-      comparator << Document_Attach.new(cs)
-    end
+    # comparator = Corpus.new
+    # comparingMethod = Document_Attach.new(self)
+    # comparator << comparingMethod
 
-    result = comparator.similar_documents(comparingMethod).sort {|tuple1, tuple2| tuple2[1] <=> tuple1[1] }
-    result = result.map {|tuple| tuple[0].obj}
-    result = result [1..sample_size]
+    # caseStudiesList.each do |cs|
+    #   comparator << Document_Attach.new(cs)
+    # end
 
-    endTime = Time.now
-    elapsed_time = endTime - startTime
-    logger.info "Similar Case Studies took #{elapsed_time}s to query #{limit} random sample from db."
-    return result
+    # result = comparator.similar_documents(comparingMethod).sort {|tuple1, tuple2| tuple2[1] <=> tuple1[1] }
+    # result = result.map {|tuple| tuple[0].obj}
+    # result = result [1..sample_size]
+
+    # endTime = Time.now
+    # elapsed_time = endTime - startTime
+    # logger.info "Similar Case Studies took #{elapsed_time}s to query #{limit} random sample from db."
+    # return result
+
   end
 
   has_many :categorizations, dependent: :destroy

@@ -93,72 +93,76 @@ class CaseStudy < ActiveRecord::Base
         return self[:description]
     end
 
-    class Document_Attach < Document
-        attr_reader :obj
-        def initialize(obj)
-            if obj.is_a?(DesignMethod)
-              super(:content => obj.overview+" "+obj.process)
-            elsif obj.is_a?(CaseStudy)
-              super(:content => obj.description)
-            end
-            @obj = obj
-        end
-    end
-
-  def similar_methods(limit, sample_size)
-    logger.info "Similar Methods running for: #{self[:title]}"
-    startTime = Time.now
-
-    methodsList = DesignMethod.order("RANDOM()")
-    .limit(limit)
-
-    comparator = Corpus.new
-
-    query = Document_Attach.new(self)
-    comparator << query
-
-    methodsList.each do |dm|
-      comparator << Document_Attach.new(dm)
-    end
-
-    # debug = []
-    # comparator.similar_documents(comparingCaseStudy).each do |doc, similarity|
-    #     debug << "Similarity between doc #{comparingCaseStudy.id} and doc #{doc.id} is #{similarity}"
+    # class Document_Attach < Document
+    #     attr_reader :obj
+    #     def initialize(obj)
+    #         if obj.is_a?(DesignMethod)
+    #           super(:content => obj.overview+" "+obj.process)
+    #         elsif obj.is_a?(CaseStudy)
+    #           super(:content => obj.description)
+    #         end
+    #         @obj = obj
+    #     end
     # end
 
-    result = comparator.similar_documents(query).sort {|tuple1, tuple2| tuple2[1] <=> tuple1[1] }
-    result = result.map {|tuple| tuple[0].obj}
-    result = result [1..sample_size]
+  def similar_methods(limit, sample_size)
 
-    endTime = Time.now
-    elapsed_time = endTime - startTime
-    logger.info "Similar Methods took #{elapsed_time}s to query #{limit} random sample from db."
-    return result
+    # logger.info "Similar Methods running for: #{self[:title]}"
+    # startTime = Time.now
+
+    # methodsList = DesignMethod.order("RANDOM()")
+    # .limit(limit)
+
+    # comparator = Corpus.new
+
+    # query = Document_Attach.new(self)
+    # comparator << query
+
+    # methodsList.each do |dm|
+    #   comparator << Document_Attach.new(dm)
+    # end
+
+    # # debug = []
+    # # comparator.similar_documents(comparingCaseStudy).each do |doc, similarity|
+    # #     debug << "Similarity between doc #{comparingCaseStudy.id} and doc #{doc.id} is #{similarity}"
+    # # end
+
+    # result = comparator.similar_documents(query).sort {|tuple1, tuple2| tuple2[1] <=> tuple1[1] }
+    # result = result.map {|tuple| tuple[0].obj}
+    # result = result [1..sample_size]
+
+    # endTime = Time.now
+    # elapsed_time = endTime - startTime
+    # logger.info "Similar Methods took #{elapsed_time}s to query #{limit} random sample from db."
+    # return result
+
   end
 
   def similar_case_studies(limit, sample_size)
-    logger.info "Similar Case Studies running for: #{self[:title]}"
-    startTime = Time.now
 
-    caseStudiesList = CaseStudy.where("case_studies.id != ?", self[:id])
-    .order("RANDOM()")
-    .limit(limit)
+    # logger.info "Similar Case Studies running for: #{self[:title]}"
+    # startTime = Time.now
 
-    comparator = Corpus.new
-    comparingCaseStudy = Document_Attach.new(self)
-    comparator << comparingCaseStudy
+    # caseStudiesList = CaseStudy.where("case_studies.id != ?", self[:id])
+    # .order("RANDOM()")
+    # .limit(limit)
 
-    caseStudiesList.each do |cs|
-      comparator << Document_Attach.new(cs)
-    end
+    # comparator = Corpus.new
+    # comparingCaseStudy = Document_Attach.new(self)
+    # comparator << comparingCaseStudy
 
-    result = comparator.similar_documents(comparingCaseStudy).sort {|tuple1, tuple2| tuple2[1] <=> tuple1[1] }
-    result = result.map {|tuple| tuple[0].obj}
-    result = result [1..sample_size]
+    # caseStudiesList.each do |cs|
+    #   comparator << Document_Attach.new(cs)
+    # end
 
-    endTime = Time.now
-    elapsed_time = endTime - startTime
-    logger.info "Similar Case Studies took #{elapsed_time}s to query #{limit} random sample from db."
-    return result
+    # result = comparator.similar_documents(comparingCaseStudy).sort {|tuple1, tuple2| tuple2[1] <=> tuple1[1] }
+    # result = result.map {|tuple| tuple[0].obj}
+    # result = result [1..sample_size]
+
+    # endTime = Time.now
+    # elapsed_time = endTime - startTime
+    # logger.info "Similar Case Studies took #{elapsed_time}s to query #{limit} random sample from db."
+    # return result
+
   end
 end

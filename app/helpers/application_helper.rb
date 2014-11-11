@@ -1,5 +1,3 @@
-require 'similarity'
-
 module ApplicationHelper
 
 	@@methods_file = "method_categories.json"

@@ -117,18 +117,18 @@ ActiveRecord::Schema.define(version: 20140825212653) do
   end
 
   create_table "companies", force: true do |t|
-    t.string   "name",       default: ""
-    t.string   "domain",     default: ""
-    t.string   "email",      default: ""
+    t.string   "name"
+    t.string   "email"
+    t.string   "domain"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "contacts", force: true do |t|
-    t.string   "name",       default: ""
-    t.string   "email",      default: ""
-    t.string   "phone",      default: ""
-    t.integer  "company_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

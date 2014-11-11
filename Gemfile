@@ -23,9 +23,6 @@ gem 'ffi'
 
 
 # LSA
-gem  'gsl', '~> 1.15.3'
-gem 'similarity', '~> 0.2.5'
-
 
 gem 'sprockets', '2.11.0'
 
