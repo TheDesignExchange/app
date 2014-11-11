@@ -1,6 +1,3 @@
-== Install ==
-
-== Dependencies 
 ## Installation ##
 
 ### RDFRaptor ###
