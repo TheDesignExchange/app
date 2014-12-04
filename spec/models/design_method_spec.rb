@@ -27,7 +27,7 @@ describe DesignMethod do
   # it { should respond_to(:principle) }
   it { should respond_to(:owner_id) }
 
-  it { should respond_to(:method_categories) }
+  # it { should respond_to(:method_categories) }
   it { should respond_to(:citations) }
   it { should respond_to(:owner) }
   it { should respond_to(:favorited_users) }

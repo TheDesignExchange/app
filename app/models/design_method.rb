@@ -124,8 +124,9 @@ class DesignMethod < ActiveRecord::Base
 
   end
 
-  has_many :categorizations, dependent: :destroy
-  has_many :method_categories, through: :categorizations
+  has_many :method_characteristics, dependent: :destroy
+  has_many :characteristics, through: :method_characteristics
+
   has_many :method_citations, dependent: :destroy
   has_many :citations, through: :method_citations
   has_many :method_favorites, dependent: :destroy

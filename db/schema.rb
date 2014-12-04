@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825212653) do
+ActiveRecord::Schema.define(version: 20141129073257) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -88,16 +88,20 @@ ActiveRecord::Schema.define(version: 20140825212653) do
     t.text     "outcome"
   end
 
-  create_table "categorizations", force: true do |t|
-    t.integer  "design_method_id"
+  create_table "characteristic_groups", force: true do |t|
     t.integer  "method_category_id"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "categorizations", ["design_method_id", "method_category_id"], name: "cat_index", unique: true
-  add_index "categorizations", ["design_method_id"], name: "index_categorizations_on_design_method_id"
-  add_index "categorizations", ["method_category_id"], name: "index_categorizations_on_method_category_id"
+  create_table "characteristics", force: true do |t|
+    t.integer  "characteristic_group_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "citations", force: true do |t|
     t.string   "text"
@@ -174,19 +178,6 @@ ActiveRecord::Schema.define(version: 20140825212653) do
   add_index "discussions", ["title"], name: "index_discussions_on_title"
   add_index "discussions", ["user_id"], name: "index_discussions_on_user_id"
 
-  create_table "mc_relations", force: true do |t|
-    t.integer  "parent_id"
-    t.integer  "child_id"
-    t.integer  "distance"
-    t.string   "description", default: "subclass"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "mc_relations", ["child_id"], name: "index_mc_relations_on_child_id"
-  add_index "mc_relations", ["parent_id", "child_id"], name: "mcrelations_index", unique: true
-  add_index "mc_relations", ["parent_id"], name: "index_mc_relations_on_parent_id"
-
   create_table "method_case_studies", force: true do |t|
     t.integer  "case_study_id"
     t.integer  "design_method_id"
@@ -199,6 +190,17 @@ ActiveRecord::Schema.define(version: 20140825212653) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "method_characteristics", force: true do |t|
+    t.integer  "design_method_id"
+    t.integer  "characteristic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "method_characteristics", ["characteristic_id"], name: "index_method_characteristics_on_characteristic_id"
+  add_index "method_characteristics", ["design_method_id", "characteristic_id"], name: "char_index", unique: true
+  add_index "method_characteristics", ["design_method_id"], name: "index_method_characteristics_on_design_method_id"
 
   create_table "method_citations", force: true do |t|
     t.integer  "design_method_id"
