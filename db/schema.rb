@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141129073257) do
+ActiveRecord::Schema.define(version: 20141205020810) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20141129073257) do
   create_table "characteristics", force: true do |t|
     t.integer  "characteristic_group_id"
     t.string   "name"
-    t.text     "description"
+    t.text     "description",             default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -141,7 +141,6 @@ ActiveRecord::Schema.define(version: 20141129073257) do
     t.string   "name",                          null: false
     t.text     "overview",                      null: false
     t.text     "process",                       null: false
-    t.text     "principle",                     null: false
     t.integer  "owner_id",                      null: false
     t.integer  "parent_id"
     t.datetime "created_at"
@@ -152,6 +151,7 @@ ActiveRecord::Schema.define(version: 20141129073257) do
     t.string   "time_unit",        default: ""
     t.string   "main_image"
     t.integer  "likes",            default: 0
+    t.string   "aka"
   end
 
   create_table "discussion_replies", force: true do |t|

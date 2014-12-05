@@ -6,7 +6,6 @@
 #  name       :string(255)      not null
 #  overview   :text             not null
 #  process    :text             not null
-#  principle  :text             not null
 #  owner_id   :integer          not null
 #  parent_id  :integer
 #  created_at :datetime
@@ -27,10 +26,9 @@ class DesignMethod < ActiveRecord::Base
   searchable do
     text :name, stored: true
     text :overview, stored: true
-    text :principle, stored: true
     text :process, stored: true
     text :method_categories do
-      method_categories.map { |method_category| method_category.name }
+      characteristics.map { |characteristic| characteristic.characteristic_group.method_category }
     end
   end
 
