@@ -23,7 +23,6 @@ FactoryGirl.define do
     name      { Faker::Lorem.word }
     overview  { Faker::Lorem.paragraph }
     process   { Faker::Lorem.paragraph }
-    principle { Faker::Lorem.paragraph }
     owner
   end
 
@@ -95,5 +94,16 @@ FactoryGirl.define do
     permission_to_use { true }
     type              { Faker::Lorem.word }
     company_id        { Faker::Number.number(10) }
+  end
+
+  factory :characteristic_group do
+    name { Faker::Lorem.word }
+    method_category
+  end
+
+  factory :characteristic do
+    name          { Faker::Lorem.word }
+    description   { Faker::Lorem.sentence }
+    characteristic_group
   end
 end

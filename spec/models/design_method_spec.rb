@@ -24,13 +24,12 @@ describe DesignMethod do
   it { should respond_to(:name) }
   it { should respond_to(:overview) }
   it { should respond_to(:process) }
-  # it { should respond_to(:principle) }
   it { should respond_to(:owner_id) }
 
-  # it { should respond_to(:method_categories) }
   it { should respond_to(:citations) }
   it { should respond_to(:owner) }
   it { should respond_to(:favorited_users) }
+  it { should respond_to(:characteristics)}
 
   it { should be_valid }
 
@@ -65,6 +64,10 @@ describe DesignMethod do
   it "when user favorites method" do
     user.favorite(design_method)
     expect(design_method.favorited_users).to include user
+  end
+
+  describe "#method_categories" do
+
   end
 
 end

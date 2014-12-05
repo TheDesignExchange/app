@@ -18,7 +18,9 @@ describe MethodCategory do
 
   it { should respond_to(:name) }
 
-  it { should respond_to(:design_methods) }
+  it { should respond_to(:characteristic_groups)}
+  it { should respond_to(:characteristics)}
+  it { should respond_to(:design_methods)}
 
   it { should be_valid }
 

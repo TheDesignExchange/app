@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Characteristic, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:characteristic) { FactoryGirl.create(:characteristic) }
+
+  subject { characteristic }
+
+  it { should respond_to(:name) }
+  it { should respond_to(:characteristic_groups)}
+  
 end

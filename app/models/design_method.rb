@@ -47,11 +47,15 @@ class DesignMethod < ActiveRecord::Base
   end
 
   def tags
-        Tag.where("design_method_id = ? and content_type = ?", self[:id], "tag");
+    Tag.where("design_method_id = ? and content_type = ?", self[:id], "tag");
   end
 
   def tools
-      Tag.where("design_method_id = ? and content_type = ?", self[:id], "tool");
+    Tag.where("design_method_id = ? and content_type = ?", self[:id], "tool");
+  end
+
+  def method_categories
+    return characteristics.first.characteristic_group.method_category
   end
 
   # class Document_Attach < Document
