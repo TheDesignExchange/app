@@ -28,7 +28,7 @@ class DesignMethod < ActiveRecord::Base
     text :overview, stored: true
     text :process, stored: true
     text :method_categories do
-      characteristics.map { |characteristic| characteristic.characteristic_group.method_category }
+      method_categories.map { |method_category| method_category.name }
     end
   end
 
@@ -52,10 +52,6 @@ class DesignMethod < ActiveRecord::Base
 
   def tools
     Tag.where("design_method_id = ? and content_type = ?", self[:id], "tool");
-  end
-
-  def method_categories
-    return characteristics.first.characteristic_group.method_category
   end
 
   # class Document_Attach < Document
@@ -124,6 +120,20 @@ class DesignMethod < ActiveRecord::Base
     # logger.info "Similar Case Studies took #{elapsed_time}s to query #{limit} random sample from db."
     # return result
 
+  end
+
+  def method_categories
+    categories = Array.new
+    #Currently: inefficient amount of calls b/c most characteristics are in same category
+
+    self.characteristics.each do |c|
+      cat = c.characteristic_group.method_category
+      if !categories.include?(cat)
+        categories << cat
+      end
+    end
+
+    return categories
   end
 
   has_many :method_characteristics, dependent: :destroy

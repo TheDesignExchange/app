@@ -6,6 +6,6 @@ RSpec.describe Characteristic, :type => :model do
   subject { characteristic }
 
   it { should respond_to(:name) }
-  it { should respond_to(:characteristic_groups)}
+  it { should respond_to(:characteristic_group)}
   
 end

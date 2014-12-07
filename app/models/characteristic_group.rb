@@ -3,6 +3,6 @@ class CharacteristicGroup < ActiveRecord::Base
           too_long: "%{count} is the maximum character length."}
 
   belongs_to :method_category
-  has_many :characteristics, :primary_key => "characteristic_group_id"
+  has_many :characteristics
   has_many :design_methods, through: :characteristics
 end

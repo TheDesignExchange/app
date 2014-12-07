@@ -68,6 +68,59 @@ describe DesignMethod do
 
   describe "#method_categories" do
 
-  end
+    let(:category) { FactoryGirl.create(:method_category) }
+    let(:category_2) { FactoryGirl.create(:method_category) }
+    let(:group) { FactoryGirl.build(:characteristic_group, method_category: category) }
+    let(:characteristic) { FactoryGirl.build(:characteristic, characteristic_group: group) }
+    let(:characteristic_2) { FactoryGirl.create(:characteristic, characteristic_group: group) }
+    before { design_method.characteristics << characteristic }
 
+    it "returns a list of categories the method belongs to" do
+      expect(design_method.method_categories).to include category
+    end
+
+    context "when a new characteristic with same category is added" do
+      before { design_method.characteristics << characteristic_2 }
+
+      it "does not return multiple of same category" do
+        expect(design_method.method_categories.size).to eq(1)
+        expect(design_method.method_categories).to include category
+      end
+    end
+
+    context "when a method does not belong to a category" do
+
+      it "does not return the category" do
+        expect(design_method.method_categories).to_not include category_2
+      end
+    end
+
+    context "when a method has a characteristic that updates its category" do
+      before { characteristic.characteristic_group.method_category = category_2 }
+
+      it "updates the category list accordingly" do
+        expect(design_method.method_categories).to include category_2
+        expect(design_method.method_categories).to_not include category
+      end
+    end
+
+    context "when a method removes the one characteristic from a category" do
+      before {design_method.characteristics.delete(characteristic)}
+
+      it "removes the method from the list" do
+        expect(design_method.method_categories).to be_empty
+      end
+    end
+
+    context "when a method removes a non-category unique characteristic" do
+      before do
+        design_method.characteristics << characteristic_2
+        design_method.characteristics.destroy(characteristic)
+      end
+
+      it "does not remove the method from the list" do
+        expect(design_method.method_categories).to include category
+      end
+    end
+  end
 end
