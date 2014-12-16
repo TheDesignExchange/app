@@ -24,15 +24,14 @@ p admin.errors unless admin.save
 CHARACTERISTIC_INDEX = 6
 METHOD_INDEX = 1
 
-def load_methods(category, sheet, admin)
-  p "============================= LOAD GROUPS  =========================="
+
+def load_characteristics(category, sheet)
+  p "=================== LOAD GROUPS & CHARACTERISTICS  ====================="
   i = CHARACTERISTIC_INDEX
   group_list = sheet.row(0)
   char_list = sheet.row(1)
   group_name = group_list[i]
   characteristics = char_list[i]
-
-  group_index = Hash.new
 
   while group_name != nil
     g_name = group_name.to_s.strip
@@ -40,8 +39,7 @@ def load_methods(category, sheet, admin)
     group.name = g_name
     if group.save
       category.characteristic_groups << group
-      group_index[i] = group
-      p "Added #{group.name}!"
+      p "Added #{group.name}"
     end
 
     c_names = characteristics.split(/ *\/ */).each do |c_name|
@@ -49,7 +47,7 @@ def load_methods(category, sheet, admin)
       character.name = c_name
       if character.save
         group.characteristics << character
-        p "Added #{character.name}"
+        p "    Added #{character.name}"
       else
         p character.errors
       end
@@ -59,6 +57,9 @@ def load_methods(category, sheet, admin)
     group_name = group_list[i]
     characteristics = char_list[i]
   end
+end
+
+def load_methods(category, sheet, admin)
 
   p "========================= LOAD DESIGN METHODS ========================="
 
@@ -88,18 +89,17 @@ def load_methods(category, sheet, admin)
     #Load in characteristics 
     j = CHARACTERISTIC_INDEX
     characteristics = row[j]
+    group_row = sheet.row(0)
 
     while characteristics != nil
-      group = group_index[j]
+      group_name = group_row[j].to_s.strip
+      group = CharacteristicGroup.where(name: group_name).first
       characteristics.split(/[\n\*]/).each do |char_name|
         if !char_name.blank?
-          characteristic = Characteristic.where({name: char_name, characteristic_group_id: group.id}).first_or_create!
-          if !design_method.characteristics.include?(characteristic)
+          characteristic = Characteristic.where({name: char_name, characteristic_group_id: group.id}).first
+          if characteristic && !design_method.characteristics.include?(characteristic)
             design_method.characteristics << characteristic
             p "    Added #{characteristic.name}"
-          end
-          if !group.characteristics.include?(characteristic)
-            group.characteristics << characteristic
           end
         end
       end
@@ -122,10 +122,6 @@ def load_methods(category, sheet, admin)
       end
     end
 
-    #Load in method_category
-    if !design_method.method_categories.include?(category)
-      design_method.method_categories << category
-    end
   end
 end
 
@@ -144,6 +140,7 @@ p building.errors unless building.save
 filename = File.join(Rails.root, "lib/tasks/data/building.xls")
 sheet = Spreadsheet.open(filename).worksheet 0
 
+load_characteristics(building, sheet)
 load_methods(building, sheet, admin)
 
 
