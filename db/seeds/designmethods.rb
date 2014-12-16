@@ -44,7 +44,7 @@ def load_methods(category, sheet, admin)
       p "Added #{group.name}!"
     end
 
-    c_names = characteristics.split(/ ?\/ ?/).each do |c_name|
+    c_names = characteristics.split(/ *\/ */).each do |c_name|
       character = Characteristic.new
       character.name = c_name
       if character.save
@@ -68,11 +68,14 @@ def load_methods(category, sheet, admin)
     fields[:name] = row[METHOD_INDEX].to_s.strip
     fields[:overview] = row[METHOD_INDEX + 1].to_s.strip
     fields[:process] = "default"
-    fields[:aka] = row[METHOD_INDEX + 2].to_s.strip.capitalize
-    fields[:main_image] = row[METHOD_INDEX + 3].to_s.strip
+    aka = row[METHOD_INDEX + 2].to_s.strip
+    image = row[METHOD_INDEX + 3].to_s.strip
 
     design_method = DesignMethod.new(fields)
     design_method.owner = admin
+    design_method.aka = aka
+    design_method.main_image = image
+
     if !design_method.save
       p "Error while creating a design method: "
       design_method.errors.full_messages.each do |message|

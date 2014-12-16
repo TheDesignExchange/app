@@ -98,8 +98,11 @@ describe DesignMethod do
     context "when a method has a characteristic that updates its category" do
       before { characteristic.characteristic_group.method_category = category_2 }
 
-      it "updates the category list accordingly" do
+      it "returns the new category" do
         expect(design_method.method_categories).to include category_2
+      end
+
+      it "does not return the old category" do
         expect(design_method.method_categories).to_not include category
       end
     end

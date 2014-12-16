@@ -4,5 +4,5 @@ class CharacteristicGroup < ActiveRecord::Base
 
   belongs_to :method_category
   has_many :characteristics
-  has_many :design_methods, through: :characteristics
+  has_many :design_methods, -> { uniq }, through: :characteristics
 end
