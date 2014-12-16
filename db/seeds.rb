@@ -1,12 +1,13 @@
-# require "rdf"
-# require "rdf/raptor"
-# include RDF
-# Reset users
+require 'spreadsheet'
 
+p "-------------- RESET ------------------"
 User.destroy_all
+DesignMethod.destroy_all
+MethodCategory.destroy_all
+CharacteristicGroup.destroy_all
+Characteristic.destroy_all
 
 # Create default admin user
-
 admin = User.new(
   username: "admin",
   first_name: "TheDesignExchange",
@@ -18,159 +19,132 @@ admin = User.new(
 
 p "Admin #{admin.username} created!" if admin.save
 p admin.errors unless admin.save
-# Read in the ontology
 
-filename = File.join(Rails.root, 'lib/tasks/data/dx.owl')
-fields = Hash.new
+# These indices are set to the current spreadsheet format. Update as necessary
+CHARACTERISTIC_INDEX = 6
+METHOD_INDEX = 1
 
-DesignMethod.destroy_all
-MethodCategory.destroy_all
-Citation.destroy_all
+def load_methods(category, sheet, admin)
+  p "============================= LOAD GROUPS  =========================="
+  i = CHARACTERISTIC_INDEX
+  group_list = sheet.row(0)
+  char_list = sheet.row(1)
+  group_name = group_list[i]
+  characteristics = char_list[i]
 
-data = RDF::Graph.load(filename)
+  group_index = Hash.new
 
-# SPARQL prefix
-root_prefix = "PREFIX : <http://www.semanticweb.org/howard/ontologies/2014/0/DesignExchange_Methods#>"
-
-# Searching for design methods and method categories, using the subClassOf relationship.
-# This should be fixed w/something more convenient -- have some kind of predicate I can search on.
-# Hm, based on how this looks, might need to add descriptions to the method categories as well.
-
-methods = SPARQL.parse("SELECT ?subj ?obj { ?subj <#{RDF::RDFS.subClassOf}> ?obj }")
-all_objects = Set.new
-all_subjects = Set.new
-
-data.query(methods).each do |results|
-  all_objects << results.obj.to_s.split('#')[1]
-  all_subjects << results.subj.to_s.split('#')[1]
-end
-
-# Deleting entries with punctuation that's troublesome for SPARQL queries
-all_objects.delete_if { |str| str == nil || str.match(/,|\(|\)|\\|\//) }
-all_subjects.delete_if { |str| str == nil || str.match(/,|\(|\)|\\|\//) }
-
-# The design methods are the individuals (no subclasses) - right now this over-selects
-only_methods = all_subjects - all_objects
-p only_methods
-
-# The method categories are everything else - right now this under-selects
-method_categories = all_objects - only_methods
-p method_categories
-
-# # Instantiating method categories
-# method_categories.each do |cat|
-#   method_category = MethodCategory.new(name: cat)
-#   if method_category.save
-#     p "Added method category: #{method_category.name}"
-#   else
-#     p "Error while creating a method category: "
-#     method_category.errors.full_messages.each do |message|
-#       p "\t#{message}"
-#     end
-#   end
-# end
-
-# method_categories.each do |cat|
-#   # Load in children of method category
-#   method_category = MethodCategory.where(name: cat).first
-#   children = SPARQL.parse("#{root_prefix} SELECT ?child { ?child <#{RDF::RDFS.subClassOf}> :#{cat} }")
-#   data.query(children).each do |results|
-#     child_name = results.child.to_s.split('#')[1]
-#     if method_category.add_child(MethodCategory.where(name: child_name).first)
-#       p "Added child of #{cat}: #{child_name}"
-#     end
-#   end
-# end
-
-# def remove_unwanted(method)
-#   method.children.each do |child|
-#     name = child.name
-#     child.destroy
-#     p "    Removed #{name}"
-#   end
-#   m_name = method.name
-#   method.destroy
-#   p "    Removed #{m_name}"
-# end
-
-# # Remove any of the classes that don't fall under the Method umbrella. If property paths gets added to the SPARQL gem then this won't be necessary
-# to_delete = MethodCategory.where(name: "Person").first
-# remove_unwanted(to_delete)
-# to_delete = MethodCategory.where(name: "Method_Characteristics").first
-# remove_unwanted(to_delete)
-# to_delete = MethodCategory.where(name: "Processes").first
-# remove_unwanted(to_delete)
-# to_delete = MethodCategory.where(name: "Skills").first
-# remove_unwanted(to_delete)
-
-
-# Instantiating design methods; currently filling in contents w/ "default" so that things can get loaded.
-# Fix this once more of the ontology is ready, and we want to catch entries that need to get fixed.
-only_methods.each do |method|
-  fields[:name] = method
-  fields[:overview] = "default"
-  fields[:process] = "default"
-  fields[:principle] = "default"
-
-  # Add the overview: currently searching on AnnotationProperty Description
-  overview = SPARQL.parse("#{root_prefix} SELECT ?overview { :#{method} :Description ?overview }")
-  data.query(overview).each do |results|
-    fields[:overview] = results.overview.to_s
-  end
-
-  # Add the process: currently searching on AnnotationProperty process
-  process = SPARQL.parse("#{root_prefix} SELECT ?process { :#{method} :process ?process }")
-  data.query(process).each do |results|
-    fields[:process] = results.process.to_s
-  end
-
-  # Add the principle: currently searching on AnnotationProperty Notes
-  principle = SPARQL.parse("#{root_prefix} SELECT ?principle { :#{method} :Notes ?principle }")
-  data.query(principle).each do |results|
-    fields[:principle] = results.principle.to_s
-  end
-
-  design_method = DesignMethod.new(fields)
-  design_method.owner = admin
-  design_method.principle = ""
-
-  if !design_method.save
-    p "Error while creating a design method: "
-    design_method.errors.full_messages.each do |message|
-      p "\t#{message}"
+  while group_name != nil
+    g_name = group_name.to_s.strip
+    group = CharacteristicGroup.new
+    group.name = g_name
+    if group.save
+      category.characteristic_groups << group
+      group_index[i] = group
+      p "Added #{group.name}!"
     end
-  else
-    p "Added design method: #{design_method.name}"
+
+    c_names = characteristics.split(/ *\/ */).each do |c_name|
+      character = Characteristic.new
+      character.name = c_name
+      if character.save
+        group.characteristics << character
+        p "Added #{character.name}"
+      else
+        p character.errors
+      end
+    end
+
+    i += 1
+    group_name = group_list[i]
+    characteristics = char_list[i]
   end
 
-  # # Read in categories
-  # categories = SPARQL.parse("#{root_prefix} SELECT ?obj { :#{design_method.name} <#{RDF::RDFS.subClassOf}> ?obj }")
-  # data.query(categories).each do |results|
-  #   cat_name = results.obj.to_s.split('#')[1]
-  #   if cat_name
-  #     category = MethodCategory.where(name: cat_name).first
-  #     if category && !design_method.method_categories.include?(category)
-  #       design_method.method_categories << category
-  #       p "    Added category #{cat_name}"
-  #       category.parents.each do |gparents|
-  #         if gparents && !design_method.method_categories.include?(gparents)
-  #           design_method.method_categories << gparents
-  #           p "    Added category #{gparents.name}"
-  #         end
-  #       end
-  #     end
-  #   end
-  # end
+  p "========================= LOAD DESIGN METHODS ========================="
 
-  # # Read in citations
-  # citations = SPARQL.parse("#{root_prefix} SELECT ?ref { :#{design_method.name} :references ?ref }")
-  # data.query(citations).each do |results|
-  #   cit_text = results.ref.to_s
-  #   citation = Citation.where(text: cit_text).first_or_create!
-  #   if !design_method.citations.include?(citation)
-  #     design_method.citations << citation
-  #     p "    Added citation #{cit_text}"
-  #   end
-  # end
+  #Load in design methods
+  fields = Hash.new
+  sheet.each 3 do |row|
+    fields[:name] = row[METHOD_INDEX].to_s.strip
+    fields[:overview] = row[METHOD_INDEX + 1].to_s.strip
+    fields[:process] = "default"
+    aka = row[METHOD_INDEX + 2].to_s.strip
+    image = row[METHOD_INDEX + 3].to_s.strip
+
+    design_method = DesignMethod.new(fields)
+    design_method.owner = admin
+    design_method.aka = aka
+    design_method.main_image = image
+
+    if !design_method.save
+      p "Error while creating a design method: "
+      design_method.errors.full_messages.each do |message|
+        p "\t#{message}"
+      end
+    else
+      p "Added #{design_method.name}"
+    end
+
+    #Load in characteristics 
+    j = CHARACTERISTIC_INDEX
+    characteristics = row[j]
+
+    while characteristics != nil
+      group = group_index[j]
+      characteristics.split(/[\n\*]/).each do |char_name|
+        if !char_name.blank?
+          characteristic = Characteristic.where({name: char_name, characteristic_group_id: group.id}).first_or_create!
+          if !design_method.characteristics.include?(characteristic)
+            design_method.characteristics << characteristic
+            p "    Added #{characteristic.name}"
+          end
+          if !group.characteristics.include?(characteristic)
+            group.characteristics << characteristic
+          end
+        end
+      end
+
+      j += 1
+      characteristics = row[j]
+    end
+
+    #Load in citations
+    citations = row[METHOD_INDEX + 4]
+    if citations
+      citations.split(/[\n\*]/).each do |cit|
+        if !cit.blank?
+        citation = Citation.where(text: cit).first_or_create!
+          if !design_method.citations.include?(citation)
+            design_method.citations << citation
+            p "    Added #{citation.text}"
+          end
+        end
+      end
+    end
+
+    #Load in method_category
+    if !design_method.method_categories.include?(category)
+      design_method.method_categories << category
+    end
+  end
 end
+
+# Create five basic method categories
+p "====================== SEEDING METHOD CATEGORIES ======================="
+
+# Currently only building category is ready. Modify as necessary once
+# the taxonomy team is finished.
+
+building = MethodCategory.new
+building.name = "Building and Prototyping"
+
+p "Category #{building.name} created!" if building.save
+p building.errors unless building.save
+
+filename = File.join(Rails.root, "lib/tasks/data/building.xls")
+sheet = Spreadsheet.open(filename).worksheet 0
+
+load_methods(building, sheet, admin)
+
+
 
