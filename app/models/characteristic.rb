@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: characteristics
+#
+#  id                      :integer          not null, primary key
+#  characteristic_group_id :integer
+#  name                    :string(255)
+#  description             :text             default("")
+#  created_at              :datetime
+#  updated_at              :datetime
+#
+
 class Characteristic < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 255,
             too_long: "%{count} is the maximum character length."}
