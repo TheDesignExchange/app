@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825212653) do
+ActiveRecord::Schema.define(version: 20150111214637) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -173,6 +173,15 @@ ActiveRecord::Schema.define(version: 20140825212653) do
 
   add_index "discussions", ["title"], name: "index_discussions_on_title"
   add_index "discussions", ["user_id"], name: "index_discussions_on_user_id"
+
+  create_table "feedbacks", force: true do |t|
+    t.string   "title"
+    t.string   "email"
+    t.string   "type"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "mc_relations", force: true do |t|
     t.integer  "parent_id"

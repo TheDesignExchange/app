@@ -1,10 +1,11 @@
 DesignExchange::Application.routes.draw do
 
-  resources :companies do 
-    resources :contacts
-  end
+  #get "feedbacks/new"
+  #resources :companies do 
+    #resources :contacts
+  #end
 
-  
+  get 'feedback' => 'feedbacks#new'
 
   resources :tags
   resources :method_case_studies
