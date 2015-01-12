@@ -1,6 +1,6 @@
 DesignExchange::Application.routes.draw do
 
-  get :autocomplete, to: "collection#autocomplete"
+  get "autocomplete_search", to: "application#search"
 
   resources :companies do 
     resources :contacts

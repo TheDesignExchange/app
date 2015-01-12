@@ -69,9 +69,8 @@ DE.Autocomplete = {
 	      return;
 	    }
 
-	    $.getJSON( "/autocomplete", request, function( data, status, xhr ) {
+	    $.getJSON( "/autocomplete_search", request, function( data, status, xhr ) {
 	      DE.cache[ term ] = data;
-        console.log(data);
 	      response( data );
 	    });
 	  },
