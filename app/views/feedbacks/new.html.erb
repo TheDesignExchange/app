@@ -4,11 +4,13 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@feedback) do |f| %>
+      <%= render 'shared/error_messages' %>
+    
       <%= f.label :title %>
-      <%= f.text_field :title %>
+      <%= f.text_field :title, class: 'form-control' %>
 
       <%= f.label :email %>
-      <%= f.email_field :email %>
+      <%= f.email_field :email, class: 'form-control' %>
 
       <%= f.label :type, "Feedback Type" %>
       <div>
@@ -16,7 +18,7 @@
       </div>
       
       <%= f.label :body, "Feedback" %>
-      <%= f.text_area :body, :size => "30x10" %> 
+      <%= f.text_area :body, :size => "30x10", class: 'form-control' %> 
 
       <%= f.submit "Submit Feedback", class: "btn btn-primary" %>
     <% end %>
