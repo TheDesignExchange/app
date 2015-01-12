@@ -12,9 +12,9 @@
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.label :type, "Feedback Type" %>
+      <%= f.label :feedbacktype, "Feedback Type" %>
       <div>
-        <%= f.select(:type, options_for_select([["BUG", 1], ["USABILITY ISSUE", 2], ["OTHER", 3]])) %>
+        <%= f.select(:feedbacktype, options_for_select([["BUG", 1], ["USABILITY ISSUE", 2], ["OTHER", 3]])) %>
       </div>
       
       <%= f.label :body, "Feedback" %>

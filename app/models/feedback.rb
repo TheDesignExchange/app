@@ -1,5 +1,5 @@
 class Feedback < ActiveRecord::Base
-  #attr_accessible :title, :body, :email #allows mass assignment
+  attr_accessible :title, :body, :email, :feedbacktype #allows mass assignment
   
   validates :title, presence: true, length: { maximum: 100 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
