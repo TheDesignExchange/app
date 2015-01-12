@@ -69,8 +69,9 @@ DE.Autocomplete = {
 	      return;
 	    }
 
-	    $.getJSON( "/collection/autocomplete_design_methods", request, function( data, status, xhr ) {
+	    $.getJSON( "/autocomplete", request, function( data, status, xhr ) {
 	      DE.cache[ term ] = data;
+        console.log(data);
 	      response( data );
 	    });
 	  },

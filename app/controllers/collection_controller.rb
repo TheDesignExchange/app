@@ -105,8 +105,8 @@ layout "custom"
     render :json => params
   end
 
-  def autocomplete_design_methods
+  def autocomplete
     prefix = params['term']
-    render :json => DesignMethod.where('name like  ?', "#{prefix}%").map{|x| x.name.humanize}
+    render :json => DesignMethod.where('name like  ?', "%#{prefix}%").map{|x| x.name.humanize}
   end
 end
