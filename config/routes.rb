@@ -6,7 +6,7 @@ DesignExchange::Application.routes.draw do
   #end
 
   #feedback forms
-  get 'feedback' => 'feedbacks#new'
+  get 'givefeedback' => 'feedbacks#new'
   resources :feedbacks
   #
 
