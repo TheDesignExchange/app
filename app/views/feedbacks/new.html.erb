@@ -10,13 +10,13 @@
       <%= f.label :email %>
       <%= f.email_field :email %>
 
-      <%= f.label :type %>
+      <%= f.label :type, "Feedback Type" %>
       <div>
         <%= f.select(:type, options_for_select([["BUG", 1], ["USABILITY ISSUE", 2], ["OTHER", 3]])) %>
       </div>
       
-      <%= f.label :body %>
-      <%= f.text_field :body %>    
+      <%= f.label :body, "Feedback" %>
+      <%= f.text_area :body, :size => "30x10" %> 
 
       <%= f.submit "Submit Feedback", class: "btn btn-primary" %>
     <% end %>
