@@ -10,7 +10,8 @@ class FeedbacksController < ApplicationController
   def create
     @feedback = Feedback.new(feedback_params)
     if @feedback.save
-      # Handle a successful save.
+      flash[:success] = "Thank you for the feedback!"
+      redirect_to @feedback
     else
       render 'new'
     end
