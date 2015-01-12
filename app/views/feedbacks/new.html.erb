@@ -1,2 +1,25 @@
-<h1>Feedbacks#new</h1>
-<p>Find me in app/views/feedbacks/new.html.erb</p>
+
+<h1>Please let us know what you think!</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@feedback) do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+
+      <%= f.label :type %>
+      <div>
+        <%= f.select(:type, options_for_select([["BUG", 1], ["USABILITY ISSUE", 2], ["OTHER", 3]])) %>
+      </div>
+      
+      <%= f.label :body %>
+      <%= f.text_field :body %>    
+
+      <%= f.submit "Submit Feedback", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
