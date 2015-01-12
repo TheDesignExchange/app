@@ -17,10 +17,14 @@ class FeedbacksController < ApplicationController
     end
   end
   
+  def index
+    @feedbacks = Feedback.all
+  end
+  
   
   private
 
     def feedback_params
-      params.require(:feedback).permit(:title, :email, :type, :body)
+      params.require(:feedback).permit(:title, :email, :feedbacktype, :body)
     end
 end

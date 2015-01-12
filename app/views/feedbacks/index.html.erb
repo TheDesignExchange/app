@@ -1,0 +1,22 @@
+<h1>All feedback submissions</h1>
+
+
+
+<table style="width:100%">
+  <tr>
+    <th>Title</th>
+    <th>Email</th>		
+    <th>Type</th>
+  </tr>
+  
+
+    <% @feedbacks.each do |fb| %>
+    <tr>
+      <td><%= link_to fb.title, fb %></td>
+      <td><%=fb.email %></td>
+      <td><%= fb.feedbacktype %></td>
+    </tr>
+    <% end %>
+
+  
+</table>
