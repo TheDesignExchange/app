@@ -21,10 +21,24 @@ class FeedbacksController < ApplicationController
     @feedbacks = Feedback.all
   end
   
+  def edit
+    @feedback = Feedback.find(params[:id])
+  end
+  
+  def update
+    @feedback = Feedback.find(params[:id])
+    if @feedback.update_attributes(feedback_params)
+      @feedback.save
+      redirect_to feedbacks_path
+    else
+      render 'new'
+    end
+  end
+  
   
   private
 
     def feedback_params
-      params.require(:feedback).permit(:title, :email, :feedbacktype, :body)
+      params.require(:feedback).permit(:title, :email, :feedbacktype, :body, :status)
     end
 end

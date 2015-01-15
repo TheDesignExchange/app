@@ -7,16 +7,16 @@
     <th>Title</th>
     <th>Email</th>		
     <th>Type</th>
+    <th>Status</th>
   </tr>
-  
-
     <% @feedbacks.each do |fb| %>
     <tr>
-      <td><%= link_to fb.title, fb %></td>
+      <td><%= link_to fb.title, edit_feedback_path(fb) %></td>
       <td><%=fb.email %></td>
       <td><%= fb.feedbacktype %></td>
+      <td><%= fb.status %></td>
     </tr>
     <% end %>
-
-  
 </table>
+
+

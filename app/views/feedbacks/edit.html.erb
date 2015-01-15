@@ -1,0 +1,7 @@
+<%= render 'shared/display_feedback' %>
+
+<%= form_for(@feedback) do |f| %>
+  <%= f.label :status %>
+  <%= f.select(:status, options_for_select([["UNREAD", "UNREAD"], ["IN PROGRESS", "IN PROGRESS"], ["DONE", "DONE"]])) %>
+  <%= f.submit "Save Status", class: "btn btn-link" %>
+<% end %>

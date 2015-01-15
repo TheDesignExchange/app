@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112061645) do
+ActiveRecord::Schema.define(version: 20150115032337) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -178,9 +178,10 @@ ActiveRecord::Schema.define(version: 20150112061645) do
     t.string   "title"
     t.string   "email"
     t.text     "body"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "feedbacktype"
+    t.string   "status",       default: "UNREAD"
   end
 
   create_table "mc_relations", force: true do |t|
