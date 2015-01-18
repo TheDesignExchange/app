@@ -1,13 +1,6 @@
 require 'spreadsheet'
 
-p "-------------- RESET ------------------"
-User.destroy_all
-DesignMethod.destroy_all
-MethodCategory.destroy_all
-CharacteristicGroup.destroy_all
-Characteristic.destroy_all
-
-# Create default admin user
+# Set admin as creator of methods
 admin = User.new(
   username: "admin",
   first_name: "TheDesignExchange",
@@ -26,6 +19,15 @@ METHOD_INDEX = 2
 CHAR_ROW = 1
 METHOD_ROW = 3
 VARIATION_INDEX = 7
+
+# Create variation relations between methods
+#
+# === Parameters
+# - sheet: the method card spreadsheet being used
+#
+# === Variables
+# - variation: the variant design method
+# - parent_method: the parent design method
 
 def load_variations(sheet)
   sheet.each METHOD_ROW do |row|
@@ -47,11 +49,22 @@ def load_variations(sheet)
   end
 end
 
+# Load design methods from the method card spreadsheets. This includes meta fields, citations, and characteristics
+#
+# === Parameters
+# - category: the method category the methods fall under
+# - sheet: the method card spreadsheet being used
+# - admin: the admin user creating the methods
+#
+# === Variables
+# - design_method: the design method being created
+# - fields: used to hold the fields needed to create a method
+
 def load_methods(category, sheet, admin)
 
   p "========================= LOAD DESIGN METHODS ========================="
 
-  #Load in design methods
+  #Load in design method fields
   fields = Hash.new
   sheet.each METHOD_ROW do |row|
     name = row[METHOD_INDEX].to_s.strip
@@ -91,6 +104,10 @@ def load_methods(category, sheet, admin)
     while characteristics != nil
       group_name = group_row[j].to_s.strip
       group = CharacteristicGroup.where(name: group_name).first_or_create!
+      if group
+        category.characteristic_groups << group
+      end
+      
       characteristics.split(/, *\n*/).each do |char_name|
         if !char_name.blank?
           characteristic = Characteristic.where({name: char_name, characteristic_group_id: group.id}).first_or_create!
@@ -124,9 +141,6 @@ end
 # Create five basic method categories
 p "====================== SEEDING METHOD CATEGORIES ======================="
 
-# Currently only building category is ready. Modify as necessary once
-# the taxonomy team is finished.
-
 building = MethodCategory.new
 building.name = "Building and Prototyping"
 
@@ -150,13 +164,12 @@ sheets = {"Building and Prototyping" => "Building_Prototyping_Cards.xls",
           "Communication" => "Communication_Cards.xls"}
 
 categories.each do |cat|
-  p "Category #{cat.name} created!" if cat.save
+  p "========================== Category #{cat.name} created! ======================================" if cat.save
   p cat.errors unless cat.save
   name = "lib/tasks/data/#{sheets[cat.name]}"
   filename = File.join(Rails.root, name)
   sheet = Spreadsheet.open(filename).worksheet 0
 
-  # load_characteristics(cat, sheet)
   load_methods(cat, sheet, admin)
   load_variations(sheet)
 end

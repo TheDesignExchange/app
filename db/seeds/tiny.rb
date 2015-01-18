@@ -14,82 +14,103 @@ p "Admin #{admin.username} created!" if admin.save
 p admin.errors unless admin.save
 
 # These indices are set to the current spreadsheet format. Update as necessary
-CHARACTERISTIC_INDEX = 6
-METHOD_INDEX = 1
+CHARACTERISTIC_INDEX = 8
+METHOD_INDEX = 2
+CHAR_ROW = 1
+METHOD_ROW = 3
+VARIATION_INDEX = 7
 
+# Create variation relations between methods
+#
+# === Parameters
+# - sheet: the method card spreadsheet being used
+#
+# === Variables
+# - variation: the variant design method
+# - parent_method: the parent design method
 
-def load_characteristics(category, sheet)
-  p "=================== LOAD GROUPS & CHARACTERISTICS  ====================="
-  i = CHARACTERISTIC_INDEX
-  group_list = sheet.row(0)
-  char_list = sheet.row(1)
-  group_name = group_list[i]
-  characteristics = char_list[i]
+def load_variations(sheet)
+  sheet.each METHOD_ROW do |row|
+    parents = row[VARIATION_INDEX].to_s.strip
+    if parents.empty?
+      next
+    else
+      variant_name = row[METHOD_INDEX].to_s.strip
+      variation = DesignMethod.where(name: variant_name).first
 
-  while group_name != nil
-    g_name = group_name.to_s.strip
-    group = CharacteristicGroup.new
-    group.name = g_name
-    if group.save
-      category.characteristic_groups << group
-      p "Added #{group.name}"
-    end
-
-    c_names = characteristics.split(/ *\/ */).each do |c_name|
-      character = Characteristic.new
-      character.name = c_name
-      if character.save
-        group.characteristics << character
-        p "    Added #{character.name}"
-      else
-        p character.errors
+      parents.split(/, */).each do |parent|
+        parent_method = DesignMethod.where(name: parent).first
+        if variation && parent_method
+          parent_method.variations << variation
+          p "    Added: #{variant_name} is variation of #{parent}"
+        end
       end
     end
-
-    i += 1
-    group_name = group_list[i]
-    characteristics = char_list[i]
   end
 end
+
+# Load design methods from the method card spreadsheets. This includes meta fields, citations, and characteristics
+#
+# === Parameters
+# - category: the method category the methods fall under
+# - sheet: the method card spreadsheet being used
+# - admin: the admin user creating the methods
+#
+# === Variables
+# - design_method: the design method being created
+# - fields: used to hold the fields needed to create a method
 
 def load_methods(category, sheet, admin)
 
   p "========================= LOAD DESIGN METHODS ========================="
 
-  #Load in design methods
+  #Load in design method fields
   fields = Hash.new
-  sheet.each 3 do |row|
-    fields[:name] = row[METHOD_INDEX].to_s.strip
-    fields[:overview] = row[METHOD_INDEX + 1].to_s.strip
-    fields[:process] = "default"
-    aka = row[METHOD_INDEX + 2].to_s.strip
-    image = row[METHOD_INDEX + 3].to_s.strip
+  sheet.each METHOD_ROW do |row|
+    name = row[METHOD_INDEX].to_s.strip
 
-    design_method = DesignMethod.new(fields)
-    design_method.owner = admin
-    design_method.aka = aka
-    design_method.main_image = image
-
-    if !design_method.save
-      p "Error while creating a design method: "
-      design_method.errors.full_messages.each do |message|
-        p "\t#{message}"
-      end
+    if name.empty?
+      break
+    elsif DesignMethod.exists?(name: name)
+      design_method = DesignMethod.where(name: name).first
     else
-      p "Added #{design_method.name}"
+      fields[:name] = name
+      fields[:overview] = row[METHOD_INDEX + 1].to_s.strip
+      fields[:process] = "default"
+      aka = row[METHOD_INDEX + 2].to_s.strip
+      image = row[METHOD_INDEX + 3].to_s.strip
+
+      design_method = DesignMethod.new(fields)
+      design_method.owner = admin
+      design_method.aka = aka
+      design_method.main_image = image
+
+      if !design_method.save
+        p "Error while creating a design method: #{fields[:name]} "
+        design_method.errors.full_messages.each do |message|
+          p "\t#{message}"
+        end
+        next
+      end
     end
 
+    p "Added #{design_method.name}"
+  
     #Load in characteristics 
     j = CHARACTERISTIC_INDEX
     characteristics = row[j]
-    group_row = sheet.row(0)
+    group_row = sheet.row(CHAR_ROW)
 
     while characteristics != nil
       group_name = group_row[j].to_s.strip
-      group = CharacteristicGroup.where(name: group_name).first
-      characteristics.split(/[\n\*]/).each do |char_name|
+      group = CharacteristicGroup.where(name: group_name).first_or_create!
+      if group
+        category.characteristic_groups << group
+      end
+      
+      characteristics.split(/, *\n*/).each do |char_name|
         if !char_name.blank?
-          characteristic = Characteristic.where({name: char_name, characteristic_group_id: group.id}).first
+          characteristic = Characteristic.where({name: char_name, characteristic_group_id: group.id}).first_or_create!
           if characteristic && !design_method.characteristics.include?(characteristic)
             design_method.characteristics << characteristic
             p "    Added #{characteristic.name}"
@@ -104,7 +125,7 @@ def load_methods(category, sheet, admin)
     #Load in citations
     citations = row[METHOD_INDEX + 4]
     if citations
-      citations.split(/[\n\*]/).each do |cit|
+      citations.split(/, *\n/).each do |cit|
         if !cit.blank?
         citation = Citation.where(text: cit).first_or_create!
           if !design_method.citations.include?(citation)
@@ -114,15 +135,13 @@ def load_methods(category, sheet, admin)
         end
       end
     end
-
   end
 end
 
-# Create five basic method categories
+
 p "====================== SEEDING METHOD CATEGORIES ======================="
 
-# Currently only building category is ready. Modify as necessary once
-# the taxonomy team is finished.
+# Tiny set only loads building methods.
 
 building = MethodCategory.new
 building.name = "Building and Prototyping"
@@ -130,10 +149,10 @@ building.name = "Building and Prototyping"
 p "Category #{building.name} created!" if building.save
 p building.errors unless building.save
 
-filename = File.join(Rails.root, "lib/tasks/data/building.xls")
+filename = File.join(Rails.root, "lib/tasks/data/Building_Prototyping_Cards.xls")
 sheet = Spreadsheet.open(filename).worksheet 0
 
 
 # TODO: move these methods out to a util file
-load_characteristics(building, sheet)
 load_methods(building, sheet, admin)
+load_variations(sheet)
