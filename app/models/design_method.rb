@@ -6,8 +6,8 @@
 #  name             :string(255)      not null
 #  overview         :text             not null
 #  process          :text             not null
+#  aka              :string(255)
 #  owner_id         :integer          not null
-#  parent_id        :integer
 #  created_at       :datetime
 #  updated_at       :datetime
 #  num_of_designers :integer          default(1)
@@ -16,7 +16,6 @@
 #  time_unit        :string(255)      default("")
 #  main_image       :string(255)
 #  likes            :integer          default(0)
-#  aka              :string(255)
 #
 
 class DesignMethod < ActiveRecord::Base
@@ -50,8 +49,8 @@ class DesignMethod < ActiveRecord::Base
   has_many :case_studies, :through => :method_case_studies
 
   # Method variations
-  has_many :variations, class_name: "DesignMethod", foreign_key: :parent_id
-  belongs_to :parent, class_name: "DesignMethod"
+  has_many :method_variations, foreign_key: "parent_id", dependent: :destroy
+  has_many :variations, -> { uniq }, through: :method_variations, source: :variant
 
   # Comments
   has_many :comments, dependent: :destroy
