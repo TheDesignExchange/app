@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: characteristics
+#
+#  id                      :integer          not null, primary key
+#  characteristic_group_id :integer
+#  name                    :string(255)
+#  description             :text             default("")
+#  created_at              :datetime
+#  updated_at              :datetime
+#
+
 require 'rails_helper'
 
 RSpec.describe Characteristic, :type => :model do

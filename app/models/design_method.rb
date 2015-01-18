@@ -2,19 +2,29 @@
 #
 # Table name: design_methods
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)      not null
-#  overview   :text             not null
-#  process    :text             not null
-#  owner_id   :integer          not null
-#  parent_id  :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id               :integer          not null, primary key
+#  name             :string(255)      not null
+#  overview         :text             not null
+#  process          :text             not null
+#  owner_id         :integer          not null
+#  parent_id        :integer
+#  created_at       :datetime
+#  updated_at       :datetime
+#  num_of_designers :integer          default(1)
+#  num_of_users     :integer          default(1)
+#  time_period      :integer          default(0)
+#  time_unit        :string(255)      default("")
+#  main_image       :string(255)
+#  likes            :integer          default(0)
+#  aka              :string(255)
 #
 
 class DesignMethod < ActiveRecord::Base
-  mount_uploader :main_image, PictureUploader
+
+  # TODO: add the mass assignment protection at the controller, then remove this
   attr_accessible :name, :process, :num_of_designers, :num_of_users, :overview, :main_image, :time_period, :name, :time_unit
+
+  # Validations
   validates :name, :overview, presence: true
   validates :name, length: { maximum: 255,
             too_long: "%{count} is the maximum character length."}
@@ -23,6 +33,34 @@ class DesignMethod < ActiveRecord::Base
             on: :create
   validates :owner_id, presence: true
 
+  # Relationships
+  has_many :method_characteristics, dependent: :destroy
+  has_many :characteristics, through: :method_characteristics
+
+  has_many :method_citations, dependent: :destroy
+  has_many :citations, through: :method_citations
+
+  has_many :method_favorites, dependent: :destroy
+  has_many :favorited_users, through: :method_favorites, :source => :user
+
+  belongs_to :owner, class_name: "User", foreign_key: :owner_id
+
+  # CASE STUDY LINKING 
+  has_many :method_case_studies
+  has_many :case_studies, :through => :method_case_studies
+
+  # Method variations
+  has_many :variations, class_name: "DesignMethod", foreign_key: :parent_id
+  belongs_to :parent, class_name: "DesignMethod"
+
+  # Comments
+  has_many :comments, dependent: :destroy
+  has_many :tags
+
+  # Uploader (what gem?)
+  mount_uploader :main_image, PictureUploader
+
+  # Sunspot
   searchable do
     text :name, stored: true
     text :overview, stored: true
@@ -136,24 +174,4 @@ class DesignMethod < ActiveRecord::Base
     return categories
   end
 
-  has_many :method_characteristics, dependent: :destroy
-  has_many :characteristics, through: :method_characteristics
-
-  has_many :method_citations, dependent: :destroy
-  has_many :citations, through: :method_citations
-  has_many :method_favorites, dependent: :destroy
-  has_many :favorited_users, through: :method_favorites, :source => :user
-  belongs_to :owner, class_name: "User", foreign_key: :owner_id
-
-  # CASE STUDY LINKING 
-  has_many :method_case_studies
-  has_many :case_studies, :through => :method_case_studies
-
-  # Method variations
-  has_many :variations, class_name: "DesignMethod", foreign_key: :parent_id
-  belongs_to :parent, class_name: "DesignMethod"
-
-  # Comments
-  has_many :comments, dependent: :destroy
-  has_many :tags
-end 
+end
