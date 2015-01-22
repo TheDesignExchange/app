@@ -5,7 +5,9 @@ class CreateFeedbacks < ActiveRecord::Migration
       t.string :email
       t.string :feedbacktype
       t.text :body
-
+      t.string :status, :default => "UNREAD"
+      t.index :created_at
+      
       t.timestamps null: false
     end
   end

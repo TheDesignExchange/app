@@ -6,9 +6,7 @@ DesignExchange::Application.routes.draw do
   #end
 
   #feedback forms
-  get 'givefeedback' => 'feedbacks#new'
   resources :feedbacks
-  #
 
   resources :tags
   resources :method_case_studies
