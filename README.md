@@ -35,10 +35,7 @@ bundle install
 rake db:migrate
 rake sunspot:solr:start
 
-rake db:seed:users
-rake db:seed:designmethods
-rake db:seed:casestudies
-rake db:seed:discussions
+rake db:seeds
 
 rails server
 ```

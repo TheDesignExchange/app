@@ -57,6 +57,11 @@ FactoryGirl.define do
     design_method
   end
 
+  factory :method_variation do
+    parent
+    variant
+  end
+  
   factory :company do
     name    { Faker::Company.name }
     domain  { Faker::Internet.domain_name }

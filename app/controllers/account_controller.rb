@@ -23,6 +23,7 @@ class AccountController < ApplicationController
   	render layout: "custom" 
   end
 
+  # TODO: remove
   def tagify(content, options)
     tag = "<span class='tag-label label-gap'>#{content}  " 
       if options[:removable]

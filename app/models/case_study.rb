@@ -20,6 +20,14 @@
 #  company_id        :integer
 #  created_at        :datetime
 #  updated_at        :datetime
+#  num_of_designers  :integer          default(1)
+#  num_of_users      :integer          default(1)
+#  time_period       :integer          default(0)
+#  time_unit         :string(255)      default("")
+#  resource          :string(255)
+#  problem           :text
+#  process           :text
+#  outcome           :text
 #
 
 class CaseStudy < ActiveRecord::Base

@@ -2,15 +2,20 @@
 #
 # Table name: design_methods
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)      not null
-#  overview   :text             not null
-#  process    :text             not null
-#  principle  :text             not null
-#  owner_id   :integer          not null
-#  parent_id  :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id               :integer          not null, primary key
+#  name             :string(255)      not null
+#  overview         :text             not null
+#  process          :text             not null
+#  aka              :string(255)
+#  owner_id         :integer          not null
+#  created_at       :datetime
+#  updated_at       :datetime
+#  num_of_designers :integer          default(1)
+#  num_of_users     :integer          default(1)
+#  time_period      :integer          default(0)
+#  time_unit        :string(255)      default("")
+#  main_image       :string(255)
+#  likes            :integer          default(0)
 #
 
 require 'rails_helper'
@@ -30,6 +35,7 @@ describe DesignMethod do
   it { should respond_to(:owner) }
   it { should respond_to(:favorited_users) }
   it { should respond_to(:characteristics)}
+  it { should respond_to(:variations)}
 
   it { should be_valid }
 
@@ -64,6 +70,25 @@ describe DesignMethod do
   it "when user favorites method" do
     user.favorite(design_method)
     expect(design_method.favorited_users).to include user
+  end
+
+  describe "#variations" do
+    let(:method2) { FactoryGirl.build(:design_method, owner: user)}
+    let(:method3) { FactoryGirl.build(:design_method, owner: user)}
+    before { method2.variations << method3 }
+    
+    context "when a variation is added" do
+      before { design_method.variations << method2 }
+
+      it "returns a list of variant methods based on this method" do
+        expect(design_method.variations).to include method2
+      end
+
+      it "only returns immediate variants" do
+        expect(method2.variations).to include method3
+        expect(design_method.variations).to_not include method3
+      end
+    end
   end
 
   describe "#method_categories" do

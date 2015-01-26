@@ -39,15 +39,36 @@ class ApplicationController < ActionController::Base
     end
 
   def search
+
+    # temp param replacement for autocomplete
+    if params[:term]
+      params[:query] = params[:term]
+    end
+
     query = params[:query] ? params[:query].gsub(' ', '_') : "";
+
     design_methods = search_db(:dm, query, 24)[:results]
   	case_studies = search_db(:cs, query, 24)[:results]
     discussions = search_db(:disc, query, 24)[:results]
 
     @results = {:all => [design_methods, case_studies, discussions].flatten.shuffle[0..24],
       :dm => design_methods, :cs => case_studies, :disc => discussions}
-    # render :json => params["q"].length
-    render layout: "wide"
+
+    design_method_names = design_methods.map { |design_method| design_method.name }
+    case_study_names = case_studies.map { |case_study| case_study.title }
+    discussion_names = discussions.map { |discussion| discussion.title }
+
+    @autocomplete_results = [design_method_names, case_study_names, discussion_names].flatten
+
+    respond_to do |format|
+      format.html do
+        render layout: "wide"
+      end
+
+      format.json do
+        render json: @autocomplete_results
+      end
+    end
   end
 
   # Search design methods.

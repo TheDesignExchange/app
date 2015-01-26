@@ -1,6 +1,6 @@
 require 'spreadsheet'
 
-# Set admin as creator of methods
+# Create default admin user
 admin = User.new(
   username: "admin",
   first_name: "TheDesignExchange",
@@ -138,43 +138,21 @@ def load_methods(category, sheet, admin)
   end
 end
 
-# Create five basic method categories
+
 p "====================== SEEDING METHOD CATEGORIES ======================="
+
+# Tiny set only loads building methods.
 
 building = MethodCategory.new
 building.name = "Building and Prototyping"
 
-analysis = MethodCategory.new
-analysis.name = "Analysis and Synthesis"
+p "Category #{building.name} created!" if building.save
+p building.errors unless building.save
 
-ideation = MethodCategory.new
-ideation.name = "Ideation"
-
-data = MethodCategory.new
-data.name = "Data Gathering"
-
-communication = MethodCategory.new
-communication.name = "Communication"
-
-categories = [building, analysis, ideation, data, communication]
-sheets = {"Building and Prototyping" => "Building_Prototyping_Cards.xls",
-          "Analysis and Synthesis" => "Analysis_Synthesis_Cards.xls",
-          "Ideation" => "Ideation_Cards.xls",
-          "Data Gathering" => "Data_Gathering_Cards.xls",
-          "Communication" => "Communication_Cards.xls"}
-
-categories.each do |cat|
-  p "========================== Category #{cat.name} created! ======================================" if cat.save
-  p cat.errors unless cat.save
-  name = "lib/tasks/data/#{sheets[cat.name]}"
-  filename = File.join(Rails.root, name)
-  sheet = Spreadsheet.open(filename).worksheet 0
-
-  load_methods(cat, sheet, admin)
-  load_variations(sheet)
-end
+filename = File.join(Rails.root, "lib/tasks/data/Building_Prototyping_Cards.xls")
+sheet = Spreadsheet.open(filename).worksheet 0
 
 
-
-
-
+# TODO: move these methods out to a util file
+load_methods(building, sheet, admin)
+load_variations(sheet)

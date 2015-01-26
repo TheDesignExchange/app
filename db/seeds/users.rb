@@ -13,7 +13,7 @@ def process_users(data)
 	p "===============  SEEDING USERS  ================"
 	data.each do |el|
 		user = User.new(el)
-		p "Added user: #{user.email}" unless not user.save 
+		p "Added user: #{user.email}" unless not user.save
 		# p user.errors unless user.save
 	end
 	p "==============================="
