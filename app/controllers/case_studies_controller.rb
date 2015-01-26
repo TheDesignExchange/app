@@ -84,6 +84,6 @@ class CaseStudiesController < ApplicationController
     end
   end
 
-  
+
 
 end
