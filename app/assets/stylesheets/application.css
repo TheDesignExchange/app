@@ -18,6 +18,15 @@
  *= require_self
 
  */
+ a {
+  color: #6CC06D;
+  text-decoration: none;
+}
+
+ #logo{
+   width: inherit;
+   height: 100%;
+ }
 
 .tag-list > span{
   margin-bottom: 5px;
@@ -139,7 +148,7 @@ img{
 
   .thumbnail{
     padding: 0px;
-    min-height: 360px;
+    min-height: 250px;
     }
     .thumbnail img{
       width: 100%;
