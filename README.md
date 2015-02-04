@@ -1,5 +1,23 @@
 ## Installation ##
 
+
+
+## Starting Application ##
+
+To Load the Design Exchnage Project, navigate to rails project
+
+```bash
+bundle install
+
+rake db:migrate
+rake sunspot:solr:start
+
+rake db:seed
+
+rails server
+```
+
+## DEPRACTED ##
 ### RDFRaptor ###
 Macs: run `brew install raptor`
 
@@ -23,19 +41,4 @@ make clean
 make
 sudo make install
 sudo gem install gsl
-```
-
-## Starting Application ##
-
-To Load the Design Exchnage Project, navigate to rails project
-
-```bash
-bundle install
-
-rake db:migrate
-rake sunspot:solr:start
-
-rake db:seeds
-
-rails server
 ```
