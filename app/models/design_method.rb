@@ -105,7 +105,7 @@ class DesignMethod < ActiveRecord::Base
   # end
 
   def similar_methods(limit, sample_size)
-
+    # TO_DO implement as non-gsl dependent
     # logger.info "Similar Methods running for: #{self[:name]}"
     # startTime = Time.now
 
@@ -129,11 +129,11 @@ class DesignMethod < ActiveRecord::Base
     # elapsed_time = endTime - startTime
     # logger.info "Similar Methods took #{elapsed_time}s to query #{limit} random sample from db."
     # return result
-
+    return []
   end
 
   def similar_case_studies(limit, sample_size)
-
+    # TO_DO implement as non-gsl dependent
     # logger.info "Similar Case Studies running for: #{self[:name]}"
     # startTime = Time.now
 
@@ -156,7 +156,7 @@ class DesignMethod < ActiveRecord::Base
     # elapsed_time = endTime - startTime
     # logger.info "Similar Case Studies took #{elapsed_time}s to query #{limit} random sample from db."
     # return result
-
+    return []
   end
 
   def method_categories
