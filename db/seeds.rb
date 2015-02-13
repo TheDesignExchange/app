@@ -167,7 +167,7 @@ ideation = MethodCategory.new
 ideation.name = "Ideation"
 
 data = MethodCategory.new
-data.name = "Data Gathering"
+data.name = "Investigating"
 
 communication = MethodCategory.new
 communication.name = "Communication"
@@ -176,7 +176,7 @@ categories = [building, analysis, ideation, data, communication]
 sheets = {"Building and Prototyping" => "Building_Prototyping_Cards.xls",
           "Analysis and Synthesis" => "Analysis_Synthesis_Cards.xls",
           "Ideation" => "Ideation_Cards.xls",
-          "Data Gathering" => "Data_Gathering_Cards.xls",
+          "Investigating" => "Data_Gathering_Cards.xls",
           "Communication" => "Communication_Cards.xls"}
 
 categories.each do |cat|

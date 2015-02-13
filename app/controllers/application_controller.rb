@@ -83,8 +83,14 @@ class ApplicationController < ActionController::Base
     if query
       if type == :dm
         # results = DesignMethod.where("LOWER( design_methods.name ) LIKE ? AND overview != ? ", "%#{query}%", "No overview available")
-        results = DesignMethod.where("LOWER( design_methods.name ) LIKE ?", "%#{query}%")
-        .order('name = "'+ query +'" DESC, name LIKE "'+ query +'%" DESC'); 
+
+        # Sunspot search
+        results = DesignMethod.solr_search do
+
+          fulltext query
+
+        end.results
+
       elsif type == :cs
         # results = CaseStudy.where("LOWER( case_studies.title ) LIKE ? AND description != ?", "%#{query}%", "No description available")
         results = CaseStudy.where("LOWER( case_studies.title ) LIKE ?", "%#{query}%")
