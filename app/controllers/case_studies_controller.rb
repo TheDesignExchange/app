@@ -1,9 +1,12 @@
 class CaseStudiesController < ApplicationController
+
   def index
-    # @case_studies = CaseStudy.where("description != ?", "No description available" ).take(24)
+    @case_studies = CaseStudy.where("description != ?", "No description available" ).take(24)
     @case_studies = CaseStudy.take(24)
   	render layout: "wide"
   end
+
+
 
   def new
     id = params[:id] == nil ? 1 : params[:id].to_i
@@ -81,6 +84,16 @@ class CaseStudiesController < ApplicationController
         format.html { render action: "new" }
         format.json { render json: @case_study.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @cs = CaseStudy.find(params[:id])
+    @cs.destroy
+
+    respond_to do |format|
+      format.html { redirect_to case_studies_path }
+      format.json { head :no_content }
     end
   end
 

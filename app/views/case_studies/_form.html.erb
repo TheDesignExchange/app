@@ -1,19 +1,20 @@
 <script> 
   $(function(){
-    var pH = $('#publish-btn').parent().height()
-    var eH = $('#publish-btn').height()
-    $('#publish-btn').css('margin-top', (pH - eH)/2)
+    // // // var pH = $('#publish-btn').parent().height()
+    // // // var eH = $('#publish-btn').height()
+    // // // $('#publish-btn').css('margin-top', (pH - eH)/2)
 
-    eH = $('#save-btn').height()
-    $('#save-btn').css('margin-top', (pH - eH)/2)
+    // // eH = $('#save-btn').height()
+    // // $('#save-btn').css('margin-top', (pH - eH)/2)
 
-    pH = $('#auto-saved-text').parent().height()
-    eH = $('#auto-saved-text').height()
-    $('#auto-saved-text').css('margin-top', (pH - eH)/2)
+    // pH = $('#auto-saved-text').parent().height()
+    // eH = $('#auto-saved-text').height()
+    // $('#auto-saved-text').css('margin-top', (pH - eH)/2)
   });
 </script>
 
 <style>
+
   .fill-width{
     width: 100%;
   }
@@ -21,6 +22,12 @@
   .text-align-left{
     text-align: left;
   }
+  #user-action-ui{
+    padding-top: 8px;
+  }
+    #user-action-ui > * {
+        margin-right: 4px;
+    }
 </style>
 
 <%= form_for @case_study, :html => {:multipart => true} do |f| %>
@@ -37,22 +44,26 @@
     </div>
 <% end %>
 
-  <div class="row">
+  <div id="user-action-ui" class="row">
+
      <%= f.submit "Publish", :id => "publish-btn", 
                              :class => "btn btn-primary pull-right" %>
 
-    <button type="button" class="btn btn-default pull-right" id="save-btn" name="commit" type="submit">
+<!--     <button type="button" class="btn btn-default pull-right" id="save-btn" name="commit" type="submit">
       <%= glyphyify("floppy-disk") %> Save as Draft
-    </button>
+    </button> -->
 
-    <span id="auto-saved-text" class="pull-right">Auto-saved as draft 2 minutes ago</span>
+    <%= link_to 'Destroy', case_study_path(@case_study),
+            :confirm => 'Are you sure?', :method => :delete, :class=> "btn btn-danger pull-right" %>
+
+    <!-- <span id="auto-saved-text" class="pull-right">Auto-saved as draft 2 minutes ago</span> -->
   </div>
 
   <!-- BODY -->
   <div class = "row">
 
      <!-- LEFT CONTENT -->
-  <div class="col-md-4">
+  <div class="col-xs-4">
 
     <!-- PEOPLE -->
     <div class="row">
@@ -236,7 +247,7 @@
     <!-- END LEFT CONTENT -->
 
     <!-- RIGHT CONTENT -->
-    <div class="col-md-8">
+    <div class="col-xs-8">
         <!-- INPUT METHOD NAME -->
         <div class="input-group-lg" style="margin-top: 10px;margin-bottom: 10px;">
           <h3> Title </h3>
@@ -247,7 +258,7 @@
               <%= select("case_study", "company_id", Company.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'}, :class => "form-control") %>
         </div>
         <div class="row">
-          <div class="col-xs-6 col-md-12">
+          <div class="col-xs-6 col-xs-12">
           <% if @case_study.mainImage.present? %>
             <%= image_tag(@case_study.mainImage)%>
           <% else %>

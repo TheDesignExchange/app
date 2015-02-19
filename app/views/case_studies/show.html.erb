@@ -1,6 +1,6 @@
 <!-- CASE STUDY TITLE -->
 <div class = "row">
-	<div class="col-md-9 col-md-offset-3 left-pad">
+	<div class="col-xs-9 col-xs-offset-3 left-pad">
     <h3><b><%= @case_study.title != nil ? @case_study.title : "-" %></b></h3>
     <p> by <%= link_to @case_study.company.name, company_path(@case_study.company) unless !@case_study.company %>
 	</div>
@@ -9,7 +9,7 @@
 
 <div class = "row">
   <!-- SIDEBAR -->
-  <div id="sidebar" class="col-md-3">
+  <div id="sidebar" class="col-xs-3">
 		<div class="row">
       <!-- ORIGINAL CASE STUDY -->
 	   <h4> Materials </h4>
@@ -164,15 +164,15 @@
 
 
   <!-- MAIN VIEW  -->
-  	<div class="col-md-9 add-padding">
+  	<div class="col-xs-9 add-padding">
       
       <!-- MENU BAR -->
   		<div class="row">
-  			<div class="col-md-3">
+  			<div class="col-xs-3">
   				<span class="glyphicon glyphicon-star"></span>
   				- likes
   			</div>
-  			<div class="col-md-3">
+  			<div class="col-xs-3">
           		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
           			<span class="glyphicon glyphicon-folder-open"></span>
           				Add to Set
@@ -184,7 +184,7 @@
             		<li><a href="#">My Favorites </a></li>
           		</ul>
   			</div>
-  			<div class="col-md-3">
+  			<div class="col-xs-3">
   				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
           				<span class="glyphicon glyphicon-share"></span>
           					Share
@@ -194,7 +194,7 @@
             			<li><a href="#">Email</a></li>
           			</ul>
   			</div>
-  			<div class="col-md-3">
+  			<div class="col-xs-3">
   					<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Edit'.html_safe, edit_case_study_path, :class => "pull right"%>
           
   			</div>
@@ -225,23 +225,7 @@
       </div>
       <!-- END DESCRIPTION -->
 
-      <!-- RELATED METHODS AND CASE STUDIES -->
-      <div class="row">
-        <!-- RELATED METHODS -->
-        <h4>Related Methods</h4>
-          <% @similar_methods.each do |method| %>
-            <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"4") %>
-          <% end %>
-        <!-- END RELATED METHODS -->
-        
-        <!-- RELATED CASE STUDIES -->
-        <h4>Related Case Studies</h4>
-          <% @similar_case_studies.each do |cs| %>
-            <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"4") %>
-          <% end %>
-        <!-- ENF RELATED CASE STUDIES -->
-      </div>
-      <!-- END RELATED METHODS AND CASE STUDIES -->
+      <% render "related_content" %>
 
 
       <!-- END CONTENT -->

@@ -55,6 +55,8 @@ class CaseStudy < ActiveRecord::Base
     #     company = Company.where(:case_study_id, self[:id])
     #     company ? company.contacts : nil
     # end
+
+    
     def tags
         Tag.where("case_study_id = ? and content_type = ?", self[:id], "tag");
     end
