@@ -18,10 +18,29 @@
  *= require_self
 
  */
- a {
-  color: #6CC06D;
-  text-decoration: none;
+@media (max-width: 768px) {
+  #search{
+    height: 60px;
+    padding: 10px 0;
+  }
+  #search .form-group{
+    padding: 0 8px;
+  }
+  #search button, #search input{
+    width: 100%;
+  }
 }
+
+ /* OVERRIDE BOOTSTRAP ANCHOR BEHAVIOR */
+ a {
+    color: #6CC06D;
+    text-decoration: none;
+  }
+    a:hover{
+      color: #366036;
+      text-decoration: none;
+    }
+ /* END OVERRIDE BOOTSTRAP ANCHOR BEHAVIOR */
 
  #logo{
    width: inherit;
@@ -81,6 +100,7 @@
    margin-left: 15px; 
    margin-right: -15px; 
 }
+
 
 .search-item{
   background: #FCFCFC !important;
