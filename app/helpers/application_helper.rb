@@ -27,5 +27,9 @@ module ApplicationHelper
 		tag.html_safe
 	end
 
+	def md_format(text)
+		::Kramdown::Document.new(text).to_html.html_safe
+	end
+
 end
 
