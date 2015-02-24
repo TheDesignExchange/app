@@ -48,6 +48,12 @@ class CaseStudy < ActiveRecord::Base
     has_many :design_methods, :through => :method_case_studies
     has_many :tags
 
+    # Sunspot
+    searchable do
+      text :title, stored: true
+      text :description, stored: true
+    end
+
 	# validates :development_cycle,
  #    :inclusion  => { :in => ["Product Update", "Product Refinement", "New Product", "Other"],
  #    :message    => "%{value} is not a development cycle" }

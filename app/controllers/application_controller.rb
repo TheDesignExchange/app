@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
       params[:query] = params[:term]
     end
 
-    query = params[:query] ? params[:query].gsub(' ', '_') : "";
+    query = params[:query]
 
     design_methods = search_db(:dm, query, 24)[:results]
   	case_studies = search_db(:cs, query, 24)[:results]
@@ -87,23 +87,31 @@ class ApplicationController < ActionController::Base
         # Sunspot search
         results = DesignMethod.solr_search do
 
-          fulltext query
+          fulltext query.gsub( '"', '"\\' ) unless query.blank?
 
         end.results
 
       elsif type == :cs
-        # results = CaseStudy.where("LOWER( case_studies.title ) LIKE ? AND description != ?", "%#{query}%", "No description available")
-        results = CaseStudy.where("LOWER( case_studies.title ) LIKE ?", "%#{query}%")
-        .order('title = "'+ query +'" DESC, title LIKE "'+ query +'%" DESC'); 
+        # Sunspot search
+        results = CaseStudy.solr_search do
+
+          fulltext query.gsub( '"', '"\\' ) unless query.blank?
+
+        end.results
       else
-        results = Discussion.where("LOWER( discussions.title ) LIKE ?", "%#{query}%")
-        .order('title = "'+ query +'" DESC, title LIKE "'+ query +'%" DESC'); 
+        # Sunspot search
+        results = Discussion.solr_search do
+
+          fulltext query.gsub( '"', '"\\' ) unless query.blank?
+
+        end.results
       end
       return {:hits => hits, :results => results}
     else
       return {:hits => [], :results => []}
     end
   end
+
   def about
   end
 

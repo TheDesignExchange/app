@@ -19,6 +19,12 @@ class Discussion < ActiveRecord::Base
   has_many :replies, class_name: "DiscussionReply"
   has_many :tags
 
+  # Sunspot
+  searchable do
+    text :title, stored: true
+    text :description, stored: true
+  end
+
   def tags
     Tag.where("discussion_id = ? and content_type = ?", self[:id], "tag");
   end
