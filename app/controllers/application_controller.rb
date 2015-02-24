@@ -87,7 +87,7 @@ class ApplicationController < ActionController::Base
         # Sunspot search
         results = DesignMethod.solr_search do
 
-          fulltext query.gsub( '"', '"\\' ) unless query.blank?
+          fulltext query
 
         end.results
 
