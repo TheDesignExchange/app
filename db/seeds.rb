@@ -158,19 +158,19 @@ end
 # Create five basic method categories
 
 building = MethodCategory.new
-building.name = "Building and Prototyping"
+building.name = "Build"
 
 analysis = MethodCategory.new
-analysis.name = "Analysis and Synthesis"
+analysis.name = "Analye"
 
 ideation = MethodCategory.new
-ideation.name = "Ideation"
+ideation.name = "Ideate"
 
 data = MethodCategory.new
-data.name = "Investigating"
+data.name = "Research"
 
 communication = MethodCategory.new
-communication.name = "Communication"
+communication.name = "Communicate"
 
 categories = [building, analysis, ideation, data, communication]
 sheets = {"Building and Prototyping" => "Building_Prototyping_Cards.xls",
