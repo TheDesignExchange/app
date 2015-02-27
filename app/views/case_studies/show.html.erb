@@ -202,13 +202,11 @@
       <!-- END MENU BAR -->
 
       <!-- CONTENT -->
-      <div class="row">
-        <% if @case_study.mainImage.present? %>
+      <% if @case_study.mainImage.present? %>
+        <div class="row">
           <%= image_tag(@case_study.mainImage, :width => "100%")%>
-        <% else %>
-          <%= image_tag("no-image-available.png", :width => "100%", :height => "385")%>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
       <br>
       <!-- DESCRIPTION -->
   		<div class="row">

@@ -67,7 +67,7 @@ module DeHelper
 			thumb_obj=	
 				{
 					:image => obj.main_image,
-					:name => obj.name.humanize,
+					:name => obj.name,
 					:tags => obj.tags.map{|t| t.content},
 					:likes => obj.likes,
 					:description => obj.overview,
