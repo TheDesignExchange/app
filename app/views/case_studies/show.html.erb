@@ -211,7 +211,7 @@
       <!-- DESCRIPTION -->
   		<div class="row">
         <h3> Problem </h3>
-		    <p><%= @case_study.description.blank? ? "-" : md_format(@case_study.description) %></p>
+		    <p><%= @case_study.overview.blank? ? "-" : md_format(@case_study.overview) %></p>
 
           <!-- FORMS -->
         <h3>Process</h3>

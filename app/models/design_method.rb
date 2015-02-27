@@ -104,7 +104,7 @@ class DesignMethod < ActiveRecord::Base
   #       if obj.is_a?(DesignMethod)
   #         super(:content => obj.overview+" "+obj.process)
   #       elsif obj.is_a?(CaseStudy)
-  #         super(:content => obj.description)
+  #         super(:content => obj.overview)
   #       end
   #       @obj = obj
   #   end

@@ -80,7 +80,7 @@ FactoryGirl.define do
     user_age          { rand(1...100) }
     privacy_level     { rand(1...10) }
     social_setting    { rand(1...10) }
-    description       { Faker::Lorem.paragraph }
+    overview       { Faker::Lorem.paragraph }
     customerIsUser    { true }
     remoteProject     { true }
     company_id        { Faker::Number.number(10) }
@@ -108,7 +108,7 @@ FactoryGirl.define do
 
   factory :characteristic do
     name          { Faker::Lorem.word }
-    description   { Faker::Lorem.sentence }
+    overview   { Faker::Lorem.sentence }
     characteristic_group
   end
 end

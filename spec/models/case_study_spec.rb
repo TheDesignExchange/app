@@ -14,7 +14,7 @@
 #  user_age          :integer
 #  privacy_level     :integer
 #  social_setting    :integer
-#  description       :text
+#  overview       :text
 #  customerIsUser    :boolean          default(FALSE)
 #  remoteProject     :boolean          default(FALSE)
 #  company_id        :integer
@@ -53,7 +53,7 @@ describe CaseStudy do
   it { should respond_to(:privacy_level) }
   it { should respond_to(:social_setting) }
 
-  it { should respond_to(:description) }
+  it { should respond_to(:overview) }
   it { should respond_to(:customerIsUser) }
   it { should respond_to(:remoteProject) }
   it { should respond_to(:company_id) }

@@ -14,7 +14,7 @@
 #  user_age          :integer
 #  privacy_level     :integer
 #  social_setting    :integer
-#  description       :text
+#  overview       :text
 #  customerIsUser    :boolean          default(FALSE)
 #  remoteProject     :boolean          default(FALSE)
 #  company_id        :integer
@@ -35,7 +35,7 @@ class CaseStudy < ActiveRecord::Base
     mount_uploader :resource, PictureUploader
     attr_accessible :main_image, :title, :url, :timePeriod, :development_cycle, :design_phase, 
                     :project_domain, :customer_type, :user_age, :privacy_level, 
-                    :social_setting, :description, :customerIsUser, :remoteProject, 
+                    :social_setting, :overview, :customerIsUser, :remoteProject, 
                     :company_id, :num_of_designers, :num_of_users, :overview, :time_period, :time_unit, :resource, :process, :problem, :outcome
                     
 	belongs_to :company
@@ -51,7 +51,7 @@ class CaseStudy < ActiveRecord::Base
     # Sunspot
     searchable do
       text :title, stored: true
-      text :description, stored: true
+      text :overview, stored: true
     end
 
 	# validates :development_cycle,
@@ -102,11 +102,11 @@ class CaseStudy < ActiveRecord::Base
         }
     end
 
-    def description
-        if self[:description] == nil
-            self[:description] = "No description available"
+    def overview
+        if self[:overview] == nil
+            self[:overview] = "No overview available"
         end
-        return self[:description]
+        return self[:overview]
     end
 
     # class Document_Attach < Document
@@ -115,7 +115,7 @@ class CaseStudy < ActiveRecord::Base
     #         if obj.is_a?(DesignMethod)
     #           super(:content => obj.overview+" "+obj.process)
     #         elsif obj.is_a?(CaseStudy)
-    #           super(:content => obj.description)
+    #           super(:content => obj.overview)
     #         end
     #         @obj = obj
     #     end

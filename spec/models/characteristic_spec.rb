@@ -5,7 +5,7 @@
 #  id                      :integer          not null, primary key
 #  characteristic_group_id :integer
 #  name                    :string(255)
-#  description             :text             default("")
+#  overview             :text             default("")
 #  created_at              :datetime
 #  updated_at              :datetime
 #
