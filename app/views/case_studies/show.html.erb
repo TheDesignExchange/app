@@ -115,7 +115,7 @@
         <%= @case_study.social_setting != nil ? @lookup[:social_setting][@case_study.social_setting] : "-" %>
       </p>
       <p>
-        <% if @case_study.customerIsUser %>
+        <% if @case_study.customer_is_user %>
           <span class="glyphicon glyphicon-ok"></span>
         <% else %>
           <span class="glyphicon glyphicon-remove"></span>
@@ -123,7 +123,7 @@
         Customer Is User
       </p>
       <p>
-        <% if @case_study.remoteProject %>
+        <% if @case_study.remote_project %>
           <span class="glyphicon glyphicon-ok"></span>
         <% else %>
           <span class="glyphicon glyphicon-remove"></span>

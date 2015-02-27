@@ -6,7 +6,7 @@
 #  main_image        :string(255)      default("")
 #  name              :string(255)      default("")
 #  url               :string(255)      default("")
-#  timePeriod        :string(255)      default("")
+#  time_period       :string(255)      default("")
 #  development_cycle :integer
 #  design_phase      :integer
 #  project_domain    :integer
@@ -14,9 +14,9 @@
 #  user_age          :integer
 #  privacy_level     :integer
 #  social_setting    :integer
-#  overview       :text
-#  customerIsUser    :boolean          default(FALSE)
-#  remoteProject     :boolean          default(FALSE)
+#  overview          :text
+#  customer_is_user  :boolean          default(FALSE)
+#  remote_project    :boolean          default(FALSE)
 #  company_id        :integer
 #  created_at        :datetime
 #  updated_at        :datetime
@@ -33,9 +33,9 @@
 class CaseStudy < ActiveRecord::Base
     mount_uploader :main_image, PictureUploader
     mount_uploader :resource, PictureUploader
-    attr_accessible :main_image, :name, :url, :timePeriod, :development_cycle, :design_phase, 
+    attr_accessible :main_image, :name, :url, :time_period, :development_cycle, :design_phase, 
                     :project_domain, :customer_type, :user_age, :privacy_level, 
-                    :social_setting, :overview, :customerIsUser, :remoteProject, 
+                    :social_setting, :overview, :customer_is_user, :remote_project, 
                     :company_id, :num_of_designers, :num_of_users, :overview, :time_period, :time_unit, :resource, :process, :problem, :outcome
                     
 	belongs_to :company
@@ -96,7 +96,7 @@ class CaseStudy < ActiveRecord::Base
     def self.helper_text
         return {
             :design_phase => ["The phase involves acquiring or processing information, or defining the problem.", "This phase involves generating or evaluating concepts or prototyping." ,"This phase involves prototyping, manufacturing and deployment."],
-            :remoteProject => ["remote project = online project"],
+            :remote_project => ["remote project = online project"],
             :privacy_level => [" <em> Private </em> means only select few can observe the activity, and effort must be put to respect customs of activity. <span>(Example: religious ceremony)</span>", " <em>Public</em> means activity can be observed by anyone who desires to see the activity."],
             :social_setting => [" <em>Personal</em> includes individual, couple and family.", " <em>Social</em> includes friends, communities (religion, political group) and individual in social context.", " <em>Professional</em> includes work, education, medical and government."]
         }

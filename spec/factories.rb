@@ -72,7 +72,7 @@ FactoryGirl.define do
     main_image         { Faker::Internet.url }
     name              { Faker::Lorem.sentence }
     url               { Faker::Internet.url }
-    timePeriod        { Faker::Number.number(4) }
+    time_period        { Faker::Number.number(4) }
     development_cycle { rand(1...100) }
     design_phase      { rand(1...5) }
     project_domain    { rand(1...5) }
@@ -81,8 +81,8 @@ FactoryGirl.define do
     privacy_level     { rand(1...10) }
     social_setting    { rand(1...10) }
     overview       { Faker::Lorem.paragraph }
-    customerIsUser    { true }
-    remoteProject     { true }
+    customer_is_user    { true }
+    remote_project     { true }
     company_id        { Faker::Number.number(10) }
     company
   end

@@ -6,7 +6,7 @@
 #  main_image        :string(255)      default("")
 #  name              :string(255)      default("")
 #  url               :string(255)      default("")
-#  timePeriod        :string(255)      default("")
+#  time_period       :string(255)      default("")
 #  development_cycle :integer
 #  design_phase      :integer
 #  project_domain    :integer
@@ -15,8 +15,8 @@
 #  privacy_level     :integer
 #  social_setting    :integer
 #  overview          :text
-#  customerIsUser    :boolean          default(FALSE)
-#  remoteProject     :boolean          default(FALSE)
+#  customer_is_user  :boolean          default(FALSE)
+#  remote_project    :boolean          default(FALSE)
 #  company_id        :integer
 #  created_at        :datetime
 #  updated_at        :datetime
@@ -42,7 +42,7 @@ describe CaseStudy do
   it { should respond_to(:name) }
   it { should respond_to(:url) }
 
-  it { should respond_to(:timePeriod) }
+  it { should respond_to(:time_period) }
   it { should respond_to(:development_cycle) }
   it { should respond_to(:design_phase) }
 
@@ -54,8 +54,8 @@ describe CaseStudy do
   it { should respond_to(:social_setting) }
 
   it { should respond_to(:overview) }
-  it { should respond_to(:customerIsUser) }
-  it { should respond_to(:remoteProject) }
+  it { should respond_to(:customer_is_user) }
+  it { should respond_to(:remote_project) }
   it { should respond_to(:company_id) }
 
   it { should respond_to(:company) }
