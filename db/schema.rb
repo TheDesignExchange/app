@@ -166,14 +166,14 @@ ActiveRecord::Schema.define(version: 20150227224333) do
   add_index "discussion_replies", ["user_id"], name: "index_discussion_replies_on_user_id"
 
   create_table "discussions", force: true do |t|
-    t.string   "title"
+    t.string   "name"
     t.text     "description"
     t.integer  "user_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "discussions", ["title"], name: "index_discussions_on_title"
+  add_index "discussions", ["name"], name: "index_discussions_on_name"
   add_index "discussions", ["user_id"], name: "index_discussions_on_user_id"
 
   create_table "method_case_studies", force: true do |t|

@@ -6,5 +6,6 @@ class CaseStudyMainImageColRename < ActiveRecord::Migration
     rename_column :case_studies, :timePeriod, :time_period
     rename_column :case_studies, :customerIsUser, :customer_is_user
     rename_column :case_studies, :remoteProject, :remote_project
+    rename_column :discussions,  :title, :name
   end
 end
