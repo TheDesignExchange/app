@@ -120,9 +120,9 @@
   		<!-- OVERVIEW & PROCESS -->
   		<div class="row">
   			<h4> Overview </h4>
-        	<%= @method.overview != nil ? simple_format(@method.overview) : "-"%>
+        	<%= @method.overview != nil ? md_format(@method.overview) : "-"%>
         	<h4> Process </h4>
-        	<p><%= @method.process != nil ? simple_format(@method.process) : "-" %></p>
+        	<p><%= @method.process != nil ? md_format(@method.process) : "-" %></p>
     	</div>
     	<!-- END OF OVERVIEW & PROVESS -->
 

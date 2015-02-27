@@ -213,14 +213,14 @@
       <!-- DESCRIPTION -->
   		<div class="row">
         <h3> Problem </h3>
-		    <p><%= @case_study.description.blank? ? "-" : simple_format(@case_study.description) %></p>
+		    <p><%= @case_study.description.blank? ? "-" : md_format(@case_study.description) %></p>
 
           <!-- FORMS -->
         <h3>Process</h3>
-        <p><%= @case_study.process.blank? ? "-" : simple_format(@case_study.process) %></p>
+        <p><%= @case_study.process.blank? ? "-" : md_format(@case_study.process) %></p>
       
         <h3>Outcome/Benefits</h3>
-        <p><%= @case_study.outcome.blank? ? "-" : simple_format(@case_study.outcome) %></p>
+        <p><%= @case_study.outcome.blank? ? "-" : md_format(@case_study.outcome) %></p>
       
       </div>
       <!-- END DESCRIPTION -->

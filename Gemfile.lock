@@ -126,6 +126,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.2)
+    kramdown (1.5.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -299,6 +300,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   kaminari
+  kramdown
   normalize-rails
   protected_attributes
   quiet_assets

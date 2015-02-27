@@ -20,6 +20,7 @@ gem 'rdf-raptor'
 gem 'sparql'
 gem 'equivalent-xml'
 gem 'ffi'
+gem 'kramdown'
 
 
 # LSA
