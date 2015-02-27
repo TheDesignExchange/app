@@ -80,7 +80,7 @@ module DeHelper
 			thumb_obj=	
 				{
 					:image => obj.main_image,
-					:name => obj.title,
+					:name => obj.name,
 					:tags => obj.tags.map{|t| t.content},
 					:likes => (rand*100).to_i,
 					:overview => obj.overview,
@@ -93,7 +93,7 @@ module DeHelper
 			thumb_obj=	
 				{
 					:image => nil,
-					:name => obj.title,
+					:name => obj.name,
 					:tags => [],
 					:likes => (rand*100).to_i,
 					:description => obj.description,

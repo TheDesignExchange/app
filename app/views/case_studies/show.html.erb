@@ -1,7 +1,7 @@
 <!-- CASE STUDY TITLE -->
 <div class = "row">
 	<div class="col-xs-9 col-xs-offset-3 left-pad">
-    <h3><b><%= @case_study.title != nil ? @case_study.title : "-" %></b></h3>
+    <h3><b><%= @case_study.name != nil ? @case_study.name : "-" %></b></h3>
     <p> by <%= link_to @case_study.company.name, company_path(@case_study.company) unless !@case_study.company %>
 	</div>
 </div>

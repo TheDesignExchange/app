@@ -11,17 +11,17 @@
 #
 
 class Discussion < ActiveRecord::Base
-  attr_accessible :title, :description, :user_id
-  validates :title, :description, :user, presence: true
+  attr_accessible :name, :description, :user_id
+  validates :name, :description, :user, presence: true
 
-  validates_uniqueness_of :title
+  validates_uniqueness_of :name
   belongs_to :user
   has_many :replies, class_name: "DiscussionReply"
   has_many :tags
 
   # Sunspot
   searchable do
-    text :title, stored: true
+    text :name, stored: true
     text :description, stored: true
   end
 

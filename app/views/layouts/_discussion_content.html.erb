@@ -6,7 +6,7 @@
 	</div>
   <div class='col-md-11'>
   	<h4>
-      <a class='font-discussion-tittle'> <%= link_to @discussion.title , discussion_path(@discussion.id) %> </a>
+      <a class='font-discussion-tittle'> <%= link_to @discussion.name , discussion_path(@discussion.id) %> </a>
     </h4>
       <%= distance_of_time_in_words_to_now(@discussion.created_at)%> ago 
       <%= link_to @discussion.user.email, user_path(@discussion.user_id) %>

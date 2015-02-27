@@ -55,8 +55,8 @@ class ApplicationController < ActionController::Base
       :dm => design_methods, :cs => case_studies, :disc => discussions}
 
     design_method_names = design_methods.map { |design_method| design_method.name }
-    case_study_names = case_studies.map { |case_study| case_study.title }
-    discussion_names = discussions.map { |discussion| discussion.title }
+    case_study_names = case_studies.map { |case_study| case_study.name }
+    discussion_names = discussions.map { |discussion| discussion.name }
 
     @autocomplete_results = [design_method_names, case_study_names, discussion_names].flatten
 

@@ -33,7 +33,7 @@
 class CaseStudy < ActiveRecord::Base
     mount_uploader :main_image, PictureUploader
     mount_uploader :resource, PictureUploader
-    attr_accessible :main_image, :title, :url, :timePeriod, :development_cycle, :design_phase, 
+    attr_accessible :main_image, :name, :url, :timePeriod, :development_cycle, :design_phase, 
                     :project_domain, :customer_type, :user_age, :privacy_level, 
                     :social_setting, :overview, :customerIsUser, :remoteProject, 
                     :company_id, :num_of_designers, :num_of_users, :overview, :time_period, :time_unit, :resource, :process, :problem, :outcome
@@ -50,7 +50,7 @@ class CaseStudy < ActiveRecord::Base
 
     # Sunspot
     searchable do
-      text :title, stored: true
+      text :name, stored: true
       text :overview, stored: true
     end
 
@@ -123,7 +123,7 @@ class CaseStudy < ActiveRecord::Base
 
   def similar_methods(limit, sample_size)
     # TO_DO implement as non-gsl dependent
-    # logger.info "Similar Methods running for: #{self[:title]}"
+    # logger.info "Similar Methods running for: #{self[:name]}"
     # startTime = Time.now
 
     # methodsList = DesignMethod.order("RANDOM()")
@@ -157,7 +157,7 @@ class CaseStudy < ActiveRecord::Base
   def similar_case_studies(limit, sample_size)
     # TO_DO implement as non-gsl dependent
 
-    # logger.info "Similar Case Studies running for: #{self[:title]}"
+    # logger.info "Similar Case Studies running for: #{self[:name]}"
     # startTime = Time.now
 
     # caseStudiesList = CaseStudy.where("case_studies.id != ?", self[:id])

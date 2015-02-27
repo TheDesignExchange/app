@@ -49,7 +49,7 @@
     		<img src="http://www.sv-hirrlingen.de/bilder/dummy_face.jpg">
     	 </div>
     	 <div class="col-md-11">
-    		<h5><%= link_to disc.title, discussion_path(disc.id)  %></h5>
+    		<h5><%= link_to disc.name, discussion_path(disc.id)  %></h5>
     		<p> <%= link_to disc.user.email, user_path(disc.user_id) %> <%= disc.created_at.to_s %>  ago </p>
     		<p> <%= disc.description %> </p>
     	 </div>
