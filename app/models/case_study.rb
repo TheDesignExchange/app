@@ -3,8 +3,8 @@
 # Table name: case_studies
 #
 #  id                :integer          not null, primary key
-#  main_image         :string(255)      default("")
-#  title             :string(255)      default("")
+#  main_image        :string(255)      default("")
+#  name              :string(255)      default("")
 #  url               :string(255)      default("")
 #  timePeriod        :string(255)      default("")
 #  development_cycle :integer

@@ -3,7 +3,7 @@
 # Table name: discussions
 #
 #  id          :integer          not null, primary key
-#  title       :string(255)
+#  name        :string(255)
 #  description :text
 #  user_id     :integer          not null
 #  created_at  :datetime

@@ -41,7 +41,7 @@ FactoryGirl.define do
   end
 
   factory :discussion do
-    title  { Faker::Lorem.sentence }
+    name   { Faker::Lorem.sentence }
     description  { Faker::Lorem.sentence }
     user
   end
@@ -70,7 +70,7 @@ FactoryGirl.define do
 
   factory :case_study do
     main_image         { Faker::Internet.url }
-    title             { Faker::Lorem.sentence }
+    name              { Faker::Lorem.sentence }
     url               { Faker::Internet.url }
     timePeriod        { Faker::Number.number(4) }
     development_cycle { rand(1...100) }
