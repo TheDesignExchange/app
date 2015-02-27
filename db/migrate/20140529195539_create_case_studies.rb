@@ -3,7 +3,7 @@ class CreateCaseStudies < ActiveRecord::Migration
 
 @@model_attribtues = ["developmentCycle", "designPhase", "projectDomain", "customerType", "userAge", "privacyLevel", "socialSetting"]
 
-@@cs_attributes = ["mainImage", "title", "methods", "url", "timePeriod"] 	
+@@cs_attributes = ["main_image", "title", "methods", "url", "timePeriod"] 	
 @@cs_bool_attributes = ["customerIsUser", "remoteProject"]
 
   def change

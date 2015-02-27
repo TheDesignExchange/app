@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150118003610) do
+ActiveRecord::Schema.define(version: 20150227224333) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -61,10 +61,10 @@ ActiveRecord::Schema.define(version: 20150118003610) do
   end
 
   create_table "case_studies", force: true do |t|
-    t.string   "mainImage",         default: ""
-    t.string   "title",             default: ""
+    t.string   "main_image",        default: ""
+    t.string   "name",              default: ""
     t.string   "url",               default: ""
-    t.string   "timePeriod",        default: ""
+    t.integer  "time_period",       default: 0
     t.integer  "development_cycle"
     t.integer  "design_phase"
     t.integer  "project_domain"
@@ -72,15 +72,14 @@ ActiveRecord::Schema.define(version: 20150118003610) do
     t.integer  "user_age"
     t.integer  "privacy_level"
     t.integer  "social_setting"
-    t.text     "description"
-    t.boolean  "customerIsUser",    default: false
-    t.boolean  "remoteProject",     default: false
+    t.text     "overview"
+    t.boolean  "customer_is_user",  default: false
+    t.boolean  "remote_project",    default: false
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "num_of_designers",  default: 1
     t.integer  "num_of_users",      default: 1
-    t.integer  "time_period",       default: 0
     t.string   "time_unit",         default: ""
     t.string   "resource"
     t.text     "problem"

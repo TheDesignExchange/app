@@ -3,7 +3,7 @@
 # Table name: case_studies
 #
 #  id                :integer          not null, primary key
-#  mainImage         :string(255)      default("")
+#  main_image         :string(255)      default("")
 #  title             :string(255)      default("")
 #  url               :string(255)      default("")
 #  timePeriod        :string(255)      default("")
@@ -31,9 +31,9 @@
 #
 
 class CaseStudy < ActiveRecord::Base
-    mount_uploader :mainImage, PictureUploader
+    mount_uploader :main_image, PictureUploader
     mount_uploader :resource, PictureUploader
-    attr_accessible :mainImage, :title, :url, :timePeriod, :development_cycle, :design_phase, 
+    attr_accessible :main_image, :title, :url, :timePeriod, :development_cycle, :design_phase, 
                     :project_domain, :customer_type, :user_age, :privacy_level, 
                     :social_setting, :description, :customerIsUser, :remoteProject, 
                     :company_id, :num_of_designers, :num_of_users, :overview, :time_period, :time_unit, :resource, :process, :problem, :outcome

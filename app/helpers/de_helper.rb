@@ -79,7 +79,7 @@ module DeHelper
 		elsif obj.is_a?(CaseStudy)
 			thumb_obj=	
 				{
-					:image => obj.mainImage,
+					:image => obj.main_image,
 					:name => obj.title,
 					:tags => obj.tags.map{|t| t.content},
 					:likes => (rand*100).to_i,

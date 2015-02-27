@@ -3,7 +3,7 @@
 # Table name: case_studies
 #
 #  id                :integer          not null, primary key
-#  mainImage         :string(255)      default("")
+#  main_image         :string(255)      default("")
 #  title             :string(255)      default("")
 #  url               :string(255)      default("")
 #  timePeriod        :string(255)      default("")
@@ -38,7 +38,7 @@ describe CaseStudy do
 
   subject { case_study }
 
-  it { should respond_to(:mainImage) }
+  it { should respond_to(:main_image) }
   it { should respond_to(:title) }
   it { should respond_to(:url) }
 

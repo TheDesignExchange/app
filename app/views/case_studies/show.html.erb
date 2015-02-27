@@ -202,9 +202,9 @@
       <!-- END MENU BAR -->
 
       <!-- CONTENT -->
-      <% if @case_study.mainImage.present? %>
+      <% if @case_study.main_image.present? %>
         <div class="row">
-          <%= image_tag(@case_study.mainImage, :width => "100%")%>
+          <%= image_tag(@case_study.main_image, :width => "100%")%>
         </div>
       <% end %>
       <br>

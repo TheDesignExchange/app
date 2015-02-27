@@ -69,7 +69,7 @@ FactoryGirl.define do
   end
 
   factory :case_study do
-    mainImage         { Faker::Internet.url }
+    main_image         { Faker::Internet.url }
     title             { Faker::Lorem.sentence }
     url               { Faker::Internet.url }
     timePeriod        { Faker::Number.number(4) }
