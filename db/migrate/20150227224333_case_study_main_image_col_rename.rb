@@ -1,6 +1,6 @@
 class CaseStudyMainImageColRename < ActiveRecord::Migration
   def change
-    rename_column :case_studies, :main_image, :main_image
+    rename_column :case_studies, :mainImage, :main_image
     rename_column :case_studies, :description, :overview
     rename_column :case_studies, :title, :name
     rename_column :case_studies, :timePeriod, :time_period
