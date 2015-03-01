@@ -66,6 +66,16 @@
       </p>
       <!-- END TAGS -->
   	</div>
+    <div class="row">
+      <h4>Characteristics</h4>
+      <p>
+        <% @method.method_characteristics.each do |mc| %>
+         <%= tagify(mc.id, mc.characteristic.name, {:removable => false}) %>
+        <% end %>
+        <%= "No characteristics available" unless not @method.method_characteristics.empty? %>
+      </p>
+      <!-- END TAGS -->
+    </div>
 	</div>
   	<!-- END SIDBAR -->
 
