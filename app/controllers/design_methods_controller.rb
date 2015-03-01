@@ -1,8 +1,11 @@
 class DesignMethodsController < ApplicationController
 
   def index
-    @design_methods = DesignMethod.where("overview != ?", "No overview available" ).take(24)
-    @design_methods = DesignMethod.take(24)
+    @design_methods = DesignMethod.where("overview != ?", "No overview available" )
+    # .take(24)
+    # @design_methods = DesignMethod.take(24)
+     # Filter bar needs
+    @search_filter_hash = MethodCategory.all
     render :layout => "wide"
   end
 

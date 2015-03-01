@@ -24,6 +24,7 @@ DesignExchange::Application.routes.draw do
     collection do 
       get "search/:query", to: "application#search"
       get "search", to: "application#search", :as => "search"
+      get "method_category/:category_id",  to: "application#search", :as => "search_category"
     end
   end
 

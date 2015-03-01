@@ -39,26 +39,37 @@ class ApplicationController < ActionController::Base
     end
 
   def search
-
     # temp param replacement for autocomplete
     if params[:term]
       params[:query] = params[:term]
     end
 
-    query = params[:query]
+    if params[:category_id] 
+      design_methods = MethodCategory.find(params[:category_id]).design_methods
+      case_studies = []
+      discussions = []
+    else
+      query = params[:query]
 
-    design_methods = search_db(:dm, query, 24)[:results]
-  	case_studies = search_db(:cs, query, 24)[:results]
-    discussions = search_db(:disc, query, 24)[:results]
+      design_methods = search_db(:dm, query, 24)[:results]
+    	case_studies = search_db(:cs, query, 24)[:results]
+      discussions = search_db(:disc, query, 24)[:results]
+    end
 
     @results = {:all => [design_methods, case_studies, discussions].flatten.shuffle[0..24],
       :dm => design_methods, :cs => case_studies, :disc => discussions}
 
     design_method_names = design_methods.map { |design_method| design_method.name }
     case_study_names = case_studies.map { |case_study| case_study.name }
-    discussion_names = discussions.map { |discussion| discussion.name }
+    discussion_names = discussions.map { |dis| dis.name }
 
     @autocomplete_results = [design_method_names, case_study_names, discussion_names].flatten
+
+
+    # Filter bar needs
+    @search_filter_hash = MethodCategory.all
+
+
 
     respond_to do |format|
       format.html do

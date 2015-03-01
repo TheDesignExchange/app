@@ -41,12 +41,15 @@ $(function(){
 </div>
 
 
+
+
 <!-- #sidebar > div{ aoihdlkhasklfhjklh} -->
 <!-- CONTENT -->
 <div class = "row">
 	<div class="col-md-2">
     <!-- WARNING SIDEBAR UNDERCONSTRUCTION -->
     <div data-link="all" class="sidebar" >
+      <%= render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods) %>
       <!-- SIDEBAR FOR ALL -->
     </div>
     <div data-link="dm" class="sidebar" >

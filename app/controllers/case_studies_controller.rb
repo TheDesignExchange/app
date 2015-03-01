@@ -3,6 +3,7 @@ class CaseStudiesController < ApplicationController
   def index
     @case_studies = CaseStudy.where("overview != ?", "No overview available" )
     # @case_studies = CaseStudy.take(24)
+    @search_filter_hash = MethodCategory.all
   	render layout: "wide"
   end
 

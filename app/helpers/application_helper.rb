@@ -3,9 +3,18 @@ module ApplicationHelper
 	@@methods_file = "method_categories.json"
 
 	def sidebar_hash(symbol)
+
+		method_categories = MethodCategory.all
+		method_hash = {}
+
+		method_categories.each do |c|
+			method_hash[c.name] = [{"All (#{c.design_methods.length})" =>  []}]
+		end
+
 		if symbol == :methods
-			file = Rails.root.join('public', @@methods_file);
-			data = JSON.parse( IO.read(file) )
+			# file = Rails.root.join('public', @@methods_file);
+			# data = JSON.parse( IO.read(file) )
+			data = method_hash
 		elsif symbol == :case_studies
 			# return case_studies
 		end

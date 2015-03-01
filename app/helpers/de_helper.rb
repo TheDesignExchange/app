@@ -25,10 +25,10 @@ module DeHelper
 		if level == 0
 			str = "<ul class='sidebar-element'>
 						<div class='category' >
-						<a class='category-heading sidebar-maincategory'> #{key} </a>
-							<ul class='collapse sidebar-element'>"+
-							options + 
-						"</ul>
+						<a class='category-heading sidebar-maincategory' href=''> #{key} </a>
+						<ul class='collapse sidebar-element'> 
+							#{options}
+						</ul>
 					</div>
 		   		   </ul>"
 		# Headers level 2 and more are collapsed
