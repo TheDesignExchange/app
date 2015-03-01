@@ -7,7 +7,7 @@
 <!-- Method Name -->
 <div class = "row">
 	<div class="col-md-9 col-md-offset-3 left-pad">
-    <h3><%= @method.name.nil? ? "-" : @method.name %></h3>
+    <h3><%= @method.name.nil? ? "-" : @method.method_categories[0].name + ": " + @method.name %></h3>
     <p>By <a href="<%= user_path(@author.id)%>"><%= @author.email != nil ? @author.email : "-" %></a></p>
 	</div>
 
