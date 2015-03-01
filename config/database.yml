@@ -6,8 +6,7 @@ development:
 
 test:
   adapter: sqlite3
-  #database: db/design_exchange_test.sqlite3
-  database: test/feedback_test.rb
+  database: db/design_exchange_test.sqlite3
   pool: 5
   timeout: 5000
 

@@ -1,2 +1,9 @@
-<%= render 'shared/display_feedback' %>
+
+  <ul>
+    <% flash.each do |type, message| %>
+      <li class="flash flash-<%= type %>"><%= message %></li>
+    <% end %>
+  </ul>
+  
+  <%= render 'shared/display_feedback' %>
 

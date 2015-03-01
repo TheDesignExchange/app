@@ -3,7 +3,7 @@ require 'test_helper'
 class FeedbackTest < ActiveSupport::TestCase
 
   def setup
-    @feedback = Feedback.new(title: "Example Feedback", body: "Sample Text")
+    @feedback = Feedback.new(title: "Example Feedback", body: "Sample Text", email: "user@example.com")
   end
 
   test "should be valid" do
@@ -16,7 +16,7 @@ class FeedbackTest < ActiveSupport::TestCase
   end
   
   test "title should not be too long" do
-    @feedback.name = "a" * 101
+    @feedback.title = "a" * 101
     assert_not @feedback.valid?
   end
   
@@ -24,8 +24,8 @@ class FeedbackTest < ActiveSupport::TestCase
     valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
                          first.last@foo.jp alice+bob@baz.cn]
     valid_addresses.each do |valid_address|
-      @user.email = valid_address
-      assert @user.valid?, "#{valid_address.inspect} should be valid"
+      @feedback.email = valid_address
+      assert @feedback.valid?, "#{valid_address.inspect} should be valid"
     end
   end
 end
