@@ -8,7 +8,6 @@
 <div class = "row">
 	<div class="col-md-9 col-md-offset-3 left-pad">
     <h3><%= @method.name.nil? ? "-" : @method.method_categories[0].name + ": " + @method.name %></h3>
-    <p>By <a href="<%= user_path(@author.id)%>"><%= @author.email != nil ? @author.email : "-" %></a></p>
 	</div>
 
 </div>
@@ -141,11 +140,15 @@
   			<!-- POSSIBLE DO WHILE FOR USERS INFORMATION  -->
   			<div class="col-xs-6">
   				<div class="col-xs-4">
-  					<img alt="" src="http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg" class="fit-all"/>
+              <% if @author.profile_picture.present? %>
+                  <%= image_tag(@author.profile_picture, class: "fit-all", :style => "padding: 10%")%>
+              <% else %>
+                  <%= image_tag("http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")%>
+              <% end %>
   				</div>
   				<div class="col-xs-8">
-  					<p><a>Name of person</a></p>
-  					<p>Some info</p>
+  					<p><%= link_to @author.first_name + " " + @author.last_name, user_path(@author.id) %></p>
+  					<p><%= @author.email != nil ? @author.email : "-" %></p>
   				</div>
   			</div>
   			<!-- END POSSIBLE DO WHILE FOR USERS INFORMATION  -->
