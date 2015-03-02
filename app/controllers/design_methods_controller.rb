@@ -59,7 +59,7 @@ class DesignMethodsController < ApplicationController
   def create
     @design_method = DesignMethod.new(params[:design_method])
     @design_method.owner = current_user
-    @design_method.principle = ""
+    # @design_method.principle = ""
 
     respond_to do |format|
       if @design_method.save

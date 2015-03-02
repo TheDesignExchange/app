@@ -7,8 +7,12 @@
 <!-- Method Name -->
 <div class = "row">
 	<div class="col-md-9 col-md-offset-3 left-pad">
+    <% if @method.method_categories[0].nil? %>
+    <h3><%= @method.name.nil? ? "-" : @method.name %></h3>
+    <% else %>
     <h3><%= @method.name.nil? ? "-" : @method.method_categories[0].name + ": " + @method.name %></h3>
-	</div>
+	   <% end %>
+  </div>
 
 </div>
 <!-- End Method Name -->
