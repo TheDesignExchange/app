@@ -161,7 +161,7 @@ building = MethodCategory.new
 building.name = "Build"
 
 analysis = MethodCategory.new
-analysis.name = "Analye"
+analysis.name = "Analyze"
 
 ideation = MethodCategory.new
 ideation.name = "Ideate"
@@ -182,7 +182,7 @@ sheets = {"Building and Prototyping" => "Building_Prototyping_Cards.xls",
 categories.each do |cat|
   p "============================ Category #{cat.name} created! ======================================" if cat.save
   p cat.errors unless cat.save
-  name = "lib/tasks/data/#{sheets[cat.name]}"
+  name = "lib/tasks/data/#{cat.name}.xls"
   filename = File.join(Rails.root, name)
   sheet = Spreadsheet.open(filename).worksheet 0
 
@@ -240,9 +240,11 @@ def process_casestudies(data)
     el.delete("authorOther")
     el.delete("methods")
     
+    p el
     c = CaseStudy.new(el)
+    p c
     c.company = comp
-    p "Added casestudy: #{c.title}" unless not c.save
+    p "Added casestudy: #{c.name}" unless not c.save
     p c.errors unless c.save
     
   end
@@ -291,7 +293,7 @@ def process_discussions(data)
   data.each do |el|
     el["user_id"] = User.where(email: el["user_id"]).first.id
     disc = Discussion.new(el)
-    p "Added discussion: #{disc.title}" unless not disc.save 
+    p "Added discussion: #{disc.name}" unless not disc.save 
     # p disc.errors unless disc.save
   end
   p "==============================="
