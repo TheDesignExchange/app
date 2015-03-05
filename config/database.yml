@@ -1,17 +1,17 @@
 development:
-  adapter: sqlite3
-  database: db/design_exchange_development.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: thedesignexchange_development
   pool: 5
-  timeout: 5000
 
 test:
-  adapter: sqlite3
-  database: db/design_exchange_test.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: thedesignexchange_test
   pool: 5
-  timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/design_exchange_production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: thedesignexchange_production
   pool: 5
-  timeout: 5000

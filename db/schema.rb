@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150227224333) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
     t.text     "body"
@@ -24,9 +27,9 @@ ActiveRecord::Schema.define(version: 20150227224333) do
     t.datetime "updated_at"
   end
 
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -43,8 +46,8 @@ ActiveRecord::Schema.define(version: 20150227224333) do
     t.datetime "updated_at"
   end
 
-  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
-  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -64,7 +67,7 @@ ActiveRecord::Schema.define(version: 20150227224333) do
     t.string   "main_image",        default: ""
     t.string   "name",              default: ""
     t.string   "url",               default: ""
-    t.integer  "time_period",       default: 0
+    t.string   "timePeriod",        default: ""
     t.integer  "development_cycle"
     t.integer  "design_phase"
     t.integer  "project_domain"
@@ -80,6 +83,7 @@ ActiveRecord::Schema.define(version: 20150227224333) do
     t.datetime "updated_at"
     t.integer  "num_of_designers",  default: 1
     t.integer  "num_of_users",      default: 1
+    t.integer  "time_period",       default: 0
     t.string   "time_unit",         default: ""
     t.string   "resource"
     t.text     "problem"
@@ -103,7 +107,7 @@ ActiveRecord::Schema.define(version: 20150227224333) do
   end
 
   create_table "citations", force: true do |t|
-    t.string   "text"
+    t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -161,9 +165,9 @@ ActiveRecord::Schema.define(version: 20150227224333) do
     t.datetime "updated_at"
   end
 
-  add_index "discussion_replies", ["discussion_id"], name: "index_discussion_replies_on_discussion_id"
-  add_index "discussion_replies", ["discussion_reply_id"], name: "index_discussion_replies_on_discussion_reply_id"
-  add_index "discussion_replies", ["user_id"], name: "index_discussion_replies_on_user_id"
+  add_index "discussion_replies", ["discussion_id"], name: "index_discussion_replies_on_discussion_id", using: :btree
+  add_index "discussion_replies", ["discussion_reply_id"], name: "index_discussion_replies_on_discussion_reply_id", using: :btree
+  add_index "discussion_replies", ["user_id"], name: "index_discussion_replies_on_user_id", using: :btree
 
   create_table "discussions", force: true do |t|
     t.string   "name"
@@ -173,8 +177,8 @@ ActiveRecord::Schema.define(version: 20150227224333) do
     t.datetime "updated_at"
   end
 
-  add_index "discussions", ["name"], name: "index_discussions_on_name"
-  add_index "discussions", ["user_id"], name: "index_discussions_on_user_id"
+  add_index "discussions", ["name"], name: "index_discussions_on_name", using: :btree
+  add_index "discussions", ["user_id"], name: "index_discussions_on_user_id", using: :btree
 
   create_table "method_case_studies", force: true do |t|
     t.integer  "case_study_id"
@@ -196,9 +200,9 @@ ActiveRecord::Schema.define(version: 20150227224333) do
     t.datetime "updated_at"
   end
 
-  add_index "method_characteristics", ["characteristic_id"], name: "index_method_characteristics_on_characteristic_id"
-  add_index "method_characteristics", ["design_method_id", "characteristic_id"], name: "char_index", unique: true
-  add_index "method_characteristics", ["design_method_id"], name: "index_method_characteristics_on_design_method_id"
+  add_index "method_characteristics", ["characteristic_id"], name: "index_method_characteristics_on_characteristic_id", using: :btree
+  add_index "method_characteristics", ["design_method_id", "characteristic_id"], name: "char_index", unique: true, using: :btree
+  add_index "method_characteristics", ["design_method_id"], name: "index_method_characteristics_on_design_method_id", using: :btree
 
   create_table "method_citations", force: true do |t|
     t.integer  "design_method_id"
@@ -207,9 +211,9 @@ ActiveRecord::Schema.define(version: 20150227224333) do
     t.datetime "updated_at"
   end
 
-  add_index "method_citations", ["citation_id"], name: "index_method_citations_on_citation_id"
-  add_index "method_citations", ["design_method_id", "citation_id"], name: "index_method_citations_on_design_method_id_and_citation_id", unique: true
-  add_index "method_citations", ["design_method_id"], name: "index_method_citations_on_design_method_id"
+  add_index "method_citations", ["citation_id"], name: "index_method_citations_on_citation_id", using: :btree
+  add_index "method_citations", ["design_method_id", "citation_id"], name: "index_method_citations_on_design_method_id_and_citation_id", unique: true, using: :btree
+  add_index "method_citations", ["design_method_id"], name: "index_method_citations_on_design_method_id", using: :btree
 
   create_table "method_favorites", force: true do |t|
     t.integer  "user_id"
@@ -225,7 +229,7 @@ ActiveRecord::Schema.define(version: 20150227224333) do
     t.datetime "updated_at"
   end
 
-  add_index "method_likes", ["user_id", "design_method_id"], name: "index_method_likes_on_user_id_and_design_method_id", unique: true
+  add_index "method_likes", ["user_id", "design_method_id"], name: "index_method_likes_on_user_id_and_design_method_id", unique: true, using: :btree
 
   create_table "method_variations", force: true do |t|
     t.integer  "parent_id"
@@ -262,9 +266,9 @@ ActiveRecord::Schema.define(version: 20150227224333) do
     t.datetime "updated_at"
   end
 
-  add_index "user_methods", ["design_method_id"], name: "index_user_methods_on_design_method_id"
-  add_index "user_methods", ["user_id", "design_method_id"], name: "index_user_methods_on_user_id_and_design_method_id", unique: true
-  add_index "user_methods", ["user_id"], name: "index_user_methods_on_user_id"
+  add_index "user_methods", ["design_method_id"], name: "index_user_methods_on_design_method_id", using: :btree
+  add_index "user_methods", ["user_id", "design_method_id"], name: "index_user_methods_on_user_id_and_design_method_id", unique: true, using: :btree
+  add_index "user_methods", ["user_id"], name: "index_user_methods_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -291,7 +295,7 @@ ActiveRecord::Schema.define(version: 20150227224333) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

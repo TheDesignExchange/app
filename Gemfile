@@ -22,6 +22,7 @@ gem 'equivalent-xml'
 gem 'ffi'
 gem 'kramdown'
 
+gem 'pg'
 
 # LSA
 
