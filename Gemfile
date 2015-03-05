@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.0.0'
 
 gem 'sunspot_rails'
+gem 'sunspot_solr'
 gem 'kaminari'
 gem 'sunspot_with_kaminari'
 gem 'will_paginate'
