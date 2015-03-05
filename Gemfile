@@ -31,7 +31,6 @@ gem 'normalize-rails'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'sunspot_solr'
 end
 
 group :development do
