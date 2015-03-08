@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227224333) do
+ActiveRecord::Schema.define(version: 20150118003610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,10 +64,14 @@ ActiveRecord::Schema.define(version: 20150227224333) do
   end
 
   create_table "case_studies", force: true do |t|
-    t.string   "main_image",        default: ""
-    t.string   "name",              default: ""
-    t.string   "url",               default: ""
-    t.string   "timePeriod",        default: ""
+    t.string   "name"
+    t.string   "main_image"
+    t.text     "url"
+    t.text     "overview"
+    t.text     "resource"
+    t.text     "problem"
+    t.text     "process"
+    t.text     "outcome"
     t.integer  "development_cycle"
     t.integer  "design_phase"
     t.integer  "project_domain"
@@ -75,20 +79,15 @@ ActiveRecord::Schema.define(version: 20150227224333) do
     t.integer  "user_age"
     t.integer  "privacy_level"
     t.integer  "social_setting"
-    t.text     "overview"
-    t.boolean  "customer_is_user",  default: false
-    t.boolean  "remote_project",    default: false
+    t.boolean  "customer_is_user"
+    t.boolean  "remote_project"
+    t.integer  "num_of_designers"
+    t.integer  "num_of_users"
+    t.integer  "time_period"
+    t.text     "time_unit"
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "num_of_designers",  default: 1
-    t.integer  "num_of_users",      default: 1
-    t.integer  "time_period",       default: 0
-    t.string   "time_unit",         default: ""
-    t.string   "resource"
-    t.text     "problem"
-    t.text     "process"
-    t.text     "outcome"
   end
 
   create_table "characteristic_groups", force: true do |t|
@@ -170,14 +169,14 @@ ActiveRecord::Schema.define(version: 20150227224333) do
   add_index "discussion_replies", ["user_id"], name: "index_discussion_replies_on_user_id", using: :btree
 
   create_table "discussions", force: true do |t|
-    t.string   "name"
+    t.string   "title"
     t.text     "description"
     t.integer  "user_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "discussions", ["name"], name: "index_discussions_on_name", using: :btree
+  add_index "discussions", ["title"], name: "index_discussions_on_title", using: :btree
   add_index "discussions", ["user_id"], name: "index_discussions_on_user_id", using: :btree
 
   create_table "method_case_studies", force: true do |t|

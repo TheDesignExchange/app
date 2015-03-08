@@ -1,24 +1,36 @@
 class CreateCaseStudies < ActiveRecord::Migration
-@@file_attributes = ["permissionToUse", "name", "type"]
-
-@@model_attribtues = ["developmentCycle", "designPhase", "projectDomain", "customerType", "userAge", "privacyLevel", "socialSetting"]
-
-@@cs_attributes = ["main_image", "title", "methods", "url", "timePeriod"] 	
-@@cs_bool_attributes = ["customerIsUser", "remoteProject"]
-
   def change
     create_table :case_studies do |t|
-      @@cs_attributes.each do |x|
-      	t.string x.to_sym,  :default => ""
 
-      end
-      t.integer :development_cycle, :design_phase, :project_domain, :customer_type, :user_age, :privacy_level, :social_setting
-      t.text :description
+      t.string  :name
+      t.string  :main_image
+      t.text    :url
+      t.text    :overview
+      t.text    :resource
+      t.text    :problem
+      t.text    :process
+      t.text    :process
+      t.text    :outcome
 
-      @@cs_bool_attributes.each do |x|
-      	t.boolean x.to_sym,  :default => false
-      end
+      t.integer :development_cycle
+      t.integer :design_phase
+      t.integer :project_domain
+      t.integer :customer_type
+      t.integer :user_age
+      t.integer :privacy_level
+      t.integer :social_setting
+
+      t.boolean :customer_is_user
+      t.boolean :remote_project
+
+      t.integer :num_of_designers
+      t.integer :num_of_users
+
+      t.integer :time_period
+      t.text    :time_unit
+
       t.integer :company_id
+
       t.timestamps
     end
   end
