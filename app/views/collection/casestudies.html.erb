@@ -84,14 +84,14 @@ hr {border-top: 3px solid #eee;
 </div>	
 
 <div class="grid_12 omega">
-		<h3><%= cs.title %> </h3>
+		<h3><%= cs.name %> </h3>
 		<a href="<%=cs.url %>"> <%=cs.url %></a>
 </div>	
 
 
 <div class="grid_12">	
 	<div class="grid_5 omega">
-		<p><%=cs.description %></p>	
+		<p><%=cs.overview %></p>	
 
 		<br>
 		<br>
@@ -132,11 +132,11 @@ hr {border-top: 3px solid #eee;
 		</tr>
 		<tr>
  		<td>Remote Project</td>		
-  		<td><%=human_boolean(cs.remoteProject)%></td>
+  		<td><%=human_boolean(cs.remote_project)%></td>
 		</tr>
 		<tr>
  		<td>Customer is User</td>		
-  		<td><%=human_boolean(cs.customerIsUser)%></td>
+  		<td><%=human_boolean(cs.customer_is_user)%></td>
 		</tr>
 		<tr>
  		<td>Customer Type</td>	
@@ -248,5 +248,5 @@ hr {border-top: 3px solid #eee;
 <%# @casestudies.each do |cs| %>
 <%#=img src="FedEx.png" alt="FedEx" width="42" height="42"%>
 <h3><%#= cs[:name] %></h3>
-<p><%#= cs[:description] %></p>
+<p><%#= cs[:overview] %></p>
 <%#end%>

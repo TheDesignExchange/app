@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
   	def index
     	# @design_methods = DesignMethod.where("overview != ?", "No overview available" ).take(3)
-    	# @case_studies = CaseStudy.where("description != ?", "No description available").take(3)
+    	# @case_studies = CaseStudy.where("overview != ?", "No overview available").take(3)
       @design_methods = DesignMethod.take(3)
       @case_studies = CaseStudy.take(3)
       @discussions = Discussion.take(2)
@@ -39,15 +39,47 @@ class ApplicationController < ActionController::Base
     end
 
   def search
-    query = params[:query] ? params[:query].gsub(' ', '_') : "";
-    design_methods = search_db(:dm, query, 24)[:results]
-  	case_studies = search_db(:cs, query, 24)[:results]
-    discussions = search_db(:disc, query, 24)[:results]
+    # temp param replacement for autocomplete
+    if params[:term]
+      params[:query] = params[:term]
+    end
+
+    if params[:category_id] 
+      design_methods = MethodCategory.find(params[:category_id]).design_methods
+      case_studies = []
+      discussions = []
+    else
+      query = params[:query]
+
+      design_methods = search_db(:dm, query, 24)[:results]
+    	case_studies = search_db(:cs, query, 24)[:results]
+      discussions = search_db(:disc, query, 24)[:results]
+    end
 
     @results = {:all => [design_methods, case_studies, discussions].flatten.shuffle[0..24],
       :dm => design_methods, :cs => case_studies, :disc => discussions}
-    # render :json => params["q"].length
-    render layout: "wide"
+
+    design_method_names = design_methods.map { |design_method| design_method.name }
+    case_study_names = case_studies.map { |case_study| case_study.name }
+    discussion_names = discussions.map { |dis| dis.name }
+
+    @autocomplete_results = [design_method_names, case_study_names, discussion_names].flatten
+
+
+    # Filter bar needs
+    @search_filter_hash = MethodCategory.all
+
+
+
+    respond_to do |format|
+      format.html do
+        render layout: "wide"
+      end
+
+      format.json do
+        render json: @autocomplete_results
+      end
+    end
   end
 
   # Search design methods.
@@ -62,21 +94,35 @@ class ApplicationController < ActionController::Base
     if query
       if type == :dm
         # results = DesignMethod.where("LOWER( design_methods.name ) LIKE ? AND overview != ? ", "%#{query}%", "No overview available")
-        results = DesignMethod.where("LOWER( design_methods.name ) LIKE ?", "%#{query}%")
-        .order('name = "'+ query +'" DESC, name LIKE "'+ query +'%" DESC'); 
+
+        # Sunspot search
+        results = DesignMethod.solr_search do
+
+          fulltext query.gsub( '"', '"\\' ) unless query.blank?
+
+        end.results
+
       elsif type == :cs
-        # results = CaseStudy.where("LOWER( case_studies.title ) LIKE ? AND description != ?", "%#{query}%", "No description available")
-        results = CaseStudy.where("LOWER( case_studies.title ) LIKE ?", "%#{query}%")
-        .order('title = "'+ query +'" DESC, title LIKE "'+ query +'%" DESC'); 
+        # Sunspot search
+        results = CaseStudy.solr_search do
+
+          fulltext query.gsub( '"', '"\\' ) unless query.blank?
+
+        end.results
       else
-        results = Discussion.where("LOWER( discussions.title ) LIKE ?", "%#{query}%")
-        .order('title = "'+ query +'" DESC, title LIKE "'+ query +'%" DESC'); 
+        # Sunspot search
+        results = Discussion.solr_search do
+
+          fulltext query.gsub( '"', '"\\' ) unless query.blank?
+
+        end.results
       end
       return {:hits => hits, :results => results}
     else
       return {:hits => [], :results => []}
     end
   end
+
   def about
   end
 

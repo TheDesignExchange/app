@@ -18,7 +18,7 @@
 	</div>
   	<div class="col-md-11">
   		<h1 class="font-discussion-tittle">
-  			<%= @discussion.title %>
+  			<%= @discussion.name %>
   		</h1> 
   			<%= @discussion.created_at.to_s %> ago 
   			<%= link_to @author.email, user_path(@author.id) %>

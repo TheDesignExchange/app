@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.0.0'
 
 gem 'sunspot_rails'
+gem 'sunspot_solr'
 gem 'kaminari'
 gem 'sunspot_with_kaminari'
 gem 'will_paginate'
@@ -12,15 +13,13 @@ gem 'sass-rails', '~> 4.0.2'
 gem 'coffee-rails'
 gem 'uglifier'
 gem 'spreadsheet'
-gem 'sqlite3'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'turbolinks'
-gem 'rdf'
-gem 'rdf-raptor'
-gem 'sparql'
 gem 'equivalent-xml'
 gem 'ffi'
-
+gem 'kramdown'
+gem 'pg'
+gem 'seed_dump'
 
 # LSA
 
@@ -32,7 +31,6 @@ gem 'normalize-rails'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'sunspot_solr'
 end
 
 group :development do

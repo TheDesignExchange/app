@@ -69,7 +69,7 @@ DE.Autocomplete = {
 	      return;
 	    }
 
-	    $.getJSON( "/collection/autocomplete_design_methods", request, function( data, status, xhr ) {
+	    $.getJSON( "/autocomplete_search", request, function( data, status, xhr ) {
 	      DE.cache[ term ] = data;
 	      response( data );
 	    });

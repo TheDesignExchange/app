@@ -1,9 +1,13 @@
 class CaseStudiesController < ApplicationController
+
   def index
-    # @case_studies = CaseStudy.where("description != ?", "No description available" ).take(24)
-    @case_studies = CaseStudy.take(24)
+    @case_studies = CaseStudy.where("overview != ?", "No overview available" )
+    # @case_studies = CaseStudy.take(24)
+    @search_filter_hash = MethodCategory.all
   	render layout: "wide"
   end
+
+
 
   def new
     id = params[:id] == nil ? 1 : params[:id].to_i
@@ -84,6 +88,16 @@ class CaseStudiesController < ApplicationController
     end
   end
 
-  
+  def destroy
+    @cs = CaseStudy.find(params[:id])
+    @cs.destroy
+
+    respond_to do |format|
+      format.html { redirect_to case_studies_path }
+      format.json { head :no_content }
+    end
+  end
+
+
 
 end

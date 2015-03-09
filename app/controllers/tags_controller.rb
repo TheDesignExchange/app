@@ -12,6 +12,8 @@ class TagsController < InheritedResources::Base
       end
     
   end
+
+  # TODO: remove
   def tagify(id, content, options)
     tag = "<span class='tag-label label-gap'>#{content}  " 
       if options[:removable]

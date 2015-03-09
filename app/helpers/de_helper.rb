@@ -25,10 +25,10 @@ module DeHelper
 		if level == 0
 			str = "<ul class='sidebar-element'>
 						<div class='category' >
-						<a class='category-heading sidebar-maincategory'> #{key} </a>
-							<ul class='collapse sidebar-element'>"+
-							options + 
-						"</ul>
+						<a class='category-heading sidebar-maincategory' href=''> #{key} </a>
+						<ul class='collapse sidebar-element'> 
+							#{options}
+						</ul>
 					</div>
 		   		   </ul>"
 		# Headers level 2 and more are collapsed
@@ -67,10 +67,10 @@ module DeHelper
 			thumb_obj=	
 				{
 					:image => obj.main_image,
-					:name => obj.name.humanize,
+					:name => obj.name,
 					:tags => obj.tags.map{|t| t.content},
 					:likes => obj.likes,
-					:description => obj.overview,
+					:overview => obj.overview,
 					:id => obj.id,
 					:link => "design_method",
 					:col_md_value => col_md_value, 
@@ -79,11 +79,11 @@ module DeHelper
 		elsif obj.is_a?(CaseStudy)
 			thumb_obj=	
 				{
-					:image => obj.mainImage,
-					:name => obj.title,
+					:image => obj.main_image,
+					:name => obj.name,
 					:tags => obj.tags.map{|t| t.content},
 					:likes => (rand*100).to_i,
-					:description => obj.description,
+					:overview => obj.overview,
 					:id => obj.id,
 					:link => "case_study",
 					:col_md_value => col_md_value, 
@@ -93,7 +93,7 @@ module DeHelper
 			thumb_obj=	
 				{
 					:image => nil,
-					:name => obj.title,
+					:name => obj.name,
 					:tags => [],
 					:likes => (rand*100).to_i,
 					:description => obj.description,

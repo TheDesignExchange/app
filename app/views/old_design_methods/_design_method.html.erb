@@ -1,5 +1,5 @@
 <li class="method">
   <h3 class="inline"><%= link_to design_method.name, design_method %></h3>
   <h4 class="subtitle inline">by <%= link_to design_method.owner.email, design_method.owner %></h4>
-  <p class="method-overview"><%= simple_format design_method.overview %></p>
+  <p class="method-overview"><%= md_format design_method.overview %></p>
 </li>

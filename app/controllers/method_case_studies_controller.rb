@@ -11,6 +11,8 @@ class MethodCaseStudiesController < ApplicationController
     end
     
   end
+
+  # TODO: unusued; figure out if this is necessary
   def mcs(id, content, options)
     tag = "<span class='tag-label label-gap'>#{content}  " 
       if options[:removable]

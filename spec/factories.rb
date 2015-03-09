@@ -23,7 +23,6 @@ FactoryGirl.define do
     name      { Faker::Lorem.word }
     overview  { Faker::Lorem.paragraph }
     process   { Faker::Lorem.paragraph }
-    principle { Faker::Lorem.paragraph }
     owner
   end
 
@@ -42,7 +41,7 @@ FactoryGirl.define do
   end
 
   factory :discussion do
-    title  { Faker::Lorem.sentence }
+    name   { Faker::Lorem.sentence }
     description  { Faker::Lorem.sentence }
     user
   end
@@ -58,6 +57,11 @@ FactoryGirl.define do
     design_method
   end
 
+  factory :method_variation do
+    parent
+    variant
+  end
+  
   factory :company do
     name    { Faker::Company.name }
     domain  { Faker::Internet.domain_name }
@@ -65,10 +69,10 @@ FactoryGirl.define do
   end
 
   factory :case_study do
-    mainImage         { Faker::Internet.url }
-    title             { Faker::Lorem.sentence }
+    main_image         { Faker::Internet.url }
+    name              { Faker::Lorem.sentence }
     url               { Faker::Internet.url }
-    timePeriod        { Faker::Number.number(4) }
+    time_period        { Faker::Number.number(4) }
     development_cycle { rand(1...100) }
     design_phase      { rand(1...5) }
     project_domain    { rand(1...5) }
@@ -76,9 +80,9 @@ FactoryGirl.define do
     user_age          { rand(1...100) }
     privacy_level     { rand(1...10) }
     social_setting    { rand(1...10) }
-    description       { Faker::Lorem.paragraph }
-    customerIsUser    { true }
-    remoteProject     { true }
+    overview       { Faker::Lorem.paragraph }
+    customer_is_user    { true }
+    remote_project     { true }
     company_id        { Faker::Number.number(10) }
     company
   end
@@ -95,5 +99,16 @@ FactoryGirl.define do
     permission_to_use { true }
     type              { Faker::Lorem.word }
     company_id        { Faker::Number.number(10) }
+  end
+
+  factory :characteristic_group do
+    name { Faker::Lorem.word }
+    method_category
+  end
+
+  factory :characteristic do
+    name          { Faker::Lorem.word }
+    overview   { Faker::Lorem.sentence }
+    characteristic_group
   end
 end

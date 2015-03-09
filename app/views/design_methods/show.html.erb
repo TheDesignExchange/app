@@ -7,9 +7,12 @@
 <!-- Method Name -->
 <div class = "row">
 	<div class="col-md-9 col-md-offset-3 left-pad">
-    <h3><%= @method.name != nil ? @method.name.humanize().split.map(&:capitalize).join(' ') : "-" %></h3>
-    <p>By <a href="<%= user_path(@author.id)%>"><%= @author.email != nil ? @author.email : "-" %></a></p>
-	</div>
+    <% if @method.method_categories[0].nil? %>
+    <h3><%= @method.name.nil? ? "-" : @method.name %></h3>
+    <% else %>
+    <h3><%= @method.name.nil? ? "-" : @method.method_categories[0].name + ": " + @method.name %></h3>
+	   <% end %>
+  </div>
 
 </div>
 <!-- End Method Name -->
@@ -66,6 +69,16 @@
       </p>
       <!-- END TAGS -->
   	</div>
+    <div class="row">
+      <h4>Characteristics</h4>
+      <p>
+        <% @method.method_characteristics.each do |mc| %>
+         <%= tagify(mc.id, mc.characteristic.name, {:removable => false}) %>
+        <% end %>
+        <%= "No characteristics available" unless not @method.method_characteristics.empty? %>
+      </p>
+      <!-- END TAGS -->
+    </div>
 	</div>
   	<!-- END SIDBAR -->
 
@@ -109,20 +122,18 @@
       	<!-- END MENU BAR -->
       <br>
       <!-- CONTENT -->
-  		<div class="row">
-        <% if @method.main_image.present? %>
+      <% if @method.main_image.present? %>
+        <div class="row">
           <%= image_tag(@method.main_image, :width => "100%")%>
-        <% else %>
-          <%= image_tag("no-image-available.png", :width => "100%", :height => "385")%>
-        <% end %>
-  		</div>
+        </div>
+      <% end %>
       <br>
   		<!-- OVERVIEW & PROCESS -->
   		<div class="row">
   			<h4> Overview </h4>
-        	<%= @method.overview != nil ? simple_format(@method.overview) : "-"%>
+        	<%= @method.overview != nil ? md_format(@method.overview) : "-"%>
         	<h4> Process </h4>
-        	<p><%= @method.process != nil ? simple_format(@method.process) : "-" %></p>
+        	<p><%= @method.process != nil ? md_format(@method.process) : "-" %></p>
     	</div>
     	<!-- END OF OVERVIEW & PROVESS -->
 
@@ -131,105 +142,22 @@
   		<div class="row">
   			<h4> Contributing Authors </h4>
   			<!-- POSSIBLE DO WHILE FOR USERS INFORMATION  -->
-  			<div class="col-md-6">
-  				<div class="col-md-4">
-  					<img alt="" src="http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg" class="fit-all"/>
+  			<div class="col-xs-6">
+  				<div class="col-xs-4">
+              <% if @author.profile_picture.present? %>
+                  <%= image_tag(@author.profile_picture, class: "fit-all", :style => "padding: 10%")%>
+              <% else %>
+                  <%= image_tag("http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")%>
+              <% end %>
   				</div>
-  				<div class="col-md-8">
-  					<p><a>Name of person</a></p>
-  					<p>Some info</p>
+  				<div class="col-xs-8">
+  					<p><%= link_to @author.first_name + " " + @author.last_name, user_path(@author.id) %></p>
+  					<p><%= @author.email != nil ? @author.email : "-" %></p>
   				</div>
   			</div>
   			<!-- END POSSIBLE DO WHILE FOR USERS INFORMATION  -->
   		</div>
   		<!-- END OF USERS INFORMATIONS -->
-
-  		<!-- DISCUSSION FIELD -->
-  		<div class="row">
-  			<h4>Discussions</h4>
-  			<textarea class="form-control" rows="3" placeholder="Questions or comments about this method?"></textarea>
-  			<button type="submit" class="btn btn-default pull-right">Submit</button>
-  		</div>
-  		<!-- END DISCUSSION FIELD -->
-
-  		<!-- DISCUSSIONS -->
-  		<div class="row">
-  			<!-- !!! PROBABLY A DO WHILE HERE TO LOAD DISCUSSIONS !!! -->
-  			<hr>
-  			<div class="col-md-3">
-  				<div class="row">
-  					<div class="col-md-5 no-padding">
-  						<img alt="" src="http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg" class="fit-all"/>
-  					</div>
-  					<div class="col-md-7">
-  						<a href="#">
-          					Example of a Name
-          				</a>
-          				<p>
-          					Example of City
-          				</p>
-  					</div>
-  				</div>
-  				<a href="#">
-          			<span class="glyphicon glyphicon-share"></span>
-          				Share
-          		</a>
-          		<br>
-          		<a href="#">
-          			<span class="glyphicon glyphicon-comment"></span>
-          				Message
-          		</a>
-          		<br>
-          		<a href="#">
-          			<span class="glyphicon glyphicon-heart"></span>
-          				Follow
-          		</a>
-          	</div>
-  			<div class="col-md-9 no-padding">
-  				<p>
-  					Date
-  				</p>
-  				<p>
-  					Message
-  				</p>
-  			</div>
-  			<div class="row">
-  				<div class="col-md-9 col-md-offset-3">
-  					<button type="submit" class="btn btn-default">Useful (#)</button>
-  					<button type="submit" class="btn btn-default">Interesting (#)</button>
-  					<button type="submit" class="btn btn-default pull-right">Reply</button>
-  				</div>
-  			</div>
-  			<!-- END OF POSSIBLE DO WHILE -->
-	
-  			<!-- LOAD MORE DISCUSSIONS -->
-  			<hr>
-  				<div style="text-align: center;">
-  				<a href="#">
-         	 		See More Discussions <b class="caret"></b>
-        	  	</a>
-        	  </div>
-  			<hr>
-  			<!-- END LOAD MORE DISCUSSIONS -->
-  		</div>
-
-  		<!-- RELATED METHODS AND CASE STUDIES -->
-  		<div class="row">
-        <!-- RELATED METHODS -->
-  			<h4>Related Methods</h4>
-          <% @similar_methods.each do |dm| %>
-            <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4") %>
-          <% end %>
-  			<!-- END RELATED METHODS -->
-
-        <!-- RELATED CASE STUDIES -->
-  			<h4>Related Case Studies</h4>
-          <% @similar_case_studies.each do |cs| %>
-            <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"4") %>
-          <% end %>
-  			<!-- ENF RELATED CASE STUDIES -->
-  		</div>
-  		<!-- END RELATED METHODS AND CASE STUDIES -->
 
   		<!-- CITATIONS -->
   		<h4>Citations</h4>
@@ -248,11 +176,3 @@
   	</div>
   	<!-- END MAIN VIEW -->
 </div>
-
-
-
-
-
-
-
-

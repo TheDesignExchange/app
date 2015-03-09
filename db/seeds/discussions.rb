@@ -15,7 +15,7 @@ def process_discussions(data)
 	data.each do |el|
 		el["user_id"] = User.where(email: el["user_id"]).first.id
 		disc = Discussion.new(el)
-		p "Added discussion: #{disc.title}" unless not disc.save 
+		p "Added discussion: #{disc.name}" unless not disc.save 
 		# p disc.errors unless disc.save
 	end
 	p "==============================="

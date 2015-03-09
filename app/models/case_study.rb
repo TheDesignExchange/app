@@ -3,10 +3,10 @@
 # Table name: case_studies
 #
 #  id                :integer          not null, primary key
-#  mainImage         :string(255)      default("")
-#  title             :string(255)      default("")
+#  main_image        :string(255)      default("")
+#  name              :string(255)      default("")
 #  url               :string(255)      default("")
-#  timePeriod        :string(255)      default("")
+#  time_period       :string(255)      default("")
 #  development_cycle :integer
 #  design_phase      :integer
 #  project_domain    :integer
@@ -14,20 +14,28 @@
 #  user_age          :integer
 #  privacy_level     :integer
 #  social_setting    :integer
-#  description       :text
-#  customerIsUser    :boolean          default(FALSE)
-#  remoteProject     :boolean          default(FALSE)
+#  overview          :text
+#  customer_is_user  :boolean          default(FALSE)
+#  remote_project    :boolean          default(FALSE)
 #  company_id        :integer
 #  created_at        :datetime
 #  updated_at        :datetime
+#  num_of_designers  :integer          default(1)
+#  num_of_users      :integer          default(1)
+#  time_period       :integer          default(0)
+#  time_unit         :string(255)      default("")
+#  resource          :string(255)
+#  problem           :text
+#  process           :text
+#  outcome           :text
 #
 
 class CaseStudy < ActiveRecord::Base
-    mount_uploader :mainImage, PictureUploader
+    mount_uploader :main_image, PictureUploader
     mount_uploader :resource, PictureUploader
-    attr_accessible :mainImage, :title, :url, :timePeriod, :development_cycle, :design_phase, 
+    attr_accessible :main_image, :name, :url, :time_period, :development_cycle, :design_phase, 
                     :project_domain, :customer_type, :user_age, :privacy_level, 
-                    :social_setting, :description, :customerIsUser, :remoteProject, 
+                    :social_setting, :overview, :customer_is_user, :remote_project, 
                     :company_id, :num_of_designers, :num_of_users, :overview, :time_period, :time_unit, :resource, :process, :problem, :outcome
                     
 	belongs_to :company
@@ -40,6 +48,12 @@ class CaseStudy < ActiveRecord::Base
     has_many :design_methods, :through => :method_case_studies
     has_many :tags
 
+    # Sunspot
+    searchable do
+      text :name, stored: true
+      text :overview, stored: true
+    end
+
 	# validates :development_cycle,
  #    :inclusion  => { :in => ["Product Update", "Product Refinement", "New Product", "Other"],
  #    :message    => "%{value} is not a development cycle" }
@@ -47,6 +61,8 @@ class CaseStudy < ActiveRecord::Base
     #     company = Company.where(:case_study_id, self[:id])
     #     company ? company.contacts : nil
     # end
+
+    
     def tags
         Tag.where("case_study_id = ? and content_type = ?", self[:id], "tag");
     end
@@ -80,17 +96,17 @@ class CaseStudy < ActiveRecord::Base
     def self.helper_text
         return {
             :design_phase => ["The phase involves acquiring or processing information, or defining the problem.", "This phase involves generating or evaluating concepts or prototyping." ,"This phase involves prototyping, manufacturing and deployment."],
-            :remoteProject => ["remote project = online project"],
+            :remote_project => ["remote project = online project"],
             :privacy_level => [" <em> Private </em> means only select few can observe the activity, and effort must be put to respect customs of activity. <span>(Example: religious ceremony)</span>", " <em>Public</em> means activity can be observed by anyone who desires to see the activity."],
             :social_setting => [" <em>Personal</em> includes individual, couple and family.", " <em>Social</em> includes friends, communities (religion, political group) and individual in social context.", " <em>Professional</em> includes work, education, medical and government."]
         }
     end
 
-    def description
-        if self[:description] == nil
-            self[:description] = "No description available"
+    def overview
+        if self[:overview] == nil
+            self[:overview] = "No overview available"
         end
-        return self[:description]
+        return self[:overview]
     end
 
     # class Document_Attach < Document
@@ -99,15 +115,15 @@ class CaseStudy < ActiveRecord::Base
     #         if obj.is_a?(DesignMethod)
     #           super(:content => obj.overview+" "+obj.process)
     #         elsif obj.is_a?(CaseStudy)
-    #           super(:content => obj.description)
+    #           super(:content => obj.overview)
     #         end
     #         @obj = obj
     #     end
     # end
 
   def similar_methods(limit, sample_size)
-
-    # logger.info "Similar Methods running for: #{self[:title]}"
+    # TO_DO implement as non-gsl dependent
+    # logger.info "Similar Methods running for: #{self[:name]}"
     # startTime = Time.now
 
     # methodsList = DesignMethod.order("RANDOM()")
@@ -135,12 +151,13 @@ class CaseStudy < ActiveRecord::Base
     # elapsed_time = endTime - startTime
     # logger.info "Similar Methods took #{elapsed_time}s to query #{limit} random sample from db."
     # return result
-
+    return []
   end
 
   def similar_case_studies(limit, sample_size)
+    # TO_DO implement as non-gsl dependent
 
-    # logger.info "Similar Case Studies running for: #{self[:title]}"
+    # logger.info "Similar Case Studies running for: #{self[:name]}"
     # startTime = Time.now
 
     # caseStudiesList = CaseStudy.where("case_studies.id != ?", self[:id])
@@ -163,6 +180,6 @@ class CaseStudy < ActiveRecord::Base
     # elapsed_time = endTime - startTime
     # logger.info "Similar Case Studies took #{elapsed_time}s to query #{limit} random sample from db."
     # return result
-
+    return []
   end
 end

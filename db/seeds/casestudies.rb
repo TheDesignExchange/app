@@ -51,7 +51,7 @@ def process_casestudies(data)
 		
 		c = CaseStudy.new(el)
 		c.company = comp
-		p "Added casestudy: #{c.title}" unless not c.save
+		p "Added casestudy: #{c.name}" unless not c.save
 		p c.errors unless c.save
 		
 	end

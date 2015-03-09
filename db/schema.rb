@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122055145) do
+ActiveRecord::Schema.define(version: 20150308230334) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -24,9 +27,9 @@ ActiveRecord::Schema.define(version: 20150122055145) do
     t.datetime "updated_at"
   end
 
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -43,8 +46,8 @@ ActiveRecord::Schema.define(version: 20150122055145) do
     t.datetime "updated_at"
   end
 
-  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
-  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -61,10 +64,14 @@ ActiveRecord::Schema.define(version: 20150122055145) do
   end
 
   create_table "case_studies", force: true do |t|
-    t.string   "mainImage",         default: ""
-    t.string   "title",             default: ""
-    t.string   "url",               default: ""
-    t.string   "timePeriod",        default: ""
+    t.string   "name"
+    t.string   "main_image"
+    t.text     "url"
+    t.text     "overview"
+    t.text     "resource"
+    t.text     "problem"
+    t.text     "process"
+    t.text     "outcome"
     t.integer  "development_cycle"
     t.integer  "design_phase"
     t.integer  "project_domain"
@@ -72,35 +79,34 @@ ActiveRecord::Schema.define(version: 20150122055145) do
     t.integer  "user_age"
     t.integer  "privacy_level"
     t.integer  "social_setting"
-    t.text     "description"
-    t.boolean  "customerIsUser",    default: false
-    t.boolean  "remoteProject",     default: false
+    t.boolean  "customer_is_user"
+    t.boolean  "remote_project"
+    t.integer  "num_of_designers"
+    t.integer  "num_of_users"
+    t.integer  "time_period"
+    t.text     "time_unit"
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "num_of_designers",  default: 1
-    t.integer  "num_of_users",      default: 1
-    t.integer  "time_period",       default: 0
-    t.string   "time_unit",         default: ""
-    t.string   "resource"
-    t.text     "problem"
-    t.text     "process"
-    t.text     "outcome"
   end
 
-  create_table "categorizations", force: true do |t|
-    t.integer  "design_method_id"
+  create_table "characteristic_groups", force: true do |t|
     t.integer  "method_category_id"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "categorizations", ["design_method_id", "method_category_id"], name: "cat_index", unique: true
-  add_index "categorizations", ["design_method_id"], name: "index_categorizations_on_design_method_id"
-  add_index "categorizations", ["method_category_id"], name: "index_categorizations_on_method_category_id"
+  create_table "characteristics", force: true do |t|
+    t.integer  "characteristic_group_id"
+    t.string   "name"
+    t.text     "description",             default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "citations", force: true do |t|
-    t.string   "text"
+    t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -128,7 +134,7 @@ ActiveRecord::Schema.define(version: 20150122055145) do
     t.string   "name"
     t.string   "email"
     t.string   "phone"
-    t.string   "company_id"
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -137,9 +143,8 @@ ActiveRecord::Schema.define(version: 20150122055145) do
     t.string   "name",                          null: false
     t.text     "overview",                      null: false
     t.text     "process",                       null: false
-    t.text     "principle",                     null: false
+    t.string   "aka"
     t.integer  "owner_id",                      null: false
-    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "num_of_designers", default: 1
@@ -159,20 +164,20 @@ ActiveRecord::Schema.define(version: 20150122055145) do
     t.datetime "updated_at"
   end
 
-  add_index "discussion_replies", ["discussion_id"], name: "index_discussion_replies_on_discussion_id"
-  add_index "discussion_replies", ["discussion_reply_id"], name: "index_discussion_replies_on_discussion_reply_id"
-  add_index "discussion_replies", ["user_id"], name: "index_discussion_replies_on_user_id"
+  add_index "discussion_replies", ["discussion_id"], name: "index_discussion_replies_on_discussion_id", using: :btree
+  add_index "discussion_replies", ["discussion_reply_id"], name: "index_discussion_replies_on_discussion_reply_id", using: :btree
+  add_index "discussion_replies", ["user_id"], name: "index_discussion_replies_on_user_id", using: :btree
 
   create_table "discussions", force: true do |t|
-    t.string   "title"
+    t.string   "name"
     t.text     "description"
     t.integer  "user_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "discussions", ["title"], name: "index_discussions_on_title"
-  add_index "discussions", ["user_id"], name: "index_discussions_on_user_id"
+  add_index "discussions", ["name"], name: "index_discussions_on_name", using: :btree
+  add_index "discussions", ["user_id"], name: "index_discussions_on_user_id", using: :btree
 
   create_table "feedbacks", force: true do |t|
     t.string   "title"
@@ -184,20 +189,7 @@ ActiveRecord::Schema.define(version: 20150122055145) do
     t.datetime "updated_at",                      null: false
   end
 
-  add_index "feedbacks", ["created_at"], name: "index_feedbacks_on_created_at"
-
-  create_table "mc_relations", force: true do |t|
-    t.integer  "parent_id"
-    t.integer  "child_id"
-    t.integer  "distance"
-    t.string   "description", default: "subclass"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "mc_relations", ["child_id"], name: "index_mc_relations_on_child_id"
-  add_index "mc_relations", ["parent_id", "child_id"], name: "mcrelations_index", unique: true
-  add_index "mc_relations", ["parent_id"], name: "index_mc_relations_on_parent_id"
+  add_index "feedbacks", ["created_at"], name: "index_feedbacks_on_created_at", using: :btree
 
   create_table "method_case_studies", force: true do |t|
     t.integer  "case_study_id"
@@ -212,6 +204,17 @@ ActiveRecord::Schema.define(version: 20150122055145) do
     t.datetime "updated_at"
   end
 
+  create_table "method_characteristics", force: true do |t|
+    t.integer  "design_method_id"
+    t.integer  "characteristic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "method_characteristics", ["characteristic_id"], name: "index_method_characteristics_on_characteristic_id", using: :btree
+  add_index "method_characteristics", ["design_method_id", "characteristic_id"], name: "char_index", unique: true, using: :btree
+  add_index "method_characteristics", ["design_method_id"], name: "index_method_characteristics_on_design_method_id", using: :btree
+
   create_table "method_citations", force: true do |t|
     t.integer  "design_method_id"
     t.integer  "citation_id"
@@ -219,9 +222,9 @@ ActiveRecord::Schema.define(version: 20150122055145) do
     t.datetime "updated_at"
   end
 
-  add_index "method_citations", ["citation_id"], name: "index_method_citations_on_citation_id"
-  add_index "method_citations", ["design_method_id", "citation_id"], name: "index_method_citations_on_design_method_id_and_citation_id", unique: true
-  add_index "method_citations", ["design_method_id"], name: "index_method_citations_on_design_method_id"
+  add_index "method_citations", ["citation_id"], name: "index_method_citations_on_citation_id", using: :btree
+  add_index "method_citations", ["design_method_id", "citation_id"], name: "index_method_citations_on_design_method_id_and_citation_id", unique: true, using: :btree
+  add_index "method_citations", ["design_method_id"], name: "index_method_citations_on_design_method_id", using: :btree
 
   create_table "method_favorites", force: true do |t|
     t.integer  "user_id"
@@ -237,7 +240,14 @@ ActiveRecord::Schema.define(version: 20150122055145) do
     t.datetime "updated_at"
   end
 
-  add_index "method_likes", ["user_id", "design_method_id"], name: "index_method_likes_on_user_id_and_design_method_id", unique: true
+  add_index "method_likes", ["user_id", "design_method_id"], name: "index_method_likes_on_user_id_and_design_method_id", unique: true, using: :btree
+
+  create_table "method_variations", force: true do |t|
+    t.integer  "parent_id"
+    t.integer  "variant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "resources", force: true do |t|
     t.string   "name",              default: ""
@@ -267,9 +277,9 @@ ActiveRecord::Schema.define(version: 20150122055145) do
     t.datetime "updated_at"
   end
 
-  add_index "user_methods", ["design_method_id"], name: "index_user_methods_on_design_method_id"
-  add_index "user_methods", ["user_id", "design_method_id"], name: "index_user_methods_on_user_id_and_design_method_id", unique: true
-  add_index "user_methods", ["user_id"], name: "index_user_methods_on_user_id"
+  add_index "user_methods", ["design_method_id"], name: "index_user_methods_on_design_method_id", using: :btree
+  add_index "user_methods", ["user_id", "design_method_id"], name: "index_user_methods_on_user_id_and_design_method_id", unique: true, using: :btree
+  add_index "user_methods", ["user_id"], name: "index_user_methods_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -296,7 +306,7 @@ ActiveRecord::Schema.define(version: 20150122055145) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

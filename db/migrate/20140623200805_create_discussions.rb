@@ -1,7 +1,7 @@
 class CreateDiscussions < ActiveRecord::Migration
   def change
     create_table :discussions do |t|
-      t.string :title
+      t.string :name
       t.text :description
       t.integer :user_id, null: false
 
@@ -9,6 +9,6 @@ class CreateDiscussions < ActiveRecord::Migration
     end
 
     add_index :discussions, :user_id
-    add_index :discussions, :title
+    add_index :discussions, :name
   end
 end

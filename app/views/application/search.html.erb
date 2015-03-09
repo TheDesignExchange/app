@@ -35,11 +35,12 @@ $(function(){
     			<li class="active"><a data-link="all">All</a></li>
     			<li><a data-link="dm">Methods</a></li>
     			<li><a data-link="cs">Case Studies</a></li>
-    			<li><a data-link="disc">Discussions</a></li>
   		  </ul>
       </div>
   </div>
 </div>
+
+
 
 
 <!-- #sidebar > div{ aoihdlkhasklfhjklh} -->
@@ -48,6 +49,7 @@ $(function(){
 	<div class="col-md-2">
     <!-- WARNING SIDEBAR UNDERCONSTRUCTION -->
     <div data-link="all" class="sidebar" >
+      <%= render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods) %>
       <!-- SIDEBAR FOR ALL -->
     </div>
     <div data-link="dm" class="sidebar" >

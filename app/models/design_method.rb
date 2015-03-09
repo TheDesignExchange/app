@@ -2,20 +2,28 @@
 #
 # Table name: design_methods
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)      not null
-#  overview   :text             not null
-#  process    :text             not null
-#  principle  :text             not null
-#  owner_id   :integer          not null
-#  parent_id  :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id               :integer          not null, primary key
+#  name             :string(255)      not null
+#  overview         :text             not null
+#  process          :text             not null
+#  aka              :string(255)
+#  owner_id         :integer          not null
+#  created_at       :datetime
+#  updated_at       :datetime
+#  num_of_designers :integer          default(1)
+#  num_of_users     :integer          default(1)
+#  time_period      :integer          default(0)
+#  time_unit        :string(255)      default("")
+#  main_image       :string(255)
+#  likes            :integer          default(0)
 #
 
 class DesignMethod < ActiveRecord::Base
-  mount_uploader :main_image, PictureUploader
+
+  # TODO: add the mass assignment protection at the controller, then remove this
   attr_accessible :name, :process, :num_of_designers, :num_of_users, :overview, :main_image, :time_period, :name, :time_unit
+
+  # Validations
   validates :name, :overview, presence: true
   validates :name, length: { maximum: 255,
             too_long: "%{count} is the maximum character length."}
@@ -24,14 +32,47 @@ class DesignMethod < ActiveRecord::Base
             on: :create
   validates :owner_id, presence: true
 
+  # Relationships
+  has_many :method_characteristics, dependent: :destroy
+  has_many :characteristics, through: :method_characteristics
+
+  has_many :method_citations, dependent: :destroy
+  has_many :citations, through: :method_citations
+
+  has_many :method_favorites, dependent: :destroy
+  has_many :favorited_users, through: :method_favorites, :source => :user
+
+  belongs_to :owner, class_name: "User", foreign_key: :owner_id
+
+  # CASE STUDY LINKING 
+  has_many :method_case_studies
+  has_many :case_studies, :through => :method_case_studies
+
+  # Method variations
+  has_many :method_variations, foreign_key: "parent_id", dependent: :destroy
+  has_many :variations, -> { uniq }, through: :method_variations, source: :variant
+
+  # Comments
+  has_many :comments, dependent: :destroy
+  has_many :tags
+
+  # Uploader (what gem?)
+  mount_uploader :main_image, PictureUploader
+
+  # Sunspot
   searchable do
     text :name, stored: true
     text :overview, stored: true
-    text :principle, stored: true
     text :process, stored: true
+
     text :method_categories do
       method_categories.map { |method_category| method_category.name }
     end
+
+    text :characteristics do
+      characteristics.map { |characteristic| characteristic.name }
+    end
+
   end
 
   def overview
@@ -49,11 +90,11 @@ class DesignMethod < ActiveRecord::Base
   end
 
   def tags
-        Tag.where("design_method_id = ? and content_type = ?", self[:id], "tag");
+    Tag.where("design_method_id = ? and content_type = ?", self[:id], "tag");
   end
 
   def tools
-      Tag.where("design_method_id = ? and content_type = ?", self[:id], "tool");
+    Tag.where("design_method_id = ? and content_type = ?", self[:id], "tool");
   end
 
   # class Document_Attach < Document
@@ -63,14 +104,14 @@ class DesignMethod < ActiveRecord::Base
   #       if obj.is_a?(DesignMethod)
   #         super(:content => obj.overview+" "+obj.process)
   #       elsif obj.is_a?(CaseStudy)
-  #         super(:content => obj.description)
+  #         super(:content => obj.overview)
   #       end
   #       @obj = obj
   #   end
   # end
 
   def similar_methods(limit, sample_size)
-
+    # TO_DO implement as non-gsl dependent
     # logger.info "Similar Methods running for: #{self[:name]}"
     # startTime = Time.now
 
@@ -94,11 +135,11 @@ class DesignMethod < ActiveRecord::Base
     # elapsed_time = endTime - startTime
     # logger.info "Similar Methods took #{elapsed_time}s to query #{limit} random sample from db."
     # return result
-
+    return []
   end
 
   def similar_case_studies(limit, sample_size)
-
+    # TO_DO implement as non-gsl dependent
     # logger.info "Similar Case Studies running for: #{self[:name]}"
     # startTime = Time.now
 
@@ -121,26 +162,21 @@ class DesignMethod < ActiveRecord::Base
     # elapsed_time = endTime - startTime
     # logger.info "Similar Case Studies took #{elapsed_time}s to query #{limit} random sample from db."
     # return result
-
+    return []
   end
 
-  has_many :categorizations, dependent: :destroy
-  has_many :method_categories, through: :categorizations
-  has_many :method_citations, dependent: :destroy
-  has_many :citations, through: :method_citations
-  has_many :method_favorites, dependent: :destroy
-  has_many :favorited_users, through: :method_favorites, :source => :user
-  belongs_to :owner, class_name: "User", foreign_key: :owner_id
+  def method_categories
+    categories = Array.new
+    #Currently: inefficient amount of calls b/c most characteristics are in same category
 
-  # CASE STUDY LINKING 
-  has_many :method_case_studies
-  has_many :case_studies, :through => :method_case_studies
+    self.characteristics.each do |c|
+      cat = c.characteristic_group.method_category
+      if !categories.include?(cat)
+        categories << cat
+      end
+    end
 
-  # Method variations
-  has_many :variations, class_name: "DesignMethod", foreign_key: :parent_id
-  belongs_to :parent, class_name: "DesignMethod"
+    return categories
+  end
 
-  # Comments
-  has_many :comments, dependent: :destroy
-  has_many :tags
-end 
+end

@@ -1,12 +1,12 @@
 DesignExchange::Application.routes.draw do
 
-  #get "feedbacks/new"
-  #resources :companies do 
-    #resources :contacts
-  #end
-
-  #feedback forms
   resources :feedbacks
+
+  get "autocomplete_search", to: "application#search"
+
+  resources :companies do 
+    resources :contacts
+  end
 
   resources :tags
   resources :method_case_studies
@@ -23,10 +23,10 @@ DesignExchange::Application.routes.draw do
     end
   end
   resources :design_methods do
-    get :autocomplete, on: :collection
     collection do 
       get "search/:query", to: "application#search"
       get "search", to: "application#search", :as => "search"
+      get "method_category/:category_id",  to: "application#search", :as => "search_category"
     end
   end
 
