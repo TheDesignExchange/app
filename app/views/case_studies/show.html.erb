@@ -154,7 +154,11 @@
       <h4>Time</h4>
       <p>
         <span class="glyphicon glyphicon-time"></span>
+        <% if not @case_study.time_period.nil? %>
         <%= pluralize(@case_study.time_period, @case_study.time_unit) %> 
+        <% else %>
+        - 
+        <% end %>
       </p>
     </div>
     <!-- END TIME -->
