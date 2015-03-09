@@ -263,7 +263,7 @@ def clean_raw_data(data)
 end
 
 
-file_attributes = ["permissionToUse", "name", "type"]
+file_attributes = ["permissionToUse", "type"]
 author_attributes = ["authorName", "authorEmail", "authorOther"]
 company_attributes = ["contact"]
 model_attribtues = ["developmentCycle", "designPhase", "customerType", "userAge", "privacyLevel", "socialSetting"]
