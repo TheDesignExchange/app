@@ -53,8 +53,10 @@
       <%= glyphyify("floppy-disk") %> Save as Draft
     </button> -->
 
-    <%= link_to 'Destroy', case_study_path(@case_study),
+    <% if not @case_study.new_record? %>
+        <%= link_to 'Destroy', case_study_path(@case_study),
             :confirm => 'Are you sure?', :method => :delete, :class=> "btn btn-danger pull-right" %>
+    <% end %>
 
     <!-- <span id="auto-saved-text" class="pull-right">Auto-saved as draft 2 minutes ago</span> -->
   </div>
@@ -188,7 +190,10 @@
         <button class="btn btn-default" type="button" onclick="createMethodLink(<%=params[:id]%>, this);">Add Method</button>
       </span>
     </div>
-    <%= link_to "Suggested Methods", related_methods_case_study_path(@case_study), :target => "_blank" %>
+
+    <% if not @case_study.new_record? %>
+        <%= link_to "Suggested Methods", related_methods_case_study_path(@case_study), :target => "_blank" %>
+    <% end %>
       
       <p class="method-list">
         <% @case_study.method_case_studies.each do |t| %>
