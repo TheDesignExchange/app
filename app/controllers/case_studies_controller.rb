@@ -4,10 +4,10 @@ class CaseStudiesController < ApplicationController
     @case_studies = CaseStudy.where("overview != ?", "No overview available" )
     # @case_studies = CaseStudy.take(24)
     @search_filter_hash = MethodCategory.all
-    @case_study_all = CaseStudy.all
+    @case_studies_all = CaseStudy.all
     respond_to do |format|
       format.html { render layout: "wide" }
-      format.json { render :json => @case_study_all }
+      format.json { render :json => @case_studies_all }
     end
   end
 
