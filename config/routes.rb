@@ -1,7 +1,5 @@
 DesignExchange::Application.routes.draw do
 
-  resources :case_studies
-
   get "autocomplete_search", to: "application#search"
 
   resources :companies do 

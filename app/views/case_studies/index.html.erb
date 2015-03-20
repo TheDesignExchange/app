@@ -1,25 +1,35 @@
-<h1>Listing case_studies</h1>
+<script> 
+	$(function(){
+		var pH = $('#create-btn').parent().parent().height()
+		var eH = $('#create-btn').height()
+		$('#create-btn').css('margin-top', (pH - eH)/2)
+	});
+</script>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class = "row">
+	<div class="col-md-2">
 
-  <tbody>
-    <% @case_studies.each do |case_study| %>
-      <tr>
-        <td><%= link_to 'Show', case_study %></td>
-        <td><%= link_to 'Edit', edit_case_study_path(case_study) %></td>
-        <td><%= link_to 'Destroy', case_study, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+	</div>
+  	<div class="col-md-10 left-pad">
+	<div class="col-md-6">
+		<h3>Feautured Case Studies</h3>
+	</div>
+  	<div class="col-md-6">
+  		<%= link_to new_case_study_path, :id => "create-btn", :class => "btn btn-default pull-right"  do %>
+  			<span class="glyphicon glyphicon-plus"></span>
+  			Add Case Study
+  		<% end %>
+  	</div>
+  	</div>
+</div>
+<div class = "row">
+	<div class="col-md-2">
+		<!-- WARNING: SIDEBAR UNDER CONSTRUCTION! -->
+	</div>
+  	<div class="col-md-10 left-pad">
+  	  <% @case_studies.each do |cs| %>
+  	  	<%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3") %>
+      <% end %>
+    </div>
+</div>
 
-<br>
-
-<%= link_to 'New Case study', new_case_study_path %>

@@ -57,5 +57,3 @@ gem 'bourbon', '~> 3.2'
 # gem "rmagick"
 gem "carrierwave"
 gem "protected_attributes"
-
-gem "traceroute"
