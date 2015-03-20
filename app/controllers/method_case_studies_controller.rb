@@ -1,4 +1,8 @@
 class MethodCaseStudiesController < ApplicationController
+  def index
+    @mcs_all = MethodCaseStudy.all
+    render json: @mcs_all
+  end
    def create
     @mcs = MethodCaseStudy.new(params[:tag])   
       if @mcs.save
@@ -9,9 +13,7 @@ class MethodCaseStudiesController < ApplicationController
         # format.html { render action: "new" }
         render json: @mcs.errors, status: :unprocessable_entity
     end
-    
   end
-
   # TODO: unusued; figure out if this is necessary
   def mcs(id, content, options)
     tag = "<span class='tag-label label-gap'>#{content}  " 
