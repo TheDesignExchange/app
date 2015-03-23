@@ -10,11 +10,3 @@
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  design_method_id: 1
-  citation_id: 1
-
-two:
-  design_method_id: 1
-  citation_id: 1

@@ -6,7 +6,7 @@
 #  main_image        :string(255)      default("")
 #  name              :string(255)      default("")
 #  url               :string(255)      default("")
-#  time_period       :string(255)      default("")
+#  timePeriod        :string(255)      default("")
 #  development_cycle :integer
 #  design_phase      :integer
 #  project_domain    :integer

@@ -1,0 +1,17 @@
+<%= form_for(@method_case_study) do |f| %>
+  <% if @method_case_study.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@method_case_study.errors.count, "error") %> prohibited this method_case_study from being saved:</h2>
+
+      <ul>
+      <% @method_case_study.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

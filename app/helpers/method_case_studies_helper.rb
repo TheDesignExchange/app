@@ -1,0 +1,2 @@
+module MethodCaseStudiesHelper
+end
