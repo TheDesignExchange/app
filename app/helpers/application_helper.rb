@@ -163,5 +163,36 @@ module ApplicationHelper
 	   content_tag(:span, "", :class => "glyphicon glyphicon-#{value}")
 	end
 
+  # Format a list of design_methods for front-end convenience
+  def format_design_methods(design_methods)
+
+  end
+
+  # Return a nested list of categories, characteristic groups, and characteristics that belong to
+  # a set of design_methods. Used for filtering search results.
+  #
+  # The output should be in this format:
+  # [
+  #   { "id": 1,
+  #     "name": "Build",
+  #     "characteristic_groups": [
+  #       { "id": 1,
+  #         "name": "Fidelity",
+  #         "characteristics": [
+  #           { "id": 1,
+  #             "name": "Low"
+  #           },
+  #           ...
+  #         ]
+  #       },
+  #       ...
+  #     ]
+  #   },
+  #   ...
+  # ]
+  def get_filters(design_methods)
+
+  end
+
 end
 
