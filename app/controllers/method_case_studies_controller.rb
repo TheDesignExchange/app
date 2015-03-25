@@ -21,6 +21,7 @@ class MethodCaseStudiesController < ApplicationController
       tag = tag + '</span>'
     tag.html_safe
   end
+  
   def destroy
     @mcs = MethodCaseStudy.find(params[:id])
     @mcs.destroy

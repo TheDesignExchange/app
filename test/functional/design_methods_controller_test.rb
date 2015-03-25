@@ -28,7 +28,6 @@ class DesignMethodsControllerTest < ActionController::TestCase
         process: @design_method.process
       }
     end
-
     assert_redirected_to design_method_path(assigns(:design_method))
   end
 
@@ -43,7 +42,12 @@ class DesignMethodsControllerTest < ActionController::TestCase
   end
 
   test "should update design_method" do
-    put :update, id: @design_method, design_method: { owner_id: @design_method.owner_id, name: @design_method.name, overview: @design_method.overview, process: @design_method.process }
+    put :update, id: @design_method, design_method: { 
+      owner_id: @design_method.owner_id, 
+      name: @design_method.name, 
+      overview: @design_method.overview, 
+      process: @design_method.process 
+    }
     assert_redirected_to design_method_path(assigns(:design_method))
   end
 
