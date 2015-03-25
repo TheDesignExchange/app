@@ -1,4 +1,4 @@
-class DesignMethodsController < ApplicationController
+		class DesignMethodsController < ApplicationController
 
   def index
     @design_methods = DesignMethod.where("overview != ?", "No overview available" )
@@ -6,7 +6,11 @@ class DesignMethodsController < ApplicationController
     # @design_methods = DesignMethod.take(24)
      # Filter bar needs
     @search_filter_hash = MethodCategory.all
-    render :layout => "wide"
+    @design_methods_all = DesignMethod.all
+    respond_to do |format|
+      format.html { render :layout => "wide" }
+      format.json { render json: @design_methods_all} 
+    end
   end
 
   def new
@@ -81,8 +85,10 @@ class DesignMethodsController < ApplicationController
     @citations = dm.citations
     @similar_methods = @method.similar_methods(100,6)
     @similar_case_studies = @method.similar_case_studies(100,6)
-    render :layout => "custom"
-    # render :json => @method.neighbors(100, 6)
+    respond_to do |format|
+	    format.html { render :layout => "custom" }
+	    format.json {render :json => @method}
+	end
   end
 
   def search
