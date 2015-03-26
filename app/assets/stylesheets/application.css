@@ -218,7 +218,7 @@ img{
       font-size: 16px;
       max-height: 3.4em;
       overflow: hidden;
-      line-height: 1.1em;
+      line-height: 1.2em;
     }
     .card:hover h5 {
       max-height: none;

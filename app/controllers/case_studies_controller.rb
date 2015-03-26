@@ -4,7 +4,11 @@ class CaseStudiesController < ApplicationController
     @case_studies = CaseStudy.where("overview != ?", "No overview available" )
     # @case_studies = CaseStudy.take(24)
     @search_filter_hash = MethodCategory.all
-  	render layout: "wide"
+    @case_studies_all = CaseStudy.all
+    respond_to do |format|
+      format.html { render layout: "wide" }
+      format.json { render :json => @case_studies_all }
+    end
   end
 
   def new
@@ -50,8 +54,10 @@ class CaseStudiesController < ApplicationController
     @similar_methods = @case_study.similar_methods(100,6)
     @similar_case_studies = @case_study.similar_case_studies(100,6)
     @lookup = CaseStudy.lookup
-    render layout: "custom"
-    # render :json =>  @lookup
+    respond_to do |format|
+      format.html { render layout: "custom" }
+      format.json { render :json =>  @case_study }
+    end
   end
 
   def search

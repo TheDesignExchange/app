@@ -1,17 +1,5 @@
-require 'spreadsheet'
-
-# Set admin as creator of methods
-admin = User.new(
-  username: "admin",
-  first_name: "TheDesignExchange",
-  last_name: "Admin",
-  email: "admin@thedesignexchange.org",
-  password: "thedesignexchange",
-  password_confirmation: "thedesignexchange",
-)
-
-p "Admin #{admin.username} created!" if admin.save
-p admin.errors unless admin.save
+# Create default admin user
+admin = User.where(username: "admin").first
 
 # These indices are set to the current spreadsheet format. Update as necessary
 CHARACTERISTIC_INDEX = 8
@@ -62,8 +50,6 @@ end
 
 def load_methods(category, sheet, admin)
 
-  p "========================= LOAD DESIGN METHODS ========================="
-
   #Load in design method fields
   fields = Hash.new
   sheet.each METHOD_ROW do |row|
@@ -107,7 +93,7 @@ def load_methods(category, sheet, admin)
       if group
         category.characteristic_groups << group
       end
-      
+
       characteristics.split(/, *\n*/).each do |char_name|
         if !char_name.blank?
           characteristic = Characteristic.where({name: char_name, characteristic_group_id: group.id}).first_or_create!
@@ -139,42 +125,36 @@ def load_methods(category, sheet, admin)
 end
 
 # Create five basic method categories
-p "====================== SEEDING METHOD CATEGORIES ======================="
 
 building = MethodCategory.new
-building.name = "Building and Prototyping"
+building.name = "Build"
 
 analysis = MethodCategory.new
-analysis.name = "Analysis and Synthesis"
+analysis.name = "Analyze"
 
 ideation = MethodCategory.new
-ideation.name = "Ideation"
+ideation.name = "Ideate"
 
 data = MethodCategory.new
-data.name = "Data Gathering"
+data.name = "Research"
 
 communication = MethodCategory.new
-communication.name = "Communication"
+communication.name = "Communicate"
 
 categories = [building, analysis, ideation, data, communication]
 sheets = {"Building and Prototyping" => "Building_Prototyping_Cards.xls",
           "Analysis and Synthesis" => "Analysis_Synthesis_Cards.xls",
           "Ideation" => "Ideation_Cards.xls",
-          "Data Gathering" => "Data_Gathering_Cards.xls",
+          "Investigating" => "Data_Gathering_Cards.xls",
           "Communication" => "Communication_Cards.xls"}
 
 categories.each do |cat|
-  p "========================== Category #{cat.name} created! ======================================" if cat.save
+  p "============================ Category #{cat.name} created! ======================================" if cat.save
   p cat.errors unless cat.save
-  name = "lib/tasks/data/#{sheets[cat.name]}"
+  name = "lib/tasks/data/#{cat.name}.xls"
   filename = File.join(Rails.root, name)
   sheet = Spreadsheet.open(filename).worksheet 0
 
   load_methods(cat, sheet, admin)
   load_variations(sheet)
 end
-
-
-
-
-

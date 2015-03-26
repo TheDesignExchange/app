@@ -18,8 +18,8 @@ gem 'turbolinks'
 gem 'equivalent-xml'
 gem 'ffi'
 gem 'kramdown'
-
 gem 'pg'
+gem 'seed_dump'
 
 # LSA
 
