@@ -35,7 +35,7 @@ class UsersControllerTest < ActionController::TestCase
   #      first_name: @user.first_name,
   #      last_name: @user.last_name,
   #   }
-  #   assert_redirected_to design_method_path(assigns(:user))
+  #   assert_redirected_to user_path(assigns(:user))
   # end
 
 end

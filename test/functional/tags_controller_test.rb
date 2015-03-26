@@ -7,9 +7,13 @@ class TagsControllerTest < ActionController::TestCase
   	sign_in @user
   end 
 
-  test "should get create tag" do
-  	get :create
-  	assert_response :success 
+  test "should create tag" do
+    assert_difference 'Tag.count', 1 do
+      post :create, design_method: {
+        id: @tag.id
+      }
+    end
+    assert_redirected_to tag_path(assigns(:tag))
   end
 
 	# test "should get tagify" do
