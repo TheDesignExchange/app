@@ -15,5 +15,7 @@
 
 one:
   id: 1
-  case_study_id: 1	
+  case_study: one 
+  design_method: one
+  content: MyString
 
