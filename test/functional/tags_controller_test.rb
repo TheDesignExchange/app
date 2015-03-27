@@ -7,11 +7,11 @@ class TagsControllerTest < ActionController::TestCase
 
   test "should create tag" do
     assert_difference 'Tag.count', 1 do
-      post :create, design_method: {
+      post :create, tag: {
         id: @tag.id
       }
     end
-    assert_redirected_to tag_path(assigns(:tag))
+    #assert_redirected_to tag_path(assigns(:tag))
   end
 
 	# test "should get tagify" do
