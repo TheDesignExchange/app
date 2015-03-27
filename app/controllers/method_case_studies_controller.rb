@@ -4,11 +4,8 @@ class MethodCaseStudiesController < ApplicationController
     render json: @mcs_all
   end
    def create
-<<<<<<< HEAD
-    @mcs = MethodCaseStudy.new(params[:method_case_study])   
-=======
+
     @mcs = MethodCaseStudy.new(params[:method_case_study])
->>>>>>> e136b7155d069301e00293d1c1d3cb2b2d19810a
       if @mcs.save
         # format.html { redirect_to @tag, notice: 'Design method was successfully created.' }
         # format.json { render json: @tag, status: :created, location: @tag }
