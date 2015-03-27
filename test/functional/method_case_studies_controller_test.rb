@@ -10,7 +10,8 @@ class MethodCaseStudiesControllerTest < ActionController::TestCase
   test "should create method_case_study" do
     assert_difference 'MethodCaseStudy.count', 1 do
       post :create, method_case_study: {
-        id: @method_case_study.id
+        case_study_id:
+        design_method_id: 
       }
     end 
     assert_redirected_to method_case_study_path(assigns(:method_case_study))
