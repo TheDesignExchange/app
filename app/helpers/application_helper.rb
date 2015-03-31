@@ -168,14 +168,14 @@ module ApplicationHelper
 
   end
 
-  # Return a nested list of categories, characteristic groups, and characteristics that belong to
+  # Return a nested list of categories, characteristic characteristics, and characteristics that belong to
   # a set of design_methods. Used for filtering search results.
   #
   # The output should be in this format:
   # [
   #   { "id": 1,
   #     "name": "Build",
-  #     "characteristic_groups": [
+  #     "characteristic_characteristics": [
   #       { "id": 1,
   #         "name": "Fidelity",
   #         "characteristics": [
@@ -192,6 +192,67 @@ module ApplicationHelper
   # ]
   def get_filters(design_methods)
 
+    filters = {}
+
+    # start by creating hashes that map IDs to the formatted hash of the filter, i.e.
+    # { <category_id_1>: <formatted_category_hash_1>, <category_id_2>: <formatted_category_hash_2>, ...}
+    # and the same for characteristic groups and characteristics
+    #
+    # later we flatten these hashes down to lists by calling hash.values
+    design_methods.each do |design_method|
+      design_method.characteristics.each do |characteristic|
+
+
+        group = characteristic.characteristic_group
+        category = characteristic.characteristic_group.method_category
+
+        # add category if it does not exist
+        if not filters.keys.include? category.id
+          formatted_category = {}
+
+          formatted_category[:id] = category.id
+          formatted_category[:name] = category.name
+          formatted_category[:characteristic_groups] = {}
+
+          filters[category.id] = formatted_category
+        end
+
+        # add group if it does not exist
+        if not filters[category.id][:characteristic_groups].keys.include? group.id
+          formatted_group = {}
+
+          formatted_group[:id] = group.id
+          formatted_group[:name] = group.name
+          formatted_group[:characteristics] = {}
+
+          filters[category.id][:characteristic_groups][group.id] = formatted_group
+        end
+
+        # add characteristic if it does not exist
+        if not filters[category.id][:characteristic_groups] \
+          [group.id][:characteristics].keys.include? characteristic.id
+
+          formatted_characteristic = {}
+
+          formatted_characteristic[:id] = characteristic.id
+          formatted_characteristic[:name] = characteristic.name
+
+          filters[category.id][:characteristic_groups] \
+            [group.id][:characteristics][characteristic.id] = formatted_characteristic
+        end
+      end
+    end
+
+    # flatten down hashes into lists
+    filters.values.each do |category|
+      category[:characteristic_groups].values.each do |groups|
+        groups[:characteristics] = groups[:characteristics].values
+      end
+      category[:characteristic_groups] = category[:characteristic_groups].values
+    end
+    filters = filters.values
+
+    return filters
   end
 
 end
