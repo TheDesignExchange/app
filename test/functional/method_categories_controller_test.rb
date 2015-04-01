@@ -5,7 +5,7 @@ class MethodCategoriesControllerTest < ActionController::TestCase
   	@method_category = method_categories(:one)
   end 
 
-  test "should show design_method" do
+  test "should show method_category" do
     get :show, id: @method_category
     assert_response :success
   end
