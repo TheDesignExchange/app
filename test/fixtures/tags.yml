@@ -13,8 +13,9 @@
 #  content_type     :string(255)      default("tag")
 #
 
-require 'rails_helper'
+one:
+  id: 1
+  case_study: one 
+  design_method: one
+  content: MyString
 
-RSpec.describe Tag, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
-end

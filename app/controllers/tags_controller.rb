@@ -2,7 +2,7 @@ class TagsController < InheritedResources::Base
 	def create
     @tag = Tag.new(params[:tag])
 
-   
+    
       if @tag.save
         # format.html { redirect_to @tag, notice: 'Design method was successfully created.' }
         # format.json { render json: @tag, status: :created, location: @tag }

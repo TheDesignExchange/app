@@ -18,6 +18,7 @@
 .sass-cache
 capybara-*.html
 .rspec
+.spec_unused
 /.bundle
 /vendor/bundle
 /log/*
