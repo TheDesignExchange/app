@@ -24,12 +24,5 @@ one:
   name: MyString
   overview: MyText
   process: MyText
-  principle: MyText
-  citation_id: 1
+  owner: one
 
-two:
-  name: MyString
-  overview: MyText
-  process: MyText
-  principle: MyText
-  citation_id: 1

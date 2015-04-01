@@ -11,18 +11,16 @@ class CaseStudiesController < ApplicationController
     end
   end
 
-
-
   def new
     id = params[:id] == nil ? 1 : params[:id].to_i
-    # render :text => id
+    render :text => id
     @case_study = CaseStudy.new
 
     @attr = CaseStudy.columns_hash;
     @options = CaseStudy.options
     @helper_text = CaseStudy.helper_text()
     @similar_methods = []
-    render :layout => "custom"
+    #render :layout => "custom"
   end
 
   def related_methods
@@ -84,7 +82,8 @@ class CaseStudiesController < ApplicationController
     @case_study = CaseStudy.new(params[:case_study])
 
     respond_to do |format|
-      if @design_method.save
+      #if @design_method.save
+      if @case_study.save
         format.html { redirect_to @case_study, notice: 'Case study was successfully created.' }
         format.json { render json: @case_study, status: :created, location: @case_study }
       else

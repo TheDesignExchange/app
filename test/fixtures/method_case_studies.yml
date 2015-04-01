@@ -1,16 +1,15 @@
 # == Schema Information
 #
-# Table name: method_favorites
+# Table name: method_case_studies
 #
 #  id               :integer          not null, primary key
-#  user_id          :integer
+#  case_study_id    :integer
 #  design_method_id :integer
 #  created_at       :datetime
 #  updated_at       :datetime
 #
 
-require 'rails_helper'
+one: 
+  case_study: one 
+  design_method: one 
 
-describe MethodFavorite do
-  pending "add some examples to (or delete) #{__FILE__}"
-end

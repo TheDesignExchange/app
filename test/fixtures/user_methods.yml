@@ -15,7 +15,4 @@
 one:
   user_id: 1
   design_method_id: 1
-
-two:
-  user_id: 1
-  design_method_id: 1
+  type_id: 1
