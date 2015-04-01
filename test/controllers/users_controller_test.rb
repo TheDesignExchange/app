@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UsersControllerTest < ActionController::TestCase
+class UsersControllerTest < FunctionalTestCase
   setup do
     @user = users(:one)
     sign_in @user

@@ -10,5 +10,8 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  include Devise::TestHelpers
 end
+
+class FunctionalTestCase < ActionController::TestCase
+	include Devise::TestHelpers
+end 

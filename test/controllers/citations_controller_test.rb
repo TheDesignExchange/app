@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CitationsControllerTest < ActionController::TestCase
+class CitationsControllerTest < FunctionalTestCase
   setup do 
   	@citation = citations(:one)
   end

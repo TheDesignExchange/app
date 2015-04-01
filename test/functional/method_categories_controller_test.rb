@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MethodCategoriesControllerTest < ActionController::TestCase
+class MethodCategoriesControllerTest < FunctionalTestCase
   setup do 
   	@method_category = method_categories(:one)
   end 
