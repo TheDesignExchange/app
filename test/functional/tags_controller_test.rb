@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TagsControllerTest < ActionController::TestCase
+class TagsControllerTest < FunctionalTestCase
   setup do
   	@tag = tags(:one)
   end 

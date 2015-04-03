@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CaseStudiesControllerTest < ActionController::TestCase
+class CaseStudiesControllerTest < FunctionalTestCase
   setup do
     @case_study = case_studies(:one)
     @user = users(:one)

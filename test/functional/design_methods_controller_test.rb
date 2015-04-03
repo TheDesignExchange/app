@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DesignMethodsControllerTest < ActionController::TestCase
+class DesignMethodsControllerTest < FunctionalTestCase
   setup do
     @design_method = design_methods(:one)
     @user = users(:one)
