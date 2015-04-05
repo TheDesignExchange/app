@@ -13,4 +13,7 @@
 class UserMethod < ActiveRecord::Base
   after_create :default_type_owned # TODO does this do anything?
 
+  validates :user_id, presence: true
+  validates :design_method_id, presence: true
+  validates :type_id, presence: true	
 end
