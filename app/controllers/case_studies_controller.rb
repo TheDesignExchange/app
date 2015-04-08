@@ -12,15 +12,13 @@ class CaseStudiesController < ApplicationController
   end
 
   def new
-    id = params[:id] == nil ? 1 : params[:id].to_i
-    render :text => id
     @case_study = CaseStudy.new
 
     @attr = CaseStudy.columns_hash;
     @options = CaseStudy.options
     @helper_text = CaseStudy.helper_text()
     @similar_methods = []
-    #render :layout => "custom"
+    render :layout => "custom"
   end
 
   def related_methods
