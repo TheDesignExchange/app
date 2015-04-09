@@ -85,16 +85,16 @@ function removeMethodLink(id, self){
 	$(self).parent().remove();
 }
 
-function createMethodLink(case_study_id, tag){
-	var value = $(tag).parent().siblings('select').val();
-	tag = {};
-	tag["case_study_id"] = case_study_id;
-	tag["design_method_id"] = value;
-	console.log(tag);
+function createMethodLink(case_study_id, method_case_study){
+	var value = $(method_case_study).parent().siblings('select').val();
+	method_case_study = {};
+	method_case_study["case_study_id"] = case_study_id;
+	method_case_study["design_method_id"] = value;
+	console.log(method_case_study);
 	$.ajax({
 	  url: "/method_case_studies",
 	  type: "POST",
-	  data: {tag: tag, commit:"Create Method Link"},
+	  data: {method_case_study: method_case_study, commit:"Create Method Link"},
 	  success: function(html){
 	  	console.log(html);
 	  	$('.method-list').append(html.mcs);
