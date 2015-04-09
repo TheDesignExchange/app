@@ -86,7 +86,7 @@ function removeMethodLink(id, self){
 }
 
 function createMethodLink(case_study_id, method_case_study){
-	var value = $(method_case_study).parent().siblings('select').val();
+	var value = $(tag).parent().siblings('select').val();
 	method_case_study = {};
 	method_case_study["case_study_id"] = case_study_id;
 	method_case_study["design_method_id"] = value;
