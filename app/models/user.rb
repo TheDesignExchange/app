@@ -29,8 +29,8 @@
 
 class User < ActiveRecord::Base
   mount_uploader :profile_picture, PictureUploader
-   attr_accessible :email, :encrypted_password, :sign_in_count, :first_name, :last_name, :username, :phone_number, :website, 
-   :facebook, :twitter, :linkedin, :about_text , :profile_picture, :password, :password_confirmation
+   # attr_accessible :email, :encrypted_password, :sign_in_count, :first_name, :last_name, :username, :phone_number, :website, 
+   # :facebook, :twitter, :linkedin, :about_text , :profile_picture, :password, :password_confirmation
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

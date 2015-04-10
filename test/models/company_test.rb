@@ -10,5 +10,14 @@
 #  updated_at :datetime
 #
 
-one: 
-  name: Company 
+require 'test_helper'
+
+class CompaniesTest < ActiveSupport::TestCase 
+	setup do 
+		@company = companies(:one)
+	end 
+
+	test "should be valid" do
+		assert @company.valid?
+	end
+end 

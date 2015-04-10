@@ -9,7 +9,14 @@
 #  updated_at       :datetime
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+require 'test_helper'
 
-one: 
-  design_method_id: 1
+class MethodCitationTest < ActiveSupport::TestCase 
+	setup do 
+		@method_citation = method_citations(:one)
+	end 
+
+	test "should be valid" do
+		assert @method_citation.valid?
+	end
+end 
