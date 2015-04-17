@@ -30,31 +30,31 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase 
-	setup do 
-		@user = users(:one)
-	end 
+  setup do 
+    @user = users(:one)
+  end 
 
-	test "email should be present" do
-		@user.email = "   "
-		assert_not @user.valid?
-	end
+  test "email should be present" do
+    @user.email = "   "
+    assert_not @user.valid?
+  end
 
-	test "encrypted_password should be present" do
-		@user.encrypted_password = "   "
-		assert_not @user.valid?
-	end
+  test "encrypted_password should be present" do
+    @user.encrypted_password = "   "
+    assert_not @user.valid?
+  end
 
-	test "sign_in_count should be present" do
-		@user.sign_in_count = "   "
-		assert_not @user.valid?
-	end
+  test "sign_in_count should be present" do
+    @user.sign_in_count = "   "
+    assert_not @user.valid?
+  end
 
-	test "associated design_methods should be destroyed" do
-		@user.owned_methods
-		assert_difference 'DesignMethod.count', -1 do 
-			@user.destroy
-		end 
-	end 
+  test "associated design_methods should be destroyed" do
+    @user.owned_methods
+    assert_difference 'DesignMethod.count', -1 do 
+      @user.destroy
+    end 
+  end 
 
 
 end
