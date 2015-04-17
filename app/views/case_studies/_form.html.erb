@@ -55,7 +55,7 @@
 
     <% if not @case_study.new_record? %>
         <%= link_to 'Destroy', case_study_path(@case_study),
-            :confirm => 'Are you sure?', :method => :delete, :class=> "btn btn-danger pull-right" %>
+          data: { :confirm => 'Are you sure?' }, :method => :delete, :class=> "btn btn-danger pull-right" %>
     <% end %>
 
     <!-- <span id="auto-saved-text" class="pull-right">Auto-saved as draft 2 minutes ago</span> -->
