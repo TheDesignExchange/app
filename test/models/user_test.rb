@@ -48,4 +48,13 @@ class UserTest < ActiveSupport::TestCase
 		@user.sign_in_count = "   "
 		assert_not @user.valid?
 	end
+
+	test "associated design_methods should be destroyed" do
+		@user.owned_methods
+		assert_difference 'DesignMethod.count', -1 do 
+			@user.destroy
+		end 
+	end 
+
+
 end
