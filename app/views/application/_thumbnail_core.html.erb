@@ -2,6 +2,11 @@
   <div class="caption">
     <h5><%= @thumb_obj[:name] %></h5>
     </h5>
+    <% if @thumb_obj[:image].present? %>
+      <div class="image-wrapper">
+       <%= image_tag @thumb_obj[:image]%>
+      </div>
+    <% end %>
     <p>
       <%= "#{@thumb_obj[:overview]}" %>
       <%#= link_to "[...]", eval("#{@thumb_obj[:link]}_path(#{@thumb_obj[:id]})") %>
