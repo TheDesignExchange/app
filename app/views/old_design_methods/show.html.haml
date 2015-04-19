@@ -1,0 +1,19 @@
+%h2= @design_method.name
+%p
+  %b Overview:
+  = md_format @design_method.overview
+%p
+  %b Process:
+  = md_format @design_method.process
+%p
+  %b Principle:
+  = md_format @design_method.principle
+%p
+  %b Categories:
+  = render @categories
+%p
+  %b Citations:
+  = render @citations
+= link_to 'Back', @back
+|
+= link_to 'Index', design_methods_path

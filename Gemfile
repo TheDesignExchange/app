@@ -20,6 +20,8 @@ gem 'ffi'
 gem 'kramdown'
 gem 'pg'
 gem 'seed_dump'
+gem 'haml'
+gem 'haml-rails', group: :development
 
 gem 'quiet_assets'
 gem 'lograge'
