@@ -1,0 +1,17 @@
+%a.card{:href => "#{eval("#{@thumb_obj[:link]}_path(#{@thumb_obj[:id]})")}"}
+  .caption
+    %h5= @thumb_obj[:name]
+    - if @thumb_obj[:image].present?
+      .image-wrapper
+        = image_tag @thumb_obj[:image]
+    %p
+      = "#{@thumb_obj[:overview]}"
+  .meta
+    - if @thumb_obj[:tags].length > 0
+      %p.tags
+        - tagifier(@thumb_obj[:tags]).each do |category|
+          %span.tag-label.label-gap
+            = "#{category}"
+    %p.views
+      %i.glyphicon.glyphicon-eye-open
+      = "#{@thumb_obj[:likes]}"

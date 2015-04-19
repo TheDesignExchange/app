@@ -1,0 +1,9 @@
+%h1 Search results
+.search
+  .sidecolumn
+    %ul
+      %h3 Filters
+  .maincolumn
+    %ul
+      - @hits.each do |hit|
+        = render 'design_methods/hit', hit: hit

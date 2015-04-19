@@ -1,0 +1,26 @@
+.row
+  / HEADER
+  %h3 Start Discussion
+  / END HEADER
+  / TITLE INPUT
+  .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+    %input.form-control{:placeholder => "Discussion Title", :type => "text"}/
+  / END TITLE INPUT
+  / CONTENT
+  %textarea.form-control.noscroll{:placeholder => "Content", :rows => "10"}
+  / END CONTENT
+  / ADD TAGS
+  %br/
+  .panel.panel-primary
+    .panel-heading
+      %input.form-control{:placeholder => "Tag", :type => "text"}/
+    .panel-body
+      %span.label.label-brainstorming
+        brainstorming
+        %span.glyphicon.glyphicon-remove-circle
+      %span.label.label-research
+        research
+        %span.glyphicon.glyphicon-remove-circle
+  / END ADD TAGS
+  %button.btn.publish-background-color.btn-default.pull-right{:type => "submit"} Start Discussion
+  %div

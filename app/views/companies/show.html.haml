@@ -1,0 +1,19 @@
+%h1 Company
+%p#notice= notice
+%p
+  %strong Name:
+  = @company.name
+%p
+  %strong Email:
+  = @company.email
+%p
+  %strong Domain:
+  = @company.domain
+= link_to 'Edit', edit_company_path(@company)
+|
+= link_to 'Back', companies_path
+|
+= link_to 'Add a Contact', new_company_contact_path(@company)
+%h2 Contacts
+- @company.contacts.each do |c|
+  = "#{c.name} (#{c.email})"
