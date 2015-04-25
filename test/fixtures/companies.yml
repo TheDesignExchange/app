@@ -10,5 +10,7 @@
 #  updated_at :datetime
 #
 
-one: 
-  name: Company 
+google: 
+  name: Google
+  email: <%= Faker::Internet.email %>
+  domain: <%= Faker::Internet.url %>

@@ -13,7 +13,7 @@ require 'test_helper'
 
 class MethodCitationTest < ActiveSupport::TestCase 
 	setup do 
-		@method_citation = method_citations(:one)
+		@method_citation = method_citations(:balsamiq)
 	end 
 
 	test "should be valid" do

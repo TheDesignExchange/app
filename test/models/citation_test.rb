@@ -12,7 +12,7 @@ require 'test_helper'
 
 class CitationTest < ActiveSupport::TestCase 
 	setup do 
-		@citation = citations(:one)
+		@citation = citations(:MITstudy)
 	end 
 
 	test "should be valid" do

@@ -17,5 +17,8 @@ one:
   id: 1
   case_study: one 
   design_method: one
-  content: MyString
+  discussion_id: <%= Faker::Number.digit %>
+  user_id: <%= Faker::Number.digit %>
+  content: <%= Faker::Lorem.word %> 
+  content_type: <%= Faker::Lorem.word %>
 

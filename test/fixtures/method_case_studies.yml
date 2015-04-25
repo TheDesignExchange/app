@@ -10,6 +10,6 @@
 #
 
 one: 
-  case_study: one 
-  design_method: one 
+  case_study: <%= Faker::Number.digit %>  
+  design_method: <%= Faker::Number.digit %> 
 

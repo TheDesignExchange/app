@@ -14,7 +14,7 @@ require 'test_helper'
 
 class CompaniesTest < ActiveSupport::TestCase 
 	setup do 
-		@company = companies(:one)
+		@company = companies(:google)
 	end 
 
 	test "should be valid" do

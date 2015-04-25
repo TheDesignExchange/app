@@ -11,5 +11,6 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one: 
-  design_method_id: 1
+balsamiq: 
+  design_method_id: <%= Faker::Number.digit %> 
+  citation_id: <%= Faker::Number.digit %> 
