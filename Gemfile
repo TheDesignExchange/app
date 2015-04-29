@@ -21,6 +21,8 @@ gem 'kramdown'
 gem 'pg'
 gem 'seed_dump'
 
+gem 'quiet_assets'
+gem 'lograge'
 # LSA
 
 gem 'sprockets', '2.11.0'
@@ -35,7 +37,6 @@ end
 
 group :development do
   gem 'thin'
-  gem 'quiet_assets'
 end
 
 group :production do

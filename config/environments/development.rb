@@ -31,4 +31,7 @@ DesignExchange::Application.configure do
   # Eager load
   config.eager_load = false
 
+  # Lograge
+  config.lograge.enabled = true
+
 end

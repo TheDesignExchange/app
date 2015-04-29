@@ -121,6 +121,10 @@ GEM
       activesupport (>= 3.0.0)
     kgio (2.9.2)
     kramdown (1.5.0)
+    lograge (0.3.1)
+      actionpack (>= 3)
+      activesupport (>= 3)
+      railties (>= 3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -276,6 +280,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   kramdown
+  lograge
   normalize-rails
   pg
   protected_attributes
