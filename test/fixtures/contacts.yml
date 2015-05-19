@@ -12,3 +12,5 @@
 #
 one: 
   id: 1
+  email: MyString
+  name: MyString

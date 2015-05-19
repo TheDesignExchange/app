@@ -19,5 +19,16 @@ class CompaniesTest < ActiveSupport::TestCase
 
 	test "should be valid" do
 		assert @company.valid?
-	end
+	end  
+
+  test "email should be present" do
+    @company.email = "   "
+    assert @company.valid?
+  end
+
+  test "domain should be present" do
+    @company.domain = "   "
+    assert @company.valid?
+  end
+
 end 
