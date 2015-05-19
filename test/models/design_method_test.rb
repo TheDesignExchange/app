@@ -22,7 +22,7 @@ require 'test_helper'
 
 class DesignMethodTest < ActiveSupport::TestCase 
 	setup do 
-		@design_method = design_methods(:one)
+		@design_method = design_methods(:DarkHorse)
 	end 
 
 	test "should be valid" do

@@ -11,4 +11,6 @@
 #
 
 one: 
-  user_id: 1
+  name: <%= Faker::Lorem.word %> 
+  description: <%= Faker::Lorem.sentence %> 
+  user_id: <%= Faker::Number.digit %> 

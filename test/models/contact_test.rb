@@ -24,12 +24,12 @@ class ContactTest < ActiveSupport::TestCase
 
   test "email should be present" do
     @contact.email = "   "
-    assert @contact.valid?
+    assert_not @contact.valid?
   end
 
   test "name should be present" do
     @contact.name = "   "
-    assert @contact.valid?
+    assert_not @contact.valid?
   end
 
 end 

@@ -34,8 +34,17 @@
 # below each fixture, per the syntax in the comments below
 #
 
-one:
-  email: test@test.com
+jack:
+  email: <%= Faker::Internet.email %>
   encrypted_password: <%= Devise.bcrypt(User, 'test') %>
-  first_name: "Test"
-  last_name: "Test"
+  sign_in_count: <%= Faker::Number.digit %>
+  first_name: <%= Faker::Name.first_name %>
+  last_name: <%= Faker::Name.last_name %>
+  username: <%= Faker::Lorem.word %> 
+  profile_picture: <%= Faker::Lorem.word %>
+  phone_number: <%= Faker::PhoneNumber.cell_phone %>
+  website: <%= Faker::Internet.url %>
+  facebook: <%= Faker::Internet.url %>
+  twitter: <%= Faker::Internet.url %>
+  linkedin: <%= Faker::Internet.url %>
+  about_text: <%= Faker::Lorem.word %>

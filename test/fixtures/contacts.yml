@@ -10,7 +10,10 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
+
 one: 
-  id: 1
-  email: MyString
-  name: MyString
+  id: <%= Faker::Number.digit %> 
+  name: <%= Faker::Lorem.word %>
+  email: <%= Faker::Internet.email %>
+  phone: <%= Faker::PhoneNumber.cell_phone %>
+  company_id: <%= Faker::Number.digit %>

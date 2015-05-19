@@ -14,7 +14,7 @@ require 'test_helper'
 
 class CompaniesTest < ActiveSupport::TestCase 
 	setup do 
-		@company = companies(:one)
+		@company = companies(:google)
 	end 
 
 	test "should be valid" do
@@ -23,12 +23,11 @@ class CompaniesTest < ActiveSupport::TestCase
 
   test "email should be present" do
     @company.email = "   "
-    assert @company.valid?
+    assert_not @company.valid?
   end
 
   test "domain should be present" do
     @company.domain = "   "
-    assert @company.valid?
+    assert_not @company.valid?
   end
-
 end 

@@ -34,11 +34,11 @@
 require 'test_helper'
 
 class CaseStudyTest < ActiveSupport::TestCase 
-	setup do 
-		@case_study =case_studies(:one)
-	end 
+  setup do 
+    @case_study = case_studies(:iWitness)
+  end 
 
-	test "should be valid" do
-		assert @case_study.valid?
-	end
+  test "should be valid" do
+    assert @case_study.valid?
+  end
 end 

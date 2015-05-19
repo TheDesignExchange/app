@@ -31,8 +31,12 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase 
   setup do 
-    @user = users(:one)
-  end 
+    @user = users(:jack)
+  end
+
+  test "should be valid" do
+    assert @user.valid?
+  end
 
   test "email should be present" do
     @user.email = "   "
