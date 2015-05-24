@@ -176,6 +176,7 @@
   				<span class="glyphicon glyphicon-star"></span>
   				- likes
   			</div>
+
   			<div class="col-xs-3">
           		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
           			<span class="glyphicon glyphicon-folder-open"></span>
@@ -188,6 +189,7 @@
             		<li><a href="#">My Favorites </a></li>
           		</ul>
   			</div>
+
   			<div class="col-xs-3">
   				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
           				<span class="glyphicon glyphicon-share"></span>
@@ -198,10 +200,12 @@
             			<li><a href="#">Email</a></li>
           			</ul>
   			</div>
-  			<div class="col-xs-3">
-  					<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Edit'.html_safe, edit_case_study_path, :class => "pull right"%>
-          
-  			</div>
+
+        <% if signed_in? %>
+    			<div class="col-xs-3">
+    					<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Edit'.html_safe, edit_case_study_path, :class => "pull right"%>
+  			  </div>
+        <% end %> 
   		</div>
       <!-- END MENU BAR -->
 
