@@ -3,8 +3,8 @@ class MethodCaseStudiesController < ApplicationController
     @mcs_all = MethodCaseStudy.all
     render json: @mcs_all
   end
-   def create
 
+  def create
     @mcs = MethodCaseStudy.new(params[:method_case_study])
       if @mcs.save
         # format.html { redirect_to @tag, notice: 'Design method was successfully created.' }
@@ -15,6 +15,7 @@ class MethodCaseStudiesController < ApplicationController
         render json: @mcs.errors, status: :unprocessable_entity
     end
   end
+  
   # TODO: unusued; figure out if this is necessary
   def mcs(id, content, options)
     tag = "<span class='tag-label label-gap'>#{content}  " 

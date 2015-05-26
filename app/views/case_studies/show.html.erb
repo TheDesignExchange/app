@@ -13,7 +13,7 @@
 		<div class="row">
       <!-- ORIGINAL CASE STUDY -->
 	   <h4> Materials </h4>
-      <p>
+      <p> 
         <span class="glyphicon glyphicon-list-alt"></span>
         <% if @case_study.resource_url %>
           <%= link_to "Permalink",  @case_study.resource_url, :target => "_blank"%>
@@ -201,11 +201,9 @@
           			</ul>
   			</div>
 
-        <% if signed_in? %>
-    			<div class="col-xs-3">
-    					<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Edit'.html_safe, edit_case_study_path, :class => "pull right"%>
-  			  </div>
-        <% end %> 
+  			<div class="col-xs-3">
+  					<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Edit'.html_safe, edit_case_study_path, :class => "pull right"%>
+			  </div>
   		</div>
       <!-- END MENU BAR -->
 
