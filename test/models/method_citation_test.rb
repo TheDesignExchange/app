@@ -9,8 +9,14 @@
 #  updated_at       :datetime
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+require 'test_helper'
 
-balsamiq: 
-  design_method_id: <%= Faker::Number.digit %> 
-  citation_id: <%= Faker::Number.digit %> 
+class MethodCitationTest < ActiveSupport::TestCase 
+	setup do 
+		@method_citation = method_citations(:balsamiq)
+	end 
+
+	test "should be valid" do
+		assert @method_citation.valid?
+	end
+end 

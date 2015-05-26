@@ -30,22 +30,15 @@
 #  outcome           :text
 #
 
-iWitness:
-  name: <%= Faker::Lorem.word %>
-  url:  <%= Faker::Internet.url %>
-  #ERROR:  column timePeriod" of relation "case_studies" does not exist
-  development_cycle: <%= Faker::Number.digit %>
-  design_phase: <%= Faker::Number.digit %> 
-  project_domain: <%= Faker::Number.digit %> 
-  customer_type: <%= Faker::Number.digit %> 
-  user_age:  <%= Faker::Number.digit %> 
-  privacy_level:  <%= Faker::Number.digit %> 
-  social_setting: <%= Faker::Number.digit %> 
-  overview: <%= Faker::Lorem.sentence %>
-  company_id: <%= Faker::Number.digit %>  
-  problem: <%= Faker::Lorem.sentence %>
-  process: <%= Faker::Lorem.sentence %>
-  outcome: <%= Faker::Lorem.sentence %>
 
+require 'test_helper'
 
+class CaseStudyTest < ActiveSupport::TestCase 
+  setup do 
+    @case_study = case_studies(:iWitness)
+  end 
 
+  test "should be valid" do
+    assert @case_study.valid?
+  end
+end 

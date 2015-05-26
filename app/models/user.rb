@@ -29,8 +29,9 @@
 
 class User < ActiveRecord::Base
   mount_uploader :profile_picture, PictureUploader
-   attr_accessible :email, :first_name, :last_name, :username, :phone_number, :website, 
+   attr_accessible :email, :encrypted_password, :sign_in_count, :first_name, :last_name, :username, :phone_number, :website, 
    :facebook, :twitter, :linkedin, :about_text , :profile_picture, :password, :password_confirmation
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -38,7 +39,9 @@ class User < ActiveRecord::Base
           validates :username, presence: true, uniqueness: true
           validates :first_name, presence: true
           validates :last_name, presence: true
-
+          validates :email, presence: true 
+          validates :encrypted_password, presence: true 
+          validates :sign_in_count, presence: true
 
   def favorite(design_method)
     if !self.favorite_methods.exists?(design_method)

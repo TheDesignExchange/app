@@ -27,24 +27,38 @@
 #  updated_at             :datetime
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+require 'test_helper'
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
+class UserTest < ActiveSupport::TestCase 
+  setup do 
+    @user = users(:jack)
+  end
 
-jack:
-  email: <%= Faker::Internet.email %>
-  encrypted_password: <%= Devise.bcrypt(User, 'test') %>
-  sign_in_count: <%= Faker::Number.digit %>
-  first_name: <%= Faker::Name.first_name %>
-  last_name: <%= Faker::Name.last_name %>
-  username: <%= Faker::Lorem.word %> 
-  profile_picture: <%= Faker::Lorem.word %>
-  phone_number: <%= Faker::PhoneNumber.cell_phone %>
-  website: <%= Faker::Internet.url %>
-  facebook: <%= Faker::Internet.url %>
-  twitter: <%= Faker::Internet.url %>
-  linkedin: <%= Faker::Internet.url %>
-  about_text: <%= Faker::Lorem.word %>
+  test "should be valid" do
+    assert @user.valid?
+  end
+
+  test "email should be present" do
+    @user.email = "   "
+    assert_not @user.valid?
+  end
+
+  test "encrypted_password should be present" do
+    @user.encrypted_password = "   "
+    assert_not @user.valid?
+  end
+
+  test "sign_in_count should be present" do
+    @user.sign_in_count = "   "
+    assert_not @user.valid?
+  end
+
+  test "associated design_methods should be destroyed" do
+    @user.owned_methods
+    assert_difference 'DesignMethod.count', -1 do 
+      @user.destroy
+    end 
+  end 
+
+
+end

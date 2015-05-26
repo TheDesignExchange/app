@@ -18,17 +18,35 @@
 #  likes            :integer          default(0)
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+require 'test_helper'
 
-DarkHorse:
-  name:  <%= Faker::Lorem.word %>
-  overview: <%= Faker::Lorem.sentence %>
-  process: <%= Faker::Lorem.sentence %>
-  owner: jack
-  num_of_designers: <%= Faker::Number.digit %> 
-  num_of_users: <%= Faker::Number.digit %> 
-  time_period: <%= Faker::Number.digit %>
-  time_unit: <%= Faker::Number.digit %>
-  likes: <%= Faker::Number.digit %>
+class DesignMethodTest < ActiveSupport::TestCase 
+	setup do 
+		@design_method = design_methods(:DarkHorse)
+	end 
 
+	test "should be valid" do
+		assert @design_method.valid?
+	end
 
+	test "name should be present" do
+		@design_method.name = "  "
+		assert_not @design_method.valid?
+	end
+
+	test "overview should be present" do
+		@design_method.overview = "   "
+		assert_not @design_method.valid?
+	end
+
+	test "process should be present" do
+		@design_method.process = "   "
+		assert_not @design_method.valid?
+	end
+
+	test "owner_id should be present" do
+		@design_method.owner_id = "    "
+		assert_not @design_method.valid?
+	end
+
+end 

@@ -13,12 +13,14 @@
 #  content_type     :string(255)      default("tag")
 #
 
-one:
-  id: 1
-  case_study: one 
-  design_method: one
-  discussion_id: <%= Faker::Number.digit %>
-  user_id: <%= Faker::Number.digit %>
-  content: <%= Faker::Lorem.word %> 
-  content_type: <%= Faker::Lorem.word %>
+require 'test_helper'
 
+class TagTest < ActiveSupport::TestCase 
+	setup do 
+		@tag = tags(:one)
+	end 
+
+	test "should be valid" do
+		assert @tag.valid?
+	end
+end 

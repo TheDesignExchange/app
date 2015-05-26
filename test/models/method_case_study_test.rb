@@ -9,7 +9,14 @@
 #  updated_at       :datetime
 #
 
-one: 
-  case_study: <%= Faker::Number.digit %>  
-  design_method: <%= Faker::Number.digit %> 
+require 'test_helper'
 
+class MethodCaseStudyTest < ActiveSupport::TestCase 
+	setup do 
+		@method_case_study = method_case_studies(:one)
+	end 
+
+	test "should be valid" do
+		assert @method_case_study.valid?
+	end
+end 
