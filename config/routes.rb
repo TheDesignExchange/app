@@ -5,6 +5,10 @@ DesignExchange::Application.routes.draw do
   resources :companies do 
     resources :contacts
   end
+  
+  resources :characteristics, only: [:show] do
+    resources :design_methods, only [:index]
+  end
 
   resources :tags
   resources :method_case_studies
