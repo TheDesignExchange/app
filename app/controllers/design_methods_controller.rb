@@ -1,21 +1,6 @@
 class DesignMethodsController < ApplicationController
-  before_action :signed_in_user_1, only: [:edit, :update]
-  before_action :signed_in_user_2, only: [:new, :create]
-
-  # Confirms a logged-in user.
-  def signed_in_user_1
-    unless signed_in?
-      flash[:danger] = "Please sign in to edit this design method."
-      redirect_to design_method_url
-    end
-  end
-
-  def signed_in_user_2
-    unless signed_in?
-      flash[:danger] = "Please sign in to create a method."
-      redirect_to design_methods_url
-    end
-  end
+  before_action :edit_as_signed_in_user, only: [:edit, :update]
+  before_action :create_as_signed_in_user, only: [:create, :new]
 
   def index
     @design_methods = DesignMethod.where("overview != ?", "No overview available" )
@@ -111,4 +96,21 @@ class DesignMethodsController < ApplicationController
   def search
     render :layout => "wide"
   end
+
+  # Confirms a logged-in user.
+  def edit_as_signed_in_user
+    unless signed_in?
+      flash[:danger] = "Please sign in to edit this design method."
+      redirect_to design_method_url
+    end
+  end
+
+  def create_as_signed_in_user
+    unless signed_in?
+      flash[:danger] = "Please sign in to add a design method."
+      redirect_to design_methods_url
+    end
+  end
+  
+  
 end

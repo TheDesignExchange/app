@@ -1,6 +1,6 @@
 class CaseStudiesController < ApplicationController
-  before_action :signed_in_user_1, only: [:edit, :update]
-  before_action :signed_in_user_2, only: [:new, :create]
+  before_action :edit_as_signed_in_user, only: [:edit, :update]
+  before_action :create_as_signed_in_user, only: [:create, :new]
 
   def index
     @case_studies = CaseStudy.where("overview != ?", "No overview available" )
@@ -103,14 +103,14 @@ class CaseStudiesController < ApplicationController
   end
 
   # Confirms a logged-in user.
-  def signed_in_user_1
+  def edit_as_signed_in_user
     unless signed_in?
       flash[:danger] = "Please sign in to edit this case study."
       redirect_to case_study_url
     end
   end
 
-  def signed_in_user_2
+  def create_as_signed_in_user
     unless signed_in?
       flash[:danger] = "Please sign in to add a case study."
       redirect_to case_studies_url
