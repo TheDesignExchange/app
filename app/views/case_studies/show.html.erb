@@ -13,7 +13,7 @@
 		<div class="row">
       <!-- ORIGINAL CASE STUDY -->
 	   <h4> Materials </h4>
-      <p>
+      <p> 
         <span class="glyphicon glyphicon-list-alt"></span>
         <% if @case_study.resource_url %>
           <%= link_to "Permalink",  @case_study.resource_url, :target => "_blank"%>
@@ -176,6 +176,7 @@
   				<span class="glyphicon glyphicon-star"></span>
   				- likes
   			</div>
+
   			<div class="col-xs-3">
           		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
           			<span class="glyphicon glyphicon-folder-open"></span>
@@ -188,6 +189,7 @@
             		<li><a href="#">My Favorites </a></li>
           		</ul>
   			</div>
+
   			<div class="col-xs-3">
   				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
           				<span class="glyphicon glyphicon-share"></span>
@@ -198,10 +200,10 @@
             			<li><a href="#">Email</a></li>
           			</ul>
   			</div>
+
   			<div class="col-xs-3">
   					<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Edit'.html_safe, edit_case_study_path, :class => "pull right"%>
-          
-  			</div>
+			  </div>
   		</div>
       <!-- END MENU BAR -->
 

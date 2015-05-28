@@ -26,7 +26,6 @@ class CaseStudiesControllerTest < FunctionalTestCase
     assert_difference 'CaseStudy.count', 1 do
       post :create, case_studies: {
         name: @case_study.name + " 2",
-        #name: @case_study.name,
       }
     end
   end
@@ -45,6 +44,12 @@ class CaseStudiesControllerTest < FunctionalTestCase
     put :update, id: @case_study, case_studies: { 
       name: @case_study.name 
     }
+    assert_redirected_to case_study_path(assigns(:case_study))
+  end
+
+  test "should get new" do
+    get :new
+    assert_response :success
   end
 
   # test "should destroy case_studies" do
