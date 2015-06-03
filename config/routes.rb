@@ -7,7 +7,7 @@ DesignExchange::Application.routes.draw do
   end
   
   resources :characteristics, only: [:show] do
-    resources :design_methods, only [:index]
+    resources :design_methods, only: [:index]
   end
 
   resources :tags
@@ -24,6 +24,7 @@ DesignExchange::Application.routes.draw do
       get "related_methods", to: "case_studies#related_methods", :as => "related_methods"
     end
   end
+  
   resources :design_methods do
     collection do 
       get "search/:query", to: "application#search"
