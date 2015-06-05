@@ -73,7 +73,8 @@
       <h4>Characteristics</h4>
       <p>
         <% @method.method_characteristics.each do |mc| %>
-         <%= tagify(mc.id, mc.characteristic.name, {:removable => false}) %>
+         <%= tagify(mc.id, mc.characteristic.characteristic_group.name+ ": " + mc.characteristic.name, {:removable => false}) %>
+         <!-- mc.characteristic.characteristic_group.name  -->
         <% end %>
         <%= "No characteristics available" unless not @method.method_characteristics.empty? %>
       </p>
