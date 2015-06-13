@@ -21,6 +21,8 @@ gem 'kramdown'
 gem 'pg'
 gem 'seed_dump'
 
+gem 'newrelic_rpm'
+
 gem 'quiet_assets'
 gem 'lograge'
 # LSA

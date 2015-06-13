@@ -6,8 +6,8 @@ DesignExchange::Application.routes.draw do
     resources :contacts
   end
   
-  resources :characteristics, only: [:show] do
-    resources :design_methods, only: [:index]
+  resources :characteristics do
+    resources :design_methods, only: [:index], shallow: true
   end
 
   resources :tags
