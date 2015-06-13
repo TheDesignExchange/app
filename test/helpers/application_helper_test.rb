@@ -3,7 +3,7 @@ require 'test_helper'
 class ApplicationHelperTest < ActionView::TestCase
 
   setup do
-    @design_method = design_methods(:one)
+    @design_method = design_methods(:DarkHorse)
     @design_methods = [@design_method]
   end
 

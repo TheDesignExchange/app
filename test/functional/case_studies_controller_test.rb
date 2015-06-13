@@ -2,8 +2,8 @@ require 'test_helper'
 
 class CaseStudiesControllerTest < FunctionalTestCase
   setup do
-    @case_study = case_studies(:one)
-    @user = users(:one)
+    @case_study = case_studies(:iWitness)
+    @user = users(:jack)
     sign_in @user
   end
 
