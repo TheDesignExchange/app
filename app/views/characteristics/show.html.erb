@@ -1,0 +1,48 @@
+<script> 
+  $(function(){
+    var pH = $('#create-btn').parent().parent().height()
+    var eH = $('#create-btn').height()
+    $('#create-btn').css('margin-top', (pH - eH)/2)
+  });
+</script>
+<style type="text/css">
+html, body{
+  height: 100%;
+  width: 100%;
+}
+#search-and-filter{
+  height: 100%;
+}
+
+#results-container{
+  margin-left: 0;
+  padding-left: 0;
+}
+</style>
+
+<!-- TOP ROW -->
+<div class="row">
+    <div class="col-xs-8 col-xs-offset-4 col-sm-10 col-sm-offset-2  left-pad ">
+    <div class="col-xs-6">
+      <h3>Methods with the Characteristic <% @characteristic.name %> </h3>
+    </div>
+      <div class="col-xs-6">
+        <%= link_to new_design_method_path, :id=> "create-btn", :class=> "btn btn-default pull-right" do %>
+        <span class="glyphicon glyphicon-plus"></span> Create Method</button>
+        <% end %>
+      </div>
+    </div>
+</div>
+<!-- END TOP ROW -->
+
+<div id="search-and-filter" class="row">
+  <div id="sidebar" class="col-xs-4 col-sm-2">
+    <%= render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods) %>
+  </div>
+    <div id="results-container" class="col-xs-8 col-sm-10">
+      <% @design_methods.each do |method| %>
+        <%= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3") %>
+        <% end %>
+    </div>
+</div>
+

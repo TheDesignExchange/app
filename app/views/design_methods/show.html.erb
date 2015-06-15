@@ -73,9 +73,9 @@
       <h4>Characteristics</h4>
       <p>
         <% @method.method_characteristics.each do |mc| %>
-          <%= link_to tagify(mc.id, mc.characteristic.characteristic_group.name+ ": " + mc.characteristic.name, {:removable => false}) %>
+          <%= link_to tagify(mc.id, mc.characteristic.characteristic_group.name+ ": " + mc.characteristic.name, {:removable => false}), characteristic_path %>
         <% end %>
-        
+
         <%= "No characteristics available" unless not @method.method_characteristics.empty? %>
       </p>
       <!-- END TAGS -->
