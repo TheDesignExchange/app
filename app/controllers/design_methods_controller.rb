@@ -97,7 +97,7 @@ class DesignMethodsController < ApplicationController
     render :layout => "wide"
   end
 
-  # Confirms a logged-in user.
+  # Confirms that user is logged-in.
   def edit_as_signed_in_user
     unless signed_in?
       flash[:danger] = "Please sign in to edit this design method."
@@ -111,6 +111,4 @@ class DesignMethodsController < ApplicationController
       redirect_to design_methods_url
     end
   end
-  
-  
 end
