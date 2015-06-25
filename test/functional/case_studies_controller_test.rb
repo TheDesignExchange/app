@@ -47,11 +47,6 @@ class CaseStudiesControllerTest < FunctionalTestCase
     assert_redirected_to case_study_path(assigns(:case_study))
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
   # test "should destroy case_studies" do
   #   assert_difference('DesignMethod.count', -1) do
   #     delete :destroy, id: @case_study
