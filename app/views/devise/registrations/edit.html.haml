@@ -1,0 +1,51 @@
+.panel.panel-default.login-margin.panel-primary
+  .panel-heading
+    %h3.panel-title Account Information
+  .panel-body
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+      = devise_error_messages!
+      .input
+        = f.text_field :username, {:autofocus => true, :placeholder => "Username", :class => "form-control"}
+      .input
+        = f.text_field :first_name, {:autofocus => true, :placeholder => "First Name", :class => "form-control"}
+      .input
+        = f.text_field :last_name, {:autofocus => true, :placeholder => "Last Name", :class => "form-control"}
+      .input
+        = f.email_field :email, {:autofocus => true, :placeholder => "Email", :class => "form-control"}
+      .input
+        = f.password_field :password, {:autocomplete => "off", :autofocus => true, :placeholder => "New Password", :class => "form-control"}
+      .input
+        = f.password_field :password_confirmation, {:autofocus => true, :placeholder => "New Password Confirmation", :class => "form-control"}
+      .input
+        = f.password_field :current_password, {:autofocus => true, :placeholder => "Current Password", :class => "form-control"}
+      .row
+        .col-md-12= f.submit "Save", {:class => "btn btn-default pull-right"}
+= link_to "Cancel my account", registration_path(resource_name), { :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "login-margin"}
+/
+  <h2>Edit <haml_loud> resource_name.to_s.humanize </haml_loud></h2>
+  
+  <haml_loud> form_for(resource, :as =&gt; resource_name, :url =&gt; registration_path(resource_name), :html =&gt; { :method =&gt; :put }) do |f| </haml_loud><haml_block>
+  <haml_loud> devise_error_messages! </haml_loud>
+  
+  <div><haml_loud> f.label :email </haml_loud><br />
+  <haml_loud> f.email_field :email, :autofocus =&gt; true </haml_loud></div>
+  
+  <haml_silent>   if devise_mapping.confirmable? &amp;&amp; resource.pending_reconfirmation?
+  </haml_silent><haml_block>    <div>Currently waiting confirmation for: <haml_loud> resource.unconfirmed_email </haml_loud></div>
+  </haml_block>
+  <div><haml_loud> f.label :password </haml_loud> <i>(leave blank if you don't want to change it)</i><br />
+  <haml_loud> f.password_field :password, :autocomplete =&gt; &quot;off&quot; </haml_loud></div>
+  
+  <div><haml_loud> f.label :password_confirmation </haml_loud><br />
+  <haml_loud> f.password_field :password_confirmation </haml_loud></div>
+  
+  <div><haml_loud> f.label :current_password </haml_loud> <i>(we need your current password to confirm your changes)</i><br />
+  <haml_loud> f.password_field :current_password </haml_loud></div>
+  
+  <div><haml_loud> f.submit &quot;Save&quot; </haml_loud></div>
+  </haml_block>
+  <h3>Cancel my account</h3>
+  
+  <p>Unhappy? <haml_loud> button_to &quot;Cancel my account&quot;, registration_path(resource_name), :data =&gt; { :confirm =&gt; &quot;Are you sure?&quot; }, :method =&gt; :delete </haml_loud></p>
+  
+  <haml_loud> link_to &quot;Back&quot;, :back </haml_loud>

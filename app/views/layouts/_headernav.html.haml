@@ -1,0 +1,44 @@
+:javascript
+  $(function(){
+    $('form#search input').autocomplete(DE.Autocomplete);
+  });
+%nav.navbar.navbar-default{:role => "navigation"}
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => root_path}
+        = image_tag "logo-DE.png", :width => "100", :id => "logo"
+    %form#search.navbar-form.navbar-left{:role => "search"}
+      .form-group.col-xs-8
+        %input.form-control{:placeholder => "Search", :type => "text"}/
+      .form-group.col-xs-4
+        %button.btn.btn-default{:onclick => "window.location.href = '#{search_design_methods_path}/'+ $('form#search input').val();", :type => "submit"} Search
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li= link_to "Methods", design_methods_path
+        %li= link_to "Case Studies", case_studies_path
+        / <li><haml_loud> link_to &quot;Discussions&quot;, discussions_path </haml_loud></li>
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              = current_user.email
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Profile", user_path(current_user.id)
+              %li= link_to "Sets", set_index_path
+              %li= link_to "Account Information", edit_user_registration_path
+              %li.divider
+              %li= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
+        - else
+          %li
+            = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
+          %li= link_to "Login", new_user_session_path, :class => 'navbar-link'
+    / /.navbar-collapse
+  / /.container-fluid

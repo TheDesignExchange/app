@@ -1,0 +1,6 @@
+%li.method
+  %h3.inline= link_to hit.stored(:name).first, hit.result
+  %h4.subtitle.inline
+    by #{link_to hit.result.owner.email, hit.result.owner}
+  - hit.highlights.each do |text|
+    .highlight= md_format text.format { |word| content_tag(:b, word) }

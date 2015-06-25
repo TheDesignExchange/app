@@ -1,0 +1,24 @@
+:javascript
+  $(function(){
+  	var pH = $('#create-btn').parent().parent().height()
+  	var eH = $('#create-btn').height()
+  	$('#create-btn').css('margin-top', (pH - eH)/2)
+  });
+.row.no-margin-left.no-margin-right
+  .col-md-6
+    %h3 Discussions
+  .col-md-6
+    = link_to new_discussion_path, :class => "btn btn-default pull-right", :id => "create-btn" do
+      %span.glyphicon.glyphicon-comment
+      Start Discussion
+%ul.nav.nav-tabs.nav-bar-margin
+  %li.active
+    %a{:href => "#"} Most Recent
+  %li
+    %a{:href => "#"} Popular
+  %li
+    %a{:href => "#"} Old
+  %li
+    %a{:href => "#"} Recently Viewed
+- @discussions.each do |disc|
+  = render "/layouts/discussion_content", locals: @discussion = disc

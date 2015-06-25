@@ -1,0 +1,41 @@
+!!!
+%html
+  %body
+    %title
+      = "DEx - #{params[:controller].camelize}"
+    = javascript_include_tag "application"
+    = stylesheet_link_tag    "application", :media => "all"
+    = stylesheet_link_tag    params[:controller], :media => "all"
+    = csrf_meta_tags
+    :javascript
+      $(function(){
+        $('button').click(function(e){
+          e.preventDefault();
+        });
+      })
+    :css
+      .jumbotron{
+        font-size: 17px;
+        background: #2a3e51;
+        color: white;
+      }
+      .subtitle{
+        font-size: 20px;
+      }
+
+      .login-margin{
+        margin-left: 25%;
+        margin-right: 25%;
+        margin-top: 5%;
+      }
+      footer{
+        height: 100px;
+      }
+    = render "layouts/headernav"
+    / Header for the application#index view
+    - if params[:controller] == "application" and params[:action] == "index"
+      = render "layouts/deheader"
+    / End of header for application#index
+    .container
+      = yield
+    %footer

@@ -1,0 +1,95 @@
+:css
+  .no-top-margin{
+  	margin-top: 0px;
+  }
+
+  .no-bottom-margin{
+  	margin-bottom: 0px;
+  }
+/ HEADER
+.row.no-margin-left.no-margin-right
+  .col-md-1
+    %a{:src => "#"}
+      %h2.no-bottom-margin{:align => "center"}
+        %span.glyphicon.glyphicon-chevron-up
+    / LIKES SHOULD BE ADDED HERE
+    %h1.no-top-margin{:align => "center"} -
+    %p{:align => "center"} likes
+  .col-md-11
+    %h1.font-discussion-tittle
+      = @discussion.name
+    = @discussion.created_at.to_s
+    ago
+    \#{link_to @author.email, user_path(@author.id)}
+    %p
+      / TAGS SHOULD BE HERE
+      - tagifier([]).each do |category|
+        %span.tag-label.label-gap
+          = "#{category}"
+/ END HEADER
+/ DISCUSSION
+.row.no-margin-left.no-margin-right
+  .col-md-12
+    = @discussion.description
+/ END DISCUSSION
+/ DISCUSSION FIELD
+.row.no-margin-left.no-margin-right
+  .col-md-12
+    %hr/
+    %h4 Discussions
+    %textarea.form-control{:placeholder => "Questions or comments about this discussion?", :rows => "3"}
+    %button.btn.btn-default{:type => "submit"} Submit
+  .col-md-12
+    .dropdown.pull-right
+      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+        Sort By
+        %b.caret
+      %ul.dropdown-menu
+        %li
+          %a{:href => "#"} Most Recent
+        %li
+          %a{:href => "#"} Most Likes
+/ END DISCUSSION FIELD
+/ DISCUSSIONS BY PEOPLE
+.row.no-margin-left.no-margin-right
+  / !!! PROBABLY A DO WHILE HERE TO LOAD DISCUSSIONS !!!
+  %hr/
+  .col-md-3
+    .row
+      .col-md-5.no-padding
+        %img.fit-all{:alt => "", :src => "http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg"}/
+      .col-md-7
+        %a{:href => "#"}
+          Example of a Name
+        %p
+          Example of City
+    %a{:href => "#"}
+      %span.glyphicon.glyphicon-share
+      Share
+    %br/
+    %a{:href => "#"}
+      %span.glyphicon.glyphicon-comment
+      Message
+    %br/
+    %a{:href => "#"}
+      %span.glyphicon.glyphicon-heart
+      Follow
+  .col-md-9.no-padding
+    %p
+      Date
+    %p
+      Message
+  .row
+    .col-md-9.col-md-offset-3
+      %button.btn.btn-default{:type => "submit"} Useful (#)
+      %button.btn.btn-default{:type => "submit"} Interesting (#)
+      %button.btn.btn-default.pull-right{:type => "submit"} Reply
+  / END OF POSSIBLE DO WHILE
+  / LOAD MORE DISCUSSIONS
+  %hr/
+  %div{:style => "text-align: center;"}
+    %a{:href => "#"}
+      See More Discussions
+      %b.caret
+  %hr/
+  / END LOAD MORE DISCUSSIONS
