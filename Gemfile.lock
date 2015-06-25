@@ -75,6 +75,8 @@ GEM
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
+    coffee-rails-source-maps (1.4.0)
+      coffee-script-source (>= 1.6.1)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -287,6 +289,7 @@ DEPENDENCIES
   capybara
   carrierwave
   coffee-rails
+  coffee-rails-source-maps
   devise
   equivalent-xml
   factory_girl_rails
@@ -305,7 +308,6 @@ DEPENDENCIES
   quiet_assets
   rails (~> 4.0.0)
   rspec-rails
-  sass-rails (~> 4.0.2)
   seed_dump
   selenium-webdriver
   spreadsheet
@@ -318,3 +320,6 @@ DEPENDENCIES
   uglifier
   unicorn
   will_paginate
+
+BUNDLED WITH
+   1.10.0.rc
