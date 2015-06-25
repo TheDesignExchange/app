@@ -9,7 +9,6 @@ gem 'sunspot_with_kaminari'
 gem 'will_paginate'
 gem 'annotate'
 gem 'devise'
-gem 'sass-rails', '~> 4.0.2'
 gem 'coffee-rails'
 gem 'uglifier'
 gem 'spreadsheet'
@@ -38,6 +37,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'coffee-rails-source-maps'
   gem 'thin'
 end
 
