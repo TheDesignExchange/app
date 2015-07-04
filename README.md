@@ -15,10 +15,10 @@ If not, look for the `openjdk-6-jdk` package in your package manager.
 Usage
 -----
 
- 1. `cd` into the repo
- 2. ```bash
-    bundle install
-    rake db:migrate
-    rake sunspot:solr:start
-    rails server
-    ```
+```bash
+cd path/to/thedesignexchange
+bundle install
+rake db:migrate
+rake sunspot:solr:start
+rails server
+```
