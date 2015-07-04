@@ -1,20 +1,24 @@
-## Installation ##
+thedesignexchange
+=================
+
+![build status](https://travis-ci.org/TheDesignExchange/thedesignexchange.svg)  
+[[TheDesignExchange/thedesignexchange:master](https://github.com/TheDesignExchange/thedesignexchange/tree/master) status]
 
 
+Installing
+----------
 
-## Starting Application ##
+**Java RE** should auto install when running sunspot.
+If not, look for the `openjdk-6-jdk` package in your package manager.
 
-To Load the Design Exchnage Project, navigate to rails project
 
-```bash
-bundle install
+Usage
+-----
 
-rake db:migrate
-rake sunspot:solr:start
-
-rails server
-```
-
-### Java RE ###
-
-Should auto install when running sunspot; if not, look for the `openjdk-6-jdk` package in your package manager.
+ 1. `cd` into the repo
+ 2. ```bash
+    bundle install
+    rake db:migrate
+    rake sunspot:solr:start
+    rails server
+    ```
