@@ -1,0 +1,5 @@
+%li.method
+  %h3.inline= link_to design_method.name, design_method
+  %h4.subtitle.inline
+    by #{link_to design_method.owner.email, design_method.owner}
+  %p.method-overview= md_format design_method.overview

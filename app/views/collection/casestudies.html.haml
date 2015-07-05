@@ -1,0 +1,201 @@
+= stylesheet_link_tag    "collection", :media => "all"
+:css
+  h3 {margin: 0;}
+  h4 {margin: 0.33em 0; font-size: 13pt;}
+  p {font-size: 12pt;}
+  hr {border-top: 3px solid #eee;
+  	width: 100%;
+  }
+  .thumbnail{
+  	width: 100px;
+  	height: 100px;
+  }
+  
+  .mainPic{
+  	/*width: 100%;*/
+  	max-height: 200px;
+  	/*height: 250px;*/
+  }
+  
+  #attributes tr:nth-child(odd)		{ background-color:#eee; }
+  #attributes tr:nth-child(even)		{ background-color:#fff; }
+.grid_12
+  .grid_2.omega
+    %button.btn.btn-info{:type => "all"} Show All
+  .grid_2.omega
+    %h4 Project Domain
+  .grid_3.omega
+    .btn-group
+      %button.btn.btn-info.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+        Choose one
+        %span.caret
+      %ul.dropdown-menu{:role => "menu"}
+        %li
+          %a{:href => "#"}>
+          Built Environment
+        %li
+          %a{:href => "#"} Product
+        %li
+          %a{:href => "#"} Service
+        %li
+          %a{:href => "#"} Web
+        %li
+          %a{:href => "#"} Mobile
+        %li
+          %a{:href => "#"} Graphic
+        %li
+          %a{:href => "#"} Fashion
+        %li
+          %a{:href => "#"} Other
+  .grid_1.omega
+    %h4 Method
+  .grid_2.omega
+    %input#submethod-text/
+%hr/
+%br/
+- @casestudies.each_with_index do |cs, i|
+  .grid_12.omega
+    .grid_5.omega
+      %img.mainPic{:alt => "AMA2", :src => "/AMA2.png"}/
+    .grid_2.omega
+    .grid_5.omega
+      %table
+        %tr
+          %td
+            %img.thumbnail{:alt => "AMA2", :src => "/"}/
+          %td
+            %img.thumbnail{:alt => "AMA2", :src => "/"}/
+          %td
+            %img.thumbnail{:alt => "AMA2", :src => "/"}/
+        %tr
+          %td
+            %img.thumbnail{:alt => "AMA2", :src => "/"}/
+          %td
+            %img.thumbnail{:alt => "AMA2", :src => "/"}/
+          %td
+            %img.thumbnail{:alt => "AMA2", :src => "/"}/
+  .grid_12.omega
+    %h3
+      = cs.name
+    %a{:href => "#{cs.url}"}
+      = cs.url
+  .grid_12
+    .grid_5.omega
+      %p= cs.overview
+      %br/
+      %br/
+      %h3 Methods
+      %br/
+      %p Brainstormimg
+      %p Focus Group
+      %p Storyboarding
+      %p Wireframe
+      %br/
+      %br/
+      %h3 Resources
+      %br/
+      %p AMA_CaseStudy1.pdf
+      %p AMA_CaseStudy2.pdf
+      %p AMA_CaseStudy3.pdf
+    .grid_2.omega
+    .grid_5.omega
+      %table#attributes
+        %tr
+          %td Develepment Cycle
+          %td= cs.development_cycle
+        %tr
+          %td Design Phase
+          %td= cs.design_phase
+        %td Project Domain
+        %td= cs.project_domain
+        %tr
+          %td Remote Project
+          %td= human_boolean(cs.remote_project)
+        %tr
+          %td Customer is User
+          %td= human_boolean(cs.customer_is_user)
+        %tr
+          %td Customer Type
+          %td= cs.customer_type
+        %tr
+          %td Age Group of User
+          %td= cs.user_age
+        %tr
+          %td Privacy Level
+          %td= cs.privacy_level
+        %tr
+          %td Social Setting
+          %td= cs.social_setting
+        %tr
+          %td Company Name
+          %td= @companies[i].name
+        %tr
+          %td Contact Info
+          %td= @companies[i].email
+        %tr
+          %td Contact
+          - @contacts[i].each do |c|
+            %td= c.name
+  %br/
+  %br/
+  %hr{:align => "left", :size => "50", :width => "3000"}/
+/
+  <div class="grid_12">
+  <div class="grid_4 omega">
+  <img src="/HIVTreatment.jpg" alt="HIVT" width="250" height="250">
+  </div>
+  
+  <div class="grid_8 omega">
+  <h3>Improving Global Access to HIV Treatment Using Smarter Data: OptimizeARV</h3>
+  <p>Anti-retroviral therapies (ART) remain the principal mechanism for saving the lives of those infected with HIV/AIDS. The ability of national governments to effectively scale-up their ART treatment programs relies on the recommendations, guidelines, and data produced by global stakeholders such as WHO, PEPFAR. National governments struggle to assimilate this knowledge effectively because of information fragmentation and limited analytical capacity.</p>
+  </div>
+  </div>
+  
+  <div class="grid_12">
+  <div class="grid_4 omega">
+  <button type="all" class="btn btn-info">Change</button>
+  
+  <table style="width:300px">
+  <tr>
+  <td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  <td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  <td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  </tr>
+  <tr>
+  <td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  <td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  <td><img src="/" alt="FedEx2" width="42" height="42"></td>
+  </tr>
+  </table>
+  
+  </div>
+  <div class="grid_8 omega">
+  <h3>Resources</h3>
+  
+  <table style="width:300px">
+  <tr>
+  <td>OptimizeARV1.pdf</td>
+  <td></td>
+  <td><button type="all" class="btn btn-info">Remove</button></td>
+  </tr>
+  <tr>
+  <td bgcolor="#E0E0EB">OptimizeARV2.pdf</td>
+  <td></td>
+  <td><button type="all" class="btn btn-info">Remove</button></td>
+  </tr>
+  <tr>
+  <td>OptimizeARV3.pdf</td>
+  <td></td>
+  <td><button type="all" class="btn btn-info">Remove</button></td>
+  </tr>
+  <tr>
+  <td><input id="submethod-text" ></input></td>
+  <td></td>
+  <td><button type="all" class="btn btn-info">Upload</button></td>
+  </tr>
+  </table>
+  
+  </div>
+  </div>
+%h3
+%p

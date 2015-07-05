@@ -1,0 +1,21 @@
+.row.no-margin-left.no-margin-right
+  .col-md-1
+    / LIKES SHOULD BE ADDED HERE
+    %h2{:align => "center"} -
+    %p{:align => "center"} likes
+  .col-md-11
+    %h4
+      %a.font-discussion-tittle
+        = link_to @discussion.name , discussion_path(@discussion.id)
+    = distance_of_time_in_words_to_now(@discussion.created_at)
+    ago
+    \#{link_to @discussion.user.email, user_path(@discussion.user_id)}
+    / RESPONSES SHOULD BE ADDED HERE
+    %p - response
+    %p
+      / TAGS SHOULD BE ADDED HERE
+      - tagifier([]).each do |category|
+        %span.tag-label.label-gap
+          = "#{category}"
+  .col-md-12
+    %hr/
