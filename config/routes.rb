@@ -1,15 +1,14 @@
 DesignExchange::Application.routes.draw do
-
   get "autocomplete_search", to: "application#search"
 
-  resources :companies do 
+  resources :companies do
     resources :contacts
   end
-  
+
   resources :characteristics do
     resources :design_methods, only: [:index], shallow: true
   end
-  
+
   resources :tags
   resources :method_case_studies
   root "application#index"
@@ -44,7 +43,7 @@ DesignExchange::Application.routes.draw do
   match "design_methods/:suffix" => redirect("#{design_methods}/%{suffix}"), via: [:get, :post]
 
   resources :discussions do
-    collection do 
+    collection do
       get "search/:query", to: "application#search"
       get "search", to: "application#search", :as => "search"
     end
@@ -61,10 +60,6 @@ DesignExchange::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
 
- 
-
-  
-
   resources :method_categories, only: [:show]
   resources :citations, only: [:show]
 
@@ -74,6 +69,5 @@ DesignExchange::Application.routes.draw do
 
   get 'search/(:query)', controller: 'design_methods', action: 'search', as: 'search'
 
-  get ":action", to:"application##{:action}"
-
+  get ":action", to: "application##{:action}"
 end
