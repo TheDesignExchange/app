@@ -1,0 +1,17 @@
+<group title="people">
+  <numeric noun="designer" source="num_of_designers" icon="user" />
+  <numeric noun="user" source="num_of_users" icon="user" />
+</group>
+<group title="tools">
+  <tags icon="pencil" source="tools" />
+</group>
+<group title="tools">
+  <numeric noun="time" source="time_period" icon="time" />
+</group>
+
+- type: group
+  title: tags
+  contents:
+  - {source: tags, type: tags}
+
+- type: group
