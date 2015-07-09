@@ -2,8 +2,8 @@ require 'test_helper'
 
 class DesignMethodsControllerTest < FunctionalTestCase
   setup do
-    @design_method = design_methods(:one)
-    @user = users(:one)
+    @design_method = design_methods(:DarkHorse)
+    @user = users(:jack)
     @design_method.owner = @user
     sign_in @user
   end

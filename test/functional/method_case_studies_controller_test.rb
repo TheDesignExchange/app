@@ -3,7 +3,7 @@ require 'test_helper'
 class MethodCaseStudiesControllerTest < FunctionalTestCase
   setup do 
   	@method_case_study = method_case_studies(:one)
-  	@user = users(:one)
+  	@user = users(:jack)
   	sign_in @user 
   end
 
