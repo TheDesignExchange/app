@@ -1,0 +1,13 @@
+/ RELATED METHODS AND CASE STUDIES
+.row
+  / RELATED METHODS
+  %h4 Related Methods
+  - @similar_methods.each do |method|
+    = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"4")
+  / END RELATED METHODS
+  / RELATED CASE STUDIES
+  %h4 Related Case Studies
+  - @similar_case_studies.each do |cs|
+    = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"4")
+  / ENF RELATED CASE STUDIES
+/ END RELATED METHODS AND CASE STUDIES

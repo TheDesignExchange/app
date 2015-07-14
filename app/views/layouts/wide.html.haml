@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title
+      = "DEx - #{params[:controller].camelize}"
+    = javascript_include_tag "application"
+    = stylesheet_link_tag    "application", :media => "all"
+    = csrf_meta_tags
+    :javascript
+      $(function(){
+        $('button').click(function(e){
+          e.preventDefault();
+        });
+      })
+    :css
+      .nav-bar-margin{
+        padding-left: 20px;
+        margin-right: 20px;
+        margin-left: 10px;
+      }
+
+      .font-discussion-tittle{
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 30px;
+      }
+  %body
+    = render "layouts/headernav"
+    = yield

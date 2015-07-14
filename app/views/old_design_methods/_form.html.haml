@@ -1,0 +1,29 @@
+= form_for(@design_method) do |f|
+  - if @design_method.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@design_method.errors.count, "error")
+        prohibited this design_method from being saved:
+      %ul
+        - @design_method.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :name
+    %br/
+    = f.text_field :name
+    %span#name
+  .field
+    = f.label :overview
+    %br/
+    = f.text_area :overview
+    %span#overview
+  .field
+    = f.label :process
+    %br/
+    = f.text_area :process
+  .field
+    = f.label :principle
+    %br/
+    = f.text_area :principle
+  .actions
+    = f.submit
