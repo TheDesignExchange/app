@@ -36,7 +36,7 @@ class DesignMethodsControllerTest < FunctionalTestCase
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should get edit" doS_
     get :edit, id: @design_method
     assert_response :success
   end

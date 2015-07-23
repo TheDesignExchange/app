@@ -3,16 +3,16 @@ class DesignMethodsController < ApplicationController
   before_action :create_as_signed_in_user, only: [:create, :new]
 
   def index
-    @design_methods = DesignMethod.where("overview != ?", "No overview available" )
-    # .take(24)
-    # @design_methods = DesignMethod.take(24)
-     # Filter bar needs
-    @search_filter_hash = MethodCategory.all
-    @design_methods_all = DesignMethod.all
-    respond_to do |format|
-      format.html { render :layout => "wide" }
-      format.json { render json: @design_methods_all} 
-    end
+      @design_methods = DesignMethod.where("overview != ?", "No overview available" )
+      # .take(24)
+      # @design_methods = DesignMethod.take(24)
+       # Filter bar needs
+      @search_filter_hash = MethodCategory.all
+      @design_methods_all = DesignMethod.all
+      respond_to do |format|
+        format.html { render :layout => "wide" }
+        format.json { render json: @design_methods_all} 
+      end
   end
 
   def new
@@ -97,7 +97,7 @@ class DesignMethodsController < ApplicationController
     render :layout => "wide"
   end
 
-  # Confirms a logged-in user.
+  # Confirms that user is logged-in.
   def edit_as_signed_in_user
     unless signed_in?
       flash[:danger] = "Please sign in to edit this design method."
@@ -111,6 +111,4 @@ class DesignMethodsController < ApplicationController
       redirect_to design_methods_url
     end
   end
-  
-  
 end
