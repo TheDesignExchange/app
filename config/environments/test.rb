@@ -31,4 +31,7 @@ DesignExchange::Application.configure do
 
   # Eager load
   config.eager_load = false
+
+  # Fix Circular dependency Runtime Error
+  config.allow_concurrency = false
 end
