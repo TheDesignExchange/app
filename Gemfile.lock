@@ -115,6 +115,8 @@ GEM
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
+    hash_control (0.1.4)
+      activesupport (~> 4.0)
     hike (1.2.3)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
@@ -297,6 +299,7 @@ DEPENDENCIES
   ffi
   haml
   haml-rails
+  hash_control
   jquery-rails
   jquery-ui-rails
   kaminari
@@ -320,3 +323,6 @@ DEPENDENCIES
   uglifier
   unicorn
   will_paginate
+
+BUNDLED WITH
+   1.10.6

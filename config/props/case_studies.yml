@@ -1,5 +1,10 @@
 ---
 - type: group
+  title: materials
+  contents:
+  - {type: link, title: permalink, source: resource_url, icon: list-alt}
+  - {type: link, title: original website, source: url, icon: list-alt}
+- type: group
   title: people
   contents:
   - {type: numeric, noun: designer, source: num_of_designers, icon: user}
@@ -7,11 +12,11 @@
 - type: group
   title: tools
   contents:
-  - {type: tags, source: tools, icon: pencil}
+  - {type: tags, noun: tools, source: tools, icon: pencil}
 - type: group
   title: tags
   contents:
-  - {type: tags, source: tags}
+  - {type: tags, noun: tags, source: tags}
 - type: group
   title: characteristics
   contents:
@@ -29,4 +34,4 @@
 - type: group
   title: time
   contents:
-  - {type: tags, source: time_period, icon: time}
+  - {type: numeric, source: time_period, icon: time, noun_source: time_unit}

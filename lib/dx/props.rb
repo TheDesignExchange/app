@@ -87,14 +87,15 @@ module Dx
       include ::HashControl::Model
       include YamlSupport
       yaml_type :numeric
-      require_key :type, :source, :noun, :icon
+      require_key :type, :source, :icon
+      permit_key :noun, :noun_source  # TODO: change to require_one_of
     end
 
     class Tags
       include ::HashControl::Model
       include YamlSupport
       yaml_type :tags
-      require_key :type, :source
+      require_key :type, :noun, :source
       permit_key :icon
     end
 
@@ -102,7 +103,16 @@ module Dx
       include ::HashControl::Model
       include YamlSupport
       yaml_type :text
-      require_key :type, :source, :title, :icon
+      require_key :type, :source, :title
+      permit_key :icon
+    end
+
+    class Link
+      include ::HashControl::Model
+      include YamlSupport
+      yaml_type :link
+      require_key :type, :source, :title
+      permit_key :icon
     end
 
     class Boolean

@@ -28,7 +28,7 @@ class CaseStudiesController < ApplicationController
     @similar_methods = @case_study.similar_methods(DesignMethod.all.length,6)
 
     respond_to do |format|
-      format.html 
+      format.html
       format.json { render text: @similar_methods.map{|x| x.name }}
     end
   end
@@ -38,7 +38,7 @@ class CaseStudiesController < ApplicationController
     # render :text => id
     @cs = CaseStudy.where("id=?", id).first;
     @case_study = CaseStudy.find(params[:id])
-    
+
     @attr = CaseStudy.columns_hash;
     @methods = @case_study.design_methods().reverse;
     @options = CaseStudy.options
@@ -48,9 +48,12 @@ class CaseStudiesController < ApplicationController
   end
 
   def show
+    require 'dx/props'
+    @props = Dx::Props.load_file 'config/props/case_studies.yml'
+
     id = params[:id].to_i
     @case_study = CaseStudy.find(id)
-  
+
     @similar_methods = @case_study.similar_methods(100,6)
     @similar_case_studies = @case_study.similar_case_studies(100,6)
     @lookup = CaseStudy.lookup

@@ -1,0 +1,60 @@
+- @props.each do |group|
+  .row
+    %h4= group.title.titlecase
+    - group.contents.each do |control|
+      - data = entity.public_send(control.source)
+      - case control.type
+
+      - when 'boolean'
+        %span.control.boolean
+          - if data
+            %span.glyphicon{ class: "glyphicon-#{control.icon1}" }
+          - else
+            %span.glyphicon{ class: "glyphicon-#{control.icon0}" }
+          = control.title.upcase_first
+
+      - when 'link'
+        %span.control.link
+          - unless control.icon.nil?
+            %span.glyphicon{ class: "glyphicon-#{control.icon}" }
+          - if data.nil?
+            #{control.title.upcase_first}: not available
+          - else
+            = link_to control.title.upcase_first, data, :target => "_blank"
+
+      - when 'numeric'
+        %span.control.numeric
+          - unless control.icon.nil?
+            %span.glyphicon{ class: "glyphicon-#{control.icon}" }
+          - noun = control.noun || entity.public_send(control.noun_source)
+          - if noun.nil?
+            &mdash;
+          - elsif data.nil?
+            &mdash; #{noun.pluralize}
+          - else
+            \~#{pluralize data, noun}
+
+      - when 'tags'
+        %span.control.tags
+          - unless control.icon.nil?
+            %span.glyphicon{ class: "glyphicon-#{control.icon}" }
+          - if data.nil?
+            %pre ERR #{control.source} does not exist
+          - elsif data.empty?
+            No #{control.noun.pluralize}
+          - else
+            - data.each do |t|
+              = tagify t.id, t.content, removable: false
+
+      - when 'text'
+        %span.control.text
+          - unless control.icon.nil?
+            %span.glyphicon{ class: "glyphicon-#{control.icon}" }
+          #{control.title.upcase_first}:
+          - if data.nil?
+            &mdash;
+          - else
+            #{data}
+
+      - else
+        %pre ERR invalid control type

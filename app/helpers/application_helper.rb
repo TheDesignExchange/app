@@ -1,3 +1,12 @@
+class String
+  def upcase_first
+    output = dup
+    return output if output[0].nil?
+    output[0] = output[0].capitalize
+		output
+  end
+end
+
 module ApplicationHelper
 
 	@@methods_file = "method_categories.json"
@@ -28,9 +37,9 @@ module ApplicationHelper
 
 	def tagify(id, content, options)
 		fn = options[:method] ? "removeMethodLink" : "removeTag"
-		tag = "<span class='tag-label label-gap'>#{content}  " 
+		tag = "<span class='tag-label label-gap'>#{content}  "
 	    if options[:removable]
-	    	tag = tag + '<span onclick="'+ fn +'('+ (id.to_s) +', this);" class="glyphicon glyphicon-remove-circle"></span>' 
+	    	tag = tag + '<span onclick="'+ fn +'('+ (id.to_s) +', this);" class="glyphicon glyphicon-remove-circle"></span>'
 	    end
 	    tag = tag + '</span>'
 		tag.html_safe
@@ -66,7 +75,7 @@ module ApplicationHelper
 			str = "<ul class='sidebar-element'>
 						<div class='category' >
 						<a class='category-heading sidebar-maincategory' href=''> #{key} </a>
-						<ul class='collapse sidebar-element'> 
+						<ul class='collapse sidebar-element'>
 							#{options}
 						</ul>
 					</div>
@@ -77,7 +86,7 @@ module ApplicationHelper
   					<div class='category' >
     					<a class='category-heading'> #{key} </a>
     						<ul class='collapse sidebar-element'>"+
-    							options + 
+    							options +
     						"</ul>
     				</div>
     			   </ul>"
@@ -86,7 +95,7 @@ module ApplicationHelper
   					<div class='category' >
     					<a class='category-heading'> #{key} </a>
     						<ul class='collapse sidebar-element in'>"+
-    							options + 
+    							options +
     						"</ul>
     				</div>
     			   </ul>"
@@ -105,7 +114,7 @@ module ApplicationHelper
 	def thumbnail(obj,col_md_value, word_count = 300)
 		thumb_obj = {}
 		if obj.is_a?(DesignMethod)
-			thumb_obj=	
+			thumb_obj=
 				{
 					:image => obj.main_image,
 					:name => obj.name,
@@ -114,11 +123,11 @@ module ApplicationHelper
 					:overview => obj.overview,
 					:id => obj.id,
 					:link => "design_method",
-					:col_md_value => col_md_value, 
-					:word_count => word_count	
+					:col_md_value => col_md_value,
+					:word_count => word_count
 				}
 		elsif obj.is_a?(CaseStudy)
-			thumb_obj=	
+			thumb_obj=
 				{
 					:image => obj.main_image,
 					:name => obj.name,
@@ -127,11 +136,11 @@ module ApplicationHelper
 					:overview => obj.overview,
 					:id => obj.id,
 					:link => "case_study",
-					:col_md_value => col_md_value, 
-					:word_count => word_count		
+					:col_md_value => col_md_value,
+					:word_count => word_count
 				}
 		elsif obj.is_a?(Discussion)
-			thumb_obj=	
+			thumb_obj=
 				{
 					:image => nil,
 					:name => obj.name,
@@ -140,8 +149,8 @@ module ApplicationHelper
 					:description => obj.description,
 					:id => obj.id,
 					:link => "discussion",
-					:col_md_value => col_md_value, 
-					:word_count => word_count	
+					:col_md_value => col_md_value,
+					:word_count => word_count
 				}
 		end
 		return thumb_obj
@@ -256,4 +265,3 @@ module ApplicationHelper
   end
 
 end
-
