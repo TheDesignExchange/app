@@ -1,3 +1,5 @@
+#!/usr/bin/env bundle exec ruby
+
 require 'hash_control'
 require 'yaml'
 
@@ -96,7 +98,7 @@ module Dx
       include YamlSupport
       yaml_type :tags
       require_key :type, :noun, :source
-      permit_key :icon
+      permit_key :each_name_source, :icon
     end
 
     class Text
@@ -126,6 +128,9 @@ end
 
 if __FILE__ == $PROGRAM_NAME
   case (command = ARGV.shift)
+  when nil, "help"
+    puts "usage: #{$PROGRAM_NAME} parse <file>"
+    puts "       #{$PROGRAM_NAME} normalize <file>"
   when "parse"
     ARGV.each do |arg|
       puts((Dx::Props.load_file arg).to_yaml(line_width: 1000))
@@ -155,7 +160,7 @@ if __FILE__ == $PROGRAM_NAME
   #   Props::DATA[0] = 1
   #   puts Props::DATA
   else
-    puts "Invalid command: #{command}"
+    puts "invalid command: #{command}"
     exit 1
   end
 end

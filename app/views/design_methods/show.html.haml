@@ -12,49 +12,10 @@
 / End Method Name
 .row
   / SIDEBAR
-  #sidebar.col-md-3
-    .row
-      %h3 What You'll Need
-    / PEOPLE
-    .row
-      %h4 People
-      %p
-        %span.glyphicon.glyphicon-user
-        \~#{pluralize(@method.num_of_designers, "designer")}
-      %p
-        %span.glyphicon.glyphicon-user
-        \~#{pluralize(@method.num_of_users, "user")}
-    / END PEOPLE
-    / TOOLS
-    .row
-      %h4 Tools
-      %p
-        %span.glyphicon.glyphicon-pencil
-        \-
-    / END TOOLS
-    / TIME
-    .row
-      %h4 Time
-      %p
-        %span.glyphicon.glyphicon-time
-        = pluralize(@method.time_period, @method.time_unit)
-    / END TIME
-    / TAGS
-    .row
-      %h4 Tags
-      %p
-        - @method.tags.each do |t|
-          = tagify(t.id, t.content, {:removable => false})
-        = "No tags available" unless not @method.tags.empty?
-      / END TAGS
-    .row
-      %h4 Characteristics
-      %p
-        - @method.method_characteristics.each do |mc|
-          = tagify(mc.id, mc.characteristic.name, {:removable => false})
-        = "No characteristics available" unless not @method.method_characteristics.empty?
-      / END TAGS
+  .col-md-3#sidebar
+    = render partial: "/application/props/props", locals: { entity: @method }
   / END SIDBAR
+
   / MAIN VIEW
   .col-md-9.add-padding
     / MENU BAR

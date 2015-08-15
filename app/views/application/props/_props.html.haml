@@ -18,7 +18,7 @@
           - unless control.icon.nil?
             %span.glyphicon{ class: "glyphicon-#{control.icon}" }
           - if data.nil?
-            #{control.title.upcase_first}: not available
+            #{control.title.upcase_first} not available
           - else
             = link_to control.title.upcase_first, data, :target => "_blank"
 
@@ -35,6 +35,7 @@
             \~#{pluralize data, noun}
 
       - when 'tags'
+        - each_name_source = control.each_name_source || 'content'
         %span.control.tags
           - unless control.icon.nil?
             %span.glyphicon{ class: "glyphicon-#{control.icon}" }
@@ -44,7 +45,8 @@
             No #{control.noun.pluralize}
           - else
             - data.each do |t|
-              = tagify t.id, t.content, removable: false
+              - tag_name = each_name_source.split('.').inject(t, :send)
+              = tagify t.id, tag_name, removable: false
 
       - when 'text'
         %span.control.text
