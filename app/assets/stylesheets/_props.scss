@@ -1,0 +1,23 @@
+.control {
+  margin: 0.5em 0;
+
+  &.boolean {
+    display: block;
+  }
+  &.link {
+    display: block;
+  }
+  &.numeric {
+    display: inline-block;
+  }
+  &.tags {
+    display: block;
+  }
+  &.text {
+    display: block;
+  }
+
+  .glyphicon {
+    // font-size: 0.8em;
+  }
+}

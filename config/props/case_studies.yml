@@ -1,0 +1,37 @@
+---
+- type: group
+  title: materials
+  contents:
+  - {type: link, title: permalink, source: resource_url, icon: list-alt}
+  - {type: link, title: original website, source: url, icon: list-alt}
+- type: group
+  title: people
+  contents:
+  - {type: numeric, noun: designer, source: num_of_designers, icon: user}
+  - {type: numeric, noun: user, source: num_of_users, icon: user}
+- type: group
+  title: tools
+  contents:
+  - {type: tags, noun: tools, source: tools, icon: pencil}
+- type: group
+  title: tags
+  contents:
+  - {type: tags, noun: tags, source: tags}
+- type: group
+  title: characteristics
+  contents:
+  - {type: text, title: development cycle, source: development_cycle, icon: pencil}
+  - {type: text, title: design phase, source: design_phase, icon: pencil}
+  - {type: text, title: privacy level, source: privacy_level, icon: pencil}
+  - {type: text, title: social setting, source: social_setting, icon: pencil}
+  - {type: boolean, title: customer is user, source: remote_project, icon0: remove, icon1: ok}
+  - {type: boolean, title: remote project, source: remote_project, icon0: remove, icon1: ok}
+- type: group
+  title: project details
+  contents:
+  - {type: text, title: project domain, source: project_domain, icon: pencil}
+  - {type: text, title: customer type, source: customer_type, icon: pencil}
+- type: group
+  title: time
+  contents:
+  - {type: numeric, source: time_period, icon: time, noun_source: time_unit}

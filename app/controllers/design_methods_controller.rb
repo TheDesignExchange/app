@@ -1,3 +1,5 @@
+require 'dx/props'
+
 class DesignMethodsController < ApplicationController
   before_action :edit_as_signed_in_user, only: [:edit, :update]
   before_action :create_as_signed_in_user, only: [:create, :new]
@@ -11,7 +13,7 @@ class DesignMethodsController < ApplicationController
       @design_methods_all = DesignMethod.all
       respond_to do |format|
         format.html { render :layout => "wide" }
-        format.json { render json: @design_methods_all} 
+        format.json { render json: @design_methods_all}
       end
   end
 
@@ -79,6 +81,9 @@ class DesignMethodsController < ApplicationController
   end
 
   def show
+    require 'dx/props'
+    @props = Dx::Props.load_file 'config/props/design_methods.yml'
+
     id = params[:id].to_i
     #default to method id #1 TODO remove
     dm = DesignMethod.find(id)
