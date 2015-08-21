@@ -1,0 +1,114 @@
+FactoryGirl.define do
+  factory :user do
+    email           { Faker::Internet.email }
+    password        'password'
+    first_name      { Faker::Name.first_name }
+    last_name       { Faker::Name.last_name }
+    username        { Faker::Internet.user_name }
+    profile_picture { Faker::Internet.url }
+    phone_number    { Faker::PhoneNumber.phone_number }
+    website         { Faker::Internet.url }
+    facebook        { Faker::Internet.url }
+    twitter         { Faker::Internet.url }
+    linkedin        { Faker::Internet.url }
+    about_text      { Faker::Lorem.paragraph }
+  end
+
+  factory :owner do
+    email     { Faker::Internet.email }
+    password  'password'
+  end
+
+  factory :design_method do
+    name      { Faker::Lorem.word }
+    overview  { Faker::Lorem.paragraph }
+    process   { Faker::Lorem.paragraph }
+    owner
+  end
+
+  factory :method_category do
+    name    { Faker::Lorem.word }
+  end
+
+  factory :citation do
+    text  { Faker::Lorem.sentence }
+  end
+
+  factory :comment do
+    text  { Faker::Lorem.sentence }
+    user
+    design_method
+  end
+
+  factory :discussion do
+    name   { Faker::Lorem.sentence }
+    description  { Faker::Lorem.sentence }
+    user
+  end
+
+  factory :discussion_reply do
+    text { Faker::Lorem.paragraph }
+    user
+    discussion
+  end
+
+  factory :method_favorite do
+    user
+    design_method
+  end
+
+  factory :method_variation do
+    parent
+    variant
+  end
+  
+  factory :company do
+    name    { Faker::Company.name }
+    domain  { Faker::Internet.domain_name }
+    email   { Faker::Internet.email }
+  end
+
+  factory :case_study do
+    main_image         { Faker::Internet.url }
+    name              { Faker::Lorem.sentence }
+    url               { Faker::Internet.url }
+    time_period        { Faker::Number.number(4) }
+    development_cycle { rand(1...100) }
+    design_phase      { rand(1...5) }
+    project_domain    { rand(1...5) }
+    customer_type     { rand(1...100) }
+    user_age          { rand(1...100) }
+    privacy_level     { rand(1...10) }
+    social_setting    { rand(1...10) }
+    overview       { Faker::Lorem.paragraph }
+    customer_is_user    { true }
+    remote_project     { true }
+    company_id        { Faker::Number.number(10) }
+    company
+  end
+
+  factory :contact do
+    name        { Faker::Name.name }
+    email       { Faker::Internet.email }
+    phone       { Faker::PhoneNumber.phone_number }
+    company_id  { Faker::Number.number(10) }
+  end
+
+  factory :resource do
+    name              { Faker::Lorem.word }
+    permission_to_use { true }
+    type              { Faker::Lorem.word }
+    company_id        { Faker::Number.number(10) }
+  end
+
+  factory :characteristic_group do
+    name { Faker::Lorem.word }
+    method_category
+  end
+
+  factory :characteristic do
+    name          { Faker::Lorem.word }
+    overview   { Faker::Lorem.sentence }
+    characteristic_group
+  end
+end
