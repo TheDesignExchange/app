@@ -1,0 +1,104 @@
+- @props.each do |group|
+  .row
+    %h4
+      - case group.variant
+      - when 'methods'
+        .pull-right= link_to "Create", new_design_method_path, :target => "_blank"
+      = group.title.titlecase
+    - group.contents.each do |control|
+      - data = entity.public_send(control.source)
+      - control_id = "control-#{rand.to_s[2..-1]}"
+      - case control.type
+
+      - when 'boolean'
+        %label.control.control-edit.control-boolean.input-group{ :for => control_id }
+          %span.input-group-addon
+            = f.check_box control.source.to_sym, :id => control_id
+          %span.form-control
+            = control.title.upcase_first
+
+      - when 'link'
+        %span.control.control-edit.control-link
+          - unless control.icon.nil?
+            = glyphyify control.icon
+          - if data.nil?
+            #{control.title.upcase_first} not available
+          - else
+            = link_to control.title.upcase_first, data, :target => "_blank"
+          - case control.variant
+          - when 'resource'
+            = f.file_field :resource
+          - else
+            = f.text_field control.source.to_sym, :class => "form-control", :placeholder => "http://"
+
+      - when 'numeric'
+        - unit_control_id = "#{entity_name}_#{control.noun_source}"
+        %label.control.control-edit.control-numeric.input-group{ :for => control_id }
+          %span.input-group-addon
+            = glyphyify control.icon
+          = f.number_field control.source.to_sym, :class => "form-control", :id => control_id
+          %label.input-group-addon{ :for => unit_control_id }
+            - if control.noun
+              = control.noun.pluralize
+            - else
+              - noun = entity.public_send(control.noun_source)
+              = f.select control.noun_source.to_sym, options_for_select(unit_options[control.noun_source.to_sym], noun),
+                :class => "form-control"
+
+      - when 'options'
+        - control_id = "#{entity_name}_#{control.source}"
+        %label.control.control-edit.control-options.input-group{ :for => control_id }
+          %span.input-group-addon
+            = glyphyify control.icon
+            &nbsp;
+            = control.title.upcase_first
+          %span.form-control
+            = select entity_name, control.source, options[control.source.to_sym],
+              :include_blank => 'None', :id => control_id
+
+      - when 'tags'
+        - each_name_source = control.each_name_source || 'content'
+        .input-group
+          - case control.variant
+          - when 'contacts'
+          - when 'methods'
+            = select "method_case_study", "design_method_id", DesignMethod.all.collect { |p| [p.name, p.id] }, { include_blank: 'None' }, :class => 'form-control'
+            %span.input-group-btn
+              %button.btn.btn-default{ :onclick => "createMethodLink(#{params[:id]}, this);", :type => "button" } Add
+          - else
+            %input.form-control{ :type => "text" }
+            %span.input-group-btn
+              %button.btn.btn-default{ :onclick => "createTag('#{entity_name}', #{params[:id]}, this, '#{control.source.singularize}');", :type => "button" } Add
+        - case control.variant
+        - when 'methods'
+          - unless entity.new_record?
+            = link_to "Suggested Methods", related_methods_case_study_path(entity), :target => "_blank"
+        %div{ :class => "#{control.source.singularize}-list" }
+          - if data.nil?
+            %pre ERR #{control.source} does not exist
+          - else
+            - data.each do |t|
+              -# http://stackoverflow.com/a/15865431/782045
+              -# See security considerations in the post should
+              -# each_name_source ever come from an untrusted source.
+              - tag_name = each_name_source.split('.').inject(t, :send)
+              - case control.variant
+              - when 'contacts'
+                #{t.name} <#{t.email}>
+              - when 'methods'
+                = tagify t.id, tag_name, :removable => true, :method => true
+              - else
+                = tagify t.id, tag_name, :removable => true
+
+      - when 'text'
+        %span.control.control-edit.control-text
+          - unless control.icon.nil?
+            = glyphyify control.icon
+          #{control.title.upcase_first}:
+          - if data.nil?
+            &mdash;
+          - else
+            #{data}
+
+      - else
+        %pre ERR invalid control type #{control.type}

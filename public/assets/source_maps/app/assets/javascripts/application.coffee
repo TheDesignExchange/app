@@ -10,14 +10,14 @@
 # WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 # GO AFTER THE REQUIRES BELOW.
 #
-#= require jquery
-#= require jquery_ujs
-#= require bootstrap
+
+
+
 # require bootsy
-#= require jquery.ui.autocomplete
-#= require search
-#= require validate
-#= require expander
+
+
+
+
 # require_tree .
 # Fixing textarea bug
 

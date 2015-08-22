@@ -34,6 +34,12 @@ class CaseStudiesController < ApplicationController
   end
 
   def edit
+    require 'dx/props'
+    @props = Dx::Props.load_file 'config/props/case_studies.yml'
+    @unit_options = {
+      :time_unit => [%w(years yr), %w(days d), %w(hours hr), %w(minutes min)]
+    }
+
     id = params[:id] == nil ? 1 : params[:id].to_i
     # render :text => id
     @cs = CaseStudy.where("id=?", id).first;

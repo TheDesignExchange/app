@@ -2,8 +2,12 @@
 - type: group
   title: materials
   contents:
-  - {type: link, title: permalink, source: resource_url, icon: list-alt}
+  - {type: link, variant: resource, title: permalink, source: resource_url, icon: list-alt}
   - {type: link, title: original website, source: url, icon: list-alt}
+- type: group
+  title: contacts
+  contents:
+  - {type: tags, variant: contacts, noun: contact, source: contacts}
 - type: group
   title: people
   contents:
@@ -18,12 +22,17 @@
   contents:
   - {type: tags, noun: tags, source: tags}
 - type: group
+  variant: methods
+  title: methods used
+  contents:
+  - {type: tags, variant: methods, noun: methods, source: method_case_studies, each_name_source: design_method.name}
+- type: group
   title: characteristics
   contents:
-  - {type: text, title: development cycle, source: development_cycle, icon: pencil}
-  - {type: text, title: design phase, source: design_phase, icon: pencil}
-  - {type: text, title: privacy level, source: privacy_level, icon: pencil}
-  - {type: text, title: social setting, source: social_setting, icon: pencil}
+  - {type: options, title: development cycle, source: development_cycle, icon: pencil}
+  - {type: options, title: design phase, source: design_phase, icon: pencil}
+  - {type: options, title: privacy level, source: privacy_level, icon: pencil}
+  - {type: options, title: social setting, source: social_setting, icon: pencil}
   - {type: boolean, title: customer is user, source: remote_project, icon0: remove, icon1: ok}
   - {type: boolean, title: remote project, source: remote_project, icon0: remove, icon1: ok}
 - type: group

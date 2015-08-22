@@ -66,19 +66,22 @@ module Dx
       end
     end
 
-    YAML_KEY_ORDER = :type, :title, :noun, :source, :icon, :icon0, :icon1, :contents
+    YAML_KEY_ORDER = :type, :variant, :title, :noun, :source, :icon, :icon0, :icon1, :contents
 
     class Group
       include ::HashControl::Model
       include YamlSupport
       yaml_type :group
       require_key :type, :contents, :title
+      permit_key :variant
       yaml_style GROUP_STYLE
 
       def self.parse(data)
         # puts "=> #{name}.parse"
         group = new(data)
         group.contents.map! do |item|
+          type_class = TYPES[item[:type].to_sym]
+          raise "unknown control type #{item[:type]}" if type_class.nil?
           TYPES[item[:type].to_sym].parse(item)
         end
         group
@@ -98,7 +101,7 @@ module Dx
       include YamlSupport
       yaml_type :tags
       require_key :type, :noun, :source
-      permit_key :each_name_source, :icon
+      permit_key :variant, :each_name_source, :icon
     end
 
     class Text
@@ -109,12 +112,20 @@ module Dx
       permit_key :icon
     end
 
+    class Options
+      include ::HashControl::Model
+      include YamlSupport
+      yaml_type :options
+      require_key :type, :source, :title
+      permit_key :icon
+    end
+
     class Link
       include ::HashControl::Model
       include YamlSupport
       yaml_type :link
       require_key :type, :source, :title
-      permit_key :icon
+      permit_key :variant, :icon
     end
 
     class Boolean

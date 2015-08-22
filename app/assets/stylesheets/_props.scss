@@ -1,23 +1,41 @@
 .control {
   margin: 0.5em 0;
 
-  &.boolean {
+  &.control-boolean.control-show {
     display: block;
   }
-  &.link {
+  &.control-link {
     display: block;
   }
-  &.numeric {
+  &.control-numeric.control-show {
     display: inline-block;
   }
-  &.tags {
+  &.control-numeric .input-group-addon select {
+    width: auto;
+  }
+  &.control-tags {
     display: block;
   }
-  &.text {
+  &.control-text {
+    display: block;
+  }
+  &.control-options.control-show {
     display: block;
   }
 
   .glyphicon {
     // font-size: 0.8em;
   }
+
+  .form-control select, .input-group-addon select {
+      background: none;
+      border: none;
+      line-height: inherit;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+  }
+}
+label.control {
+  font-weight: inherit;
 }

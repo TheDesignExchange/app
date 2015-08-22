@@ -30,6 +30,12 @@ class DesignMethodsController < ApplicationController
   # === Variables
   # - @design_method: the design method to be edited
   def edit
+    require 'dx/props'
+    @props = Dx::Props.load_file 'config/props/design_methods.yml'
+    @unit_options = {
+      :time_unit => [%w(years yr), %w(days d), %w(hours hr), %w(minutes min)]
+    }
+
     @design_method = DesignMethod.find(params[:id])
     render :layout => "custom"
   end
