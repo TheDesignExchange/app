@@ -1,6 +1,6 @@
 :css
   .no-padding{
-  	padding: 0%;
+    padding: 0%;
   }
 / Method Name
 .row
@@ -12,10 +12,49 @@
 / End Method Name
 .row
   / SIDEBAR
-  .col-md-3#sidebar
-    = render partial: "/application/props/props", locals: { entity: @method }
+  #sidebar.col-md-3
+    .row
+      %h3 What You'll Need
+    / PEOPLE
+    .row
+      %h4 People
+      %p
+        %span.glyphicon.glyphicon-user
+        \~#{pluralize(@method.num_of_designers, "designer")}
+      %p
+        %span.glyphicon.glyphicon-user
+        \~#{pluralize(@method.num_of_users, "user")}
+    / END PEOPLE
+    / TOOLS
+    .row
+      %h4 Tools
+      %p
+        %span.glyphicon.glyphicon-pencil
+        \-
+    / END TOOLS
+    / TIME
+    .row
+      %h4 Time
+      %p
+        %span.glyphicon.glyphicon-time
+        = pluralize(@method.time_period, @method.time_unit)
+    / END TIME
+    / TAGS
+    .row
+      %h4 Tags
+      %p
+        - @method.tags.each do |t|
+          = tagify(t.id, t.content, {:removable => false})
+        = "No tags available" unless not @method.tags.empty?
+      / END TAGS
+    .row
+      %h4 Characteristics
+      %p
+        - @method.characteristics.each do |characteristic|
+          = link_to tagify(characteristic.id, characteristic.characteristic_group.name + ": " + characteristic.name, {:removable => false}), characteristic
+        = "No characteristics available" unless not @method.method_characteristics.empty?
+      / END TAGS
   / END SIDBAR
-
   / MAIN VIEW
   .col-md-9.add-padding
     / MENU BAR
@@ -44,45 +83,45 @@
           %li
             %a{:href => "#"} Email
       .col-md-3
-        %a.pull-right{:href => "#{edit_design_method_path(params[:id])}"}
+        %a.pull-right{:href => edit_design_method_path(params[:id])}
           %span.glyphicon.glyphicon-pencil Edit
     / END MENU BAR
-    %br/
-    / CONTENT
-    - if @method.main_image.present?
-      .row
-        = image_tag(@method.main_image, :width => "100%")
-    %br/
-    / OVERVIEW & PROCESS
-    .row
-      %h4 Overview
-      = @method.overview != nil ? md_format(@method.overview) : "-"
-      %h4 Process
-      %p= @method.process != nil ? md_format(@method.process) : "-"
-    / END OF OVERVIEW & PROVESS
-    / USERS INFORMATION
-    .row
-      %h4 Contributing Authors
-      / POSSIBLE DO WHILE FOR USERS INFORMATION
-      .col-xs-6
-        .col-xs-4
-          - if @author.profile_picture.present?
-            = image_tag(@author.profile_picture, class: "fit-all", :style => "padding: 10%")
-          - else
-            = image_tag("http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
-        .col-xs-8
-          %p= link_to @author.first_name + " " + @author.last_name, user_path(@author.id)
-          %p= @author.email != nil ? @author.email : "-"
-      / END POSSIBLE DO WHILE FOR USERS INFORMATION
-    / END OF USERS INFORMATIONS
-    / CITATIONS
-    %h4 Citations
-    - if @citations.length != 0 && @citations != nil
-      %ol
-        - @citations.each do |c|
-          %li= c.text
-    - else
-      No citations available.
-    / END CITATIONS
-    / END CONTENT
+    %br
+      / CONTENT
+      - if @method.main_image.present?
+        .row
+          = image_tag(@method.main_image, :width => "100%")
+      %br
+        / OVERVIEW &amp; PROCESS
+        .row
+          %h4 Overview
+          = @method.overview != nil ? md_format(@method.overview) : "-"
+          %h4 Process
+          %p= @method.process != nil ? md_format(@method.process) : "-"
+        / END OF OVERVIEW &amp; PROVESS
+        / USERS INFORMATION
+        .row
+          %h4 Contributing Authors
+          / POSSIBLE DO WHILE FOR USERS INFORMATION
+          .col-xs-6
+            .col-xs-4
+              - if @author.profile_picture.present?
+                = image_tag(@author.profile_picture, class: "fit-all", :style => "padding: 10%")
+              - else
+                = image_tag("http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
+            .col-xs-8
+              %p= link_to @author.first_name + " " + @author.last_name, user_path(@author.id)
+              %p= @author.email != nil ? @author.email : "-"
+          / END POSSIBLE DO WHILE FOR USERS INFORMATION
+        / END OF USERS INFORMATIONS
+        / CITATIONS
+        %h4 Citations
+        - if @citations.length != 0 && @citations != nil
+          %ol
+            - @citations.each do |c|
+              %li= c.text
+        - else
+          No citations available.
+        / END CITATIONS
+        / END CONTENT
   / END MAIN VIEW
