@@ -1,16 +1,27 @@
-thedesignexchange
-=================
+TheDesignExchange/app
+=====================
 
-[TheDesignExchange:master][] status:  
+
+For everyone
+------------
+
+Want to see what's new? You can find release notes here:  
+https://github.com/TheDesignExchange/app/issues?q=label:release
+
+Read more about our release cycle [here](https://github.com/TheDesignExchange/app/wiki/Review-and-Release-Cycle).
+
+
+For developers
+--------------
+
+[TheDesignExchange:master][] build status:  
 ![build status][]
 
  [TheDesignExchange:master]: https://github.com/TheDesignExchange/thedesignexchange/tree/master
  [build status]: https://travis-ci.org/TheDesignExchange/thedesignexchange.svg
 
 
-
-Installing
-----------
+### Installing
 
 A few manual steps are required:
 
@@ -30,8 +41,7 @@ A few manual steps are required:
  [install **rvm**]: https://rvm.io/rvm/install
 
 
-Usage
------
+### Usage
 
 The `Makefile` helps simplify starting and stopping the dev server.
 
