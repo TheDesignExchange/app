@@ -18,9 +18,17 @@
       <haml_silent>     flash.each do |type, message|
       </haml_silent><haml_block>      <li class="flash flash-<haml_loud> type </haml_loud>"><haml_loud> message </haml_loud></li>
       </haml_block>  </ul>
-    = yield
+    / = yield
     / </div>
     /
       <footer>
       <haml_loud> render &quot;layouts/footer&quot; </haml_loud>
       </footer>
+
+      / = render 'layouts/header'
+      / .container
+      /   - flash.each do |key, value|
+      /     %div{:class => "alert alert-#{key}"}= value
+      /   = yield
+      /   = render 'layouts/footer'
+      /   = debug(params) if Rails.env.development?
