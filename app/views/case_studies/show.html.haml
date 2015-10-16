@@ -1,6 +1,8 @@
 / CASE STUDY TITLE
-- flash.each do |name, msg|
-  = content_tag(:div, msg, class: "alert alert-#{name}")
+.container-fluid
+  // display flash errors if any
+  - flash.each do |name, msg|
+    = content_tag(:div, msg, class: "alert alert-#{name}")
 .row
   .col-xs-9.col-xs-offset-3.left-pad
     %h3
@@ -40,7 +42,10 @@
           %li
             %a{:href => "#"} Email
       .col-xs-3
-        = link_to '<span class="glyphicon glyphicon-pencil"></span> Edit'.html_safe, edit_case_study_path, :class => "pull right"
+        / = link_to '<span class="glyphicon glyphicon-pencil"></span> Edit'.html_safe, edit_case_study_path, :class => "pull right"
+        %a.pull-right{:href => edit_case_study_path(params[:id])}
+          %span.glyphicon.glyphicon-pencil
+          Edit
     / END MENU BAR
     / CONTENT
     - if @case_study.main_image.present?

@@ -19,7 +19,8 @@
   }
 / TOP ROW
 .container-fluid
-  .row      
+  .row    
+    // display flash errors if any  
     - flash.each do |name, msg|
       = content_tag(:div, msg, class: "alert alert-#{name}")
     .col-xs-8.col-xs-offset-4.col-sm-10.col-sm-offset-2.left-pad
