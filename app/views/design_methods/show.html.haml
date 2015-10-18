@@ -4,6 +4,9 @@
   }
 / Method Name
 .row
+  // display flash errors if any
+  - flash.each do |name, msg|
+    = content_tag(:div, msg, class: "alert alert-#{name}")
   .col-md-9.col-md-offset-3.left-pad
     - if @method.method_categories[0].nil?
       %h3= @method.name.nil? ? "-" : @method.name
@@ -84,7 +87,8 @@
             %a{:href => "#"} Email
       .col-md-3
         %a.pull-right{:href => edit_design_method_path(params[:id])}
-          %span.glyphicon.glyphicon-pencil Edit
+          %span.glyphicon.glyphicon-pencil
+          Edit
     / END MENU BAR
     %br
       / CONTENT
