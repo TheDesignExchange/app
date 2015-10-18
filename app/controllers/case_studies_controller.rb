@@ -109,7 +109,7 @@ class CaseStudiesController < ApplicationController
   def edit_as_signed_in_user
     unless signed_in?
       flash[:danger] = "Please sign in to edit this case study."
-      redirect_to case_study_url
+      redirect_to case_study_url 
     end
   end
 
