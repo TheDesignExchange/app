@@ -18,6 +18,7 @@
 
 
 
+
 # require_tree .
 # Fixing textarea bug
 
@@ -100,3 +101,14 @@ DE.Autocomplete =
       return
     return
   minLength: 1
+
+
+$(document).ready ($) ->
+  $('textarea.markdown')
+    .meltdown(
+      openPreview: true
+      previewHeight: 'auto'
+      sidebyside: true
+    )
+    .removeClass("form-control")
+  return
