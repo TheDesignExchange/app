@@ -22,6 +22,7 @@
 # require_tree .
 # Fixing textarea bug
 
+
 removeTag = (id, self) ->
   console.log '/tags/' + id
   $.ajax
@@ -52,7 +53,7 @@ createTag = (model, model_id, tag, type) ->
 
 DOM = ->
 
-DE = ->
+window.DE = {}
 
 removeMethodLink = (id, self) ->
   console.log '/method_case_studies/' + id
@@ -88,20 +89,37 @@ $ ->
 DOM.tag = (t) ->
   $ '<' + t + '/>'
 
-DE.cache = {}
-DE.Autocomplete =
-  source: (request, response) ->
-    term = request.term
-    if term in DE.cache
-      response DE.cache[term]
-      return
-    $.getJSON '/autocomplete_search', request, (data, status, xhr) ->
-      DE.cache[term] = data
-      response data
-      return
-    return
-  minLength: 1
+window.DE =
+  cache: {}
 
+  Autocomplete:
+    source: (request, response) ->
+      term = request.term
+      if term in DE.cache
+        response DE.cache[term]
+        return
+      $.getJSON '/autocomplete_search', request, (data, status, xhr) ->
+        DE.cache[term] = data
+        response data
+        return
+      return
+
+    minLength: 1
+
+
+$ ->
+  $('.tab-pane[data-link ="'+ "all" +'"]').show().siblings(".tab-pane").hide();
+  $('.sidebar[data-link ="' + 'all' + '"]').show().siblings('.sidebar').hide()
+  $('#tabs li a').click (e) ->
+    e.preventDefault()
+    # Alternate tabs
+    $(this).parent().addClass('active').siblings().removeClass 'active'
+    link = $(this).data('link')
+    # $('.tab-pane[data-link ~="'+ link +'"]').hide();
+    $('.tab-pane[data-link ="' + link + '"]').show().siblings('.tab-pane').hide()
+    $('.sidebar[data-link ="' + link + '"]').show().siblings('.sidebar').hide()
+    return
+  return
 
 $(document).ready ($) ->
   $('textarea.markdown')
