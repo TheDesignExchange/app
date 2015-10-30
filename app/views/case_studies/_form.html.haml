@@ -130,7 +130,7 @@
         %h4 Methods Used
         .input-group
           / <input type="text" class="form-control">
-          = select("method_case_study", "design_method_id", DesignMethod.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'}, {class: "form-control"})
+          = select("method_case_study", "design_method_id", DesignMethod.all.sort_by {|p| p.name }.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'}, {class: "form-control"})
           %span.input-group-btn
             %button.btn.btn-default{:onclick => "createMethodLink(#{params[:id]}, this);", :type => "button"} Add Method
         - if not @case_study.new_record?
@@ -187,11 +187,11 @@
       = f.file_field :main_image
       / FORMS
       %h3 Problem
-      = f.text_area :overview, :class => "form-control", :rows => 12
+      = f.text_area :overview, :class => "form-control markdown", :rows => 12
       %h3 Process
-      = f.text_area :process, :class => "form-control", :rows => 50
+      = f.text_area :process, :class => "form-control markdown", :rows => 50
       %h3 Outcome/Benefits
-      = f.text_area :outcome, :class => "form-control", :rows => 50
+      = f.text_area :outcome, :class => "form-control markdown", :rows => 50
       / END FORMS
     / END RIGHT CONTENT
   / END BODY

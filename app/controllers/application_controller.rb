@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
       discussions = search_db(:disc, query, 24)[:results]
     end
 
-    @results = {:all => [design_methods, case_studies, discussions].flatten.shuffle[0..24],
+    @results = {:all => [design_methods, case_studies, discussions].flatten,
       :dm => design_methods, :cs => case_studies, :disc => discussions}
 
     design_method_names = design_methods.map { |design_method| design_method.name }

@@ -1,24 +1,27 @@
-:javascript
-  $(function(){
-    $('.tab-pane[data-link ="'+ "all" +'"]').show().siblings(".tab-pane").hide();
-    $('.sidebar[data-link ="'+ "all" +'"]').show().siblings(".sidebar").hide();
-    $('#tabs li a').click(function(e){
-      e.preventDefault();
-      // Alternate tabs
-      $(this).parent()
-             .addClass('active')
-             .siblings()
-             .removeClass('active');
-      var link = $(this).data('link');
+/ :javascript
+/   $(function(){
+/     // $('.tab-pane[data-link ="'+ "all" +'"]').show().siblings(".tab-pane").hide();
+/     $('.sidebar[data-link ="'+ "all" +'"]').show().siblings(".sidebar").hide();
+/     $('#tabs li a').click(function(e){
+/       e.preventDefault();
+/       // Alternate tabs
+/       $(this).parent()
+/              .addClass('active')
+/              .siblings()
+/              .removeClass('active');
+/       var link = $(this).data('link');
   
-      // $('.tab-pane[data-link ~="'+ link +'"]').hide();
-      $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
-      $('.sidebar[data-link ="'+ link +'"]').show().siblings(".sidebar").hide();
-    })
-  });
+/       // $('.tab-pane[data-link ~="'+ link +'"]').hide();
+/       $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
+/       $('.sidebar[data-link ="'+ link +'"]').show().siblings(".sidebar").hide();
+/     })
+/   });
 :css
   .padding{
     padding-top: 15px;
+  }
+  .nav-tabs{
+    cursor: pointer;
   }
 / TOP BAR
 .row
@@ -36,7 +39,7 @@
 / #sidebar > div{ aoihdlkhasklfhjklh}
 / CONTENT
 .row
-  .col-md-2
+  .col-sm-2
     / WARNING SIDEBAR UNDERCONSTRUCTION
     .sidebar{"data-link" => "all"}
       = render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods)
@@ -44,22 +47,23 @@
     .sidebar{"data-link" => "dm"}
       = render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods)
     .sidebar{"data-link" => "cs"}
+      = render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods)
       / SIDEBAR FOR CASE STUDY
     .sidebar{"data-link" => "disc"}
       / SIDEBAR FOR DISCUSSION
   / All Search Tab
-  .tab-pane.col-md-10.padding{"data-link" => "all"}
-    - @results[:dm].each do |method|
+  .tab-pane.col-sm-10.padding{"data-link" => "all"}
+    - @results[:all].each do |method|
       = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
   / Method Search Tab
-  .tab-pane.col-md-10.padding{"data-link" => "dm"}
+  .tab-pane.col-sm-10.padding{"data-link" => "dm"}
     - @results[:dm].each do |method|
       = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
   / Case Study Search Tab
-  .tab-pane.col-md-10.padding{"data-link" => "cs"}
+  .tab-pane.col-sm-10.padding{"data-link" => "cs"}
     - @results[:cs].each do |cs|
       = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
   / Discussion Search Tap
-  .tab-pane.col-md-10.padding{"data-link" => "disc"}
+  .tab-pane.col-sm-10.padding{"data-link" => "disc"}
     - @results[:disc].each do |disc|
       = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"3")
