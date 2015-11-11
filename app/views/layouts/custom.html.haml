@@ -1,9 +1,10 @@
 !!!
 %html
-  %body
+  %head
     %title
       = "DEx - #{params[:controller].camelize}"
     = javascript_include_tag "application"
+    %script(type="text/babel" src="/assets/app-react.js")
     = stylesheet_link_tag    "application", :media => "all"
     = stylesheet_link_tag    params[:controller], :media => "all"
     = csrf_meta_tags
@@ -31,6 +32,7 @@
       footer{
         height: 100px;
       }
+  %body
     = render "layouts/headernav"
     / Header for the application#index view
     - if params[:controller] == "application" and params[:action] == "index"

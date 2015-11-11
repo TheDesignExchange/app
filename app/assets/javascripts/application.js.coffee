@@ -19,6 +19,9 @@
 #= require validate
 #= require expander
 #= require meltdown/jquery.meltdown
+#= require react/react.js
+#= require react/react-dom.js
+#= require react/babel-core-browser.min.js
 # require_tree .
 # Fixing textarea bug
 
