@@ -1,21 +1,4 @@
-/ :javascript
-/   $(function(){
-/     // $('.tab-pane[data-link ="'+ "all" +'"]').show().siblings(".tab-pane").hide();
-/     $('.sidebar[data-link ="'+ "all" +'"]').show().siblings(".sidebar").hide();
-/     $('#tabs li a').click(function(e){
-/       e.preventDefault();
-/       // Alternate tabs
-/       $(this).parent()
-/              .addClass('active')
-/              .siblings()
-/              .removeClass('active');
-/       var link = $(this).data('link');
-  
-/       // $('.tab-pane[data-link ~="'+ link +'"]').hide();
-/       $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
-/       $('.sidebar[data-link ="'+ link +'"]').show().siblings(".sidebar").hide();
-/     })
-/   });
+// tab functionality found in application.js.coffee
 :css
   .padding{
     padding-top: 15px;
@@ -23,6 +6,37 @@
   .nav-tabs{
     cursor: pointer;
   }
+  .pagination {
+  width: 100%;
+  margin-top: 35px;
+  text-align: center;
+  padding: 0.3em;
+  cursor: default; }
+  .pagination a, .pagination span, .pagination em {
+    padding: 0.2em 0.5em; }
+  .pagination .disabled {
+    color: #aaaaaa; }
+  .pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    color: #6CC06D; }
+  .pagination a {
+    / border: 1px solid #dddddd;
+    color: #333333;
+    text-decoration: none; }
+    .pagination a:hover, .pagination a:focus {
+      / border-color: #003366;
+      background: #6CC06D;
+      color: white; }
+  .pagination .page_info {
+    color: #aaaaaa;
+    padding-top: 0.8em; }
+  .pagination .previous_page, .pagination .next_page {
+    border-width: 2px; }
+  .pagination .previous_page {
+    margin-right: 1em; }
+  .pagination .next_page {
+    margin-left: 1em; }
 / TOP BAR
 .row
   .col-md-2
@@ -51,19 +65,29 @@
       / SIDEBAR FOR CASE STUDY
     .sidebar{"data-link" => "disc"}
       / SIDEBAR FOR DISCUSSION
+
+
   / All Search Tab
   .tab-pane.col-sm-10.padding{"data-link" => "all"}
     - @results[:all].each do |method|
       = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
+    .row
+    = will_paginate @results[:all]
   / Method Search Tab
   .tab-pane.col-sm-10.padding{"data-link" => "dm"}
     - @results[:dm].each do |method|
       = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
+    .row
+    = will_paginate @results[:all]
   / Case Study Search Tab
   .tab-pane.col-sm-10.padding{"data-link" => "cs"}
     - @results[:cs].each do |cs|
       = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
+    .row
+    = will_paginate @results[:all]
   / Discussion Search Tap
   .tab-pane.col-sm-10.padding{"data-link" => "disc"}
     - @results[:disc].each do |disc|
       = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"3")
+    .row
+    = will_paginate @results[:all]

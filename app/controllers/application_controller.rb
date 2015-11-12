@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   add_flash_types :success, :warning, :danger, :info
+  require 'will_paginate/array'
 
 
     # The DesignExchange home page.
@@ -57,8 +58,10 @@ class ApplicationController < ActionController::Base
       discussions = search_db(:disc, query, 24)[:results]
     end
 
-    @results = {:all => [design_methods, case_studies, discussions].flatten,
-      :dm => design_methods, :cs => case_studies, :disc => discussions}
+    @results = {:all => [design_methods, case_studies, discussions].flatten.paginate(:page => params[:page], :per_page => 12),
+      :dm => design_methods.paginate(:page => params[:page], :per_page => 12),
+      :cs => case_studies.paginate(:page => params[:page], :per_page => 12),
+      :disc => discussions.paginate(:page => params[:page], :per_page => 12) }
 
     design_method_names = design_methods.map { |design_method| design_method.name }
     case_study_names = case_studies.map { |case_study| case_study.name }
