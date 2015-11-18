@@ -4,9 +4,6 @@
   }
 / Method Name
 .row
-  // display flash errors if any
-  - flash.each do |name, msg|
-    = content_tag(:div, msg, class: "alert alert-#{name}")
   .col-md-9.col-md-offset-3.left-pad
     - if @method.method_categories[0].nil?
       %h3= @method.name.nil? ? "-" : @method.name
