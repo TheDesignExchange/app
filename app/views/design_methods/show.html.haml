@@ -66,9 +66,8 @@
     / MENU BAR
     .row
       .col-md-3
-        %span.glyphicon.glyphicon-star
-        = @method.likes
-        likes
+        %span.glyphicon.glyphicon-eye-open
+        = pluralize(@method.likes, 'view')
       .col-md-3
         %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
           %span.glyphicon.glyphicon-folder-open
