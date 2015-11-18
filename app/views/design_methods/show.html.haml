@@ -9,9 +9,16 @@
     = content_tag(:div, msg, class: "alert alert-#{name}")
 
   .col-md-9.col-md-offset-3.left-pad
+    // displays the method name at the top
     %h3= @method.name
+    // Start Category Tags
     - @method.method_categories.each do |category|
-      %span.tag-label= category.name
+      // = link_to tagify(category.id, category.name, {:removable => false}), category
+      // When method_category#show is implemented, uncomment line above.
+      %span.char-label= category.name
+      = "No categories available!" unless not @method.method_categories.empty?
+      // End Category Tags
+
 / End Method Name
 .row
   / SIDEBAR
