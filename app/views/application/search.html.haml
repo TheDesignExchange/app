@@ -72,22 +72,22 @@
     - @results[:all].each do |method|
       = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
     .row
-    = will_paginate @results[:all]
+    = will_paginate @results[:all], :param_name => "all", :params => { :anchor => 'all' }
   / Method Search Tab
   .tab-pane.col-sm-10.padding{"data-link" => "dm"}
     - @results[:dm].each do |method|
       = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
     .row
-    = will_paginate @results[:all]
+    = will_paginate @results[:dm], :param_name => "dm", :params => { :anchor => 'dm' }
   / Case Study Search Tab
   .tab-pane.col-sm-10.padding{"data-link" => "cs"}
     - @results[:cs].each do |cs|
       = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
     .row
-    = will_paginate @results[:all]
+    = will_paginate @results[:cs], :param_name => "cs", :params => { :anchor => 'cs' }
   / Discussion Search Tap
   .tab-pane.col-sm-10.padding{"data-link" => "disc"}
     - @results[:disc].each do |disc|
       = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"3")
     .row
-    = will_paginate @results[:all]
+    = will_paginate @results[:disc], :param_name => "disc", :params => { :anchor => 'disc' }
