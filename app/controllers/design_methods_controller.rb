@@ -88,6 +88,12 @@ class DesignMethodsController < ApplicationController
     #default to method id #1 TODO remove
     dm = DesignMethod.find(id)
     @method = dm
+
+    # Method likes:
+    @method.likes += 1
+    @method.save!
+    # Method likes end.
+
     @author = dm.owner
     @citations = dm.citations
     @similar_methods = @method.similar_methods(100,6)

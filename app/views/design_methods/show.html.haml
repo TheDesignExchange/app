@@ -4,14 +4,17 @@
   }
 / Method Name
 .row
-  // display flash errors if any
-  - flash.each do |name, msg|
-    = content_tag(:div, msg, class: "alert alert-#{name}")
   .col-md-9.col-md-offset-3.left-pad
-    - if @method.method_categories[0].nil?
-      %h3= @method.name.nil? ? "-" : @method.name
-    - else
-      %h3= @method.name.nil? ? "-" : @method.method_categories[0].name + ": " + @method.name
+    // displays the method name at the top
+    %h3= @method.name
+    // Start Category Tags
+    - @method.method_categories.each do |category|
+      // = link_to tagify(category.id, category.name, {:removable => false}), category
+      // When method_category#show is implemented, uncomment line above.
+      %span.char-label= category.name
+      = "No categories available!" unless not @method.method_categories.empty?
+      // End Category Tags
+
 / End Method Name
 .row
   / SIDEBAR
@@ -63,9 +66,8 @@
     / MENU BAR
     .row
       .col-md-3
-        %span.glyphicon.glyphicon-star
-        = @method.likes
-        likes
+        %span.glyphicon.glyphicon-eye-open
+        = pluralize(@method.likes, 'view')
       .col-md-3
         %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
           %span.glyphicon.glyphicon-folder-open

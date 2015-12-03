@@ -42,3 +42,8 @@
           %li= link_to "Login", new_user_session_path, :class => 'navbar-link'
     / /.navbar-collapse
   / /.container-fluid
+
+// display flash errors if any
+- flash.each do |type, msg|
+  - type = :success if type == :notice
+  = content_tag(:div, msg, class: "flash-alert alert alert-#{type}")
