@@ -10,7 +10,7 @@
 /              .siblings()
 /              .removeClass('active');
 /       var link = $(this).data('link');
-  
+
 /       // $('.tab-pane[data-link ~="'+ link +'"]').hide();
 /       $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
 /       $('.sidebar[data-link ="'+ link +'"]').show().siblings(".sidebar").hide();
@@ -22,6 +22,18 @@
   }
   .nav-tabs{
     cursor: pointer;
+  }
+  .highlight-methods{
+    margin-bottom: 2.5em;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #B5E7B5;
+  }
+  .highlight-methods .card{
+    background-color: rgba(238,238,238,0.8);
+  }
+  .highlight-methods .card:hover{
+    background-color: rgba(221,221,221,0.8);
   }
 / TOP BAR
 .row
@@ -53,8 +65,19 @@
       / SIDEBAR FOR DISCUSSION
   / All Search Tab
   .tab-pane.col-sm-10.padding{"data-link" => "all"}
-    - @results[:all].each do |method|
-      = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
+    / TEMP LOGIC for Carmen Class Experiment
+    - if @results[:highlight_methods]
+      %h3 Featured Methods
+      #results-container.col-xs-8.col-sm-10.highlight-methods
+        - @results[:highlight_methods].each do |method|
+          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
+      #results-container.col-xs-8.col-sm-10
+        - @results[:other_methods].each do |method|
+          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
+    - else
+      - @results[:all].each do |method|
+        = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
+    / END TEMP LOGIC
   / Method Search Tab
   .tab-pane.col-sm-10.padding{"data-link" => "dm"}
     - @results[:dm].each do |method|

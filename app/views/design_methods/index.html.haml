@@ -33,6 +33,7 @@
   .row
     .col-xs-8.col-xs-offset-4.col-sm-10.col-sm-offset-2.left-pad
       .col-xs-6
+        %h3 Methods
       .col-xs-6
         = link_to new_design_method_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
           %span.glyphicon.glyphicon-plus
@@ -42,11 +43,6 @@
     #sidebar.col-xs-4.col-sm-2
       = render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods)
     #results-container.col-xs-8.col-sm-10
-      %h3 Featured Methods
-      #results-container.col-xs-8.col-sm-10.highlight-methods
-        - @design_methods.find([109,66,106,111]).each do |method|
-          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
-      #results-container.col-xs-8.col-sm-10
-        - @design_methods.where.not(id: [109,66,106,111]).each do |method|
-          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
+      - @design_methods.each do |method|
+        = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
 
