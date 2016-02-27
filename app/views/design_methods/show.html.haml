@@ -2,132 +2,122 @@
   .no-padding{
     padding: 0%;
   }
-/ Method Name
-.row
-  .col-md-9.col-md-offset-3.left-pad
-    // displays the method name at the top
-    %h3= @method.name
-    // Start Category Tags
+  .nav-tabs{
+    cursor: pointer;
+  }
+  .tab-pane{
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+  }
+  #sidebar{
+    padding-top: 50px;
+  }
+#sidebar.col-md-3
+  .row
+    %h4 People
+    %p
+      %span.glyphicon.glyphicon-user
+      \~#{pluralize(@method.num_of_designers, "designer")}
+    %p
+      %span.glyphicon.glyphicon-user
+      \~#{pluralize(@method.num_of_users, "user")}
+  .row
+    %h4 Tools
+    %p
+      %span.glyphicon.glyphicon-pencil
+      \-
+  .row
+    %h4 Time
+    %p
+      %span.glyphicon.glyphicon-time
+      = pluralize(@method.time_period, @method.time_unit)
+  .row
+    %h4 Tags
+    %p
+      - @method.tags.each do |t|
+        = tagify(t.id, t.content, {:removable => false})
+      = "No tags available" unless not @method.tags.empty?
+  .row
+    %h4 Characteristics
+    - @method.characteristics.group_by{|char| char.characteristic_group.name}.each do |group, chars|
+      .char-group
+        =group
+        .char-group-list
+          -chars.each do |char|
+            = link_to tagify(char.id, char.name, {:removable => false}), char
+            /handle emptiness here
+#content-column.col-md-9
+  /Method header
+  .row
+    .col-md-3.no-padding
+      %h3= @method.name
+    .col-md-6.padding.pull-right
+      .pull-right
+        %ul.list-inline.method-toolbar
+          %li
+            %span.glyphicon.glyphicon-eye-open
+            = pluralize(@method.likes, 'view')
+          %li
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %span.glyphicon.glyphicon-share
+              Share
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => "#"} Email
+          %li
+            %a{:href => edit_design_method_path(params[:id])}
+              %span.glyphicon.glyphicon-pencil
+              Edit
+    /Method top level categories
+  .row
     - @method.method_categories.each do |category|
       // = link_to tagify(category.id, category.name, {:removable => false}), category
       // When method_category#show is implemented, uncomment line above.
       %span.char-label= category.name
       = "No categories available!" unless not @method.method_categories.empty?
-      // End Category Tags
-
-/ End Method Name
-.row
-  / SIDEBAR
-  #sidebar.col-md-3
-    .row
-      %h3 What You'll Need
-    / PEOPLE
-    .row
-      %h4 People
-      %p
-        %span.glyphicon.glyphicon-user
-        \~#{pluralize(@method.num_of_designers, "designer")}
-      %p
-        %span.glyphicon.glyphicon-user
-        \~#{pluralize(@method.num_of_users, "user")}
-    / END PEOPLE
-    / TOOLS
-    .row
-      %h4 Tools
-      %p
-        %span.glyphicon.glyphicon-pencil
-        \-
-    / END TOOLS
-    / TIME
-    .row
-      %h4 Time
-      %p
-        %span.glyphicon.glyphicon-time
-        = pluralize(@method.time_period, @method.time_unit)
-    / END TIME
-    / TAGS
-    .row
-      %h4 Tags
-      %p
-        - @method.tags.each do |t|
-          = tagify(t.id, t.content, {:removable => false})
-        = "No tags available" unless not @method.tags.empty?
-      / END TAGS
-    .row
-      %h4 Characteristics
-      %p
-        - @method.characteristics.each do |characteristic|
-          = link_to tagify(characteristic.id, characteristic.characteristic_group.name + ": " + characteristic.name, {:removable => false}), characteristic
-        = "No characteristics available" unless not @method.method_characteristics.empty?
-      / END TAGS
-  / END SIDBAR
-  / MAIN VIEW
-  .col-md-9.add-padding
-    / MENU BAR
-    .row
-      .col-md-3
-        %span.glyphicon.glyphicon-eye-open
-        = pluralize(@method.likes, 'view')
-      .col-md-3
-        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-          %span.glyphicon.glyphicon-folder-open
-          Add to Set
-          %b.caret
-        %ul.dropdown-menu
-          %li
-            %a{:href => "#"} Add To Set
-          %li.divider
-          %li
-            %a{:href => set_index_path} My Favorites
-      .col-md-3
-        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-          %span.glyphicon.glyphicon-share
-          Share
-          %b.caret
-        %ul.dropdown-menu
-          %li
-            %a{:href => "#"} Email
-      .col-md-3
-        %a.pull-right{:href => edit_design_method_path(params[:id])}
-          %span.glyphicon.glyphicon-pencil
-          Edit
-    / END MENU BAR
-    %br
-      / CONTENT
-      - if @method.main_image.present?
-        .row
-          = image_tag(@method.main_image, :width => "100%")
-      %br
-        / OVERVIEW &amp; PROCESS
-        .row
-          %h4 Overview
-          = @method.overview != nil ? md_format(@method.overview) : "-"
-          %h4 Process
-          %p= @method.process != nil ? md_format(@method.process) : "-"
-        / END OF OVERVIEW &amp; PROVESS
-        / USERS INFORMATION
-        .row
-          %h4 Contributing Authors
-          / POSSIBLE DO WHILE FOR USERS INFORMATION
-          .col-xs-6
-            .col-xs-4
-              - if @author.profile_picture.present?
-                = image_tag(@author.profile_picture, class: "fit-all", :style => "padding: 10%")
-              - else
-                = image_tag("http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
-            .col-xs-8
-              %p= link_to @author.first_name + " " + @author.last_name, user_path(@author.id)
-              %p= @author.email != nil ? @author.email : "-"
-          / END POSSIBLE DO WHILE FOR USERS INFORMATION
-        / END OF USERS INFORMATIONS
-        / CITATIONS
-        %h4 Citations
-        - if @citations.length != 0 && @citations != nil
-          %ol
-            - @citations.each do |c|
-              %li= c.text
+  /Tabs
+  .row.padding
+    #tabs
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"data-link" => "overview"} Overview
+        %li
+          %a{"data-link" => "instructions"} Instructions
+        %li
+          %a{"data-link" => "resources"} Resources
+  /Method overview
+  .tab-pane.row{"data-link" => "overview"}
+    = @method.overview != nil ? md_format(@method.overview) : "No overview available"
+    %h4 Process
+    %p= @method.process != nil ? md_format(@method.process) : "-"
+    - if @method.main_image.present?
+      .row
+        = image_tag(@method.main_image, :width => "100%")
+    %h4 Contributing Authors
+    .col-xs-6
+      .col-xs-4
+        - if @author.profile_picture.present?
+          = image_tag(@author.profile_picture, class: "fit-all", :style => "padding: 10%")
         - else
-          No citations available.
-        / END CITATIONS
-        / END CONTENT
-  / END MAIN VIEW
+          /TODO lol we need to self host this asap
+          = image_tag("http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
+      .col-xs-8
+        %p= link_to @author.first_name + " " + @author.last_name, user_path(@author.id)
+        %p= @author.email != nil ? @author.email : "-"
+  /Method instructions
+  .tab-pane.row{"data-link" => "instructions"}
+    /- @method.instruction_steps.each do |step|
+    /  = step.name
+    /  = md_format(step.body)
+
+  /Method resources
+  .tab-pane.row{"data-link" => "resources"}
+    - if @citations.length != 0 && @citations != nil
+      %h4 Citations
+      %ol
+        - @citations.each do |c|
+          %li= c.text
+
