@@ -177,7 +177,20 @@ ActiveRecord::Schema.define(version: 20151011231649) do
     t.datetime "updated_at"
   end
 
+  add_index "discussions", ["name"], name: "index_discussions_on_name", using: :btree
   add_index "discussions", ["user_id"], name: "index_discussions_on_user_id", using: :btree
+
+  create_table "feedbacks", force: true do |t|
+    t.string   "title"
+    t.string   "email"
+    t.string   "feedbacktype"
+    t.text     "body"
+    t.string   "status",       default: "UNREAD"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "feedbacks", ["created_at"], name: "index_feedbacks_on_created_at", using: :btree
 
   create_table "method_case_studies", force: true do |t|
     t.integer  "case_study_id"
