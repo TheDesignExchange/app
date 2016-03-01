@@ -11,7 +11,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
+  name: <%= Faker::Lorem.word %> 
 
-two:
-  name: MyString

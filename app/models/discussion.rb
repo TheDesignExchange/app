@@ -13,6 +13,7 @@
 class Discussion < ActiveRecord::Base
   attr_accessible :name, :description, :user_id
   validates :name, :description, :user, presence: true
+  validates :user_id, presence: true
 
   validates_uniqueness_of :name
   belongs_to :user

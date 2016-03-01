@@ -1,0 +1,21 @@
+- if current_user
+  %h1
+    Welcome, #{current_user.email}
+  .twocolumn
+    .sidecolumn
+      %ul
+        %li
+          = link_to "Edit Profile", root_url
+        %li
+          = link_to 'New Design Method', new_design_method_path
+        %li
+          = link_to 'My Methods', "#"
+    .maincolumn
+      %h2 Recently Created Methods
+      %ul
+        = render "recently_created_methods"
+- else
+  .home
+    %h1.huge Welcome to The Design Exchange
+    %h2.inline= link_to "Log In", new_user_session_url
+    %h2.inline= link_to "Sign Up", new_user_registration_url

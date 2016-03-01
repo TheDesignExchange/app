@@ -1,0 +1,19 @@
+%p#notice= notice
+%p
+  %strong Design method:
+  = @tag.design_method_id
+%p
+  %strong Case study:
+  = @tag.case_study_id
+%p
+  %strong Discussion:
+  = @tag.discussion_id
+%p
+  %strong User:
+  = @tag.user_id
+%p
+  %strong Content:
+  = @tag.content
+= link_to 'Edit', edit_tag_path(@tag)
+|
+= link_to 'Back', tags_path

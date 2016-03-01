@@ -20,16 +20,15 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  overview: MyText
-  process: MyText
-  principle: MyText
-  citation_id: 1
+DarkHorse:
+  name:  <%= Faker::Lorem.word %>
+  overview: <%= Faker::Lorem.sentence %>
+  process: <%= Faker::Lorem.sentence %>
+  owner: jack
+  num_of_designers: <%= Faker::Number.digit %> 
+  num_of_users: <%= Faker::Number.digit %> 
+  time_period: <%= Faker::Number.digit %>
+  time_unit: <%= Faker::Number.digit %>
+  likes: <%= Faker::Number.digit %>
 
-two:
-  name: MyString
-  overview: MyText
-  process: MyText
-  principle: MyText
-  citation_id: 1
+

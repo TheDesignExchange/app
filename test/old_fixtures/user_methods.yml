@@ -13,9 +13,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  user_id: 1
-  design_method_id: 1
-
-two:
-  user_id: 1
-  design_method_id: 1
+  user_id: <%= Faker::Number.digit %> 
+  design_method_id: <%= Faker::Number.digit %> 
+  type_id: <%= Faker::Number.digit %> 

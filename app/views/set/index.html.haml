@@ -1,0 +1,61 @@
+/ BODY
+.row
+  / NAVBAR
+  .col-md-10.col-md-offset-2
+    %h3
+    %ul.nav.nav-tabs.nav-bar-margin
+      %li.active
+        %a{:href => "#"} All
+      %li
+        %a{:href => "#"} Methods
+      %li
+        %a{:href => "#"} Case Studies
+      %li
+        %a{:href => "#"} Discussions
+  / END NAVBAR
+  / LEFT COLUMN
+  .col-md-2{:style => " padding-left: 25px;"}
+    / BUTTON BECOME A FORM WHEN PRESSED
+    / ADD NEW SET
+    %button.btn.btn-default{:type => "button"}
+      Add Set
+      %span.glyphicon.glyphicon-plus
+    / END ADD NEW SET
+    / SETS
+    .bs-docs-sidebar.hidden-print.affix-top{:role => "complementary"}
+      %ul.nav.bs-docs-sidenav
+        / POSSIBLE DO WHILE TO POPULATE SETS
+        %li.active
+          %h5 Example of Set
+        / END POSSIBLE DO WHILE TO POPULATE SETS
+    / END SETS
+  / END OF LEFT COLUMN
+  / CONTENT
+  .col-md-10.padding
+    .col-md-12
+      .btn-group
+        %button.btn-fixed.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+          Select
+          %span.caret
+        %ul.dropdown-menu{:role => "menu"}
+          %li{"data-index" => "0", "data-name" => "Problem Assessment"}
+            %a Select All
+          %li{"data-index" => "1", "data-name" => "Conceptual Design"}
+            %a Deselect All
+    / POSSIBLE DO WHILE TO POPULATE THUMBNAILS
+    .col-sm-6.col-md-3
+      .thumbnail.search-item
+        .caption
+          %h5
+            %a{:href => "/methods/view?n=1"} 2x2
+          %p
+            %span.glyphicon.glyphicon-star
+            72 Likes
+          %p.truncate-multiline No overview available
+          %p
+            %span.label.label-gap.label-matrix Matrix
+            %span.label.label-gap.label-method Method
+            %span.label.label-gap.label-framing Framing
+    / ENF POSSIBLE DO WHILE TO POPULATE THUMBNAILS
+  / END CONTENT
+/ END BODY

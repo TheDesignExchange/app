@@ -1,0 +1,96 @@
+:css
+  .padding{
+    	padding-top: 15px;
+  }
+/ BODY
+.row
+  / PROFILE INFO
+  .col-md-3{:style => "border-right:1px solid #dddddd;"}
+    / IN EDIT IS A FORM | IN VIEW MODE IS A TEXT
+    .col-md-12{:style => "text-align: center;"}
+      %h4 Name of person
+      %h5
+        %a username
+    / IN EDIT MODE IS AN UPLOAD IMAGE | IN VIEW MODE IS AN IMAGE
+    .col-md-12
+      %img.fit-all{:alt => "", :src => "http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg", :style => "padding:10%;"}/
+    .col-md-12
+      %button.btn.btn-default{:type => "submit"}
+        %span.glyphicon.glyphicon-plus
+        Follow
+      %button.btn.btn-default.pull-right{:type => "submit"}
+        %span.glyphicon.glyphicon-envelope
+        Message
+    .col-md-12
+      %h4
+        %span.glyphicon.glyphicon-thumbs-up
+        Likes
+        %span.pull-right #
+      %h4
+        %span.glyphicon.glyphicon-user
+        Followers
+        %span.pull-right #
+      %h4
+        %span.glyphicon.glyphicon-user
+        Following
+        %span.pull-right #
+    / IN EDIT MODE YOU NEED TO ADD | IN VIEW MODE IS JUST A PANEL
+    .col-md-12
+      %h4 Expertise
+      %p
+        %span.tag-label.label-gap brainstorming
+        %span.tag-label.label-gap research
+    / IN EDIT MODE YOU NEED TO ADD | IN VIEW MODE IS JUST A PANEL
+    .col-md-12
+      %h4 About
+      %p Example of about
+    / IN EDIT MODE YOU NEED TO ADD | IN VIEW MODE IS JUST A PANEL
+    .col-md-12
+      %h4 Contact
+      %p Example of contact
+    / SOCIAL ICONS
+    .col-md-4
+      %img{:alt => "", :src => "http://www.cnib.ca/en/about/PublishingImages/Facebook.png"}/
+    .col-md-4
+      %img{:alt => "", :src => "http://icons.iconarchive.com/icons/graphics-vibe/simple-rounded-social/256/linkedin-icon.png"}/
+    .col-md-4
+      %img{:alt => "", :src => "http://www.threenerdyguys.com/wp-content/uploads/2014/05/Twitter-button-1.ico"}/
+    / END SOCIAL ICONS
+  / END PROFILE INFO
+  / POSTED BY
+  .col-md-9
+    %h4
+      Posted by Name
+      %button.btn.btn-default.pull-right{:onclick => "window.location.href = '/account/profile_user_edit';", :type => "submit"}
+        Edit
+    / NAVBAR
+    %ul.nav.nav-tabs
+      %li.active
+        %a{:href => "#"} All
+      %li
+        %a{:href => "#"} Methods
+      %li
+        %a{:href => "#"} Case Studies
+      %li
+        %a{:href => "#"} Discussions
+    / END NAVBAR
+    / THUMBNAILS
+    .tab-pane.col-md-12.padding{"data-link" => "all"}
+      / POSSIBLE DO WHILE START HERE
+      .col-sm-6.col-md-4.left-top-padding
+        .thumbnail.search-item
+          .caption
+            %h5
+              %a{:href => "/methods/view?n=1"} 2x2
+            %p
+              %span.glyphicon.glyphicon-star
+              32 Likes
+            %p.truncate-multiline No overview available
+            %p
+              %span.label.label-gap.label-matrix Matrix
+              %span.label.label-gap.label-method Method
+              %span.label.label-gap.label-framing Framing
+      / END POSSIBLE DO WHILE
+    / END THUMBNAILS
+  / END POSTED BY
+/ END BODY

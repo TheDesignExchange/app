@@ -1,0 +1,31 @@
+= form_for(@tag) do |f|
+  - if @tag.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@tag.errors.count, "error")
+        prohibited this tag from being saved:
+      %ul
+        - @tag.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :design_method_id
+    %br/
+    = f.number_field :design_method_id
+  .field
+    = f.label :case_study_id
+    %br/
+    = f.number_field :case_study_id
+  .field
+    = f.label :discussion_id
+    %br/
+    = f.number_field :discussion_id
+  .field
+    = f.label :user_id
+    %br/
+    = f.number_field :user_id
+  .field
+    = f.label :content
+    %br/
+    = f.text_field :content
+  .actions
+    = f.submit

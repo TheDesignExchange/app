@@ -9,7 +9,6 @@ gem 'sunspot_with_kaminari'
 gem 'will_paginate'
 gem 'annotate'
 gem 'devise'
-gem 'sass-rails', '~> 4.0.2'
 gem 'coffee-rails'
 gem 'uglifier'
 gem 'spreadsheet'
@@ -20,7 +19,11 @@ gem 'ffi'
 gem 'kramdown'
 gem 'pg'
 gem 'seed_dump'
+gem 'haml'
+gem 'haml-rails', group: :development
 
+gem 'quiet_assets'
+gem 'lograge'
 # LSA
 
 gem 'sprockets', '2.11.0'
@@ -34,8 +37,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'coffee-rails-source-maps'
   gem 'thin'
-  gem 'quiet_assets'
 end
 
 group :production do
@@ -57,3 +60,4 @@ gem 'bourbon', '~> 3.2'
 # gem "rmagick"
 gem "carrierwave"
 gem "protected_attributes"
+gem "hash_control"

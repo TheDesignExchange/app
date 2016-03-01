@@ -1,0 +1,30 @@
+.panel.panel-default.login-margin.panel-primary
+  .panel-heading
+    %h3.panel-title Register
+  .panel-body
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      = devise_error_messages!
+      .input
+        = f.text_field :username, {:autofocus => true, :class => "form-control", :placeholder => "Username"}
+      %br/
+      .input
+        = f.text_field :first_name, {:autofocus => true, :class => "form-control", :placeholder => "First name"}
+      %br/
+      .input
+        = f.text_field :last_name, {:autofocus => true, :class => "form-control", :placeholder => "Last name"}
+      %br/
+      .input
+        = f.email_field :email, {:autofocus => true, :class => "form-control", :placeholder => "Email"}
+      %br/
+      .input
+        = f.password_field :password, { :class => "form-control", :placeholder => "Password"}
+      %br/
+      .input
+        = f.password_field :password_confirmation, { :class => "form-control", :placeholder => "Password Confirmation"}
+      %br/
+      .row
+        .col-md-12
+          .col-md-8
+            = link_to "Sign in", new_session_path(resource_name)
+          .col-md-4
+            = f.submit "Register", {:class=> "btn btn-default pull-right" }

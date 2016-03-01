@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
+  add_flash_types :success, :warning, :danger, :info
 
 
     # The DesignExchange home page.
@@ -56,7 +57,7 @@ class ApplicationController < ActionController::Base
       discussions = search_db(:disc, query, 24)[:results]
     end
 
-    @results = {:all => [design_methods, case_studies, discussions].flatten.shuffle[0..24],
+    @results = {:all => [design_methods, case_studies, discussions].flatten,
       :dm => design_methods, :cs => case_studies, :disc => discussions}
 
     design_method_names = design_methods.map { |design_method| design_method.name }
@@ -91,30 +92,28 @@ class ApplicationController < ActionController::Base
   # - @results: list of design methods from the search result
   def search_db(type, query, limit)
     hits = []
-    if query
+
+    # Process query string
+    processed_query = query.gsub( '"', '"\\' ) unless query.blank?
+
+    if not processed_query.blank?
       if type == :dm
         # results = DesignMethod.where("LOWER( design_methods.name ) LIKE ? AND overview != ? ", "%#{query}%", "No overview available")
 
         # Sunspot search
         results = DesignMethod.solr_search do
-
-          fulltext query.gsub( '"', '"\\' ) unless query.blank?
-
+          fulltext processed_query
         end.results
 
       elsif type == :cs
         # Sunspot search
         results = CaseStudy.solr_search do
-
-          fulltext query.gsub( '"', '"\\' ) unless query.blank?
-
+          fulltext processed_query
         end.results
       else
         # Sunspot search
         results = Discussion.solr_search do
-
-          fulltext query.gsub( '"', '"\\' ) unless query.blank?
-
+          fulltext processed_query
         end.results
       end
       return {:hits => hits, :results => results}

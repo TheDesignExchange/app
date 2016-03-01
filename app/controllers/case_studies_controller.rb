@@ -1,17 +1,19 @@
 class CaseStudiesController < ApplicationController
+  before_action :edit_as_signed_in_user, only: [:edit, :update]
+  before_action :create_as_signed_in_user, only: [:create, :new]
 
   def index
     @case_studies = CaseStudy.where("overview != ?", "No overview available" )
     # @case_studies = CaseStudy.take(24)
     @search_filter_hash = MethodCategory.all
-  	render layout: "wide"
+    @case_studies_all = CaseStudy.all
+    respond_to do |format|
+      format.html { render layout: "wide" }
+      format.json { render :json => @case_studies_all }
+    end
   end
 
-
-
   def new
-    id = params[:id] == nil ? 1 : params[:id].to_i
-    # render :text => id
     @case_study = CaseStudy.new
 
     @attr = CaseStudy.columns_hash;
@@ -26,7 +28,7 @@ class CaseStudiesController < ApplicationController
     @similar_methods = @case_study.similar_methods(DesignMethod.all.length,6)
 
     respond_to do |format|
-      format.html 
+      format.html
       format.json { render text: @similar_methods.map{|x| x.name }}
     end
   end
@@ -36,7 +38,7 @@ class CaseStudiesController < ApplicationController
     # render :text => id
     @cs = CaseStudy.where("id=?", id).first;
     @case_study = CaseStudy.find(params[:id])
-    
+
     @attr = CaseStudy.columns_hash;
     @methods = @case_study.design_methods().reverse;
     @options = CaseStudy.options
@@ -46,19 +48,23 @@ class CaseStudiesController < ApplicationController
   end
 
   def show
+    require 'dx/props'
+    @props = Dx::Props.load_file 'config/props/case_studies.yml'
+
     id = params[:id].to_i
     @case_study = CaseStudy.find(id)
-  
+
     @similar_methods = @case_study.similar_methods(100,6)
     @similar_case_studies = @case_study.similar_case_studies(100,6)
     @lookup = CaseStudy.lookup
-    render layout: "custom"
-    # render :json =>  @lookup
+    respond_to do |format|
+      format.html { render layout: "custom" }
+      format.json { render :json =>  @case_study }
+    end
   end
 
   def search
   end
-
 
   def update
     @case_study = CaseStudy.find(params[:id])
@@ -78,7 +84,8 @@ class CaseStudiesController < ApplicationController
     @case_study = CaseStudy.new(params[:case_study])
 
     respond_to do |format|
-      if @design_method.save
+      #if @design_method.save
+      if @case_study.save
         format.html { redirect_to @case_study, notice: 'Case study was successfully created.' }
         format.json { render json: @case_study, status: :created, location: @case_study }
       else
@@ -98,6 +105,20 @@ class CaseStudiesController < ApplicationController
     end
   end
 
+  # Confirms a logged-in user.
+  def edit_as_signed_in_user
+    unless signed_in?
+      flash[:danger] = "Please sign in to edit this case study."
+      redirect_to case_study_url 
+    end
+  end
+
+  def create_as_signed_in_user
+    unless signed_in?
+      flash[:danger] = "Please sign in to add a case study."
+      redirect_to case_studies_url
+    end
+  end
 
 
 end

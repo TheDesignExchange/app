@@ -1,0 +1,51 @@
+# == Schema Information
+#
+# Table name: case_studies
+#
+#  id                :integer          not null, primary key
+#  main_image        :string(255)      default("")
+#  name              :string(255)      default("")
+#  url               :string(255)      default("")
+#  timePeriod        :string(255)      default("")
+#  development_cycle :integer
+#  design_phase      :integer
+#  project_domain    :integer
+#  customer_type     :integer
+#  user_age          :integer
+#  privacy_level     :integer
+#  social_setting    :integer
+#  overview          :text
+#  customer_is_user  :boolean          default(FALSE)
+#  remote_project    :boolean          default(FALSE)
+#  company_id        :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  num_of_designers  :integer          default(1)
+#  num_of_users      :integer          default(1)
+#  time_period       :integer          default(0)
+#  time_unit         :string(255)      default("")
+#  resource          :string(255)
+#  problem           :text
+#  process           :text
+#  outcome           :text
+#
+
+iWitness:
+  name: <%= Faker::Lorem.word %>
+  url:  <%= Faker::Internet.url %>
+  #ERROR:  column timePeriod" of relation "case_studies" does not exist
+  development_cycle: <%= Faker::Number.digit %>
+  design_phase: <%= Faker::Number.digit %> 
+  project_domain: <%= Faker::Number.digit %> 
+  customer_type: <%= Faker::Number.digit %> 
+  user_age:  <%= Faker::Number.digit %> 
+  privacy_level:  <%= Faker::Number.digit %> 
+  social_setting: <%= Faker::Number.digit %> 
+  overview: <%= Faker::Lorem.sentence %>
+  company_id: <%= Faker::Number.digit %>  
+  problem: <%= Faker::Lorem.sentence %>
+  process: <%= Faker::Lorem.sentence %>
+  outcome: <%= Faker::Lorem.sentence %>
+
+
+

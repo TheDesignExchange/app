@@ -1,12 +1,20 @@
+require 'dx/props'
+
 class DesignMethodsController < ApplicationController
+  before_action :edit_as_signed_in_user, only: [:edit, :update]
+  before_action :create_as_signed_in_user, only: [:create, :new]
 
   def index
-    @design_methods = DesignMethod.where("overview != ?", "No overview available" )
-    # .take(24)
-    # @design_methods = DesignMethod.take(24)
-     # Filter bar needs
-    @search_filter_hash = MethodCategory.all
-    render :layout => "wide"
+      @design_methods = DesignMethod.where("overview != ?", "No overview available" )
+      # .take(24)
+      # @design_methods = DesignMethod.take(24)
+       # Filter bar needs
+      @search_filter_hash = MethodCategory.all
+      @design_methods_all = DesignMethod.all
+      respond_to do |format|
+        format.html { render :layout => "wide" }
+        format.json { render json: @design_methods_all}
+      end
   end
 
   def new
@@ -73,19 +81,45 @@ class DesignMethodsController < ApplicationController
   end
 
   def show
+    require 'dx/props'
+    @props = Dx::Props.load_file 'config/props/design_methods.yml'
+
     id = params[:id].to_i
     #default to method id #1 TODO remove
     dm = DesignMethod.find(id)
     @method = dm
+
+    # Method likes:
+    @method.likes += 1
+    @method.save!
+    # Method likes end.
+
     @author = dm.owner
     @citations = dm.citations
     @similar_methods = @method.similar_methods(100,6)
     @similar_case_studies = @method.similar_case_studies(100,6)
-    render :layout => "custom"
-    # render :json => @method.neighbors(100, 6)
+    respond_to do |format|
+	    format.html { render :layout => "custom" }
+	    format.json {render :json => @method}
+	end
   end
 
   def search
     render :layout => "wide"
+  end
+
+  # Confirms that user is logged-in.
+  def edit_as_signed_in_user
+    unless signed_in?
+      flash[:danger] = "Please sign in to edit this design method."
+      redirect_to design_method_url
+    end
+  end
+
+  def create_as_signed_in_user
+    unless signed_in?
+      flash[:danger] = "Please sign in to add a design method."
+      redirect_to design_methods_url
+    end
   end
 end

@@ -1,0 +1,63 @@
+/ CASE STUDY TITLE
+.row
+  .col-xs-9.col-xs-offset-3.left-pad
+    %h3
+      %b= @case_study.name != nil ? @case_study.name : "-"
+    %p
+      by #{link_to @case_study.company.name, company_path(@case_study.company) unless !@case_study.company}
+/ END CASE STUDY TITLE
+.row
+  / SIDEBAR
+  .col-xs-3#sidebar
+    = render partial: "/application/props/props", locals: { entity: @case_study }
+
+  / MAIN VIEW
+  .col-xs-9.add-padding
+    / MENU BAR
+    .row
+      .col-xs-3
+        %span.glyphicon.glyphicon-star
+        \- likes
+      .col-xs-3
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          %span.glyphicon.glyphicon-folder-open
+          Add to Set
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            %a{:href => ""} Add To Set
+          %li.divider
+          %li
+            %a{:href => "#"} My Favorites
+      .col-xs-3
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          %span.glyphicon.glyphicon-share
+          Share
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            %a{:href => "#"} Email
+      .col-xs-3
+        / = link_to '<span class="glyphicon glyphicon-pencil"></span> Edit'.html_safe, edit_case_study_path, :class => "pull right"
+        %a.pull-right{:href => edit_case_study_path(params[:id])}
+          %span.glyphicon.glyphicon-pencil
+          Edit
+    / END MENU BAR
+    / CONTENT
+    - if @case_study.main_image.present?
+      .row
+        = image_tag(@case_study.main_image, :width => "100%")
+    %br/
+    / DESCRIPTION
+    .row
+      %h3 Problem
+      %p= @case_study.overview.blank? ? "-" : md_format(@case_study.overview)
+      / FORMS
+      %h3 Process
+      %p= @case_study.process.blank? ? "-" : md_format(@case_study.process)
+      %h3 Outcome/Benefits
+      %p= @case_study.outcome.blank? ? "-" : md_format(@case_study.outcome)
+    / END DESCRIPTION
+    - render "related_content"
+    / END CONTENT
+  / END MAIN VIEW

@@ -3,15 +3,13 @@
 # Table name: citations
 #
 #  id         :integer          not null, primary key
-#  text       :string(255)
+#  text       :text
 #  created_at :datetime
 #  updated_at :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  text: MyString
-
-two:
-  text: MyString
+MITstudy:
+  text: MyText
+  

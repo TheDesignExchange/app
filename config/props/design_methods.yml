@@ -1,0 +1,22 @@
+---
+- type: group
+  title: people
+  contents:
+  - {type: numeric, noun: designer, source: num_of_designers, icon: user}
+  - {type: numeric, noun: user, source: num_of_users, icon: user}
+- type: group
+  title: tools
+  contents:
+  - {type: tags, noun: tools, source: tools, icon: pencil}
+- type: group
+  title: time
+  contents:
+  - {type: numeric, source: time_period, icon: time, noun_source: time_unit}
+- type: group
+  title: tags
+  contents:
+  - {type: tags, noun: tags, source: tags}
+- type: group
+  title: characteristics
+  contents:
+  - {type: tags, noun: tags, source: method_characteristics, each_name_source: characteristic.name}

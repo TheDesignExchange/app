@@ -31,6 +31,7 @@ class DesignMethod < ActiveRecord::Base
             message: "Already exists. Try editing an existing one."},
             on: :create
   validates :owner_id, presence: true
+  validates :process, presence: true
 
   # Relationships
   has_many :method_characteristics, dependent: :destroy
