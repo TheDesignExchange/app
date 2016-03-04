@@ -103,11 +103,31 @@
   /Method overview
   .tab-pane.row{"data-link" => "overview"}
     = @method.overview != nil ? md_format(@method.overview) : "No overview available"
-    %h4 Process
-    %p= @method.process != nil ? md_format(@method.process) : "-"
+    - if !@method.synonyms.blank?
+      %p
+        %strong Synonyms:
+        = @method.synonyms
+
     - if @method.main_image.present?
       .row
         = image_tag(@method.main_image, :width => "100%")
+
+    - if !@method.usage.blank?
+      %h4 When to use
+      %p= md_format(@method.usage)
+
+    - if !@method.benefits.blank?
+      %h4 Benefits
+      %p= md_format(@method.benefits)
+
+    - if !@method.limitations.blank?
+      %h4 Limitations/Risks
+      %p= md_format(@method.limitations)
+
+    - if !@method.skills.blank?
+      %h4 Skills that help:
+      %p= md_format(@method.skills)
+
     %h4 Contributing Authors
     .col-xs-6
       .col-xs-4
@@ -121,15 +141,29 @@
         %p= @author.email != nil ? @author.email : "-"
   /Method instructions
   .tab-pane.row{"data-link" => "instructions"}
-    /- @method.instruction_steps.each do |step|
-    /  = step.name
-    /  = md_format(step.body)
+    = @method.process != nil ? md_format(@method.process) : "No instructions available"
 
   /Method resources
   .tab-pane.row{"data-link" => "resources"}
+    - if !@method.online_resources.blank?
+      %h4&= "Online Tools & Resources"
+      %p= md_format(@method.online_resources)
+
+    - if !@method.history.blank?
+      %h4 History
+      %p= md_format(@method.history)
+
+    - if !@method.critiques.blank?
+      %h4 Critiques
+      %p= md_format(@method.critiques)
+
     - if @citations.length != 0 && @citations != nil
-      %h4 Citations
+      %h4 References used in this article
       %ol
         - @citations.each do |c|
           %li= c.text
+
+    - if !@method.additional_reading.blank?
+      %h4 Additional Reading
+      %p= md_format(@method.additional_reading)
 
