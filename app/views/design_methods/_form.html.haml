@@ -89,7 +89,8 @@
         = f.text_field :name, :class=> "form-control", :placeholder => "Method Name"
       / END INPUT METHOD NAME
       %h3 Synonyms
-      = f.text_field :name, :class=> "form-control", :placeholder => ""
+      .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+        = f.text_field :synonyms, :class=> "form-control", :placeholder => ""
       / IMAGES
       .row
         .col-xs-6.col-md-12
