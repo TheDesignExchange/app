@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151011231649) do
+ActiveRecord::Schema.define(version: 20160304073758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 20151011231649) do
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "picture"
   end
 
   create_table "characteristic_groups", force: true do |t|
@@ -135,25 +134,34 @@ ActiveRecord::Schema.define(version: 20151011231649) do
     t.string   "name"
     t.string   "email"
     t.string   "phone"
-    t.text     "company_id"
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "design_methods", force: true do |t|
-    t.string   "name",                          null: false
-    t.text     "overview",                      null: false
-    t.text     "process",                       null: false
+    t.string   "name",                            null: false
+    t.text     "overview",                        null: false
+    t.text     "process",                         null: false
     t.string   "aka"
-    t.integer  "owner_id",                      null: false
+    t.integer  "owner_id",                        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "num_of_designers", default: 1
-    t.integer  "num_of_users",     default: 1
-    t.integer  "time_period",      default: 0
-    t.string   "time_unit",        default: ""
+    t.integer  "num_of_designers",   default: 1
+    t.integer  "num_of_users",       default: 1
+    t.integer  "time_period",        default: 0
+    t.string   "time_unit",          default: ""
     t.string   "main_image"
-    t.integer  "likes",            default: 0
+    t.integer  "likes",              default: 0
+    t.text     "synonyms"
+    t.text     "benefits"
+    t.text     "limitations"
+    t.text     "skills"
+    t.text     "usage"
+    t.text     "online_resources"
+    t.text     "history"
+    t.text     "critiques"
+    t.text     "additional_reading"
   end
 
   create_table "discussion_replies", force: true do |t|

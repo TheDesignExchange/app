@@ -3,10 +3,14 @@
 # Table name: case_studies
 #
 #  id                :integer          not null, primary key
-#  main_image        :string(255)      default("")
-#  name              :string(255)      default("")
-#  url               :string(255)      default("")
-#  timePeriod        :string(255)      default("")
+#  name              :string(255)
+#  main_image        :string(255)
+#  url               :text
+#  overview          :text
+#  resource          :text
+#  problem           :text
+#  process           :text
+#  outcome           :text
 #  development_cycle :integer
 #  design_phase      :integer
 #  project_domain    :integer
@@ -14,20 +18,15 @@
 #  user_age          :integer
 #  privacy_level     :integer
 #  social_setting    :integer
-#  overview          :text
-#  customer_is_user  :boolean          default(FALSE)
-#  remote_project    :boolean          default(FALSE)
+#  customer_is_user  :boolean
+#  remote_project    :boolean
+#  num_of_designers  :integer
+#  num_of_users      :integer
+#  time_period       :integer
+#  time_unit         :text
 #  company_id        :integer
 #  created_at        :datetime
 #  updated_at        :datetime
-#  num_of_designers  :integer          default(1)
-#  num_of_users      :integer          default(1)
-#  time_period       :integer          default(0)
-#  time_unit         :string(255)      default("")
-#  resource          :string(255)
-#  problem           :text
-#  process           :text
-#  outcome           :text
 #
 
 class CaseStudy < ActiveRecord::Base
