@@ -88,6 +88,8 @@
       .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
         = f.text_field :name, :class=> "form-control", :placeholder => "Method Name"
       / END INPUT METHOD NAME
+      %h3 Synonyms
+      = f.text_field :name, :class=> "form-control", :placeholder => ""
       / IMAGES
       .row
         .col-xs-6.col-md-12
@@ -101,8 +103,24 @@
       / FORMS
       %h3 Summary
       = f.text_area :overview, :class => "form-control markdown", :rows => 6
-      %h3 Process
+      %h3 Usage
+      = f.text_area :usage, :class => "form-control markdown", :rows => 6
+      %h3 Benefits
+      = f.text_area :benefits, :class => "form-control markdown", :rows => 6
+      %h3 Limitations/Risks
+      = f.text_area :limitations, :class => "form-control markdown", :rows => 6
+      %h3 Skills
+      = f.text_area :skills, :class => "form-control markdown", :rows => 6
+      %h3 Instructions
       = f.text_area :process, :class => "form-control markdown", :rows => 20
+      %h3 Online Tools And Resources
+      = f.text_area :online_resources, :class => "form-control markdown", :rows => 6
+      %h3 History
+      = f.text_area :history, :class => "form-control markdown", :rows => 6
+      %h3 Critiques
+      = f.text_area :critiques, :class => "form-control markdown", :rows => 6
+      %h3 Additional Reading
+      = f.text_area :additional_reading, :class => "form-control markdown", :rows => 6
       / INPUT FIELDS
       / END FORMS
     / END RIGHT CONTENT

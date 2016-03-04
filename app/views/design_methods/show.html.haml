@@ -14,6 +14,9 @@
   #sidebar{
     padding-top: 50px;
   }
+  .char-group{
+    padding-bottom: 10px;
+  }
 #sidebar.col-md-3
   .row
     %h4 People
@@ -41,13 +44,12 @@
       = "No tags available" unless not @method.tags.empty?
   .row
     %h4 Characteristics
-    - @method.characteristics.group_by{|char| char.characteristic_group.name}.each do |group, chars|
+    - @method.method_categories.each do |category|
       .char-group
-        =group
-        .char-group-list
-          -chars.each do |char|
-            = link_to tagify(char.id, char.name, {:removable => false}), char
-            /handle emptiness here
+        = category.name
+        .char-list
+          - @method.characteristics.select{|char| char.characteristic_group.method_category.id == category.id}.each do |char|
+            = link_to tagify(char.id, "#{char.characteristic_group.name}: #{char.name}", {:removable => false}), char
 #content-column.col-md-9
   /Method header
   .row
