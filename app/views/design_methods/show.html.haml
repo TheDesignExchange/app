@@ -16,6 +16,16 @@
   }
   .char-group{
     padding-bottom: 10px;
+    clear: both;
+  }
+  .char-tag{
+    overflow: hidden;
+    max-width: 225px;
+    text-overflow: ellipsis;
+    float: left;
+    margin-right: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
   }
 #sidebar.col-md-3
   .row
@@ -49,7 +59,7 @@
         = category.name
         .char-list
           - @method.characteristics.select{|char| char.characteristic_group.method_category.id == category.id}.each do |char|
-            = link_to tagify(char.id, "#{char.characteristic_group.name}: #{char.name}", {:removable => false}), char
+            = link_to tagify(char.id, "#{char.characteristic_group.name}: #{char.name}", {:removable => false, :class => "char-tag"}), char
 #content-column.col-md-9
   /Method header
   .row
