@@ -37,7 +37,9 @@ module ApplicationHelper
 
 	def tagify(id, content, options)
 		fn = options[:method] ? "removeMethodLink" : "removeTag"
-		tag = "<span class='tag-label label-gap'>#{content}"
+    extra_class = options[:class] ? " #{options[:class]}" : ""
+    classes = "tag-label label-gap#{extra_class}"
+		tag = "<span class='#{classes}'>#{content}"
 	    if options[:removable]
 	    	tag = tag + '<span onclick="'+ fn +'('+ (id.to_s) +', this);" class="glyphicon glyphicon-remove-circle"></span>'
 	    end
