@@ -6,7 +6,7 @@
 #  name       :string(255)
 #  email      :string(255)
 #  phone      :string(255)
-#  company_id :string(255)
+#  company_id :integer
 #  created_at :datetime
 #  updated_at :datetime
 #
