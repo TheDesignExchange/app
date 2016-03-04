@@ -21,7 +21,7 @@
 #  limitations        :text
 #  skills             :text
 #  usage              :text
-#  tools              :text
+#  online_resources   :text
 #  history            :text
 #  critiques          :text
 #  additional_reading :text

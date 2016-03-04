@@ -21,7 +21,7 @@
 #  limitations        :text
 #  skills             :text
 #  usage              :text
-#  tools              :text
+#  online_resources   :text
 #  history            :text
 #  critiques          :text
 #  additional_reading :text
@@ -30,7 +30,7 @@
 class DesignMethod < ActiveRecord::Base
 
   # TODO: add the mass assignment protection at the controller, then remove this
-  attr_accessible :name, :process, :num_of_designers, :num_of_users, :overview, :main_image, :time_period, :name, :time_unit
+  attr_accessible :name, :process, :num_of_designers, :num_of_users, :overview, :main_image, :time_period, :name, :time_unit, :synonyms, :benefits, :limitations, :skills, :usage, :online_resources, :history, :critiques, :additional_reading
 
   # Validations
   validates :name, :overview, presence: true
@@ -94,7 +94,7 @@ class DesignMethod < ActiveRecord::Base
 
   def process
     if self[:process] == "default"
-      self[:process] = "No process available"
+      self[:process] = "No instructions available"
     end
     return self[:process]
   end
