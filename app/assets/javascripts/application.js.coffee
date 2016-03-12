@@ -106,18 +106,6 @@ window.DE =
 
     minLength: 1
 
-initializeMarkdownEditors = () ->
-  # The :visible selector is a bit of a hack, have to initialize hidden md
-  # fields after they are shown, otherwise their width is screwed up and afaik
-  # that cannot be reset without modifying the meltdown library
-  $('textarea.markdown.form-control:visible')
-    .meltdown(
-      openPreview: true
-      previewHeight: 'editorHeight'
-      sidebyside: true
-    )
-    .removeClass("form-control")
-  return
 
 $ ->
   activeTab = $('#tabs li.active').children('a').data('link')
@@ -126,21 +114,21 @@ $ ->
   $('.sidebar[data-link ="' + 'all' + '"]').show().siblings('.sidebar').hide()
   $('#tabs li a').click (e) ->
     e.preventDefault()
-
     # Alternate tabs
     $(this).parent().addClass('active').siblings().removeClass 'active'
     link = $(this).data('link')
-
     # $('.tab-pane[data-link ~="'+ link +'"]').hide();
     $('.tab-pane[data-link ="' + link + '"]').show().siblings('.tab-pane').hide()
     $('.sidebar[data-link ="' + link + '"]').show().siblings('.sidebar').hide()
-
-    # initialize any newly shown md editors
-    initializeMarkdownEditors()
     return
-
   return
 
 $(document).ready ($) ->
-  initializeMarkdownEditors()
+  $('textarea.markdown')
+    .meltdown(
+      openPreview: true
+      previewHeight: 'auto'
+      sidebyside: true
+    )
+    .removeClass("form-control")
   return
