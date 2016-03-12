@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   		session[:return_to] = request.url if request.get?
   	end
 
-    def index
+  	def index
     	# @design_methods = DesignMethod.where("overview != ?", "No overview available" ).take(3)
     	# @case_studies = CaseStudy.where("overview != ?", "No overview available").take(3)
       @design_methods = DesignMethod.take(3)
@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
       params[:query] = params[:term]
     end
 
-    if params[:category_id]
+    if params[:category_id] 
       design_methods = MethodCategory.find(params[:category_id]).design_methods
       case_studies = []
       discussions = []
@@ -59,15 +59,6 @@ class ApplicationController < ActionController::Base
 
     @results = {:all => [design_methods, case_studies, discussions].flatten,
       :dm => design_methods, :cs => case_studies, :disc => discussions}
-
-    # TEMP LOGIC for Carmen Class Experiment
-    if params[:category_id]=="3"
-      highlight_methods = design_methods.find([109,66,106,62])
-      other_methods = design_methods.where.not(id: [109,66,106,62])
-      @results = {:highlight_methods => highlight_methods, :other_methods => other_methods,
-        :dm => design_methods, :cs => case_studies, :disc => discussions}
-    end
-    # END TEMP LOGIC
 
     design_method_names = design_methods.map { |design_method| design_method.name }
     case_study_names = case_studies.map { |case_study| case_study.name }
