@@ -2,26 +2,35 @@
 #
 # Table name: design_methods
 #
-#  id               :integer          not null, primary key
-#  name             :string(255)      not null
-#  overview         :text             not null
-#  process          :text             not null
-#  aka              :string(255)
-#  owner_id         :integer          not null
-#  created_at       :datetime
-#  updated_at       :datetime
-#  num_of_designers :integer          default(1)
-#  num_of_users     :integer          default(1)
-#  time_period      :integer          default(0)
-#  time_unit        :string(255)      default("")
-#  main_image       :string(255)
-#  likes            :integer          default(0)
+#  id                 :integer          not null, primary key
+#  name               :string(255)      not null
+#  overview           :text             not null
+#  process            :text             not null
+#  aka                :string(255)
+#  owner_id           :integer          not null
+#  created_at         :datetime
+#  updated_at         :datetime
+#  num_of_designers   :integer          default(1)
+#  num_of_users       :integer          default(1)
+#  time_period        :integer          default(0)
+#  time_unit          :string(255)      default("")
+#  main_image         :string(255)
+#  likes              :integer          default(0)
+#  synonyms           :text
+#  benefits           :text
+#  limitations        :text
+#  skills             :text
+#  usage              :text
+#  online_resources   :text
+#  history            :text
+#  critiques          :text
+#  additional_reading :text
 #
 
 class DesignMethod < ActiveRecord::Base
 
   # TODO: add the mass assignment protection at the controller, then remove this
-  attr_accessible :name, :process, :num_of_designers, :num_of_users, :overview, :main_image, :time_period, :name, :time_unit
+  attr_accessible :name, :process, :num_of_designers, :num_of_users, :overview, :main_image, :time_period, :name, :time_unit, :synonyms, :benefits, :limitations, :skills, :usage, :online_resources, :history, :critiques, :additional_reading
 
   # Validations
   validates :name, :overview, presence: true
@@ -45,7 +54,7 @@ class DesignMethod < ActiveRecord::Base
 
   belongs_to :owner, class_name: "User", foreign_key: :owner_id
 
-  # CASE STUDY LINKING 
+  # CASE STUDY LINKING
   has_many :method_case_studies
   has_many :case_studies, :through => :method_case_studies
 
@@ -85,7 +94,7 @@ class DesignMethod < ActiveRecord::Base
 
   def process
     if self[:process] == "default"
-      self[:process] = "No process available"
+      self[:process] = "No instructions available"
     end
     return self[:process]
   end

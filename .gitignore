@@ -13,6 +13,9 @@
 # Ignore the default Postgres database.
 /db/*.pg
 
+# Ignore source maps (as they are build products)
+/public/assets/source_maps/*
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
