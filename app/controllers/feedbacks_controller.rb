@@ -9,9 +9,18 @@ class FeedbacksController < ApplicationController
 
     if @feedback.valid?
       FeedbackMailer.message_me(@feedback).deliver
-      redirect_to new_feedback_path, notice: "Thank you for your feedback."
+      redirect_to(:back)
+      flash[:success] = "Thank you for your feedback! Your message has been sent successfully."
+      # redirect_to new_feedback_path, notice: "Thank you for your feedback."
+
     else
-      render :new, :layout => "custom"
+      # render :new, :layout => "custom"
+      redirect_to(:back)
+      flash[:danger] = "Error: "
+      @feedback.errors.full_messages.each do |msg|
+        flash[:danger] += msg
+      end
+
     end
   end
 

@@ -1,0 +1,39 @@
+:css
+  .feedback-button {
+    position: fixed;
+    bottom: -1px;
+    right: -1px;
+    border: 0px;
+    border-radius: 5px 0px 0px 0px; 
+    background: #ddd;
+    color: #000;
+    font-size: 13px;
+    line-height: 1.8em;
+    }
+
+%a.btn.btn-default{"data-target" => "#myModal", "data-toggle" => "modal", :href => "#", :class =>"feedback-button"} ⇱ Feedback
+
+#myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title Got Feedback?
+      - @feedback = Feedback.new
+      = form_for @feedback, :html => {:multipart => true} do |f|
+        .modal-body
+          .field.form-group
+            = f.label :name
+            = f.text_field :name, :class => "form-control", :placeholder => "Name"
+          .field.form-group
+            = f.label :email
+            = f.email_field :email, :class => "form-control", :placeholder => "Email"
+          .field.form-group
+            = f.label :subject
+            = f.text_field :subject, :class => "form-control", :placeholder => "Subject"
+          .field.form-group
+            = f.label :message, "Message (required)"
+            = f.text_area :content, :class => "form-control", :rows => "5"
+        .modal-footer
+          = f.submit 'Send', class: 'btn btn-primary' 
