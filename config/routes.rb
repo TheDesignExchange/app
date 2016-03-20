@@ -55,7 +55,8 @@ DesignExchange::Application.routes.draw do
 
   resources :method_categories, only: [:show]
   resources :citations, only: [:show]
-  resources :feedbacks, only: [:new, :create]
+  resources :feedbacks, only: [:create]
+
 
   resources :users do
     resources :design_methods, only: [:index]

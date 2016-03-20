@@ -188,6 +188,8 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.0.0)
+    recaptcha (1.1.0)
+      json
     remotipart (1.2.1)
     responders (1.1.0)
       railties (>= 3.2, < 5)
@@ -310,6 +312,7 @@ DEPENDENCIES
   protected_attributes
   quiet_assets
   rails (~> 4.0.0)
+  recaptcha
   rspec-rails
   seed_dump
   selenium-webdriver
@@ -323,3 +326,6 @@ DEPENDENCIES
   uglifier
   unicorn
   will_paginate
+
+BUNDLED WITH
+   1.10.6

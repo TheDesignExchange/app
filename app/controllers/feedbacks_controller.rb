@@ -7,7 +7,10 @@ class FeedbacksController < ApplicationController
    def create
     @feedback = Feedback.new(feedback_params)
 
-    if @feedback.valid?
+    if !verify_recaptcha(model: @feedback, message: "Error: Please try again and verify that you are not a robot")
+      redirect_to(:back)
+
+    elsif @feedback.valid?
       FeedbackMailer.message_me(@feedback).deliver
       redirect_to(:back)
       flash[:success] = "Thank you for your feedback! Your message has been sent successfully."

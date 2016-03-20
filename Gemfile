@@ -61,3 +61,6 @@ gem 'bourbon', '~> 3.2'
 gem "carrierwave"
 gem "protected_attributes"
 gem "hash_control"
+
+
+gem 'recaptcha', :require => 'recaptcha/rails'
