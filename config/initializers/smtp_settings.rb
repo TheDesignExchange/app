@@ -17,4 +17,3 @@ ActionMailer::Base.smtp_settings = {
     :user_name      => user_name,
     :password       => mailgun_token
   }
-

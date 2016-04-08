@@ -1,10 +1,10 @@
 class FeedbacksController < ApplicationController
   def new
-  	@feedback = Feedback.new
-  	render :layout => "custom"
+    @feedback = Feedback.new
+    render :layout => "custom"
   end
 
-   def create
+  def create
     @feedback = Feedback.new(feedback_params)
 
     if !verify_recaptcha(model: @feedback, message: "Error: Please try again and verify that you are not a robot")
@@ -14,10 +14,8 @@ class FeedbacksController < ApplicationController
       FeedbackMailer.message_me(@feedback).deliver
       redirect_to(:back)
       flash[:success] = "Thank you for your feedback! Your message has been sent successfully."
-      # redirect_to new_feedback_path, notice: "Thank you for your feedback."
 
     else
-      # render :new, :layout => "custom"
       redirect_to(:back)
       flash[:danger] = "Error: "
       @feedback.errors.full_messages.each do |msg|
@@ -26,8 +24,6 @@ class FeedbacksController < ApplicationController
 
     end
   end
-
-
   private
 
   def feedback_params
