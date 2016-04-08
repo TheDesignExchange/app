@@ -25,6 +25,8 @@
         margin-bottom: 10px;
         font-size: 30px;
       }
+    %script{:src => "https://www.google.com/recaptcha/api.js"}
   %body
     = render "layouts/headernav"
     = yield
+  = render "layouts/feedbackform"

@@ -34,6 +34,9 @@
               %li= link_to "Profile", user_path(current_user.id)
               %li= link_to "Sets", set_index_path
               %li= link_to "Account Information", edit_user_registration_path
+              %li
+                %a{"data-target" => "#myModal", "data-toggle" => "modal", :href => "#"}
+                  Send Feedback              
               %li.divider
               %li= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
         - else
@@ -47,3 +50,4 @@
 - flash.each do |type, msg|
   - type = :success if type == :notice
   = content_tag(:div, msg, class: "flash-alert alert alert-#{type}")
+

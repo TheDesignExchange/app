@@ -1,0 +1,26 @@
+/ actual form not found in this file
+
+= form_for @feedback, :html => {:multipart => true} do |f|
+  - if @feedback.errors.any?
+    #error_explanation
+      %h2
+        =  pluralize(@feedback.errors.count, "error")
+        prohibited this feedback from being sent:
+      %ul
+        - @feedback.errors.full_messages.each do |msg|
+          %li= msg
+        %ul
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :email
+    = f.email_field :email
+  .field
+    = f.label :subject
+    = f.text_field :subject
+  .field
+    = f.label :content
+    = f.text_area :content
+  .actions
+    = f.submit 'Send', class: 'button'

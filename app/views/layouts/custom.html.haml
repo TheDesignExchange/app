@@ -1,5 +1,7 @@
 !!!
 %html
+  %head
+    %script{:src => "https://www.google.com/recaptcha/api.js"}
   %body
     %title
       = "DEx - #{params[:controller].camelize}"
@@ -39,3 +41,5 @@
     .container
       = yield
     %footer
+    = render "layouts/feedbackform"
+      
