@@ -108,14 +108,14 @@ class CaseStudiesController < ApplicationController
   # Confirms a logged-in user.
   def edit_as_signed_in_user
     unless signed_in?
-      flash[:danger] = "Please sign in to edit this case study."
+      flash[:danger] = "Please log in to edit this case study."
       redirect_to case_study_url 
     end
   end
 
   def create_as_signed_in_user
     unless signed_in?
-      flash[:danger] = "Please sign in to add a case study."
+      flash[:danger] = "Please log in to add a case study."
       redirect_to case_studies_url
     end
   end

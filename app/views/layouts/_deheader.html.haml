@@ -17,7 +17,7 @@
           %button.btn.btn-default{:onclick => "window.location.href = '#{search_design_methods_path}/'+ $('form input.form-search').val();", :type => "submit"} Submit
       - if !user_signed_in?
         .col-md-4
-          %p Sign In
+          %p Log In
           = form_for(:user, :url => {:controller => 'devise/sessions', :action => 'new'}) do |f|
             .input.frontpage-login
               = f.email_field :email, {:autofocus => true, :placeholder => "Username", :class => "form-control"}
