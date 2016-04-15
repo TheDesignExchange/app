@@ -1,4 +1,6 @@
 class CaseStudiesController < ApplicationController
+  load_and_authorize_resource
+
   before_action :edit_as_signed_in_user, only: [:edit, :update]
   before_action :create_as_signed_in_user, only: [:create, :new]
 
@@ -109,7 +111,7 @@ class CaseStudiesController < ApplicationController
   def edit_as_signed_in_user
     unless signed_in?
       flash[:danger] = "Please sign in to edit this case study."
-      redirect_to case_study_url 
+      redirect_to case_study_url
     end
   end
 

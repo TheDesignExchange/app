@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource
+
+  # this forces all users to be signed in before accessing the routes below
+  before_filter :authenticate_user!
 
   # Information about the user corresponding to the ID in the URI
   #
