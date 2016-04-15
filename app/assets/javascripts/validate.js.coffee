@@ -3,9 +3,11 @@ $ ->
   errors = new Array
   $('#new_design_method').submit (event) ->
     if $('#design_method_name').val() == ''
-      errors.push 'Please name your method'
+      errors.push '\nPlease name your method'
     if $('#design_method_overview').val() == ''
-      errors.push 'Method must have an overview'
+      errors.push '\nMethod must have an overview'
+    if $('#design_method_process').val() == ''
+      errors.push '\nMethod must have process'
     if errors.length != 0
       i = 0
       while i < errors.length
@@ -14,7 +16,7 @@ $ ->
         span = span.concat(name)
         $(span).text(errors[i]).show()
         i += 1
-      alert 'Mandatory fields were left empty.'
+      alert errors
       event.preventDefault()
       errors = new Array
     return
