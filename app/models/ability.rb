@@ -38,6 +38,7 @@ class Ability
     if user.admin?
       # TODO this should be locked down much further since :manage is a
       # catch-all and could lead to security regressions
+      can :update, User
       can :manage, [CaseStudy, Characteristic, CharacteristicGroup, Citation,
                     Company, Contact, DesignMethod, MethodCaseStudy,
                     MethodCategory, MethodCharacteristic, MethodCitation, Tag]
