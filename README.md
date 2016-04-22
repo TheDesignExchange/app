@@ -61,8 +61,9 @@ make [rails-]attach   # start rails in the foreground in a screen(1) session
 
 #### Ruby
 
-We use pry and pry-byebug for debugging ruby code. See their respective github
-repositories for further documentation. In short, you need to have a visible
-rails server (run `make attach` in a console) and add a line that reads
-`binding.pry` in the file you want to debug, at the line where you want the
-debugger to begin.
+We use [pry](https://github.com/pry/pry) and
+[pry-byebug](https://github.com/deivid-rodriguez/pry-byebug) for debugging ruby
+code. See their respective github repositories for further documentation. In
+short, you need to have a visible rails server (run `make attach` in a console)
+and add a line that reads `binding.pry` in the file you want to debug, at the
+line where you want the debugger to begin.
