@@ -99,9 +99,9 @@ class DesignMethodsController < ApplicationController
     @similar_methods = @method.similar_methods(100,6)
     @similar_case_studies = @method.similar_case_studies(100,6)
     respond_to do |format|
-	    format.html { render :layout => "custom" }
-	    format.json {render :json => @method}
-	end
+      format.html { render :layout => "custom" }
+      format.json {render :json => @method}
+  end
   end
 
   def search
