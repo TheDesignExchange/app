@@ -148,6 +148,28 @@
         - @design_method.tags.each do |t|
           = tagify(t.id, t.content, {:removable => true})
     / END OF TAGS
+    / CHARACTERISTICS
+    .row
+      %h4 Characteristics
+      .input-group
+        - char_ids = @design_method.characteristics.map(&:id)
+        - MethodCategory.all.each do |m|
+          .col-md-2
+            %b= m.name
+            %br/
+            - CharacteristicGroup.where(method_category_id: m.id).each do |g|
+              %div
+              %br/
+              = g.name
+              %br/
+              - Characteristic.where(characteristic_group_id: g.id).each do |h|
+                - if char_ids.include? h.id
+                  %input{:type => "checkbox", :checked => "checked"}
+                - else
+                  %input{:type => "checkbox"}
+                = h.name
+                %br/
+    / END CHARACTERISTICS
   / END FORMS
   %br/
   #save-bar.row
