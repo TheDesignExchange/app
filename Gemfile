@@ -39,6 +39,8 @@ end
 group :development do
   gem 'coffee-rails-source-maps'
   gem 'thin'
+  gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :production do
