@@ -154,20 +154,21 @@
       .input-group
         - char_ids = @design_method.characteristics.map(&:id)
         - MethodCategory.all.each do |m|
-          .col-md-2
-            %b= m.name
+          %b= m.name
+          .row
             %br/
             - CharacteristicGroup.where(method_category_id: m.id).each do |g|
-              %div
-              %br/
-              = g.name
-              %br/
-              - Characteristic.where(characteristic_group_id: g.id).each do |h|
-                - if char_ids.include? h.id
-                  %input{:type => "checkbox", :checked => "checked"}
-                - else
-                  %input{:type => "checkbox"}
-                = h.name
+              .col-md-4
+                = g.name
+                %br/
+                - Characteristic.where(characteristic_group_id: g.id).each do |h|
+                  - if char_ids.include? h.id
+                    = check_box_tag(h.id, h.name, true)
+                    = label_tag(h.id, h.name)
+                  - else
+                    = check_box_tag(h.id, h.name, false)
+                    = label_tag(h.id, h.name)
+                  %br/
                 %br/
     / END CHARACTERISTICS
   / END FORMS
