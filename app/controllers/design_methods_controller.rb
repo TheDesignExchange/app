@@ -44,7 +44,6 @@ class DesignMethodsController < ApplicationController
   # - @design_method: the updated design method
   def update
     @design_method = DesignMethod.find(params[:id])
-
     respond_to do |format|
       if @design_method.update_attributes(params[:design_method])
         format.html { redirect_to @design_method, notice: 'Design method was successfully updated.' }

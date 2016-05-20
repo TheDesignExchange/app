@@ -56,3 +56,44 @@ h3, h4 {
   font-family: serif;
   color: #777;
 }
+
+.char-filter {
+  width: 50%;
+}
+
+.edit-category {
+  border-bottom: 1px solid #ddd;
+  h3 {
+    padding-left: 15px;
+  }
+}
+
+.edit-category:last-child {
+  border-bottom: none;
+}
+
+.edit-category:not(:first-child) {
+  padding-top: 15px;
+}
+
+.edit-char-group {
+  padding-bottom: 15px;
+  h4 {
+    margin-bottom: 5px;
+  }
+}
+
+.edit-char-group-checkboxes {
+  padding-top: 5px;
+  padding-left: 5px;
+  border-top: 1px solid #ddd;
+}
+
+.char-checkbox-label {
+  display: block;
+  font-weight: normal;
+}
+
+.char-checkbox {
+  margin-right: 2px !important;
+}

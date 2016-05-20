@@ -14,7 +14,29 @@
 :javascript
   $(function(){
     adjustSaveBar();
+    // Add case-insensitive contains filter
+    // Hat tip: https://kilianvalkhof.com/2010/javascript/how-to-build-a-fast-simple-list-filter-with-jquery/
+    jQuery.expr[':'].Contains = function(a,i,m){
+      return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+    };
+    $(".char-filter").change(filterCharacteristics).keyup(function(){$(this).change()})
   });
+
+  function filterCharacteristics() {
+    var filterText = $(this).val();
+    if(filterText) {
+      // Show/hide matching char groups
+      $(".edit-category").find(".edit-char-group:not(:Contains(" + filterText + "))").slideUp()
+      $(".edit-category").find(".edit-char-group:Contains(" + filterText + ")").slideDown()
+
+      // Highlight individual matches
+      $(".edit-category").find(".char-checkbox-label:not(:Contains(" + filterText + "))").css('background-color', 'white');
+      $(".edit-category").find(".char-checkbox-label:Contains(" + filterText + ")").css('background-color', '#ffff99');
+    } else {
+      $(".edit-category").find(".edit-char-group").slideDown();
+      $(".edit-category").find(".char-checkbox-label").css('background-color', 'white');
+    }
+  }
 
   function adjustSaveBar(){
     var pH = $('#publish-btn').parent().height()
@@ -59,6 +81,8 @@
           %a{"data-link" => "resources"} Resources
         %li
           %a{"data-link" => "sidebar"} Sidebar
+        %li
+          %a{"data-link" => "characteristics"} Characteristics
   /Method overview
   .tab-pane.row{"data-link" => "overview"}
     / INPUT METHOD NAME
@@ -148,6 +172,20 @@
         - @design_method.tags.each do |t|
           = tagify(t.id, t.content, {:removable => true})
     / END OF TAGS
+  /Characteristics tab
+  .tab-pane.row{"data-link" => "characteristics"}
+    / CHARACTERISTICS
+    %input.char-filter.form-control{type: "text", placeholder: "Filter Characteristics..."}
+    - MethodCategory.all.each do |m|
+      .row.edit-category
+        %h3= m.name
+        - CharacteristicGroup.where(method_category_id: m.id).each do |g|
+          - group_chars = Characteristic.where(characteristic_group_id: g.id)
+          .col-md-4.edit-char-group
+            %h4= g.name
+            .edit-char-group-checkboxes
+              = f.collection_check_boxes(:characteristic_ids, group_chars, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+    / END CHARACTERISTICS
   / END FORMS
   %br/
   #save-bar.row
