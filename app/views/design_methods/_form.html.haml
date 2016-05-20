@@ -59,6 +59,8 @@
           %a{"data-link" => "resources"} Resources
         %li
           %a{"data-link" => "sidebar"} Sidebar
+        %li
+          %a{"data-link" => "characteristics"} Characteristics
   /Method overview
   .tab-pane.row{"data-link" => "overview"}
     / INPUT METHOD NAME
@@ -148,28 +150,18 @@
         - @design_method.tags.each do |t|
           = tagify(t.id, t.content, {:removable => true})
     / END OF TAGS
+  /Characteristics tab
+  .tab-pane.row{"data-link" => "characteristics"}
     / CHARACTERISTICS
-    .row
-      %h4 Characteristics
-      .input-group
-        - char_ids = @design_method.characteristics.map(&:id)
-        - MethodCategory.all.each do |m|
-          %b= m.name
-          .row
-            %br/
-            - CharacteristicGroup.where(method_category_id: m.id).each do |g|
-              .col-md-4
-                = g.name
-                %br/
-                - Characteristic.where(characteristic_group_id: g.id).each do |h|
-                  - if char_ids.include? h.id
-                    = check_box_tag(h.id, h.name, true)
-                    = label_tag(h.id, h.name)
-                  - else
-                    = check_box_tag(h.id, h.name, false)
-                    = label_tag(h.id, h.name)
-                  %br/
-                %br/
+    - MethodCategory.all.each do |m|
+      .row.edit-category
+        %h3= m.name
+        - CharacteristicGroup.where(method_category_id: m.id).each do |g|
+          - group_chars = Characteristic.where(characteristic_group_id: g.id)
+          .col-md-4.edit-char-group
+            %h4= g.name
+            .edit-char-group-checkboxes
+              = f.collection_check_boxes(:characteristic_ids, group_chars, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
     / END CHARACTERISTICS
   / END FORMS
   %br/
