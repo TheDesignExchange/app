@@ -11,6 +11,26 @@
     border-bottom: 1px solid #ddd;
     padding: 20px;
   }
+  .tool-help {
+    display: none;
+    background: #eeeeee;
+    padding: 10px 15px;
+    border-radius: 4px;
+    bottom: 20px;
+    min-width: 400px;
+    border: 1px solid #a8a8a8;
+    position: absolute;
+  }
+  .tool-help-container, .more-info-headers {
+    display: inline-block;
+  }
+  .tool-help-container {
+    padding-left: 30px;
+    position: relative;
+  }
+  #online-tools-and-resources:hover + .tool-help, #history:hover + .tool-help, #critiques:hover + .tool-help, #additional-reading:hover + .tool-help {
+    display:block;   
+  }
 :javascript
   $(function(){
     adjustSaveBar();
@@ -120,13 +140,25 @@
     = f.text_area :process, :class => "form-control markdown", :rows => 20
   /Resources tab
   .tab-pane.row{"data-link" => "resources"}
-    %h3 Online Tools And Resources
+    %h3.more-info-headers Online Tools And Resources
+    %div.tool-help-container
+      %a#online-tools-and-resources More Info
+      %div.tool-help These are tools available online to facilitate the use of the method. 
     = f.text_area :online_resources, :class => "form-control markdown", :rows => 6
-    %h3 History
+    %h3.more-info-headers History
+    %div.tool-help-container
+      %a#history More Info
+      %div.tool-help This section discusses the historical inception and use of the method.
     = f.text_area :history, :class => "form-control markdown", :rows => 6
-    %h3 Critiques
+    %h3.more-info-headers Critiques
+    %div.tool-help-container
+      %a#critiques More Info
+      %div.tool-help This section discusses the critical analyses and assessments of the method.
     = f.text_area :critiques, :class => "form-control markdown", :rows => 6
-    %h3 Additional Reading
+    %h3.more-info-headers Additional Reading
+    %div.tool-help-container
+      %a#additional-reading More Info
+      %div.tool-help This section provides further resources that provide more information on the method than is presented on theDesignExchange for the method.
     = f.text_area :additional_reading, :class => "form-control markdown", :rows => 6
   /Sidebar tab
   .tab-pane.row{"data-link" => "sidebar"}

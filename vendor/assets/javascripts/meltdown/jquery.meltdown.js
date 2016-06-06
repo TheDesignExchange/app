@@ -485,6 +485,9 @@
             this.bar =  $('<div class="meltdown_bar"></div>').appendTo(this.wrap);
             this.editorWrap =  $('<div class="' + plgName + '_editor-wrap" />').appendTo(this.wrap);
             this.editorDeco =  $('<div class="' + plgName + '_editor-deco" />').appendTo(this.editorWrap);
+
+            $('<span class="markdown-help">Styling with <a href="http://markdown-guide.readthedocs.io/en/latest/basics.html">Markdown</a> is supported</span>').appendTo(this.editorWrap);
+
             this.editor = this.element.addClass("meltdown_editor");
             this.previewWrap =  $('<div class="' + plgName + '_preview-wrap" />').appendTo(this.wrap);
             this.resizeHandle = $('<div class="' + plgName + '_resizehandle"><span></span></div>').appendTo(this.previewWrap);
