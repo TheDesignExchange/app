@@ -9,6 +9,10 @@
 //= require ./lib/rangyinputs-jquery.min.js
 
 
+
+/* This library has been manually changed to include a link to Markdown help below the text fields. */
+
+
 (function ($, window, document, undefined) {
     'use strict';
 
@@ -486,6 +490,7 @@
             this.editorWrap =  $('<div class="' + plgName + '_editor-wrap" />').appendTo(this.wrap);
             this.editorDeco =  $('<div class="' + plgName + '_editor-deco" />').appendTo(this.editorWrap);
 
+            /* This line has been added and should be copied over manually to include Markdown styling help. */
             $('<span class="markdown-help">Styling with <a href="http://markdown-guide.readthedocs.io/en/latest/basics.html">Markdown</a> is supported</span>').appendTo(this.editorWrap);
 
             this.editor = this.element.addClass("meltdown_editor");
