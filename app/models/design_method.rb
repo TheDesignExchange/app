@@ -50,6 +50,8 @@ class DesignMethod < ActiveRecord::Base
   has_many :method_citations, dependent: :destroy
   has_many :citations, through: :method_citations
 
+  accepts_nested_attributes_for :citations
+
   has_many :method_favorites, dependent: :destroy
   has_many :favorited_users, through: :method_favorites, :source => :user
 
