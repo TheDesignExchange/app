@@ -32,6 +32,7 @@ class DesignMethodsController < ApplicationController
   # - @design_method: the design method to be edited
   def edit
     @design_method = DesignMethod.find(params[:id])
+    puts @design_method.references
     render :layout => "custom"
   end
 
@@ -95,27 +96,42 @@ class DesignMethodsController < ApplicationController
     @method.save!
     # Method likes end.
 
+    if @method.references == nil
+      @method.references = ""
+    end
+
     # Add Method references as citations
-    urls = @method.references.split("\n")
-    urls.each do |url|
-      if url.blank?
-        next
-      end
-      citation = Citation.new(text: url)
-      citation.save
-      contains = false
-      dm.citations.each do |c|
-        if c.text.strip == url.strip
-          contains = true
+    if !@method.references.blank?
+      urls = @method.references.split("\n")
+      urls.each do |url|
+        if url.blank?
+          next
         end
-      end
-      if !contains
-        dm.citations.push(citation)
+        citation = Citation.new(text: url)
+        citation.save
+        contains = false
+        dm.citations.each do |c|
+          if c.text.strip == url.strip
+            contains = true
+          end
+        end
+        if !contains
+          dm.citations.push(citation)
+        end
       end
     end
 
     @author = dm.owner
     @citations = dm.citations
+
+    @citations.each do |cit|
+      if @method.references.include? cit.text
+        next
+      end
+      @method.references += cit.text + "\n"
+      @method.save
+    end
+
     @similar_methods = @method.similar_methods(100,6)
     @similar_case_studies = @method.similar_case_studies(100,6)
     respond_to do |format|
