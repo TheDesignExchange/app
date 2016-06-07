@@ -20,7 +20,6 @@ class DesignMethodsController < ApplicationController
 
   def new
     @design_method = DesignMethod.new
-    #@citations = Citation.new
     render :layout => "custom"
   end
 
@@ -33,7 +32,6 @@ class DesignMethodsController < ApplicationController
   # - @design_method: the design method to be edited
   def edit
     @design_method = DesignMethod.find(params[:id])
-    #@citations = @design_method.citations
     render :layout => "custom"
   end
 
@@ -69,8 +67,6 @@ class DesignMethodsController < ApplicationController
   def create
     @design_method = DesignMethod.new(params[:design_method])
     @design_method.owner = current_user
-    #@citations = @design_method.citations
-    #@citations = Citation.new(params[:citation])
     # @design_method.principle = ""
 
     respond_to do |format|
