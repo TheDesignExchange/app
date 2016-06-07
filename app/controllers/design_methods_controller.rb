@@ -5,6 +5,8 @@ class DesignMethodsController < ApplicationController
   before_action :edit_as_signed_in_user, only: [:edit, :update]
   before_action :create_as_signed_in_user, only: [:create, :new]
 
+  @@current_citations = []
+
   def index
       @design_methods = DesignMethod.where("overview != ?", "No overview available" )
       # .take(24)
@@ -45,6 +47,7 @@ class DesignMethodsController < ApplicationController
   # - @design_method: the updated design method
   def update
     @design_method = DesignMethod.find(params[:id])
+    @design_method.citations = @@current_citations
     respond_to do |format|
       if @design_method.update_attributes(params[:design_method])
         format.html { redirect_to @design_method, notice: 'Design method was successfully updated.' }
@@ -116,6 +119,7 @@ class DesignMethodsController < ApplicationController
 
     @author = dm.owner
     @citations = dm.citations
+    @@current_citations = @citations
     @similar_methods = @method.similar_methods(100,6)
     @similar_case_studies = @method.similar_case_studies(100,6)
     respond_to do |format|
