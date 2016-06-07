@@ -1,4 +1,5 @@
 require 'dx/props'
+require "uri"
 
 class DesignMethodsController < ApplicationController
   before_action :edit_as_signed_in_user, only: [:edit, :update]
@@ -19,6 +20,7 @@ class DesignMethodsController < ApplicationController
 
   def new
     @design_method = DesignMethod.new
+    #@citations = Citation.new
     render :layout => "custom"
   end
 
@@ -31,6 +33,7 @@ class DesignMethodsController < ApplicationController
   # - @design_method: the design method to be edited
   def edit
     @design_method = DesignMethod.find(params[:id])
+    #@citations = @design_method.citations
     render :layout => "custom"
   end
 
@@ -66,10 +69,13 @@ class DesignMethodsController < ApplicationController
   def create
     @design_method = DesignMethod.new(params[:design_method])
     @design_method.owner = current_user
+    #@citations = @design_method.citations
+    #@citations = Citation.new(params[:citation])
     # @design_method.principle = ""
 
     respond_to do |format|
       if @design_method.save
+        @citations
         format.html { redirect_to @design_method, notice: 'Design method was successfully created.' }
         format.json { render json: @design_method, status: :created, location: @design_method }
       else
@@ -93,6 +99,25 @@ class DesignMethodsController < ApplicationController
     @method.save!
     # Method likes end.
 
+    # Add Method references as citations
+    urls = @method.references.split("\n")
+    urls.each do |url|
+      if url.blank?
+        next
+      end
+      citation = Citation.new(text: url)
+      citation.save
+      contains = false
+      dm.citations.each do |c|
+        if c.text.strip == url.strip
+          contains = true
+        end
+      end
+      if !contains
+        dm.citations.push(citation)
+      end
+    end
+
     @author = dm.owner
     @citations = dm.citations
     @similar_methods = @method.similar_methods(100,6)
@@ -100,7 +125,7 @@ class DesignMethodsController < ApplicationController
     respond_to do |format|
       format.html { render :layout => "custom" }
       format.json {render :json => @method}
-  end
+    end
   end
 
   def search

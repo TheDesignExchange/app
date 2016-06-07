@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304073758) do
+ActiveRecord::Schema.define(version: 20160607171001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 20160304073758) do
     t.text     "history"
     t.text     "critiques"
     t.text     "additional_reading"
+    t.text     "references"
   end
 
   create_table "discussion_replies", force: true do |t|
@@ -300,6 +301,7 @@ ActiveRecord::Schema.define(version: 20160304073758) do
     t.string   "about_text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "roles_mask"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

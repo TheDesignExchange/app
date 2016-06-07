@@ -160,8 +160,15 @@
     - if @citations.length != 0 && @citations != nil
       %h4 References used in this article
       %ol
+        /Makes citation a hyperlink if it is a link
         - @citations.each do |c|
-          %li= c.text
+          -require "uri"
+          -link = URI.extract(c.text)
+          -if link.length == 0
+            %li= c.text
+          -else
+            %li
+              %a{ :href => link[0] } #{link[0]}
 
     - if !@method.additional_reading.blank?
       %h4 Additional Reading
