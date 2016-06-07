@@ -1,8 +1,11 @@
 require 'dx/props'
+require "uri"
 
 class DesignMethodsController < ApplicationController
   before_action :edit_as_signed_in_user, only: [:edit, :update]
   before_action :create_as_signed_in_user, only: [:create, :new]
+
+  @@current_citations = []
 
   def index
       @design_methods = DesignMethod.where("overview != ?", "No overview available" )
@@ -44,6 +47,7 @@ class DesignMethodsController < ApplicationController
   # - @design_method: the updated design method
   def update
     @design_method = DesignMethod.find(params[:id])
+    @design_method.citations = @@current_citations
     respond_to do |format|
       if @design_method.update_attributes(params[:design_method])
         format.html { redirect_to @design_method, notice: 'Design method was successfully updated.' }
@@ -70,6 +74,7 @@ class DesignMethodsController < ApplicationController
 
     respond_to do |format|
       if @design_method.save
+        @citations
         format.html { redirect_to @design_method, notice: 'Design method was successfully created.' }
         format.json { render json: @design_method, status: :created, location: @design_method }
       else
@@ -93,14 +98,34 @@ class DesignMethodsController < ApplicationController
     @method.save!
     # Method likes end.
 
+    # Add Method references as citations
+    urls = @method.references.split("\n")
+    urls.each do |url|
+      if url.blank?
+        next
+      end
+      citation = Citation.new(text: url)
+      citation.save
+      contains = false
+      dm.citations.each do |c|
+        if c.text.strip == url.strip
+          contains = true
+        end
+      end
+      if !contains
+        dm.citations.push(citation)
+      end
+    end
+
     @author = dm.owner
     @citations = dm.citations
+    @@current_citations = @citations
     @similar_methods = @method.similar_methods(100,6)
     @similar_case_studies = @method.similar_case_studies(100,6)
     respond_to do |format|
       format.html { render :layout => "custom" }
       format.json {render :json => @method}
-  end
+    end
   end
 
   def search
