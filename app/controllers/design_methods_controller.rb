@@ -1,4 +1,5 @@
 require 'dx/props'
+require "uri"
 
 class DesignMethodsController < ApplicationController
   before_action :edit_as_signed_in_user, only: [:edit, :update]
@@ -70,6 +71,7 @@ class DesignMethodsController < ApplicationController
 
     respond_to do |format|
       if @design_method.save
+        @citations
         format.html { redirect_to @design_method, notice: 'Design method was successfully created.' }
         format.json { render json: @design_method, status: :created, location: @design_method }
       else
@@ -93,14 +95,48 @@ class DesignMethodsController < ApplicationController
     @method.save!
     # Method likes end.
 
+    if @method.references == nil
+      @method.references = ""
+    end
+
+    # Add Method references as citations
+    if !@method.references.blank?
+      urls = @method.references.split("\n")
+      urls.each do |url|
+        if url.blank?
+          next
+        end
+        citation = Citation.new(text: url)
+        citation.save
+        contains = false
+        dm.citations.each do |c|
+          if c.text.strip == url.strip
+            contains = true
+          end
+        end
+        if !contains
+          dm.citations.push(citation)
+        end
+      end
+    end
+
     @author = dm.owner
     @citations = dm.citations
+
+    @citations.each do |cit|
+      if @method.references.include? cit.text
+        next
+      end
+      @method.references += cit.text + "\n"
+      @method.save
+    end
+
     @similar_methods = @method.similar_methods(100,6)
     @similar_case_studies = @method.similar_case_studies(100,6)
     respond_to do |format|
       format.html { render :layout => "custom" }
       format.json {render :json => @method}
-  end
+    end
   end
 
   def search
