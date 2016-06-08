@@ -32,7 +32,6 @@ class DesignMethodsController < ApplicationController
   # - @design_method: the design method to be edited
   def edit
     @design_method = DesignMethod.find(params[:id])
-    puts @design_method.references
     render :layout => "custom"
   end
 
