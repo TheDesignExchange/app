@@ -39,9 +39,12 @@ class DesignMethod < ActiveRecord::Base
             too_long: "%{count} is the maximum character length."}
   validates :name, uniqueness: { case_sensitive: false,
             message: "Already exists. Try editing an existing one."},
-            on: :create
+            on: :create,
+            presence: true
   validates :owner_id, presence: true
   validates :process, presence: true
+
+  validates :overview, presence: true
 
   # Relationships
   has_many :method_characteristics, dependent: :destroy
