@@ -490,15 +490,15 @@
             this.editorWrap =  $('<div class="' + plgName + '_editor-wrap" />').appendTo(this.wrap);
             this.editorDeco =  $('<div class="' + plgName + '_editor-deco" />').appendTo(this.editorWrap);
 
-            /* This line has been added and should be copied over manually to include Markdown styling help. */
-            $('<span class="markdown-help">Styling with <a href="http://markdown-guide.readthedocs.io/en/latest/basics.html">Markdown</a> is supported</span>').appendTo(this.editorWrap);
-
             this.editor = this.element.addClass("meltdown_editor");
             this.previewWrap =  $('<div class="' + plgName + '_preview-wrap" />').appendTo(this.wrap);
             this.resizeHandle = $('<div class="' + plgName + '_resizehandle"><span></span></div>').appendTo(this.previewWrap);
             this.previewHeader =  $('<span class="' + plgName + '_preview-header">Preview Area (<a class="meltdown_techpreview" href="https://github.com/iphands/Meltdown/issues/1">Tech Preview</a>)</span>').appendTo(this.previewWrap);
             this.preview =  $('<div class="' + plgName + '_preview" />').appendTo(this.previewWrap);
             this.bottommargin = $('<div class="' + plgName + '_bottommargin"/>').appendTo(this.wrap);
+
+            /* This line has been added and should be copied over manually to include Markdown styling help. */
+            $('<span class="markdown-help">Styling with <a href="http://markdown-guide.readthedocs.io/en/latest/basics.html" target="_blank">Markdown</a> is supported</span>').appendTo(this.wrap);
 
             // Setup meltdown sizes:
             this.wrap.outerWidth(this.editorPreInitOuterWidth); // jQuery 1.8+ (undocumented: http://bugs.jquery.com/ticket/10877)
