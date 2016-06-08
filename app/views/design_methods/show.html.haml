@@ -27,6 +27,12 @@
     margin-top: 1px;
     margin-bottom: 1px;
   }
+  .reference {
+    white-space: -moz-pre-wrap; /* Firefox */    
+    white-space: -pre-wrap;     /* Opera <7 */   
+    white-space: -o-pre-wrap;   /* Opera 7 */    
+    word-wrap: break-word;      /* IE */
+  }
 #sidebar.col-md-3
   .row
     %h4 People
@@ -165,9 +171,9 @@
           -require "uri"
           -link = URI.extract(c.text)
           -if link.length == 0
-            %li= c.text
+            %li.reference= c.text
           -else
-            %li
+            %li.reference
               %a{ :href => link[0] } #{link[0]}
 
     - if !@method.additional_reading.blank?
