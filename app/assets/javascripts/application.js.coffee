@@ -141,6 +141,9 @@ $ ->
 
   return
 
+  
+
+
 $(document).ready ($) ->
   initializeMarkdownEditors()
   return

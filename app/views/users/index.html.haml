@@ -1,0 +1,41 @@
+%h1 All users
+= will_paginate
+%ul.users{:style => "list-style: none;"}
+  - @users.each do |user|
+
+    %li{:style => "list-style: none;"}
+      .row
+        .col-md-3
+
+          - if user.profile_picture.present?
+            = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
+
+          - else
+            = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
+
+        
+        //= link_to user.username, user, {}
+        .col-md-3
+          %li.dropdown{}
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              = user.username
+              %b.caret
+            %ul.dropdown-menu
+              /%li= link_to "test", users_path, :onclick => 'alert("Please no!")'
+
+              /%li= link_to "Change To Admin", '#', :class => 'saveAdmin', :data => {:id => "save"}
+              /%li= link_to "Change To Editor", users_path, :id => 'save'
+              /%li= link_to "Change to Basic", users_path, :id => 'save'
+              %li= link_to "Change to Admin",  :controller => "users", :action => :changeAdmin, :id => user.id
+              %li= link_to "Change to Editor", :controller => "users", :action => :changeEditor, :id => user.id
+              %li= link_to "Change to Basic",  :controller => "users", :action => :changeBasic, :id => user.id
+
+              /%li= link_to "Change To Admin", users_path, :confirm => 'Do you want to save this setting?', :method => :changeAdmin
+              /%li= link_to "Change To Editor", :data => {:confirm => 'Do you want to save this setting?',:method => :changeAdmin}
+              /%li= link_to "Change To Basic", :data => {:confirm => 'Do you want to save this setting?',:method => :changeAdmin}
+             
+      
+
+= will_paginate
+
+

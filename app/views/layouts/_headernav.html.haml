@@ -1,7 +1,7 @@
-:javascript
-  $(function(){
-    $('form#search input').autocomplete(DE.Autocomplete);
-  });
+/ :javascript
+/   $(function(){
+/     $('form#search input').autocomplete(DE.Autocomplete);
+/   });
 %nav.navbar.navbar-default{:role => "navigation"}
   .container-fluid
     / Brand and toggle get grouped for better mobile display
@@ -31,6 +31,7 @@
               = current_user.email
               %b.caret
             %ul.dropdown-menu
+              %li= link_to "Admin", users_path
               %li= link_to "Profile", user_path(current_user.id)
               %li= link_to "Sets", set_index_path
               %li= link_to "Account Information", edit_user_registration_path

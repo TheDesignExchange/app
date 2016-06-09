@@ -34,6 +34,7 @@
   .mandatory {
     color: red;
   }
+
 :javascript
   $(function(){
     adjustSaveBar();
@@ -175,6 +176,7 @@
     %div.more-info
       %a#additional-reading More Info
       %div.tool-help This section provides further resources that provide more information on the method than is presented on theDesignExchange for the method.
+
     = f.text_area :additional_reading, :class => "form-control markdown", :rows => 6
   /Sidebar tab
   .tab-pane.row{"data-link" => "sidebar"}

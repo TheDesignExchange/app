@@ -116,6 +116,7 @@
     .tab-pane.col-md-12.padding{"data-link" => "disc"}
       - @owned_discussions.each do |disc|
         = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"4")
+    
     / END THUMBNAILS
   / END POSTED BY
 / END BODY

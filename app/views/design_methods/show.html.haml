@@ -33,6 +33,30 @@
     white-space: -o-pre-wrap;   /* Opera 7 */    
     word-wrap: break-word;      /* IE */
   }
+  .tooltips {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  }
+
+  .tooltips .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+  }
+
+  .tooltips:hover .tooltiptext {
+    visibility: visible;
+  }
+
+
 #sidebar.col-md-3
   .row
     %h4 People
@@ -59,7 +83,11 @@
         = tagify(t.id, t.content, {:removable => false})
       = "No tags available" unless not @method.tags.empty?
   .row
-    %h4 Characteristics
+    %h4 Characteristics 
+    .tooltips
+      More Info
+      %span.tooltiptext Placeholder Text
+
     - @method.method_categories.each do |category|
       .char-group
         = category.name

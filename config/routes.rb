@@ -59,7 +59,13 @@ DesignExchange::Application.routes.draw do
 
 
   resources :users do
-    resources :design_methods, only: [:index]
+    collection do
+      get "search/:query", to: "application#search", :as => "search"
+      get "search", to: "application#search"
+      get "changeAdmin"
+      get "changeEditor"
+      get "changeBasic"
+    end
   end
 
   get 'search/(:query)', controller: 'design_methods', action: 'search', as: 'search'

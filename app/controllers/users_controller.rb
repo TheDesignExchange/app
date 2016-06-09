@@ -5,6 +5,14 @@ class UsersController < ApplicationController
   # === Variables
   # - user: the user with the given ID
   # - owned_methods: methods owned by this user
+  def index
+    @users = User.paginate(page: params[:page])
+    render layout: "wide"
+    #@users = User.paginate(:page => params[:page], :per_page => 5)
+  end
+  
+
+
   def show
     @user = User.find(params[:id])
     @owned_methods = @user.owned_methods.limit(12)
@@ -60,6 +68,30 @@ class UsersController < ApplicationController
     end
   end
 
+  def changeAdmin
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to users_path, notice: 'User has now been given admin privileges.'}
+      format.json { head :no_content }
+    end
+  
+  end
+
+  def changeEditor
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to users_path, notice: 'User has now been given editor privileges.'}
+      format.json { head :no_content }
+    end
+  end
+
+  def changeBasic
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to users_path, notice: 'User has now been given basic privileges.'}
+      format.json { head :no_content }
+    end
+  end
   private
 
   def user_params
@@ -67,5 +99,7 @@ class UsersController < ApplicationController
       :username, :email, :encrypted_password, :first_name, :last_name, :profile_picture, :website, :facebook, :twitter, :linkedin, :about_text, :profile_picture
       )
   end
+
+ 
 
 end

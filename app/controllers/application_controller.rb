@@ -126,6 +126,7 @@ class ApplicationController < ActionController::Base
   end
 
 
+
   # Addinv new extra fields to Devise
   before_action :configure_permitted_parameters, if: :devise_controller?
   protected
