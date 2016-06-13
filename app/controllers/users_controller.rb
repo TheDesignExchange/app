@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource
 
   # Information about the user corresponding to the ID in the URI
   #
@@ -32,19 +33,6 @@ class UsersController < ApplicationController
     @owned_discussions = @user.owned_discussions.limit(12)
     store_location
     render layout: "wide"
-  end
-
-  def create
-    @user = DesignMethod.new(user_params)
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   def update

@@ -1,8 +1,10 @@
 class TagsController < InheritedResources::Base
-	def create
+  load_and_authorize_resource
+
+  def create
     @tag = Tag.new(params[:tag])
 
-    
+
       if @tag.save
         # format.html { redirect_to @tag, notice: 'Design method was successfully created.' }
         # format.json { render json: @tag, status: :created, location: @tag }
@@ -10,27 +12,27 @@ class TagsController < InheritedResources::Base
       else
         render json: @tag.errors, status: :unprocessable_entity
       end
-    
+
   end
 
   # TODO: remove
   # def tagify(id, content, options)
-  #   tag = "<span class='tag-label label-gap'>#{content}  " 
+  #   tag = "<span class='tag-label label-gap'>#{content}  "
   #     if options[:removable]
-  #       tag = tag + '<span onclick="removeTag('+ (id.to_s) +', this);" class="glyphicon glyphicon-remove-circle"></span>' 
+  #       tag = tag + '<span onclick="removeTag('+ (id.to_s) +', this);" class="glyphicon glyphicon-remove-circle"></span>'
   #     end
   #     tag = tag + '</span>'
   #   tag.html_safe
   # end
 
   def tagify(id, content, options)
-    tag = "<span class='tag-label label-gap'>#{content}  " 
+    tag = "<span class='tag-label label-gap'>#{content}  "
       if options[:removable]
-        tag = tag + '<span onclick="removeTag('+ (id.to_s) +', this);" class="glyphicon glyphicon-remove-circle"></span>' 
+        tag = tag + '<span onclick="removeTag('+ (id.to_s) +', this);" class="glyphicon glyphicon-remove-circle"></span>'
       end
       tag = tag + '</span>'
     tag.html_safe
-  end  
+  end
 
 
 

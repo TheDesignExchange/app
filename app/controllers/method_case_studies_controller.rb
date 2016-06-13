@@ -1,4 +1,6 @@
 class MethodCaseStudiesController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @mcs_all = MethodCaseStudy.all
     render json: @mcs_all
@@ -13,19 +15,19 @@ class MethodCaseStudiesController < ApplicationController
       else
         # format.html { render action: "new" }
         render json: @mcs.errors, status: :unprocessable_entity
-    end
+      end
   end
-  
+
   # TODO: unusued; figure out if this is necessary
   def mcs(id, content, options)
-    tag = "<span class='tag-label label-gap'>#{content}  " 
+    tag = "<span class='tag-label label-gap'>#{content}  "
       if options[:removable]
-        tag = tag + '<span onclick="removeMethodLink('+ (id.to_s) +', this);" class="glyphicon glyphicon-remove-circle"></span>' 
+        tag = tag + '<span onclick="removeMethodLink('+ (id.to_s) +', this);" class="glyphicon glyphicon-remove-circle"></span>'
       end
       tag = tag + '</span>'
     tag.html_safe
   end
-  
+
   def destroy
     @mcs = MethodCaseStudy.find(params[:id])
     @mcs.destroy
