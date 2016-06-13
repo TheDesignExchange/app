@@ -1,5 +1,5 @@
 class Collection < ActiveRecord::Base
-	attr_accessible :name, :owner_id
+	attr_accessible :name, :owner_id, :is_private
 	#has_and_belongs_to_many :design_methods
 	#has_and_belongs_to_many :case_studies
 	#has_many :design_methods

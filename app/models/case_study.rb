@@ -47,6 +47,10 @@ class CaseStudy < ActiveRecord::Base
     has_many :design_methods, :through => :method_case_studies
     has_many :tags
 
+
+    has_many :method_collections, dependent: :destroy
+    has_many :collections, through: :method_collections
+
     # Sunspot
     searchable do
       text :name, stored: true

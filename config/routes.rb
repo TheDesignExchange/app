@@ -57,7 +57,7 @@ DesignExchange::Application.routes.draw do
     #get 'add_method', :on => :collection
   #end
 
-  get '/collections/add_method', to: 'collections#add_method', as: "add_to_collection"
+  get '/collections/add', to: 'collections#add', as: "add_to_collection"
   #get '/collections/:id', to: 'collections#show'
   
 

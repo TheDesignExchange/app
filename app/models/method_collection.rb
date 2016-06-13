@@ -1,5 +1,5 @@
 class MethodCollection < ActiveRecord::Base
-  attr_accessible :design_method_id, :collection_id
+  attr_accessible :design_method_id, :collection_id, :case_study_id
 
   belongs_to :design_method
   belongs_to :collection

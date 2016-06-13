@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160613170016) do
+ActiveRecord::Schema.define(version: 20160613230142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 20160613170016) do
     t.integer  "user_id"
     t.integer  "owner_id"
     t.integer  "design_method_id"
+    t.boolean  "is_private"
   end
 
   add_index "collections", ["design_method_id"], name: "index_collections_on_design_method_id", using: :btree
@@ -243,7 +244,10 @@ ActiveRecord::Schema.define(version: 20160613170016) do
     t.integer  "collection_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "case_study_id"
   end
+
+  add_index "method_collections", ["case_study_id"], name: "index_method_collections_on_case_study_id", using: :btree
 
   create_table "method_favorites", force: true do |t|
     t.integer  "user_id"
