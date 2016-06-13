@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   # - owned_methods: methods owned by this user
   def index
     @users = User.paginate(page: params[:page])
-    render layout: "wide"
+    render layout: "custom"
     #@users = User.paginate(:page => params[:page], :per_page => 5)
   end
   
