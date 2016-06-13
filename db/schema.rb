@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607171001) do
+ActiveRecord::Schema.define(version: 20160613170016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,18 @@ ActiveRecord::Schema.define(version: 20160607171001) do
     t.datetime "updated_at"
   end
 
+  create_table "collections", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "owner_id"
+    t.integer  "design_method_id"
+  end
+
+  add_index "collections", ["design_method_id"], name: "index_collections_on_design_method_id", using: :btree
+  add_index "collections", ["user_id"], name: "index_collections_on_user_id", using: :btree
+
   create_table "comments", force: true do |t|
     t.text     "text"
     t.integer  "user_id"
@@ -163,7 +175,10 @@ ActiveRecord::Schema.define(version: 20160607171001) do
     t.text     "critiques"
     t.text     "additional_reading"
     t.text     "references"
+    t.integer  "collection_id"
   end
+
+  add_index "design_methods", ["collection_id"], name: "index_design_methods_on_collection_id", using: :btree
 
   create_table "discussion_replies", force: true do |t|
     t.text     "text"
@@ -222,6 +237,13 @@ ActiveRecord::Schema.define(version: 20160607171001) do
   add_index "method_citations", ["citation_id"], name: "index_method_citations_on_citation_id", using: :btree
   add_index "method_citations", ["design_method_id", "citation_id"], name: "index_method_citations_on_design_method_id_and_citation_id", unique: true, using: :btree
   add_index "method_citations", ["design_method_id"], name: "index_method_citations_on_design_method_id", using: :btree
+
+  create_table "method_collections", force: true do |t|
+    t.integer  "design_method_id"
+    t.integer  "collection_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "method_favorites", force: true do |t|
     t.integer  "user_id"

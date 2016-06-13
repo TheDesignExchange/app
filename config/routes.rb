@@ -1,5 +1,6 @@
 DesignExchange::Application.routes.draw do
 
+  get "collections/new"
   get "autocomplete_search", to: "application#search"
 
   resources :companies do 
@@ -49,8 +50,15 @@ DesignExchange::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
 
- 
+  #match "design_methods/:id", :via=>:post, :controller=>"pages", :action=>"create_collection"
 
+  #resource :collection do
+    # Route GET /user/admin_login
+    #get 'add_method', :on => :collection
+  #end
+
+  get '/collections/add_method', to: 'collections#add_method', as: "add_to_collection"
+  #get '/collections/:id', to: 'collections#show'
   
 
   resources :method_categories, only: [:show]
@@ -61,6 +69,8 @@ DesignExchange::Application.routes.draw do
   resources :users do
     resources :design_methods, only: [:index]
   end
+
+  resources :collections
 
   get 'search/(:query)', controller: 'design_methods', action: 'search', as: 'search'
 

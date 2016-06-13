@@ -56,6 +56,9 @@ class DesignMethod < ActiveRecord::Base
   has_many :method_favorites, dependent: :destroy
   has_many :favorited_users, through: :method_favorites, :source => :user
 
+  has_many :method_collections, dependent: :destroy
+  has_many :collections, through: :method_collections
+
   belongs_to :owner, class_name: "User", foreign_key: :owner_id
 
   # CASE STUDY LINKING
@@ -72,6 +75,10 @@ class DesignMethod < ActiveRecord::Base
 
   # Uploader (what gem?)
   mount_uploader :main_image, PictureUploader
+
+  #has_and_belongs_to_many :collections
+  #belongs_to :collection
+  has_one :collection
 
   # Sunspot
   searchable do

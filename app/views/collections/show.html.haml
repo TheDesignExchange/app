@@ -1,0 +1,7 @@
+%h1= @collection.name
+
+%ul
+- @collection.design_methods.each do |dm|
+  = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"3")
+- @collection.case_studies.each do |cs|
+  = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")

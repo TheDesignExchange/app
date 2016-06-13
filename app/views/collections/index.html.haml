@@ -1,0 +1,10 @@
+<h1>My Collections</h1>
+
+%ul
+- @collections.each do |collection|
+  /%li=link_to collection.name, controller: "collections", action: "add_method"
+  %li=link_to collection.name, collection
+
+  /%li=collection.name
+  /-collection.design_methods.each do |dm|
+  /%p=dm.name

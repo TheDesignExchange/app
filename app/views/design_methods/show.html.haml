@@ -33,6 +33,15 @@
     white-space: -o-pre-wrap;   /* Opera 7 */    
     word-wrap: break-word;      /* IE */
   }
+:javascript
+  $(document).ready(function() {
+    $('.dropdown-menu input').click(function(e) {
+      e.stopPropagation(); //This will prevent the event from bubbling up and close the dropdown when you type/click on text boxes.
+    });
+  });
+
+
+
 #sidebar.col-md-3
   .row
     %h4 People
@@ -89,6 +98,24 @@
             %a{:href => edit_design_method_path(params[:id])}
               %span.glyphicon.glyphicon-pencil
               Edit
+
+          %li
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              Add to Set
+              %b.caret
+            %ul.dropdown-menu
+              -@collections.each do |collection|
+                %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :method_id => @method.id)
+                /%li=link_to collection.name, controller: "collections", action: "add_method"
+                /%li= collection.name
+
+              = form_for @collection do |f|
+                .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+                = f.text_field :name, :class=> "form-control", :placeholder => ""
+
+              /%form
+              /= text_field @collection, :name
+
     /Method top level categories
   .row
     - @method.method_categories.each do |category|

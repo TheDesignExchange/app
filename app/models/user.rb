@@ -98,4 +98,6 @@ class User < ActiveRecord::Base
   has_many :owned_discussions, dependent: :destroy, class_name: "Discussion", foreign_key: :user_id
   has_many :comments, dependent: :destroy
   has_many :tags
+
+  has_many :owned_sets, dependent: :destroy, class_name: "Collection", foreign_key: :owner_id
 end
