@@ -120,6 +120,20 @@ class CollectionsController < ApplicationController
   end
 
 
+  def change_privacy
+  	@collection = Collection.find(params[:id])
+  	if @collection.is_private?
+  		@collection.update_attribute(:is_private, false)
+  	else
+  		@collection.update_attribute(:is_private, true)
+  	end
+  	@collection.save
+  	respond_to do |format|
+  		format.html { redirect_to :back, notice: 'Privacy changed.'}
+	    format.json { render json: @collection, status: :created, location: @collection }
+	  end
+  end
+
 
 
 end

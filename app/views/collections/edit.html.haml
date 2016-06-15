@@ -13,6 +13,11 @@
 
 %h1= @collection.name
 
+-if @collection.is_private?
+  %span=link_to "Make this collection public", change_privacy_path
+-else
+  %span=link_to "Make this collection private", change_privacy_path
+
 /Need update button
 
 %ul
