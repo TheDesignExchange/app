@@ -58,6 +58,10 @@ DesignExchange::Application.routes.draw do
   #end
 
   get '/collections/add', to: 'collections#add', as: "add_to_collection"
+
+  get '/design_methods/:id/remove', to: 'collections#remove'
+  get '/case_studies/:id/remove', to: 'collections#remove'
+  #get '/collections/:id/edit/remove', to: 'collections#remove', as: "remove_from_collection"
   #get '/collections/:id', to: 'collections#show'
   
 

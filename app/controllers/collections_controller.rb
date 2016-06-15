@@ -85,6 +85,40 @@ class CollectionsController < ApplicationController
 	  end
   end
 
+  def remove
+  	col_id = request.referrer.scan( /\d+/ ).last
+  	@collection = Collection.find(col_id)
+
+  	id = params[:id]
+  	
+  	url = request.original_url
+
+  	if url.include? "design_methods"
+    	@method = DesignMethod.find(id)
+    	@collection.design_methods.delete(@method)
+    end
+    if url.include? "case_studies"
+    	@case_study = CaseStudy.find(id)
+    	@collection.case_studies.delete(@case_study)
+    end
+
+  	respond_to do |format|
+  		if @collection.save
+  			format.html { redirect_to :back, notice: 'Removed from Set.'}
+	    	format.json { render json: @collection, status: :created, location: @collection }
+	    else
+	    	format.html { redirect_to :back, notice: 'Not removed from Set due to errors.' }
+	     	format.json { render json: @collection, status: :created, location: @collection }
+	    end
+	  end
+  end
+
+
+  def edit
+  	@collection = Collection.find(params[:id])
+    render :layout => "custom"
+  end
+
 
 
 

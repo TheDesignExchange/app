@@ -1,0 +1,22 @@
+:css
+  .delete{
+    position: absolute;
+    z-index: 1;
+    right: 5px;
+    cursor: pointer;
+  }
+  .card:hover .delete {
+  	opacity: 0.3;
+    font-size: 180px;
+    right: 45px;
+  }
+
+%h1= @collection.name
+
+/Need update button
+
+%ul
+- @collection.design_methods.each do |dm|
+  = render "/layouts/delete_thumbnail", locals: @thumb_obj = thumbnail(dm,"3")
+- @collection.case_studies.each do |cs|
+  = render "/layouts/delete_thumbnail", locals: @thumb_obj = thumbnail(cs,"3")

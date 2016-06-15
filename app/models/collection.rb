@@ -1,5 +1,6 @@
 class Collection < ActiveRecord::Base
 	attr_accessible :name, :owner_id, :is_private
+	after_initialize :init
 	#has_and_belongs_to_many :design_methods
 	#has_and_belongs_to_many :case_studies
 	#has_many :design_methods
@@ -13,4 +14,10 @@ class Collection < ActiveRecord::Base
 	validates :name, presence: true
   	validates :name, 	length: { maximum: 255,
             			too_long: "%{count} is the maximum character length."}
+
+
+
+    def init
+      self.is_private = true
+    end
 end

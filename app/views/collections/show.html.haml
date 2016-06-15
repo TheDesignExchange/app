@@ -1,5 +1,9 @@
 %h1= @collection.name
 
+%a{:href => edit_collection_path(params[:id])}
+  %span.glyphicon.glyphicon-pencil
+  Edit
+
 %ul
 - @collection.design_methods.each do |dm|
   = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"3")
