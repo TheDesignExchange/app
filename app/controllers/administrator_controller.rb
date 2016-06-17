@@ -2,7 +2,7 @@ class AdministratorController < ApplicationController
 
   def index
     authorize! :index, :administrator
-    @users = User.paginate(page: params[:page])
+    @users = User.all
     render layout: "custom"
   end
 
