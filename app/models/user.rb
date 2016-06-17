@@ -69,6 +69,10 @@ class User < ActiveRecord::Base
     self.has_role? :editor
   end
 
+  def reader?
+    self.has_role? :reader
+  end
+
   def favorite(design_method)
     if !self.favorite_methods.exists?(design_method)
       self.favorite_methods << design_method

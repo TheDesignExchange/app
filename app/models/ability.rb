@@ -36,9 +36,17 @@ class Ability
     can :manage, User, :id => user.id
 
     if user.admin?
+
+      # non-REST-ful actions in the administrator controller
+      can :index, :administrator
+      can :change_admin, :administrator
+      can :change_editor, :administrator
+      can :change_basic, :administrator
+
+      can :update, User
+
       # TODO this should be locked down much further since :manage is a
       # catch-all and could lead to security regressions
-      can [:update, :changeAdmin, :changeEditor, :changeBasic], User
       can :manage, [CaseStudy, Characteristic, CharacteristicGroup, Citation,
                     Company, Contact, DesignMethod, MethodCaseStudy,
                     MethodCategory, MethodCharacteristic, MethodCitation, Tag]

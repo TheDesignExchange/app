@@ -53,14 +53,28 @@ DesignExchange::Application.routes.draw do
   resources :citations, only: [:show]
   resources :feedbacks, only: [:create]
 
+
+  # resources :administrator do 
+  #   collection do
+  #     get "search/:query", to: "application#search", :as => "search"
+  #     get "search", to: "application#search"
+  #     get "changeAdmin"
+  #     get "changeEditor"
+  #     get "changeBasic"
+  #     get "index"
+  #   end
+  # end
+  get '/administrator', to: 'administrator#index'
+  get '/administrator/change_admin', to: 'administrator#changeAdmin'
+  get '/administrator/change_editor', to: 'administrator#changeEditor'
+  get '/administrator/change_basic', to: 'administrator#changeBasic'
+  #resources :administrator
+  #match :administrator, :to => 'administrators#index'
   resources :users do
     collection do
       get "search/:query", to: "application#search", :as => "search"
       get "search", to: "application#search"
-      get "changeAdmin"
-      get "changeEditor"
-      get "changeBasic"
-    end
+    end 
   end
 
   get 'search/(:query)', controller: 'design_methods', action: 'search', as: 'search'

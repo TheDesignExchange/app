@@ -7,8 +7,12 @@ class UsersController < ApplicationController
   # - user: the user with the given ID
   # - owned_methods: methods owned by this user
   def index
-    @users = User.paginate(page: params[:page])
-    render layout: "custom"
+    if current_user.admin?
+      @users = User.paginate(page: params[:page])
+      render layout: "custom"
+    else 
+      redirect_to current_user
+    end
     #@users = User.paginate(:page => params[:page], :per_page => 5)
   end
   
@@ -58,6 +62,8 @@ class UsersController < ApplicationController
 
   def changeAdmin
     @user = User.find(params[:id])
+    @user.roles = [:admin]
+    @user.save
     respond_to do |format|
       format.html { redirect_to users_path, notice: 'User has now been given admin privileges.'}
       format.json { head :no_content }
@@ -67,6 +73,8 @@ class UsersController < ApplicationController
 
   def changeEditor
     @user = User.find(params[:id])
+    @user.roles = [:editor]
+    @user.save
     respond_to do |format|
       format.html { redirect_to users_path, notice: 'User has now been given editor privileges.'}
       format.json { head :no_content }
@@ -75,6 +83,8 @@ class UsersController < ApplicationController
 
   def changeBasic
     @user = User.find(params[:id])
+    @user.roles = [:reader]
+    @user.save
     respond_to do |format|
       format.html { redirect_to users_path, notice: 'User has now been given basic privileges.'}
       format.json { head :no_content }
