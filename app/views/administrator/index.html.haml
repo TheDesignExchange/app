@@ -10,7 +10,7 @@
              .siblings()
              .removeClass('active');
       var link = $(this).data('link');
-  
+
       // $('.tab-pane[data-link ~="'+ link +'"]').hide();
       $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
     })
@@ -19,7 +19,7 @@
   .padding{
       padding-top: 15px;
   }
-  
+
   .social-icon{
     width: 32px;
     height: 32px;
@@ -29,9 +29,9 @@
 / BODY
 .row
   / PROFILE INFO
- 
-  .col-md-9
-   
+
+  .col-md-12
+
     #tabs
       %ul.nav.nav-tabs
         %li.active
@@ -46,14 +46,14 @@
 
 
       .row
-        .col-md-3
-          - @users.select{ |user| user.id % 3 == 1 }.each do |user|
+        - @users.each do |user|
+          .col-md-3
 
             - if user.profile_picture.present?
               = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-
             - else
               = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
+
             %li.dropdown{:style => "list-style: none"}
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                 = user.username
@@ -62,260 +62,76 @@
                 - if user.admin?
                   %li= link_to "Admin"
                   %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id   
-                - if user.editor?
+                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
+                - elsif user.editor?
                   %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
                   %li= link_to "Editor"
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id   
-                - if user.reader?
+                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
+                - elsif user.basic?
                   %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
                   %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
                   %li= link_to "Basic"
-        .col-md-3
-          - @users.select{ |user| user.id % 3 == 2 }.each do |user|
-
-            - if user.profile_picture.present?
-              = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-
-            - else
-              = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
-            %li.dropdown{:style => "list-style: none"}
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = user.username
-                %b.caret
-              %ul.dropdown-menu
-                
-                - if user.admin?
-                  %li= link_to "Admin"
-                  %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id   
-                - if user.editor?
-                  %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                  %li= link_to "Editor"
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id   
-                - if user.reader?
+                - else
                   %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
                   %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Basic"           
-              
-        .col-md-3
-          - @users.select{ |user| user.id % 3 == 0 }.each do |user|
-
-            - if user.profile_picture.present?
-              = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-
-            - else
-              = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
-            %li.dropdown{:style => "list-style: none"}
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = user.username
-                %b.caret
-              %ul.dropdown-menu                
-                - if user.admin?
-                  %li= link_to "Admin"
-                  %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id   
-                - if user.editor?
-                  %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                  %li= link_to "Editor"
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id   
-                - if user.reader?
-                  %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                  %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Basic"
-
-
-               
-      
-
-
+                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
 
     /  Admin Tab
     .tab-pane.col-md-12.padding{"data-link" => "admin"}
-
       .row
+        - @users.select{|user| user.admin?}.each do |user|
+          .col-md-3
 
-        .col-md-3
-          - for user in @users.select{|user| user.admin?}
+            - if user.profile_picture.present?
+              = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
+            - else
+              = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
 
-            - if @users.select{|user| user.admin?}.index(user) % 3 == 0
-              - if user.profile_picture.present?
-                = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
+            %li.dropdown{:style => "list-style: none"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                = user.username
+                %b.caret
+              %ul.dropdown-menu
+                %li= link_to "Admin"
+                %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
+                %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
 
-              - else
-                = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
-              %li.dropdown{:style => "list-style: none"}
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = user.username
-                  %b.caret
-                %ul.dropdown-menu
-                  %li= link_to "Admin"
-                  %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-         
-        .col-md-3
-          - for user in @users.select{|user| user.admin?}
-
-            - if @users.select{|user| user.admin?}.index(user) % 3 == 1
-
-              - if user.profile_picture.present?
-                = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-
-              - else
-                = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
-              %li.dropdown{:style => "list-style: none"}
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = user.username
-                  %b.caret
-                %ul.dropdown-menu
-                  
-                  %li= link_to "Admin"
-                  %li= link_to "Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id               
-              
-        .col-md-3
-          - for user in @users.select{|user| user.admin?}
-
-            - if @users.select{|user| user.admin?}.index(user) % 3 == 2
-
-              - if user.profile_picture.present?
-                = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-
-              - else
-                = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
-              %li.dropdown{:style => "list-style: none"}
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = user.username
-                  %b.caret
-                %ul.dropdown-menu
-                  %li= link_to "Admin"
-                  %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id       
     / Editor Tab
     .tab-pane.col-md-12.padding{"data-link" => "editor"}
       .row
-        .col-md-3
-          - for user in @users.select{|user| user.editor?}
+        - @users.select{|user| user.editor?}.each do |user|
+          .col-md-3
 
-            - if @users.select{|user| user.editor?}.index(user) % 3 == 0
-              - if user.profile_picture.present?
-                = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
+            - if user.profile_picture.present?
+              = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
+            - else
+              = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
 
-              - else
-                = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
-              %li.dropdown{:style => "list-style: none"}
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = user.username
-                  %b.caret
-                %ul.dropdown-menu
-                  %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                  %li= link_to "Editor"
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-         
-        .col-md-3
-          - for user in @users.select{|user| user.editor?}
-
-            - if @users.select{|user| user.editor?}.index(user) % 3 == 1
-
-              - if user.profile_picture.present?
-                = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-
-              - else
-                = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
-              %li.dropdown{:style => "list-style: none"}
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = user.username
-                  %b.caret
-                %ul.dropdown-menu
-                  
-                  %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                  %li= link_to "Editor"
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id               
-              
-        .col-md-3
-          - for user in @users.select{|user| user.editor?}
-
-            - if @users.select{|user| user.editor?}.index(user) % 3 == 2
-
-              - if user.profile_picture.present?
-                = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-
-              - else
-                = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
-              %li.dropdown{:style => "list-style: none"}
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = user.username
-                  %b.caret
-                %ul.dropdown-menu
-                  
-                  %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                  %li= link_to "Editor"
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id   
+            %li.dropdown{:style => "list-style: none"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                = user.username
+                %b.caret
+              %ul.dropdown-menu
+                %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
+                %li= link_to "Editor"
+                %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
 
     /Basic Tab
     .tab-pane.col-md-12.padding{"data-link" => "basic"}
       .row
-        .col-md-3
-          - for user in @users.select{|user| user.reader?}
+        - @users.select{|user| user.basic?}.each do |user|
+          .col-md-3
 
-            - if @users.select{|user| user.reader?}.index(user) % 3 == 0
-              - if user.profile_picture.present?
-                = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
+            - if user.profile_picture.present?
+              = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
+            - else
+              = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
 
-              - else
-                = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
-              %li.dropdown{:style => "list-style: none"}
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = user.username
-                  %b.caret
-                %ul.dropdown-menu
-                  %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                  %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Basic"
-         
-        .col-md-3
-          - for user in @users.select{|user| user.reader?}
-
-            - if @users.select{|user| user.reader?}.index(user) % 3 == 1
-
-              - if user.profile_picture.present?
-                = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-
-              - else
-                = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
-              %li.dropdown{:style => "list-style: none"}
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = user.username
-                  %b.caret
-                %ul.dropdown-menu
-                  
-                  %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                  %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Basic"           
-              
-        .col-md-3
-          - for user in @users.select{|user| user.reader?}
-
-            - if @users.select{|user| user.reader?}.index(user) % 3 == 2
-
-              - if user.profile_picture.present?
-                = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-
-              - else
-                = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
-              %li.dropdown{:style => "list-style: none"}
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = user.username
-                  %b.caret
-                %ul.dropdown-menu
-                  
-                  %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                  %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Basic"
-
-
-
-    / END THUMBNAILS
-  / END POSTED BY
-/ END BODY
-
+            %li.dropdown{:style => "list-style: none"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                = user.username
+                %b.caret
+              %ul.dropdown-menu
+                %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
+                %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
+                %li= link_to "Basic"

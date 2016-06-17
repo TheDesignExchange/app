@@ -1,13 +1,13 @@
 class AdministratorController < ApplicationController
 
   def index
-  	authorize! :index, :administrator
-     @users = User.paginate(page: params[:page])
-     render layout: "custom"
+    authorize! :index, :administrator
+    @users = User.paginate(page: params[:page])
+    render layout: "custom"
   end
 
   def changeAdmin
-  	authorize! :change_admin, :administrator
+    authorize! :change_admin, :administrator
     @user = User.find(params[:id])
     @user.roles = [:admin]
     @user.save
@@ -15,11 +15,11 @@ class AdministratorController < ApplicationController
       format.html { redirect_to administrator_path, notice: 'User has now been given admin privileges.'}
       format.json { head :no_content }
     end
-  
+
   end
 
   def changeEditor
-  	authorize! :change_editor, :administrator
+    authorize! :change_editor, :administrator
     @user = User.find(params[:id])
     @user.roles = [:editor]
     @user.save
@@ -30,9 +30,9 @@ class AdministratorController < ApplicationController
   end
 
   def changeBasic
-  	authorize! :change_basic, :administrator
+    authorize! :change_basic, :administrator
     @user = User.find(params[:id])
-    @user.roles = [:reader]
+    @user.roles = [:basic]
     @user.save
     respond_to do |format|
       format.html { redirect_to administrator_path, notice: 'User has now been given basic privileges.'}

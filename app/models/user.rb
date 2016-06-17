@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   # of existing roles will wreak havoc on role assignments.
   # If you do not understand this, please consult the README at
   # https://github.com/martinrehfeld/role_model
-  roles :admin, :editor, :reader
+  roles :admin, :editor, :basic
 
   def admin?
     self.has_role? :admin
@@ -69,8 +69,8 @@ class User < ActiveRecord::Base
     self.has_role? :editor
   end
 
-  def reader?
-    self.has_role? :reader
+  def basic?
+    self.has_role? :basic
   end
 
   def favorite(design_method)
