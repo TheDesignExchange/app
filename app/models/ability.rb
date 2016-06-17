@@ -36,7 +36,6 @@ class Ability
     can :manage, User, :id => user.id
 
     if user.admin?
-
       # non-REST-ful actions in the administrator controller
       can :index, :administrator
       can :change_admin, :administrator
