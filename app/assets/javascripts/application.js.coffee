@@ -140,8 +140,7 @@ $ ->
     return
 
   return
-
-  
+ 
 
 
 $(document).ready ($) ->

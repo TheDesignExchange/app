@@ -18,7 +18,7 @@ class AccountController < ApplicationController
   end
 
   def login
-  	render layout: "custom"
+    render layout: "custom"
   end
 
   def register
