@@ -130,6 +130,10 @@
     = f.file_field :main_image
     / END IMAGES
     / FORMS
+    %br/
+    %h3 Video URL
+    .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+      = f.text_field :videoURL, :class=> "form-control", :placeholder => ""
     %h3 
       Summary 
       %span.mandatory *

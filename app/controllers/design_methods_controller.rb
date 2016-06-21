@@ -6,7 +6,7 @@ class DesignMethodsController < ApplicationController
 
   before_action :edit_as_signed_in_user, only: [:edit, :update]
   before_action :create_as_signed_in_user, only: [:create, :new]
-
+  
   def index
       @design_methods = DesignMethod.where("overview != ?", "No overview available" )
       # .take(24)
