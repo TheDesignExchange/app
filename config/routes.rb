@@ -63,6 +63,13 @@ DesignExchange::Application.routes.draw do
   get '/case_studies/:id/remove', to: 'collections#remove'
 
   get '/collections/:id/edit/change_privacy', to: 'collections#change_privacy', as: "change_privacy"
+
+  get '/collections/:id/edit/delete', to: 'collections#delete', as: "delete_collection"
+
+  get '/collections/:id/edit/methods', to: 'collections#methods', as: "edit_methods"
+  get '/collections/:id/edit/studies', to: 'collections#studies', as: "edit_studies"
+
+  #get '/collections/:id', to: 'collections#show', as: "show_collection"
   #get '/collections/:id/edit/remove', to: 'collections#remove', as: "remove_from_collection"
   #get '/collections/:id', to: 'collections#show'
   

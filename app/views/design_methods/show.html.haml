@@ -33,6 +33,17 @@
     white-space: -o-pre-wrap;   /* Opera 7 */    
     word-wrap: break-word;      /* IE */
   }
+  #collection_name {
+    float: left;
+    width: 75%;
+    height: 30px;
+  }
+  #new_collection {
+    padding: 0px 20px 40px 20px;
+  }
+  .dropdown-menu {
+    max-width: 200px;
+  }
 :javascript
   $(document).ready(function() {
     $('.dropdown-menu input').click(function(e) {
@@ -86,6 +97,24 @@
           %li
             %span.glyphicon.glyphicon-eye-open
             = pluralize(@method.likes, 'view')
+
+          %li
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %span.glyphicon.glyphicon-folder-open
+              Add to Collection
+              %b.caret
+            %ul.dropdown-menu
+              -@collections.each do |collection|
+                %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :method_id => @method.id)
+                /%li=link_to collection.name, controller: "collections", action: "add_method"
+                /%li= collection.name
+
+              = form_for @collection do |f|
+                .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+                = f.text_field :name, :class=> "form-control", :placeholder => ""
+                = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
+
+
           %li
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               %span.glyphicon.glyphicon-share
@@ -99,19 +128,7 @@
               %span.glyphicon.glyphicon-pencil
               Edit
 
-          %li
-            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              Add to Set
-              %b.caret
-            %ul.dropdown-menu
-              -@collections.each do |collection|
-                %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :method_id => @method.id)
-                /%li=link_to collection.name, controller: "collections", action: "add_method"
-                /%li= collection.name
-
-              = form_for @collection do |f|
-                .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
-                = f.text_field :name, :class=> "form-control", :placeholder => ""
+          
 
               /%form
               /= text_field @collection, :name

@@ -1,3 +1,22 @@
+:css
+  #collection_name {
+    float: left;
+    width: 75%;
+    height: 30px;
+  }
+  #new_collection {
+    padding: 0px 20px 40px 20px;
+  }
+  .dropdown-menu {
+    max-width: 200px;
+  }
+:javascript
+  $(document).ready(function() {
+    $('.dropdown-menu input').click(function(e) {
+      e.stopPropagation(); //This will prevent the event from bubbling up and close the dropdown when you type/click on text boxes.
+    });
+  });
+
 / CASE STUDY TITLE
 .row
   .col-xs-9.col-xs-offset-3.left-pad
@@ -22,7 +41,7 @@
         %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
           %span.glyphicon.glyphicon-folder-open
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            Add to Set
+            Add to Collection
             %b.caret
           %ul.dropdown-menu
             -@collections.each do |collection|
@@ -33,6 +52,7 @@
             = form_for @collection do |f|
               .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
               = f.text_field :name, :class=> "form-control", :placeholder => ""
+              = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
           /Add to Set
           /%b.caret
           /%ul.dropdown-menu

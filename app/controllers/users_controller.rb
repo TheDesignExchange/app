@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @owned_methods = @user.owned_methods.limit(12)
     @owned_discussions = @user.owned_discussions.limit(12)
+    @owned_sets = @user.owned_sets
+
+    @private_collections = @owned_sets.where(is_private: true)
+    @public_collections = @owned_sets.where(is_private: false) 
     if user_signed_in?
       @is_current_user = @user.id == current_user.id
     else
@@ -22,6 +26,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @owned_methods = @user.owned_methods.limit(12)
     @owned_discussions = @user.owned_discussions.limit(12)
+    @owned_sets = @user.owned_sets
+    @private_collections = @owned_sets.where(is_private: true)
+    @public_collections = @owned_sets.where(is_private: false) 
     store_location
     render layout: "wide"
   end

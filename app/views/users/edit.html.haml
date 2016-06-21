@@ -102,6 +102,8 @@
             %a{"data-link" => "cs"} Case Studies
           %li
             %a{"data-link" => "disc"} Discussions
+          %li
+            %a{"data-link" => "col"} Collections
       / END NAVBAR
       .tab-pane.col-md-12.padding{"data-link" => "all"}
         - @owned_methods.each do |dm|
@@ -115,6 +117,35 @@
       .tab-pane.col-md-12.padding{"data-link" => "disc"}
         - @owned_discussions.each do |disc|
           = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"4")
+
+          
+      .tab-pane.col-md-12.padding{"data-link" => "col"}
+
+        -if @private_collections.empty?
+
+          %h2 No private collections
+        -else 
+          %h2 Private
+        %ul.collections
+          - @private_collections.each do |collection|
+            %li
+              %a{:href => collection_path}
+                %span.glyphicon.glyphicon-th-list
+                -collection.name
+            /%li=link_to set.name, set
+
+        -if @private_collections.empty?
+
+
+          %h2 No public collections
+        -else 
+          %h2 Public
+        %ul
+          - @public_collections.each do |collection|
+            %li
+            %a{:href => collection_path}
+              %span.glyphicon.glyphicon-th-list
+              -collection.name
       / END THUMBNAILS
     / END POSTED BY
 / END BODY

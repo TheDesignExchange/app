@@ -102,6 +102,8 @@
           %a{"data-link" => "cs"} Case Studies
         %li
           %a{"data-link" => "disc"} Discussions
+        %li
+          %a{"data-link" => "col"} Collections
     / END NAVBAR
     / THUMBNAILS
     .tab-pane.col-md-12.padding{"data-link" => "all"}
@@ -116,6 +118,40 @@
     .tab-pane.col-md-12.padding{"data-link" => "disc"}
       - @owned_discussions.each do |disc|
         = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"4")
+
+
+    .tab-pane.col-md-12.padding{"data-link" => "col"}
+
+      -if @private_collections.empty?
+
+        %h2 No private collections
+      -else 
+        %h2 Private
+      %ul.collections
+        - @private_collections.each do |collection|
+          %li
+            /%a{:href => collection_path}
+            -col_path = "/collections/" + collection.id.to_s
+            %a{:href => col_path}
+              %span.glyphicon.glyphicon-th-list
+              #{collection.name}
+          /%li=link_to set.name, set
+
+      -if @private_collections.empty?
+
+
+        %h2 No public collections
+      -else 
+        %h2 Public
+      %ul.collections
+        - @public_collections.each do |collection|
+          %li
+            -col_path = "/collections/" + collection.id.to_s
+            %a{:href => col_path}
+              %span.glyphicon.glyphicon-th-list
+              #{collection.name}
+          /%li=link_to set.name, set
+        /= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(set,"4")
     / END THUMBNAILS
   / END POSTED BY
 / END BODY

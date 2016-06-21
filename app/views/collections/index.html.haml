@@ -1,9 +1,20 @@
-<h1>My Collections</h1>
+%h1 Public Collections
 
-%ul
-- @collections.each do |collection|
-  /%li=link_to collection.name, controller: "collections", action: "add_method"
-  %li=link_to collection.name, collection
+/%h2 Private
+
+/%ul
+/- @private_collections.each do |collection|
+/%li=link_to collection.name, controller: "collections", action: "add_method"
+/%li=link_to collection.name, collection
+
+/%h2 Public
+%ul.collections
+  - @public_collections.each do |collection|
+    %li
+      -col_path = "/collections/" + collection.id.to_s
+      %a{:href => col_path}
+        %span.glyphicon.glyphicon-th-list
+        #{collection.name}
 
   /%li=collection.name
   /-collection.design_methods.each do |dm|

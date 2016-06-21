@@ -1,8 +1,12 @@
 %h1= @collection.name
 
-%a{:href => edit_collection_path(params[:id])}
-  %span.glyphicon.glyphicon-pencil
-  Edit
+
+
+-if @user.id == @collection.owner_id
+
+  %a{:href => edit_collection_path(params[:id])}
+    %span.glyphicon.glyphicon-pencil
+    Edit
 
 %ul
 - @collection.design_methods.each do |dm|

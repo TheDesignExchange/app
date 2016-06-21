@@ -1,0 +1,59 @@
+:css
+  .char-checkbox-label {
+    display: block;
+    font-weight: normal;
+  }
+  .all_methods_studies {
+    padding-left: 15px;
+  }
+
+:javascript
+  $(function(){
+    jQuery.expr[':'].Contains = function(a,i,m){
+      return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+    };
+    $(".char-filter").change(filterCharacteristics).keyup(function(){$(this).change()})
+  });
+
+  function filterCharacteristics() {
+    var filterText = $(this).val();
+    if(filterText) {
+      $(".char-checkbox-label:not(:Contains(" + filterText + "))").css('background-color', 'white');
+      $(".char-checkbox-label:Contains(" + filterText + ")").css('background-color', '#ffff99');
+      $(".char-checkbox-label:not(:Contains(" + filterText + "))").slideUp();
+      $(".char-checkbox-label:Contains(" + filterText + ")").slideDown();
+    } else {
+      $(".char-checkbox-label").slideDown();
+      $(".char-checkbox-label").css('background-color', 'white');
+    }
+  }
+
+
+%h3.all_methods_studies All Case Studies
+
+%input.char-filter.form-control{type: "text", placeholder: "Filter Studies..."}
+
+= form_for @collection do |f|
+
+  - full = CaseStudy.count
+  - one_third = full/3
+  - two_thirds = one_third * 2
+
+  .col-md-4.edit-char-group
+    - CaseStudy.all[0..one_third].each do |m|
+      - cs = CaseStudy.where(id: m.id)
+      = f.collection_check_boxes(:case_study_ids, cs, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+
+
+  .col-md-4.edit-char-group
+    - CaseStudy.all[(one_third+1)..two_thirds].each do |m|
+      - cs = CaseStudy.where(id: m.id)
+      = f.collection_check_boxes(:case_study_ids, cs, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+
+
+  .col-md-4.edit-char-group
+    - CaseStudy.all[(two_thirds+1)..full].each do |m|
+      - cs = CaseStudy.where(id: m.id)
+      = f.collection_check_boxes(:case_study_ids, cs, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+
+  = f.submit "Save", :class => "btn btn-primary pull-right"

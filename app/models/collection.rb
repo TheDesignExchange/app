@@ -1,6 +1,6 @@
 class Collection < ActiveRecord::Base
-	attr_accessible :name, :owner_id, :is_private
-	#after_initialize :init
+	attr_accessible :name, :owner_id, :is_private, :design_method_ids, :case_study_ids
+	after_initialize :init
 	#has_and_belongs_to_many :design_methods
 	#has_and_belongs_to_many :case_studies
 	#has_many :design_methods
@@ -17,9 +17,9 @@ class Collection < ActiveRecord::Base
 
 
 
-  #def init
-  	#if self.is_private.nil?
-  		#self.is_private = true
-  	#end
-  #end
+  def init
+  	if self.is_private.nil?
+  		self.is_private = true
+  	end
+  end
 end
