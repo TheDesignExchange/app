@@ -31,18 +31,21 @@
               = current_user.email
               %b.caret
             %ul.dropdown-menu
+              - if current_user.admin?
+                %li= link_to "Admin", administrator_path
               %li= link_to "Profile", user_path(current_user.id)
               %li= link_to "Sets", set_index_path
               %li= link_to "Account Information", edit_user_registration_path
               %li
                 %a{"data-target" => "#myModal", "data-toggle" => "modal", :href => "#"}
-                  Send Feedback              
+                  Send Feedback
               %li.divider
               %li= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
         - else
           %li
             = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
-          %li= link_to "Login", new_user_session_path, :class => 'navbar-link'
+          %li
+            = link_to "Login", new_user_session_path, :class => 'navbar-link'
     / /.navbar-collapse
   / /.container-fluid
 

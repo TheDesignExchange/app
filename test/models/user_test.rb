@@ -25,6 +25,7 @@
 #  about_text             :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  roles_mask             :integer
 #
 
 require 'test_helper'

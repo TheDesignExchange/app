@@ -1,7 +1,6 @@
-# == Description
-# Controller for DesignMethod.
-
 class DesignMethodsController < ApplicationController
+  load_and_authorize_resource
+
   # Page for DesignMethod browsing.
   #
   # Currently displays all methods, but in the future should display different sets of methods such

@@ -1,4 +1,6 @@
 class FeedbacksController < ApplicationController
+  load_and_authorize_resource
+
   def new
     @feedback = Feedback.new
     render :layout => "custom"

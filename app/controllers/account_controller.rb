@@ -1,4 +1,6 @@
 class AccountController < ApplicationController
+  load_and_authorize_resource
+
   def profile_user
     id = params["n"] == nil ? 1 : params["n"].to_i
     # render :text => id
@@ -16,18 +18,18 @@ class AccountController < ApplicationController
   end
 
   def login
-  	render layout: "custom" 
+    render layout: "custom"
   end
 
   def register
-  	render layout: "custom" 
+  	render layout: "custom"
   end
 
   # TODO: remove
   def tagify(content, options)
-    tag = "<span class='tag-label label-gap'>#{content}  " 
+    tag = "<span class='tag-label label-gap'>#{content}  "
       if options[:removable]
-        tag = tag + '<span class="glyphicon glyphicon-remove-circle"></span>' 
+        tag = tag + '<span class="glyphicon glyphicon-remove-circle"></span>'
       end
       tag = tag + '</span>'
     tag.html_safe

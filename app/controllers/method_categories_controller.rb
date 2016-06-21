@@ -1,4 +1,5 @@
 class MethodCategoriesController < ApplicationController
+  load_and_authorize_resource
 
   def show
     @method_category = MethodCategory.find(params[:id])
