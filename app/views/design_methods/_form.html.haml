@@ -34,6 +34,42 @@
   .mandatory {
     color: red;
   }
+  .tooltips {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  }
+
+  .tooltips .tooltiptext {
+    visibility: hidden;
+    width: 500px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    top: -5px;
+    left: 105%; 
+    position: absolute;
+    z-index: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .tooltips:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  .tooltips .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+  }
 
 :javascript
   $(function(){
@@ -131,7 +167,12 @@
     / END IMAGES
     / FORMS
     %br/
-    %h3 Video URL
+    %h3 Video Embedded URL
+    .tooltips
+      How to get Embedded Video URL
+      %span.tooltiptext 
+        In any YouTube video, right click on the video, click on copy embed code.
+        paste this information anywhere and you will get something like "< iframe width="640" height="360" src="https://www.youtube.com/embed/example" frameborder="0" allowfullscreen></iframe >". The embed URL is the linke after src= , remove the quotation marks and you will have the embedded video URL
     .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
       = f.text_field :videoURL, :class=> "form-control", :placeholder => ""
     %h3 
