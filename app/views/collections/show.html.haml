@@ -1,9 +1,6 @@
 %h1= @collection.name
 
-
-
 -if @user.id == @collection.owner_id
-
   %a{:href => edit_collection_path(params[:id])}
     %span.glyphicon.glyphicon-pencil
     Edit

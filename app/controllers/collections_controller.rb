@@ -1,8 +1,6 @@
 class CollectionsController < ApplicationController
 	def index
 		@collections = Collection.all
-
-		#@private_collections = Collection.where(is_private: true)
 		@public_collections = Collection.where(is_private: false) 
 		render :layout => "custom"
 	end
@@ -13,11 +11,8 @@ class CollectionsController < ApplicationController
   end
 
   def create
-
   	@collection = Collection.new(params[:collection])
-
   	url = request.referrer
-
   	if url =~ /\/([^\/]+)(?=\/[^\/]+\/?\Z)/
 		  match = $~[1]
 		else
@@ -36,20 +31,16 @@ class CollectionsController < ApplicationController
   			@collection.case_studies.push(@case_study)
   		end
 		end
-  	
-  	#method_id = request.referrer.scan( /\d+$/ ).first
-  	#@method = DesignMethod.find(method_id)
+
   	respond_to do |format|
   		@collection.update_attribute(:name, params[:collection][:name])
   		@collection.update_attribute(:owner_id, current_user.id)
-  		#@collection.design_methods.push(@method)
       if @collection.save
         format.html { redirect_to :back, notice: 'Set was successfully created.'}
         format.json { render json: @collection, status: :created, location: @collection }
       else
       	@collection.destroy
         format.html { redirect_to :back, :flash => { :warning => "New Set must have a name." } }
-       	#format.json { render json: @collection, status: :unprocessable_entity, location: @collection }
       end
     end
   end
@@ -63,6 +54,16 @@ class CollectionsController < ApplicationController
   	render :layout => "custom"
   end
 
+  # Adds a design method or case study to an existing collection
+  #
+  # === Parameters
+  # - id: ID of the collection to be edited
+  #
+  # === Variables
+  # - @collection: the collection to be edited
+  # - @method: the method to be added
+  # - @case_study: the case study to be added
+
   def add
     @collection = Collection.find(params[:col_id])
 
@@ -75,8 +76,6 @@ class CollectionsController < ApplicationController
     	@collection.case_studies.push(@case_study)
     end
 
-    #@method = DesignMethod.find(params[:method_id])
-    #@collection.design_methods.push(@method)
     respond_to do |format|
 	    if @collection.save
 	    	puts @collection.inspect
@@ -89,12 +88,20 @@ class CollectionsController < ApplicationController
 	  end
   end
 
+  # Removes a design method or case study from an existing collection
+  #
+  # === Parameters
+  # - id: ID of the collection to be edited
+  #
+  # === Variables
+  # - @collection: the collection to be edited
+  # - @method: the method to be removed
+  # - @case_study: the case study to be removed
+
   def remove
   	col_id = request.referrer.scan( /\d+/ ).last
   	@collection = Collection.find(col_id)
-
   	id = params[:id]
-  	
   	url = request.original_url
 
   	if url.include? "design_methods"
@@ -129,8 +136,6 @@ class CollectionsController < ApplicationController
 
   def update
   	@collection = Collection.find(params[:id])
-    puts "COLLECTION METHODS HERE!!!!"
-    puts @collection.design_methods
   	respond_to do |format|
   		if @collection.update_attributes(params[:collection])
   			format.html { redirect_to @collection, notice: 'Collection was successfully updated.' }
@@ -142,6 +147,13 @@ class CollectionsController < ApplicationController
   	end
   end
 
+  # Changes the privacy of an existing collection (from private to public, or vice versa)
+  #
+  # === Parameters
+  # - id: ID of the collection to be edited
+  #
+  # === Variables
+  # - @collection: the collection to be edited
 
   def change_privacy
   	@collection = Collection.find(params[:id])
@@ -157,21 +169,43 @@ class CollectionsController < ApplicationController
 	  end
   end
 
+  # Deletes existing collection
+  #
+  # === Parameters
+  # - id: ID of the collection to be deleted
+  #
+  # === Variables
+  # - @collection: the collection to be deleted
+
   def delete
   	@collection = Collection.find(params[:id])
   	@collection.destroy
   	redirect_to action: "index"
   end
 
+  # Displays all design methods for addition/removal, including those already in existing collection
+  #
+  # === Parameters
+  # - id: ID of the collection to be edited
+  #
+  # === Variables
+  # - @collection: the collection to be edited
+
   def methods
   	@collection = Collection.find(params[:id])
   	render :layout => "custom"
   end
 
+  # Displays all case studies for addition/removal, including those already in existing collection
+  #
+  # === Parameters
+  # - id: ID of the collection to be edited
+  #
+  # === Variables
+  # - @collection: the collection to be edited
+
   def studies 
     @collection = Collection.find(params[:id])
     render :layout => "custom"
   end
-
-
 end

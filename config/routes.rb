@@ -50,29 +50,14 @@ DesignExchange::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
 
-  #match "design_methods/:id", :via=>:post, :controller=>"pages", :action=>"create_collection"
-
-  #resource :collection do
-    # Route GET /user/admin_login
-    #get 'add_method', :on => :collection
-  #end
-
-  get '/collections/add', to: 'collections#add', as: "add_to_collection"
-
   get '/design_methods/:id/remove', to: 'collections#remove'
   get '/case_studies/:id/remove', to: 'collections#remove'
 
+  get '/collections/add', to: 'collections#add', as: "add_to_collection"
   get '/collections/:id/edit/change_privacy', to: 'collections#change_privacy', as: "change_privacy"
-
   get '/collections/:id/edit/delete', to: 'collections#delete', as: "delete_collection"
-
   get '/collections/:id/edit/methods', to: 'collections#methods', as: "edit_methods"
   get '/collections/:id/edit/studies', to: 'collections#studies', as: "edit_studies"
-
-  #get '/collections/:id', to: 'collections#show', as: "show_collection"
-  #get '/collections/:id/edit/remove', to: 'collections#remove', as: "remove_from_collection"
-  #get '/collections/:id', to: 'collections#show'
-  
 
   resources :method_categories, only: [:show]
   resources :citations, only: [:show]

@@ -26,6 +26,7 @@
 #  critiques          :text
 #  additional_reading :text
 #  references         :text
+#  characteristic_ids
 #
 
 class DesignMethod < ActiveRecord::Base
@@ -75,10 +76,6 @@ class DesignMethod < ActiveRecord::Base
 
   # Uploader (what gem?)
   mount_uploader :main_image, PictureUploader
-
-  #has_and_belongs_to_many :collections
-  #belongs_to :collection
-  has_one :collection
 
   # Sunspot
   searchable do

@@ -106,15 +106,11 @@
             %ul.dropdown-menu
               -@collections.each do |collection|
                 %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :method_id => @method.id)
-                /%li=link_to collection.name, controller: "collections", action: "add_method"
-                /%li= collection.name
 
               = form_for @collection do |f|
                 .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
                 = f.text_field :name, :class=> "form-control", :placeholder => ""
                 = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
-
-
           %li
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               %span.glyphicon.glyphicon-share
@@ -127,11 +123,6 @@
             %a{:href => edit_design_method_path(params[:id])}
               %span.glyphicon.glyphicon-pencil
               Edit
-
-          
-
-              /%form
-              /= text_field @collection, :name
 
     /Method top level categories
   .row

@@ -90,20 +90,8 @@ class DesignMethodsController < ApplicationController
     @method = dm
 
     @collections = current_user.owned_sets
-
     @collection = Collection.new(params[:collection])
     @collection.owner_id = current_user.id
-
-    #respond_to do |format|
-      #if @collection.save
-        #format.html { redirect_to @method, notice: 'Set was successfully created.' }
-        #format.json { render json: @collection, status: :created, location: @collection }
-      #else
-        #format.html { redirect_to @method, notice: 'To create a new set, you need to input a name.' }
-        #format.json { render json: @design_method.errors, status: :unprocessable_entity }
-      #end
-    #end
-
 
     # Method likes:
     @method.likes += 1
@@ -149,15 +137,8 @@ class DesignMethodsController < ApplicationController
     @similar_methods = @method.similar_methods(100,6)
     @similar_case_studies = @method.similar_case_studies(100,6)
     respond_to do |format|
-      #if @collection.save
-        #puts "SET WAS CREATED!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        #format.html { render :layout => "custom" }
-        #flash[:success] = "Set successfully created."
-        #format.json { render json: @collection, status: :created, location: @collection }
-      #else
       format.html { render :layout => "custom" }
       format.json {render :json => @method}
-      #end
     end
   end
 

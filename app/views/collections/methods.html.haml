@@ -27,8 +27,6 @@
     }
   }
 
-
-
 %h3.all_methods_studies All Design Methods
 
 %input.char-filter.form-control{type: "text", placeholder: "Filter Methods..."}
@@ -53,7 +51,4 @@
       - method = DesignMethod.where(id: m.id)
       = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
 
-  /- DesignMethod.all.each do |m|
-  /- method = DesignMethod.where(id: m.id)
-  /= f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
   = f.submit "Save", :class => "btn btn-primary pull-right"
