@@ -1,4 +1,5 @@
 class CollectionsController < ApplicationController
+  load_and_authorize_resource
 	def index
 		@collections = Collection.all
 		@public_collections = Collection.where(is_private: false) 
@@ -108,7 +109,10 @@ class CollectionsController < ApplicationController
   # - @case_study: the case study to be removed
 
   def remove
+    puts "YOYOYOYO"
   	col_id = request.referrer.scan( /\d+/ ).last
+    puts "YOYOYOYO COLLECTION ID HERE"
+    puts col_id
   	@collection = Collection.find(col_id)
   	id = params[:id]
   	url = request.original_url

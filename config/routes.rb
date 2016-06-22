@@ -1,5 +1,8 @@
 DesignExchange::Application.routes.draw do
 
+  get '/design_methods/:id/remove', to: 'collections#remove'
+  get '/case_studies/:id/remove', to: 'collections#remove'
+
   get "collections/new"
   get "autocomplete_search", to: "application#search"
 
@@ -50,8 +53,7 @@ DesignExchange::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
 
-  get '/design_methods/:id/remove', to: 'collections#remove'
-  get '/case_studies/:id/remove', to: 'collections#remove'
+  
 
   get '/collections/add', to: 'collections#add', as: "add_to_collection"
   get '/collections/:id/edit/change_privacy', to: 'collections#change_privacy', as: "change_privacy"

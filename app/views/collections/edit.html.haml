@@ -71,15 +71,15 @@
 
 %div{:class => "col-xs-4 col-sm-4 left-top-padding add-to-col"}
   %a.card{:href => edit_methods_path}
-    %h3.batch_add Add Design Methods to Collection
+    %h3.batch_add Manage Design Methods
     .add +
 %div{:class => "col-xs-4 col-sm-4 left-top-padding add-to-col"}
   %a.card{:href => edit_studies_path}
-    %h3.batch_add Add Case Studies to Collection
+    %h3.batch_add Manage Case Studies
     .add +
 
-- @collection.design_methods.each do |dm|
-  = render "/layouts/delete_thumbnail", locals: @thumb_obj = thumbnail(dm,"3")
-- @collection.case_studies.each do |cs|
-  = render "/layouts/delete_thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
+/- @collection.design_methods.each do |dm|
+/  = render "/layouts/delete_thumbnail", locals: @thumb_obj = thumbnail(dm,"3")
+/- @collection.case_studies.each do |cs|
+/  = render "/layouts/delete_thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
 
