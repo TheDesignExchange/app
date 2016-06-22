@@ -2,6 +2,8 @@ require 'dx/props'
 require "uri"
 
 class DesignMethodsController < ApplicationController
+  load_and_authorize_resource
+
   before_action :edit_as_signed_in_user, only: [:edit, :update]
   before_action :create_as_signed_in_user, only: [:create, :new]
 

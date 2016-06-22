@@ -8,7 +8,6 @@
 #  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
 #  current_sign_in_at     :datetime
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
@@ -25,12 +24,22 @@
 #  about_text             :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  roles_mask             :integer
 #
 
 class User < ActiveRecord::Base
+  include RoleModel
   mount_uploader :profile_picture, PictureUploader
-   attr_accessible :email, :encrypted_password, :sign_in_count, :first_name, :last_name, :username, :phone_number, :website, 
-   :facebook, :twitter, :linkedin, :about_text , :profile_picture, :password, :password_confirmation
+
+  attr_accessible :email, :encrypted_password, :sign_in_count, :first_name, :last_name, :username, :phone_number, :website,
+  :facebook, :twitter, :linkedin, :about_text , :profile_picture, :password, :password_confirmation
+
+  has_many :owned_methods, dependent: :destroy, class_name: "DesignMethod", foreign_key: :owner_id
+  has_many :method_favorites, dependent: :destroy
+  has_many :favorite_methods, through: :method_favorites, :source => :design_method
+  has_many :owned_discussions, dependent: :destroy, class_name: "Discussion", foreign_key: :user_id
+  has_many :comments, dependent: :destroy
+  has_many :tags
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -39,9 +48,30 @@ class User < ActiveRecord::Base
           validates :username, presence: true, uniqueness: true
           validates :first_name, presence: true
           validates :last_name, presence: true
-          validates :email, presence: true 
-          validates :encrypted_password, presence: true 
+          validates :email, presence: true
+          validates :encrypted_password, presence: true
           validates :sign_in_count, presence: true
+
+  # WARNING #
+  # It is SUPER IMPORTANT not to change the order of existing roles!!!
+  # roles_mask encodes a user's role assignments by summing 2 to the power of
+  # the each assigned role's index in the array below, so changing the indices
+  # of existing roles will wreak havoc on role assignments.
+  # If you do not understand this, please consult the README at
+  # https://github.com/martinrehfeld/role_model
+  roles :admin, :editor, :basic
+
+  def admin?
+    self.has_role? :admin
+  end
+
+  def editor?
+    self.has_role? :editor
+  end
+
+  def basic?
+    self.has_role? :basic
+  end
 
   def favorite(design_method)
     if !self.favorite_methods.exists?(design_method)
@@ -74,9 +104,7 @@ class User < ActiveRecord::Base
       return false
     end
   end
-  def is_admin
-    self[:id] == 1
-  end
+
   def unlike(design_method)
     method_like = MethodLike.where(
       user_id: self.id,
@@ -90,7 +118,6 @@ class User < ActiveRecord::Base
       return false
     end
   end
-
 
   has_many :owned_methods, dependent: :destroy, class_name: "DesignMethod", foreign_key: :owner_id
   has_many :method_favorites, dependent: :destroy

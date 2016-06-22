@@ -1,25 +1,11 @@
 TheDesignExchange/app
 =====================
 
-
-For everyone
-------------
-
-Want to see what's new? You can find release notes here:
-https://github.com/TheDesignExchange/app/issues?q=label:release
-
-Read more about our release cycle [here](https://github.com/TheDesignExchange/app/wiki/Review-and-Release-Cycle).
-
-
-For developers
---------------
-
 [TheDesignExchange:master][] build status:
 ![build status][]
 
  [TheDesignExchange:master]: https://github.com/TheDesignExchange/thedesignexchange/tree/master
  [build status]: https://travis-ci.org/TheDesignExchange/thedesignexchange.svg
-
 
 ### Installing
 
@@ -37,9 +23,9 @@ A few manual steps are required:
    Ubuntu: You might have to `sudo apt-get install openjdk-6-jdk` for Sunspot.
 
 4. That's it! Read the next section to see how to start up the server.
+5. After starting your server, run `bundle exec rake db:seed` to seed your database with starter data.
 
  [install **rvm**]: https://rvm.io/rvm/install
-
 
 ### Usage
 

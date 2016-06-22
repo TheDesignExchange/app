@@ -3,10 +3,10 @@ DesignExchange::Application.routes.draw do
   get "collections/new"
   get "autocomplete_search", to: "application#search"
 
-  resources :companies do 
+  resources :companies do
     resources :contacts
   end
-  
+
   resources :characteristics, only: [:show]
 
   resources :tags
@@ -14,18 +14,18 @@ DesignExchange::Application.routes.draw do
   root "application#index"
 
   resources :case_studies do
-    collection do 
+    collection do
       get "related_methods", to: "case_studies#related_methods"
       get "search/:query", to: "application#search"
       get "search", to: "application#search", :as => "search"
     end
-    member do 
+    member do
       get "related_methods", to: "case_studies#related_methods", :as => "related_methods"
     end
   end
-  
+
   resources :design_methods do
-    collection do 
+    collection do
       get "search/:query", to: "application#search"
       get "search", to: "application#search", :as => "search"
       get "method_category/:category_id",  to: "application#search", :as => "search_category"
@@ -33,7 +33,7 @@ DesignExchange::Application.routes.draw do
   end
 
   resources :discussions do
-    collection do 
+    collection do
       get "search/:query", to: "application#search"
       get "search", to: "application#search", :as => "search"
     end
@@ -62,17 +62,19 @@ DesignExchange::Application.routes.draw do
   resources :method_categories, only: [:show]
   resources :citations, only: [:show]
   resources :feedbacks, only: [:create]
+  resources :users
 
+  # Singleton routes for admin panel
+  get '/administrator', to: 'administrator#index'
+  get '/administrator/change_admin', to: 'administrator#changeAdmin'
+  get '/administrator/change_editor', to: 'administrator#changeEditor'
+  get '/administrator/change_basic', to: 'administrator#changeBasic'
 
-  resources :users do
-    resources :design_methods, only: [:index]
-  end
 
   resources :collections
 
   get 'search/(:query)', controller: 'design_methods', action: 'search', as: 'search'
 
   get ":action", to:"application##{:action}"
-
 
 end

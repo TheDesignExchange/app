@@ -33,6 +33,28 @@
     white-space: -o-pre-wrap;   /* Opera 7 */    
     word-wrap: break-word;      /* IE */
   }
+  .tooltips {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  }
+
+  .tooltips .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+  }
+
+  .tooltips:hover .tooltiptext {
+    visibility: visible;
+  }
   #collection_name {
     float: left;
     width: 75%;
@@ -50,7 +72,6 @@
       e.stopPropagation(); //This will prevent the event from bubbling up and close the dropdown when you type/click on text boxes.
     });
   });
-
 
 
 #sidebar.col-md-3
@@ -79,7 +100,11 @@
         = tagify(t.id, t.content, {:removable => false})
       = "No tags available" unless not @method.tags.empty?
   .row
-    %h4 Characteristics
+    %h4 Characteristics 
+    .tooltips
+      More Info
+      %span.tooltiptext Placeholder Text
+
     - @method.method_categories.each do |category|
       .char-group
         = category.name

@@ -1,9 +1,11 @@
 class CollectionController < ApplicationController
+  load_and_authorize_resource
+
 layout "custom"
   def links
-     if not params["n"] 
-      render :json => "Fail" 
-    else 
+     if not params["n"]
+      render :json => "Fail"
+    else
       id = params["n"]
       cs = CaseStudy.where("id=?", id).first;
       methods = cs.design_methods().each{|x| x.name = x.name.humanize() }.reverse;
@@ -11,9 +13,9 @@ layout "custom"
     end
   end
   def removemethod
-    if not params["m"] or not params["cs"] 
-      render :json => "Fail" 
-    else 
+    if not params["m"] or not params["cs"]
+      render :json => "Fail"
+    else
       mname= params["m"].strip().gsub(' ', '_');
       csid = params["cs"];
       m = DesignMethod.where('name like  ?', "#{mname}%").first
@@ -25,9 +27,9 @@ layout "custom"
     end
   end
   def linkmethod
-    if not params["m"] or not params["cs"] 
-      render :json => "Fail" 
-    else 
+    if not params["m"] or not params["cs"]
+      render :json => "Fail"
+    else
       mname= params["m"].gsub(' ', '_');
       csid = params["cs"];
       m = DesignMethod.where('name like  ?', "#{mname}%").first
@@ -58,7 +60,7 @@ layout "custom"
   def casestudies
   	# @casestudies = [
   	# 	{:name => "FedEx Case Study: Leveraging Customer Voice For Co-Creation", :overview => "FedEx Innovation spent over five years developing SenseAwareSM, a sensing device combined with a web-based application - a novel application without predecessors. FedEx and Conifer approached this product development using Co-Creation. The Conifer team acted as facilitators and mediators between a group of FedEx customers and the development team. They visited shipping sites and talked to and observed shipping clerks, logistics managers, quality assurance directors, and everyone in between, gaining insight into customers’ day-to-day operations and communication methods."},
-  	# 	{:name => "Improving Global Access to HIV Treatment Using Smarter Data: OptimizeARV", :overview => "Anti-retroviral therapies (ART) remain the principal mechanism for saving the lives of those infected with HIV/AIDS. The ability of national governments to effectively scale-up their ART treatment programs relies on the recommendations, guidelines, and data produced by global stakeholders such as WHO, PEPFAR. National governments struggle to assimilate this knowledge effectively because of information fragmentation and limited analytical capacity."},	
+  	# 	{:name => "Improving Global Access to HIV Treatment Using Smarter Data: OptimizeARV", :overview => "Anti-retroviral therapies (ART) remain the principal mechanism for saving the lives of those infected with HIV/AIDS. The ability of national governments to effectively scale-up their ART treatment programs relies on the recommendations, guidelines, and data produced by global stakeholders such as WHO, PEPFAR. National governments struggle to assimilate this knowledge effectively because of information fragmentation and limited analytical capacity."},
   	# ]
 
   	@casestudies = CaseStudy.all
@@ -70,7 +72,7 @@ layout "custom"
     # @companies = CaseStudy.all.map{|c| c.contacts }
     # @companies = CaseStudy.all.map{|c| c.methods }
     # [Aegis, Ideo, ]
-    
+
     #MAP DESIGN PATTERN
 
     # test = @casestudies

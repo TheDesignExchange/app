@@ -1,4 +1,6 @@
 class DiscussionsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @discussions = Discussion.take(20)
   	render layout: "custom"
