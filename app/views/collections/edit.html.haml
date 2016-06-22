@@ -49,39 +49,24 @@
         %h3.colname Collection Name
       .col-md-6.padding.pull-right
         .pull-right
-
-
-
           %ul.list-inline.method-toolbar
-
             %li
               %a{:href => change_privacy_path(params[:id])}
                 %span.glyphicon.glyphicon-lock
-
                 -if @collection.is_private?
                   Make public
-
                 -else
                   Make private
-                /%li=link_to "Make this collection private", change_privacy_path
             %li
               %a{:href => delete_collection_path(params[:id])}
                 %span.glyphicon.glyphicon-remove
                 Delete collection
-
             %li
               = f.submit "Save", :class => "btn btn-primary pull-right"
 
 
-
-
-
-
   .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
   = f.text_field :name, :class=> "form-control", :placeholder => "Method Name"
-  /%h1= @collection.name
-
-/Need update button
 
 
 %div{:class => "col-xs-4 col-sm-4 left-top-padding add-to-col"}

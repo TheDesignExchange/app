@@ -2,6 +2,11 @@ class CollectionsController < ApplicationController
 	def index
 		@collections = Collection.all
 		@public_collections = Collection.where(is_private: false) 
+    @public_collections = @public_collections.paginate(page: params[:public_page], :per_page => 10)
+
+    @owned_sets = current_user.owned_sets
+    @private_collections = @owned_sets.where(is_private: true)
+    @private_collections = @private_collections.paginate(page: params[:private_page], :per_page => 10)
 		render :layout => "custom"
 	end
 
@@ -36,8 +41,12 @@ class CollectionsController < ApplicationController
   		@collection.update_attribute(:name, params[:collection][:name])
   		@collection.update_attribute(:owner_id, current_user.id)
       if @collection.save
-        format.html { redirect_to :back, notice: 'Set was successfully created.'}
-        format.json { render json: @collection, status: :created, location: @collection }
+        if request.referrer.include? "collections/new"
+          format.html { redirect_to({:action => :index}, {:notice => "Set was successfully created."}) }
+        else
+          format.html { redirect_to :back, notice: 'Set was successfully created.'}
+          format.json { render json: @collection, status: :created, location: @collection }
+        end
       else
       	@collection.destroy
         format.html { redirect_to :back, :flash => { :warning => "New Set must have a name." } }

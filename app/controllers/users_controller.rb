@@ -13,6 +13,9 @@ class UsersController < ApplicationController
 
     @private_collections = @owned_sets.where(is_private: true)
     @public_collections = @owned_sets.where(is_private: false) 
+
+    @private_collections = @private_collections.paginate(page: params[:private_page], :per_page => 10)
+    @public_collections = @public_collections.paginate(page: params[:public_page], :per_page => 10)
     if user_signed_in?
       @is_current_user = @user.id == current_user.id
     else

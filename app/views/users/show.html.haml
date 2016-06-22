@@ -25,6 +25,14 @@
   	margin: 10px;
   	display: inline;
   }
+  .private_cols {
+    float: left;
+    width: 50%;
+  }
+  .public_cols {
+    float: right;
+    width: 50%;
+  }
 / BODY
 .row
   / PROFILE INFO
@@ -121,36 +129,41 @@
 
 
     .tab-pane.col-md-12.padding{"data-link" => "col"}
+      .private_cols
+        -if @private_collections.empty?
 
-      -if @private_collections.empty?
+          %h2 No private collections
+        -else 
+          %h2 Private
+          = will_paginate @private_collections, :param_name => "private_page"
+          %ul.collections
+            - @private_collections.each do |collection|
+              %br
+              %li
+                /%a{:href => collection_path}
+                -col_path = "/collections/" + collection.id.to_s
+                %a{:href => col_path}
+                  %span.glyphicon.glyphicon-th-list
+                  #{collection.name}
+              /%li=link_to set.name, set
 
-        %h2 No private collections
-      -else 
-        %h2 Private
-      %ul.collections
-        - @private_collections.each do |collection|
-          %li
-            /%a{:href => collection_path}
-            -col_path = "/collections/" + collection.id.to_s
-            %a{:href => col_path}
-              %span.glyphicon.glyphicon-th-list
-              #{collection.name}
-          /%li=link_to set.name, set
-
-      -if @private_collections.empty?
+      .public_cols
+        -if @public_collections.empty?
 
 
-        %h2 No public collections
-      -else 
-        %h2 Public
-      %ul.collections
-        - @public_collections.each do |collection|
-          %li
-            -col_path = "/collections/" + collection.id.to_s
-            %a{:href => col_path}
-              %span.glyphicon.glyphicon-th-list
-              #{collection.name}
-          /%li=link_to set.name, set
+          %h2 No public collections
+        -else 
+          %h2 Public
+          = will_paginate @public_collections, :param_name => "public_page"
+          %ul.collections
+            - @public_collections.each do |collection|
+              %br
+              %li
+                -col_path = "/collections/" + collection.id.to_s
+                %a{:href => col_path}
+                  %span.glyphicon.glyphicon-th-list
+                  #{collection.name}
+              /%li=link_to set.name, set
         /= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(set,"4")
     / END THUMBNAILS
   / END POSTED BY
