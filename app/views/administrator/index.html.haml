@@ -2,6 +2,8 @@
 :javascript
   $(function(){
     $('.tab-pane[data-link ="'+ "all" +'"]').show().siblings(".tab-pane").hide();
+    $('.tab-pane[data-link ="'+ "characteristics" +'"]').show().siblings(".tab-pane").hide();
+
     $('#tabs li a').click(function(e){
       e.preventDefault();
       // Alternate tabs
@@ -46,6 +48,7 @@
 
 
       .row
+
         - @users.each do |user|
           .col-md-3
 
@@ -75,6 +78,7 @@
                   %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
                   %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
                   %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
+      = will_paginate @users
 
     /  Admin Tab
     .tab-pane.col-md-12.padding{"data-link" => "admin"}
@@ -92,9 +96,11 @@
                 = user.username
                 %b.caret
               %ul.dropdown-menu
+                %li= user.email
                 %li= link_to "Admin"
                 %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
                 %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
+      = will_paginate @users
 
     / Editor Tab
     .tab-pane.col-md-12.padding{"data-link" => "editor"}
@@ -115,6 +121,7 @@
                 %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
                 %li= link_to "Editor"
                 %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
+      = will_paginate @users
 
     /Basic Tab
     .tab-pane.col-md-12.padding{"data-link" => "basic"}
@@ -135,3 +142,49 @@
                 %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
                 %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
                 %li= link_to "Basic"
+      = will_paginate @users
+
+%h1 Characterisitcs
+.row
+  / Characteristics
+
+  .col-md-12
+
+    #tabs
+      %ul.nav.nav-tabs
+
+        %li.active
+          %a{"data-link" => "characteristics"} Characteristics
+        %li
+          %a{"data-link" => "chargroups"} Characteristic Groups
+
+
+    / Char Tab
+    .tab-pane.col-md-12.padding{"data-link" => "characteristics"}
+      .row
+        - for char in @characteristics
+          .col-md-3
+            %li.dropdown{:style => "list-style: none; margin-top: 15px"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                = char.name
+
+                %b.caret
+              %ul.dropdown-menu
+      = will_paginate @characteristics, :param_name => 'characteristics_page'
+
+
+    /  Char-group Tab
+    .tab-pane.col-md-12.padding{"data-link" => "chargroups"}
+      .row
+        - for charGroup in @CharacteristicGroups
+
+          .col-md-3
+            %li.dropdown{:style => "list-style: none; margin-top: 15px"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                = charGroup.name
+                %b.caret
+              %ul.dropdown-menu
+      = will_paginate @CharacteristicGroups, :param_name => 'char_groups_page'
+
+
+ 

@@ -2,7 +2,10 @@ class AdministratorController < ApplicationController
 
   def index
     authorize! :index, :administrator
-    @users = User.all
+    @users = User.paginate(:page => params[:page], :per_page => 4)
+    @characteristics = Characteristic.paginate(:page => params[:characteristics_page], :per_page => 12)
+
+    @CharacteristicGroups = CharacteristicGroup.paginate(:page => params[:char_groups_page], :per_page => 12)
     render layout: "custom"
   end
 
