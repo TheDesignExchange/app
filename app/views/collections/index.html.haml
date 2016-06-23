@@ -1,5 +1,4 @@
 :css
-
   .private_cols {
     float: left;
     width: 50%;
@@ -13,14 +12,12 @@
     right: 30px;
   }
 
-
 = link_to new_collection_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
   %span.glyphicon.glyphicon-plus
   Create Collection
 
 .private_cols
   -if @private_collections.empty?
-
     %h2 No private collections
   -else 
     %h2 Your Private Collections
@@ -33,7 +30,6 @@
           %a{:href => col_path}
             %span.glyphicon.glyphicon-th-list
             #{collection.name}
-
 .public_cols
   -if @public_collections.empty?
     %h2 No public collections
@@ -48,15 +44,6 @@
           %a{:href => col_path}
             %span.glyphicon.glyphicon-th-list
             #{collection.name}
-
-
-
-
-
-
-
-
-
 
 /%h1 Public Collections
 

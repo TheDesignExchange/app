@@ -43,14 +43,14 @@ class CollectionsController < ApplicationController
   		@collection.update_attribute(:owner_id, current_user.id)
       if @collection.save
         if request.referrer.include? "collections/new"
-          format.html { redirect_to({:action => :index}, {:notice => "Set was successfully created."}) }
+          format.html { redirect_to({:action => :index}, {:notice => "Collection was successfully created."}) }
         else
-          format.html { redirect_to :back, notice: 'Set was successfully created.'}
+          format.html { redirect_to :back, notice: 'Collection was successfully created.'}
           format.json { render json: @collection, status: :created, location: @collection }
         end
       else
       	@collection.destroy
-        format.html { redirect_to :back, :flash => { :warning => "New Set must have a name." } }
+        format.html { redirect_to :back, :flash => { :warning => "New Collection must have a name." } }
       end
     end
   end
@@ -89,10 +89,10 @@ class CollectionsController < ApplicationController
     respond_to do |format|
 	    if @collection.save
 	    	puts @collection.inspect
-	      format.html { redirect_to :back, notice: 'Successfully added to Set.'}
+	      format.html { redirect_to :back, notice: 'Successfully added to Collection.'}
 	      format.json { render json: @collection, status: :created, location: @collection }
 	    else
-	      format.html { redirect_to :back, :flash => { :warning => "Not added to Set due to errors." } }
+	      format.html { redirect_to :back, :flash => { :warning => "Not added to Collection due to errors." } }
 	     	format.json { render json: @collection, status: :created, location: @collection }
 	    end
 	  end
@@ -109,10 +109,7 @@ class CollectionsController < ApplicationController
   # - @case_study: the case study to be removed
 
   def remove
-    puts "YOYOYOYO"
   	col_id = request.referrer.scan( /\d+/ ).last
-    puts "YOYOYOYO COLLECTION ID HERE"
-    puts col_id
   	@collection = Collection.find(col_id)
   	id = params[:id]
   	url = request.original_url
@@ -128,10 +125,10 @@ class CollectionsController < ApplicationController
 
   	respond_to do |format|
   		if @collection.save
-  			format.html { redirect_to :back, notice: 'Removed from Set.'}
+  			format.html { redirect_to :back, notice: 'Removed from Collection.'}
 	    	format.json { render json: @collection, status: :created, location: @collection }
 	    else
-	    	format.html { redirect_to :back, :flash => { :warning => "Set must have at least one method or case study." } }
+	    	format.html { redirect_to :back, :flash => { :warning => "Collection must have at least one method or case study." } }
 	     	format.json { render json: @collection, status: :created, location: @collection }
 	    end
 	  end

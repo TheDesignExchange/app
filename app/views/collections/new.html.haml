@@ -12,7 +12,6 @@
     visibility: visible;
     top: 0;
   }
-
   .card .add {
     visibility: hidden;
     position: absolute;
@@ -35,39 +34,33 @@
   .col-md-9 {
     width: 100%;
   }
-
-
-
-
+  .mandatory {
+    color: red;
+  }
+  .col_summary {
+    padding-left: 15px;
+  }
 
 = form_for @collection do |f|
-
   #content-column.col-md-9
     /Method header
     .row
       .col-md-3.no-padding
-        %h3.colname Collection Name
+        %h3.colname
+          Collection Name
+          %span.mandatory *
       .col-md-6.padding.pull-right
         .pull-right
-
-
-
           %ul.list-inline.method-toolbar
-
             %li
-              = f.submit "Save", :class => "btn btn-primary pull-right"
-
-
-
-
-
+              = f.submit "Create", :class => "btn btn-primary pull-right"
 
   .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
   = f.text_field :name, :class=> "form-control", :placeholder => "Method Name"
-  /%h1= @collection.name
-
-/Need update button
-
+  .col_summary
+    %h3 
+      Summary 
+    = f.text_area :overview, :class => "form-control markdown", :rows => 4
 
 /%div{:class => "col-xs-4 col-sm-4 left-top-padding add-to-col"}
 /  %a.card{:href => edit_methods_path}

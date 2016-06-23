@@ -9,6 +9,9 @@
   .form-control {
     margin-left: 15px;
   }
+  .col-md-3 {
+    width: 50%;
+  }
 :javascript
   $(function(){
     jQuery.expr[':'].Contains = function(a,i,m){
@@ -30,31 +33,31 @@
     }
   }
 
-%h3.all_methods_studies All Case Studies
-
-%input.char-filter.form-control{type: "text", placeholder: "Filter Studies..."}
-
 = form_for @collection do |f|
+  .row
+    .col-md-3.no-padding
+      %h3.all_methods_studies All Case Studies
+    .col-md-6.padding.pull-right
+      = f.submit "Save", :class => "btn btn-primary pull-right"
+
+  %input.char-filter.form-control{type: "text", placeholder: "Filter Studies..."}
 
   - full = CaseStudy.count
   - one_third = full/3
   - two_thirds = one_third * 2
 
+  / first third of case studies as a column
   .col-md-4.edit-char-group
     - CaseStudy.all[0..one_third].each do |m|
       - cs = CaseStudy.where(id: m.id)
       = f.collection_check_boxes(:case_study_ids, cs, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
-
-
+  / second third of case studies as a column
   .col-md-4.edit-char-group
     - CaseStudy.all[(one_third+1)..two_thirds].each do |m|
       - cs = CaseStudy.where(id: m.id)
       = f.collection_check_boxes(:case_study_ids, cs, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
-
-
+  / last third of case studies as a column
   .col-md-4.edit-char-group
     - CaseStudy.all[(two_thirds+1)..full].each do |m|
       - cs = CaseStudy.where(id: m.id)
       = f.collection_check_boxes(:case_study_ids, cs, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
-
-  = f.submit "Save", :class => "btn btn-primary pull-right"

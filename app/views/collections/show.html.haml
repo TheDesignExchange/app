@@ -6,12 +6,14 @@
   }
 
 %h1= @collection.name
-
+%br
+-if !@collection.overview.blank?
+  %p= @collection.overview
+  %br
 -if @user.id == @collection.owner_id
   %a{:class => "edit_col", :href => edit_collection_path(params[:id])}
     %span.glyphicon.glyphicon-pencil
     Edit
-
 
 #tabs
   %ul.nav.nav-tabs
@@ -21,7 +23,6 @@
       %a{"data-link" => "dm"} Methods
     %li
       %a{"data-link" => "cs"} Case Studies
-
 
 .tab-pane.col-md-12.padding{"data-link" => "all"}
   - @collection.design_methods.each do |dm|
@@ -35,8 +36,6 @@
 .tab-pane.col-md-12.padding{"data-link" => "cs"}
   - @collection.case_studies.each do |cs|
     = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
-
-
 
 /%ul
 /- @collection.design_methods.each do |dm|

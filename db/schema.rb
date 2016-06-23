@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160613230142) do
+ActiveRecord::Schema.define(version: 20160623180439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 20160613230142) do
     t.integer  "owner_id"
     t.integer  "design_method_id"
     t.boolean  "is_private"
+    t.text     "overview"
   end
 
   add_index "collections", ["design_method_id"], name: "index_collections_on_design_method_id", using: :btree
