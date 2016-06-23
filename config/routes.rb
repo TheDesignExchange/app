@@ -1,9 +1,5 @@
 DesignExchange::Application.routes.draw do
 
-  get '/design_methods/:id/remove', to: 'collections#remove'
-  get '/case_studies/:id/remove', to: 'collections#remove'
-
-  get "collections/new"
   get "autocomplete_search", to: "application#search"
 
   resources :companies do
@@ -54,7 +50,8 @@ DesignExchange::Application.routes.draw do
   devise_for :users
 
   
-
+  get '/design_methods/:id/remove', to: 'collections#remove'
+  get '/case_studies/:id/remove', to: 'collections#remove'
   get '/collections/add', to: 'collections#add', as: "add_to_collection"
   get '/collections/:id/edit/change_privacy', to: 'collections#change_privacy', as: "change_privacy"
   get '/collections/:id/edit/delete', to: 'collections#delete', as: "delete_collection"

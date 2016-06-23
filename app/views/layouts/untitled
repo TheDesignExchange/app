@@ -1,4 +1,0 @@
-/ STYLE at APPLICATION.CSS ... THUMBNAIL CSS
-%div{:class => "col-xs-4 col-sm-4 col-md-#{@thumb_obj[:col_md_value]} left-top-padding"}
-  %div.delete X
-  = render "/application/thumbnail_core", locals: @thumb_obj = @thumb_obj
