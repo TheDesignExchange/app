@@ -126,5 +126,5 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :tags
 
-  has_many :owned_sets, dependent: :destroy, class_name: "Collection", foreign_key: :owner_id
+  has_many :owned_collections, dependent: :destroy, class_name: "Collection", foreign_key: :owner_id
 end

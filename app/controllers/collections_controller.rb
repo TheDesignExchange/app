@@ -5,8 +5,8 @@ class CollectionsController < ApplicationController
 		@public_collections = Collection.where(is_private: false) 
     @public_collections = @public_collections.paginate(page: params[:public_page], :per_page => 10)
 
-    @owned_sets = current_user.owned_sets
-    @private_collections = @owned_sets.where(is_private: true)
+    @owned_collections = current_user.owned_collections
+    @private_collections = @owned_collections.where(is_private: true)
     @private_collections = @private_collections.paginate(page: params[:private_page], :per_page => 10)
 		render :layout => "custom"
 	end

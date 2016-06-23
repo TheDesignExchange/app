@@ -55,7 +55,7 @@ class CaseStudiesController < ApplicationController
 
     id = params[:id].to_i
     @case_study = CaseStudy.find(id)
-    @collections = current_user.owned_sets
+    @collections = current_user.owned_collections
     @collection = Collection.new(params[:collection])
     @collection.owner_id = current_user.id
     

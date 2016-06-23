@@ -11,10 +11,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @owned_methods = @user.owned_methods.limit(12)
     @owned_discussions = @user.owned_discussions.limit(12)
-    @owned_sets = @user.owned_sets
+    @owned_collections = @user.owned_collections
 
-    @private_collections = @owned_sets.where(is_private: true)
-    @public_collections = @owned_sets.where(is_private: false) 
+    @private_collections = @owned_collections.where(is_private: true)
+    @public_collections = @owned_collections.where(is_private: false) 
 
     @private_collections = @private_collections.paginate(page: params[:private_page], :per_page => 10)
     @public_collections = @public_collections.paginate(page: params[:public_page], :per_page => 10)
@@ -31,9 +31,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @owned_methods = @user.owned_methods.limit(12)
     @owned_discussions = @user.owned_discussions.limit(12)
-    @owned_sets = @user.owned_sets
-    @private_collections = @owned_sets.where(is_private: true)
-    @public_collections = @owned_sets.where(is_private: false) 
+    @owned_collections = @user.owned_collections
+    @private_collections = @owned_collections.where(is_private: true)
+    @public_collections = @owned_collections.where(is_private: false) 
     store_location
     render layout: "wide"
   end
