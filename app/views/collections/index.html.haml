@@ -12,9 +12,10 @@
     right: 30px;
   }
 
-= link_to new_collection_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
-  %span.glyphicon.glyphicon-plus
-  Create Collection
+-if !current_user.nil?
+  = link_to new_collection_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
+    %span.glyphicon.glyphicon-plus
+    Create Collection
 
 .private_cols
   -if @private_collections.nil? || @private_collections.empty?
