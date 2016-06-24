@@ -17,7 +17,7 @@
   Create Collection
 
 .private_cols
-  -if @private_collections.empty?
+  -if @private_collections.nil? || @private_collections.empty?
     %h2 No private collections
   -else 
     %h2 Your Private Collections
