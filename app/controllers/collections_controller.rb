@@ -14,8 +14,12 @@ class CollectionsController < ApplicationController
 	end
 
   def new
-  	@collection = Collection.new
-  	render :layout => "custom"
+    if !current_user.nil?
+    	@collection = Collection.new
+    	render :layout => "custom"
+    else
+      redirect_to({ action: "index" }, :flash => { :warning => "You must be logged in to create a collection." })
+    end
   end
 
   def create

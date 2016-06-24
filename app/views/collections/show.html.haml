@@ -10,10 +10,12 @@
 -if !@collection.overview.blank?
   %p= @collection.overview
   %br
--if @user.id == @collection.owner_id
-  %a{:class => "edit_col", :href => edit_collection_path(params[:id])}
-    %span.glyphicon.glyphicon-pencil
-    Edit
+
+-if !@user.nil?
+  -if @user.id == @collection.owner_id
+    %a{:class => "edit_col", :href => edit_collection_path(params[:id])}
+      %span.glyphicon.glyphicon-pencil
+      Edit
 
 #tabs
   %ul.nav.nav-tabs
