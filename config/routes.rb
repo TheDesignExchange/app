@@ -56,6 +56,7 @@ DesignExchange::Application.routes.draw do
   resources :citations, only: [:show]
   resources :feedbacks, only: [:create]
   resources :users
+  resources :collections
 
   # Singleton routes for admin panel
   get '/administrator', to: 'administrator#index'
@@ -63,11 +64,7 @@ DesignExchange::Application.routes.draw do
   get '/administrator/change_editor', to: 'administrator#changeEditor'
   get '/administrator/change_basic', to: 'administrator#changeBasic'
 
-
-  resources :collections
-
   get 'search/(:query)', controller: 'design_methods', action: 'search', as: 'search'
-
   get ":action", to:"application##{:action}"
 
 end

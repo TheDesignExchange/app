@@ -28,6 +28,24 @@
     margin: 10px;
     display: inline;
   }
+%form{:controller => 'administrator', :action => :sort}
+
+  %input{:name => "sort", :type => "radio",  :value => "name", :style => "margin-right:5px"}
+    Sort Users By Name
+
+  %br
+  %input{:name => "sort", :type => "radio", :value => "username", :style => "margin-right:5px"}
+    Sort Users By UserName
+
+  %br
+  %input{:name => "sort", :type => "radio", :value => "email", :style => "margin-right:5px"} 
+    Sort Users By Email
+  %br
+  %input{:name => "sort", :type => "radio", :value => "date", :style => "margin-right:5px"}
+    Sort Users By Date Created
+  %br
+  = submit_tag("Sort")
+
 / BODY
 .row
   / PROFILE INFO
@@ -83,7 +101,7 @@
     /  Admin Tab
     .tab-pane.col-md-12.padding{"data-link" => "admin"}
       .row
-        - @users.select{|user| user.admin?}.each do |user|
+        - @usersAdmin.select{|user| user.admin?}.each do |user|
           .col-md-3
 
             - if user.profile_picture.present?
@@ -100,12 +118,12 @@
                 %li= link_to "Admin"
                 %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
                 %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-      = will_paginate @users
+      = will_paginate @usersAdmin
 
     / Editor Tab
     .tab-pane.col-md-12.padding{"data-link" => "editor"}
       .row
-        - @users.select{|user| user.editor?}.each do |user|
+        - @usersEditor.select{|user| user.editor?}.each do |user|
           .col-md-3
 
             - if user.profile_picture.present?
@@ -121,12 +139,12 @@
                 %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
                 %li= link_to "Editor"
                 %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-      = will_paginate @users
+      = will_paginate @usersEditor
 
     /Basic Tab
     .tab-pane.col-md-12.padding{"data-link" => "basic"}
       .row
-        - @users.select{|user| user.basic?}.each do |user|
+        - @usersBasic.select{|user| user.basic?}.each do |user|
           .col-md-3
 
             - if user.profile_picture.present?
@@ -142,7 +160,7 @@
                 %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
                 %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
                 %li= link_to "Basic"
-      = will_paginate @users
+      = will_paginate @usersBasic
 
 %h1 Characterisitcs
 .row

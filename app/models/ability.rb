@@ -43,7 +43,7 @@ class Ability
       can :change_admin, :administrator
       can :change_editor, :administrator
       can :change_basic, :administrator
-
+      can :sort, :administrator
       can :update, User
 
       # TODO this should be locked down much further since :manage is a
