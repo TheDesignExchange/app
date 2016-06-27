@@ -46,7 +46,7 @@
 
 .tab-pane.col-md-12.padding{"data-link" => "public"}
   -if @public_collections.empty?
-    %h2 No public collections
+    %h2 There are no public collections
   -else 
     %h2 All Public Collections
     = will_paginate @public_collections, :param_name => "public_page"

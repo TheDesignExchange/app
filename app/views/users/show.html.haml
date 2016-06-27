@@ -175,7 +175,7 @@
       .tab-pane.col-md-12.padding{"data-link" => "private"}
         -if @private_collections.empty?
 
-          %h2 No private collections
+          %h2 You have no private collections
         -else 
           %h2 Private
           = will_paginate @private_collections, :param_name => "private_page"
@@ -194,7 +194,7 @@
         -if @public_collections.empty?
 
 
-          %h2 No public collections
+          %h2 There are no public collections
         -else 
           %h2 Public
           = will_paginate @public_collections, :param_name => "public_page"
