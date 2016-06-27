@@ -17,9 +17,20 @@
     %span.glyphicon.glyphicon-plus
     Create Collection
 
+%h1 Collections
+
+#tabs
+  %ul.nav.nav-tabs
+    %li.active
+      %a{"data-link" => "private"} Private
+    %li
+      %a{"data-link" => "public"} Public
+
 .private_cols
+
+.tab-pane.col-md-12.padding{"data-link" => "private"}
   -if @private_collections.nil? || @private_collections.empty?
-    %h2 No private collections
+    %h2 You have no private collections
   -else 
     %h2 Your Private Collections
     = will_paginate @private_collections, :param_name => "private_page"
@@ -32,6 +43,8 @@
             %span.glyphicon.glyphicon-th-list
             #{collection.name}
 .public_cols
+
+.tab-pane.col-md-12.padding{"data-link" => "public"}
   -if @public_collections.empty?
     %h2 No public collections
   -else 

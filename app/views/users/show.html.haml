@@ -1,6 +1,23 @@
 :javascript
   $(function(){
+
     $('.tab-pane[data-link ="'+ "all" +'"]').show().siblings(".tab-pane").hide();
+
+    // if clicked on next page of collections tab, goes straight back to the tab
+    if (sessionStorage.getItem('collection-clicked') === 'true') {
+      sessionStorage.setItem('collection-clicked', 'false');
+      //$( "a[data-link='col']" ).parent.click();
+      $( "a[data-link='col']" ).click();
+      $( "div[data-link='all']" ).css('display', 'none');
+      $( "div[data-link='col']" ).css('display', 'block');
+
+      if (sessionStorage.getItem('private') === 'true') {
+        $( "a[data-link='private']" ).click();
+      } else {
+        $( "a[data-link='public']" ).click();
+      }
+    }
+
     $('#tabs li a').click(function(e){
       e.preventDefault();
       // Alternate tabs
@@ -12,8 +29,24 @@
   
       // $('.tab-pane[data-link ~="'+ link +'"]').hide();
       $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
-    })
+    });
+
+
+
+    $('.pagination').on('click', '*', function(e) {
+      sessionStorage.setItem('collection-clicked', 'true');
+      if ($('.pagination').parent.attr('data-link') === 'public') {
+        sessionStorage.setItem('private', 'false');
+      } else {
+        sessionStorage.setItem('private', 'true');
+      }
+    });
+
+    
+
   });
+
+
 :css
   .padding{
     	padding-top: 15px;
@@ -129,7 +162,17 @@
 
 
     .tab-pane.col-md-12.padding{"data-link" => "col"}
-      .private_cols
+
+      #tabs
+        %ul.nav.nav-tabs
+          %li.active
+            %a{"data-link" => "private"} Private
+          %li
+            %a{"data-link" => "public"} Public
+
+
+
+      .tab-pane.col-md-12.padding{"data-link" => "private"}
         -if @private_collections.empty?
 
           %h2 No private collections
@@ -147,7 +190,7 @@
                   #{collection.name}
               /%li=link_to set.name, set
 
-      .public_cols
+      .tab-pane.col-md-12.padding{"data-link" => "public", :style => "display: none;" }
         -if @public_collections.empty?
 
 
