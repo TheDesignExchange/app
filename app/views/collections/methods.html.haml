@@ -40,7 +40,9 @@
     .col-md-6.padding.pull-right
       = f.submit "Save", :class => "btn btn-primary pull-right"
 
+  %br
   %input.char-filter.form-control{type: "text", placeholder: "Filter Methods..."}
+  %br
 
   - full = DesignMethod.count
   - one_third = full/3
