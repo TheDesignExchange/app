@@ -161,8 +161,10 @@
     - if !@method.skills.blank?
       %h4 Skills that help:
       %p= md_format(@method.skills)
-    %h4 Video
-    %iframe{:allowfullscreen => "", :frameborder => "1", :height => "315", :src => @method.videoURL, :width => "560"}
+    - if !@method.videoURL.blank? 
+      %h4 Video
+
+      %iframe{:allowfullscreen => "", :frameborder => "1", :height => "315", :src => @method.videoURL, :width => "560"}
     %h4 Contributing Authors
     .col-xs-6
       .col-xs-4

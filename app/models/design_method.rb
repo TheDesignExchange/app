@@ -46,6 +46,9 @@ class DesignMethod < ActiveRecord::Base
 
   validates :overview, presence: true
 
+  validates_format_of :videoURL, :with => /https:\/\/www\.youtube\.com\/embed\/([a-zA-Z0-9_-]*)/, allow_blank: true
+
+
   # Relationships
   has_many :method_characteristics, dependent: :destroy
   has_many :characteristics, through: :method_characteristics
