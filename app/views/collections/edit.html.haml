@@ -1,103 +1,12 @@
-:css
-  .delete{
-    position: absolute;
-    z-index: 1;
-    right: 5px;
-    cursor: pointer;
-  }
-  .card:hover .add, .card:hover .delete {
-    opacity: 0.3;
-    font-size: 180px;
-    right: 45px;
-    visibility: visible;
-    top: 0;
-  }
-  .card .add {
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-    cursor: pointer;
-  }
-  .colname {
-    min-width: 300px;
-  }
-  #collection_name {
-    height: 46px;
-    margin: 15px;
-  }
-  .batch_add {
-    text-align: center;
-  }
-  .add-to-col {
-    width: 25%;
-  }
-  .col-md-9 {
-    width: 100%;
-  }
-  .mandatory {
-    color: red;
-  }
-  .col_summary {
-    padding-left: 15px;
-  }
-  .col_additional_btns {
-    float: right;
-    padding-top: 20px;
-  }
-  .col-btn {
-    padding-right: 20px;
-  }
+%h1{:style => "padding-left: 15px"}
+  Edit Collection
 
-.col_additional_btns
-  %a{:class => "col-btn", :href => change_privacy_path(params[:id])}
-    %span.glyphicon.glyphicon-lock
-    -if @collection.is_private?
-      Make public
-    -else
-      Make private
-  %a{:class => "col-btn", :href => delete_collection_path(params[:id])}
-    %span.glyphicon.glyphicon-remove
-    Delete collection
+%br
 
-= form_for @collection do |f|
-  #content-column.col-md-9
-    /Method header
-    .row
-      .col-md-3.no-padding
-        %h3.colname
-          Collection Name
-          %span.mandatory *
-      .col-md-6.padding.pull-right
-        .pull-right
-          %ul.list-inline.method-toolbar
-            %li
-              = link_to edit_methods_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
-                Manage Design Methods
-            %li
-              = link_to edit_studies_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
-                Manage Case Studies
-            %li
-              = f.submit "Save", :class => "btn btn-primary pull-right"
+%a{:class => "col-btn", :href => delete_collection_path(params[:id]), :data => { confirm: 'Are you sure you would like to delete this collection?' }}
+  %span.glyphicon.glyphicon-remove
+  Delete collection
+%br
+%br
 
-  .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
-  = f.text_field :name, :class=> "form-control", :placeholder => "Collection Name"
-  .col_summary
-    %h3 
-      Summary 
-    = f.text_area :overview, :class => "form-control markdown", :rows => 4
-
-
-/%div{:class => "col-xs-4 col-sm-4 left-top-padding add-to-col"}
-/  %a.card{:href => edit_methods_path}
-/    %h3.batch_add Manage Design Methods
-/    .add +
-/%div{:class => "col-xs-4 col-sm-4 left-top-padding add-to-col"}
-/  %a.card{:href => edit_studies_path}
-/    %h3.batch_add Manage Case Studies
-/    .add +
-
-/- @collection.design_methods.each do |dm|
-/  = render "/layouts/delete_thumbnail", locals: @thumb_obj = thumbnail(dm,"3")
-/- @collection.case_studies.each do |cs|
-/  = render "/layouts/delete_thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
-
+= render partial: "form"
