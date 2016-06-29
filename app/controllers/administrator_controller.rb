@@ -73,10 +73,10 @@ class AdministratorController < ApplicationController
     end
     #Date
     if params[:sort] == "date"
-      @users = User.order(updated_at: :asc).paginate(:page => params[:page], :per_page => 4)
-      @usersAdmin = User.order(updated_at: :asc).paginate(:page => params[:admin_page], :per_page => 4)
-      @usersEditor = User.order(updated_at: :asc).paginate(:page => params[:editor_page], :per_page => 4)
-      @usersBasic = User.order(updated_at: :asc).paginate(:page => params[:basic], :per_page => 4)
+      @users = User.order(created_at: :asc).paginate(:page => params[:page], :per_page => 4)
+      @usersAdmin = User.order(created_at: :asc).paginate(:page => params[:admin_page], :per_page => 4)
+      @usersEditor = User.order(created_at: :asc).paginate(:page => params[:editor_page], :per_page => 4)
+      @usersBasic = User.order(created_at: :asc).paginate(:page => params[:basic], :per_page => 4)
     end
     
     @characteristics = Characteristic.paginate(:page => params[:characteristics_page], :per_page => 12)

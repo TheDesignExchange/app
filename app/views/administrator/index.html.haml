@@ -2,6 +2,7 @@
 :javascript
   $(function(){
     $('.tab-pane[data-link ="'+ "all" +'"]').show().siblings(".tab-pane").hide();
+
     $('.tab-pane[data-link ="'+ "characteristics" +'"]').show().siblings(".tab-pane").hide();
 
     $('#tabs li a').click(function(e){
@@ -17,6 +18,7 @@
       $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
     })
   });
+
 :css
   .padding{
       padding-top: 15px;
@@ -81,27 +83,35 @@
                 %b.caret
               %ul.dropdown-menu
                 - if user.admin?
+                  %li= link_to user.first_name + " " + user.last_name
+                  %li= link_to user.email
                   %li= link_to "Admin"
                   %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
                   %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
                 - elsif user.editor?
+                  %li= link_to user.first_name + " " + user.last_name
+                  %li= link_to user.email
                   %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
                   %li= link_to "Editor"
                   %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
                 - elsif user.basic?
+                  %li= link_to user.first_name + " " + user.last_name
+                  %li= link_to user.email
                   %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
                   %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
                   %li= link_to "Basic"
                 - else
+                  %li= link_to user.first_name + " " + user.last_name
+                  %li= link_to user.email
                   %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
                   %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
                   %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-      = will_paginate @users
+      = will_paginate @users, :param_name => 'page'
 
     /  Admin Tab
     .tab-pane.col-md-12.padding{"data-link" => "admin"}
       .row
-        - @usersAdmin.select{|user| user.admin?}.each do |user|
+        - @usersAdmin.each do |user|
           .col-md-3
 
             - if user.profile_picture.present?
@@ -114,12 +124,13 @@
                 = user.username
                 %b.caret
               %ul.dropdown-menu
-                %li= user.email
+                %li= link_to user.first_name + " " + user.last_name
+                %li= link_to user.email
                 %li= link_to "Admin"
                 %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
                 %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-      = will_paginate @usersAdmin
-
+      = will_paginate @usersAdmin, :param_name => 'admin_page'
+ 
     / Editor Tab
     .tab-pane.col-md-12.padding{"data-link" => "editor"}
       .row
@@ -136,10 +147,12 @@
                 = user.username
                 %b.caret
               %ul.dropdown-menu
+                %li= link_to user.first_name + " " + user.last_name
+                %li= link_to user.email
                 %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
                 %li= link_to "Editor"
                 %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-      = will_paginate @usersEditor
+      = will_paginate @usersEditor, :param_name => 'editor_page'
 
     /Basic Tab
     .tab-pane.col-md-12.padding{"data-link" => "basic"}
@@ -157,10 +170,12 @@
                 = user.username
                 %b.caret
               %ul.dropdown-menu
+                %li= link_to user.first_name + " " + user.last_name
+                %li= link_to user.email
                 %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
                 %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
                 %li= link_to "Basic"
-      = will_paginate @usersBasic
+      = will_paginate @usersBasic, :param_name => 'basic'
 
 %h1 Characterisitcs
 .row
@@ -188,6 +203,9 @@
 
                 %b.caret
               %ul.dropdown-menu
+                %li= link_to "Edit Characteristic", data: { confirm: "Are you sure?" }
+                %li= link_to "Delete Characteristic"
+
       = will_paginate @characteristics, :param_name => 'characteristics_page'
 
 
@@ -202,6 +220,8 @@
                 = charGroup.name
                 %b.caret
               %ul.dropdown-menu
+                %li= link_to "Edit Characteristic Group"
+                %li= link_to "Delete Characteristic Group"
       = will_paginate @CharacteristicGroups, :param_name => 'char_groups_page'
 
 
