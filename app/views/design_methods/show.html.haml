@@ -224,7 +224,7 @@
       %p= md_format(@method.critiques)
 
     - if @citations.length != 0 && @citations != nil
-      %h4 References used in this article
+      %h4 References used in this Article
       %ol
         /Makes citation a hyperlink if it is a link
         - @citations.each do |c|
@@ -239,4 +239,9 @@
     - if !@method.additional_reading.blank?
       %h4 Additional Reading
       %p= md_format(@method.additional_reading)
+
+    - if !@method.case_studies.blank?
+      %h4 Related Case Studies
+      - @method.case_studies.each do |cs|
+        = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"4")
 

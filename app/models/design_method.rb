@@ -32,7 +32,10 @@
 class DesignMethod < ActiveRecord::Base
 
   # TODO: add the mass assignment protection at the controller, then remove this
-  attr_accessible :name, :process, :num_of_designers, :num_of_users, :overview, :main_image, :time_period, :name, :time_unit, :synonyms, :benefits, :limitations, :skills, :usage, :online_resources, :history, :critiques, :additional_reading, :characteristic_ids, :references
+  attr_accessible :name, :process, :num_of_designers, :num_of_users, :overview,
+                  :main_image, :time_period, :name, :time_unit, :synonyms, :benefits, 
+                  :limitations, :skills, :usage, :online_resources, :history, :critiques, 
+                  :additional_reading, :characteristic_ids, :references, :case_study_ids
 
   # Validations
   validates :name, :overview, presence: true
