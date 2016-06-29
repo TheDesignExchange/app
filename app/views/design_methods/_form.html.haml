@@ -43,7 +43,18 @@
     jQuery.expr[':'].Contains = function(a,i,m){
       return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
     };
-    $(".char-filter").change(filterCharacteristics).keyup(function(){$(this).change()})
+    $(".char-filter").change(filterCharacteristics).keyup(function(){$(this).change()});
+
+    $(".btn-index-create").click(function(e){
+      if ($(this).attr("class").includes("collapsed")) {
+        $(this).children().removeClass("glyphicon-chevron-down");
+        $(this).children().addClass("glyphicon-chevron-up");
+      } else {
+        $(this).children().removeClass("glyphicon-chevron-up");
+        $(this).children().addClass("glyphicon-chevron-down");
+      }
+    });
+
   });
 
   function filterCharacteristics() {

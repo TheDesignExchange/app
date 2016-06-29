@@ -10,6 +10,16 @@
     // pH = $('#auto-saved-text').parent().height()
     // eH = $('#auto-saved-text').height()
     // $('#auto-saved-text').css('margin-top', (pH - eH)/2)
+
+    $(".btn-index-create").click(function(e){
+      if ($(this).attr("class").includes("collapsed")) {
+        $(this).children().removeClass("glyphicon-chevron-down");
+        $(this).children().addClass("glyphicon-chevron-up");
+      } else {
+        $(this).children().removeClass("glyphicon-chevron-up");
+        $(this).children().addClass("glyphicon-chevron-down");
+      }
+    });
   });
 :css
   .fill-width{
@@ -25,6 +35,11 @@
     #user-action-ui > * {
         margin-right: 4px;
     }
+  .edit-char-group {
+    font-size: 0.8em;
+    padding-left: 0px;
+  }
+
 = form_for @case_study, :html => {:multipart => true} do |f|
   / ERROR MESSAGES
   - if @case_study.errors.any?
@@ -165,7 +180,39 @@
                   = select("case_study", name, |
                     @options[name.to_sym],     |
                     {include_blank: 'None'})   |
-      / END DROPDOWN
+
+
+        %h4 Related Design Methods
+
+        %button{"data-target" => "#dm", "data-toggle" => "collapse", :id => "dm-collapse", :class => "btn btn-default btn-index-create collapsed"}
+          %span.glyphicon.glyphicon-chevron-down
+          Design Methods
+
+
+        #dm.collapse
+          %br
+          %input.char-filter.form-control{type: "text", placeholder: "Filter Methods..."}
+          %br
+          - full = DesignMethod.count
+          - one_third = full/3
+          - two_thirds = one_third * 2
+
+          / first third of methods as a column
+          .col-md-4.edit-char-group
+            - DesignMethod.all[0..one_third].each do |m|
+              - method = DesignMethod.where(id: m.id)
+              = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+          / second third of methods as a column
+          .col-md-4.edit-char-group
+            - DesignMethod.all[(one_third+1)..two_thirds].each do |m|
+              - method = DesignMethod.where(id: m.id)
+              = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+          / last third of methods as a column
+          .col-md-4.edit-char-group
+            - DesignMethod.all[(two_thirds+1)..full].each do |m|
+              - method = DesignMethod.where(id: m.id)
+              = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+        / END DROPDOWN
     / END OF TAGS
     / END LEFT CONTENT
     / RIGHT CONTENT
@@ -192,6 +239,7 @@
       = f.text_area :process, :class => "form-control markdown", :rows => 50
       %h3 Outcome/Benefits
       = f.text_area :outcome, :class => "form-control markdown", :rows => 50
+
       / END FORMS
     / END RIGHT CONTENT
   / END BODY
