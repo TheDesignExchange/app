@@ -75,11 +75,9 @@
     $(".char-filter").change(filterCharacteristics).keyup(function(){$(this).change()})
 
     $(".btn-index-create").click(function(e){
-
       if ($(this).attr("class").includes("collapsed")) {
         $(this).children().removeClass("glyphicon-chevron-down");
         $(this).children().addClass("glyphicon-chevron-up");
-
         collapsed = $(".collapsed");
         if (collapsed.length === 1) {
           buttons = $(".btn-index-create");
@@ -88,11 +86,8 @@
               buttons[i].click();
             }
           }
-
         }
       } else {
-        
-
         $(this).children().removeClass("glyphicon-chevron-up");
         $(this).children().addClass("glyphicon-chevron-down");
       }
@@ -102,7 +97,6 @@
     if ($(".collapsed").id === "dm-collapse") {
       $(".collapsed").val("Design Method -")
     }
-
 
   });
 
@@ -140,20 +134,13 @@
             %li
               = f.submit "Create", :class => "btn btn-primary pull-right"
 
-  
-
   .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
   = f.text_field :name, :class=> "form-control", :placeholder => "Collection Name"
-
-
 
   .col_summary
     %h3 
       Summary 
     = f.text_area :overview, :class => "form-control markdown", :rows => 4
-
-
-
 
   %button{"data-target" => "#dm", "data-toggle" => "collapse", :id => "dm-collapse", :class => "btn btn-default btn-index-create collapsed"}
     %span.glyphicon.glyphicon-chevron-down
@@ -162,9 +149,6 @@
   %button{"data-target" => "#cs", "data-toggle" => "collapse", :id => "cs-collapse", :class => "btn btn-default btn-index-create collapsed"}
     %span.glyphicon.glyphicon-chevron-down
     Case Studies
-
-
-
 
   #dm.collapse
     %br
@@ -190,8 +174,6 @@
         - method = DesignMethod.where(id: m.id)
         = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
 
-
-
   #cs.collapse
     %br
     %input.char-filter.form-control{type: "text", placeholder: "Filter Studies..."}
@@ -216,14 +198,5 @@
       - CaseStudy.all[(two_thirds+1)..full].each do |m|
         - cs = CaseStudy.where(id: m.id)
         = f.collection_check_boxes(:case_study_ids, cs, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
-
-/%div{:class => "col-xs-4 col-sm-4 left-top-padding add-to-col"}
-/  %a.card{:href => edit_methods_path}
-/    %h3.batch_add Add Design Methods to Collection
-/    .add +
-/%div{:class => "col-xs-4 col-sm-4 left-top-padding add-to-col"}
-/  %a.card{:href => edit_studies_path}
-/    %h3.batch_add Add Case Studies to Collection
-/    .add +
 
 
