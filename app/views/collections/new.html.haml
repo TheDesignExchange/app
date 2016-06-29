@@ -34,6 +34,9 @@
   .col-md-9 {
     width: 100%;
   }
+  .col-md-6 {
+    width: 25%;
+  }
   .mandatory {
     color: red;
   }
@@ -110,9 +113,12 @@
         %h3.colname
           Collection Name
           %span.mandatory *
+      .col-md-6.padding
+        = f.check_box(:is_private) 
+        Private Collection?
       .col-md-6.padding.pull-right
         .pull-right
-          %ul.list-inline.method-toolbar
+          %ul.list-inline.method-toolbar    
             %li
               = f.submit "Create", :class => "btn btn-primary pull-right"
 
