@@ -30,100 +30,100 @@
 #
 
 class CaseStudy < ActiveRecord::Base
-    mount_uploader :main_image, PictureUploader
-    mount_uploader :resource, PictureUploader
-    attr_accessible :main_image, :name, :url, :time_period, :development_cycle, :design_phase, 
-                    :project_domain, :customer_type, :user_age, :privacy_level, 
-                    :social_setting, :overview, :customer_is_user, :remote_project, 
-                    :company_id, :num_of_designers, :num_of_users, :overview, :time_period, :time_unit,
-                    :resource, :process, :problem, :outcome, :design_method_ids
-                    
-	belongs_to :company
-	has_many :contacts, :through => :company
-	has_many :resources
+  mount_uploader :main_image, PictureUploader
+  mount_uploader :resource, PictureUploader
+  attr_accessible :main_image, :name, :url, :time_period, :development_cycle, :design_phase,
+                  :project_domain, :customer_type, :user_age, :privacy_level,
+                  :social_setting, :overview, :customer_is_user, :remote_project,
+                  :company_id, :num_of_designers, :num_of_users, :overview, :time_period, :time_unit,
+                  :resource, :process, :problem, :outcome, :design_method_ids
+
+  belongs_to :company
+  has_many :contacts, :through => :company
+  has_many :resources
 
 
-    # METHOD LINKING 
-    has_many :method_case_studies
-    has_many :design_methods, :through => :method_case_studies
-    has_many :tags
+  # METHOD LINKING
+  has_many :method_case_studies
+  has_many :design_methods, :through => :method_case_studies
+  has_many :tags
 
 
-    has_many :method_collections, dependent: :destroy
-    has_many :collections, through: :method_collections
+  has_many :method_collections, dependent: :destroy
+  has_many :collections, through: :method_collections
 
-    # Sunspot
-    searchable do
-      text :name, stored: true
-      text :overview, stored: true
-    end
+  # Sunspot
+  searchable do
+    text :name, stored: true
+    text :overview, stored: true
+  end
 
-	# validates :development_cycle,
- #    :inclusion  => { :in => ["Product Update", "Product Refinement", "New Product", "Other"],
- #    :message    => "%{value} is not a development cycle" }
-    # def contacts
-    #     company = Company.where(:case_study_id, self[:id])
-    #     company ? company.contacts : nil
-    # end
+  # validates :development_cycle,
+  #    :inclusion  => { :in => ["Product Update", "Product Refinement", "New Product", "Other"],
+  #    :message    => "%{value} is not a development cycle" }
+  # def contacts
+  #     company = Company.where(:case_study_id, self[:id])
+  #     company ? company.contacts : nil
+  # end
 
-    
-    def tags
-        Tag.where("case_study_id = ? and content_type = ?", self[:id], "tag");
-    end
 
-    def tools
-        Tag.where("case_study_id = ? and content_type = ?", self[:id], "tool");
-    end
-    def self.options
-        select_option = self.lookup
-        select_option.each do |name, op|
-            collection = []
-            op.each_with_index do |choice, i|
-                collection << [choice, i]
-            end
-            select_option[name] = collection
-        end
-    	return select_option
-    end
-    def self.lookup
-        return  {:development_cycle => ["Product Update", "Product Refinement", "New Product", "Other"],
-                :design_phase => [ "Problem Assessment", "Conceptual Design", "Detailed Design", "Other"] , 
-                :project_domain => ["Built Environment", "Product", "Service", "Web", "Mobile", "Graphic", "Fashion", "Other"],
-                :customer_type => ["Government", "Educational Group", "Business", "NGO", "Other"],
-                :user_age => ["Child", "Teen", "Young Adult", "Middle Aged", "Elderly" ],
-                :privacy_level => ["Private", "Public"],
-                :social_setting => ["Personal", "Social", "Professional"]
+  def tags
+      Tag.where("case_study_id = ? and content_type = ?", self[:id], "tag");
+  end
 
-        }
-    end
+  def tools
+      Tag.where("case_study_id = ? and content_type = ?", self[:id], "tool");
+  end
+  def self.options
+      select_option = self.lookup
+      select_option.each do |name, op|
+          collection = []
+          op.each_with_index do |choice, i|
+              collection << [choice, i]
+          end
+          select_option[name] = collection
+      end
+    return select_option
+  end
+  def self.lookup
+      return  {:development_cycle => ["Product Update", "Product Refinement", "New Product", "Other"],
+              :design_phase => [ "Problem Assessment", "Conceptual Design", "Detailed Design", "Other"] ,
+              :project_domain => ["Built Environment", "Product", "Service", "Web", "Mobile", "Graphic", "Fashion", "Other"],
+              :customer_type => ["Government", "Educational Group", "Business", "NGO", "Other"],
+              :user_age => ["Child", "Teen", "Young Adult", "Middle Aged", "Elderly" ],
+              :privacy_level => ["Private", "Public"],
+              :social_setting => ["Personal", "Social", "Professional"]
 
-    def self.helper_text
-        return {
-            :design_phase => ["The phase involves acquiring or processing information, or defining the problem.", "This phase involves generating or evaluating concepts or prototyping." ,"This phase involves prototyping, manufacturing and deployment."],
-            :remote_project => ["remote project = online project"],
-            :privacy_level => [" <em> Private </em> means only select few can observe the activity, and effort must be put to respect customs of activity. <span>(Example: religious ceremony)</span>", " <em>Public</em> means activity can be observed by anyone who desires to see the activity."],
-            :social_setting => [" <em>Personal</em> includes individual, couple and family.", " <em>Social</em> includes friends, communities (religion, political group) and individual in social context.", " <em>Professional</em> includes work, education, medical and government."]
-        }
-    end
+      }
+  end
 
-    def overview
-        if self[:overview] == nil
-            self[:overview] = "No overview available"
-        end
-        return self[:overview]
-    end
+  def self.helper_text
+      return {
+          :design_phase => ["The phase involves acquiring or processing information, or defining the problem.", "This phase involves generating or evaluating concepts or prototyping." ,"This phase involves prototyping, manufacturing and deployment."],
+          :remote_project => ["remote project = online project"],
+          :privacy_level => [" <em> Private </em> means only select few can observe the activity, and effort must be put to respect customs of activity. <span>(Example: religious ceremony)</span>", " <em>Public</em> means activity can be observed by anyone who desires to see the activity."],
+          :social_setting => [" <em>Personal</em> includes individual, couple and family.", " <em>Social</em> includes friends, communities (religion, political group) and individual in social context.", " <em>Professional</em> includes work, education, medical and government."]
+      }
+  end
 
-    # class Document_Attach < Document
-    #     attr_reader :obj
-    #     def initialize(obj)
-    #         if obj.is_a?(DesignMethod)
-    #           super(:content => obj.overview+" "+obj.process)
-    #         elsif obj.is_a?(CaseStudy)
-    #           super(:content => obj.overview)
-    #         end
-    #         @obj = obj
-    #     end
-    # end
+  def overview
+      if self[:overview] == nil
+          self[:overview] = "No overview available"
+      end
+      return self[:overview]
+  end
+
+  # class Document_Attach < Document
+  #     attr_reader :obj
+  #     def initialize(obj)
+  #         if obj.is_a?(DesignMethod)
+  #           super(:content => obj.overview+" "+obj.process)
+  #         elsif obj.is_a?(CaseStudy)
+  #           super(:content => obj.overview)
+  #         end
+  #         @obj = obj
+  #     end
+  # end
 
   def similar_methods(limit, sample_size)
     # TO_DO implement as non-gsl dependent
