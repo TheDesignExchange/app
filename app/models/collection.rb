@@ -25,7 +25,7 @@ class Collection < ActiveRecord::Base
 
   validates :name, presence: true
     validates :name,  length: { maximum: 255,
-                    too_long: "%{count} is the maximum character length."}
+                      too_long: "%{count} is the maximum character length."}
 
   def init
     if self.is_private.nil?

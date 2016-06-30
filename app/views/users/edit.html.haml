@@ -18,7 +18,6 @@
   .padding{
       padding-top: 15px;
   }
-  
   .social-icon{
     width: 23px;
     height: 23px;
@@ -118,11 +117,8 @@
         - @owned_discussions.each do |disc|
           = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"4")
 
-          
       .tab-pane.col-md-12.padding{"data-link" => "col"}
-
         -if @private_collections.empty?
-
           %h2 No private collections
         -else 
           %h2 Private
@@ -132,11 +128,8 @@
               %a{:href => collection_path}
                 %span.glyphicon.glyphicon-th-list
                 -collection.name
-            /%li=link_to set.name, set
 
         -if @private_collections.empty?
-
-
           %h2 No public collections
         -else 
           %h2 Public

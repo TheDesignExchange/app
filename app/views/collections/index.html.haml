@@ -1,12 +1,4 @@
 :css
-  .private_cols {
-    float: left;
-    width: 50%;
-  }
-  .public_cols {
-    float: right;
-    width: 50%;
-  }
   .btn-index-create {
     position: absolute;
     right: 30px;
@@ -26,8 +18,6 @@
     %li
       %a{"data-link" => "public"} Public
 
-.private_cols
-
 .tab-pane.col-md-12.padding{"data-link" => "private"}
   -if @private_collections.nil? || @private_collections.empty?
     %h2 You have no private collections
@@ -42,7 +32,6 @@
           %a{:href => col_path}
             %span.glyphicon.glyphicon-th-list
             #{collection.name}
-.public_cols
 
 .tab-pane.col-md-12.padding{"data-link" => "public"}
   -if @public_collections.empty?

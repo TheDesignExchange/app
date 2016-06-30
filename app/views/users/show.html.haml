@@ -31,8 +31,6 @@
       $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
     });
 
-
-
     $('.pagination').on('click', '*', function(e) {
       sessionStorage.setItem('collection-clicked', 'true');
       if ($('.pagination').parent.attr('data-link') === 'public') {
@@ -41,18 +39,13 @@
         sessionStorage.setItem('private', 'true');
       }
     });
-
-    
-
   });
 
-
 :css
-  .padding{
-    	padding-top: 15px;
+  .padding {
+    padding-top: 15px;
   }
-  
-  .social-icon{
+  .social-icon {
   	width: 32px;
   	height: 32px;
   	margin: 10px;
@@ -160,17 +153,13 @@
       - @owned_discussions.each do |disc|
         = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"4")
 
-
     .tab-pane.col-md-12.padding{"data-link" => "col"}
-
       #tabs
         %ul.nav.nav-tabs
           %li.active
             %a{"data-link" => "private"} Private
           %li
             %a{"data-link" => "public"} Public
-
-
 
       .tab-pane.col-md-12.padding{"data-link" => "private"}
         -if @private_collections.empty?
@@ -183,17 +172,13 @@
             - @private_collections.each do |collection|
               %br
               %li
-                /%a{:href => collection_path}
                 -col_path = "/collections/" + collection.id.to_s
                 %a{:href => col_path}
                   %span.glyphicon.glyphicon-th-list
                   #{collection.name}
-              /%li=link_to set.name, set
 
       .tab-pane.col-md-12.padding{"data-link" => "public", :style => "display: none;" }
         -if @public_collections.empty?
-
-
           %h2 You have no public collections
         -else 
           %h2 Public
@@ -206,7 +191,6 @@
                 %a{:href => col_path}
                   %span.glyphicon.glyphicon-th-list
                   #{collection.name}
-              /%li=link_to set.name, set
         /= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(set,"4")
     / END THUMBNAILS
   / END POSTED BY

@@ -140,7 +140,6 @@ class CollectionsController < ApplicationController
     end
   end
 
-
   def edit
     @collection = Collection.find(params[:id])
     if current_user.id == @collection.owner_id
