@@ -6,7 +6,9 @@ class DesignMethodsController < ApplicationController
 
   before_action :edit_as_signed_in_user, only: [:edit, :update]
   before_action :create_as_signed_in_user, only: [:create, :new]
-  
+
+  layout 'custom'
+
   def index
       @design_methods = DesignMethod.where("overview != ?", "No overview available" )
       # .take(24)
@@ -73,7 +75,6 @@ class DesignMethodsController < ApplicationController
 
     respond_to do |format|
       if @design_method.save
-        @citations
         format.html { redirect_to @design_method, notice: 'Design method was successfully created.' }
         format.json { render json: @design_method, status: :created, location: @design_method }
       else

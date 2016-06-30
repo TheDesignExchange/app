@@ -1,4 +1,3 @@
-
 # Validates new design method form.
 $ ->
   errors = new Array
@@ -26,7 +25,7 @@ $ ->
   $('#new_design_method').submit (event) ->
     errorChecker(event)
     return
-    
+
   $('.edit_design_method').submit (event) ->
     errorChecker(event)
     return
