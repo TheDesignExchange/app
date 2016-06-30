@@ -42,7 +42,6 @@ class CaseStudy < ActiveRecord::Base
   has_many :contacts, :through => :company
   has_many :resources
 
-
   # METHOD LINKING
   has_many :method_case_studies
   has_many :design_methods, :through => :method_case_studies
@@ -66,7 +65,6 @@ class CaseStudy < ActiveRecord::Base
   #     company ? company.contacts : nil
   # end
 
-
   def tags
       Tag.where("case_study_id = ? and content_type = ?", self[:id], "tag");
   end
@@ -74,6 +72,7 @@ class CaseStudy < ActiveRecord::Base
   def tools
       Tag.where("case_study_id = ? and content_type = ?", self[:id], "tool");
   end
+
   def self.options
       select_option = self.lookup
       select_option.each do |name, op|
@@ -85,6 +84,7 @@ class CaseStudy < ActiveRecord::Base
       end
     return select_option
   end
+
   def self.lookup
       return  {:development_cycle => ["Product Update", "Product Refinement", "New Product", "Other"],
               :design_phase => [ "Problem Assessment", "Conceptual Design", "Detailed Design", "Other"] ,
