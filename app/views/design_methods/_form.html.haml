@@ -115,9 +115,9 @@
   / ERROR MESSAGES
   - if @design_method.errors.any?
     #error_explanation
-      %h2
+      %h3
         = pluralize(@design_method.errors.count, "error")
-        prohibited this design_method from being saved:
+        prohibited this design method from being saved:
       %ul
         - @design_method.errors.full_messages.each do |msg|
           %li= msg
