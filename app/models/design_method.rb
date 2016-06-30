@@ -26,12 +26,12 @@
 #  critiques          :text
 #  additional_reading :text
 #  references         :text
-#
+#  videoURL           :text
 
 class DesignMethod < ActiveRecord::Base
 
   # TODO: add the mass assignment protection at the controller, then remove this
-  attr_accessible :name, :process, :num_of_designers, :num_of_users, :overview, :main_image, :time_period, :name, :time_unit, :synonyms, :benefits, :limitations, :skills, :usage, :online_resources, :history, :critiques, :additional_reading, :characteristic_ids, :references
+  attr_accessible :name, :process, :num_of_designers, :num_of_users, :overview, :main_image, :time_period, :name, :time_unit, :synonyms, :benefits, :limitations, :skills, :usage, :online_resources, :history, :critiques, :additional_reading, :characteristic_ids, :references, :videoURL
 
   # Validations
   validates :name, :overview, presence: true
@@ -45,6 +45,9 @@ class DesignMethod < ActiveRecord::Base
   validates :process, presence: true
 
   validates :overview, presence: true
+
+  validates_format_of :videoURL, :with => /https:\/\/www\.youtube\.com\/embed\/([a-zA-Z0-9_-]*)/, allow_blank: true
+
 
   # Relationships
   has_many :method_characteristics, dependent: :destroy
