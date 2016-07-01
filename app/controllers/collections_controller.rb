@@ -58,8 +58,6 @@ class CollectionsController < ApplicationController
     id = params[:id].to_i
     @user = current_user
     @collection = Collection.find(id)
-    puts @collection.design_methods
-    puts @collection.case_studies
     render :layout => "custom"
   end
 
@@ -87,7 +85,6 @@ class CollectionsController < ApplicationController
 
     respond_to do |format|
       if @collection.save
-        puts @collection.inspect
         format.html { redirect_to :back, notice: 'Successfully added to Collection.'}
         format.json { render json: @collection, status: :created, location: @collection }
       else
