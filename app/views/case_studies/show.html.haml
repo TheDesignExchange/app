@@ -37,21 +37,22 @@
       .col-xs-3
         %span.glyphicon.glyphicon-star
         \- likes
-      .col-xs-3
-        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-          %span.glyphicon.glyphicon-folder-open
+      - if !current_user.nil?
+        .col-xs-3
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            Add to Collection
-            %b.caret
-          %ul.dropdown-menu
-            -@collections.each do |collection|
-              %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :cs_id => @case_study.id)
+            %span.glyphicon.glyphicon-folder-open
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              Add to Collection
+              %b.caret
+            %ul.dropdown-menu
+              -@collections.each do |collection|
+                %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :cs_id => @case_study.id)
 
-            = form_for @collection do |f|
-              .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
-              = f.hidden_field :cs_id, :value => @case_study.id
-              = f.text_field :name, :class=> "form-control", :placeholder => ""
-              = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
+              = form_for @collection do |f|
+                .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+                = f.hidden_field :cs_id, :value => @case_study.id
+                = f.text_field :name, :class=> "form-control", :placeholder => ""
+                = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
       .col-xs-3
         %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
           %span.glyphicon.glyphicon-share

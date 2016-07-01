@@ -93,9 +93,11 @@ class DesignMethodsController < ApplicationController
     dm = DesignMethod.find(id)
     @method = dm
 
-    @collections = current_user.owned_collections
-    @collection = Collection.new(params[:collection])
-    @collection.owner_id = current_user.id
+    if !current_user.nil?
+      @collections = current_user.owned_collections
+      @collection = Collection.new(params[:collection])
+      @collection.owner_id = current_user.id
+    end
 
     # Method likes:
     @method.likes += 1
