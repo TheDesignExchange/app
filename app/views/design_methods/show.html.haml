@@ -1,24 +1,27 @@
 :css
-  .no-padding{
+  .no-padding {
     padding: 0%;
   }
-  .nav-tabs{
+  .method-toolbar {
+    padding-top: 20px;
+  }
+  .nav-tabs {
     cursor: pointer;
   }
-  .tab-pane{
+  .tab-pane {
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     padding: 20px;
   }
-  #sidebar{
+  #sidebar {
     padding-top: 50px;
   }
-  .char-group{
+  .char-group {
     padding-bottom: 10px;
     clear: both;
   }
-  .char-tag{
+  .char-tag {
     overflow: hidden;
     max-width: 225px;
     text-overflow: ellipsis;
@@ -110,9 +113,9 @@
 #content-column.col-md-9
   /Method header
   .row
-    .col-md-3.no-padding
+    .col-md-6.no-padding
       %h3= @method.name
-    .col-md-6.padding.pull-right
+    .col-md-6.pull-right
       .pull-right
         %ul.list-inline.method-toolbar
           %li
