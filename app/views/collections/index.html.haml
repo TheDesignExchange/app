@@ -48,19 +48,3 @@
             %span.glyphicon.glyphicon-th-list
             #{collection.name}
 
-/%h1 Public Collections
-
-/= will_paginate @public_collections
-
-/= link_to new_collection_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
-/  %span.glyphicon.glyphicon-plus
-/  Create Collection
-
-/%ul.collections
-/  - @public_collections.each do |collection|
-/    %br
-/    %li
-/      -col_path = "/collections/" + collection.id.to_s
-/      %a{:href => col_path}
-/        %span.glyphicon.glyphicon-th-list
-/        #{collection.name}

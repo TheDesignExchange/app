@@ -46,24 +46,12 @@
           %ul.dropdown-menu
             -@collections.each do |collection|
               %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :cs_id => @case_study.id)
-              /%li=link_to collection.name, controller: "collections", action: "add_method"
-              /%li= collection.name
 
             = form_for @collection do |f|
               .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
               = f.hidden_field :cs_id, :value => @case_study.id
               = f.text_field :name, :class=> "form-control", :placeholder => ""
               = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
-          /Add to Set
-          /%b.caret
-          /%ul.dropdown-menu
-          /%li
-          /%a{:href => ""} Add To Set
-            
-
-          /%li.divider
-          /%li
-          /%a{:href => "#"} My Favorites
       .col-xs-3
         %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
           %span.glyphicon.glyphicon-share
