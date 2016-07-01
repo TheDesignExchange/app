@@ -194,7 +194,10 @@
     - if !@method.skills.blank?
       %h4 Skills that help:
       %p= md_format(@method.skills)
+    - if !@method.videoURL.blank? 
+      %h4 Video
 
+      %iframe{:allowfullscreen => "", :frameborder => "1", :height => "315", :src => @method.videoURL, :width => "560"}
     %h4 Contributing Authors
     .col-xs-6
       .col-xs-4
@@ -206,6 +209,7 @@
       .col-xs-8
         %p= link_to @author.first_name + " " + @author.last_name, user_path(@author.id)
         %p= @author.email != nil ? @author.email : "-"
+
   /Method instructions
   .tab-pane.row{"data-link" => "instructions"}
     = @method.process != nil ? md_format(@method.process) : "No instructions available"

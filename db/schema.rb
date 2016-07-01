@@ -174,6 +174,7 @@ ActiveRecord::Schema.define(version: 20160623180439) do
     t.string   "videoURL"
     t.integer  "collection_id"
     t.text     "references"
+    t.string   "videoURL"
   end
 
   add_index "design_methods", ["collection_id"], name: "index_design_methods_on_collection_id", using: :btree
