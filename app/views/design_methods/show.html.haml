@@ -28,9 +28,9 @@
     margin-bottom: 1px;
   }
   .reference {
-    white-space: -moz-pre-wrap; /* Firefox */    
-    white-space: -pre-wrap;     /* Opera <7 */   
-    white-space: -o-pre-wrap;   /* Opera 7 */    
+    white-space: -moz-pre-wrap; /* Firefox */
+    white-space: -pre-wrap;     /* Opera <7 */
+    white-space: -o-pre-wrap;   /* Opera 7 */
     word-wrap: break-word;      /* IE */
   }
   .tooltips {
@@ -100,11 +100,7 @@
         = tagify(t.id, t.content, {:removable => false})
       = "No tags available" unless not @method.tags.empty?
   .row
-    %h4 Characteristics 
-    .tooltips
-      More Info
-      %span.tooltiptext Placeholder Text
-
+    %h4 Characteristics
     - @method.method_categories.each do |category|
       .char-group
         = category.name
@@ -194,7 +190,7 @@
     - if !@method.skills.blank?
       %h4 Skills that help:
       %p= md_format(@method.skills)
-    - if !@method.videoURL.blank? 
+    - if !@method.videoURL.blank?
       %h4 Video
 
       %iframe{:allowfullscreen => "", :frameborder => "1", :height => "315", :src => @method.videoURL, :width => "560"}
