@@ -55,6 +55,10 @@ class CaseStudiesController < ApplicationController
 
     id = params[:id].to_i
     @case_study = CaseStudy.find(id)
+    @collections = current_user.owned_collections
+    @collection = Collection.new(params[:collection])
+    @collection.owner_id = current_user.id
+    
 
     @similar_methods = @case_study.similar_methods(100,6)
     @similar_case_studies = @case_study.similar_case_studies(100,6)

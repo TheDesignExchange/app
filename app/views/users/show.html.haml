@@ -1,6 +1,22 @@
 :javascript
   $(function(){
+
     $('.tab-pane[data-link ="'+ "all" +'"]').show().siblings(".tab-pane").hide();
+
+    // if clicked on next page of collections tab, goes straight back to the tab
+    if (sessionStorage.getItem('collection-clicked') === 'true') {
+      sessionStorage.setItem('collection-clicked', 'false');
+      $( "a[data-link='col']" ).click();
+      $( "div[data-link='all']" ).css('display', 'none');
+      $( "div[data-link='col']" ).css('display', 'block');
+
+      if (sessionStorage.getItem('private') === 'true') {
+        $( "a[data-link='private']" ).click();
+      } else {
+        $( "a[data-link='public']" ).click();
+      }
+    }
+
     $('#tabs li a').click(function(e){
       e.preventDefault();
       // Alternate tabs
@@ -12,18 +28,35 @@
   
       // $('.tab-pane[data-link ~="'+ link +'"]').hide();
       $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
-    })
+    });
+
+    $('.pagination').on('click', '*', function(e) {
+      sessionStorage.setItem('collection-clicked', 'true');
+      if ($('.pagination').parent.attr('data-link') === 'public') {
+        sessionStorage.setItem('private', 'false');
+      } else {
+        sessionStorage.setItem('private', 'true');
+      }
+    });
   });
+
 :css
-  .padding{
-    	padding-top: 15px;
+  .padding {
+    padding-top: 15px;
   }
-  
-  .social-icon{
+  .social-icon {
   	width: 32px;
   	height: 32px;
   	margin: 10px;
   	display: inline;
+  }
+  .private_cols {
+    float: left;
+    width: 50%;
+  }
+  .public_cols {
+    float: right;
+    width: 50%;
   }
 / BODY
 .row
@@ -102,6 +135,8 @@
           %a{"data-link" => "cs"} Case Studies
         %li
           %a{"data-link" => "disc"} Discussions
+        %li
+          %a{"data-link" => "col"} Collections
     / END NAVBAR
     / THUMBNAILS
     .tab-pane.col-md-12.padding{"data-link" => "all"}
@@ -116,7 +151,45 @@
     .tab-pane.col-md-12.padding{"data-link" => "disc"}
       - @owned_discussions.each do |disc|
         = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"4")
-    
+
+    .tab-pane.col-md-12.padding{"data-link" => "col"}
+      #tabs
+        %ul.nav.nav-tabs
+          %li.active
+            %a{"data-link" => "private"} Private
+          %li
+            %a{"data-link" => "public"} Public
+
+      .tab-pane.col-md-12.padding{"data-link" => "private"}
+        -if @private_collections.empty?
+
+          %h2 You have no private collections
+        -else 
+          %h2 Private
+          = will_paginate @private_collections, :param_name => "private_page"
+          %ul.collections
+            - @private_collections.each do |collection|
+              %br
+              %li
+                -col_path = "/collections/" + collection.id.to_s
+                %a{:href => col_path}
+                  %span.glyphicon.glyphicon-th-list
+                  #{collection.name}
+
+      .tab-pane.col-md-12.padding{"data-link" => "public", :style => "display: none;" }
+        -if @public_collections.empty?
+          %h2 You have no public collections
+        -else 
+          %h2 Public
+          = will_paginate @public_collections, :param_name => "public_page"
+          %ul.collections
+            - @public_collections.each do |collection|
+              %br
+              %li
+                -col_path = "/collections/" + collection.id.to_s
+                %a{:href => col_path}
+                  %span.glyphicon.glyphicon-th-list
+                  #{collection.name}
     / END THUMBNAILS
   / END POSTED BY
 / END BODY

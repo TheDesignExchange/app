@@ -119,4 +119,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  has_many :owned_methods, dependent: :destroy, class_name: "DesignMethod", foreign_key: :owner_id
+  has_many :method_favorites, dependent: :destroy
+  has_many :favorite_methods, through: :method_favorites, :source => :design_method
+  has_many :owned_discussions, dependent: :destroy, class_name: "Discussion", foreign_key: :user_id
+  has_many :comments, dependent: :destroy
+  has_many :tags
+
+  has_many :owned_collections, dependent: :destroy, class_name: "Collection", foreign_key: :owner_id
 end

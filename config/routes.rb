@@ -49,6 +49,9 @@ DesignExchange::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
 
+  get '/collections/add', to: 'collections#add', as: "add_to_collection"
+  get '/collections/:id/edit/delete', to: 'collections#delete', as: "delete_collection"
+
   resources :method_categories, only: [:show]
   resources :citations, only: [:show]
   resources :feedbacks, only: [:create]
@@ -60,6 +63,8 @@ DesignExchange::Application.routes.draw do
   get '/administrator/change_editor', to: 'administrator#changeEditor'
   get '/administrator/change_basic', to: 'administrator#changeBasic'
 
+
+  resources :collections
 
   get 'search/(:query)', controller: 'design_methods', action: 'search', as: 'search'
 

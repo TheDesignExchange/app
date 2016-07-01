@@ -1,24 +1,27 @@
 :css
-  .no-padding{
+  .no-padding {
     padding: 0%;
   }
-  .nav-tabs{
+  .method-toolbar {
+    padding-top: 20px;
+  }
+  .nav-tabs {
     cursor: pointer;
   }
-  .tab-pane{
+  .tab-pane {
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     padding: 20px;
   }
-  #sidebar{
+  #sidebar {
     padding-top: 50px;
   }
-  .char-group{
+  .char-group {
     padding-bottom: 10px;
     clear: both;
   }
-  .char-tag{
+  .char-tag {
     overflow: hidden;
     max-width: 225px;
     text-overflow: ellipsis;
@@ -28,9 +31,9 @@
     margin-bottom: 1px;
   }
   .reference {
-    white-space: -moz-pre-wrap; /* Firefox */    
-    white-space: -pre-wrap;     /* Opera <7 */   
-    white-space: -o-pre-wrap;   /* Opera 7 */    
+    white-space: -moz-pre-wrap; /* Firefox */
+    white-space: -pre-wrap;     /* Opera <7 */
+    white-space: -o-pre-wrap;   /* Opera 7 */
     word-wrap: break-word;      /* IE */
   }
   .tooltips {
@@ -55,6 +58,23 @@
   .tooltips:hover .tooltiptext {
     visibility: visible;
   }
+  #collection_name {
+    float: left;
+    width: 75%;
+    height: 30px;
+  }
+  #new_collection {
+    padding: 0px 20px 40px 20px;
+  }
+  .dropdown-menu {
+    max-width: 200px;
+  }
+:javascript
+  $(document).ready(function() {
+    $('.dropdown-menu input').click(function(e) {
+      e.stopPropagation(); //This will prevent the event from bubbling up and close the dropdown when you type/click on text boxes.
+    });
+  });
 
 
 #sidebar.col-md-3
@@ -83,11 +103,7 @@
         = tagify(t.id, t.content, {:removable => false})
       = "No tags available" unless not @method.tags.empty?
   .row
-    %h4 Characteristics 
-    .tooltips
-      More Info
-      %span.tooltiptext Placeholder Text
-
+    %h4 Characteristics
     - @method.method_categories.each do |category|
       .char-group
         = category.name
@@ -97,14 +113,29 @@
 #content-column.col-md-9
   /Method header
   .row
-    .col-md-3.no-padding
+    .col-md-6.no-padding
       %h3= @method.name
-    .col-md-6.padding.pull-right
+    .col-md-6.pull-right
       .pull-right
         %ul.list-inline.method-toolbar
           %li
             %span.glyphicon.glyphicon-eye-open
             = pluralize(@method.likes, 'view')
+
+          %li
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %span.glyphicon.glyphicon-folder-open
+              Add to Collection
+              %b.caret
+            %ul.dropdown-menu
+              -@collections.each do |collection|
+                %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :method_id => @method.id)
+
+              = form_for @collection do |f|
+                .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+                = f.hidden_field :method_id, :value => @method.id
+                = f.text_field :name, :class=> "form-control", :placeholder => ""
+                = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
           %li
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               %span.glyphicon.glyphicon-share
@@ -117,6 +148,7 @@
             %a{:href => edit_design_method_path(params[:id])}
               %span.glyphicon.glyphicon-pencil
               Edit
+
     /Method top level categories
   .row
     - @method.method_categories.each do |category|
@@ -161,7 +193,7 @@
     - if !@method.skills.blank?
       %h4 Skills that help:
       %p= md_format(@method.skills)
-    - if !@method.videoURL.blank? 
+    - if !@method.videoURL.blank?
       %h4 Video
 
       %iframe{:allowfullscreen => "", :frameborder => "1", :height => "315", :src => @method.videoURL, :width => "560"}
@@ -196,7 +228,7 @@
       %p= md_format(@method.critiques)
 
     - if @citations.length != 0 && @citations != nil
-      %h4 References used in this article
+      %h4 References used in this Article
       %ol
         /Makes citation a hyperlink if it is a link
         - @citations.each do |c|
@@ -211,4 +243,9 @@
     - if !@method.additional_reading.blank?
       %h4 Additional Reading
       %p= md_format(@method.additional_reading)
+
+    - if !@method.case_studies.blank?
+      %h4 Related Case Studies
+      - @method.case_studies.each do |cs|
+        = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"4")
 

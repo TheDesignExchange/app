@@ -309,3 +309,19 @@ img{
 .markdown-help {
   font-size: 0.8em;
 }
+
+.open {
+  position: relative;
+}
+
+#collection_name + input {
+  width: 25%;
+  padding: 0px;
+  height: 30px;
+  font-size: 0.8em;
+}
+.collections{
+  list-style-type: none;
+  padding-left: 0px;
+  font-size: 1.4em;
+}

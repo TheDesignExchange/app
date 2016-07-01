@@ -1,3 +1,22 @@
+:css
+  #collection_name {
+    float: left;
+    width: 75%;
+    height: 30px;
+  }
+  #new_collection {
+    padding: 0px 20px 40px 20px;
+  }
+  .dropdown-menu {
+    max-width: 200px;
+  }
+:javascript
+  $(document).ready(function() {
+    $('.dropdown-menu input').click(function(e) {
+      e.stopPropagation(); //This will prevent the event from bubbling up and close the dropdown when you type/click on text boxes.
+    });
+  });
+
 / CASE STUDY TITLE
 .row
   .col-xs-9.col-xs-offset-3.left-pad
@@ -21,14 +40,18 @@
       .col-xs-3
         %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
           %span.glyphicon.glyphicon-folder-open
-          Add to Set
-          %b.caret
-        %ul.dropdown-menu
-          %li
-            %a{:href => ""} Add To Set
-          %li.divider
-          %li
-            %a{:href => "#"} My Favorites
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            Add to Collection
+            %b.caret
+          %ul.dropdown-menu
+            -@collections.each do |collection|
+              %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :cs_id => @case_study.id)
+
+            = form_for @collection do |f|
+              .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+              = f.hidden_field :cs_id, :value => @case_study.id
+              = f.text_field :name, :class=> "form-control", :placeholder => ""
+              = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
       .col-xs-3
         %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
           %span.glyphicon.glyphicon-share
@@ -57,6 +80,13 @@
       %p= @case_study.process.blank? ? "-" : md_format(@case_study.process)
       %h3 Outcome/Benefits
       %p= @case_study.outcome.blank? ? "-" : md_format(@case_study.outcome)
+
+      - if !@case_study.design_methods.blank?
+        %h3 Related Design Methods
+        - @case_study.design_methods.each do |dm|
+          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4")
+
+
     / END DESCRIPTION
     - render "related_content"
     / END CONTENT

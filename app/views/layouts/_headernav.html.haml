@@ -23,6 +23,7 @@
       %ul.nav.navbar-nav
         %li= link_to "Methods", design_methods_path
         %li= link_to "Case Studies", case_studies_path
+        %li= link_to "Collections", collections_path
         / <li><haml_loud> link_to &quot;Discussions&quot;, discussions_path </haml_loud></li>
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
@@ -34,7 +35,6 @@
               - if current_user.admin?
                 %li= link_to "Admin", administrator_path
               %li= link_to "Profile", user_path(current_user.id)
-              %li= link_to "Sets", set_index_path
               %li= link_to "Account Information", edit_user_registration_path
               %li
                 %a{"data-target" => "#myModal", "data-toggle" => "modal", :href => "#"}

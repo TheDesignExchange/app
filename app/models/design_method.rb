@@ -26,12 +26,17 @@
 #  critiques          :text
 #  additional_reading :text
 #  references         :text
+#  characteristic_ids
 #  videoURL           :text
 
 class DesignMethod < ActiveRecord::Base
 
   # TODO: add the mass assignment protection at the controller, then remove this
-  attr_accessible :name, :process, :num_of_designers, :num_of_users, :overview, :main_image, :time_period, :name, :time_unit, :synonyms, :benefits, :limitations, :skills, :usage, :online_resources, :history, :critiques, :additional_reading, :characteristic_ids, :references, :videoURL
+  attr_accessible :name, :process, :num_of_designers, :num_of_users, :overview,
+                  :main_image, :time_period, :name, :time_unit, :synonyms, :benefits,
+                  :limitations, :skills, :usage, :online_resources, :history, :critiques,
+                  :additional_reading, :characteristic_ids, :references, :case_study_ids,
+                  :videoURL
 
   # Validations
   validates :name, :overview, presence: true
@@ -58,6 +63,9 @@ class DesignMethod < ActiveRecord::Base
 
   has_many :method_favorites, dependent: :destroy
   has_many :favorited_users, through: :method_favorites, :source => :user
+
+  has_many :method_collections, dependent: :destroy
+  has_many :collections, through: :method_collections
 
   belongs_to :owner, class_name: "User", foreign_key: :owner_id
 
