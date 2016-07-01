@@ -23,6 +23,7 @@ gem 'pg'
 gem 'seed_dump'
 gem 'haml'
 gem 'haml-rails', group: :development
+gem 'jquery-tablesorter'
 
 gem 'rails_12factor', group: :production
 gem 'font_assets'

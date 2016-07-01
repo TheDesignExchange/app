@@ -1,0 +1,13 @@
+#pager.pager{:style => "margin-top: 10px;"}
+  %form
+    %img.first{:src => "/images/first.png"}/
+    %img.prev{:src => "/images/prev.png"}/
+    %input.pagedisplay{:type => "text"}/
+    %img.next{:src => "/images/next.png"}/
+    %img.last{:src => "/images/last.png"}/
+    %select.pagesize
+      %option{:selected => "selected", :value => "10"} 10
+      %option{:value => "20"} 20
+      %option{:value => "30"} 30
+      %option{:value => "40"} 40
+    Rows

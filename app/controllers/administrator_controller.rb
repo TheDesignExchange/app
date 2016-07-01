@@ -1,5 +1,7 @@
 class AdministratorController < ApplicationController
 
+  def tabledemo
+  end
   def index
     authorize! :index, :administrator
     @users = User.paginate(:page => params[:page], :per_page => 4)

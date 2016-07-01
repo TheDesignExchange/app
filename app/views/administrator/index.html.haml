@@ -17,7 +17,15 @@
       // $('.tab-pane[data-link ~="'+ link +'"]').hide();
       $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
     })
+    $("#myTable")
+    .tablesorter({ 
+    // sort on the first column and third column, order asc 
+    sortList: [[0,0],[1,0],[2,0],[3,0],[4,0]]
+    });
+    .tablesorterPager({container: $("#pager")}); 
+
   });
+
 
 :css
   .padding{
@@ -51,178 +59,258 @@
 / BODY
 .row
   / PROFILE INFO
+%table#myTable.tablesorter.tablesorter-blue
+  %thead
+    %tr
+      %th Last Name
+      %th First Name
+      %th Email
+      %th Due
+      %th Web Site
+  %tbody
+    %tr
+      %td Smith
+      %td John
+      %td jsmith@gmail.com
+      %td $50.00
+      %td http://www.jsmith.com
+    %tr
+      %td Bach
+      %td Frank
+      %td fbach@yahoo.com
+      %td $50.00
+      %td http://www.frank.com
+    %tr
+      %td Doe
+      %td Jason
+      %td jdoe@hotmail.com
+      %td $100.00
+      %td http://www.jdoe.com
+    %tr
+      %td Conway
+      %td Tim
+      %td tconway@earthlink.net
+      %td $50.00
+      %td http://www.timconway.com
+    %tr
+      %td Smith
+      %td John
+      %td jsmith@gmail.com
+      %td $50.00
+      %td http://www.jsmith.com
+    %tr
+      %td Bach
+      %td Frank
+      %td fbach@yahoo.com
+      %td $50.00
+      %td http://www.frank.com
+    %tr
+      %td Doe
+      %td Jason
+      %td jdoe@hotmail.com
+      %td $100.00
+      %td http://www.jdoe.com
+    %tr
+      %td Conway
+      %td Tim
+      %td tconway@earthlink.net
+      %td $50.00
+      %td http://www.timconway.com
+    %tr
+      %td Smith
+      %td John
+      %td jsmith@gmail.com
+      %td $50.00
+      %td http://www.jsmith.com
+    %tr
+      %td Bach
+      %td Frank
+      %td fbach@yahoo.com
+      %td $50.00
+      %td http://www.frank.com
+    %tr
+      %td Doe
+      %td Jason
+      %td jdoe@hotmail.com
+      %td $100.00
+      %td http://www.jdoe.com
+    %tr
+      %td Conway
+      %td Tim
+      %td tconway@earthlink.net
+      %td $50.00
+      %td http://www.timconway.com
+/   .col-md-12
 
-  .col-md-12
-
-    #tabs
-      %ul.nav.nav-tabs
-        %li.active
-          %a{"data-link" => "all"} All
-        %li
-          %a{"data-link" => "admin"} Admin
-        %li
-          %a{"data-link" => "editor"} Editor
-        %li
-          %a{"data-link" => "basic"} Basic
-    .tab-pane.col-md-12.padding{"data-link" => "all"}
+/     #tabs
+/       %ul.nav.nav-tabs
+/         %li.active
+/           %a{"data-link" => "all"} All
+/         %li
+/           %a{"data-link" => "admin"} Admin
+/         %li
+/           %a{"data-link" => "editor"} Editor
+/         %li
+/           %a{"data-link" => "basic"} Basic
+/     .tab-pane.col-md-12.padding{"data-link" => "all"}
 
 
-      .row
+/       .row
 
-        - @users.each do |user|
-          .col-md-3
+/         - @users.each do |user|
+/           .col-md-3
 
-            - if user.profile_picture.present?
-              = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-            - else
-              = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
+/             - if user.profile_picture.present?
+/               = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
+/             - else
+/               = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
 
-            %li.dropdown{:style => "list-style: none"}
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = user.username
-                %b.caret
-              %ul.dropdown-menu
-                - if user.admin?
-                  %li= link_to user.first_name + " " + user.last_name
-                  %li= link_to user.email
-                  %li= link_to "Admin"
-                  %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-                - elsif user.editor?
-                  %li= link_to user.first_name + " " + user.last_name
-                  %li= link_to user.email
-                  %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                  %li= link_to "Editor"
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-                - elsif user.basic?
-                  %li= link_to user.first_name + " " + user.last_name
-                  %li= link_to user.email
-                  %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                  %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Basic"
-                - else
-                  %li= link_to user.first_name + " " + user.last_name
-                  %li= link_to user.email
-                  %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                  %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-      = will_paginate @users, :param_name => 'page'
+/             %li.dropdown{:style => "list-style: none"}
+/               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+/                 = user.username
+/                 %b.caret
+/               %ul.dropdown-menu
+/                 - if user.admin?
+/                   %li= link_to user.first_name + " " + user.last_name
+/                   %li= link_to user.email
+/                   %li= link_to "Admin"
+/                   %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
+/                   %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
+/                 - elsif user.editor?
+/                   %li= link_to user.first_name + " " + user.last_name
+/                   %li= link_to user.email
+/                   %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
+/                   %li= link_to "Editor"
+/                   %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
+/                 - elsif user.basic?
+/                   %li= link_to user.first_name + " " + user.last_name
+/                   %li= link_to user.email
+/                   %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
+/                   %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
+/                   %li= link_to "Basic"
+/                 - else
+/                   %li= link_to user.first_name + " " + user.last_name
+/                   %li= link_to user.email
+/                   %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
+/                   %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
+/                   %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
+/       = will_paginate @users, :param_name => 'page'
 
-    /  Admin Tab
-    .tab-pane.col-md-12.padding{"data-link" => "admin"}
-      .row
-        - @usersAdmin.each do |user|
-          .col-md-3
+/     /  Admin Tab
+/     .tab-pane.col-md-12.padding{"data-link" => "admin"}
+/       .row
+/         - @usersAdmin.each do |user|
+/           .col-md-3
 
-            - if user.profile_picture.present?
-              = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-            - else
-              = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
+/             - if user.profile_picture.present?
+/               = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
+/             - else
+/               = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
 
-            %li.dropdown{:style => "list-style: none"}
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = user.username
-                %b.caret
-              %ul.dropdown-menu
-                %li= link_to user.first_name + " " + user.last_name
-                %li= link_to user.email
-                %li= link_to "Admin"
-                %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-      = will_paginate @usersAdmin, :param_name => 'admin_page'
+/             %li.dropdown{:style => "list-style: none"}
+/               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+/                 = user.username
+/                 %b.caret
+/               %ul.dropdown-menu
+/                 %li= link_to user.first_name + " " + user.last_name
+/                 %li= link_to user.email
+/                 %li= link_to "Admin"
+/                 %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
+/                 %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
+/       = will_paginate @usersAdmin, :param_name => 'admin_page'
  
-    / Editor Tab
-    .tab-pane.col-md-12.padding{"data-link" => "editor"}
-      .row
-        - @usersEditor.select{|user| user.editor?}.each do |user|
-          .col-md-3
+/     / Editor Tab
+/     .tab-pane.col-md-12.padding{"data-link" => "editor"}
+/       .row
+/         - @usersEditor.select{|user| user.editor?}.each do |user|
+/           .col-md-3
 
-            - if user.profile_picture.present?
-              = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-            - else
-              = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
+/             - if user.profile_picture.present?
+/               = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
+/             - else
+/               = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
 
-            %li.dropdown{:style => "list-style: none"}
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = user.username
-                %b.caret
-              %ul.dropdown-menu
-                %li= link_to user.first_name + " " + user.last_name
-                %li= link_to user.email
-                %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                %li= link_to "Editor"
-                %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-      = will_paginate @usersEditor, :param_name => 'editor_page'
+/             %li.dropdown{:style => "list-style: none"}
+/               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+/                 = user.username
+/                 %b.caret
+/               %ul.dropdown-menu
+/                 %li= link_to user.first_name + " " + user.last_name
+/                 %li= link_to user.email
+/                 %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
+/                 %li= link_to "Editor"
+/                 %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
+/       = will_paginate @usersEditor, :param_name => 'editor_page'
 
-    /Basic Tab
-    .tab-pane.col-md-12.padding{"data-link" => "basic"}
-      .row
-        - @usersBasic.select{|user| user.basic?}.each do |user|
-          .col-md-3
+/     /Basic Tab
+/     .tab-pane.col-md-12.padding{"data-link" => "basic"}
+/       .row
+/         - @usersBasic.select{|user| user.basic?}.each do |user|
+/           .col-md-3
 
-            - if user.profile_picture.present?
-              = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-            - else
-              = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
+/             - if user.profile_picture.present?
+/               = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
+/             - else
+/               = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
 
-            %li.dropdown{:style => "list-style: none"}
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = user.username
-                %b.caret
-              %ul.dropdown-menu
-                %li= link_to user.first_name + " " + user.last_name
-                %li= link_to user.email
-                %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                %li= link_to "Basic"
-      = will_paginate @usersBasic, :param_name => 'basic'
+/             %li.dropdown{:style => "list-style: none"}
+/               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+/                 = user.username
+/                 %b.caret
+/               %ul.dropdown-menu
+/                 %li= link_to user.first_name + " " + user.last_name
+/                 %li= link_to user.email
+/                 %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
+/                 %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
+/                 %li= link_to "Basic"
+/       = will_paginate @usersBasic, :param_name => 'basic'
 
-%h1 Characterisitcs
-.row
-  / Characteristics
+/ %h1 Characterisitcs
+/ .row
+/   / Characteristics
 
-  .col-md-12
+/   .col-md-12
 
-    #tabs
-      %ul.nav.nav-tabs
+/     #tabs
+/       %ul.nav.nav-tabs
 
-        %li.active
-          %a{"data-link" => "characteristics"} Characteristics
-        %li
-          %a{"data-link" => "chargroups"} Characteristic Groups
-
-
-    / Char Tab
-    .tab-pane.col-md-12.padding{"data-link" => "characteristics"}
-      .row
-        - for char in @characteristics
-          .col-md-3
-            %li.dropdown{:style => "list-style: none; margin-top: 15px"}
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = char.name
-
-                %b.caret
-              %ul.dropdown-menu
-                %li= link_to "Edit Characteristic", data: { confirm: "Are you sure?" }
-                %li= link_to "Delete Characteristic"
-
-      = will_paginate @characteristics, :param_name => 'characteristics_page'
+/         %li.active
+/           %a{"data-link" => "characteristics"} Characteristics
+/         %li
+/           %a{"data-link" => "chargroups"} Characteristic Groups
 
 
-    /  Char-group Tab
-    .tab-pane.col-md-12.padding{"data-link" => "chargroups"}
-      .row
-        - for charGroup in @CharacteristicGroups
+/     / Char Tab
+/     .tab-pane.col-md-12.padding{"data-link" => "characteristics"}
+/       .row
+/         - for char in @characteristics
+/           .col-md-3
+/             %li.dropdown{:style => "list-style: none; margin-top: 15px"}
+/               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+/                 = char.name
 
-          .col-md-3
-            %li.dropdown{:style => "list-style: none; margin-top: 15px"}
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = charGroup.name
-                %b.caret
-              %ul.dropdown-menu
-                %li= link_to "Edit Characteristic Group"
-                %li= link_to "Delete Characteristic Group"
-      = will_paginate @CharacteristicGroups, :param_name => 'char_groups_page'
+/                 %b.caret
+/               %ul.dropdown-menu
+/                 %li= link_to "Edit Characteristic", data: { confirm: "Are you sure?" }
+/                 %li= link_to "Delete Characteristic"
+
+/       = will_paginate @characteristics, :param_name => 'characteristics_page'
+
+
+/     /  Char-group Tab
+/     .tab-pane.col-md-12.padding{"data-link" => "chargroups"}
+/       .row
+/         - for charGroup in @CharacteristicGroups
+
+/           .col-md-3
+/             %li.dropdown{:style => "list-style: none; margin-top: 15px"}
+/               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+/                 = charGroup.name
+/                 %b.caret
+/               %ul.dropdown-menu
+/                 %li= link_to "Edit Characteristic Group"
+/                 %li= link_to "Delete Characteristic Group"
+/       = will_paginate @CharacteristicGroups, :param_name => 'char_groups_page'
 
 
  
