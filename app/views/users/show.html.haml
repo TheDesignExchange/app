@@ -6,7 +6,6 @@
     // if clicked on next page of collections tab, goes straight back to the tab
     if (sessionStorage.getItem('collection-clicked') === 'true') {
       sessionStorage.setItem('collection-clicked', 'false');
-      //$( "a[data-link='col']" ).parent.click();
       $( "a[data-link='col']" ).click();
       $( "div[data-link='all']" ).css('display', 'none');
       $( "div[data-link='col']" ).css('display', 'block');
@@ -191,7 +190,6 @@
                 %a{:href => col_path}
                   %span.glyphicon.glyphicon-th-list
                   #{collection.name}
-        /= render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(set,"4")
     / END THUMBNAILS
   / END POSTED BY
 / END BODY
