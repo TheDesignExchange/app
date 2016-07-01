@@ -114,9 +114,9 @@
   }
 
 = form_for @collection do |f|
-  
-  .private-col 
-    = f.check_box(:is_private) 
+
+  .private-col
+    = f.check_box(:is_private)
     Private Collection?
 
   #content-column.col-md-9
@@ -128,7 +128,7 @@
           %span.mandatory *
       .col-md-6.padding.pull-right
         .pull-right
-          %ul.list-inline.method-toolbar    
+          %ul.list-inline.method-toolbar
             %li
               = f.submit "Publish", :class => "btn btn-primary pull-right"
 
@@ -136,8 +136,8 @@
   = f.text_field :name, :class=> "form-control", :placeholder => "Collection Name"
 
   .col_summary
-    %h3 
-      Summary 
+    %h3
+      Summary
     = f.text_area :overview, :class => "form-control markdown", :rows => 4
 
   %button{"data-target" => "#dm", "data-toggle" => "collapse", :id => "dm-collapse", :class => "btn btn-default btn-index-create collapsed"}
@@ -196,5 +196,3 @@
       - CaseStudy.all[(two_thirds+1)..full].each do |m|
         - cs = CaseStudy.where(id: m.id)
         = f.collection_check_boxes(:case_study_ids, cs, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
-
-

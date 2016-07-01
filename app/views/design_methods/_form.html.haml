@@ -29,10 +29,46 @@
     position: relative;
   }
   #online-tools-and-resources:hover + .tool-help, #history:hover + .tool-help, #critiques:hover + .tool-help, #additional-reading:hover + .tool-help, #citations:hover + .tool-help {
-    display:block;   
+    display:block;
   }
   .mandatory {
     color: red;
+  }
+  .tooltips {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  }
+
+  .tooltips .tooltiptext {
+    visibility: hidden;
+    width: 500px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    top: -5px;
+    left: 105%;
+    position: absolute;
+    z-index: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .tooltips:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  .tooltips .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
   }
 
 :javascript
@@ -104,9 +140,9 @@
   / ERROR MESSAGES
   - if @design_method.errors.any?
     #error_explanation
-      %h2
+      %h3
         = pluralize(@design_method.errors.count, "error")
-        prohibited this design_method from being saved:
+        prohibited this design method from being saved:
       %ul
         - @design_method.errors.full_messages.each do |msg|
           %li= msg
@@ -135,8 +171,8 @@
   /Method overview
   .tab-pane.row{"data-link" => "overview"}
     / INPUT METHOD NAME
-    %h3 
-      Method Name 
+    %h3
+      Method Name
       %span.mandatory *
     .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
       = f.text_field :name, :class=> "form-control", :placeholder => "Method Name"
@@ -155,8 +191,17 @@
     = f.file_field :main_image
     / END IMAGES
     / FORMS
-    %h3 
-      Summary 
+    %br/
+    %h3 Video Embedded URL
+    .tooltips
+      How to get Embedded Video URL
+      %span.tooltiptext
+        In any YouTube video, right click on the video, click on copy embed code.
+        paste this information anywhere and you will get something like "< iframe width="640" height="360" src="https://www.youtube.com/embed/example" frameborder="0" allowfullscreen></iframe >". The embed URL is the linke after src= , remove the quotation marks and you will have the embedded video URL
+    .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+      = f.text_field :videoURL, :class=> "form-control", :placeholder => ""
+    %h3
+      Summary
       %span.mandatory *
     = f.text_area :overview, :class => "form-control markdown", :rows => 6
     %h3 Usage
@@ -169,8 +214,8 @@
     = f.text_area :skills, :class => "form-control markdown", :rows => 6
   /Instructions tab
   .tab-pane.row{"data-link" => "instructions"}
-    %h3 
-      Instructions 
+    %h3
+      Instructions
       %span.mandatory *
     = f.text_area :process, :class => "form-control markdown", :rows => 20
   /Resources tab
@@ -178,7 +223,7 @@
     %h3.more-info-headers Online Tools And Resources
     %div.more-info
       %a#online-tools-and-resources More Info
-      %div.tool-help These are tools available online to facilitate the use of the method. 
+      %div.tool-help These are tools available online to facilitate the use of the method.
     = f.text_area :online_resources, :class => "form-control markdown", :rows => 6
     %h3.more-info-headers History
     %div.more-info
