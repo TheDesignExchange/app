@@ -49,14 +49,8 @@ DesignExchange::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
 
-  
-  get '/design_methods/:id/remove', to: 'collections#remove'
-  get '/case_studies/:id/remove', to: 'collections#remove'
   get '/collections/add', to: 'collections#add', as: "add_to_collection"
-  get '/collections/:id/edit/change_privacy', to: 'collections#change_privacy', as: "change_privacy"
   get '/collections/:id/edit/delete', to: 'collections#delete', as: "delete_collection"
-  get '/collections/:id/edit/methods', to: 'collections#methods', as: "edit_methods"
-  get '/collections/:id/edit/studies', to: 'collections#studies', as: "edit_studies"
 
   resources :method_categories, only: [:show]
   resources :citations, only: [:show]
