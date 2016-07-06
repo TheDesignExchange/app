@@ -47,6 +47,7 @@
   .char-checkbox-label {
     display: block;
     font-weight: normal;
+    /*font-size: 0.5em;*/
   }
   .all_methods_studies {
     padding-left: 15px;
@@ -60,11 +61,18 @@
   .btn-index-create {
     margin-left: 15px;
   }
-  .private-col {
+  .privacy-col {
     padding-left: 15px;
   }
   .col-btn {
     padding-left: 15px
+  }
+  .private-btn, .public-btn {
+    display: inline-block;
+    padding-right: 20px;
+  }
+  .methods {
+    width: 25%;
   }
 
 :javascript
@@ -103,21 +111,28 @@
   function filter() {
     var filterText = $(this).val();
     if(filterText) {
-      $(".char-checkbox-label:not(:Contains(" + filterText + "))").css('background-color', 'white');
-      $(".char-checkbox-label:Contains(" + filterText + ")").css('background-color', '#ffff99');
+      // Show/hide matching char groups
+      $(".edit-category").find(".edit-char-group:not(:Contains(" + filterText + "))").slideUp()
       $(".char-checkbox-label:not(:Contains(" + filterText + "))").slideUp();
-      $(".char-checkbox-label:Contains(" + filterText + ")").slideDown();
+
+      // Highlight individual matches
+      $(".edit-category").find(".char-checkbox-label:not(:Contains(" + filterText + "))").css('background-color', 'white');
+      $(".edit-category").find(".char-checkbox-label:Contains(" + filterText + ")").css('background-color', '#ffff99');
     } else {
       $(".char-checkbox-label").slideDown();
+      $(".edit-category").find(".edit-char-group").slideDown();
       $(".char-checkbox-label").css('background-color', 'white');
     }
   }
 
 = form_for @collection do |f|
-
-  .private-col
-    = f.check_box(:is_private)
-    Private Collection?
+  .privacy-col
+    .private-btn
+      = f.radio_button :is_private, true
+      = f.label :is_private, "Private", :value => "true"
+    .public-btn
+      = f.radio_button :is_private, false
+      = f.label :is_private, "Public", :value => "false"
 
   #content-column.col-md-9
     /Method header
@@ -130,7 +145,7 @@
         .pull-right
           %ul.list-inline.method-toolbar
             %li
-              = f.submit "Publish", :class => "btn btn-primary pull-right"
+              = f.submit "Save", :class => "btn btn-primary pull-right"
 
   .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
   = f.text_field :name, :class=> "form-control", :placeholder => "Collection Name"
@@ -152,25 +167,36 @@
     %br
     %input.char-filter.form-control{type: "text", placeholder: "Filter Methods..."}
     %br
-    - full = DesignMethod.count
-    - one_third = full/3
-    - two_thirds = one_third * 2
 
-    / first third of methods as a column
-    .col-md-4.edit-char-group
-      - DesignMethod.all[0..one_third].each do |m|
-        - method = DesignMethod.where(id: m.id)
-        = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
-    / second third of methods as a column
-    .col-md-4.edit-char-group
-      - DesignMethod.all[(one_third+1)..two_thirds].each do |m|
-        - method = DesignMethod.where(id: m.id)
-        = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
-    / last third of methods as a column
-    .col-md-4.edit-char-group
-      - DesignMethod.all[(two_thirds+1)..full].each do |m|
-        - method = DesignMethod.where(id: m.id)
-        = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+    - MethodCategory.all.each do |c|
+      .row.edit-category
+        %h3.col-btn=c.name
+        - methods = c.design_methods
+        - full = methods.count
+        - one_fourth = full/4
+        - one_half = one_fourth * 2
+        - three_fourths = one_fourth * 3
+
+        / first quarter of methods as a column
+        .col-md-4.edit-char-group.methods
+          - methods[0..one_fourth].each do |m|
+            - method = DesignMethod.where(id: m.id)
+            = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+        / second quarter of methods as a column
+        .col-md-4.edit-char-group.methods
+          - methods[(one_fourth+1)..one_half].each do |m|
+            - method = DesignMethod.where(id: m.id)
+            = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+        / third quarter of methods as a column
+        .col-md-4.edit-char-group.methods
+          - methods[(one_half+1)..three_fourths].each do |m|
+            - method = DesignMethod.where(id: m.id)
+            = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+        / last quarter of methods as a column
+        .col-md-4.edit-char-group.methods
+          - methods[(three_fourths+1)..full].each do |m|
+            - method = DesignMethod.where(id: m.id)
+            = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
 
   #cs.collapse
     %br

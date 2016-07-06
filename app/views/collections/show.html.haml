@@ -1,22 +1,57 @@
 :css
-
   .edit_col {
     width: 20%;
     float: right;
   }
+  .col-xs-6 {
+    width: 100%;
+    padding-left: 0px;
+  }
+  .col-xs-4 {
+    width: 10%;
+    padding-left: 0px;
+  }
+  .col-basics {
+    width: 50%;
+    display: inline-block;
+  }
+  .col-owner {
+    width: 50%;
+    float: right;
+    padding-top: 50px;
+  }
 
-%h1= @collection.name
-%br
--if !@collection.overview.blank?
-  %p= @collection.overview
+.col-basics
+  %h1= @collection.name
+
+  - if @collection.is_private
+    %h5 Private Collection
+  - else
+    %h5 Public Collection
   %br
+  -if !@collection.overview.blank?
+    %p= @collection.overview
+    %br
 
--if !@user.nil?
-  -if @user.id == @collection.owner_id
-    %a{:class => "edit_col", :href => edit_collection_path(params[:id])}
-      %span.glyphicon.glyphicon-pencil
-      Edit
+.col-owner
+  %h4 Collection Owner 
+  .col-xs-6
+    .col-xs-4
+      - if @author.profile_picture.present?
+        = image_tag(@author.profile_picture, class: "fit-all", :style => "padding: 10%")
+      - else
+        /TODO lol we need to self host this asap
+        = image_tag("http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
+    .col-xs-8
+      %p= link_to @author.first_name + " " + @author.last_name, user_path(@author.id)
+      %p= @author.email != nil ? @author.email : "-"
 
+  -if !@user.nil?
+    -if @user.id == @collection.owner_id
+      %a{:class => "edit_col", :href => edit_collection_path(params[:id])}
+        %span.glyphicon.glyphicon-pencil
+        Edit
+        
 #tabs
   %ul.nav.nav-tabs
     %li.active
