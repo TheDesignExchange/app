@@ -1,0 +1,89 @@
+:javascript
+  $(function(){
+    enableAccordion();
+
+    $('span.menu-toggle').click(function(event) {
+      $(event.target).toggleClass('fa-caret-right').toggleClass('fa-caret-down');
+      if($(event.target).hasClass('fa-caret-down')) {
+        $(event.target).siblings('ul').slideDown("fast");
+      } else {
+        $(event.target).siblings('ul').slideUp("fast");
+      }
+    });
+  });
+  function enableAccordion(){
+    $('.category').find('.category-heading')
+               .click(function(){
+                var content = $(this).siblings();
+                content.toggleClass('in');
+              })
+  }
+:css
+  .sidebar-element{
+    padding-left: 10%;
+  }
+
+  .sidebar-leaf{
+  	font-weight: normal;
+  	display: block;
+  }
+
+  .sidebar-maincategory{
+  	font-weight: bold;
+    cursor: pointer;
+
+  }
+
+  #sidebar{
+     text-decoration: none;
+     cursor: pointer;
+     overflow: hidden;
+     margin-right: 0;
+     padding-right: 0px;
+     /*width: 100%;*/
+     height: 100%;
+     /*border-right: 2px solid #ddd;*/
+  }
+
+  li {
+    list-style: none;
+  }
+
+  ul {
+    padding-left: 15px;
+  }
+  ul.collapsed {
+    display: none;
+  }
+
+- @category_hash.each do |category|
+  %ul.sidebar-element
+
+    %li.category
+      %span.menu-toggle.fa.fa-caret-right
+      %span= link_to "#{category[:name]} (#{category[:count]})", search_category_design_methods_path(category[:id]), :class=> "category-heading sidebar-maincategory"
+
+      %ul.char-group-list.collapsed
+        - category[:char_groups].each do |char_group|
+          %li.char-group
+            %span.menu-toggle.fa.fa-caret-right
+            %span= link_to char_group[:name], "#", :class => "char-group-heading"
+
+            %ul.char-list.collapsed
+              - char_group[:chars].each do |char|
+                %li.char
+                  %label
+                    %input{type: "checkbox"}
+                      = "#{char[:name]} (#{char[:count]})"
+
+                  -# = link_to "#{char[:name]} (#{char[:count]})", search_category_design_methods_path(category[:id]), :class=> "category-heading sidebar-maincategory"
+-# - @search_filter_hash.each do |x|
+-#   %ul.sidebar-element
+-#     .category
+-#       = link_to x.name, search_category_design_methods_path(x.id), :class=> "category-heading sidebar-maincategory"
+      / <a class='' href=''> <haml_loud> x.name </haml_loud></a>
+      /
+        <ul class='collapse sidebar-element'>
+        </ul>
+/
+  <haml_silent> print_children(0, @category_hash).html_safe </haml_silent>

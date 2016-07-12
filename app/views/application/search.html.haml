@@ -23,10 +23,13 @@
   .nav-tabs{
     cursor: pointer;
   }
+  #create-btn{
+    margin-right: 10px;
+  }
 / TOP BAR
 .row
   .col-md-2
-  .col-md-10.left-pad
+  .col-md-6.left-pad
     %h3= params[:query] ? "Results for '#{params[:query]}'": ""
     #tabs
       %ul.nav.nav-tabs
@@ -36,21 +39,23 @@
           %a{"data-link" => "dm"} Methods
         %li
           %a{"data-link" => "cs"} Case Studies
-/ #sidebar > div{ aoihdlkhasklfhjklh}
+  .col-md-4
+    = link_to new_case_study_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
+      %span.glyphicon.glyphicon-plus
+      Add Case Study
+    = link_to new_design_method_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
+      %span.glyphicon.glyphicon-plus
+      Add Method
 / CONTENT
 .row
   .col-sm-2
-    / WARNING SIDEBAR UNDERCONSTRUCTION
+    / SIDEBAR
     .sidebar{"data-link" => "all"}
-      = render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods)
-      / SIDEBAR FOR ALL
+      = render "/layouts/new_search_sidebar", locals: @category_hash = sidebar_hash(:methods)
     .sidebar{"data-link" => "dm"}
       = render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods)
     .sidebar{"data-link" => "cs"}
       = render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods)
-      / SIDEBAR FOR CASE STUDY
-    .sidebar{"data-link" => "disc"}
-      / SIDEBAR FOR DISCUSSION
   / All Search Tab
   .tab-pane.col-sm-10.padding{"data-link" => "all"}
     - @results[:all].each do |method|
@@ -63,7 +68,3 @@
   .tab-pane.col-sm-10.padding{"data-link" => "cs"}
     - @results[:cs].each do |cs|
       = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
-  / Discussion Search Tap
-  .tab-pane.col-sm-10.padding{"data-link" => "disc"}
-    - @results[:disc].each do |disc|
-      = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"3")

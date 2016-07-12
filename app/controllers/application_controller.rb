@@ -27,10 +27,6 @@ class ApplicationController < ActionController::Base
     render layout: "custom"
   end
 
-  # Show contact information about the project members
-  def contact
-  end
-
   def store_location
     session[:return_to] = request.url if request.get?
   end
