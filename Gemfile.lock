@@ -138,8 +138,6 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-tablesorter (1.21.3)
-      railties (>= 3.2, < 6)
     jquery-ui-rails (4.2.1)
       railties (>= 3.2.16)
     json (1.8.1)
@@ -330,7 +328,6 @@ DEPENDENCIES
   haml-rails
   hash_control
   jquery-rails
-  jquery-tablesorter
   jquery-ui-rails
   kaminari
   kramdown
@@ -358,3 +355,6 @@ DEPENDENCIES
   uglifier
   unicorn
   will_paginate
+
+BUNDLED WITH
+   1.11.2

@@ -12,8 +12,8 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require jquery-tablesorter
-
+#= require jquery.tablesorter.combined.js
+#= require jquery.tablesorter.widget-pager.js
 #= require bootstrap
 # require bootsy
 #= require jquery.ui.autocomplete
