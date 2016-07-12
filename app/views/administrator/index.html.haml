@@ -159,19 +159,13 @@
               = char.name
               %b.caret
             %ul.dropdown-menu
-
-
-              = form_for char do |f|
-                .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
-                = f.text_field :name, :class=> "form-control", :placeholder => "Change Characteristic Name", :style => "margin-left:10px; width:130px"
-                = f.submit "Change Name", :id => "add-set-btn", :class => "btn btn-primary", :style => "margin-top: 5px; margin-left:10px"
-              //%li= link_to "Change Characteristic", :controller => "administrator", :action => :changeCharacteristic, :id => user.id
+              %li= link_to "Edit Characteristic", :controller => "characteristics", :action => :edit, :id => char.id
               %li= link_to "Delete Characteristic", :controller => "administrator", :action => :changeEditor, :id => user.id
         %td
-
           = CharacteristicGroup.find_by(id:char.characteristic_group).name
-        %td
+        %td 
           = char.updated_at
+
 
   .char-tablesorter-pager
     = render :partial => '/shared/tablesorter_pager'

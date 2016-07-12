@@ -44,7 +44,10 @@ class Ability
       can :change_editor, :administrator
       can :change_basic, :administrator
       can :sort, :administrator
+      can :edit, :administrator
+
       can :update, User
+
 
       # TODO this should be locked down much further since :manage is a
       # catch-all and could lead to security regressions

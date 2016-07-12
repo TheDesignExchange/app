@@ -13,6 +13,7 @@
 class Characteristic < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 255,
             too_long: "%{count} is the maximum character length."}
+  attr_accessible :name, :characteristic_group_id
 
 
   belongs_to :characteristic_group

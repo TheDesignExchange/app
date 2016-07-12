@@ -79,6 +79,5 @@ class AdministratorController < ApplicationController
 
   end
 
-  def changeName
-  end
+
 end
