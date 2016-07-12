@@ -24,6 +24,9 @@ gem 'seed_dump'
 gem 'haml'
 gem 'haml-rails', group: :development
 
+gem 'rails_12factor', group: :production
+gem 'font_assets'
+
 gem 'quiet_assets'
 gem 'lograge'
 # LSA

@@ -92,7 +92,6 @@ class DesignMethodsController < ApplicationController
     #default to method id #1 TODO remove
     dm = DesignMethod.find(id)
     @method = dm
-
     if !current_user.nil?
       @collections = current_user.owned_collections
       @collection = Collection.new(params[:collection])

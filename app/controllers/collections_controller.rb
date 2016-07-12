@@ -58,6 +58,7 @@ class CollectionsController < ApplicationController
     id = params[:id].to_i
     @user = current_user
     @collection = Collection.find(id)
+    @author = @collection.owner
     render :layout => "custom"
   end
 
