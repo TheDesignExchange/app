@@ -51,6 +51,7 @@ DesignExchange::Application.configure do
   puts "ENVIRONMENT STUFF HERE!!!!!!!"
   puts ENV
   puts ENV['PUSH_TO']
+  puts config.action_mailer.default_url_options
   # Use special staging CDN if pushing to staging
   config.action_controller.asset_host = "dh4k5zus3oosl.cloudfront.net" if ENV['PUSH_TO'] && ENV['PUSH_TO'].downcase == 'staging'
 
