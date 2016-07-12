@@ -51,6 +51,8 @@ DesignExchange::Application.configure do
   # Use special staging CDN if pushing to staging
   config.action_controller.asset_host = "dh4k5zus3oosl.cloudfront.net" if ENV['PUSH_TO'] && ENV['PUSH_TO'].downcase == 'staging'
 
+  config.assets.version = config.action_controller.asset_host
+
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
 
