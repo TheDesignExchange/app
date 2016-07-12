@@ -1,15 +1,21 @@
 class AdministratorController < ApplicationController
 
+
+  def new
+  end
+
   def tabledemo
   end
   def index
+    
     authorize! :index, :administrator
-    @users = User.paginate(:page => params[:page], :per_page => 4)
+    @users = User.all
+    #@users = User.paginate(:page => params[:page], :per_page => 4)
     @usersAdmin = User.paginate(:page => params[:admin_page], :per_page => 4)
     @usersEditor = User.paginate(:page => params[:editor_page], :per_page => 4)
     @usersBasic = User.paginate(:page => params[:basic], :per_page => 4)
-
-    @characteristics = Characteristic.paginate(:page => params[:characteristics_page], :per_page => 12)
+    @characteristics = Characteristic.all
+    #@characteristics = Characteristic.paginate(:page => params[:characteristics_page], :per_page => 12)
 
     @CharacteristicGroups = CharacteristicGroup.paginate(:page => params[:char_groups_page], :per_page => 12)
     render layout: "custom"
@@ -87,4 +93,6 @@ class AdministratorController < ApplicationController
 
   end
 
+  def changeName
+  end
 end

@@ -7,7 +7,6 @@ DesignExchange::Application.routes.draw do
   end
 
   resources :characteristics, only: [:show]
-
   resources :tags
   resources :method_case_studies
   root "application#index"

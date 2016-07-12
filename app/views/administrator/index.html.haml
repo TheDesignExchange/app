@@ -17,12 +17,16 @@
       // $('.tab-pane[data-link ~="'+ link +'"]').hide();
       $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
     })
-    $("#myTable")
-    .tablesorter({ 
+    $("#myTable").tablesorter({ 
     // sort on the first column and third column, order asc 
     sortList: [[0,0],[1,0],[2,0],[3,0],[4,0]]
     });
-    .tablesorterPager({container: $("#pager")}); 
+    $("#myTableTwo").tablesorter({ 
+    // sort on the first column and third column, order asc 
+    sortList: [[0,0],[1,0],[2,0]]
+    });
+
+    //.tablesorterPager({container: $("#pager")}); 
 
   });
 
@@ -38,23 +42,23 @@
     margin: 10px;
     display: inline;
   }
-%form{:controller => 'administrator', :action => :sort}
+/ %form{:controller => 'administrator', :action => :sort}
 
-  %input{:name => "sort", :type => "radio",  :value => "name", :style => "margin-right:5px"}
-    Sort Users By Name
+/   %input{:name => "sort", :type => "radio",  :value => "name", :style => "margin-right:5px"}
+/     Sort Users By Name
 
-  %br
-  %input{:name => "sort", :type => "radio", :value => "username", :style => "margin-right:5px"}
-    Sort Users By UserName
+/   %br
+/   %input{:name => "sort", :type => "radio", :value => "username", :style => "margin-right:5px"}
+/     Sort Users By UserName
 
-  %br
-  %input{:name => "sort", :type => "radio", :value => "email", :style => "margin-right:5px"} 
-    Sort Users By Email
-  %br
-  %input{:name => "sort", :type => "radio", :value => "date", :style => "margin-right:5px"}
-    Sort Users By Date Created
-  %br
-  = submit_tag("Sort")
+/   %br
+/   %input{:name => "sort", :type => "radio", :value => "email", :style => "margin-right:5px"} 
+/     Sort Users By Email
+/   %br
+/   %input{:name => "sort", :type => "radio", :value => "date", :style => "margin-right:5px"}
+/     Sort Users By Date Created
+/   %br
+/   = submit_tag("Sort")
 
 / BODY
 .row
@@ -62,84 +66,142 @@
 %table#myTable.tablesorter.tablesorter-blue
   %thead
     %tr
-      %th Last Name
+      %th Username
       %th First Name
+      %th Last Name
       %th Email
-      %th Due
-      %th Web Site
+      %th Permission
+  
+
+    / %tr
+    /   %td{:colspan => "5"}
+    /     .pager
+    /       %nav.left
+    /         \# per page:
+    /         %a.current{:href => "#"} 10
+    /         |
+    /         %a{:href => "#"} 25
+    /         |
+    /         %a{:href => "#"} 50
+    /         |
+    /         %a{:href => "#"} 100
+    /       %nav.right
+    /         %span.prev
+    /           %img{:src => "images/prev.png"}\
+    /           Prev&nbsp;
+    /         %span.pagecount
+    /         \&nbsp;
+    /         %span.next
+    /           Next
+    /           %img{:src => "images/next.png"}\
   %tbody
+  - for user in @users
     %tr
-      %td Smith
-      %td John
-      %td jsmith@gmail.com
-      %td $50.00
-      %td http://www.jsmith.com
+      %td 
+        = user.username
+      %td
+        = user.first_name
+      %td 
+        = user.last_name
+      %td 
+        = user.email
+      %td
+        - if user.admin?
+          %li.dropdown{:style => "list-style: none"}
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              Admin
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Admin"
+              %li= link_to "Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
+              %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
+        - elsif user.editor?
+          %li.dropdown{:style => "list-style: none"}
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              Editor
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Change to Admin", :controller => "administrator", :action => :changeAdmin, :id => user.id
+              %li= link_to "Editor"
+              %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
+        - elsif user.basic?
+          %li.dropdown{:style => "list-style: none"}
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              Basic
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Change to Admin", :controller => "administrator", :action => :changeAdmin, :id => user.id
+              %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id  
+              %li= link_to "Basic"      
+        - else
+          %li.dropdown{:style => "list-style: none"}
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              None
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Change to Admin", :controller => "administrator", :action => :changeAdmin, :id => user.id
+              %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id  
+              %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
+
+
+%table#myTableTwo.tablesorter.tablesorter-blue
+  %thead
     %tr
-      %td Bach
-      %td Frank
-      %td fbach@yahoo.com
-      %td $50.00
-      %td http://www.frank.com
+      %th Characteristic Name
+      %th Characteristic Group
+      %th Updated At
+  / %tfoot
+  /   %tr
+  /     %th Name
+  /     %th Major
+  /     %th Updated
+
+    / %tr
+    /   %td{:colspan => "2"}
+    /     .pager
+    /       %nav.left
+    /         \# per page:
+    /         %a.current{:href => "#"} 10
+    /         |
+    /         %a{:href => "#"} 25
+    /         |
+    /         %a{:href => "#"} 50
+    /         |
+    /         %a{:href => "#"} 100
+    /       %nav.right
+    /         %span.prev
+    /           %img{:src => "images/prev.png"}\
+    /           Prev&nbsp;
+    /         %span.pagecount
+    /         \&nbsp;
+    /         %span.next
+    /           Next
+    /           %img{:src => "images/next.png"}\
+  %tbody
+  - for char in @characteristics
     %tr
-      %td Doe
-      %td Jason
-      %td jdoe@hotmail.com
-      %td $100.00
-      %td http://www.jdoe.com
-    %tr
-      %td Conway
-      %td Tim
-      %td tconway@earthlink.net
-      %td $50.00
-      %td http://www.timconway.com
-    %tr
-      %td Smith
-      %td John
-      %td jsmith@gmail.com
-      %td $50.00
-      %td http://www.jsmith.com
-    %tr
-      %td Bach
-      %td Frank
-      %td fbach@yahoo.com
-      %td $50.00
-      %td http://www.frank.com
-    %tr
-      %td Doe
-      %td Jason
-      %td jdoe@hotmail.com
-      %td $100.00
-      %td http://www.jdoe.com
-    %tr
-      %td Conway
-      %td Tim
-      %td tconway@earthlink.net
-      %td $50.00
-      %td http://www.timconway.com
-    %tr
-      %td Smith
-      %td John
-      %td jsmith@gmail.com
-      %td $50.00
-      %td http://www.jsmith.com
-    %tr
-      %td Bach
-      %td Frank
-      %td fbach@yahoo.com
-      %td $50.00
-      %td http://www.frank.com
-    %tr
-      %td Doe
-      %td Jason
-      %td jdoe@hotmail.com
-      %td $100.00
-      %td http://www.jdoe.com
-    %tr
-      %td Conway
-      %td Tim
-      %td tconway@earthlink.net
-      %td $50.00
-      %td http://www.timconway.com
+      %td 
+        %li.dropdown{:style => "list-style: none"}
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            = char.name
+            %b.caret
+          %ul.dropdown-menu
+            
+
+            = form_for char do |f|
+              .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+              = f.text_field :name, :class=> "form-control", :placeholder => "Change Characteristic Name", :style => "margin-left:10px; width:130px"
+              = f.submit "Change Name", :id => "add-set-btn", :class => "btn btn-primary", :style => "margin-top: 5px; margin-left:10px"
+            //%li= link_to "Change Characteristic", :controller => "administrator", :action => :changeCharacteristic, :id => user.id
+            %li= link_to "Delete Characteristic", :controller => "administrator", :action => :changeEditor, :id => user.id
+      %td
+
+        = CharacteristicGroup.find_by(id:char.characteristic_group).name
+      %td 
+        = char.updated_at
+      
+
+/ = render :partial => '/shared/tablesorter_pager'
 /   .col-md-12
 
 /     #tabs

@@ -6,8 +6,11 @@ $(document).ready ->
         "columns"
       ]
 
-    $("#myTable")
-    .tablesorter()
-    .tablesorterPager({container: $("#pager")});
+    $("#myTable").tablesorter()
+    .tablesorterPager(
+    {
+    container: $("#pager")
+    size: 2
+    });
 
     return
