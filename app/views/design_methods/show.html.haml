@@ -141,10 +141,8 @@
                 Add to Collection
                 %b.caret
               %ul.dropdown-menu
-                = form_for @method do |m|
-                  -@collections.each do |collection|
-                    - c = Collection.where(id: collection.id)
-                    = m.collection_check_boxes(:collection_ids, c, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+                -@collections.each do |collection|
+                  %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :method_id => @method.id)
                 %a.btn.btn-default.pull-right.btn-index-create#new-col-show
                   %span.glyphicon.glyphicon-plus
                   Add to New Collection

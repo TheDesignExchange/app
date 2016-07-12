@@ -93,6 +93,8 @@ class DesignMethodsController < ApplicationController
     dm = DesignMethod.find(id)
     @method = dm
 
+    puts "MAIN IMAGE HERE!!!!!"
+    puts @method.main_image
     if !current_user.nil?
       @collections = current_user.owned_collections
       @collection = Collection.new(params[:collection])
