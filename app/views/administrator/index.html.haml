@@ -1,15 +1,55 @@
 :javascript
   $(function(){
     $("#users-table").tablesorter({
-    // sort on the first column and third column, order asc
-    sortList: [[0,0],[1,0],[2,0],[3,0],[4,0]]
-    });
-    $("#characteristics-table").tablesorter({
-    // sort on the first column and third column, order asc
-    sortList: [[0,0],[1,0],[2,0]]
+      widgets: ['pager'],
+      ignoreCase: true,
+      // sort on the first column and third column, order asc
+      sortList: [[0,0],[1,0],[2,0],[3,0],[4,0]],
+      theme: 'blue',
+      widgetOptions: {
+        pager_updateArrows: true,
+        pager_ajaxUrl: null,
+        pager_css: {
+          container : 'users-tablesorter-pager',    // class added to make included pager.css file work
+          disabled : 'tablesorter-pager-disabled'              // class added to arrows @ extremes (i.e. prev/first arrows "disabled" on first page)
+        },
+        pager_selectors: {
+          container : '.users-tablesorter-pager',       // target the pager markup (wrapper)
+          first : '.first',       // go to first page arrow
+          prev : '.prev',        // previous page arrow
+          next : '.next',        // next page arrow
+          last : '.last',        // go to last page arrow
+          gotoPage : '.gotoPage',    // go to page selector - select dropdown that sets the current page
+          pageDisplay : '.pagedisplay', // location of where the "output" is displayed
+          pageSize : '.pagesize'     // page size selector - select dropdown that sets the "size" option
+        }
+      }
     });
 
-    //.tablesorterPager({container: $("#pager")});
+    $("#characteristics-table").tablesorter({
+      widgets: ['pager'],
+      ignoreCase: true,
+      sortList: [[0,0],[1,0],[2,0]],
+      theme: 'blue',
+      widgetOptions: {
+        pager_updateArrows: true,
+        pager_ajaxUrl: null,
+        pager_css: {
+          container : 'char-tablesorter-pager',    // class added to make included pager.css file work
+          disabled : 'tablesorter-pager-disabled'              // class added to arrows @ extremes (i.e. prev/first arrows "disabled" on first page)
+        },
+        pager_selectors: {
+          container : '.char-tablesorter-pager',       // target the pager markup (wrapper)
+          first : '.first',       // go to first page arrow
+          prev : '.prev',        // previous page arrow
+          next : '.next',        // next page arrow
+          last : '.last',        // go to last page arrow
+          gotoPage : '.gotoPage',    // go to page selector - select dropdown that sets the current page
+          pageDisplay : '.pagedisplay', // location of where the "output" is displayed
+          pageSize : '.pagesize'     // page size selector - select dropdown that sets the "size" option
+        }
+      }
+    });
   });
 
 :css
@@ -31,23 +71,6 @@
     border-bottom: 1px solid #ddd;
     padding: 20px;
   }
-/ %form{:controller => 'administrator', :action => :sort}
-
-/   %input{:name => "sort", :type => "radio",  :value => "name", :style => "margin-right:5px"}
-/     Sort Users By Name
-
-/   %br
-/   %input{:name => "sort", :type => "radio", :value => "username", :style => "margin-right:5px"}
-/     Sort Users By UserName
-
-/   %br
-/   %input{:name => "sort", :type => "radio", :value => "email", :style => "margin-right:5px"}
-/     Sort Users By Email
-/   %br
-/   %input{:name => "sort", :type => "radio", :value => "date", :style => "margin-right:5px"}
-/     Sort Users By Date Created
-/   %br
-/   = submit_tag("Sort")
 
 %h1 Administrator Tools
 /Tabs
@@ -60,7 +83,7 @@
         %a{"data-link" => "characteristics"} Characteristics
 
 .tab-pane.row{"data-link" => "users"}
-  %table#users-table.tablesorter.tablesorter-blue
+  %table#users-table.tablesorter
     %thead
       %tr
         %th Username
@@ -68,29 +91,6 @@
         %th Last Name
         %th Email
         %th Permission
-
-
-      / %tr
-      /   %td{:colspan => "5"}
-      /     .pager
-      /       %nav.left
-      /         \# per page:
-      /         %a.current{:href => "#"} 10
-      /         |
-      /         %a{:href => "#"} 25
-      /         |
-      /         %a{:href => "#"} 50
-      /         |
-      /         %a{:href => "#"} 100
-      /       %nav.right
-      /         %span.prev
-      /           %img{:src => "images/prev.png"}\
-      /           Prev&nbsp;
-      /         %span.pagecount
-      /         \&nbsp;
-      /         %span.next
-      /           Next
-      /           %img{:src => "images/next.png"}\
     %tbody
     - for user in @users
       %tr
@@ -140,41 +140,16 @@
                 %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
                 %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
 
+  .users-tablesorter-pager
+    = render :partial => '/shared/tablesorter_pager'
 
 .tab-pane.row{"data-link" => "characteristics"}
-  %table#characteristics-table.tablesorter.tablesorter-blue
+  %table#characteristics-table.tablesorter
     %thead
       %tr
         %th Characteristic Name
         %th Characteristic Group
         %th Updated At
-    / %tfoot
-    /   %tr
-    /     %th Name
-    /     %th Major
-    /     %th Updated
-
-    / %tr
-    /   %td{:colspan => "2"}
-    /     .pager
-    /       %nav.left
-    /         \# per page:
-    /         %a.current{:href => "#"} 10
-    /         |
-    /         %a{:href => "#"} 25
-    /         |
-    /         %a{:href => "#"} 50
-    /         |
-    /         %a{:href => "#"} 100
-    /       %nav.right
-    /         %span.prev
-    /           %img{:src => "images/prev.png"}\
-    /           Prev&nbsp;
-    /         %span.pagecount
-    /         \&nbsp;
-    /         %span.next
-    /           Next
-    /           %img{:src => "images/next.png"}\
     %tbody
     - for char in @characteristics
       %tr
@@ -197,6 +172,10 @@
           = CharacteristicGroup.find_by(id:char.characteristic_group).name
         %td
           = char.updated_at
+
+  .char-tablesorter-pager
+    = render :partial => '/shared/tablesorter_pager'
+
 
 
   / = render :partial => '/shared/tablesorter_pager'
