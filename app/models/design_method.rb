@@ -98,6 +98,9 @@ class DesignMethod < ActiveRecord::Base
       characteristics.map { |characteristic| characteristic.name }
     end
 
+    integer :characteristic_ids, :multiple => true
+    # integer :method_category_ids { method_categories.map(&:id)}, :multiple => true
+
   end
 
   def overview

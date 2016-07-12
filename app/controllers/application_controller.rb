@@ -38,6 +38,23 @@ class ApplicationController < ActionController::Base
   end
 
   def search
+    # TODO fix this
+    # 1. characteristic facet grouping: OR vs AND
+    # 2. add char ids to search as facet and display these in filters
+    # 3. get search button from filters to send search back with these as new
+    # params and apply
+    # 4. Use scoping for category pages
+    # eg
+    # DesignMethod.solr_search do
+    #   fulltext your_query_here
+    #   with(:characteristic_ids, [1, 2, 3]) <--- works like OR
+    #   with(:characteristic_ids, 8) <---- works like AND
+    #   facet :characteristic_ids
+    #   facet :method_category_ids (maybe)
+    #   paginate :page => 1, :per_page => 24
+    #   (http://sunspot.github.io/sunspot/docs/#Pagination)
+    #   order_by option for sorting by date, name, relevancy, etc
+    #
     # temp param replacement for autocomplete
     if params[:term]
       params[:query] = params[:term]
