@@ -189,7 +189,7 @@
         %strong Synonyms:
         = @method.synonyms
 
-    - if @method.main_image.present?
+    - if @method.main_image.url.present?
       .row
         = image_tag(@method.main_image, :width => "100%")
 
