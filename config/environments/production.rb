@@ -55,15 +55,7 @@ DesignExchange::Application.configure do
     else
       "d1zkdnob0tv9f9.cloudfront.net"
     end
-    #if request.ssl?
-      #{}"https://cfIDhere.cloudfront.net"
-    #else
-      # Pick a random CDN
-      #{}"http://cdn0#{source.hash % 4}.mysite.com"  
-    #end
   }
-
-  #config.action_controller.asset_host = "dh4k5zus3oosl.cloudfront.net"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
