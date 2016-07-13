@@ -147,10 +147,6 @@ class DesignMethodsController < ApplicationController
     end
   end
 
-  def search
-    render :layout => "wide"
-  end
-
   # Confirms that user is logged-in.
   def edit_as_signed_in_user
     unless signed_in?

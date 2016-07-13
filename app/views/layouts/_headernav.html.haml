@@ -24,7 +24,6 @@
         %li= link_to "Methods", design_methods_path
         %li= link_to "Case Studies", case_studies_path
         %li= link_to "Collections", collections_path
-        / <li><haml_loud> link_to &quot;Discussions&quot;, discussions_path </haml_loud></li>
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li.dropdown
@@ -46,8 +45,6 @@
             = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
           %li
             = link_to "Login", new_user_session_path, :class => 'navbar-link'
-    / /.navbar-collapse
-  / /.container-fluid
 
 // display flash errors if any
 - flash.each do |type, msg|

@@ -1,7 +1,5 @@
 DesignExchange::Application.routes.draw do
 
-  get "autocomplete_search", to: "application#search"
-
   resources :companies do
     resources :contacts
   end
@@ -30,19 +28,9 @@ DesignExchange::Application.routes.draw do
     end
   end
 
-  resources :discussions do
-    collection do
-      get "search/:query", to: "application#search"
-      get "search", to: "application#search", :as => "search"
-    end
-  end
-
-  resources :set do
-    collection do
-      get "search/:query", to: "application#search", :as => "search"
-      get "search", to: "application#search"
-    end
-  end
+  resources :collections
+  get '/collections/add', to: 'collections#add', as: "add_to_collection"
+  get '/collections/:id/edit/delete', to: 'collections#delete', as: "delete_collection"
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -63,9 +51,7 @@ DesignExchange::Application.routes.draw do
   get '/administrator/change_editor', to: 'administrator#changeEditor'
   get '/administrator/change_basic', to: 'administrator#changeBasic'
 
-  resources :collections
-
-  get 'search/(:query)', controller: 'design_methods', action: 'search', as: 'search'
   get ":action", to:"application##{:action}"
+  get "autocomplete_search", to: "application#search"
 
 end
