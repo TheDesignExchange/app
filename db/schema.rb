@@ -116,15 +116,10 @@ ActiveRecord::Schema.define(version: 20160721194126) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
-    t.integer  "owner_id"
-    t.integer  "design_method_id"
     t.boolean  "is_private"
     t.text     "overview"
+    t.integer  "owner_id"
   end
-
-  add_index "collections", ["design_method_id"], name: "index_collections_on_design_method_id", using: :btree
-  add_index "collections", ["user_id"], name: "index_collections_on_user_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.text     "text"

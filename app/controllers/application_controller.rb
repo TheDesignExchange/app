@@ -32,8 +32,8 @@ class ApplicationController < ActionController::Base
   end
 
   def index
-    @design_methods = DesignMethod.take(3)
-    @case_studies = CaseStudy.take(3)
+    @design_methods = DesignMethod.order("RANDOM()").limit(3)
+    @case_studies = CaseStudy.order("RANDOM()").limit(3)
     render layout: "custom"
   end
 
