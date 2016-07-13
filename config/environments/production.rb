@@ -48,7 +48,6 @@ DesignExchange::Application.configure do
 
   config.action_controller.asset_host = Proc.new { |source, request|
     puts "DOMAINS HERE??!!!"
-    puts request.domain
     puts request.base_url
 
     "dh4k5zus3oosl.cloudfront.net"
