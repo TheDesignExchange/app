@@ -50,7 +50,11 @@ DesignExchange::Application.configure do
     puts "DOMAINS HERE??!!!"
     puts request.base_url
 
-    "dh4k5zus3oosl.cloudfront.net"
+    if request.base_url.include? "thedesignexchange-staging"
+      "dh4k5zus3oosl.cloudfront.net"
+    else
+      "d1zkdnob0tv9f9.cloudfront.net"
+    end
     #if request.ssl?
       #{}"https://cfIDhere.cloudfront.net"
     #else
