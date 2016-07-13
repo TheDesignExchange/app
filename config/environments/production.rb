@@ -46,7 +46,21 @@ DesignExchange::Application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
-  config.action_controller.asset_host = "dh4k5zus3oosl.cloudfront.net"
+  config.action_controller.asset_host = Proc.new { |source, request|
+    puts "DOMAINS HERE??!!!"
+    puts request.domains 
+    puts request.base_url
+
+    "dh4k5zus3oosl.cloudfront.net"
+    #if request.ssl?
+      #{}"https://cfIDhere.cloudfront.net"
+    #else
+      # Pick a random CDN
+      #{}"http://cdn0#{source.hash % 4}.mysite.com"  
+    #end
+  }
+
+  #config.action_controller.asset_host = "dh4k5zus3oosl.cloudfront.net"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
