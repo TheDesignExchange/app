@@ -140,9 +140,21 @@ $ ->
     return
 
   return
+
+addGlyphicons = () ->
+  ss = document.createElement('link')
+  ss.type = 'text/css'
+  ss.rel = 'stylesheet'
+  ss.href = '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css'
+  document.getElementsByTagName('head')[0].appendChild ss
+  return
+
  
 
 
 $(document).ready ($) ->
   initializeMarkdownEditors()
+  addGlyphicons()
   return
+
+
