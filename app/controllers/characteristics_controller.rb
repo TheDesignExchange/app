@@ -31,6 +31,7 @@ class CharacteristicsController < ApplicationController
   end
   def edit
     @characteristic = Characteristic.find(params[:id])
+    @characteristic_group = CharacteristicGroup.find_by(id: @characteristic.characteristic_group_id)
     render layout: "custom"
   end
 

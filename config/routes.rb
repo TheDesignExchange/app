@@ -29,6 +29,14 @@ DesignExchange::Application.routes.draw do
 
     end
   end
+
+  resources :characteristic_groups do
+    collection do
+      get "search/:query", to: "application#search"
+      get "search", to: "application#search", :as => "search"
+    end
+  end
+
   resources :design_methods do
     collection do
       get "search/:query", to: "application#search"

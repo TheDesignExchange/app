@@ -87,17 +87,23 @@
           %li= msg
   / INPUT FIELDS
 
-
   %h3{:style=>"margin-left:5%"}
     Characteristic Name 
     %span.mandatory *
   .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;margin-left: 5%"}
     = f.text_field :name, :class=> "form-control", :placeholder => "Characteristic Name"
   / END INPUT METHOD NAME
+
   %h3{:style=>"margin-left:5%"} 
     Characteristics Group
     %br
-    = f.collection_select :characteristic_group_id, CharacteristicGroup.order(:name),:id,:name, include_blank: true, :size => 100
+    %optgroup{:label => "Test"}
+
+    // = f.collection_select :characteristic_group_id, CharacteristicGroup.order(:name),:id,:name, include_blank: true, :size => 100
+    /<%= f.grouped_collection_select :issue_id, School.all, :issues, :name, :id, :name, :include_blank => true %>
+
+    
+    = f.grouped_collection_select :characteristic_group_id, MethodCategory.all, :characteristic_groups , :name , :id, :name, include_blank: true
   / .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;margin-left:5%"}
 
   /   %li.dropdown{:style => "list-style: none"}
