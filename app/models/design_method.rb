@@ -25,10 +25,13 @@
 #  history            :text
 #  critiques          :text
 #  additional_reading :text
+#  videoURL           :string(255)
+#  collection_id      :integer
 #  references         :text
 #  characteristic_ids
 #  videoURL           :text
 #  hidden             :boolean
+
 class DesignMethod < ActiveRecord::Base
 
   # TODO: add the mass assignment protection at the controller, then remove this

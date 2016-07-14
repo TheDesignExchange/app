@@ -214,6 +214,7 @@ ActiveRecord::Schema.define(version: 20160721194126) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "process_order"
   end
 
   create_table "method_characteristics", force: true do |t|
