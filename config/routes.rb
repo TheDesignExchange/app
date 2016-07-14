@@ -6,7 +6,7 @@ DesignExchange::Application.routes.draw do
     resources :contacts
   end
 
-  resources :characteristics, only: [:show]
+  resources :characteristics
   resources :tags
   resources :method_case_studies
   root "application#index"
@@ -26,6 +26,8 @@ DesignExchange::Application.routes.draw do
     collection do
       get "search/:query", to: "application#search"
       get "search", to: "application#search", :as => "search"
+      get "characteristics/:category_id",  to: "application#search", :as => "search_category"
+
 
     end
   end
@@ -34,6 +36,7 @@ DesignExchange::Application.routes.draw do
     collection do
       get "search/:query", to: "application#search"
       get "search", to: "application#search", :as => "search"
+
     end
   end
 
@@ -77,6 +80,7 @@ DesignExchange::Application.routes.draw do
   get '/administrator/change_admin', to: 'administrator#changeAdmin'
   get '/administrator/change_editor', to: 'administrator#changeEditor'
   get '/administrator/change_basic', to: 'administrator#changeBasic'
+
 
   get 'search/(:query)', controller: 'design_methods', action: 'search', as: 'search'
   get 'search/(:query)', controller: 'design_methods', action: 'search', as: 'search'

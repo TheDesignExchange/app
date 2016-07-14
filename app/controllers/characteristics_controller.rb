@@ -1,6 +1,26 @@
 class CharacteristicsController < ApplicationController
   load_and_authorize_resource
 
+  def new
+    render layout: "custom"
+  end
+
+  def create
+    @characteristic = Characteristic.new(params[:characteristic])
+    # @design_method.principle = ""
+
+    respond_to do |format|
+      if @characteristic.save
+        @citations
+        format.html { redirect_to @characteristic, notice: 'Characteristic was successfully created.' }
+        format.json { render json: @characteristic, status: :created, location: @design_method }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @design_method.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def show
     if params[:id]
       @characteristic = Characteristic.where(id: params[:id]).first
@@ -33,6 +53,14 @@ class CharacteristicsController < ApplicationController
     @characteristic = Characteristic.find(params[:id])
     @characteristic_group = CharacteristicGroup.find_by(id: @characteristic.characteristic_group_id)
     render layout: "custom"
+  end
+
+  def delete
+    @characteristic = Characteristic.find(params[:id])
+    Characteristic.delete(@characteristic)
+    respond_to do |format|
+        format.html { redirect_to characteristics_path, notice: 'Characteristic was successfully deleted.' }
+    end
   end
 
 end

@@ -144,6 +144,9 @@
     = render :partial => '/shared/tablesorter_pager'
 
 .tab-pane.row{"data-link" => "characteristics"}
+  = link_to "characteristics/new", :id=> "create-btn",  :class=> "btn btn-default pull-right", :style => "margin-bottom:10px" do
+    %span.glyphicon.glyphicon-plus
+    Create Characteristic
   %table#characteristics-table.tablesorter
     %thead
       %tr
@@ -160,7 +163,7 @@
               %b.caret
             %ul.dropdown-menu
               %li= link_to "Edit Characteristic", :controller => "characteristics", :action => :edit, :id => char.id
-              %li= link_to "Delete Characteristic", :controller => "administrator", :action => :changeEditor, :id => user.id
+              %li= link_to "Delete Characteristic", :controller => "characteristics", :action => :delete, :id => char.id
         %td
           = CharacteristicGroup.find_by(id:char.characteristic_group).name
         %td 
