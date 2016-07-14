@@ -16,9 +16,9 @@ class MethodCategory < ActiveRecord::Base
   has_many :characteristic_groups
   has_many :characteristics, through: :characteristic_groups
   has_many :design_methods, -> { uniq }, through: :characteristics
-
   # Hacky approach to setting default values for process order without
   # revisiting the seed files
+
   def process_order
     po = read_attribute(:process_order)
     if po == nil
