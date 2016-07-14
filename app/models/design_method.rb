@@ -60,8 +60,8 @@ class DesignMethod < ActiveRecord::Base
   # Relationships
   has_many :method_characteristics, dependent: :destroy
   has_many :characteristics, through: :method_characteristics
-  has_many :characteristic_groups, through: :characteristics, :uniq => true
-  has_many :method_categories, through: :characteristic_groups, :uniq => true
+  has_many :characteristic_groups, -> { uniq }, through: :characteristics
+  has_many :method_categories, -> { uniq }, through: :characteristic_groups
 
   has_many :method_citations, dependent: :destroy
   has_many :citations, through: :method_citations
