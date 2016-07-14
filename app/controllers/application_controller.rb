@@ -50,8 +50,8 @@ class ApplicationController < ActionController::Base
       case_studies = []
     else
       query = params[:query]
-      design_methods = search_db(:dm, query, 24)[:results]
-      case_studies = search_db(:cs, query, 24)[:results]
+      design_methods = search_db(:dm, query)[:results]
+      case_studies = search_db(:cs, query)[:results]
     end
 
     @results = {:all => [design_methods, case_studies].flatten,
@@ -76,7 +76,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def search_db(type, query, limit)
+  def search_db(type, query)
     hits = []
 
     # Process query string

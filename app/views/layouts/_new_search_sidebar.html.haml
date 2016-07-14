@@ -11,29 +11,26 @@
       }
     });
   });
+
   function enableAccordion(){
-    $('.category').find('.category-heading')
-               .click(function(){
-                var content = $(this).siblings();
-                content.toggleClass('in');
-              })
+    $('.category').find('.category-heading').click(function() {
+      var content = $(this).siblings();
+      content.toggleClass('in');
+    });
   }
+
 :css
   .sidebar-element{
     padding-left: 10%;
   }
-
   .sidebar-leaf{
   	font-weight: normal;
   	display: block;
   }
-
   .sidebar-maincategory{
   	font-weight: bold;
     cursor: pointer;
-
   }
-
   #sidebar{
      text-decoration: none;
      cursor: pointer;
@@ -44,11 +41,9 @@
      height: 100%;
      /*border-right: 2px solid #ddd;*/
   }
-
   li {
     list-style: none;
   }
-
   ul {
     padding-left: 15px;
   }
@@ -75,15 +70,3 @@
                   %label
                     %input{type: "checkbox"}
                       = "#{char[:name]} (#{char[:count]})"
-
-                  -# = link_to "#{char[:name]} (#{char[:count]})", search_category_design_methods_path(category[:id]), :class=> "category-heading sidebar-maincategory"
--# - @search_filter_hash.each do |x|
--#   %ul.sidebar-element
--#     .category
--#       = link_to x.name, search_category_design_methods_path(x.id), :class=> "category-heading sidebar-maincategory"
-      / <a class='' href=''> <haml_loud> x.name </haml_loud></a>
-      /
-        <ul class='collapse sidebar-element'>
-        </ul>
-/
-  <haml_silent> print_children(0, @category_hash).html_safe </haml_silent>
