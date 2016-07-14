@@ -35,6 +35,7 @@ gem 'sprockets', '2.11.0'
 
 # Styling
 gem 'bootstrap-sass'
+gem 'sass-rails', '>= 3.2'
 gem 'normalize-rails'
 
 group :development, :test do

@@ -343,6 +343,7 @@ DEPENDENCIES
   recaptcha
   role_model (~> 0.8.2)
   rspec-rails
+  sass-rails (>= 3.2)
   seed_dump
   selenium-webdriver
   spreadsheet
