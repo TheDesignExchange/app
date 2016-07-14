@@ -12,8 +12,6 @@ module ApplicationHelper
   #TODO test deleting this
   @@methods_file = "method_categories.json"
 
-  #TODO sort these categories per Alice: Research, Analyze, Ideate, Build,
-  #Communicate
   def sidebar_hash(symbol)
     method_categories = MethodCategory.all
     method_hashes = []

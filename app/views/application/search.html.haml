@@ -51,7 +51,7 @@
   .col-sm-2
     / SIDEBAR
     .sidebar{"data-link" => "all"}
-      = render "/layouts/new_search_sidebar", locals: @category_hash = sidebar_hash(:methods)
+      = render "/layouts/new_search_sidebar", locals: @category_hashes
     .sidebar{"data-link" => "dm"}
       = render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods)
     .sidebar{"data-link" => "cs"}
