@@ -155,6 +155,7 @@ addGlyphicons = () ->
 
 
 $(document).ready ($) ->
+  alert 'glyphicons should be added'
   initializeMarkdownEditors()
   addGlyphicons()
   return
