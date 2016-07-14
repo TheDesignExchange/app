@@ -57,8 +57,8 @@ class DesignMethod < ActiveRecord::Base
   # Relationships
   has_many :method_characteristics, dependent: :destroy
   has_many :characteristics, through: :method_characteristics
-  has_many :characteristic_groups, through: :characteristics
-  has_many :method_categories, through: :characteristic_groups
+  has_many :characteristic_groups, through: :characteristics, :uniq => true
+  has_many :method_categories, through: :characteristic_groups, :uniq => true
 
   has_many :method_citations, dependent: :destroy
   has_many :citations, through: :method_citations
@@ -101,8 +101,7 @@ class DesignMethod < ActiveRecord::Base
     end
 
     integer :characteristic_ids, :multiple => true
-    # integer :method_category_ids { method_categories.map(&:id)}, :multiple => true
-
+    integer :method_category_ids, :multiple => true
   end
 
   def overview

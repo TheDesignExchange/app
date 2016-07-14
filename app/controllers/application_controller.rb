@@ -87,6 +87,8 @@ class ApplicationController < ActionController::Base
         # Sunspot search
         results = DesignMethod.solr_search do
           fulltext processed_query
+          facet :method_category_ids
+          facet :characteristic_ids
         end.results
       elsif type == :cs
         # Sunspot search
