@@ -29,6 +29,8 @@ class MethodCategory < ActiveRecord::Base
     return po
   end
 
+  # Indicates the order in which design methods are used in the design process,
+  # used for sorting categories in search results filters
   def process_order_LUT
     {Research: 1,
      Analyze: 2,
