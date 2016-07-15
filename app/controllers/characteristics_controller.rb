@@ -41,7 +41,7 @@ class CharacteristicsController < ApplicationController
     @characteristic = Characteristic.find(params[:id])
     respond_to do |format|
       if @characteristic.update_attributes(params[:characteristic])
-        format.html { redirect_to @characteristic, notice: 'Characteristic was successfully updated.' }
+        format.html { redirect_to administrator_path, notice: 'Characteristic was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -55,11 +55,11 @@ class CharacteristicsController < ApplicationController
     render layout: "custom"
   end
 
-  def delete
+  def destroy
     @characteristic = Characteristic.find(params[:id])
     Characteristic.delete(@characteristic)
     respond_to do |format|
-        format.html { redirect_to characteristics_path, notice: 'Characteristic was successfully deleted.' }
+        format.html { redirect_to administrator_path, notice: 'Characteristic was successfully deleted.' }
     end
   end
 
