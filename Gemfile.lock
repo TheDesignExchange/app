@@ -105,8 +105,6 @@ GEM
     faker (1.3.0)
       i18n (~> 0.5)
     ffi (1.9.3)
-    font_assets (0.1.12)
-      rack
     formtastic (3.1.4)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
@@ -323,7 +321,6 @@ DEPENDENCIES
   factory_girl_rails
   faker
   ffi
-  font_assets
   haml
   haml-rails
   hash_control
