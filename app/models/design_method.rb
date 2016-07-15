@@ -36,7 +36,7 @@ class DesignMethod < ActiveRecord::Base
                   :main_image, :time_period, :name, :time_unit, :synonyms, :benefits,
                   :limitations, :skills, :usage, :online_resources, :history, :critiques,
                   :additional_reading, :characteristic_ids, :references, :case_study_ids,
-                  :videoURL, :main_image_cache
+                  :videoURL
 
   # Validations
   validates :name, :overview, presence: true
