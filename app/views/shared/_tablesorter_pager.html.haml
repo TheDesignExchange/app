@@ -4,9 +4,11 @@
   %span.pagedisplay
   %img{:src => "images/next.png", :class => "next"}
   %img{:src => "images/last.png", :class => "last"}
+  %small Rows Per Page
   %select.pagesize{:title => "Select page size"}
-    %option{:selected => "selected", :value => "10"} 10
-    %option{:value => "25"} 25
-    %option{:value => "50"} 50
+    %option{:selected => "selected", :value => "10"} 10 
+    %option{:value => "25"} 25 
+    %option{:value => "50"} 50 
     %option{:value => "all"} All Rows
-  %select.gotoPage{:title => "Select page number"}
+  %small Page
+  %select.gotoPage{:title => "Select page number"} 

@@ -7,12 +7,10 @@ class CharacteristicsController < ApplicationController
 
   def create
     @characteristic = Characteristic.new(params[:characteristic])
-    # @design_method.principle = ""
-
     respond_to do |format|
       if @characteristic.save
         @citations
-        format.html { redirect_to @characteristic, notice: 'Characteristic was successfully created.' }
+        format.html { redirect_to administrator_path, notice: 'Characteristic was successfully created.' }
         format.json { render json: @characteristic, status: :created, location: @design_method }
       else
         format.html { render action: "new" }

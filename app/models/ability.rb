@@ -43,8 +43,6 @@ class Ability
       can :change_admin, :administrator
       can :change_editor, :administrator
       can :change_basic, :administrator
-      can :sort, :administrator
-      can :edit, :administrator
 
       can :update, User
 

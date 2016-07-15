@@ -76,7 +76,6 @@
     $('#auto-saved-text').css('margin-top', (pH - eH)/2)
   }
 = form_for @characteristic, :html => {:multipart => true} do |f|
-  / ERROR MESSAGES
   - if @characteristic.errors.any?
     #error_explanation
       %h2
@@ -85,45 +84,24 @@
       %ul
         - @characteristic.errors.full_messages.each do |msg|
           %li= msg
-  / INPUT FIELDS
 
   %h3{:style=>"margin-left:5%"}
     Characteristic Name 
     %span.mandatory *
   .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;margin-left: 5%"}
     = f.text_field :name, :class=> "form-control", :placeholder => "Characteristic Name"
-  / END INPUT METHOD NAME
 
   %h3{:style=>"margin-left:5%"} 
     Characteristics Group
     %br
     %optgroup{:label => "Test"}
 
-    // = f.collection_select :characteristic_group_id, CharacteristicGroup.order(:name),:id,:name, include_blank: true, :size => 100
-    /<%= f.grouped_collection_select :issue_id, School.all, :issues, :name, :id, :name, :include_blank => true %>
-
     
     = f.grouped_collection_select :characteristic_group_id, MethodCategory.all, :characteristic_groups , :name , :id, :name, include_blank: true
-  / .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;margin-left:5%"}
 
-  /   %li.dropdown{:style => "list-style: none"}
-  /     %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", :style=>"font-size:25px"}
-  /       = CharacteristicGroup.find_by(id:@characteristic.characteristic_group_id).name
-  /       %b.caret
-  /     %ul.dropdown-menu
-  /       - for group in CharacteristicGroup.order(name: :asc)
-  /         %li= group.name
-  /  = f.text_field :characteristic_group_id, :class=> "form-control", :placeholder => ""
-  / IMAGES
-
-  /Instructions tab
-
-  / END FORMS
   %br/
   #save-bar.row
     = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
     %button#save-btn.btn.btn-default.pull-right{:name => "commit", :type => "button", :style => "margin-right:5px"}
       = glyphyify("floppy-disk")
       Save as Draft
-    / <span id="auto-saved-text" class="pull-right">Auto-saved as draft 2 minutes ago</span>
-  / END BODY

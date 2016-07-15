@@ -11,7 +11,7 @@
 class MethodCategory < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 255,
             too_long: "%{count} is the maximum character length."}
-  attr_accessible :name, :characteristic_groups
+  attr_accessible :name
   has_many :characteristic_groups
   has_many :characteristics, through: :characteristic_groups
   has_many :design_methods, -> { uniq }, through: :characteristics

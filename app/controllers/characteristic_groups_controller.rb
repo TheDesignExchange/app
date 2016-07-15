@@ -1,3 +1,0 @@
-class CharacteristicGroupsController < ApplicationController
-	
-end
