@@ -7,7 +7,7 @@
     width: 100%;
     padding-left: 0px;
   }
-  .author-info {
+  .col-xs-4 {
     width: 10%;
     padding-left: 0px;
   }
@@ -36,7 +36,7 @@
 .col-owner
   %h4 Collection Owner 
   .col-xs-6
-    .col-xs-4.author-info
+    .col-xs-4
       - if @author.profile_picture.present?
         = image_tag(@author.profile_picture, class: "fit-all", :style => "padding: 10%")
       - else
