@@ -47,9 +47,6 @@ DesignExchange::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   config.action_controller.asset_host = Proc.new { |source, request|
-    puts "DOMAINS HERE??!!!"
-    puts request.base_url
-
     if request.base_url.include? "thedesignexchange-staging"
       "dh4k5zus3oosl.cloudfront.net"
     else
