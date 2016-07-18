@@ -13,7 +13,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require bootstrap
-# require bootsy
+#= require bootsy
 #= require jquery.ui.autocomplete
 #= require search
 #= require validate
