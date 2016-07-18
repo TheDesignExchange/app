@@ -22,8 +22,6 @@ DesignExchange::Application.routes.draw do
     end
   end
   
-
-
   resources :design_methods do
     collection do
       get "search/:query", to: "application#search"

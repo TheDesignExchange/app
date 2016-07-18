@@ -37,9 +37,6 @@ gem 'sprockets', '2.11.0'
 gem 'bootstrap-sass'
 gem 'normalize-rails'
 
-group :assets do
-  gem 'jquery-rails'
-end
 group :development, :test do
   gem 'rspec-rails'
 end
