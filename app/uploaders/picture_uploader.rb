@@ -48,4 +48,12 @@ class PictureUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+  # Appends hash to filename to prevent CloudFront from caching old content
+  def filename
+    if original_filename
+      @hash ||= Digest::MD5.hexdigest(File.dirname(current_path))
+      "#{file.basename.split('_').last}-#{@hash}.#{file.extension}"
+    end
+  end
+
 end

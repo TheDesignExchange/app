@@ -66,6 +66,7 @@ gem 'bootsy'
 gem 'bourbon', '~> 3.2'
 
 # gem "rmagick"
+gem "fog"
 gem "carrierwave"
 gem "protected_attributes"
 gem "hash_control"
