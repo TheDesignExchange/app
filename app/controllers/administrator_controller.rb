@@ -3,6 +3,7 @@ class AdministratorController < ApplicationController
   def index
     authorize! :index, :administrator
     @users = User.all
+    @characteristics = Characteristic.all
     render layout: "custom"
   end
 
@@ -39,5 +40,4 @@ class AdministratorController < ApplicationController
       format.json { head :no_content }
     end
   end
-
 end
