@@ -17,6 +17,8 @@
  *= require bootstrap
  *= require meltdown/meltdown
  *= require_self
+ *= require jquery.tablesorter.theme.blue
+ *= require jquery.tablesorter.pager
 
  */
 @media (max-width: 768px) {
@@ -135,8 +137,7 @@
   min-height: 1500px;
 }
 
-
-img{
+img.logo{
   width: 50%;
   display: block;
 }
@@ -341,4 +342,11 @@ img{
   font-size: 0.9em;
   color: #999;
   line-height: 2;
+}
+
+
+.tablesorter-pager-disabled {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  cursor: default;
 }
