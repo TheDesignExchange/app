@@ -44,7 +44,7 @@
       #hiddenMethods{:style => "display:none"} 
         .h4{:style => "margin-left:3%"}
           Hidden Methods
-        - @design_methods.where(:hidden => true).each do |method|
+        - @design_methods.where(:hidden_method => true).each do |method|
           = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
     #sidebar.col-xs-4.col-sm-2
 

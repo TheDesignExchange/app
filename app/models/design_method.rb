@@ -28,7 +28,7 @@
 #  references         :text
 #  characteristic_ids
 #  videoURL           :text
-#  hidden             :boolean
+#  hidden_method             :boolean
 class DesignMethod < ActiveRecord::Base
 
   # TODO: add the mass assignment protection at the controller, then remove this
@@ -36,7 +36,7 @@ class DesignMethod < ActiveRecord::Base
                   :main_image, :time_period, :name, :time_unit, :synonyms, :benefits,
                   :limitations, :skills, :usage, :online_resources, :history, :critiques,
                   :additional_reading, :characteristic_ids, :references, :case_study_ids,
-                  :videoURL, :hidden
+                  :videoURL, :hidden_method
 
   # Validations
   validates :name, :overview, presence: true
