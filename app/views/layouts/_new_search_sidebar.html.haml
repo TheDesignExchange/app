@@ -20,18 +20,21 @@
   }
 
 :css
-  .sidebar-element{
+  .sidebar-element {
     padding-left: 10%;
   }
-  .sidebar-leaf{
+  .sidebar-button {
+    margin-left: 10%;
+  }
+  .sidebar-leaf {
   	font-weight: normal;
   	display: block;
   }
-  .sidebar-maincategory{
+  .sidebar-maincategory {
   	font-weight: bold;
     cursor: pointer;
   }
-  #sidebar{
+  #sidebar {
      text-decoration: none;
      cursor: pointer;
      overflow: hidden;
@@ -70,3 +73,5 @@
                   %label
                     %input{type: "checkbox"}
                       = "#{char[:name]} (#{char[:count]})"
+
+%button.btn.btn-default.sidebar-button Filter
