@@ -21,10 +21,7 @@
 
 :css
   .sidebar-element {
-    padding-left: 10%;
-  }
-  .sidebar-button {
-    margin-left: 10%;
+    padding: 0;
   }
   .sidebar-leaf {
   	font-weight: normal;
@@ -54,24 +51,30 @@
     display: none;
   }
 
-- @category_hashes.each do |category|
-  %ul.sidebar-element
+.col-md-12
+  %h4 Search Filters
+  = form_tag('/search')
+  %input{hidden: "hidden", name: "query", type: "text", id: "hidden-search-input"}
+  - @category_hashes.each do |category|
+    %ul.sidebar-element
 
-    %li.category
-      %span.menu-toggle.fa.fa-caret-right
-      %span= link_to "#{category[:name]} (#{category[:count]})", search_category_design_methods_path(category[:id]), :class=> "category-heading sidebar-maincategory"
+      %li.category
+        %span.menu-toggle.fa.fa-caret-right
+        %span
+          = link_to "#{category[:name]} (#{category[:count]})", search_category_design_methods_path(category[:id]), :class=> "category-heading sidebar-maincategory"
 
-      %ul.char-group-list.collapsed
-        - category[:char_groups].each do |char_group|
-          %li.char-group
-            %span.menu-toggle.fa.fa-caret-right
-            %span= link_to char_group[:name], "#", :class => "char-group-heading"
+        %ul.char-group-list.collapsed
+          - category[:char_groups].each do |char_group|
+            %li.char-group
+              %span.menu-toggle.fa.fa-caret-right
+              %span= link_to char_group[:name], "#", :class => "char-group-heading"
 
-            %ul.char-list.collapsed
-              - char_group[:chars].each do |char|
-                %li.char
-                  %label
-                    %input{type: "checkbox"}
+              %ul.char-list.collapsed
+                - char_group[:chars].each do |char|
+                  %li.char
+                    %input{id: "search_cg_#{char_group[:id]}_char_#{char[:id]}", name: "filters[char_groups][#{char_group[:id]}][]", type: "checkbox", value: "#{char[:id]}"}
+                    %label{for: "search_cg_#{char_group[:id]}_char_#{char[:id]}"}
                       = "#{char[:name]} (#{char[:count]})"
 
-%button.btn.btn-default.sidebar-button Filter
+  = submit_tag('Filter', class:"btn btn-default")
+  </form>

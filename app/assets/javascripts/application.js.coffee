@@ -121,6 +121,13 @@ initializeMarkdownEditors = () ->
     .removeClass("form-control")
   return
 
+updateSearchInput = (e) ->
+  # After every search input, update the hidden query field in the filters form
+  # so that submitting the filters form reflects the latest query value
+  newSearchText = e.target.value
+  $('input#hidden-search-input').val(newSearchText)
+  return
+
 $ ->
   activeTab = $('#tabs li.active').children('a').data('link')
   $('.tab-pane[data-link ="' + activeTab + '"]').show().siblings('.tab-pane').hide()
@@ -146,5 +153,9 @@ $ ->
 
 
 $(document).ready ($) ->
+  $('input#search-input').each( ->
+    this.oninput = updateSearchInput
+    return
+  )
   initializeMarkdownEditors()
   return

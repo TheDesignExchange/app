@@ -25,10 +25,12 @@ class ApplicationController < ActionController::Base
   def search
     # TODO fix this
     # 1. characteristic facet grouping: OR vs AND
-    # 2. add char ids to search as facet and display these in filters
+    # 2. DONE add char ids to search as facet and display these in filters
     # 3. get search button from filters to send search back with these as new
     # params and apply
     # 4. Use scoping for category pages
+    # 5. Sorting
+    # 6. Pagination
     # eg
     # DesignMethod.solr_search do
     #   fulltext your_query_here

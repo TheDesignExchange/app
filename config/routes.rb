@@ -12,8 +12,6 @@ DesignExchange::Application.routes.draw do
   resources :case_studies do
     collection do
       get "related_methods", to: "case_studies#related_methods"
-      get "search/:query", to: "application#search"
-      get "search", to: "application#search", :as => "search"
     end
     member do
       get "related_methods", to: "case_studies#related_methods", :as => "related_methods"
@@ -22,8 +20,6 @@ DesignExchange::Application.routes.draw do
 
   resources :design_methods do
     collection do
-      get "search/:query", to: "application#search"
-      get "search", to: "application#search", :as => "search"
       get "method_category/:category_id",  to: "application#search", :as => "search_category"
     end
   end
@@ -52,6 +48,7 @@ DesignExchange::Application.routes.draw do
   get '/administrator/change_basic', to: 'administrator#changeBasic'
 
   get ":action", to:"application##{:action}"
+  post "search", to: "application#search"
   get "autocomplete_search", to: "application#search"
 
 end
