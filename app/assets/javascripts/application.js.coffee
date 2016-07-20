@@ -131,8 +131,7 @@ updateSearchInput = (e) ->
 $ ->
   activeTab = $('#tabs li.active').children('a').data('link')
   $('.tab-pane[data-link ="' + activeTab + '"]').show().siblings('.tab-pane').hide()
-  # TODO what is the point of this sidebar system???
-  $('.sidebar[data-link ="' + 'all' + '"]').show().siblings('.sidebar').hide()
+  $('.sidebar[data-link ="' + activeTab + '"]').show().siblings('.sidebar').hide()
   $('#tabs li a').click (e) ->
     e.preventDefault()
 
