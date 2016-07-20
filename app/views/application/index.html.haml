@@ -16,28 +16,3 @@
     .row
       - @case_studies.each do |cs|
         = render "/application/thumbnail_compact", locals: @thumb_obj = thumbnail(cs, "3")
-/ Discussions
-/
-  <div class="row">
-  
-  <div class="col-md-4">
-  <h3><haml_loud> link_to &quot;Discussions&quot;, discussions_path </haml_loud></h3>
-  <p>Interact with other users in a Q&amp;A forum.</p>
-  </div>
-  
-  <div class="col-md-8">
-  
-  <haml_silent>     @discussions.each do |disc|
-  </haml_silent><haml_block>    	<div class="row profile">
-  <div class="col-md-1">
-  <img src="http://www.sv-hirrlingen.de/bilder/dummy_face.jpg">
-  </div>
-  <div class="col-md-11">
-  <h5><haml_loud> link_to disc.name, discussion_path(disc.id)  </haml_loud></h5>
-  <p> <haml_loud> link_to disc.user.email, user_path(disc.user_id) </haml_loud> <haml_loud> disc.created_at.to_s </haml_loud>  ago </p>
-  <p> <haml_loud> disc.description </haml_loud> </p>
-  </div>
-  </div>
-  </haml_block>
-  </div>
-  </div>

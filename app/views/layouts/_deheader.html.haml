@@ -9,7 +9,7 @@
     .row
       .col-md-8
         %h1.header-font
-          = image_tag "logo2.png"
+          = image_tag "logo2.png", class: "logo"
         %p.subtitle where designers and researchers share methods and best practices
         %p Search
         %form#search{:role => "search"}
@@ -42,12 +42,9 @@
     margin-right: 25%;
     margin-top: 5%;
   }
-  footer{
-    height: 100px;
-  }
 :javascript
   $(function(){
     var cache = {};
-  
+
     $("form#search input").autocomplete(DE.Autocomplete);
   });

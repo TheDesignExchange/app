@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   check_authorization :unless => :devise_controller?
-  skip_authorization_check :only => [:index, :search, :search_db]
+  skip_authorization_check :only => [:index, :search, :search_db, :about]
   protect_from_forgery with: :exception
   add_flash_types :success, :warning, :danger, :info
 
@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
 
   # Show information about the project itself
   def about
+    render layout: "custom"
   end
 
   # Show contact information about the project members
@@ -35,12 +36,8 @@ class ApplicationController < ActionController::Base
   end
 
   def index
-    # @design_methods = DesignMethod.where("overview != ?", "No overview available" ).take(3)
-    # @case_studies = CaseStudy.where("overview != ?", "No overview available").take(3)
     @design_methods = DesignMethod.take(3)
     @case_studies = CaseStudy.take(3)
-    @discussions = Discussion.take(2)
-    # render :text => sidebar_hash(:methods)
     render layout: "custom"
   end
 
@@ -126,11 +123,6 @@ class ApplicationController < ActionController::Base
       return {:hits => [], :results => []}
     end
   end
-
-  def about
-  end
-
-
 
   # Addinv new extra fields to Devise
   before_action :configure_permitted_parameters, if: :devise_controller?

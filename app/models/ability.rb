@@ -46,6 +46,7 @@ class Ability
 
       can :update, User
 
+
       # TODO this should be locked down much further since :manage is a
       # catch-all and could lead to security regressions
       can :manage, [CaseStudy, Characteristic, CharacteristicGroup, Citation,

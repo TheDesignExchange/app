@@ -17,6 +17,8 @@
  *= require bootstrap
  *= require meltdown/meltdown
  *= require_self
+ *= require jquery.tablesorter.theme.blue
+ *= require jquery.tablesorter.pager
 
  */
 
@@ -114,8 +116,8 @@
 }
 
 .add-padding {
-   margin-left: 15px; 
-   margin-right: -15px; 
+   margin-left: 15px;
+   margin-right: -15px;
    margin-top: 15px;
 }
 
@@ -136,8 +138,7 @@
   min-height: 1500px;
 }
 
-
-img{
+img.logo{
   width: 50%;
   display: block;
 }
@@ -245,7 +246,7 @@ img{
     .card img{
       width: 100%;
     }
-    .card .image-wrapper{ 
+    .card .image-wrapper{
       overflow: hidden;
       height: 100px;
       margin: 12px 0 ;
@@ -253,7 +254,7 @@ img{
     .card .likes{
       font-size: 10pt;
     }
-    
+
     .profile div img{
       height: 60px;
       width: auto;
@@ -276,7 +277,7 @@ img{
     }
 
     .meltdown_preview-header {
-      display: none; 
+      display: none;
     }
     .meltdown_editor-wrap {
       box-sizing: border-box;
@@ -325,4 +326,28 @@ img{
   list-style-type: none;
   padding-left: 0px;
   font-size: 1.4em;
+}
+
+.site-footer {
+  overflow: hidden;
+  width: 100%;
+  min-height: 49px;
+  border-top: 1px solid #d9d9d9;
+  margin-top: 10px;
+  padding-left: 24px;
+}
+
+.site-info {
+  position: relative;
+  padding: 12px 24px;
+  font-size: 0.9em;
+  color: #999;
+  line-height: 2;
+}
+
+
+.tablesorter-pager-disabled {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  cursor: default;
 }

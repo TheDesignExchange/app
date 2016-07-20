@@ -1,137 +1,179 @@
-%h1 All users
 :javascript
   $(function(){
-    $('.tab-pane[data-link ="'+ "all" +'"]').show().siblings(".tab-pane").hide();
-    $('#tabs li a').click(function(e){
-      e.preventDefault();
-      // Alternate tabs
-      $(this).parent()
-             .addClass('active')
-             .siblings()
-             .removeClass('active');
-      var link = $(this).data('link');
+    $("#users-table").tablesorter({
+      widgets: ['pager'],
+      ignoreCase: true,
+      sortList: [[0,0],[1,0],[2,0],[3,0],[4,0]],
+      theme: 'blue',
+      widgetOptions: {
+        pager_updateArrows: true,
+        pager_ajaxUrl: null,
+        pager_css: {
+          container : 'users-tablesorter-pager',    // class added to make included pager.css file work
+          disabled : 'tablesorter-pager-disabled'              // class added to arrows @ extremes (i.e. prev/first arrows "disabled" on first page)
+        },
+        pager_selectors: {
+          container : '.users-tablesorter-pager',       // target the pager markup (wrapper)
+          first : '.first',       // go to first page arrow
+          prev : '.prev',        // previous page arrow
+          next : '.next',        // next page arrow
+          last : '.last',        // go to last page arrow
+          gotoPage : '.gotoPage',    // go to page selector - select dropdown that sets the current page
+          pageDisplay : '.pagedisplay', // location of where the "output" is displayed
+          pageSize : '.pagesize'     // page size selector - select dropdown that sets the "size" option
+        }
+      }
+    });
 
-      // $('.tab-pane[data-link ~="'+ link +'"]').hide();
-      $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
-    })
+    $("#characteristics-table").tablesorter({
+      widgets: ['pager'],
+      ignoreCase: true,
+      sortList: [[0,0],[1,0],[2,0]],
+      theme: 'blue',
+      widgetOptions: {
+        pager_updateArrows: true,
+        pager_ajaxUrl: null,
+        pager_css: {
+          container : 'char-tablesorter-pager',    // class added to make included pager.css file work
+          disabled : 'tablesorter-pager-disabled'              // class added to arrows @ extremes (i.e. prev/first arrows "disabled" on first page)
+        },
+        pager_selectors: {
+          container : '.char-tablesorter-pager',       // target the pager markup (wrapper)
+          first : '.first',       // go to first page arrow
+          prev : '.prev',        // previous page arrow
+          next : '.next',        // next page arrow
+          last : '.last',        // go to last page arrow
+          gotoPage : '.gotoPage',    // go to page selector - select dropdown that sets the current page
+          pageDisplay : '.pagedisplay', // location of where the "output" is displayed
+          pageSize : '.pagesize'     // page size selector - select dropdown that sets the "size" option
+        }
+      }
+    });
   });
+
 :css
   .padding{
       padding-top: 15px;
   }
-
   .social-icon{
     width: 32px;
     height: 32px;
     margin: 10px;
     display: inline;
   }
-/ BODY
-.row
-  / PROFILE INFO
+  .nav-tabs{
+    cursor: pointer;
+  }
+  .tab-pane{
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+  }
 
-  .col-md-12
+%h1 Administrator Tools
+/Tabs
 
-    #tabs
-      %ul.nav.nav-tabs
-        %li.active
-          %a{"data-link" => "all"} All
-        %li
-          %a{"data-link" => "admin"} Admin
-        %li
-          %a{"data-link" => "editor"} Editor
-        %li
-          %a{"data-link" => "basic"} Basic
-    .tab-pane.col-md-12.padding{"data-link" => "all"}
+.row.padding
+  #tabs
+    %ul.nav.nav-tabs
+      %li.active
+        %a{"data-link" => "users"} Users
+      %li
+        %a{"data-link" => "characteristics"} Characteristics
 
-
-      .row
-        - @users.each do |user|
-          .col-md-3
-
-            - if user.profile_picture.present?
-              = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-            - else
-              = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
-
+.tab-pane.row{"data-link" => "users"}
+  %table#users-table.tablesorter
+    %thead
+      %tr
+        %th Username
+        %th First Name
+        %th Last Name
+        %th Email
+        %th Permission
+    %tbody
+    - for user in @users
+      %tr
+        %td
+          = user.username
+        %td
+          = user.first_name
+        %td
+          = user.last_name
+        %td
+          = user.email
+        %td
+          - if user.admin?
             %li.dropdown{:style => "list-style: none"}
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = user.username
-                %b.caret
-              %ul.dropdown-menu
-                - if user.admin?
-                  %li= link_to "Admin"
-                  %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-                - elsif user.editor?
-                  %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                  %li= link_to "Editor"
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-                - elsif user.basic?
-                  %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                  %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Basic"
-                - else
-                  %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
-                  %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
-                  %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-
-    /  Admin Tab
-    .tab-pane.col-md-12.padding{"data-link" => "admin"}
-      .row
-        - @users.select{|user| user.admin?}.each do |user|
-          .col-md-3
-
-            - if user.profile_picture.present?
-              = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-            - else
-              = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
-
-            %li.dropdown{:style => "list-style: none"}
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = user.username
+                Admin
                 %b.caret
               %ul.dropdown-menu
                 %li= link_to "Admin"
                 %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
                 %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-
-    / Editor Tab
-    .tab-pane.col-md-12.padding{"data-link" => "editor"}
-      .row
-        - @users.select{|user| user.editor?}.each do |user|
-          .col-md-3
-
-            - if user.profile_picture.present?
-              = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-            - else
-              = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
-
+          - elsif user.editor?
             %li.dropdown{:style => "list-style: none"}
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = user.username
+                Editor
                 %b.caret
               %ul.dropdown-menu
-                %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
+                %li= link_to "Change to Admin", :controller => "administrator", :action => :changeAdmin, :id => user.id
                 %li= link_to "Editor"
                 %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
-
-    /Basic Tab
-    .tab-pane.col-md-12.padding{"data-link" => "basic"}
-      .row
-        - @users.select{|user| user.basic?}.each do |user|
-          .col-md-3
-
-            - if user.profile_picture.present?
-              = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-            - else
-              = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%")
-
+          - elsif user.basic?
             %li.dropdown{:style => "list-style: none"}
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = user.username
+                Basic
                 %b.caret
               %ul.dropdown-menu
-                %li= link_to "Change to Admin",  :controller => "administrator", :action => :changeAdmin, :id => user.id
+                %li= link_to "Change to Admin", :controller => "administrator", :action => :changeAdmin, :id => user.id
                 %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
                 %li= link_to "Basic"
+          - else
+            %li.dropdown{:style => "list-style: none"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                None
+                %b.caret
+              %ul.dropdown-menu
+                %li= link_to "Change to Admin", :controller => "administrator", :action => :changeAdmin, :id => user.id
+                %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
+                %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
+
+  .users-tablesorter-pager
+    = render :partial => '/shared/tablesorter_pager'
+
+.tab-pane.row{"data-link" => "characteristics"}
+  = link_to "characteristics/new", :id=> "create-btn",  :class=> "btn btn-default pull-right", :style => "margin-bottom:10px" do
+    %span.glyphicon.glyphicon-plus
+    Create Characteristic
+  %table#characteristics-table.tablesorter
+    %thead
+      %tr
+        %th Characteristic Name
+        %th Characteristic Group
+        %th Updated At
+    %tbody
+    - for char in @characteristics
+      %tr
+        %td
+          %li.dropdown{:style => "list-style: none"}
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              = char.name
+              %b.caret
+
+            %ul.dropdown-menu
+              %li= link_to "Edit Characteristic", :controller => "characteristics", :action => :edit, :id => char.id
+              %li= link_to "Delete Characteristic", characteristics_path + "/" + char.id.to_s, { :data => { :confirm => "Are you sure you want to delete this characteristic? Doing so will permanently erase the characteristic and its association with all methods."}, :method => :delete}
+        %td
+          - if CharacteristicGroup.find_by(id:char.characteristic_group) != nil
+            = CharacteristicGroup.find_by(id:char.characteristic_group).name
+          - else
+            = "None"
+        %td 
+          = char.updated_at
+
+
+  .char-tablesorter-pager
+    = render :partial => '/shared/tablesorter_pager'
+

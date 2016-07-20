@@ -6,8 +6,7 @@ DesignExchange::Application.routes.draw do
     resources :contacts
   end
 
-  resources :characteristics, only: [:show]
-
+  resources :characteristics 
   resources :tags
   resources :method_case_studies
   root "application#index"
@@ -22,7 +21,7 @@ DesignExchange::Application.routes.draw do
       get "related_methods", to: "case_studies#related_methods", :as => "related_methods"
     end
   end
-
+  
   resources :design_methods do
     collection do
       get "search/:query", to: "application#search"
@@ -56,6 +55,7 @@ DesignExchange::Application.routes.draw do
   resources :citations, only: [:show]
   resources :feedbacks, only: [:create]
   resources :users
+  resources :collections
 
   # Singleton routes for admin panel
   get '/administrator', to: 'administrator#index'
@@ -63,11 +63,7 @@ DesignExchange::Application.routes.draw do
   get '/administrator/change_editor', to: 'administrator#changeEditor'
   get '/administrator/change_basic', to: 'administrator#changeBasic'
 
-
-  resources :collections
-
   get 'search/(:query)', controller: 'design_methods', action: 'search', as: 'search'
-
   get ":action", to:"application##{:action}"
 
 end
