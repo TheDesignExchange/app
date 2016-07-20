@@ -51,13 +51,13 @@ class ApplicationController < ActionController::Base
       design_methods = MethodCategory.find(params[:category_id]).design_methods
       case_studies = []
     else
-      query = params[:query] || ""
+      @query = params[:query] || ""
       cg_filters = params[:char_group_filters] || []
 
-      design_method_search = search_db(:dm, query, cg_filters)
+      design_method_search = search_db(:dm, @query, cg_filters)
       design_methods = design_method_search[:results]
 
-      case_studies = search_db(:cs, query)[:results]
+      case_studies = search_db(:cs, @query)[:results]
     end
 
     @results = {:all => [design_methods, case_studies].flatten,
@@ -97,6 +97,8 @@ class ApplicationController < ActionController::Base
         fulltext processed_query
         facet :method_category_ids
         facet :characteristic_ids
+        # characteristics under the same char group joined by OR, different char
+        # groups joined by AND
         cg_filters.each do |cg_id, char_id_strings|
           char_ids = char_id_strings.map(&:to_i)
           with :characteristic_ids, char_ids

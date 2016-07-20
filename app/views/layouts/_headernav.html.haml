@@ -15,7 +15,8 @@
         = image_tag "logo-DE.png", :width => "100", :id => "logo"
     = form_tag('/search', class: 'navbar-form navbar-left', id: 'search')
     .form-group.col-xs-8
-      = text_field_tag('query', nil, placeholder: 'Search', class: 'form-control', id: 'search-input')
+      - query_text = @query || ""
+      = text_field_tag('query', query_text, placeholder: 'Search', class: 'form-control', id: 'search-input')
     .form-group.col-xs-4
       = submit_tag('Search', class: "btn btn-default")
     </form>
