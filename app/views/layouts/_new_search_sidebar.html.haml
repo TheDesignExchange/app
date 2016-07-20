@@ -52,7 +52,7 @@
   }
 
 .col-md-12
-  %h4 Search Filters
+  %h4 Method Filters
   = form_tag('/search')
   %input{hidden: "hidden", name: "query", type: "text", id: "hidden-search-input"}
   - @category_hashes.each do |category|

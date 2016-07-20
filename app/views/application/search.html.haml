@@ -34,11 +34,11 @@
       #tabs
         %ul.nav.nav-tabs
           %li.active
-            %a{"data-link" => "all"} All
+            %a{"data-link" => "all"} All (#{@results[:all].count})
           %li
-            %a{"data-link" => "dm"} Methods
+            %a{"data-link" => "dm"} Methods (#{@results[:dm].count})
           %li
-            %a{"data-link" => "cs"} Case Studies
+            %a{"data-link" => "cs"} Case Studies (#{@results[:cs].count})
   / CONTENT
   .row
     / All Search Tab

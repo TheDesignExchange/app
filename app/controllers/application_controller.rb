@@ -51,8 +51,8 @@ class ApplicationController < ActionController::Base
       design_methods = MethodCategory.find(params[:category_id]).design_methods
       case_studies = []
     else
-      query = params[:query]
-      cg_filters = params[:char_group_filters]
+      query = params[:query] || ""
+      cg_filters = params[:char_group_filters] || []
 
       design_method_search = search_db(:dm, query, cg_filters)
       design_methods = design_method_search[:results]
@@ -89,32 +89,28 @@ class ApplicationController < ActionController::Base
     hits = []
 
     # Process query string
-    processed_query = query.gsub( '"', '"\\' ) unless query.blank?
+    processed_query = query.gsub( '"', '"\\' )
 
-    if not processed_query.blank?
-      if type == :dm
-        # Sunspot search
-        search = DesignMethod.solr_search do
-          fulltext processed_query
-          facet :method_category_ids
-          facet :characteristic_ids
-          cg_filters.each do |cg_id, char_id_strings|
-            char_ids = char_id_strings.map(&:to_i)
-            with :characteristic_ids, char_ids
-          end
+    if type == :dm
+      # Sunspot search
+      search = DesignMethod.solr_search do
+        fulltext processed_query
+        facet :method_category_ids
+        facet :characteristic_ids
+        cg_filters.each do |cg_id, char_id_strings|
+          char_ids = char_id_strings.map(&:to_i)
+          with :characteristic_ids, char_ids
         end
-        facets = search.facets
-        results = search.results
-      elsif type == :cs
-        # Sunspot search
-        results = CaseStudy.solr_search do
-          fulltext processed_query
-        end.results
       end
-      return {:hits => hits, :results => results, :facets => facets}
-    else
-      return {:hits => [], :results => []}
+      facets = search.facets
+      results = search.results
+    elsif type == :cs
+      # Sunspot search
+      results = CaseStudy.solr_search do
+        fulltext processed_query
+      end.results
     end
+    return {:hits => hits, :results => results, :facets => facets}
   end
 
   # Adding new extra fields to Devise
