@@ -11,10 +11,8 @@
 
 #sidebar.col-md-2
   / SIDEBAR
-  .sidebar{"data-link" => "all"}
-    = render "/layouts/new_search_sidebar", locals: @category_hashes
   .sidebar{"data-link" => "dm"}
-    = render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods)
+    = render "/layouts/new_search_sidebar", locals: @category_hashes
   .sidebar{"data-link" => "cs"}
     = render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods)
 #content-column.col-md-10
@@ -34,22 +32,22 @@
       #tabs
         %ul.nav.nav-tabs
           %li.active
-            %a{"data-link" => "all"} All (#{@results[:all].count})
+            %a{"data-link" => "dm"} Methods (#{@dm_search.total})
           %li
-            %a{"data-link" => "dm"} Methods (#{@results[:dm].count})
-          %li
-            %a{"data-link" => "cs"} Case Studies (#{@results[:cs].count})
+            %a{"data-link" => "cs"} Case Studies (#{@cs_search.total})
   / CONTENT
   .row
-    / All Search Tab
-    .tab-pane.col-sm-12.padding{"data-link" => "all"}
-      - @results[:all].each do |method|
-        = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
     / Method Search Tab
     .tab-pane.col-sm-12.padding{"data-link" => "dm"}
-      - @results[:dm].each do |method|
-        = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
+      .row
+        - @dm_search.results.each do |method|
+          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
+      .row
+        = will_paginate @dm_search.hits
     / Case Study Search Tab
     .tab-pane.col-sm-12.padding{"data-link" => "cs"}
-      - @results[:cs].each do |cs|
-        = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
+      .row
+        - @cs_search.results.each do |cs|
+          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
+      .row
+        = will_paginate @cs_search.hits

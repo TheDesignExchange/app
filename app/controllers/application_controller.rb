@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   check_authorization :unless => :devise_controller?
-  skip_authorization_check :only => [:index, :search, :search_db, :about]
+  skip_authorization_check :only => [:index, :search, :about]
   protect_from_forgery with: :exception
   add_flash_types :success, :warning, :danger, :info
 
@@ -24,9 +24,9 @@ class ApplicationController < ActionController::Base
 
   def search
     # TODO fix this
-    # 1. characteristic facet grouping: OR vs AND
+    # 1. DONE characteristic facet grouping: OR vs AND
     # 2. DONE add char ids to search as facet and display these in filters
-    # 3. get search button from filters to send search back with these as new
+    # 3. DONE get search button from filters to send search back with these as new
     # params and apply
     # 4. Use scoping for category pages
     # 5. Sorting
@@ -48,26 +48,22 @@ class ApplicationController < ActionController::Base
     end
 
     if params[:category_id]
-      design_methods = MethodCategory.find(params[:category_id]).design_methods
-      case_studies = []
+      # design_methods = MethodCategory.find(params[:category_id]).design_methods
+      # case_studies = []
     else
-      @query = params[:query] || ""
+      page = params[:page] || 1
+      query = params[:query] || ""
       cg_filters = params[:char_group_filters] || []
 
-      design_method_search = search_db(:dm, @query, cg_filters)
-      design_methods = design_method_search[:results]
-
-      case_studies = search_db(:cs, @query)[:results]
+      @dm_search = solr_dm_search(query, page, cg_filters)
+      @cs_search = solr_cs_search(query, page)
     end
 
-    @results = {:all => [design_methods, case_studies].flatten,
-      :dm => design_methods, :cs => case_studies}
-
-    sfh = SearchFilterHash.new(design_method_search[:facets])
+    sfh = SearchFilterHash.new(@dm_search.facets)
     @category_hashes = sfh.build_hash
 
-    design_method_names = design_methods.map { |design_method| design_method.name }
-    case_study_names = case_studies.map { |case_study| case_study.name }
+    design_method_names = @dm_search.results.map { |design_method| design_method.name }
+    case_study_names = @cs_search.results.map { |case_study| case_study.name }
 
     @autocomplete_results = [design_method_names, case_study_names].flatten
 
@@ -85,34 +81,32 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def search_db(type, query, cg_filters = [])
-    hits = []
-
+  def solr_dm_search(query, page = 1, cg_filters = [])
     # Process query string
     processed_query = query.gsub( '"', '"\\' )
 
-    if type == :dm
-      # Sunspot search
-      search = DesignMethod.solr_search do
-        fulltext processed_query
-        facet :method_category_ids
-        facet :characteristic_ids
-        # characteristics under the same char group joined by OR, different char
-        # groups joined by AND
-        cg_filters.each do |cg_id, char_id_strings|
-          char_ids = char_id_strings.map(&:to_i)
-          with :characteristic_ids, char_ids
-        end
+    return DesignMethod.solr_search do
+      fulltext processed_query
+      facet :method_category_ids
+      facet :characteristic_ids
+      paginate :page => page, :per_page => 24
+
+      # characteristics under the same char group joined by OR
+      # characteristics under different char groups joined by AND
+      cg_filters.each do |cg_id, char_id_strings|
+        char_ids = char_id_strings.map(&:to_i)
+        with :characteristic_ids, char_ids
       end
-      facets = search.facets
-      results = search.results
-    elsif type == :cs
-      # Sunspot search
-      results = CaseStudy.solr_search do
-        fulltext processed_query
-      end.results
     end
-    return {:hits => hits, :results => results, :facets => facets}
+  end
+
+  def solr_cs_search(query, page = 1)
+    # Process query string
+    processed_query = query.gsub( '"', '"\\' )
+
+    return CaseStudy.solr_search do
+      fulltext processed_query
+    end
   end
 
   # Adding new extra fields to Devise
