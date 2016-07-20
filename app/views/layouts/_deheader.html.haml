@@ -1,9 +1,29 @@
+:javascript
+  $(function(){
+    var cache = {};
+    $("form#search input").autocomplete(DE.Autocomplete);
+  });
+
 :css
   @import url(//fonts.googleapis.com/css?family=Arvo:700);
-
-  .header-font{
+  .header-font {
     font-family: 'Arvo', serif;
   }
+  .jumbotron {
+    font-size: 17px;
+    background: rgb(89, 88, 91);
+    color: white;
+  }
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .login-margin {
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 5%;
+  }
+
 .jumbotron.hidden-xs
   .container
     .row
@@ -27,24 +47,3 @@
               .col-md-8= link_to "Create an account", new_registration_path(:user)
               .col-md-4
                 = f.submit "Log In", {:class=> "btn btn-default pull-right" }
-:css
-  .jumbotron{
-    font-size: 17px;
-    background: rgb(89, 88, 91);
-    color: white;
-  }
-  .subtitle{
-    font-size: 20px;
-  }
-
-  .login-margin{
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-top: 5%;
-  }
-:javascript
-  $(function(){
-    var cache = {};
-
-    $("form#search input").autocomplete(DE.Autocomplete);
-  });
