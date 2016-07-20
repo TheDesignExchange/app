@@ -52,8 +52,9 @@ class ApplicationController < ActionController::Base
       case_studies = []
     else
       query = params[:query]
+      cg_filters = params[:char_group_filters]
 
-      design_method_search = search_db(:dm, query)
+      design_method_search = search_db(:dm, query, cg_filters)
       design_methods = design_method_search[:results]
 
       case_studies = search_db(:cs, query)[:results]
@@ -84,7 +85,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def search_db(type, query)
+  def search_db(type, query, cg_filters = [])
     hits = []
 
     # Process query string
@@ -97,6 +98,10 @@ class ApplicationController < ActionController::Base
           fulltext processed_query
           facet :method_category_ids
           facet :characteristic_ids
+          cg_filters.each do |cg_id, char_id_strings|
+            char_ids = char_id_strings.map(&:to_i)
+            with :characteristic_ids, char_ids
+          end
         end
         facets = search.facets
         results = search.results

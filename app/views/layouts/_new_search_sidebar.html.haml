@@ -72,7 +72,7 @@
               %ul.char-list.collapsed
                 - char_group[:chars].each do |char|
                   %li.char
-                    %input{id: "search_cg_#{char_group[:id]}_char_#{char[:id]}", name: "filters[char_groups][#{char_group[:id]}][]", type: "checkbox", value: "#{char[:id]}"}
+                    %input{id: "search_cg_#{char_group[:id]}_char_#{char[:id]}", name: "char_group_filters[#{char_group[:id]}][]", type: "checkbox", value: "#{char[:id]}"}
                     %label{for: "search_cg_#{char_group[:id]}_char_#{char[:id]}"}
                       = "#{char[:name]} (#{char[:count]})"
 
