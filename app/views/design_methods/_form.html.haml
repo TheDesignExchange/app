@@ -70,6 +70,17 @@
     border-style: solid;
     border-color: transparent black transparent transparent;
   }
+  .progress {
+    max-width: 600px;
+    margin:    0.2em 0 0.2em 0;
+  }
+
+  .progress .bar {
+    height:  1.2em;
+    padding-left: 0.2em;
+    color:   white;
+    display: none;
+  }
 
 :javascript
   $(function(){
@@ -90,6 +101,25 @@
         $(this).children().removeClass("glyphicon-chevron-up");
         $(this).children().addClass("glyphicon-chevron-down");
       }
+    });
+
+    $('.directUpload').find("input:file").each(function(i, elem) {
+      var fileInput    = $(elem);
+      var form         = $(fileInput.parents('form:first'));
+      var submitButton = form.find('input[type="submit"]');
+      var progressBar  = $("<div class='bar'></div>");
+      var barContainer = $("<div class='progress'></div>").append(progressBar);
+      fileInput.after(barContainer);
+      fileInput.fileupload({
+        fileInput:       fileInput,
+        url:             form.data('url'),
+        type:            'POST',
+        autoUpload:       true,
+        formData:         form.data('form-data'),
+        paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
+        dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
+        replaceFileInput: false
+      });
     });
 
   });
@@ -136,7 +166,9 @@
     eH = $('#auto-saved-text').height()
     $('#auto-saved-text').css('margin-top', (pH - eH)/2)
   }
-= form_for @design_method, :html => {:multipart => true} do |f|
+
+/= form_for @design_method, :html => {:multipart => true,  :class => 'directUpload', :data => { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } } do |f|
+= form_for @design_method, :html => {:multipart => true } do |f|
   / ERROR MESSAGES
   - if @design_method.errors.any?
     #error_explanation
