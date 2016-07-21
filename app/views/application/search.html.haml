@@ -23,7 +23,7 @@
   / TOP BAR
   .row
     .col-md-8
-      %h3= @query
+      %h3= "Results for '#{@query}'"
     .col-md-4
       = link_to new_case_study_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
         %span.glyphicon.glyphicon-plus
