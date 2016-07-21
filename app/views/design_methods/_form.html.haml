@@ -168,6 +168,7 @@
   }
 
 - if Rails.env.production?
+  - puts "SHOULD LOAD PRODUCTION FORM"
   = render partial: "prod_form"
 - else
   = render partial: "dev_form"
