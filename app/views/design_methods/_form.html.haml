@@ -104,6 +104,7 @@
     });
 
     $('.directUpload').find("input:file").each(function(i, elem) {
+      console.log("MAKING SURE THIS FUNCTION IS CALLED");
       var fileInput    = $(elem);
       var form         = $(fileInput.parents('form:first'));
       var submitButton = form.find('input[type="submit"]');
