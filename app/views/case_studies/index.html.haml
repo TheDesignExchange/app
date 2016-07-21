@@ -13,26 +13,28 @@
     .col-md-10.left-pad
       .col-md-6
         %h3 Featured Case Studies
-        -if current_user.admin?
+        - if (current_user != nil) && (current_user.admin? || current_user.editor?)
           %input{:name => "hidden", :type => "checkbox", :id => "hidden", :style => "margin: 0px 5px 15px 0px"} Show hidden Case Studies
           %br
       .col-md-6
         = link_to new_case_study_path, :id => "create-btn", :class => "btn btn-default pull-right btn-index-create"  do
           %span.glyphicon.glyphicon-plus
           Add Case Study
+  
   .row
-    .col-md-2
-      / WARNING: SIDEBAR UNDER CONSTRUCTION!
-    .col-md-10.left-pad
-      #hiddenCaseStudies{:style => "display:none"} 
-        .h4{:style => "margin-left:3%"}
-          Hidden Case Studies
-        - @case_studies.where(:hidden => true).each do |cs|
-          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
+    - if (current_user != nil) && (current_user.admin? || current_user.editor?)
+      .col-md-2
+        / WARNING: SIDEBAR UNDER CONSTRUCTION!
+      .col-md-10.left-pad
+        #hiddenCaseStudies{:style => "display:none"} 
+          .h4{:style => "margin-left:3%"}
+            Hidden Case Studies
+          - @case_studies.where(:hidden => true).each do |cs|
+            = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
     .col-md-2
     .col-md-10.left-pad
       #publicCaseStudies
         .h4{:style => "margin-left:3%"}
           Public Case Studies
-        - @case_studies.each do |cs|
+        - @case_studies.where(:hidden => false).each do |cs|
           = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
