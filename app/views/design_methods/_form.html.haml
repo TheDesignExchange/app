@@ -167,8 +167,9 @@
     $('#auto-saved-text').css('margin-top', (pH - eH)/2)
   }
 
+- puts "RAILS ENVIRONMENT HERE!!!!"
+- puts Rails.env.production?
 - if Rails.env.production?
-  - puts "SHOULD LOAD PRODUCTION FORM"
   = render partial: "prod_form"
 - else
   = render partial: "dev_form"
