@@ -19,6 +19,23 @@
     }
   }
 
+  function submitSearchForm (event) {
+    event.preventDefault(); // don't follow link
+    // extract page parameter from link
+    pageNumRegex = new RegExp("page=(.*)$");
+    pageNum = pageNumRegex.exec(event.target.href)[1];
+    // update and submit form
+    if($('.tab-pane#dm').is(':visible')) {
+      $('input#hidden-dm-page-input').val(pageNum);
+      $('input#hidden-visible-tab-input').val('dm');
+      $('input#hidden-dm-page-input').parent().submit();
+    } else {
+      $('input#hidden-cs-page-input').val(pageNum);
+      $('input#hidden-visible-tab-input').val('cs');
+      $('input#hidden-cs-page-input').parent().submit();
+    }
+  }
+
 :css
   .sidebar-element {
     padding: 0;
@@ -55,7 +72,9 @@
   %h4 Method Filters
   = form_tag('/search')
   %input{hidden: "hidden", name: "query", value: @query, type: "text", id: "hidden-search-input"}
-  %input{hidden: "hidden", name: "page", value: 1, type: "text", id: "hidden-page-input"}
+  %input{hidden: "hidden", name: "dm_page", value: @dm_page, type: "text", id: "hidden-dm-page-input"}
+  %input{hidden: "hidden", name: "cs_page", value: @cs_page, type: "text", id: "hidden-cs-page-input"}
+  %input{hidden: "hidden", name: "visible_tab", value: "dm", type: "text", id: "hidden-visible-tab-input"}
   - @category_hashes.each do |category|
     %ul.sidebar-element
 

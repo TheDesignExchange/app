@@ -23,25 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def search
-    # TODO fix this
-    # 1. DONE characteristic facet grouping: OR vs AND
-    # 2. DONE add char ids to search as facet and display these in filters
-    # 3. DONE get search button from filters to send search back with these as new
-    # params and apply
-    # 4. Use scoping for category pages
-    # 5. Sorting
-    # 6. Pagination
-    # eg
-    # DesignMethod.solr_search do
-    #   fulltext your_query_here
-    #   with(:characteristic_ids, [1, 2, 3]) <--- works like OR
-    #   with(:characteristic_ids, 8) <---- works like AND
-    #   facet :characteristic_ids
-    #   facet :method_category_ids (maybe)
-    #   paginate :page => 1, :per_page => 24
-    #   (http://sunspot.github.io/sunspot/docs/#Pagination)
-    #   order_by option for sorting by date, name, relevancy, etc
-    #
     # temp param replacement for autocomplete
     if params[:term]
       params[:query] = params[:term]
@@ -51,12 +32,14 @@ class ApplicationController < ActionController::Base
       # design_methods = MethodCategory.find(params[:category_id]).design_methods
       # case_studies = []
     else
-      page = params[:page] || 1
-      query = params[:query] || ""
+      @dm_page = params[:dm_page] || 1
+      @cs_page = params[:cs_page] || 1
+      @query = params[:query] || ""
       cg_filters = params[:char_group_filters] || []
 
-      @dm_search = solr_dm_search(query, page, cg_filters)
-      @cs_search = solr_cs_search(query, page)
+      @cs_tab_visible = params[:visible_tab] == 'cs'
+      @dm_search = solr_dm_search(@query, @dm_page, cg_filters)
+      @cs_search = solr_cs_search(@query, @cs_page)
     end
 
     sfh = SearchFilterHash.new(@dm_search.facets, cg_filters)
@@ -89,7 +72,7 @@ class ApplicationController < ActionController::Base
       fulltext processed_query
       facet :method_category_ids
       facet :characteristic_ids
-      paginate :page => page, :per_page => 24
+      paginate :page => page, :per_page => 20
 
       # characteristics under the same char group joined by OR
       # characteristics under different char groups joined by AND
@@ -106,6 +89,7 @@ class ApplicationController < ActionController::Base
 
     return CaseStudy.solr_search do
       fulltext processed_query
+      paginate :page => page, :per_page => 20
     end
   end
 
