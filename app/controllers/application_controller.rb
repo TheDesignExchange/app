@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
       @cs_search = solr_cs_search(query, page)
     end
 
-    sfh = SearchFilterHash.new(@dm_search.facets)
+    sfh = SearchFilterHash.new(@dm_search.facets, cg_filters)
     @category_hashes = sfh.build_hash
 
     design_method_names = @dm_search.results.map { |design_method| design_method.name }

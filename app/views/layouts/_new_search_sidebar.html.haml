@@ -1,7 +1,9 @@
 :javascript
   $(function(){
-    // Set up the event listeners for sidebar accordion
+    // Set up listeners for sidebar accordion
     $('.menu-toggle').click(updateAccordion);
+    // Set up listeners for pagination links
+    $('.pagination').children('a').click(submitSearchForm);
   });
 
   function updateAccordion (event) {
@@ -53,6 +55,7 @@
   %h4 Method Filters
   = form_tag('/search')
   %input{hidden: "hidden", name: "query", value: @query, type: "text", id: "hidden-search-input"}
+  %input{hidden: "hidden", name: "page", value: 1, type: "text", id: "hidden-page-input"}
   - @category_hashes.each do |category|
     %ul.sidebar-element
 
@@ -73,8 +76,10 @@
               %ul.char-list.collapsed
                 - char_group[:chars].each do |char|
                   %li.char
-                    %input{id: "search_cg_#{char_group[:id]}_char_#{char[:id]}", name: "char_group_filters[#{char_group[:id]}][]", type: "checkbox", value: "#{char[:id]}"}
-                    %label{for: "search_cg_#{char_group[:id]}_char_#{char[:id]}"}
+                    - checkbox_id = "search_cg_#{char_group[:id]}_char_#{char[:id]}"
+                    - checkbox_form_name = "char_group_filters[#{char_group[:id]}][]"
+                    %input{id: checkbox_id, name: checkbox_form_name, type: "checkbox", value: char[:id], checked: char[:is_checked]}
+                    %label{for: checkbox_id}
                       = "#{char[:name]} (#{char[:count]})"
 
   = submit_tag('Filter', class:"btn btn-default")

@@ -1,8 +1,11 @@
 class SearchFilterHash
 
-  def initialize(facets)
+  def initialize(facets, applied_cg_filters)
     @cat_facet = facets.find { |f| f.name == :method_category_ids }
     @char_facet = facets.find { |f| f.name == :characteristic_ids }
+    # gather all checked characteristic ids from sidebar so we can properly render
+    # them as still checked when we return results
+    @filtered_chars = applied_cg_filters.collect {|cg_id, char_ids| char_ids}.flatten.map(&:to_i)
   end
 
   def build_hash
@@ -41,9 +44,11 @@ class SearchFilterHash
 
   def char_hash(char)
     hit_count = get_facet_count(@char_facet, char.id)
+    is_checked = @filtered_chars.include?(char.id)
     return {name: char.name,
             id: char.id,
-            count: hit_count}
+            count: hit_count,
+            is_checked: is_checked}
   end
 
   def get_facet_count(facet, id)
