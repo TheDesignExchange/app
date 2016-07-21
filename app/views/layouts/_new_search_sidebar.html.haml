@@ -1,22 +1,20 @@
 :javascript
   $(function(){
-    enableAccordion();
-
-    $('span.menu-toggle').click(function(event) {
-      $(event.target).toggleClass('fa-caret-right').toggleClass('fa-caret-down');
-      if($(event.target).hasClass('fa-caret-down')) {
-        $(event.target).siblings('ul').slideDown("fast");
-      } else {
-        $(event.target).siblings('ul').slideUp("fast");
-      }
-    });
+    // Set up the event listeners for sidebar accordion
+    $('.menu-toggle').click(updateAccordion);
   });
 
-  function enableAccordion(){
-    $('.category').find('.category-heading').click(function() {
-      var content = $(this).siblings();
-      content.toggleClass('in');
-    });
+  function updateAccordion (event) {
+    event.stopPropagation(); // prevents clicks on nested accordion categories from collapsing their parent category
+    target = event.currentTarget;
+    // toggle arrow icons
+    $(target).children('.fa').toggleClass('fa-caret-right').toggleClass('fa-caret-down');
+    // toggle sub-content visibility
+    if($(target).children('.fa').hasClass('fa-caret-down')) {
+      $(target).siblings('ul').slideDown("fast");
+    } else {
+      $(target).siblings('ul').slideUp("fast");
+    }
   }
 
 :css
@@ -59,15 +57,18 @@
     %ul.sidebar-element
 
       %li.category
-        %span.menu-toggle.fa.fa-caret-right
-        %span
-          = link_to "#{category[:name]} (#{category[:count]})", search_category_design_methods_path(category[:id]), :class=> "category-heading sidebar-maincategory"
+        %span.menu-toggle
+          %span.fa.fa-caret-right
+          %span.sidebar-maincategory
+            = "#{category[:name]} (#{category[:count]})"
 
         %ul.char-group-list.collapsed
           - category[:char_groups].each do |char_group|
             %li.char-group
-              %span.menu-toggle.fa.fa-caret-right
-              %span= link_to char_group[:name], "#", :class => "char-group-heading"
+              %span.menu-toggle
+                %span.fa.fa-caret-right
+                %span
+                  = char_group[:name]
 
               %ul.char-list.collapsed
                 - char_group[:chars].each do |char|
