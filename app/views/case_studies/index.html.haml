@@ -4,7 +4,7 @@
     var eH = $('#create-btn').height()
     $('#create-btn').css('margin-top', (pH - eH)/2)
     $('#hidden').click(function() {
-      $("#hiddenCaseStudies").toggle(this.checked);
+      $("#hiddenCaseStudies").toggle();
     });
   });
 .container-fluid
@@ -33,8 +33,9 @@
             = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
     .col-md-2
     .col-md-10.left-pad
-      #publicCaseStudies
-        .h4{:style => "margin-left:3%"}
-          Public Case Studies
-        - @case_studies.where(:hidden => false).each do |cs|
-          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
+      - if (current_user != nil) && (current_user.admin? || current_user.editor?)
+        #publicCaseStudies
+          .h4{:style => "margin-left:3%"}
+            Public Case Studies
+      - @case_studies.where(:hidden => false).each do |cs|
+        = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")

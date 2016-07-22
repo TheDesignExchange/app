@@ -4,7 +4,7 @@
   	var eH = $('#create-btn').height()
   	$('#create-btn').css('margin-top', (pH - eH)/2)
     $('#hidden').click(function() {
-      $("#hiddenMethods").toggle(this.checked);
+      $("#hiddenMethods").toggle();
     });
   });
 :css
@@ -46,8 +46,9 @@
             = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
     #sidebar.col-xs-4.col-sm-2
     #results-container.col-xs-8.col-sm-10
-      #publicMethods
-        .h4{:style => "margin-left:3%"}
-          Public Methods
-        - @design_methods.where(:hidden => false).each do |method|
-          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
+      - if (current_user != nil) && (current_user.admin? || current_user.editor?)
+        #publicMethods
+          .h4{:style => "margin-left:3%"}
+            Public Methods
+      - @design_methods.where(:hidden => false).each do |method|
+        = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
