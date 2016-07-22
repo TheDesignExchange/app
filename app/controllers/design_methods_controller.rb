@@ -50,6 +50,7 @@ class DesignMethodsController < ApplicationController
   # - @design_method: the updated design method
   def update
     @design_method = DesignMethod.find(params[:id])
+    puts "ERROR IS HERE???!!!"
     respond_to do |format|
       if @design_method.update_attributes(params[:design_method])
         @design_method.update_citations
