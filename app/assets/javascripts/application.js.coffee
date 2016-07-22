@@ -151,6 +151,7 @@ $(document).ready ($) ->
 
 $ ->
   $('.directUpload').find('input:file').each (i, elem) ->
+    console.log("OR IS THE ISSUE HERE?????");
     fileInput = $(elem)
     form = $(fileInput.parents('form:first'))
     submitButton = form.find('input[type="submit"]')
