@@ -22,6 +22,8 @@
 #= require expander
 #= require meltdown/jquery.meltdown
 # require_tree .
+#= require jquery.ui.widget
+#= require z.jquery.fileupload
 # Fixing textarea bug
 
 
