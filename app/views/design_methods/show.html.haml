@@ -192,7 +192,7 @@
     - if Rails.env.production?
       - if @method.prod_image.present?
         .row
-          = image_tag(@method.prod_image, :width => "100%")
+          /= image_tag(@method.prod_image, :width => "100%")
 
     - else
       - if @method.main_image.url.present?
