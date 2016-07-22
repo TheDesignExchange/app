@@ -189,9 +189,15 @@
         %strong Synonyms:
         = @method.synonyms
 
-    - if @method.main_image.url.present?
-      .row
-        = image_tag(@method.main_image, :width => "100%")
+    - if Rails.env.production?
+      - if @method.prod_image.present?
+        .row
+          = image_tag(@method.prod_image, :width => "100%")
+
+    - else
+      - if @method.main_image.url.present?
+        .row
+          = image_tag(@method.main_image, :width => "100%")
 
     - if !@method.usage.blank?
       %h4 When to use

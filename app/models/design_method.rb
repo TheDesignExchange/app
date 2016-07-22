@@ -28,6 +28,7 @@
 #  references         :text
 #  characteristic_ids
 #  videoURL           :text
+#  prod_image         :text
 
 class DesignMethod < ActiveRecord::Base
 
@@ -36,7 +37,7 @@ class DesignMethod < ActiveRecord::Base
                   :main_image, :time_period, :name, :time_unit, :synonyms, :benefits,
                   :limitations, :skills, :usage, :online_resources, :history, :critiques,
                   :additional_reading, :characteristic_ids, :references, :case_study_ids,
-                  :videoURL
+                  :videoURL, :prod_image
 
   # Validations
   validates :name, :overview, presence: true
