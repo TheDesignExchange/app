@@ -73,4 +73,5 @@ gem 'rails_12factor', group: :production
 gem 'font_assets'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'aws-sdk', '~> 2'
-gem 'fog'
+gem 'figaro'
+gem 'fog', require: 'fog/aws'

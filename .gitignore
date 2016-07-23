@@ -43,3 +43,6 @@ solr/
 
 .DS_Store
 /.floo
+
+# Ignore application configuration
+/config/application.yml
