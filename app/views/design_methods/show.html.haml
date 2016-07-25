@@ -189,9 +189,15 @@
         %strong Synonyms:
         = @method.synonyms
 
-    - if @method.main_image.present?
-      .row
-        = image_tag(@method.main_image, :width => "100%")
+    - if Rails.env.production?
+      - if @method.prod_image.present?
+        .row
+          /= image_tag(@method.prod_image, :width => "100%")
+
+    - else
+      - if @method.main_image.url.present?
+        .row
+          = image_tag(@method.main_image, :width => "100%")
 
     - if !@method.usage.blank?
       %h4 When to use
@@ -242,7 +248,7 @@
       %h4 Critiques
       %p= md_format(@method.critiques)
 
-    - if @citations.length != 0 && @citations != nil
+    - if @citations != nil && @citations.length != 0
       %h4 References used in this Article
       %ol
         /Makes citation a hyperlink if it is a link

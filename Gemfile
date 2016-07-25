@@ -23,9 +23,7 @@ gem 'pg'
 gem 'seed_dump'
 gem 'haml'
 gem 'haml-rails', group: :development
-
-gem 'rails_12factor', group: :production
-gem 'font_assets'
+gem 'fog-aws'
 
 gem 'quiet_assets'
 gem 'lograge'
@@ -35,6 +33,7 @@ gem 'sprockets', '2.11.0'
 
 # Styling
 gem 'bootstrap-sass'
+gem 'sass-rails', '>= 3.2'
 gem 'normalize-rails'
 
 group :development, :test do
@@ -70,3 +69,9 @@ gem "hash_control"
 
 
 gem 'recaptcha', :require => 'recaptcha/rails'
+
+gem 'rails_12factor', group: :production
+gem 'font_assets'
+gem 'rack-cors', :require => 'rack/cors'
+gem 'aws-sdk', '~> 2'
+gem 'figaro'

@@ -29,6 +29,8 @@
 #  characteristic_ids
 #  videoURL           :text
 #  hidden             :boolean
+#  prod_image         :text
+
 class DesignMethod < ActiveRecord::Base
 
   # TODO: add the mass assignment protection at the controller, then remove this
@@ -36,7 +38,8 @@ class DesignMethod < ActiveRecord::Base
                   :main_image, :time_period, :name, :time_unit, :synonyms, :benefits,
                   :limitations, :skills, :usage, :online_resources, :history, :critiques,
                   :additional_reading, :characteristic_ids, :references, :case_study_ids,
-                  :videoURL, :hidden
+                  :videoURL, :hidden, :prod_image
+
 
   # Validations
   validates :name, :overview, presence: true
@@ -202,6 +205,46 @@ class DesignMethod < ActiveRecord::Base
     end
 
     return categories
+  end
+
+  def update_citations
+    # Add Method references as citations
+    @citations = self.citations
+    @references = self.references
+    if !@references.nil?
+      count = @citations.count
+      for i in 0..(count - 1)
+        if !@references.include? @citations[i].text
+          @citations.delete(@citations[i].id)
+        end
+      end
+    else
+      @references = ""
+      @citations.each do |c|
+        if !@references.include? c.text
+          @references += c.text + "\n"
+        end
+      end
+    end
+    if !@references.blank?
+      urls = @references.split("\n")
+      urls.each do |url|
+        if !url.blank?
+          contains = false
+          @citations.each do |c|
+            if c.text.strip == url.strip
+              contains = true
+            end
+          end
+          if !contains
+            citation = Citation.new(text: url.strip)
+            citation.save
+            @citations.push(citation)
+          end
+        end
+      end
+    end
+    self.save
   end
 
 end

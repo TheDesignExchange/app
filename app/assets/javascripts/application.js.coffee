@@ -22,6 +22,8 @@
 #= require expander
 #= require meltdown/jquery.meltdown
 # require_tree .
+#= require jquery.ui.widget
+#= require z.jquery.fileupload
 # Fixing textarea bug
 
 
@@ -143,8 +145,29 @@ $ ->
 
   return
 
-
-
 $(document).ready ($) ->
   initializeMarkdownEditors()
   return
+
+$ ->
+  $('.directUpload').find('input:file').each (i, elem) ->
+    console.log("OR IS THE ISSUE HERE?????");
+    fileInput = $(elem)
+    form = $(fileInput.parents('form:first'))
+    submitButton = form.find('input[type="submit"]')
+    progressBar = $('<div class=\'bar\'></div>')
+    barContainer = $('<div class=\'progress\'></div>').append(progressBar)
+    fileInput.after barContainer
+    fileInput.fileupload
+      fileInput: fileInput
+      url: form.data('url')
+      type: 'POST'
+      autoUpload: true
+      formData: form.data('form-data')
+      paramName: 'file'
+      dataType: 'XML'
+      replaceFileInput: false
+    return
+  return
+
+

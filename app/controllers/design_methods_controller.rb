@@ -6,6 +6,7 @@ class DesignMethodsController < ApplicationController
 
   before_action :edit_as_signed_in_user, only: [:edit, :update]
   before_action :create_as_signed_in_user, only: [:create, :new]
+  before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   layout 'custom'
 
@@ -49,8 +50,10 @@ class DesignMethodsController < ApplicationController
   # - @design_method: the updated design method
   def update
     @design_method = DesignMethod.find(params[:id])
+    puts "ERROR IS HERE???!!!"
     respond_to do |format|
       if @design_method.update_attributes(params[:design_method])
+        @design_method.update_citations
         format.html { redirect_to @design_method, notice: 'Design method was successfully updated.' }
         format.json { head :no_content }
       else
@@ -75,6 +78,7 @@ class DesignMethodsController < ApplicationController
 
     respond_to do |format|
       if @design_method.save
+        @design_method.update_citations
         format.html { redirect_to @design_method, notice: 'Design method was successfully created.' }
         format.json { render json: @design_method, status: :created, location: @design_method }
       else
@@ -97,47 +101,13 @@ class DesignMethodsController < ApplicationController
       @collection = Collection.new(params[:collection])
       @collection.owner_id = current_user.id
     end
-
     # Method likes:
     @method.likes += 1
     @method.save!
     # Method likes end.
-
-    if @method.references == nil
-      @method.references = ""
-    end
-
-    # Add Method references as citations
-    if !@method.references.blank?
-      urls = @method.references.split("\n")
-      urls.each do |url|
-        if url.blank?
-          next
-        end
-        citation = Citation.new(text: url)
-        citation.save
-        contains = false
-        dm.citations.each do |c|
-          if c.text.strip == url.strip
-            contains = true
-          end
-        end
-        if !contains
-          dm.citations.push(citation)
-        end
-      end
-    end
-
-    @author = dm.owner
     @citations = dm.citations
-
-    @citations.each do |cit|
-      if @method.references.include? cit.text
-        next
-      end
-      @method.references += cit.text + "\n"
-      @method.save
-    end
+    @author = dm.owner
+    @method.save
 
     @similar_methods = @method.similar_methods(100,6)
     @similar_case_studies = @method.similar_case_studies(100,6)
@@ -165,4 +135,11 @@ class DesignMethodsController < ApplicationController
       redirect_to design_methods_url
     end
   end
+
+  private
+    def set_s3_direct_post
+      if Rails.env.production?
+        @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
+      end
+    end
 end
