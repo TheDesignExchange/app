@@ -1,0 +1,212 @@
+= form_for @design_method, :html => {:multipart => true } do |f|
+  / ERROR MESSAGES
+  - if @design_method.errors.any?
+    #error_explanation
+      %h3
+        = pluralize(@design_method.errors.count, "error")
+        prohibited this design method from being saved:
+      %ul
+        - @design_method.errors.full_messages.each do |msg|
+          %li= msg
+  / INPUT FIELDS
+  #save-bar.row
+    = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
+    %button#save-btn.btn.btn-default.pull-right{:name => "commit", :type => "button"}
+      = glyphyify("floppy-disk")
+      Save as Draft
+    / </button>
+    %span#auto-saved-text.pull-right Auto-saved as draft 2 minutes ago
+  /Tabs
+  .row.padding
+    #tabs
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"data-link" => "overview"} Overview
+        %li
+          %a{"data-link" => "instructions"} Instructions
+        %li
+          %a{"data-link" => "resources"} Resources
+        %li
+          %a{"data-link" => "sidebar"} Sidebar
+        %li
+          %a{"data-link" => "characteristics"} Characteristics
+  /Method overview
+  .tab-pane.row{"data-link" => "overview"}
+    / INPUT METHOD NAME
+    %h3
+      Method Name
+      %span.mandatory *
+    .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+      = f.text_field :name, :class=> "form-control", :placeholder => "Method Name"
+    / END INPUT METHOD NAME
+    %h3 Synonyms
+    .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+      = f.text_field :synonyms, :class=> "form-control", :placeholder => ""
+    / IMAGES
+    .row
+      .col-xs-6.col-md-12
+        - if @design_method.main_image.url.present?
+          = image_tag(@design_method.main_image)
+        - else
+          = image_tag("no-image-available.png", :width => "100%", :height => "385")
+    %br/
+    = f.file_field :main_image
+    / END IMAGES
+    / FORMS
+    %br/
+    %h3 Video Embedded URL
+    .tooltips
+      How to get Embedded Video URL
+      %span.tooltiptext
+        In any YouTube video, right click on the video, click on copy embed code.
+        paste this information anywhere and you will get something like "< iframe width="640" height="360" src="https://www.youtube.com/embed/example" frameborder="0" allowfullscreen></iframe >". The embed URL is the linke after src= , remove the quotation marks and you will have the embedded video URL
+    .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+      = f.text_field :videoURL, :class=> "form-control", :placeholder => ""
+    %h3
+      Summary
+      %span.mandatory *
+    = f.text_area :overview, :class => "form-control markdown", :rows => 6
+    %h3 Usage
+    = f.text_area :usage, :class => "form-control markdown", :rows => 6
+    %h3 Benefits
+    = f.text_area :benefits, :class => "form-control markdown", :rows => 6
+    %h3 Limitations/Risks
+    = f.text_area :limitations, :class => "form-control markdown", :rows => 6
+    %h3 Skills
+    = f.text_area :skills, :class => "form-control markdown", :rows => 6
+  /Instructions tab
+  .tab-pane.row{"data-link" => "instructions"}
+    %h3
+      Instructions
+      %span.mandatory *
+    = f.text_area :process, :class => "form-control markdown", :rows => 20
+  /Resources tab
+  .tab-pane.row{"data-link" => "resources"}
+    %h3.more-info-headers Online Tools And Resources
+    %div.more-info
+      %a#online-tools-and-resources More Info
+      %div.tool-help These are tools available online to facilitate the use of the method.
+    = f.text_area :online_resources, :class => "form-control markdown", :rows => 6
+    %h3.more-info-headers History
+    %div.more-info
+      %a#history More Info
+      %div.tool-help This section discusses the historical inception and use of the method.
+    = f.text_area :history, :class => "form-control markdown", :rows => 6
+    %h3.more-info-headers Critiques
+    %div.more-info
+      %a#critiques More Info
+      %div.tool-help This section discusses the critical analyses and assessments of the method.
+    = f.text_area :critiques, :class => "form-control markdown", :rows => 6
+
+    %h3.more-info-headers References
+    %div.more-info
+      %a#citations More Info
+      %div.tool-help This section lists the sources used to develop the content on theDesignExchange for the method.
+    = f.text_area :references, :class => "form-control markdown", :rows => 6
+
+    %h3.more-info-headers Additional Reading
+    %div.more-info
+      %a#additional-reading More Info
+      %div.tool-help This section provides further resources that provide more information on the method than is presented on theDesignExchange for the method.
+    = f.text_area :additional_reading, :class => "form-control markdown", :rows => 6
+
+    %h3.more-info-headers Related Case Studies
+
+    %br
+    %button{"data-target" => "#cs", "data-toggle" => "collapse", :id => "cs-collapse", :class => "btn btn-default btn-index-create collapsed"}
+      %span.glyphicon.glyphicon-chevron-down
+      Case Studies
+
+    #cs.collapse
+      %br
+      %input.char-filter.form-control{type: "text", placeholder: "Filter Studies..."}
+      %br
+
+      - full = CaseStudy.count
+      - one_third = full/3
+      - two_thirds = one_third * 2
+
+      / first third of case studies as a column
+      .col-md-4.edit-char-group
+        - CaseStudy.all[0..one_third].each do |m|
+          - cs = CaseStudy.where(id: m.id)
+          = f.collection_check_boxes(:case_study_ids, cs, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+      / second third of case studies as a column
+      .col-md-4.edit-char-group
+        - CaseStudy.all[(one_third+1)..two_thirds].each do |m|
+          - cs = CaseStudy.where(id: m.id)
+          = f.collection_check_boxes(:case_study_ids, cs, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+      / last third of case studies as a column
+      .col-md-4.edit-char-group
+        - CaseStudy.all[(two_thirds+1)..full].each do |m|
+          - cs = CaseStudy.where(id: m.id)
+          = f.collection_check_boxes(:case_study_ids, cs, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+
+  /Sidebar tab
+  .tab-pane.row{"data-link" => "sidebar"}
+    / PEOPLE
+    .row
+      %h4 People
+      .input-group
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-user collaborators
+        = f.number_field :num_of_designers, :class => "form-control", :placeholder => "# of collaborators", in: 0...1000
+      %br/
+      .input-group
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-user users
+        = f.number_field :num_of_users, :class => "form-control", :placeholder => "# of users", in: 0...1000
+    / END PEOPLE
+    / TOOLS
+    .row
+      %h4 Tools
+      .input-group
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-pencil
+        %input.form-control{:placeholder => "Ex. paper, pen", :type => "text"}/
+    / END TOOLS
+    / TIME
+    .row
+      %h4 Time
+      .input-group
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-time
+        = f.number_field :time_period, :class => "form-control", in: 0...1000
+        = f.select(:time_unit, options_for_select([['years', 'yr'], ['days', 'd'], ['hours', 'hr'], ['minutes', 'min']], @design_method.time_unit), {}, {:class=> "form-control"})
+    / END TIME
+    / TAGS
+    .row
+      %h4 Tags
+      .input-group
+        %input.form-control{:type => "text"}/
+        %span.input-group-btn
+          %button.btn.btn-default{:onclick => "createTag('design_method', #{params[:id]}, this);", :type => "button"} Add Tag
+      %br/
+      %p.tag-list
+        - @design_method.tags.each do |t|
+          = tagify(t.id, t.content, {:removable => true})
+    / END OF TAGS
+  /Characteristics tab
+  .tab-pane.row{"data-link" => "characteristics"}
+    / CHARACTERISTICS
+    %input.char-filter.form-control{type: "text", placeholder: "Filter Characteristics..."}
+    - MethodCategory.all.each do |m|
+      .row.edit-category
+        %h3= m.name
+        - CharacteristicGroup.where(method_category_id: m.id).each do |g|
+          - group_chars = Characteristic.where(characteristic_group_id: g.id)
+          .col-md-4.edit-char-group
+            %h4= g.name
+            .edit-char-group-checkboxes
+              = f.collection_check_boxes(:characteristic_ids, group_chars, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+    / END CHARACTERISTICS
+  / END FORMS
+  %br/
+  #save-bar.row
+    = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
+    %button#save-btn.btn.btn-default.pull-right{:name => "commit", :type => "button"}
+      = glyphyify("floppy-disk")
+      Save as Draft
+    / <span id="auto-saved-text" class="pull-right">Auto-saved as draft 2 minutes ago</span>
+  / END BODY
+  x
