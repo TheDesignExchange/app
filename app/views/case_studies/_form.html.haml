@@ -235,6 +235,8 @@
     / RIGHT CONTENT
     .col-xs-8
       / INPUT METHOD NAME
+      = f.check_box :hidden
+      Hidden Case Study?
       .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
         %h3 Title
         = f.text_field :name, :class=> "form-control", :placeholder => "Case Study Name"
