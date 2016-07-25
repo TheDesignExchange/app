@@ -23,6 +23,7 @@ gem 'pg'
 gem 'seed_dump'
 gem 'haml'
 gem 'haml-rails', group: :development
+gem 'fog-aws'
 
 gem 'quiet_assets'
 gem 'lograge'
@@ -74,4 +75,3 @@ gem 'font_assets'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'aws-sdk', '~> 2'
 gem 'figaro'
-gem 'fog', require: 'fog/aws'
