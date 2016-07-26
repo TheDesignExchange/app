@@ -49,8 +49,22 @@ class DesignMethodsController < ApplicationController
   # - @design_method: the updated design method
   def update
     @design_method = DesignMethod.find(params[:id])
+
+    obj = S3_BUCKET.objects[params[:main_image].original_filename]
+    # Upload the file
+    obj.write(
+      file: params[:main_image],
+      acl: :public_read
+    )
+
+    # Create an object for the upload
+    @upload = Upload.new(
+      url: obj.public_url,
+      name: obj.key
+    )
+
     respond_to do |format|
-      if @design_method.update_attributes(params[:design_method])
+      if @design_method.update_attributes(params[:design_method]) && @upload.save
         @design_method.update_citations
         format.html { redirect_to @design_method, notice: 'Design method was successfully updated.' }
         format.json { head :no_content }
@@ -72,10 +86,24 @@ class DesignMethodsController < ApplicationController
   def create
     @design_method = DesignMethod.new(params[:design_method])
     @design_method.owner = current_user
+
+    obj = S3_BUCKET.objects[params[:main_image].original_filename]
+    # Upload the file
+    obj.write(
+      file: params[:main_image],
+      acl: :public_read
+    )
+
+    # Create an object for the upload
+    @upload = Upload.new(
+      url: obj.public_url,
+      name: obj.key
+    )
+
     # @design_method.principle = ""
 
     respond_to do |format|
-      if @design_method.save
+      if @design_method.save && @upload.save
         @design_method.update_citations
         format.html { redirect_to @design_method, notice: 'Design method was successfully created.' }
         format.json { render json: @design_method, status: :created, location: @design_method }
