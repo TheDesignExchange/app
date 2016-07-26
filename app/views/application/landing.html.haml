@@ -1,0 +1,86 @@
+:css
+  .howdoesitwork{
+    background-color: "gray";
+  }
+= render :partial => "layouts/deheader"
+- if !user_signed_in?
+  .panel.panel-default.login-margin.panel-primary
+    .panel-heading
+      %h3.panel-title Register
+    .panel-body
+      = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+        = devise_error_messages!
+        .input
+          = f.text_field :username, {:autofocus => true, :class => "form-control", :placeholder => "Username"}
+        %br/
+        .input
+          = f.text_field :first_name, {:autofocus => true, :class => "form-control", :placeholder => "First name"}
+        %br/
+        .input
+          = f.text_field :last_name, {:autofocus => true, :class => "form-control", :placeholder => "Last name"}
+        %br/
+        .input
+          = f.email_field :email, {:autofocus => true, :class => "form-control", :placeholder => "Email"}
+        %br/
+        .input
+          = f.password_field :password, { :class => "form-control", :placeholder => "Password"}
+        %br/
+        .input
+          = f.password_field :password_confirmation, { :class => "form-control", :placeholder => "Password Confirmation"}
+        %br/
+        .row
+          .col-md-12
+            .col-md-8
+              = link_to "Sign in", new_session_path(resource_name)
+            .col-md-4
+              = f.submit "Register", {:class=> "btn btn-default pull-right" }
+.howdoesitwork{:style=>"margin-top:15%;"}
+  %hr/
+  .h1{:style=>"text-align:center;margin-bottom:10%;"}
+    How Does it Work?
+  .col-md-4
+    .thumbnail{:style=>"height:300px;"}
+      .h3{:style=>"text-align:center"}
+        1
+        %br
+        JOIN
+      .p{:style=>"text-align:center"}
+        Join the community to find designers who share similar interests as you
+        and start building your professional network.
+  .col-md-4 
+    .thumbnail{:style=>"height:300px;"}
+      .h3{:style=>"text-align:center"}
+        2
+        %br
+        LEARN
+      .p{:style=>"text-align:center"}
+        Browse methods and case studies to improve your design skills. Learn what to do
+        and what to not do to successfully complete your next design task.
+  .col-md-4
+    .thumbnail{:style=>"height:300px;"}
+      .h3{:style=>"text-align:center"}
+        3
+        %br
+        SHARE
+      .p{:style=>"text-align:center"}
+        Participate in discussions where you can post questions
+        and answers regarding various design topics.
+.getstarted{:style=>"margin-top:60%;"}
+  %hr/
+  .h2{:style=>"text-align:center; font-size:4em;margin-bottom:10%;"}
+    Get Started!
+  .col-md-6
+    .thumbnail{:style=>"text-align:center; font-size:3em"}
+      %span.glyphicon.glyphicon-envelope
+      %br
+      Case Studies
+  .col-md-6
+    .thumbnail{:style=>"text-align:center; font-size:3em"}
+      %span.glyphicon.glyphicon-envelope
+      %br
+      Design Methods
+  .col-md-12
+    .thumbnail{:style=>"text-align:center; font-size:3em"}
+      %span.glyphicon.glyphicon-comment
+      %br
+      Discussions
