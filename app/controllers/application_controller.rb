@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   check_authorization :unless => :devise_controller?
-  skip_authorization_check :only => [:index, :search, :search_db, :about]
+  skip_authorization_check :only => [:index, :search, :about]
   protect_from_forgery with: :exception
   add_flash_types :success, :warning, :danger, :info
 
@@ -8,36 +8,17 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
 
-  # The DesignExchange home page.
-  #
-  # If viewed without logging in, should display some information about the site and direct the
-  # user to sign-up or search for methods.
-  #
-  # If logged in, should show activity feed (to be developed), any update information (to be
-  # determined), and navigation for basic tasks.
-  def home
-    if current_user
-      @recently_created_methods = current_user.owned_methods.order("created_at DESC").limit(10)
-      store_location
-    end
-  end
-
-  # Show information about the project itself
-  def about
-    render layout: "custom"
-  end
-
-  # Show contact information about the project members
-  def contact
-  end
-
   def store_location
     session[:return_to] = request.url if request.get?
   end
 
   def index
-    @design_methods = DesignMethod.take(3)
-    @case_studies = CaseStudy.take(3)
+    @design_methods = DesignMethod.order("RANDOM()").limit(3)
+    @case_studies = CaseStudy.order("RANDOM()").limit(3)
+    render layout: "custom"
+  end
+
+  def about
     render layout: "custom"
   end
 
@@ -48,31 +29,34 @@ class ApplicationController < ActionController::Base
     end
 
     if params[:category_id]
-      design_methods = MethodCategory.find(params[:category_id]).design_methods
-      case_studies = []
-      discussions = []
-    else
-      query = params[:query]
+      @category = MethodCategory.find(params[:category_id]).name
+      @dm_page = params[:dm_page] || 1
+      @cs_page = params[:cs_page] || 1
 
-      design_methods = search_db(:dm, query, 24)[:results]
-      case_studies = search_db(:cs, query, 24)[:results]
-      discussions = search_db(:disc, query, 24)[:results]
+      @cs_tab_visible = params[:visible_tab] == 'cs'
+      @dm_search = solr_dm_search("", @dm_page, [], params[:category_id])
+      @cs_search = solr_cs_search("", @cs_page)
+    else
+      @dm_page = params[:dm_page] || 1
+      @cs_page = params[:cs_page] || 1
+      @query = params[:query] || ""
+      cg_filters = params[:char_group_filters] || []
+
+      @cs_tab_visible = params[:visible_tab] == 'cs'
+      @dm_search = solr_dm_search(@query, @dm_page, cg_filters, nil)
+      @cs_search = solr_cs_search(@query, @cs_page)
     end
 
-    @results = {:all => [design_methods, case_studies, discussions].flatten,
-      :dm => design_methods, :cs => case_studies, :disc => discussions}
+    sfh = SearchFilterHash.new(@dm_search.facets, cg_filters)
+    @category_hashes = sfh.build_hash
 
-    design_method_names = design_methods.map { |design_method| design_method.name }
-    case_study_names = case_studies.map { |case_study| case_study.name }
-    discussion_names = discussions.map { |dis| dis.name }
+    design_method_names = @dm_search.results.map { |design_method| design_method.name }
+    case_study_names = @cs_search.results.map { |case_study| case_study.name }
 
-    @autocomplete_results = [design_method_names, case_study_names, discussion_names].flatten
-
+    @autocomplete_results = [design_method_names, case_study_names].flatten
 
     # Filter bar needs
-    @search_filter_hash = MethodCategory.all
-
-
+    @search_filter_hash = MethodCategory.order(:process_order)
 
     respond_to do |format|
       format.html do
@@ -85,46 +69,40 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # Search design methods.
-  #
-  # === Parameters
-  # - query: the search term
-  #
-  # === Variables
-  # - @results: list of design methods from the search result
-  def search_db(type, query, limit)
-    hits = []
-
+  def solr_dm_search(query, page = 1, cg_filters = [], cat_filter = nil)
     # Process query string
-    processed_query = query.gsub( '"', '"\\' ) unless query.blank?
+    processed_query = query.gsub( '"', '"\\' )
 
-    if not processed_query.blank?
-      if type == :dm
-        # results = DesignMethod.where("LOWER( design_methods.name ) LIKE ? AND overview != ? ", "%#{query}%", "No overview available")
+    return DesignMethod.solr_search do
+      fulltext processed_query
+      facet :method_category_ids
+      facet :characteristic_ids
+      paginate :page => page, :per_page => 20
 
-        # Sunspot search
-        results = DesignMethod.solr_search do
-          fulltext processed_query
-        end.results
-
-      elsif type == :cs
-        # Sunspot search
-        results = CaseStudy.solr_search do
-          fulltext processed_query
-        end.results
-      else
-        # Sunspot search
-        results = Discussion.solr_search do
-          fulltext processed_query
-        end.results
+      # characteristics under the same char group joined by OR
+      # characteristics under different char groups joined by AND
+      cg_filters.each do |cg_id, char_id_strings|
+        char_ids = char_id_strings.map(&:to_i)
+        with :characteristic_ids, char_ids
       end
-      return {:hits => hits, :results => results}
-    else
-      return {:hits => [], :results => []}
+
+      if cat_filter != nil
+        with :method_category_ids, cat_filter
+      end
     end
   end
 
-  # Addinv new extra fields to Devise
+  def solr_cs_search(query, page = 1)
+    # Process query string
+    processed_query = query.gsub( '"', '"\\' )
+
+    return CaseStudy.solr_search do
+      fulltext processed_query
+      paginate :page => page, :per_page => 20
+    end
+  end
+
+  # Adding new extra fields to Devise
   before_action :configure_permitted_parameters, if: :devise_controller?
   protected
   def configure_permitted_parameters

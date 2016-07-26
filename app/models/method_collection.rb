@@ -2,12 +2,12 @@
 #
 # Table name: method_collections
 #
-#  id                 :integer          not null, primary key
-#  created_at         :datetime
-#  updated_at         :datetime
-#  design_method_id
-#  case_study_id
-#  collection_id
+#  id               :integer          not null, primary key
+#  design_method_id :integer
+#  collection_id    :integer
+#  created_at       :datetime
+#  updated_at       :datetime
+#  case_study_id    :integer
 #
 
 class MethodCollection < ActiveRecord::Base

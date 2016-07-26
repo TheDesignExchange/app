@@ -1,4 +1,4 @@
-<script> 
+<script>
   $(function(){
     var pH = $('#create-btn').parent().parent().height()
     var eH = $('#create-btn').height()
@@ -37,7 +37,7 @@ html, body{
 
 <div id="search-and-filter" class="row">
   <div id="sidebar" class="col-xs-4 col-sm-2">
-    <%= render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods) %>
+    <%= render "/layouts/sidebar" %>
   </div>
     <div id="results-container" class="col-xs-8 col-sm-10">
       <% @design_methods.each do |method| %>

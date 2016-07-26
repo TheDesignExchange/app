@@ -13,18 +13,19 @@
         %span.icon-bar
       %a.navbar-brand{:href => root_path}
         = image_tag "logo-DE.png", :width => "100", :id => "logo"
-    %form#search.navbar-form.navbar-left{:role => "search"}
-      .form-group.col-xs-8
-        %input.form-control{:placeholder => "Search", :type => "text"}/
-      .form-group.col-xs-4
-        %button.btn.btn-default{:onclick => "window.location.href = '#{search_design_methods_path}/'+ $('form#search input').val();", :type => "submit"} Search
+    = form_tag('/search', class: 'navbar-form navbar-left', id: 'search')
+    .form-group.col-xs-8
+      - query_text = @query || ""
+      = text_field_tag('query', query_text, placeholder: 'Search', class: 'form-control', id: 'search-input')
+    .form-group.col-xs-4
+      = submit_tag('Search', class: "btn btn-default")
+    </form>
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li= link_to "Methods", design_methods_path
         %li= link_to "Case Studies", case_studies_path
         %li= link_to "Collections", collections_path
-        / <li><haml_loud> link_to &quot;Discussions&quot;, discussions_path </haml_loud></li>
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li.dropdown
@@ -46,8 +47,6 @@
             = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
           %li
             = link_to "Login", new_user_session_path, :class => 'navbar-link'
-    / /.navbar-collapse
-  / /.container-fluid
 
 // display flash errors if any
 - flash.each do |type, msg|

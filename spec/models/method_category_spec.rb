@@ -2,10 +2,11 @@
 #
 # Table name: method_categories
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id            :integer          not null, primary key
+#  name          :string(255)
+#  created_at    :datetime
+#  updated_at    :datetime
+#  process_order :integer
 #
 
 require 'rails_helper'

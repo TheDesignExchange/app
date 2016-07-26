@@ -25,6 +25,9 @@
 #  history            :text
 #  critiques          :text
 #  additional_reading :text
+#  videoURL           :string(255)
+#  collection_id      :integer
+#  references         :text
 #
 
 require 'rails_helper'

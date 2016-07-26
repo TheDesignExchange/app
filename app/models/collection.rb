@@ -2,15 +2,13 @@
 #
 # Table name: collections
 #
-#  id                 :integer          not null, primary key
-#  name               :string(255)      not null
-#  owner_id           :integer          not null
-#  overview       :text
-#  is_private     :boolean  
-#  created_at         :datetime
-#  updated_at         :datetime
-#  design_method_ids
-#  case_study_ids
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#  is_private :boolean
+#  overview   :text
+#  owner_id   :integer
 #
 
 class Collection < ActiveRecord::Base
