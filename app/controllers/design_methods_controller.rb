@@ -50,18 +50,21 @@ class DesignMethodsController < ApplicationController
   def update
     @design_method = DesignMethod.find(params[:id])
 
-    obj = S3_BUCKET.objects[params[:main_image].original_filename]
+    #obj = S3_BUCKET.objects[params[:main_image].original_filename]
     # Upload the file
-    obj.write(
-      file: params[:main_image],
-      acl: :public_read
-    )
+    #obj.write(
+      #file: params[:main_image],
+      #acl: :public_read
+    #)
 
     # Create an object for the upload
-    @upload = Upload.new(
-      url: obj.public_url,
-      name: obj.key
-    )
+    #@upload = Upload.new(
+      #url: obj.public_url,
+      #name: obj.key
+    #)
+
+    S3_BUCKET.object('key').upload_file(@design_method.main_image.url, acl:'public-read')
+    puts S3_BUCKET.object('key').public_url
 
     respond_to do |format|
       if @design_method.update_attributes(params[:design_method]) && @upload.save
