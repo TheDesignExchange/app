@@ -18,12 +18,15 @@
   .sidebar{"data-link" => "dm"}
     = render "/layouts/new_search_sidebar", locals: @category_hashes
   .sidebar{"data-link" => "cs"}
-    = render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods)
+    = render "/layouts/sidebar"
 #content-column.col-md-10
   / TOP BAR
   .row
     .col-md-8
-      %h3= "Results for '#{@query}'"
+      - if @category
+        %h3= "#{@category} Methods"
+      - else
+        %h3= "Results for '#{@query}'"
     .col-md-4
       = link_to new_case_study_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
         %span.glyphicon.glyphicon-plus
@@ -35,16 +38,20 @@
     .col-md-12
       #tabs
         %ul.nav.nav-tabs
-          - if @cs_tab_visible
-            %li
-              %a{"data-link" => "dm"} Methods (#{@dm_search.total})
+          - if @category
             %li.active
-              %a{"data-link" => "cs"} Case Studies (#{@cs_search.total})
+              %a{"data-link" => "dm"} Methods (#{@dm_search.total})
           - else
-            %li.active
-              %a{"data-link" => "dm"} Methods (#{@dm_search.total})
-            %li
-              %a{"data-link" => "cs"} Case Studies (#{@cs_search.total})
+            - if @cs_tab_visible
+              %li
+                %a{"data-link" => "dm"} Methods (#{@dm_search.total})
+              %li.active
+                %a{"data-link" => "cs"} Case Studies (#{@cs_search.total})
+            - else
+              %li.active
+                %a{"data-link" => "dm"} Methods (#{@dm_search.total})
+              %li
+                %a{"data-link" => "cs"} Case Studies (#{@cs_search.total})
   / CONTENT
   .row
     / Method Search Tab
@@ -54,10 +61,11 @@
           = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
       .row
         = will_paginate @dm_search.hits
-    / Case Study Search Tab
-    .tab-pane.col-sm-12.padding#cs{"data-link" => "cs"}
-      .row
-        - @cs_search.results.each do |cs|
-          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
-      .row
-        = will_paginate @cs_search.hits
+    - if !@category
+      / Case Study Search Tab
+      .tab-pane.col-sm-12.padding#cs{"data-link" => "cs"}
+        .row
+          - @cs_search.results.each do |cs|
+            = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
+        .row
+          = will_paginate @cs_search.hits

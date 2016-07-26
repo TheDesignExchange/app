@@ -5,7 +5,7 @@ class SearchFilterHash
     @char_facet = facets.find { |f| f.name == :characteristic_ids }
     # gather all checked characteristic ids from sidebar so we can properly render
     # them as still checked when we return results
-    @filtered_chars = applied_cg_filters.collect {|cg_id, char_ids| char_ids}.flatten.map(&:to_i)
+    @filtered_chars = applied_cg_filters ? applied_cg_filters.collect {|cg_id, char_ids| char_ids}.flatten.map(&:to_i) : []
   end
 
   def build_hash

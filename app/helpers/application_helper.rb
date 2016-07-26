@@ -12,43 +12,6 @@ module ApplicationHelper
   #TODO test deleting this
   @@methods_file = "method_categories.json"
 
-  def sidebar_hash(symbol)
-    method_categories = MethodCategory.all
-    method_hashes = []
-
-    method_categories.each do |c|
-      method_hash = {name: c.name, id: c.id, count: c.design_methods.length}
-      char_group_hashes = []
-
-      c.characteristic_groups.each do |cg|
-        cg_hash = {name: cg.name, id: cg.id, count: cg.design_methods.length}
-        char_hashes = []
-
-        cg.characteristics.each do |char|
-          char_hash = {name: char.name, id: char.id, count: char.design_methods.length}
-          char_hashes << char_hash
-        end
-
-        cg_hash[:chars] = char_hashes
-        char_group_hashes << cg_hash
-      end
-
-      method_hash[:char_groups] = char_group_hashes
-
-      method_hashes << method_hash
-    end
-
-    if symbol == :methods
-      # file = Rails.root.join('public', @@methods_file);
-      # data = JSON.parse( IO.read(file) )
-      data = method_hashes
-    elsif symbol == :case_studies
-      # return case_studies
-    end
-    return data
-  end
-
-
   def human_boolean(boolean)
       boolean ? 'Yes' : 'No'
   end

@@ -37,15 +37,14 @@
   / END TOP ROW
   #search-and-filter.row
     #sidebar.col-xs-4.col-sm-2
-      = render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods)
+      = render "/layouts/sidebar"
     - if (current_user != nil) && (current_user.admin? || current_user.editor?)
       #results-container.col-xs-8.col-sm-10
-        #hiddenMethods{:style => "display:none"} 
+        #hiddenMethods{:style => "display:none"}
           .h4{:style => "margin-left:3%"}
             Hidden Methods
           - @design_methods.where(:hidden => true).each do |method|
             = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(method,"3")
-    #sidebar.col-xs-4.col-sm-2
     #results-container.col-xs-8.col-sm-10
       - if (current_user != nil) && (current_user.admin? || current_user.editor?)
         #publicMethods

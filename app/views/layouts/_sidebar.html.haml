@@ -38,9 +38,3 @@
   %ul.sidebar-element
     .category
       = link_to x.name, search_category_design_methods_path(x.id), :class=> "category-heading sidebar-maincategory"
-      / <a class='' href=''> <haml_loud> x.name </haml_loud></a>
-      /
-        <ul class='collapse sidebar-element'>
-        </ul>
-/
-  <haml_silent> print_children(0, @category_hash).html_safe </haml_silent>

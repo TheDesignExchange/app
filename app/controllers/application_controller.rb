@@ -29,8 +29,13 @@ class ApplicationController < ActionController::Base
     end
 
     if params[:category_id]
-      # design_methods = MethodCategory.find(params[:category_id]).design_methods
-      # case_studies = []
+      @category = MethodCategory.find(params[:category_id]).name
+      @dm_page = params[:dm_page] || 1
+      @cs_page = params[:cs_page] || 1
+
+      @cs_tab_visible = params[:visible_tab] == 'cs'
+      @dm_search = solr_dm_search("", @dm_page, [], params[:category_id])
+      @cs_search = solr_cs_search("", @cs_page)
     else
       @dm_page = params[:dm_page] || 1
       @cs_page = params[:cs_page] || 1
@@ -38,7 +43,7 @@ class ApplicationController < ActionController::Base
       cg_filters = params[:char_group_filters] || []
 
       @cs_tab_visible = params[:visible_tab] == 'cs'
-      @dm_search = solr_dm_search(@query, @dm_page, cg_filters)
+      @dm_search = solr_dm_search(@query, @dm_page, cg_filters, nil)
       @cs_search = solr_cs_search(@query, @cs_page)
     end
 
@@ -51,7 +56,7 @@ class ApplicationController < ActionController::Base
     @autocomplete_results = [design_method_names, case_study_names].flatten
 
     # Filter bar needs
-    @search_filter_hash = MethodCategory.all
+    @search_filter_hash = MethodCategory.order(:process_order)
 
     respond_to do |format|
       format.html do
@@ -64,7 +69,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def solr_dm_search(query, page = 1, cg_filters = [])
+  def solr_dm_search(query, page = 1, cg_filters = [], cat_filter = nil)
     # Process query string
     processed_query = query.gsub( '"', '"\\' )
 
@@ -79,6 +84,10 @@ class ApplicationController < ActionController::Base
       cg_filters.each do |cg_id, char_id_strings|
         char_ids = char_id_strings.map(&:to_i)
         with :characteristic_ids, char_ids
+      end
+
+      if cat_filter != nil
+        with :method_category_ids, cat_filter
       end
     end
   end
