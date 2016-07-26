@@ -172,9 +172,9 @@ ActiveRecord::Schema.define(version: 20160721194126) do
     t.text     "history"
     t.text     "critiques"
     t.text     "additional_reading"
-    t.text     "references"
     t.string   "videoURL"
     t.integer  "collection_id"
+    t.text     "references"
     t.boolean  "hidden",             default: false
   end
 

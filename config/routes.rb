@@ -32,14 +32,10 @@ DesignExchange::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
 
-  get '/collections/add', to: 'collections#add', as: "add_to_collection"
-  get '/collections/:id/edit/delete', to: 'collections#delete', as: "delete_collection"
-
   resources :method_categories, only: [:show]
   resources :citations, only: [:show]
   resources :feedbacks, only: [:create]
   resources :users
-  resources :collections
 
   # Singleton routes for admin panel
   get '/administrator', to: 'administrator#index'
