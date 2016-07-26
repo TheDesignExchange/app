@@ -189,9 +189,9 @@
         %strong Synonyms:
         = @method.synonyms
 
-    - if @method.main_image.url.present?
-      .row
-        = image_tag(@method.main_image, :width => "100%")
+    /- if @method.main_image.url.present?
+    /  .row
+    /    = image_tag(@method.main_image, :width => "100%")
 
     - if !@method.usage.blank?
       %h4 When to use
