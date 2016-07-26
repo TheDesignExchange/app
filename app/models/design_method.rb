@@ -82,7 +82,7 @@ class DesignMethod < ActiveRecord::Base
   has_many :tags
 
   # Uploader (what gem?)
-  #mount_uploader :main_image, PictureUploader
+  mount_uploader :main_image, PictureUploader
 
   # Sunspot
   searchable do
