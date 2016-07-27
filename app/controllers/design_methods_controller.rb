@@ -70,8 +70,10 @@ class DesignMethodsController < ApplicationController
     puts "PUBLIC URL HERE!!!!!!!!"
     puts obj.public_url
 
+    @design_method.update(picture_url: obj.public_url)
+
     respond_to do |format|
-      if @design_method.update_attributes(params[:design_method]) && @upload.save
+      if @design_method.update_attributes(params[:design_method])
         @design_method.update_citations
         format.html { redirect_to @design_method, notice: 'Design method was successfully updated.' }
         format.json { head :no_content }
