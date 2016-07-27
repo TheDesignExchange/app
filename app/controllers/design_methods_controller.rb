@@ -49,35 +49,18 @@ class DesignMethodsController < ApplicationController
   # - @design_method: the updated design method
   def update
     @design_method = DesignMethod.find(params[:id])
-
-    #obj = S3_BUCKET.objects[params[:main_image].original_filename]
-    # Upload the file
-    #obj.write(
-      #file: params[:main_image],
-      #acl: :public_read
-    #)
-
-    # Create an object for the upload
-    #@upload = Upload.new(
-      #url: obj.public_url,
-      #name: obj.key
-    #)
-
-
+    
     file = params[:design_method][:picture]
 
     if !file.nil?
-
       if request.original_url.include? "thedesignexchange-staging"
         path = "staging/design_methods/" + @design_method.id.to_s + "/" + file.original_filename
       else
         path = "production/design_methods/" + @design_method.id.to_s + "/" + file.original_filename
       end
-
       obj = S3_BUCKET.object(path)
       obj.upload_file(file.path, acl:'public-read')
       @design_method.update(picture_url: obj.public_url)
-
     end
 
     respond_to do |format|
@@ -104,20 +87,18 @@ class DesignMethodsController < ApplicationController
     @design_method = DesignMethod.new(params[:design_method])
     @design_method.owner = current_user
 
-    obj = S3_BUCKET.objects[params[:main_image].original_filename]
-    # Upload the file
-    obj.write(
-      file: params[:main_image],
-      acl: :public_read
-    )
+    file = params[:design_method][:picture]
 
-    # Create an object for the upload
-    @upload = Upload.new(
-      url: obj.public_url,
-      name: obj.key
-    )
-
-    # @design_method.principle = ""
+    if !file.nil?
+      if request.original_url.include? "thedesignexchange-staging"
+        path = "staging/design_methods/" + @design_method.id.to_s + "/" + file.original_filename
+      else
+        path = "production/design_methods/" + @design_method.id.to_s + "/" + file.original_filename
+      end
+      obj = S3_BUCKET.object(path)
+      obj.upload_file(file.path, acl:'public-read')
+      @design_method.update(picture_url: obj.public_url)
+    end
 
     respond_to do |format|
       if @design_method.save && @upload.save
