@@ -84,3 +84,33 @@
       %span.glyphicon.glyphicon-comment
       %br
       Discussions
+.thedxcommunity{:style=>"margin-top:60%;"}
+  %hr/
+  .h2{:style=>"text-align:center; font-size:2em;margin-bottom:10%;"}
+    The Design Exchange Community
+  .col-md-4
+    .thumbnail{:style=>"text-align:center; font-size:1em"}
+      - if User.find_by(id:1).profile_picture.present?
+        = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
+      - else
+        = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%", :size=>"150x150")
+
+      .p
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+
+  .col-md-4
+    .thumbnail{:style=>"text-align:center; font-size:1em"}
+      = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%", :size=>"150x150")
+      .p
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+
+  .col-md-4
+    .thumbnail{:style=>"text-align:center; font-size:1em"}
+      = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%", :size=>"150x150")
+      .p
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+
+
