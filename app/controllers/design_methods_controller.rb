@@ -63,8 +63,8 @@ class DesignMethodsController < ApplicationController
       #name: obj.key
     #)
     puts "FILE UPLOAD HERE!!!!"
-    puts params[:design_method][:picture].path
-    S3_BUCKET.object(params[:design_method][:picture].original_filename).upload_file(params[:design_method][:picture].path, acl:'public-read')
+    puts params[:design_method][:picture].path()
+    S3_BUCKET.object(params[:design_method][:picture].original_filename).upload_file(params[:design_method][:picture].original_filename, acl:'public-read')
 
     respond_to do |format|
       if @design_method.update_attributes(params[:design_method]) && @upload.save
