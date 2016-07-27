@@ -68,13 +68,13 @@ class DesignMethodsController < ApplicationController
 
     if !file.nil?
 
-      puts "URL HERE??????"
-      puts request.original_url
+      if request.original_url.include? "thedesignexchange-staging"
+        path = "/staging/design_methods/" + @design_method.id.to_s + file.original_filename
+      else
+        path = "/production/design_methods/" + @design_method.id.to_s + file.original_filename
+      end
 
-
-
-
-      obj = S3_BUCKET.object("/design_methods/" + @design_method.id.to_s + file.original_filename)
+      obj = S3_BUCKET.object(path)
       obj.upload_file(file.path, acl:'public-read')
       @design_method.update(picture_url: obj.public_url)
 
