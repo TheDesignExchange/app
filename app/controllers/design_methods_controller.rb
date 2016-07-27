@@ -69,9 +69,9 @@ class DesignMethodsController < ApplicationController
     if !file.nil?
 
       if request.original_url.include? "thedesignexchange-staging"
-        path = "/staging/design_methods/" + @design_method.id.to_s + "/" + file.original_filename
+        path = "staging/design_methods/" + @design_method.id.to_s + "/" + file.original_filename
       else
-        path = "/production/design_methods/" + @design_method.id.to_s + "/" + file.original_filename
+        path = "production/design_methods/" + @design_method.id.to_s + "/" + file.original_filename
       end
 
       obj = S3_BUCKET.object(path)
