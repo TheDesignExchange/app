@@ -68,7 +68,13 @@ class DesignMethodsController < ApplicationController
 
     if !file.nil?
 
-      obj = S3_BUCKET.object(file.original_filename)
+      puts "URL HERE??????"
+      puts request.original_url
+
+
+
+
+      obj = S3_BUCKET.object("/design_methods/" + @design_method.id.to_s + file.original_filename)
       obj.upload_file(file.path, acl:'public-read')
       @design_method.update(picture_url: obj.public_url)
 
