@@ -1,71 +1,71 @@
-/ :javascript
-/   $(function(){
-/     // $('.tab-pane[data-link ="'+ "all" +'"]').show().siblings(".tab-pane").hide();
-/     $('.sidebar[data-link ="'+ "all" +'"]').show().siblings(".sidebar").hide();
-/     $('#tabs li a').click(function(e){
-/       e.preventDefault();
-/       // Alternate tabs
-/       $(this).parent()
-/              .addClass('active')
-/              .siblings()
-/              .removeClass('active');
-/       var link = $(this).data('link');
+:javascript
+  $(function(){
+  });
 
-/       // $('.tab-pane[data-link ~="'+ link +'"]').hide();
-/       $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
-/       $('.sidebar[data-link ="'+ link +'"]').show().siblings(".sidebar").hide();
-/     })
-/   });
 :css
-  .padding{
+  .padding {
     padding-top: 15px;
   }
-  .nav-tabs{
+  .nav-tabs {
     cursor: pointer;
   }
-/ TOP BAR
-.row
-  .col-md-2
-  .col-md-10.left-pad
-    %h3= params[:query] ? "Results for '#{params[:query]}'": ""
-    #tabs
-      %ul.nav.nav-tabs
-        %li.active
-          %a{"data-link" => "all"} All
-        %li
-          %a{"data-link" => "dm"} Methods
-        %li
-          %a{"data-link" => "cs"} Case Studies
-/ #sidebar > div{ aoihdlkhasklfhjklh}
-/ CONTENT
-.row
-  .col-sm-2
-    / WARNING SIDEBAR UNDERCONSTRUCTION
-    .sidebar{"data-link" => "all"}
-      = render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods)
-      / SIDEBAR FOR ALL
-    .sidebar{"data-link" => "dm"}
-      = render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods)
-    .sidebar{"data-link" => "cs"}
-      = render "/layouts/sidebar", locals: @category_hash = sidebar_hash(:methods)
-      / SIDEBAR FOR CASE STUDY
-    .sidebar{"data-link" => "disc"}
-      / SIDEBAR FOR DISCUSSION
-  / All Search Tab
-  .tab-pane.col-sm-10.padding{"data-link" => "all"}
-    - @results[:all].each do |method|
-      = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3"), :object => @picture_url = method.picture_url
+  #create-btn {
+    margin-right: 10px;
+  }
 
-  / Method Search Tab
-  .tab-pane.col-sm-10.padding{"data-link" => "dm"}
-    - @results[:dm].each do |method|
-      = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3"), :object => @picture_url = method.picture_url
-
-  / Case Study Search Tab
-  .tab-pane.col-sm-10.padding{"data-link" => "cs"}
-    - @results[:cs].each do |cs|
-      = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3"), :object => @picture_url = cs.picture_url
-  / Discussion Search Tap
-  .tab-pane.col-sm-10.padding{"data-link" => "disc"}
-    - @results[:disc].each do |disc|
-      = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"3")
+#sidebar.col-md-2
+  / SIDEBAR
+  .sidebar{"data-link" => "dm"}
+    = render "/layouts/new_search_sidebar", locals: @category_hashes
+  .sidebar{"data-link" => "cs"}
+    = render "/layouts/sidebar"
+#content-column.col-md-10
+  / TOP BAR
+  .row
+    .col-md-8
+      - if @category
+        %h3= "#{@category} Methods"
+      - else
+        %h3= "Results for '#{@query}'"
+    .col-md-4
+      = link_to new_case_study_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
+        %span.glyphicon.glyphicon-plus
+        Add Case Study
+      = link_to new_design_method_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
+        %span.glyphicon.glyphicon-plus
+        Add Method
+  .row
+    .col-md-12
+      #tabs
+        %ul.nav.nav-tabs
+          - if @category
+            %li.active
+              %a{"data-link" => "dm"} Methods (#{@dm_search.total})
+          - else
+            - if @cs_tab_visible
+              %li
+                %a{"data-link" => "dm"} Methods (#{@dm_search.total})
+              %li.active
+                %a{"data-link" => "cs"} Case Studies (#{@cs_search.total})
+            - else
+              %li.active
+                %a{"data-link" => "dm"} Methods (#{@dm_search.total})
+              %li
+                %a{"data-link" => "cs"} Case Studies (#{@cs_search.total})
+  / CONTENT
+  .row
+    / Method Search Tab
+    .tab-pane.col-sm-12.padding#dm{"data-link" => "dm"}
+      .row
+        - @dm_search.results.each do |method|
+          = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3"), :object => @picture_url = method.picture_url
+      .row
+        = will_paginate @dm_search.hits
+    - if !@category
+      / Case Study Search Tab
+      .tab-pane.col-sm-12.padding#cs{"data-link" => "cs"}
+        .row
+          - @cs_search.results.each do |cs|
+            = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3"), :object => @picture_url = cs.picture_url
+        .row
+          = will_paginate @cs_search.hits

@@ -27,7 +27,7 @@ class CharacteristicsController < ApplicationController
       @design_methods = DesignMethod.where("overview != ?", "No overview available" )
     end
      # Filter bar needs
-    @search_filter_hash = MethodCategory.all
+    @search_filter_hash = MethodCategory.order(:process_order)
     @design_methods_all = DesignMethod.all
     respond_to do |format|
       format.html { render :layout => "wide" }

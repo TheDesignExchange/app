@@ -1,9 +1,29 @@
+:javascript
+  $(function(){
+    var cache = {};
+    $("form#search input").autocomplete(DE.Autocomplete);
+  });
+
 :css
   @import url(//fonts.googleapis.com/css?family=Arvo:700);
-
-  .header-font{
+  .header-font {
     font-family: 'Arvo', serif;
   }
+  .jumbotron {
+    font-size: 17px;
+    background: rgb(89, 88, 91);
+    color: white;
+  }
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .login-margin {
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 5%;
+  }
+
 .jumbotron.hidden-xs
   .container
     .row
@@ -11,10 +31,9 @@
         %h1.header-font
           = image_tag "logo2.png", class: "logo"
         %p.subtitle where designers and researchers share methods and best practices
-        %p Search
-        %form#search{:role => "search"}
-          %input.form-search{:placeholder => "Search", :type => "text"}/
-          %button.btn.btn-default{:onclick => "window.location.href = '#{search_design_methods_path}/'+ $('form input.form-search').val();", :type => "submit"} Submit
+        = form_tag('/search')
+        = text_field_tag('query', nil, placeholder: 'Search', class: 'form-search', id: 'search-input')
+        = submit_tag('Search', class: "btn btn-default")
       - if !user_signed_in?
         .col-md-4
           %p Sign In
@@ -27,24 +46,3 @@
               .col-md-8= link_to "Create an account", new_registration_path(:user)
               .col-md-4
                 = f.submit "Log In", {:class=> "btn btn-default pull-right" }
-:css
-  .jumbotron{
-    font-size: 17px;
-    background: rgb(89, 88, 91);
-    color: white;
-  }
-  .subtitle{
-    font-size: 20px;
-  }
-
-  .login-margin{
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-top: 5%;
-  }
-:javascript
-  $(function(){
-    var cache = {};
-
-    $("form#search input").autocomplete(DE.Autocomplete);
-  });

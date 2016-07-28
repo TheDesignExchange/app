@@ -7,7 +7,7 @@ class CaseStudiesController < ApplicationController
   def index
     @case_studies = CaseStudy.where("overview != ?", "No overview available" )
     # @case_studies = CaseStudy.take(24)
-    @search_filter_hash = MethodCategory.all
+    @search_filter_hash = MethodCategory.order(:process_order)
     @case_studies_all = CaseStudy.all
     respond_to do |format|
       format.html { render layout: "wide" }
@@ -55,7 +55,7 @@ class CaseStudiesController < ApplicationController
 
     id = params[:id].to_i
     @case_study = CaseStudy.find(id)
-    
+
     if !current_user.nil?
       @collections = current_user.owned_collections
       @collection = Collection.new(params[:collection])

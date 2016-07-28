@@ -11,10 +11,8 @@ class DesignMethodsController < ApplicationController
 
   def index
       @design_methods = DesignMethod.where("overview != ?", "No overview available" )
-      # .take(24)
-      # @design_methods = DesignMethod.take(24)
-       # Filter bar needs
-      @search_filter_hash = MethodCategory.all
+      # Filter bar needs
+      @search_filter_hash = MethodCategory.order(:process_order)
       @design_methods_all = DesignMethod.all
       respond_to do |format|
         format.html { render :layout => "wide" }
@@ -27,26 +25,11 @@ class DesignMethodsController < ApplicationController
     render :layout => "custom"
   end
 
-  # Edit an existing DesignMethod
-  #
-  # === Parameters
-  # - id: ID of the design method to be edited
-  #
-  # === Variables
-  # - @design_method: the design method to be edited
   def edit
     @design_method = DesignMethod.find(params[:id])
     render :layout => "custom"
   end
 
-
-  # Update an existing DesignMethod corresponding to the ID in the URI
-  #
-  # === Request Body
-  # - design_method: a hash containing information to update the DesignMethod with
-  #
-  # === Variables
-  # - @design_method: the updated design method
   def update
     @design_method = DesignMethod.find(params[:id])
 
@@ -77,14 +60,6 @@ class DesignMethodsController < ApplicationController
     end
   end
 
-
-  # Creates a DesignMethod
-  #
-  # === Request Body
-  # - design_method: a hash containing the required fields for creating a DesignMethod
-  #
-  # === Variables
-  # - @design_method: the newly created design method
   def create
     @design_method = DesignMethod.new(params[:design_method])
     @design_method.owner = current_user
@@ -133,6 +108,7 @@ class DesignMethodsController < ApplicationController
     @method.likes += 1
     @method.save!
     # Method likes end.
+
     @citations = dm.citations
     @author = dm.owner
     @method.save
@@ -143,10 +119,6 @@ class DesignMethodsController < ApplicationController
       format.html { render :layout => "custom" }
       format.json {render :json => @method}
     end
-  end
-
-  def search
-    render :layout => "wide"
   end
 
   # Confirms that user is logged-in.

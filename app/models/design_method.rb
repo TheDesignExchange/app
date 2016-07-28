@@ -25,10 +25,13 @@
 #  history            :text
 #  critiques          :text
 #  additional_reading :text
+#  videoURL           :string(255)
+#  collection_id      :integer
 #  references         :text
 #  characteristic_ids
 #  videoURL           :text
 #  hidden             :boolean
+
 class DesignMethod < ActiveRecord::Base
 
   # TODO: add the mass assignment protection at the controller, then remove this
@@ -57,6 +60,8 @@ class DesignMethod < ActiveRecord::Base
   # Relationships
   has_many :method_characteristics, dependent: :destroy
   has_many :characteristics, through: :method_characteristics
+  has_many :characteristic_groups, -> { uniq }, through: :characteristics
+  has_many :method_categories, -> { uniq }, through: :characteristic_groups
 
   has_many :method_citations, dependent: :destroy
   has_many :citations, through: :method_citations
@@ -98,6 +103,8 @@ class DesignMethod < ActiveRecord::Base
       characteristics.map { |characteristic| characteristic.name }
     end
 
+    integer :characteristic_ids, :multiple => true
+    integer :method_category_ids, :multiple => true
   end
 
   def overview
@@ -188,20 +195,6 @@ class DesignMethod < ActiveRecord::Base
     # logger.info "Similar Case Studies took #{elapsed_time}s to query #{limit} random sample from db."
     # return result
     return []
-  end
-
-  def method_categories
-    categories = Array.new
-    #Currently: inefficient amount of calls b/c most characteristics are in same category
-
-    self.characteristics.each do |c|
-      cat = c.characteristic_group.method_category
-      if !categories.include?(cat)
-        categories << cat
-      end
-    end
-
-    return categories
   end
 
   def update_citations
