@@ -1,20 +1,20 @@
-%a.card{:href => "#{eval("#{@thumb_obj[:link]}_path(#{@thumb_obj[:id]})")}"}
+%a.card{:href => "#{eval("#{thumb_obj[:link]}_path(#{thumb_obj[:id]})")}"}
   .caption
-    %h5= @thumb_obj[:name]
+    %h5= thumb_obj[:name]
     /- if @thumb_obj[:image].url.present?
     /  .image-wrapper
     /    = image_tag @thumb_obj[:image]
-    - if @picture_url.present?
+    - if picture_url.present?
       .image-wrapper
-        = image_tag @picture_url
+        = image_tag picture_url
     %p
-      = "#{@thumb_obj[:overview]}"
+      = "#{thumb_obj[:overview]}"
   .meta
-    - if @thumb_obj[:tags].length > 0
+    - if thumb_obj[:tags].length > 0
       %p.tags
-        - tagifier(@thumb_obj[:tags]).each do |category|
+        - tagifier(thumb_obj[:tags]).each do |category|
           %span.tag-label.label-gap
             = "#{category}"
     %p.views
       %i.glyphicon.glyphicon-eye-open
-      = "#{@thumb_obj[:likes]}"
+      = "#{thumb_obj[:likes]}"
