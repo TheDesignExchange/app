@@ -1,5 +1,7 @@
 %a.card{:href => "#{eval("#{@thumb_obj[:link]}_path(#{@thumb_obj[:id]})")}"}
   = debug @thumb_obj
+  - puts "THUMBNAIL OBJECT HERE!!!!!!"
+  - puts @thumb_obj
   .caption
     %h5= @thumb_obj[:name]
     - if @thumb_obj[:image].url.present?
