@@ -119,7 +119,7 @@ class CaseStudiesController < ApplicationController
 
     respond_to do |format|
       #if @design_method.save
-      if @case_study.save
+      if @case_study.update_attributes(params[:case_study])
         format.html { redirect_to @case_study, notice: 'Case study was successfully created.' }
         format.json { render json: @case_study, status: :created, location: @case_study }
       else
