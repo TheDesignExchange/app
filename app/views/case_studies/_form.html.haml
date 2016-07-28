@@ -243,14 +243,25 @@
       .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
         %h3 Company
         = select("case_study", "company_id", Company.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'}, :class => "form-control")
-      .row
-        .col-xs-6.col-xs-12
-          - if @case_study.picture_url.present?
-            = image_tag(@case_study.picture_url)
-          - else
-            = image_tag("no-image-available.png", :width => "100%", :height => "385")
-      %br/
-      = f.file_field :picture
+
+      - if Rails.env.production?
+        .row
+          .col-xs-6.col-xs-12
+            - if @case_study.picture_url.present?
+              = image_tag(@case_study.picture_url)
+            - else
+              = image_tag("no-image-available.png", :width => "100%", :height => "385")
+        %br/
+        = f.file_field :picture
+      - else
+        .row
+          .col-xs-6.col-xs-12
+            - if @case_study.main_image.url.present?
+              = image_tag(@case_study.main_image)
+            - else
+              = image_tag("no-image-available.png", :width => "100%", :height => "385")
+        %br/
+        = f.file_field :main_image
       / FORMS
       %h3 Problem
       = f.text_area :overview, :class => "form-control markdown", :rows => 12

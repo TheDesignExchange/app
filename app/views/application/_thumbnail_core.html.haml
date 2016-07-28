@@ -4,9 +4,14 @@
     /- if @thumb_obj[:image].url.present?
     /  .image-wrapper
     /    = image_tag @thumb_obj[:image]
-    - if @picture_url.present?
-      .image-wrapper
-        = image_tag @picture_url
+    - if Rails.env.production?
+      - if @picture_url.present?
+        .image-wrapper
+          = image_tag @picture_url
+    - else
+      - if @thumb_obj[:image].url.present?
+        .image-wrapper
+          = image_tag @thumb_obj[:image]
     %p
       = "#{@thumb_obj[:overview]}"
   .meta
