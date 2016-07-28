@@ -7,8 +7,7 @@ DesignExchange::Application.routes.draw do
   resources :characteristics
   resources :tags
   resources :method_case_studies
-  # root "application#index"
-  root "application#landing"
+  root "application#index"
 
   resources :case_studies do
     collection do

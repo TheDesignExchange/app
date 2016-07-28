@@ -23,10 +23,6 @@ class ApplicationController < ActionController::Base
     render layout: "custom"
   end
 
-  def landing
-    render layout: "wide"
-  end 
-
   def search
     # temp param replacement for autocomplete
     if params[:term]
