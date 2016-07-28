@@ -43,7 +43,7 @@
           .h4{:style => "margin-left:3%"}
             Hidden Methods
           - @design_methods.where(:hidden => true).each do |method|
-            = render "/layouts/thumbnail", locals: {thumb_obj: thumbnail(method,"3"), picture_url: method.picture_url}
+            = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3"), :object => @picture_url = method.picture_url
     #sidebar.col-xs-4.col-sm-2
     #results-container.col-xs-8.col-sm-10
       - if (current_user != nil) && (current_user.admin? || current_user.editor?)
@@ -51,4 +51,4 @@
           .h4{:style => "margin-left:3%"}
             Public Methods
       - @design_methods.where(:hidden => false).each do |method|
-        = render "/layouts/thumbnail", locals: {thumb_obj: thumbnail(method,"3"), picture_url: method.picture_url}
+        = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3"), :object => @picture_url = method.picture_url
