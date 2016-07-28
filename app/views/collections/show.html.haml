@@ -63,13 +63,13 @@
 
 .tab-pane.col-md-12.padding{"data-link" => "all"}
   - @collection.design_methods.each do |dm|
-    = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"3")
+    = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(dm,"3"), :object => @picture_url = dm.picture_url
   - @collection.case_studies.each do |cs|
-    = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
+    = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3"), :object => @picture_url = cs.picture_url
 .tab-pane.col-md-12.padding{"data-link" => "dm"}
   - @collection.design_methods.each do |dm|
-    = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"3")
+    = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(dm,"3"), :object => @picture_url = dm.picture_url
 / Case Study Search Tab
 .tab-pane.col-md-12.padding{"data-link" => "cs"}
   - @collection.case_studies.each do |cs|
-    = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
+    = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3"), :object => @picture_url = cs.picture_url
