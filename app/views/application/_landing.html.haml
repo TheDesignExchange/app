@@ -2,7 +2,6 @@
   .howdoesitwork{
     background-color: "gray";
   }
-= render :partial => "layouts/deheader"
 - if !user_signed_in?
   .panel.panel-default.login-margin.panel-primary
     .panel-heading
@@ -70,20 +69,23 @@
   .h2{:style=>"text-align:center; font-size:4em;margin-bottom:10%;"}
     Get Started!
   .col-md-6
-    .thumbnail{:style=>"text-align:center; font-size:3em"}
-      %span.glyphicon.glyphicon-envelope
-      %br
-      Case Studies
+    %a{:href=>'/case_studies'}
+      .thumbnail{:style=>"text-align:center; font-size:3em"}
+        %span.glyphicon.glyphicon-envelope
+        %br
+        Case Studies
   .col-md-6
-    .thumbnail{:style=>"text-align:center; font-size:3em"}
-      %span.glyphicon.glyphicon-envelope
-      %br
-      Design Methods
+    %a{:href=>'/design_methods'}
+      .thumbnail{:style=>"text-align:center; font-size:3em"}
+        %span.glyphicon.glyphicon-envelope
+        %br
+        Design Methods
   .col-md-12
-    .thumbnail{:style=>"text-align:center; font-size:3em"}
-      %span.glyphicon.glyphicon-comment
-      %br
-      Discussions
+    %a{:href=>'/discussions'}
+      .thumbnail{:style=>"text-align:center; font-size:3em"}
+        %span.glyphicon.glyphicon-comment
+        %br
+        Discussions
 .thedxcommunity{:style=>"margin-top:60%;padding:0 10% 0 10%"}
   %hr/
   .h2{:style=>"text-align:center; font-size:2em;margin-bottom:10%;"}
@@ -94,7 +96,8 @@
         = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
       - else
         = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%", :size=>"150x150")
-
+      .h3
+        First Last
       .p
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
@@ -102,6 +105,8 @@
   .col-md-4
     .thumbnail{:style=>"text-align:center; font-size:1em"}
       = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%", :size=>"150x150")
+      .h3
+        First Last
       .p
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
@@ -109,6 +114,8 @@
   .col-md-4
     .thumbnail{:style=>"text-align:center; font-size:1em"}
       = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%", :size=>"150x150")
+      .h3
+        First Last
       .p
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
