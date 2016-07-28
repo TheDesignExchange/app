@@ -101,7 +101,7 @@ class DesignMethodsController < ApplicationController
     end
 
     respond_to do |format|
-      if @design_method.save
+      if @design_method.update_attributes(params[:design_method])
         @design_method.update_citations
         format.html { redirect_to @design_method, notice: 'Design method was successfully created.' }
         format.json { render json: @design_method, status: :created, location: @design_method }
