@@ -36,7 +36,8 @@ class CaseStudy < ActiveRecord::Base
                   :project_domain, :customer_type, :user_age, :privacy_level,
                   :social_setting, :overview, :customer_is_user, :remote_project,
                   :company_id, :num_of_designers, :num_of_users, :overview, :time_period, :time_unit,
-                  :resource, :process, :problem, :outcome, :design_method_ids, :hidden
+                  :resource, :process, :problem, :outcome, :design_method_ids, :hidden,
+                  :picture, :picture_url
 
   belongs_to :company
   has_many :contacts, :through => :company

@@ -54,7 +54,7 @@
   / All Search Tab
   .tab-pane.col-sm-10.padding{"data-link" => "all"}
     - @results[:all].each do |method|
-      = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3")
+      = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3"), :object => @picture_url = method.picture_url
 
   / Method Search Tab
   .tab-pane.col-sm-10.padding{"data-link" => "dm"}
@@ -64,7 +64,7 @@
   / Case Study Search Tab
   .tab-pane.col-sm-10.padding{"data-link" => "cs"}
     - @results[:cs].each do |cs|
-      = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"3")
+      = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3"), :object => @picture_url = cs.picture_url
   / Discussion Search Tap
   .tab-pane.col-sm-10.padding{"data-link" => "disc"}
     - @results[:disc].each do |disc|

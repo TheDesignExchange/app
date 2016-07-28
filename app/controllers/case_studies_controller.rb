@@ -77,6 +77,19 @@ class CaseStudiesController < ApplicationController
   def update
     @case_study = CaseStudy.find(params[:id])
 
+    file = params[:case_study][:picture]
+
+    if !file.nil?
+      if request.original_url.include? "thedesignexchange-staging"
+        path = "staging/case_studies/" + @case_study.id.to_s + "/" + file.original_filename
+      else
+        path = "production/case_studies/" + @case_study.id.to_s + "/" + file.original_filename
+      end
+      obj = S3_BUCKET.object(path)
+      obj.upload_file(file.path, acl:'public-read')
+      @case_study.update(picture_url: obj.public_url)
+    end
+
     respond_to do |format|
       if @case_study.update_attributes(params[:case_study])
         format.html { redirect_to @case_study, notice: 'Case study was successfully updated.' }
@@ -90,6 +103,19 @@ class CaseStudiesController < ApplicationController
 
   def create
     @case_study = CaseStudy.new(params[:case_study])
+
+    file = params[:case_study][:picture]
+
+    if !file.nil?
+      if request.original_url.include? "thedesignexchange-staging"
+        path = "staging/case_studies/" + @case_study.id.to_s + "/" + file.original_filename
+      else
+        path = "production/case_studies/" + @case_study.id.to_s + "/" + file.original_filename
+      end
+      obj = S3_BUCKET.object(path)
+      obj.upload_file(file.path, acl:'public-read')
+      @case_study.update(picture_url: obj.public_url)
+    end
 
     respond_to do |format|
       #if @design_method.save
