@@ -49,7 +49,7 @@ class DesignMethodsController < ApplicationController
   # - @design_method: the updated design method
   def update
     @design_method = DesignMethod.find(params[:id])
-    
+
     file = params[:design_method][:picture]
 
     if !file.nil?
@@ -101,7 +101,7 @@ class DesignMethodsController < ApplicationController
     end
 
     respond_to do |format|
-      if @design_method.save && @upload.save
+      if @design_method.save
         @design_method.update_citations
         format.html { redirect_to @design_method, notice: 'Design method was successfully created.' }
         format.json { render json: @design_method, status: :created, location: @design_method }
