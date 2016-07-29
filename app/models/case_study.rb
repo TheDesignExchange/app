@@ -36,7 +36,8 @@ class CaseStudy < ActiveRecord::Base
                   :project_domain, :customer_type, :user_age, :privacy_level,
                   :social_setting, :overview, :customer_is_user, :remote_project,
                   :company_id, :num_of_designers, :num_of_users, :overview, :time_period, :time_unit,
-                  :resource, :process, :problem, :outcome, :design_method_ids, :hidden
+                  :resource, :process, :problem, :outcome, :design_method_ids, :hidden,
+                  :picture, :picture_url
 
   belongs_to :company
   has_many :contacts, :through => :company
@@ -186,4 +187,34 @@ class CaseStudy < ActiveRecord::Base
     # return result
     return []
   end
+
+  def upload_to_s3(file, url)
+    if !file.nil?
+      if url.include? "thedesignexchange-staging"
+        path = "staging/case_studies/" + self.id.to_s + "/" + file.original_filename
+      else
+        path = "production/case_studies/" + self.id.to_s + "/" + file.original_filename
+      end
+      obj = S3_BUCKET.object(path)
+      obj.upload_file(file.path, acl:'public-read')
+      self.update(picture_url: obj.public_url)
+    end
+  end
+
+  def has_image?
+    if Rails.env.production?
+      return self.picture_url.present?
+    else
+      return self.main_image.url.present?
+    end
+  end
+
+  def image_url
+    if Rails.env.production?
+      return self.picture_url
+    else
+      return self.main_image
+    end
+  end
+
 end

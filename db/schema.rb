@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160721194126) do
+ActiveRecord::Schema.define(version: 20160728235523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 20160721194126) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "hidden",            default: false
+    t.integer  "picture"
+    t.string   "picture_url"
   end
 
   create_table "characteristic_groups", force: true do |t|
@@ -116,10 +118,15 @@ ActiveRecord::Schema.define(version: 20160721194126) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "owner_id"
+    t.integer  "design_method_id"
     t.boolean  "is_private"
     t.text     "overview"
-    t.integer  "owner_id"
   end
+
+  add_index "collections", ["design_method_id"], name: "index_collections_on_design_method_id", using: :btree
+  add_index "collections", ["user_id"], name: "index_collections_on_user_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.text     "text"
@@ -172,10 +179,13 @@ ActiveRecord::Schema.define(version: 20160721194126) do
     t.text     "history"
     t.text     "critiques"
     t.text     "additional_reading"
-    t.string   "videoURL"
-    t.integer  "collection_id"
     t.text     "references"
+    t.integer  "collection_id"
+    t.string   "videoURL"
+    t.text     "prod_image"
     t.boolean  "hidden",             default: false
+    t.integer  "picture"
+    t.string   "picture_url"
   end
 
   add_index "design_methods", ["collection_id"], name: "index_design_methods_on_collection_id", using: :btree

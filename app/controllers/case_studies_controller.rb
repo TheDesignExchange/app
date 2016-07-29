@@ -77,6 +77,11 @@ class CaseStudiesController < ApplicationController
   def update
     @case_study = CaseStudy.find(params[:id])
 
+    if Rails.env.production?
+      file = params[:case_study][:picture]
+      @case_study.upload_to_s3(file, request.original_url)
+    end
+
     respond_to do |format|
       if @case_study.update_attributes(params[:case_study])
         format.html { redirect_to @case_study, notice: 'Case study was successfully updated.' }
@@ -91,9 +96,14 @@ class CaseStudiesController < ApplicationController
   def create
     @case_study = CaseStudy.new(params[:case_study])
 
+    if Rails.env.production?
+      file = params[:case_study][:picture]
+      @case_study.upload_to_s3(file, request.original_url)
+    end
+
     respond_to do |format|
       #if @design_method.save
-      if @case_study.save
+      if @case_study.update_attributes(params[:case_study])
         format.html { redirect_to @case_study, notice: 'Case study was successfully created.' }
         format.json { render json: @case_study, status: :created, location: @case_study }
       else

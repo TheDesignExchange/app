@@ -26,6 +26,7 @@ gem 'haml-rails', group: :development
 
 gem 'rails_12factor', group: :production
 gem 'font_assets'
+gem 'aws-sdk', '~> 2'
 
 gem 'quiet_assets'
 gem 'lograge'

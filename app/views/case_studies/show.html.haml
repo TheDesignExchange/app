@@ -68,9 +68,9 @@
           Edit
     / END MENU BAR
     / CONTENT
-    - if @case_study.main_image.present?
+    - if @case_study.has_image?
       .row
-        = image_tag(@case_study.main_image, :width => "100%")
+      = image_tag(@case_study.image_url, :width => "100%")
     %br/
     / DESCRIPTION
     .row

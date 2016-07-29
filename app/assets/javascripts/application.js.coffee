@@ -149,8 +149,6 @@ $ ->
 
   return
 
-
-
 $(document).ready ($) ->
   $('input#search-input').each( ->
     this.oninput = updateSearchInput
@@ -158,3 +156,5 @@ $(document).ready ($) ->
   )
   initializeMarkdownEditors()
   return
+
+
