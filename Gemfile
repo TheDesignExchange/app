@@ -26,7 +26,6 @@ gem 'haml-rails', group: :development
 
 gem 'rails_12factor', group: :production
 gem 'font_assets'
-gem 'rack-cors', :require => 'rack/cors'
 gem 'aws-sdk', '~> 2'
 
 gem 'quiet_assets'
@@ -37,7 +36,6 @@ gem 'sprockets', '2.11.0'
 
 # Styling
 gem 'bootstrap-sass'
-gem 'sass-rails', '>= 3.2'
 gem 'normalize-rails'
 
 group :development, :test do
