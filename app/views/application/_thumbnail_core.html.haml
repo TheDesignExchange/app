@@ -2,9 +2,9 @@
   .caption
     %h5= @thumb_obj[:name]
     - if Rails.env.production?
-      - if @picture_url.present?
+      - if @thumb_obj[:picture_url].present?
         .image-wrapper
-          = image_tag @picture_url
+          = image_tag @thumb_obj[:picture_url]
     - else
       - if @thumb_obj[:image].url.present?
         .image-wrapper

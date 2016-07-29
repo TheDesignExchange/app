@@ -201,4 +201,20 @@ class CaseStudy < ActiveRecord::Base
     end
   end
 
+  def has_image?
+    if Rails.env.production?
+      return self.picture_url.present?
+    else
+      return self.main_image.url.present?
+    end
+  end
+
+  def image_url
+    if Rails.env.production?
+      return self.picture_url
+    else
+      return self.main_image
+    end
+  end
+
 end

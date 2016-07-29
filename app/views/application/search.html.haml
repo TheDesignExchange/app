@@ -58,7 +58,7 @@
     .tab-pane.col-sm-12.padding#dm{"data-link" => "dm"}
       .row
         - @dm_search.results.each do |method|
-          = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3"), :object => @picture_url = method.picture_url
+          = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3")
       .row
         = will_paginate @dm_search.hits
     - if !@category
@@ -66,6 +66,6 @@
       .tab-pane.col-sm-12.padding#cs{"data-link" => "cs"}
         .row
           - @cs_search.results.each do |cs|
-            = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3"), :object => @picture_url = cs.picture_url
+            = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3")
         .row
           = will_paginate @cs_search.hits

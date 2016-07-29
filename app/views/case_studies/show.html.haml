@@ -68,14 +68,9 @@
           Edit
     / END MENU BAR
     / CONTENT
-    - if Rails.env.production?
-      - if @case_study.picture_url.present?
-        .row
-          = image_tag(@case_study.picture_url, :width => "100%")
-    - else
-      - if @case_study.main_image.url.present?
-        .row
-          = image_tag(@case_study.main_image, :width => "100%")
+    - if @case_study.has_image?
+      .row
+      = image_tag(@case_study.image_url, :width => "100%")
     %br/
     / DESCRIPTION
     .row

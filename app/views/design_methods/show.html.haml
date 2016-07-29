@@ -189,14 +189,9 @@
         %strong Synonyms:
         = @method.synonyms
 
-    - if Rails.env.production?
-      - if @method.picture_url.present?
-        .row
-          = image_tag(@method.picture_url, :width => "100%")
-    - else
-      - if @method.main_image.url.present?
-        .row
-          = image_tag(@method.main_image, :width => "100%")
+    - if @method.has_image?
+      .row
+      = image_tag(@method.image_url, :width => "100%")
 
     - if !@method.usage.blank?
       %h4 When to use
@@ -224,7 +219,7 @@
           = image_tag(@author.profile_picture, class: "fit-all", :style => "padding: 10%")
         - else
           /TODO lol we need to self host this asap
-          = image_tag("http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
+          = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
       .col-xs-8
         %p= link_to @author.first_name + " " + @author.last_name, user_path(@author.id)
         %p= @author.email != nil ? @author.email : "-"
