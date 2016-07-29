@@ -79,17 +79,7 @@ class CaseStudiesController < ApplicationController
 
     if Rails.env.production?
       file = params[:case_study][:picture]
-
-      if !file.nil?
-        if request.original_url.include? "thedesignexchange-staging"
-          path = "staging/case_studies/" + @case_study.id.to_s + "/" + file.original_filename
-        else
-          path = "production/case_studies/" + @case_study.id.to_s + "/" + file.original_filename
-        end
-        obj = S3_BUCKET.object(path)
-        obj.upload_file(file.path, acl:'public-read')
-        @case_study.update(picture_url: obj.public_url)
-      end
+      @case_study.upload_to_s3(file, request.original_url)
     end
 
     respond_to do |format|
@@ -108,17 +98,7 @@ class CaseStudiesController < ApplicationController
 
     if Rails.env.production?
       file = params[:case_study][:picture]
-
-      if !file.nil?
-        if request.original_url.include? "thedesignexchange-staging"
-          path = "staging/case_studies/" + @case_study.id.to_s + "/" + file.original_filename
-        else
-          path = "production/case_studies/" + @case_study.id.to_s + "/" + file.original_filename
-        end
-        obj = S3_BUCKET.object(path)
-        obj.upload_file(file.path, acl:'public-read')
-        @case_study.update(picture_url: obj.public_url)
-      end
+      @case_study.upload_to_s3(file, request.original_url)
     end
 
     respond_to do |format|

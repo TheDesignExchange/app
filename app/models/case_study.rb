@@ -187,4 +187,18 @@ class CaseStudy < ActiveRecord::Base
     # return result
     return []
   end
+
+  def upload_to_s3(file, url)
+    if !file.nil?
+      if url.include? "thedesignexchange-staging"
+        path = "staging/case_studies/" + self.id.to_s + "/" + file.original_filename
+      else
+        path = "production/case_studies/" + self.id.to_s + "/" + file.original_filename
+      end
+      obj = S3_BUCKET.object(path)
+      obj.upload_file(file.path, acl:'public-read')
+      self.update(picture_url: obj.public_url)
+    end
+  end
+
 end

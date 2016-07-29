@@ -35,17 +35,7 @@ class DesignMethodsController < ApplicationController
 
     if Rails.env.production?
       file = params[:design_method][:picture]
-
-      if !file.nil?
-        if request.original_url.include? "thedesignexchange-staging"
-          path = "staging/design_methods/" + @design_method.id.to_s + "/" + file.original_filename
-        else
-          path = "production/design_methods/" + @design_method.id.to_s + "/" + file.original_filename
-        end
-        obj = S3_BUCKET.object(path)
-        obj.upload_file(file.path, acl:'public-read')
-        @design_method.update(picture_url: obj.public_url)
-      end
+      @design_method.upload_to_s3(file, request.original_url)
     end
 
     respond_to do |format|
@@ -66,17 +56,7 @@ class DesignMethodsController < ApplicationController
 
     if Rails.env.production?
       file = params[:design_method][:picture]
-
-      if !file.nil?
-        if request.original_url.include? "thedesignexchange-staging"
-          path = "staging/design_methods/" + @design_method.id.to_s + "/" + file.original_filename
-        else
-          path = "production/design_methods/" + @design_method.id.to_s + "/" + file.original_filename
-        end
-        obj = S3_BUCKET.object(path)
-        obj.upload_file(file.path, acl:'public-read')
-        @design_method.update(picture_url: obj.public_url)
-      end
+      @design_method.upload_to_s3(file, request.original_url)
     end
 
     respond_to do |format|

@@ -199,29 +199,28 @@ class DesignMethod < ActiveRecord::Base
 
   def update_citations
     # Add Method references as citations
-    @citations = self.citations
-    @references = self.references
-    if !@references.nil?
-      count = @citations.count
-      for i in 0..(count - 1)
-        if !@references.include? @citations[i].text
-          @citations.delete(@citations[i].id)
+    citations = self.citations
+    references = self.references
+    if !references.nil?
+      citations.each do |c|
+        if !references.include? c.text
+          c.destroy
         end
       end
     else
-      @references = ""
-      @citations.each do |c|
-        if !@references.include? c.text
-          @references += c.text + "\n"
+      references = ""
+      citations.each do |c|
+        if !references.include? c.text
+          references += c.text + "\n"
         end
       end
     end
-    if !@references.blank?
-      urls = @references.split("\n")
+    if !references.blank?
+      urls = references.split("\n")
       urls.each do |url|
         if !url.blank?
           contains = false
-          @citations.each do |c|
+          citations.each do |c|
             if c.text.strip == url.strip
               contains = true
             end
@@ -229,12 +228,26 @@ class DesignMethod < ActiveRecord::Base
           if !contains
             citation = Citation.new(text: url.strip)
             citation.save
-            @citations.push(citation)
+            citations.push(citation)
           end
         end
       end
     end
     self.save
+  end
+
+
+  def upload_to_s3(file, url)
+    if !file.nil?
+      if url.include? "thedesignexchange-staging"
+        path = "staging/design_methods/" + self.id.to_s + "/" + file.original_filename
+      else
+        path = "production/design_methods/" + self.id.to_s + "/" + file.original_filename
+      end
+      obj = S3_BUCKET.object(path)
+      obj.upload_file(file.path, acl:'public-read')
+      self.update(picture_url: obj.public_url)
+    end
   end
 
 end
