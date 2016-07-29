@@ -197,6 +197,20 @@ class DesignMethod < ActiveRecord::Base
     return []
   end
 
+  def method_categories
+    categories = Array.new
+    #Currently: inefficient amount of calls b/c most characteristics are in same category
+
+    self.characteristics.each do |c|
+      cat = c.characteristic_group.method_category
+      if !categories.include?(cat)
+        categories << cat
+      end
+    end
+
+    return categories
+  end
+
   def update_citations
     # Add Method references as citations
     @citations = self.citations
