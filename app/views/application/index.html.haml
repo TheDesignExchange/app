@@ -1,21 +1,21 @@
-- if user_signed_in?
-  / Methods
-  .row
-    .col-md-4
-      %h3= link_to "Methods", design_methods_path
-      %p Discover new ways to approach design problems.
-    .col-md-8
-      .row
-        - @design_methods.each do |method|
-          = render "/application/thumbnail_compact", locals: @thumb_obj = thumbnail(method, "3")
-  / Case Studies
-  .row
-    .col-md-4
-      %h3= link_to "Case Studies", case_studies_path
-      %p Find examples of real world design problems.
-    .col-md-8
-      .row
-        - @case_studies.each do |cs|
-          = render "/application/thumbnail_compact", locals: @thumb_obj = thumbnail(cs, "3")
-- else
-  = render partial: "landing"
+/ - if user_signed_in?
+/   / Methods
+/   .row
+/     .col-md-4
+/       %h3= link_to "Methods", design_methods_path
+/       %p Discover new ways to approach design problems.
+/     .col-md-8
+/       .row
+/         - @design_methods.each do |method|
+/           = render "/application/thumbnail_compact", locals: @thumb_obj = thumbnail(method, "3")
+/   / Case Studies
+/   .row
+/     .col-md-4
+/       %h3= link_to "Case Studies", case_studies_path
+/       %p Find examples of real world design problems.
+/     .col-md-8
+/       .row
+/         - @case_studies.each do |cs|
+/           = render "/application/thumbnail_compact", locals: @thumb_obj = thumbnail(cs, "3")
+/ - else
+= render partial: "landing"

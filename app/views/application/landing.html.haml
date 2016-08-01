@@ -1,3 +1,8 @@
+
+:css
+  .howdoesitwork{
+    background-color: "gray";
+  }
 %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
 - if !user_signed_in?
   .panel.panel-default.login-margin.panel-primary
@@ -26,9 +31,9 @@
         %br/
         .row
           .col-md-12
-            .col-xs-6.col-md-8
+            .col-md-8
               = link_to "Sign in", new_session_path(resource_name)
-            .col-xs-8.col-md-4
+            .col-md-4
               = f.submit "Register", {:class=> "btn btn-default pull-right" }
 .howdoesitwork{:style=>"margin-top:15%;padding:0 10% 0 10%"}
   %hr/
