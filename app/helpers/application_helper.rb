@@ -121,7 +121,8 @@ module ApplicationHelper
           :id => obj.id,
           :link => "case_study",
           :col_md_value => col_md_value,
-          :word_count => word_count
+          :word_count => word_count,
+          :picture_url => obj.picture_url
         }
     elsif obj.is_a?(Discussion)
       thumb_obj=

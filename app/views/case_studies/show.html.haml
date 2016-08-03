@@ -7,13 +7,27 @@
   #new_collection {
     padding: 0px 20px 40px 20px;
   }
-  .dropdown-menu {
-    max-width: 200px;
+  #new-col-show {
+    margin: 10px 20px;
+  }
+  .existing-study {
+    padding: 3px 20px;
+    white-space: nowrap;
+    background: whitesmoke;
   }
 :javascript
   $(document).ready(function() {
     $('.dropdown-menu input').click(function(e) {
       e.stopPropagation(); //This will prevent the event from bubbling up and close the dropdown when you type/click on text boxes.
+    });
+    $('#new-col-show').click(function(e) {
+      $('#new-col-show').css("display", "none");
+      $('#new_collection').css("display", "block");
+      e.stopPropagation();
+    });
+    $('.dropdown-toggle').click(function(e) {
+      $('#new-col-show').css("display", "block");
+      $('#new_collection').css("display", "none");
     });
   });
 
@@ -46,8 +60,15 @@
               %b.caret
             %ul.dropdown-menu
               -@collections.each do |collection|
-                %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :cs_id => @case_study.id)
+                - if collection.case_studies.include? @case_study
+                  %li.existing-study
+                    = collection.name + " (added)"
+                - else
+                  %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :cs_id => @case_study.id)
 
+              %a.btn.btn-default.pull-right.btn-index-create#new-col-show
+                %span.glyphicon.glyphicon-plus
+                Add to New Collection
               = form_for @collection do |f|
                 .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
                 = f.hidden_field :cs_id, :value => @case_study.id
