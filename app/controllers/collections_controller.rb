@@ -55,7 +55,6 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    puts "I GET TO SHOW!!!!!"
     id = params[:id].to_i
     @user = current_user
     @collection = Collection.find(id)
@@ -74,7 +73,6 @@ class CollectionsController < ApplicationController
   # - @case_study: the case study to be added
 
   def add
-    puts "DO I GET HERE??????"
     @collection = Collection.find(params[:col_id])
 
     if params.has_key?(:method_id)
@@ -86,7 +84,6 @@ class CollectionsController < ApplicationController
       @collection.case_studies.push(@case_study)
     end
 
-    puts "I GET TO ADD!!!!!"
     respond_to do |format|
       if @collection.save
         format.html { redirect_to :back, notice: 'Successfully added to Collection.'}
