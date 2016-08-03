@@ -151,7 +151,8 @@
                     %li.existing-method
                       = collection.name + " (added)"
                   - else
-                    %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :method_id => @method.id)
+                    %li=link_to collection.name, add_to_collection_path
+                    /%li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :method_id => @method.id)
 
                 %a.btn.btn-default.pull-right.btn-index-create#new-col-show
                   %span.glyphicon.glyphicon-plus
