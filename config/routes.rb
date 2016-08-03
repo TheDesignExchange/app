@@ -27,7 +27,6 @@ DesignExchange::Application.routes.draw do
   get '/collections/add', to: 'collections#add', as: "add_to_collection"
   get '/collections/:id/edit/delete', to: 'collections#delete', as: "delete_collection"
   resources :collections
-  
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
