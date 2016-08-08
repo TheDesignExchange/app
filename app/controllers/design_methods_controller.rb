@@ -21,6 +21,7 @@ class DesignMethodsController < ApplicationController
   end
 
   def new
+    @new = true
     @design_method = DesignMethod.new
     render :layout => "custom"
   end
@@ -116,4 +117,12 @@ class DesignMethodsController < ApplicationController
     end
   end
 
+
+  def destroy
+    @design_method = DesignMethod.find(params[:id])
+    DesignMethod.delete(@design_method)
+    respond_to do |format|
+        format.html { redirect_to '/design_methods', notice: 'Design method was successfully deleted.' }
+    end
+  end
 end
