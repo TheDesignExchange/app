@@ -70,6 +70,10 @@
     border-style: solid;
     border-color: transparent black transparent transparent;
   }
+  .citation-tag { background: #ccc; border-right:1px solid #aaa; border-bottom:1px solid #aaa; margin:5px; padding:2px 5px; text-decoration:none; }
+  .citation-tag:hover { background: #eee; }
+  .citation-tag span { color:#666; padding:3px; }
+  .citation-tag span:hover { background: #f00; }
 
 :javascript
   $(function(){
@@ -244,7 +248,21 @@
     %div.more-info
       %a#citations More Info
       %div.tool-help This section lists the sources used to develop the content on theDesignExchange for the method.
-    = f.text_area :references, :class => "form-control markdown", :rows => 6
+    #citationcontent
+
+    - if @design_method.references != nil
+      - for reference in @design_method.references.split("\r\n\r\n")
+        .citation-tag
+          = reference
+          = button_to "Remove citation"
+    .row
+      %h4 Citations
+      .input-group
+        %input.form-control{:type => "text"}/
+        %span.input-group-btn
+          %button.btn.btn-default{:onclick => "", :type => "button"} Add Citation
+      %br/
+    / = f.text_area :references, :class => "form-control markdown", :rows => 6
 
     %h3.more-info-headers Additional Reading
     %div.more-info

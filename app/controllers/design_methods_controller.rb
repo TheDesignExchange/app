@@ -147,6 +147,11 @@ class DesignMethodsController < ApplicationController
     end
   end
 
+  def addCitation
+    @design_method = DesignMethod.find(params[:id])
+    @design_method.references = @design_method.references
+  end
+    
   def search
     render :layout => "wide"
   end
