@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   check_authorization :unless => :devise_controller?
-  skip_authorization_check :only => [:index, :search, :about]
+
+  skip_authorization_check :only => [:landing, :index, :search, :search_db, :about]
   protect_from_forgery with: :exception
   add_flash_types :success, :warning, :danger, :info
 
@@ -21,6 +22,10 @@ class ApplicationController < ActionController::Base
   def about
     render layout: "custom"
   end
+
+  def landing
+    render layout: "wide"
+  end 
 
   def search
     # temp param replacement for autocomplete

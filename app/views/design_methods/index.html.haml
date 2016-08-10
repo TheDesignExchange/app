@@ -5,7 +5,7 @@
   	var eH = $('#create-btn').height()
   	$('#create-btn').css('margin-top', (pH - eH)/2)
     $('#hidden').click(function() {
-      $("#hiddenMethods").toggle();
+      $("#hiddenMethods").toggle(this.checked);
     });
   });
 :css
