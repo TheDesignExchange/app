@@ -31,9 +31,9 @@
         %h1.header-font
           = image_tag "logo2.png", class: "logo"
         %p.subtitle where designers and researchers share methods and best practices
-        = form_tag('/search')
-        = text_field_tag('query', nil, placeholder: 'Search', class: 'form-search', id: 'search-input')
-        = submit_tag('Search', class: "btn btn-default")
+        = form_tag('/search') do
+          = text_field_tag('query', nil, placeholder: 'Search', class: 'form-search', id: 'search-input')
+          = submit_tag('Search', class: "btn btn-default")
       - if !user_signed_in?
         .col-md-4
           %p Sign In
