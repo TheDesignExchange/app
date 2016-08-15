@@ -95,9 +95,9 @@ class DesignMethod < ActiveRecord::Base
     text :overview, stored: true
     text :process, stored: true
 
-    # text :method_categories do
-    #   method_categories.map { |method_category| method_category.name }
-    # end
+    text :method_categories do
+      method_categories.map { |method_category| method_category.name }
+    end
 
     text :characteristics do
       characteristics.map { |characteristic| characteristic.name }
