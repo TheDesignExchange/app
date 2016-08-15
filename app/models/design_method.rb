@@ -39,7 +39,7 @@ class DesignMethod < ActiveRecord::Base
                   :main_image, :time_period, :name, :time_unit, :synonyms, :benefits,
                   :limitations, :skills, :usage, :online_resources, :history, :critiques,
                   :additional_reading, :characteristic_ids, :references, :case_study_ids,
-                  :videoURL, :hidden, :picture, :picture_url
+                  :videoURL, :hidden, :picture, :picture_url, :video_attribution, :video_caption
 
   # Validations
   validates :name, :overview, presence: true

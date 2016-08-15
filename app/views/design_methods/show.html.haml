@@ -223,6 +223,12 @@
       %h4 Video
 
       %iframe{:allowfullscreen => "", :frameborder => "1", :height => "315", :src => @method.videoURL, :width => "560"}
+    %p
+      = @method.video_caption
+    %h5 Video Attributions
+    %p
+      = @method.video_attribution
+
     %h4 Contributing Authors
     .col-xs-6
       .col-xs-4
