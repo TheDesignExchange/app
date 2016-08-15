@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728235523) do
+ActiveRecord::Schema.define(version: 20160815165403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,12 +180,13 @@ ActiveRecord::Schema.define(version: 20160728235523) do
     t.text     "critiques"
     t.text     "additional_reading"
     t.text     "references"
-    t.integer  "collection_id"
     t.string   "videoURL"
-    t.text     "prod_image"
+    t.integer  "collection_id"
     t.boolean  "hidden",             default: false
     t.integer  "picture"
     t.string   "picture_url"
+    t.string   "video_attribution"
+    t.string   "video_caption"
   end
 
   add_index "design_methods", ["collection_id"], name: "index_design_methods_on_collection_id", using: :btree
