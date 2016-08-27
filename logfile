@@ -1,0 +1,12 @@
+LOG:  database system was shut down at 2016-08-27 11:49:56 PDT
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "thedesignexchange_development" does not exist
+FATAL:  database "thedesignexchange_development" does not exist
+FATAL:  database "thedesignexchange_development" does not exist
+FATAL:  database "thedesignexchange_development" does not exist
+FATAL:  database "thedesignexchange_development" does not exist
+LOG:  incomplete startup packet
+LOG:  incomplete startup packet
+LOG:  incomplete startup packet
