@@ -102,6 +102,13 @@ class DesignMethodsController < ApplicationController
     end
   end
 
+  def removeImage
+    @design_method = DesignMethod.find(params[:id])
+    @design_method.remove_main_image
+    respond_to do |format|
+      format.html { redirect_to '/design_methods', notice: 'Image was successfully removed.' }
+    end
+  end
   # Confirms that user is logged-in.
   def edit_as_signed_in_user
     unless signed_in?

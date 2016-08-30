@@ -203,7 +203,7 @@
     - if @method.has_image?
       .row
       = image_tag(@method.image_url, :width => "100%")
-
+      = button_to "Remove Image", :controller => "design_methods", :action => :removeImage, :id => @method.id
     - if !@method.usage.blank?
       %h4 When to use
       %p= md_format(@method.usage)
