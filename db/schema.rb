@@ -118,15 +118,10 @@ ActiveRecord::Schema.define(version: 20160815165403) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
-    t.integer  "owner_id"
-    t.integer  "design_method_id"
     t.boolean  "is_private"
     t.text     "overview"
+    t.integer  "owner_id"
   end
-
-  add_index "collections", ["design_method_id"], name: "index_collections_on_design_method_id", using: :btree
-  add_index "collections", ["user_id"], name: "index_collections_on_user_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.text     "text"
@@ -179,9 +174,9 @@ ActiveRecord::Schema.define(version: 20160815165403) do
     t.text     "history"
     t.text     "critiques"
     t.text     "additional_reading"
-    t.text     "references"
     t.string   "videoURL"
     t.integer  "collection_id"
+    t.text     "references"
     t.boolean  "hidden",             default: false
     t.integer  "picture"
     t.string   "picture_url"
