@@ -90,6 +90,8 @@
         %th First Name
         %th Last Name
         %th Email
+        %th Affiliation
+        %th Zip Code
         %th Permission
     %tbody
     - for user in @users
@@ -102,6 +104,10 @@
           = user.last_name
         %td
           = user.email
+        %td
+          = user.affiliation
+        %td
+          = user.zip_code
         %td
           - if user.admin?
             %li.dropdown{:style => "list-style: none"}

@@ -103,6 +103,10 @@
       .col-md-12
         %h4 About
         %p= @user.about_text
+    - if @user.affiliation != nil
+      .col-md-12
+        %h4 Affiliation
+        %p= @user.affiliation
     - if @user.email != nil || @user.website != nil || @user.phone_number != nil
       .col-md-12
         %h4 Contact

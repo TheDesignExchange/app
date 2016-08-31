@@ -63,6 +63,12 @@
         %h4 About
         = f.text_area :about_text, {:autofocus => true, :class => "form-control", :row => "3"}
       .col-md-12
+        %h4 Affiliation
+        = f.text_area :affiliation, {:autofocus => true, :class => "form-control", :row => "3"}
+      .col-md-12
+        %h4 Zip Code
+        = f.text_area :zip_code, {:autofocus => true, :class => "form-control", :row => "3"}
+      .col-md-12
         %h4 Contact
         = f.text_field :website, {:autofocus => true, :class => "form-control", :placeholder => "Website"}
         = f.phone_field :phone_number, {:autofocus => true, :class => "form-control", :placeholder => "Phone Number"}
