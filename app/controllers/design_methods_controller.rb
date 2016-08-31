@@ -34,6 +34,10 @@ class DesignMethodsController < ApplicationController
   def update
     @design_method = DesignMethod.find(params[:id])
 
+    if !(current_user.admin? || current_user.editor?)
+      @design_method.hidden = true
+    end
+
     if Rails.env.production?
       file = params[:design_method][:picture]
       @design_method.upload_to_s3(file, request.original_url)
@@ -54,6 +58,10 @@ class DesignMethodsController < ApplicationController
   def create
     @design_method = DesignMethod.new(params[:design_method])
     @design_method.owner = current_user
+
+    if !(current_user.admin? || current_user.editor?)
+      @design_method.hidden = true
+    end
 
     if Rails.env.production?
       file = params[:design_method][:picture]

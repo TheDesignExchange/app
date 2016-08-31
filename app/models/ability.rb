@@ -36,6 +36,8 @@ class Ability
     can :manage, User, :id => user.id
     can :manage, Collection, :owner_id => user.id
     can :read, Collection, :is_private => false
+    can :create, DesignMethod
+    can [:edit, :update], DesignMethod, :owner => user
 
     if user.admin?
       # non-REST-ful actions in the administrator controller

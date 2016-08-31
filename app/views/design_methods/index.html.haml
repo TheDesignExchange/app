@@ -45,10 +45,23 @@
             Hidden Methods
           - @design_methods.where(:hidden => true).each do |method|
             = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3")
+    - elsif current_user != nil && !@design_methods.where(:owner => current_user).empty?# signed in basic user with created methods
+      #results-container.col-xs-8.col-sm-10
+        #hiddenMethods
+          .h4{:style => "margin-left:3%"}
+            My Hidden Methods
+          .h5{:style => "margin-left:3%"}
+            An admin or editor has to approve these for public visibility
+          - @design_methods.where(:owner => current_user).where(:hidden => true).each do |method|
+            = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3")
     #sidebar.col-xs-4.col-sm-2
 
     #results-container.col-xs-8.col-sm-10
       - if (current_user != nil) && (current_user.admin? || current_user.editor?)
+        #publicMethods
+          .h4{:style => "margin-left:3%"}
+            Public Methods
+      - elsif current_user != nil && !@design_methods.where(:owner => current_user).empty?# signed in basic user with created methods
         #publicMethods
           .h4{:style => "margin-left:3%"}
             Public Methods
