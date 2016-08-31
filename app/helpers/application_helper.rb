@@ -73,19 +73,19 @@ module ApplicationHelper
                 "</ul>
             </div>
              </ul>"
-      else
-        str = "<ul class='sidebar-element'>
-            <div class='category' >
-              <a class='category-heading'> #{key} </a>
-                <ul class='collapse sidebar-element in'>"+
-                  options +
-                "</ul>
-            </div>
-             </ul>"
-      end
-
-      return str
+    else
+      str = "<ul class='sidebar-element'>
+          <div class='category' >
+            <a class='category-heading'> #{key} </a>
+              <ul class='collapse sidebar-element in'>"+
+                options +
+              "</ul>
+          </div>
+            </ul>"
     end
+
+    return str
+  end
 
   def leaf (key)
     return "<label class='sidebar-leaf'>
@@ -108,7 +108,7 @@ module ApplicationHelper
           :link => "design_method",
           :col_md_value => col_md_value,
           :word_count => word_count,
-          :picture_url => obj.picture_url
+          :picture_url => obj.image_url
         }
     elsif obj.is_a?(CaseStudy)
       thumb_obj=
@@ -122,7 +122,7 @@ module ApplicationHelper
           :link => "case_study",
           :col_md_value => col_md_value,
           :word_count => word_count,
-          :picture_url => obj.picture_url
+          :picture_url => obj.image_url
         }
     elsif obj.is_a?(Discussion)
       thumb_obj=
@@ -248,7 +248,7 @@ module ApplicationHelper
 
     return filters
   end
-  
+
   def resource_name
     :user
   end
