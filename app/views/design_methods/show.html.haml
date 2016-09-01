@@ -119,6 +119,19 @@
       - @method.tags.each do |t|
         = tagify(t.id, t.content, {:removable => false})
       = "No tags available" unless not @method.tags.empty?
+  - if current_user.admin? || current_user.editor?
+    .row 
+      %h4 Completion Score
+      %p 
+        /calculate the completion score if it has not been done already
+        - score = 0
+        - for attribute in @design_method.attributes.keys
+          - if @design_method[attribute] != nil && @design_method[attribute] != ""
+            - score += 1
+        - @design_method.completion_score = score
+        - @design_method.save
+        = score
+       
   .row
     %h4 Characteristics
     - @method.method_categories.each do |category|
@@ -242,6 +255,7 @@
       .col-xs-8
         %p= link_to @author.first_name + " " + @author.last_name, user_path(@author.id)
         %p= @author.email != nil ? @author.email : "-"
+
 
   /Method instructions
   .tab-pane.row{"data-link" => "instructions"}
