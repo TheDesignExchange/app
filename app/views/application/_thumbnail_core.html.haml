@@ -18,8 +18,9 @@
         - tagifier(@thumb_obj[:tags]).each do |category|
           %span.tag-label.label-gap
             = "#{category}"
-    %i.glyphicon.glyphicon-pencil
-      %b= "#{@thumb_obj[:completion_score]}"
+    - if current_user.admin? || current_user.editor?
+      %i.glyphicon.glyphicon-pencil
+        %b= "#{@thumb_obj[:completion_score]}"
 
     %p.views
       %i.glyphicon.glyphicon-eye-open
