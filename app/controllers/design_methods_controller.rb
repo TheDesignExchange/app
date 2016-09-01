@@ -104,7 +104,7 @@ class DesignMethodsController < ApplicationController
 
   def removeImage
     @design_method = DesignMethod.find(params[:id])
-    @design_method.remove_main_image
+    @design_method.main_image = nil
     respond_to do |format|
       format.html { redirect_to '/design_methods', notice: 'Image was successfully removed.' }
     end

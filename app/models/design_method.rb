@@ -40,7 +40,7 @@ class DesignMethod < ActiveRecord::Base
                   :limitations, :skills, :usage, :online_resources, :history, :critiques,
                   :additional_reading, :characteristic_ids, :references, :case_study_ids,
                   :videoURL, :hidden, :picture, :picture_url, :video_attribution, :video_caption, 
-                  :image_url, :remove_main_image
+                  :image_url, :main_image
 
   # Validations
   validates :name, :overview, presence: true
@@ -257,6 +257,8 @@ class DesignMethod < ActiveRecord::Base
       return self.main_image.url.present?
     end
   end
+
+  
 
   def image_url
     if Rails.env.production?
