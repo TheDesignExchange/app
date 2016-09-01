@@ -90,18 +90,24 @@
         %th First Name
         %th Last Name
         %th Email
+        %th Affiliation
+        %th Zip Code
         %th Permission
     %tbody
     - for user in @users
       %tr
         %td
-          = user.username
+          = link_to user.username, user
         %td
           = user.first_name
         %td
           = user.last_name
         %td
           = user.email
+        %td
+          = user.affiliation
+        %td
+          = user.zip_code
         %td
           - if user.admin?
             %li.dropdown{:style => "list-style: none"}
@@ -170,7 +176,7 @@
             = CharacteristicGroup.find_by(id:char.characteristic_group).name
           - else
             = "None"
-        %td 
+        %td
           = char.updated_at
 
 

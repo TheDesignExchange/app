@@ -236,7 +236,6 @@ class DesignMethod < ActiveRecord::Base
     self.save
   end
 
-
   def upload_to_s3(file, url)
     if !file.nil?
       if url.include? "thedesignexchange-staging"

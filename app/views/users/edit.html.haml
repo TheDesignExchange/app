@@ -9,7 +9,7 @@
              .siblings()
              .removeClass('active');
       var link = $(this).data('link');
-  
+
       // $('.tab-pane[data-link ~="'+ link +'"]').hide();
       $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
     })
@@ -63,6 +63,12 @@
         %h4 About
         = f.text_area :about_text, {:autofocus => true, :class => "form-control", :row => "3"}
       .col-md-12
+        %h4 Affiliation
+        = f.text_area :affiliation, {:autofocus => true, :class => "form-control", :row => "3"}
+      .col-md-12
+        %h4 Zip Code
+        = f.text_area :zip_code, {:autofocus => true, :class => "form-control", :row => "3"}
+      .col-md-12
         %h4 Contact
         = f.text_field :website, {:autofocus => true, :class => "form-control", :placeholder => "Website"}
         = f.phone_field :phone_number, {:autofocus => true, :class => "form-control", :placeholder => "Phone Number"}
@@ -100,8 +106,6 @@
           %li
             %a{"data-link" => "cs"} Case Studies
           %li
-            %a{"data-link" => "disc"} Discussions
-          %li
             %a{"data-link" => "col"} Collections
       / END NAVBAR
       .tab-pane.col-md-12.padding{"data-link" => "all"}
@@ -112,15 +116,11 @@
           = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4")
       / Case Study Search Tab
       .tab-pane.col-md-12.padding{"data-link" => "cs"}
-      / Discussion Search Tap
-      .tab-pane.col-md-12.padding{"data-link" => "disc"}
-        - @owned_discussions.each do |disc|
-          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"4")
 
       .tab-pane.col-md-12.padding{"data-link" => "col"}
         -if @private_collections.empty?
           %h2 No private collections
-        -else 
+        -else
           %h2 Private
         %ul.collections
           - @private_collections.each do |collection|
@@ -131,7 +131,7 @@
 
         -if @private_collections.empty?
           %h2 No public collections
-        -else 
+        -else
           %h2 Public
         %ul
           - @public_collections.each do |collection|

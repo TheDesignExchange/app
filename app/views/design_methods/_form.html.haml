@@ -179,8 +179,9 @@
   .tab-pane.row{"data-link" => "overview"}
     / INPUT METHOD NAME
 
-    = f.check_box :hidden
-    Hidden Method?
+    - if (current_user.admin? || current_user.editor?)
+      = f.check_box :hidden
+      Hidden Method?
 
     %h3
       Method Name
