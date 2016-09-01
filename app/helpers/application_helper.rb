@@ -108,6 +108,7 @@ module ApplicationHelper
           :link => "design_method",
           :col_md_value => col_md_value,
           :word_count => word_count,
+          :completion_score => obj.completion_score,
           :picture_url => obj.image_url
         }
     elsif obj.is_a?(CaseStudy)
