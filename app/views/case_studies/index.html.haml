@@ -16,6 +16,7 @@
         - if (current_user != nil) && (current_user.admin? || current_user.editor?)
           %input{:name => "hidden", :type => "checkbox", :id => "hidden", :style => "margin: 0px 5px 15px 0px"} Show hidden Case Studies
           %br
+          = link_to "Sort by Completion Score", {:controller => "case_studies", :action => "index", :sort_order => "completion"}, :class => "btn btn-primary"
       .col-md-6
         = link_to new_case_study_path, :id => "create-btn", :class => "btn btn-default pull-right btn-index-create"  do
           %span.glyphicon.glyphicon-plus

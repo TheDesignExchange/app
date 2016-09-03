@@ -5,8 +5,11 @@ class CaseStudiesController < ApplicationController
   before_action :create_as_signed_in_user, only: [:create, :new]
 
   def index
-    @case_studies = CaseStudy.where("overview != ?", "No overview available" )
+    @case_study = CaseStudy.where("overview != ?", "No overview available" )
     # @case_studies = CaseStudy.take(24)
+    if params[:sort_order] == "completion"
+      @case_study = CaseStudy.order(completion_score: :desc)
+    end
     @search_filter_hash = MethodCategory.order(:process_order)
     @case_studies_all = CaseStudy.all
     respond_to do |format|

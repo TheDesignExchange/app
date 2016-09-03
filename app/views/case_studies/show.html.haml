@@ -102,7 +102,19 @@
       %p= @case_study.process.blank? ? "-" : md_format(@case_study.process)
       %h3 Outcome/Benefits
       %p= @case_study.outcome.blank? ? "-" : md_format(@case_study.outcome)
-
+      
+    - if (current_user != nil) && (current_user.admin? || current_user.editor?)
+      .row 
+        %h4 Completion Score
+        %p 
+          /calculate the completion score if it has not been done already
+          - score = 0
+          - for attribute in @case_study.attributes.keys
+            - if @case_study[attribute] != nil && @case_study[attribute] != ""
+              - score += 1
+          - @case_study.completion_score = score
+          - @case_study.save
+          = score
       - if !@case_study.design_methods.blank?
         %h3 Related Design Methods
         - @case_study.design_methods.each do |dm|
