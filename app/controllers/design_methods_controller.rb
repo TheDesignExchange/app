@@ -23,6 +23,7 @@ class DesignMethodsController < ApplicationController
       end
   end
 
+
   def new
     @new = true
     @design_method = DesignMethod.new

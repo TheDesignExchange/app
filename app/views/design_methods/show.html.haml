@@ -119,7 +119,7 @@
       - @method.tags.each do |t|
         = tagify(t.id, t.content, {:removable => false})
       = "No tags available" unless not @method.tags.empty?
-  - if current_user.admin? || current_user.editor?
+  - if (current_user != nil) && (current_user.admin? || current_user.editor?)
     .row 
       %h4 Completion Score
       %p 
