@@ -103,6 +103,11 @@
       %h3 Outcome/Benefits
       %p= @case_study.outcome.blank? ? "-" : md_format(@case_study.outcome)
       
+      - if !@case_study.design_methods.blank?
+        %h3 Related Design Methods
+        - @case_study.design_methods.each do |dm|
+          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4")
+
     - if (current_user != nil) && (current_user.admin? || current_user.editor?)
       .row 
         %h4 Completion Score
@@ -115,12 +120,6 @@
           - @case_study.completion_score = score
           - @case_study.save
           = score
-    - if !@case_study.design_methods.blank?
-      %h3 Related Design Methods
-      - @case_study.design_methods.each do |dm|
-        = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4")
-
-
     / END DESCRIPTION
     - render "related_content"
     / END CONTENT
