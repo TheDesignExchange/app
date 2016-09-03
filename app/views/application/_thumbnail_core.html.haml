@@ -1,5 +1,6 @@
 %a.card{:href => "#{eval("#{@thumb_obj[:link]}_path(#{@thumb_obj[:id]})")}"}
   .caption
+    /%h5= @thumb_obj[:name]
     %h5= @thumb_obj[:name]
     - if Rails.env.production?
       - if @thumb_obj[:picture_url].present?
@@ -17,6 +18,10 @@
         - tagifier(@thumb_obj[:tags]).each do |category|
           %span.tag-label.label-gap
             = "#{category}"
+    - if current_user != nil && (current_user.admin? || current_user.editor?)
+      %i.glyphicon.glyphicon-pencil
+        %b= "#{@thumb_obj[:completion_score]}"
+
     %p.views
       %i.glyphicon.glyphicon-eye-open
       = "#{@thumb_obj[:likes]}"

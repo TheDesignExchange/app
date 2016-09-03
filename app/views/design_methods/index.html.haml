@@ -7,6 +7,7 @@
     $('#hidden').click(function() {
       $("#hiddenMethods").toggle(this.checked);
     });
+
   });
 :css
   html, body{
@@ -30,10 +31,13 @@
         - if (current_user != nil) && (current_user.admin? || current_user.editor?)
           %input{:name => "hidden", :type => "checkbox", :id => "hidden", :style => "margin: 0px 5px 15px 0px"} Show hidden methods
           %br
+          = link_to "Sort by Completion Score", {:controller => "design_methods", :action => "index", :sort_order => "completion"}, :class => "btn btn-primary"
+
       .col-xs-6
         = link_to new_design_method_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
           %span.glyphicon.glyphicon-plus
           Create Method
+
   / END TOP ROW
   #search-and-filter.row
     #sidebar.col-xs-4.col-sm-2
@@ -65,5 +69,6 @@
         #publicMethods
           .h4{:style => "margin-left:3%"}
             Public Methods
+
       - @design_methods.where(:hidden => false).each do |method|
         = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3")

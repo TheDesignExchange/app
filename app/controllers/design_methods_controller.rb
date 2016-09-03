@@ -11,6 +11,9 @@ class DesignMethodsController < ApplicationController
 
   def index
       @design_methods = DesignMethod.where("overview != ?", "No overview available" )
+      if params[:sort_order] == "completion"
+        @design_methods = DesignMethod.order(completion_score: :desc)
+      end
       # Filter bar needs
       @search_filter_hash = MethodCategory.order(:process_order)
       @design_methods_all = DesignMethod.all
@@ -19,6 +22,7 @@ class DesignMethodsController < ApplicationController
         format.json { render json: @design_methods_all}
       end
   end
+
 
   def new
     @new = true
