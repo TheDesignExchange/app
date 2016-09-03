@@ -20,7 +20,7 @@
             = "#{category}"
     - if current_user != nil && (current_user.admin? || current_user.editor?)
       %i.glyphicon.glyphicon-pencil
-        %b= "#{@thumb_obj[:completion_score]}"
+        %b= @thumb_obj[:completion_score]
 
     %p.views
       %i.glyphicon.glyphicon-eye-open
