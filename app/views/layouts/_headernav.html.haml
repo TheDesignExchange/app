@@ -50,7 +50,8 @@
             = link_to "Login", new_user_session_path, :class => 'navbar-link'
 
 // display flash errors if any
-- flash.each do |type, msg|
-  - type = :success if type == :notice
-  = content_tag(:div, msg, class: "flash-alert alert alert-#{type}")
+.notice{:style=>"margin-top:50px;"}
+  - flash.each do |type, msg|
+    - type = :success if type == :notice
+    = content_tag(:div, msg, class: "flash-alert alert alert-#{type}")
 
