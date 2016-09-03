@@ -115,10 +115,10 @@
           - @case_study.completion_score = score
           - @case_study.save
           = score
-      - if !@case_study.design_methods.blank?
-        %h3 Related Design Methods
-        - @case_study.design_methods.each do |dm|
-          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4")
+    - if !@case_study.design_methods.blank?
+      %h3 Related Design Methods
+      - @case_study.design_methods.each do |dm|
+        = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4")
 
 
     / END DESCRIPTION
