@@ -4,6 +4,8 @@ class AdministratorController < ApplicationController
     authorize! :index, :administrator
     @users = User.all
     @characteristics = Characteristic.all
+    @design_methods = DesignMethod.all
+    @case_studies = CaseStudy.all
     render layout: "custom"
   end
 

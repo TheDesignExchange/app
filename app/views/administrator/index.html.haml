@@ -49,6 +49,56 @@
         }
       }
     });
+
+      $("#methods-table").tablesorter({
+      widgets: ['pager'],
+      ignoreCase: true,
+      sortList: [[0,0],[1,0],[2,0],[3,0],[4,0]],
+      theme: 'blue',
+      widgetOptions: {
+        pager_updateArrows: true,
+        pager_ajaxUrl: null,
+        pager_css: {
+          container : 'methods-tablesorter-pager',    // class added to make included pager.css file work
+          disabled : 'tablesorter-pager-disabled'              // class added to arrows @ extremes (i.e. prev/first arrows "disabled" on first page)
+        },
+        pager_selectors: {
+          container : '.methods-tablesorter-pager',       // target the pager markup (wrapper)
+          first : '.first',       // go to first page arrow
+          prev : '.prev',        // previous page arrow
+          next : '.next',        // next page arrow
+          last : '.last',        // go to last page arrow
+          gotoPage : '.gotoPage',    // go to page selector - select dropdown that sets the current page
+          pageDisplay : '.pagedisplay', // location of where the "output" is displayed
+          pageSize : '.pagesize'     // page size selector - select dropdown that sets the "size" option
+        }
+      }
+    });
+
+      $("#casestudies-table").tablesorter({
+      widgets: ['pager'],
+      ignoreCase: true,
+      sortList: [[0,0],[1,0],[2,0]],
+      theme: 'blue',
+      widgetOptions: {
+        pager_updateArrows: true,
+        pager_ajaxUrl: null,
+        pager_css: {
+          container : 'casestudies-tablesorter-pager',    // class added to make included pager.css file work
+          disabled : 'tablesorter-pager-disabled'              // class added to arrows @ extremes (i.e. prev/first arrows "disabled" on first page)
+        },
+        pager_selectors: {
+          container : '.casestudies-tablesorter-pager',       // target the pager markup (wrapper)
+          first : '.first',       // go to first page arrow
+          prev : '.prev',        // previous page arrow
+          next : '.next',        // next page arrow
+          last : '.last',        // go to last page arrow
+          gotoPage : '.gotoPage',    // go to page selector - select dropdown that sets the current page
+          pageDisplay : '.pagedisplay', // location of where the "output" is displayed
+          pageSize : '.pagesize'     // page size selector - select dropdown that sets the "size" option
+        }
+      }
+    });
   });
 
 :css
@@ -81,7 +131,10 @@
         %a{"data-link" => "users"} Users
       %li
         %a{"data-link" => "characteristics"} Characteristics
-
+      %li 
+        %a{"data-link" => "methods"} Methods
+      %li
+        %a{"data-link" => "casestudies"} Case Studies
 .tab-pane.row{"data-link" => "users"}
   %table#users-table.tablesorter
     %thead
@@ -183,3 +236,75 @@
   .char-tablesorter-pager
     = render :partial => '/shared/tablesorter_pager'
 
+.tab-pane.row{"data-link" => "methods"}
+  = link_to "design_methods/new", :id=> "create-btn",  :class=> "btn btn-default pull-right", :style => "margin-bottom:10px" do
+    %span.glyphicon.glyphicon-plus
+    Create Method
+  %table#methods-table.tablesorter
+    %thead
+      %tr
+        %th Method Name
+        %th Completion Score
+        %th Video
+        %th Image
+        %th Updated At
+    %tbody
+    - for method in @design_methods
+      %tr
+        %td
+          %li.dropdown{:style => "list-style: none"}
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              = method.name
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Edit Method", :controller => "design_methods", :action => :edit, :id => method.id
+
+        %td
+          = method.completion_score
+        %td
+          - if method.videoURL?
+            Yes
+          - else
+            No  
+        %td 
+          - if method.main_image?
+            Yes
+          - else 
+            No
+        %td
+          = method.updated_at
+  .methods-tablesorter-pager
+    = render :partial => '/shared/tablesorter_pager'
+.tab-pane.row{"data-link" => "casestudies"}
+  = link_to "case_studies/new", :id=> "create-btn",  :class=> "btn btn-default pull-right", :style => "margin-bottom:10px" do
+    %span.glyphicon.glyphicon-plus
+    Create Case Study
+  %table#casestudies-table.tablesorter
+    %thead
+      %tr
+        %th Case Study Name
+        %th Completion Score
+        %th Image
+        %th Updated At
+    %tbody
+    - for cs in @case_studies
+      %tr
+        %td
+          %li.dropdown{:style => "list-style: none"}
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              = cs.name
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Edit Case Study", :controller => "case_studies", :action => :edit, :id => cs.id
+
+        %td
+          = cs.completion_score
+        %td 
+          - if cs.main_image?
+            Yes
+          - else
+            No
+        %td
+          = cs.updated_at
+  .casestudies-tablesorter-pager
+    = render :partial => '/shared/tablesorter_pager'
