@@ -53,7 +53,7 @@
       $("#methods-table").tablesorter({
       widgets: ['pager'],
       ignoreCase: true,
-      sortList: [[0,0],[1,0],[2,0],[3,0],[4,0]],
+      sortList: [[0,0],[1,0],[2,0],[3,0],[4,0],[5,0]],
       theme: 'blue',
       widgetOptions: {
         pager_updateArrows: true,
@@ -78,7 +78,7 @@
       $("#casestudies-table").tablesorter({
       widgets: ['pager'],
       ignoreCase: true,
-      sortList: [[0,0],[1,0],[2,0]],
+      sortList: [[0,0],[1,0],[2,0],[3,0],[4,0]],
       theme: 'blue',
       widgetOptions: {
         pager_updateArrows: true,
@@ -247,6 +247,7 @@
         %th Completion Score
         %th Video
         %th Image
+        %th Hidden
         %th Updated At
     %tbody
     - for method in @design_methods
@@ -272,6 +273,11 @@
           - else 
             No
         %td
+          - if method.hidden?
+            Yes
+          - else
+            No
+        %td
           = method.updated_at
   .methods-tablesorter-pager
     = render :partial => '/shared/tablesorter_pager'
@@ -285,6 +291,7 @@
         %th Case Study Name
         %th Completion Score
         %th Image
+        %th Hidden
         %th Updated At
     %tbody
     - for cs in @case_studies
@@ -301,6 +308,11 @@
           = cs.completion_score
         %td 
           - if cs.main_image?
+            Yes
+          - else
+            No
+        %td
+          - if cs.hidden?
             Yes
           - else
             No
