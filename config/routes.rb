@@ -42,7 +42,6 @@ DesignExchange::Application.routes.draw do
   get '/administrator/change_admin', to: 'administrator#changeAdmin'
   get '/administrator/change_editor', to: 'administrator#changeEditor'
   get '/administrator/change_basic', to: 'administrator#changeBasic'
-  post '/design_methods/clearImage', to: 'design_methods#clearImage'
   get ":action", to:"application##{:action}"
   post "search", to: "application#search"
   get "autocomplete_search", to: "application#search"
