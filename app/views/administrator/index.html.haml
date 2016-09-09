@@ -263,12 +263,12 @@
         %td
           = method.completion_score
         %td
-          - if method.videoURL?
+          - if method.videoURL.present?
             Yes
           - else
             No  
         %td 
-          - if method.main_image.file
+          - if method.picture_url.present?
             Yes
           - else 
             No
@@ -307,7 +307,7 @@
         %td
           = cs.completion_score
         %td 
-          - if cs.main_image?
+          - if cs.picture_url.present?
             Yes
           - else
             No
