@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160901031059) do
+ActiveRecord::Schema.define(version: 20160908235932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,19 +158,19 @@ ActiveRecord::Schema.define(version: 20160901031059) do
   end
 
   create_table "design_methods", force: true do |t|
-    t.string   "name",                               null: false
-    t.text     "overview",                           null: false
-    t.text     "process",                            null: false
+    t.string   "name",                                     null: false
+    t.text     "overview",                                 null: false
+    t.text     "process",                                  null: false
     t.string   "aka"
-    t.integer  "owner_id",                           null: false
+    t.integer  "owner_id",                                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "num_of_designers",   default: 1
-    t.integer  "num_of_users",       default: 1
-    t.integer  "time_period",        default: 0
-    t.string   "time_unit",          default: ""
+    t.integer  "num_of_designers",         default: 1
+    t.integer  "num_of_users",             default: 1
+    t.integer  "time_period",              default: 0
+    t.string   "time_unit",                default: ""
     t.string   "main_image"
-    t.integer  "likes",              default: 0
+    t.integer  "likes",                    default: 0
     t.text     "synonyms"
     t.text     "benefits"
     t.text     "limitations"
@@ -183,12 +183,16 @@ ActiveRecord::Schema.define(version: 20160901031059) do
     t.text     "references"
     t.string   "videoURL"
     t.integer  "collection_id"
-    t.boolean  "hidden",             default: false
+    t.boolean  "hidden",                   default: false
     t.integer  "picture"
     t.string   "picture_url"
     t.string   "video_attribution"
     t.string   "video_caption"
     t.integer  "completion_score"
+    t.string   "videoURL_two"
+    t.string   "videoURL_two_attribution"
+    t.string   "video_two_attribution"
+    t.string   "video_two_caption"
   end
 
   add_index "design_methods", ["collection_id"], name: "index_design_methods_on_collection_id", using: :btree

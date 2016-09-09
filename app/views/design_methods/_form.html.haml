@@ -210,7 +210,7 @@
     / FORMS
     %br/
     %h2 Video
-    %h4 Embedded URL
+    %h4 Video One Embedded URL
     .tooltips
       How to get Embedded Video URL
       %span.tooltiptext
@@ -218,12 +218,23 @@
         paste this information anywhere and you will get something like "< iframe width="640" height="360" src="https://www.youtube.com/embed/example" frameborder="0" allowfullscreen></iframe >". The embed URL is the linke after src= , remove the quotation marks and you will have the embedded video URL
     .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
       = f.text_field :videoURL, :class=> "form-control", :placeholder => ""
-    %h4 Video Attribution
-    .input-group-lg
-      = f.text_field :video_attribution, :class => "form-control"
-    %h4 Video Caption
-    .input-group-lg
-      = f.text_field :video_caption, :class => "form-control"
+
+    %h4 Video One Attribution
+    = f.text_area :video_attribution, :class => "form-control markdown", :rows => 2
+    %h4 Video One Caption
+    = f.text_area :video_caption, :class => "form-control markdown", :rows => 2
+    
+    %h4 Video Two Embedded URL
+    .tooltips
+      How to get Embedded Video URL
+      %span.tooltiptext
+        Video two allows non-Youtube videos to be embedded. This will work as long as the editor puts in the correct embed URL. Of course, the editor can put another YouTube URL if he or she wishes.
+    .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+      = f.text_field :videoURL_two, :class=> "form-control", :placeholder => ""
+    %h4 Video Two Attribution
+    = f.text_area :video_two_attribution, :class => "form-control markdown", :rows => 2
+    %h4 Video Two Caption
+    = f.text_area :video_two_caption, :class => "form-control markdown", :rows => 2
     %h3
       Summary
       %span.mandatory *
