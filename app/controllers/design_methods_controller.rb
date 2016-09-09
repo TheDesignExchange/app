@@ -122,6 +122,14 @@ class DesignMethodsController < ApplicationController
     end
   end
 
+  def clearImage
+    @design_method = DesignMethod.find(params[:id])
+    @design_method.picture_url = nil
+    @design_method.save
+    respond_to do |format|
+      format.html { redirect_to @design_method, notice: 'Image was successfully removed.' }
+    end
+  end
   def create_as_signed_in_user
     unless signed_in?
       flash[:danger] = "Please sign in to add a design method."
