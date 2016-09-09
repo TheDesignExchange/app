@@ -7,12 +7,14 @@
   }
   .nav-tabs {
     cursor: pointer;
+
   }
   .tab-pane {
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     padding: 20px;
+
   }
   #sidebar {
     padding-top: 50px;
@@ -199,7 +201,7 @@
   .row.padding
     #tabs
       %ul.nav.nav-tabs
-        %li.active
+        %li.active{"background-color"=> "#303136"}
           %a{"data-link" => "overview"} Overview
         %li
           %a{"data-link" => "instructions"} Instructions
@@ -233,7 +235,7 @@
       %h4 Skills that help:
       %p= md_format(@method.skills)
     - if !@method.videoURL.blank?
-      %h4 Video
+      %h4 Video One
 
       %iframe{:allowfullscreen => "", :frameborder => "1", :height => "315", :src => @method.videoURL, :width => "560"}
     - if !@method.video_caption.blank?
@@ -243,7 +245,17 @@
       %h5 Video Attributions
       %p
         = @method.video_attribution
+    - if !@method.videoURL_two.blank?
+      %h4 Video Two
 
+      %iframe{:allowfullscreen => "", :frameborder => "1", :height => "315", :src => @method.videoURL_two, :width => "560"}
+    - if !@method.video_two_caption.blank?
+      %p
+        = @method.video_two_caption
+    - if !@method.video_two_attribution.blank?
+      %h5 Video Attributions
+      %p
+        = @method.video_two_caption
     %h4 Contributing Authors
     .col-xs-6
       .col-xs-4
