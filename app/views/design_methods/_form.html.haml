@@ -207,7 +207,7 @@
       = f.file_field :main_image
     
     %br/
-    = button_to "Clear Image", {:controller => "design_methods", :action => :clearImage, :id => @design_method.id}, :class=>"btn btn-primary"
+    = link_to "Clear Image", {:controller => "design_methods", :action => :clearImage, :id => @design_method.id}, :class=> "btn btn-primary"
 
 
     / END IMAGES
