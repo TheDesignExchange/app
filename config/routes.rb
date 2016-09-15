@@ -32,6 +32,7 @@ DesignExchange::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
 
+  resources :drafts
   resources :method_categories, only: [:show]
   resources :citations, only: [:show]
   resources :feedbacks, only: [:create]
