@@ -27,7 +27,7 @@
         %li= link_to "Methods", design_methods_path
         %li= link_to "Case Studies", case_studies_path
         %li= link_to "Collections", collections_path
-        - if current_user.admin? || current_user.editor?
+        - if current_user != nil && (current_user.admin? || current_user.editor?)
           %li= link_to "Drafts", drafts_path
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?

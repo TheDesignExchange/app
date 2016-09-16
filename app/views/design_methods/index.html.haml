@@ -47,7 +47,7 @@
         #hiddenMethods{:style => "display:none"}
           .h4{:style => "margin-left:3%"}
             Hidden Methods
-          - @design_methods.where(:hidden => true).each do |method|
+          - @design_methods.where(:hidden => true).where(:draft=>false).each do |method|
             = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3")
     - elsif current_user != nil && !@design_methods.where(:owner => current_user).empty?# signed in basic user with created methods
       #results-container.col-xs-8.col-sm-10
@@ -70,5 +70,5 @@
           .h4{:style => "margin-left:3%"}
             Public Methods
 
-      - @design_methods.where(:hidden => false).each do |method|
+      - @design_methods.where(:hidden => false).where(:draft=>false).each do |method|
         = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3")
