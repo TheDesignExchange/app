@@ -2,11 +2,15 @@ class AdministratorController < ApplicationController
 
   def index
     authorize! :index, :administrator
-    @users = User.all
-    @characteristics = Characteristic.all
-    @design_methods = DesignMethod.all
-    @case_studies = CaseStudy.all
-    render layout: "custom"
+    if (current_user == nil) || (!current_user.admin?)
+      redirect_to root_path
+    else
+      @users = User.all
+      @characteristics = Characteristic.all
+      @design_methods = DesignMethod.all
+      @case_studies = CaseStudy.all
+      render layout: "custom"
+    end
   end
 
   def changeAdmin
