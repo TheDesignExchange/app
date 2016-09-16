@@ -41,18 +41,25 @@
   / END TOP ROW
   #search-and-filter.row
     #sidebar.col-xs-4.col-sm-2
-    .h4{:style => "margin-left:3%"}
+    .h1{:style => "margin-left:3%"}
       My Drafts
     .h5{:style => "margin-left:3%"}
       - if current_user.admin?
-        As an admin, you can check the draft methods the current editors here.
+        As an admin, you can check the draft methods and draft case studiesthe current editors here.
       - else
         An admin has to approve these for public visibility
     - if current_user != nil && !@design_methods.where(:owner => current_user).empty?# signed in basic user with created methods
       #results-container.col-xs-8.col-sm-10
         #hiddenMethods
+          .h4 My Draft Methods
+
           - @design_methods.where(:owner => current_user).where(:draft => true).each do |method|
             = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3")
+      #results-container.col-xs-8.col-sm-10
+        #hiddenMethods
+          .h4 My Draft Case Studies
+          - @case_studies.where(:owner_id => current_user.id).where(:draft => true).each do |cs|
+            = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3")
     #sidebar.col-xs-4.col-sm-2
 
     #results-container.col-xs-8.col-sm-10
@@ -62,3 +69,5 @@
             Draft Methods by Editors
         - @design_methods.where(:draft=>true).each do |method|
           = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3")
+        - @case_studies.where(:draft=>true).each do |cs|
+          = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3")

@@ -44,8 +44,12 @@ class DesignMethodsController < ApplicationController
 
     if params[:commit] == "Save as Draft"
       @design_method.draft = true
+      @design_method.ready = false
     elsif params[:commit] == "Publish"
       @design_method.draft = false
+      @design_method.ready = true
+    elsif params[:commit] == "Ready for Approval"
+      @design_method.ready = true
     end
 
     if Rails.env.production?
@@ -75,8 +79,12 @@ class DesignMethodsController < ApplicationController
 
     if params[:commit] == "Save as Draft"
       @design_method.draft = true
+      @design_method.ready = false
     elsif params[:commit] == "Publish"
       @design_method.draft = false
+      @design_method.ready = true
+    elsif params[:commit] == "Ready for Approval"
+      @design_method.ready = true
     end
 
     if Rails.env.production?

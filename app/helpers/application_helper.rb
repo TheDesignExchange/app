@@ -109,7 +109,9 @@ module ApplicationHelper
           :col_md_value => col_md_value,
           :word_count => word_count,
           :completion_score => obj.completion_score,
-          :picture_url => obj.image_url
+          :picture_url => obj.image_url,
+          :draft => obj.draft,
+          :ready => obj.ready
         }
     elsif obj.is_a?(CaseStudy)
       thumb_obj=
@@ -124,7 +126,9 @@ module ApplicationHelper
           :col_md_value => col_md_value,
           :word_count => word_count,
           :completion_score => obj.completion_score,
-          :picture_url => obj.image_url
+          :picture_url => obj.image_url,
+          :draft => obj.draft,
+          :ready => obj.ready
 
         }
     elsif obj.is_a?(Discussion)

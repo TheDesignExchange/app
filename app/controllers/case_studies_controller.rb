@@ -87,8 +87,12 @@ class CaseStudiesController < ApplicationController
 
     if params[:commit] == "Save as Draft"
       @case_study.draft = true
+      @case_study.ready = false
     elsif params[:commit] == "Publish"
       @case_study.draft = false
+      @case_study.ready = true
+    elsif params[:commit] == "Ready for Approval"
+      @case_study.ready = true
     end
 
     respond_to do |format|
@@ -104,7 +108,7 @@ class CaseStudiesController < ApplicationController
 
   def create
     @case_study = CaseStudy.new(params[:case_study])
-
+    @case_study.owner_id = current_user.id
     if Rails.env.production?
       file = params[:case_study][:picture]
       @case_study.upload_to_s3(file, request.original_url)
@@ -112,8 +116,12 @@ class CaseStudiesController < ApplicationController
     
     if params[:commit] == "Save as Draft"
       @case_study.draft = true
+      @case_study.ready = false
     elsif params[:commit] == "Publish"
       @case_study.draft = false
+      @case_study.ready = true
+    elsif params[:commit] == "Ready for Approval"
+      @case_study.ready = true
     end
     
     respond_to do |format|

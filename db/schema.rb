@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915042000) do
+ActiveRecord::Schema.define(version: 20160916012240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 20160915042000) do
     t.string   "picture_url"
     t.integer  "completion_score"
     t.boolean  "draft",             default: false
+    t.integer  "owner_id"
+    t.boolean  "ready"
   end
 
   create_table "characteristic_groups", force: true do |t|
@@ -195,6 +197,7 @@ ActiveRecord::Schema.define(version: 20160915042000) do
     t.string   "video_two_attribution"
     t.string   "video_two_caption"
     t.boolean  "draft",                    default: false
+    t.boolean  "ready"
   end
 
   add_index "design_methods", ["collection_id"], name: "index_design_methods_on_collection_id", using: :btree
