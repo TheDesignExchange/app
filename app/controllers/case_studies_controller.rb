@@ -92,6 +92,7 @@ class CaseStudiesController < ApplicationController
       @case_study.draft = false
       @case_study.ready = true
     elsif params[:commit] == "Ready for Approval"
+      @design_method.draft = true
       @case_study.ready = true
     end
 
@@ -121,6 +122,7 @@ class CaseStudiesController < ApplicationController
       @case_study.draft = false
       @case_study.ready = true
     elsif params[:commit] == "Ready for Approval"
+      @design_method.draft = true
       @case_study.ready = true
     end
     

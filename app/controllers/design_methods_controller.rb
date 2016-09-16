@@ -49,6 +49,7 @@ class DesignMethodsController < ApplicationController
       @design_method.draft = false
       @design_method.ready = true
     elsif params[:commit] == "Ready for Approval"
+      @design_method.draft = true
       @design_method.ready = true
     end
 
@@ -84,6 +85,7 @@ class DesignMethodsController < ApplicationController
       @design_method.draft = false
       @design_method.ready = true
     elsif params[:commit] == "Ready for Approval"
+      @design_method.draft = true
       @design_method.ready = true
     end
 

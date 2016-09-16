@@ -149,9 +149,9 @@
   / INPUT FIELDS
   #save-bar.row
 
-    - if current_user.editor?
-      = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
     - if current_user.admin?
+      = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
+    - if current_user.editor?
       = f.submit "Ready for Approval", :id => "publish-btn", :class => "btn btn-success pull-right"
     = f.submit "Save as Draft", :id => "save-btn", :class => "btn btn-default pull-right"
     
@@ -383,9 +383,9 @@
   / END FORMS
   %br/
   #save-bar.row
-    - if current_user.editor?
-      = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
     - if current_user.admin?
+      = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
+    - if current_user.editor?
       = f.submit "Ready for Approval", :id => "publish-btn", :class => "btn btn-success pull-right"
     = f.submit "Save as Draft", :id => "save-btn", :class => "btn btn-default pull-right"
     
