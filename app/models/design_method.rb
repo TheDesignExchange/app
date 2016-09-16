@@ -40,7 +40,7 @@ class DesignMethod < ActiveRecord::Base
                   :limitations, :skills, :usage, :online_resources, :history, :critiques,
                   :additional_reading, :characteristic_ids, :references, :case_study_ids,
                   :videoURL, :hidden, :picture, :picture_url, :video_attribution, :video_caption,
-                  :completion_score, :videoURL_two, :video_two_attribution, :video_two_caption
+                  :completion_score, :videoURL_two, :video_two_attribution, :video_two_caption, :draft
 
   # Validations
   validates :name, :overview, presence: true

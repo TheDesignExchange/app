@@ -42,6 +42,16 @@ class DesignMethodsController < ApplicationController
       @design_method.hidden = true
     end
 
+    if params[:commit] == "Save as Draft"
+      @design_method.draft = true
+      @design_method.ready = false
+    elsif params[:commit] == "Publish"
+      @design_method.draft = false
+      @design_method.ready = true
+    elsif params[:commit] == "Ready for Approval"
+      @design_method.ready = true
+    end
+
     if Rails.env.production?
       file = params[:design_method][:picture]
       @design_method.upload_to_s3(file, request.original_url)
@@ -65,6 +75,16 @@ class DesignMethodsController < ApplicationController
 
     if !(current_user.admin? || current_user.editor?)
       @design_method.hidden = true
+    end
+
+    if params[:commit] == "Save as Draft"
+      @design_method.draft = true
+      @design_method.ready = false
+    elsif params[:commit] == "Publish"
+      @design_method.draft = false
+      @design_method.ready = true
+    elsif params[:commit] == "Ready for Approval"
+      @design_method.ready = true
     end
 
     if Rails.env.production?

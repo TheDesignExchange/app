@@ -30,7 +30,7 @@
         #hiddenCaseStudies{:style => "display:none"} 
           .h4{:style => "margin-left:3%"}
             Hidden Case Studies
-          - @case_studies.where(:hidden => true).each do |cs|
+          - @case_studies.where(:hidden => true).where(:draft=>false).each do |cs|
             = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3")
     .col-md-2
     .col-md-10.left-pad
@@ -38,5 +38,5 @@
         #publicCaseStudies
           .h4{:style => "margin-left:3%"}
             Public Case Studies
-      - @case_studies.where(:hidden => false).each do |cs|
+      - @case_studies.where(:hidden => false).where(:draft=>false).each do |cs|
         = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3")

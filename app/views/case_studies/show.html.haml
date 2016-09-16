@@ -35,19 +35,27 @@
 .row
   .col-xs-9.col-xs-offset-3.left-pad
     %h3
-      %b= @case_study.name != nil ? @case_study.name : "-"
+      - if @case_study.draft == true
+        %b{:style=>"color:blue"}= @case_study.name != nil ? @case_study.name : "-"
+      - else
+        %b= @case_study.name != nil ? @case_study.name : "-"
     %p
       by #{link_to @case_study.company.name, company_path(@case_study.company) unless !@case_study.company}
 / END CASE STUDY TITLE
 .row
   / SIDEBAR
+
+
   .col-xs-3#sidebar
+
     = render partial: "/application/props/props", locals: { entity: @case_study }
 
   / MAIN VIEW
   .col-xs-9.add-padding
     / MENU BAR
+
     .row
+
       .col-xs-3
         %span.glyphicon.glyphicon-star
         \- likes

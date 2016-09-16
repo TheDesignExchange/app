@@ -1,7 +1,15 @@
 %a.card{:href => "#{eval("#{@thumb_obj[:link]}_path(#{@thumb_obj[:id]})")}"}
   .caption
-    /%h5= @thumb_obj[:name]
-    %h5= @thumb_obj[:name]
+    - if @thumb_obj[:draft] == true
+      - if @thumb_obj[:ready] == true
+        %h5{:style=>"color:green"}= @thumb_obj[:name]
+      - elsif @thumb_obj[:link] == "design_method"
+        %h5{:style=>"color:orange"}= @thumb_obj[:name]
+      - elsif @thumb_obj[:link] == "case_study"
+        %h5{:style=>"color:purple"}= @thumb_obj[:name]
+    - else
+      %h5= @thumb_obj[:name]
+
     - if Rails.env.production?
       - if @thumb_obj[:picture_url].present?
         .image-wrapper

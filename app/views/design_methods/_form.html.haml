@@ -149,13 +149,15 @@
   / INPUT FIELDS
   #save-bar.row
 
-    = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
-    %button#save-btn.btn.btn-default.pull-right{:name => "commit", :type => "button"}
-      = glyphyify("floppy-disk")
-      Save as Draft
+    - if current_user.editor?
+      = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
+    - if current_user.admin?
+      = f.submit "Ready for Approval", :id => "publish-btn", :class => "btn btn-success pull-right"
+    = f.submit "Save as Draft", :id => "save-btn", :class => "btn btn-default pull-right"
+    
 
     / </button>
-    %span#auto-saved-text.pull-right Auto-saved as draft 2 minutes ago
+    %span#auto-saved-text.pull-right
     - if !@new
       = link_to design_method_path, {:data => { :confirm => "Are you sure you want to delete this design method. Doing so will permanently erase the method and all its associations."}, :method => :delete, :class => "btn btn-danger", :style => "margin-top:7px;"} do
         = glyphyify("trash")
@@ -381,9 +383,12 @@
   / END FORMS
   %br/
   #save-bar.row
-    = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
-    %button#save-btn.btn.btn-default.pull-right{:name => "commit", :type => "button"}
-      = glyphyify("floppy-disk")
-      Save as Draft
+    - if current_user.editor?
+      = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
+    - if current_user.admin?
+      = f.submit "Ready for Approval", :id => "publish-btn", :class => "btn btn-success pull-right"
+    = f.submit "Save as Draft", :id => "save-btn", :class => "btn btn-default pull-right"
+    
+
     / <span id="auto-saved-text" class="pull-right">Auto-saved as draft 2 minutes ago</span>
   / END BODY
