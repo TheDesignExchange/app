@@ -1,0 +1,422 @@
+ /*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+ * require_tree .
+
+
+
+ * require bootsy
+
+
+
+
+
+
+ */
+@media (max-width: 768px) {
+  /* line 27, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+  #search {
+    height: 60px;
+    padding: 10px 0;
+  }
+
+  /* line 31, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+  #search .form-group {
+    padding: 0 8px;
+  }
+
+  /* line 34, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+  #search button, #search input {
+    width: 100%;
+  }
+}
+/* OVERRIDE BOOTSTRAP ANCHOR BEHAVIOR */
+/* line 40, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+a {
+  color: #6CC06D;
+  text-decoration: none;
+}
+
+/* line 44, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+a:hover {
+  color: #366036;
+  text-decoration: none;
+}
+
+/* END OVERRIDE BOOTSTRAP ANCHOR BEHAVIOR */
+/* line 50, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+#logo {
+  width: inherit;
+  height: 100%;
+}
+
+/* line 55, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.tag-list > span {
+  margin-bottom: 5px;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+/* line 60, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.nav-row > * {
+  margin: 2px;
+}
+
+/* line 63, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.picture-upload {
+  display: table;
+}
+
+/* line 66, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.picture-upload a {
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+/* GENERAL FORMATTING */
+/* line 75, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.publish-background-color {
+  background-color: #E8E8E8;
+}
+
+/* line 79, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.tag-label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.35em;
+  border-style: solid;
+  border-width: 1px;
+}
+
+/* line 93, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.char-label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 95%;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em;
+  border-style: solid;
+  border-width: 1.5px;
+}
+
+/* line 107, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.no-margin-left {
+  margin-left: 0px;
+}
+
+/* line 111, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.no-margin-right {
+  margin-right: 0px;
+}
+
+/* line 115, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.label-gap {
+  margin-right: 4px;
+}
+
+/* line 119, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.add-padding {
+  margin-left: 15px;
+  margin-right: -15px;
+  margin-top: 15px;
+}
+
+/* line 126, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.search-item {
+  background: #FCFCFC !important;
+  height: 270px;
+  overflow: hidden;
+}
+
+/* line 132, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.content {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto;
+  color: #333;
+  padding-bottom: 10px;
+  min-height: 1500px;
+}
+
+/* line 142, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+img.logo {
+  width: 50%;
+  display: block;
+}
+
+/* line 147, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* line 152, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.truncate-multiline {
+  text-align: justify;
+  font-size: 9pt;
+}
+
+/* line 157, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.navbar {
+  margin-bottom: 0;
+}
+
+/* line 161, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.form-search {
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+/* line 177, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.padding {
+  padding-top: 15px;
+}
+
+/* line 181, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.no-gap {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 30px;
+}
+
+/* THUMBNAIL CSS*/
+/* line 189, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.card, .card:hover, .card:focus {
+  color: black;
+  color: inherit;
+  background-color: #ddd;
+  color: black;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* line 197, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.card {
+  display: block;
+  background-color: #eee;
+  height: 250px;
+  overflow: hidden;
+  margin: 3px;
+  padding: 2px 10px;
+  border-radius: 5px;
+  position: relative;
+  font-size: 0.85em;
+}
+
+/* line 208, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.card .meta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 10px 0px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  /*background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));*/
+  text-shadow: 0 0 0.5em black;
+}
+
+/* line 219, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.card:hover .meta {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* line 222, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.card .meta .views {
+  display: inline-block;
+  white-space: nowrap;
+  float: right;
+}
+
+/* line 227, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.card .meta .tags {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* line 231, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.card .meta .tags .tag-label {
+  padding: .3em .6em .2em;
+  font-size: 0.8em;
+  font-weight: normal;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* line 237, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.card h5 {
+  font-size: 16px;
+  max-height: 3.4em;
+  overflow: hidden;
+  line-height: 1.2em;
+}
+
+/* line 243, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.card:hover h5 {
+  max-height: none;
+  overflow: visible;
+}
+
+/* line 247, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.card img {
+  width: 100%;
+}
+
+/* line 250, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.card .image-wrapper {
+  overflow: hidden;
+  height: 100px;
+  margin: 12px 0;
+}
+
+/* line 255, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.card .likes {
+  font-size: 10pt;
+}
+
+/* line 259, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.profile div img {
+  height: 60px;
+  width: auto;
+  position: absolute;
+  left: 0px;
+}
+
+/* line 266, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.fit-all {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 271, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.btn-index-create {
+  margin-top: 12px;
+}
+
+/* Front page login boxes. */
+/* line 276, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.frontpage-login {
+  padding: 5px 0px 5px 0px;
+}
+
+/* line 280, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.meltdown_preview-header {
+  display: none;
+}
+
+/* line 283, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.meltdown_editor-wrap {
+  box-sizing: border-box;
+}
+
+/* line 286, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.meltdown_editor-deco {
+  background: #fff;
+  border-radius: 0;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  border: 1px solid #a8a8a8;
+  border-top: none;
+  margin: 0;
+  min-height: 15px;
+  overflow: auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  resize: none;
+}
+
+/* line 304, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.meltdown_controlgroup-dropdown {
+  z-index: 1;
+}
+
+/* line 308, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.flash-alert {
+  margin: 0;
+}
+
+/* line 312, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.markdown-help {
+  font-size: 0.8em;
+}
+
+/* line 316, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.open {
+  position: relative;
+}
+
+/* line 320, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+#collection_name + input {
+  width: 25%;
+  padding: 0px;
+  height: 30px;
+  font-size: 0.8em;
+}
+
+/* line 326, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.collections {
+  list-style-type: none;
+  padding-left: 0px;
+  font-size: 1.4em;
+}
+
+/* line 332, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.site-footer {
+  overflow: hidden;
+  width: 100%;
+  min-height: 49px;
+  border-top: 1px solid #d9d9d9;
+  margin-top: 10px;
+  padding-left: 24px;
+}
+
+/* line 341, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.site-info {
+  position: relative;
+  padding: 12px 24px;
+  font-size: 0.9em;
+  color: #999;
+  line-height: 2;
+}
+
+/* line 350, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/application.css.scss */
+.tablesorter-pager-disabled {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  cursor: default;
+}

@@ -146,7 +146,11 @@
   /Method header
   .row
     .col-md-6.no-padding
-      %h3= @method.name
+      - if @design_method.draft == true
+        %h3{:style=>"color:blue"}= @method.name
+      - else
+        %h3= @method.name
+
     .col-md-6.pull-right
       .pull-right
         %ul.list-inline.method-toolbar

@@ -77,7 +77,6 @@ class DesignMethodsController < ApplicationController
       @design_method.draft = true
     elsif params[:commit] == "Publish"
       @design_method.draft = false
-      @design_method.save
     end
 
     if Rails.env.production?

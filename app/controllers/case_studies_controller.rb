@@ -85,6 +85,12 @@ class CaseStudiesController < ApplicationController
       @case_study.upload_to_s3(file, request.original_url)
     end
 
+    if params[:commit] == "Save as Draft"
+      @case_study.draft = true
+    elsif params[:commit] == "Publish"
+      @case_study.draft = false
+    end
+
     respond_to do |format|
       if @case_study.update_attributes(params[:case_study])
         format.html { redirect_to @case_study, notice: 'Case study was successfully updated.' }
@@ -103,7 +109,13 @@ class CaseStudiesController < ApplicationController
       file = params[:case_study][:picture]
       @case_study.upload_to_s3(file, request.original_url)
     end
-
+    
+    if params[:commit] == "Save as Draft"
+      @case_study.draft = true
+    elsif params[:commit] == "Publish"
+      @case_study.draft = false
+    end
+    
     respond_to do |format|
       #if @design_method.save
       if @case_study.update_attributes(params[:case_study])

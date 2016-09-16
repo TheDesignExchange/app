@@ -70,10 +70,14 @@
   #user-action-ui.row
     = f.submit "Publish", :id => "publish-btn", |
       :class => "btn btn-primary pull-right"    |
+
+    = f.submit "Save as Draft", :id => "save-btn", :class => "btn btn-default pull-right"
+
     /
       <button type="button" class="btn btn-default pull-right" id="save-btn" name="commit" type="submit">
       <haml_loud> glyphyify(&quot;floppy-disk&quot;) </haml_loud> Save as Draft
       </button>
+
     - if not @case_study.new_record?
       = link_to 'Destroy', case_study_path(@case_study),                                                |
         data: { :confirm => 'Are you sure?' }, :method => :delete, :class=> "btn btn-danger pull-right" |

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://localhost:3000/design_methods/277 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" async="" src="./DEx - DesignMethods_files/recaptcha__en.js"></script><script type="text/javascript" async="" src="./DEx - DesignMethods_files/recaptcha__en.js"></script><script src="./DEx - DesignMethods_files/api.js"></script>
+  </head>
+  <body>
+    <title>
+      DEx - DesignMethods
+    </title>
+    <script src="./DEx - DesignMethods_files/jquery.js"></script>
+    <script src="./DEx - DesignMethods_files/jquery_ujs.js"></script>
+    <script src="./DEx - DesignMethods_files/jquery.tablesorter.combined.js"></script>
+    <script src="./DEx - DesignMethods_files/jquery.tablesorter.widget-pager.js"></script>
+    <script src="./DEx - DesignMethods_files/affix.js"></script>
+    <script src="./DEx - DesignMethods_files/alert.js"></script>
+    <script src="./DEx - DesignMethods_files/button.js"></script>
+    <script src="./DEx - DesignMethods_files/carousel.js"></script>
+    <script src="./DEx - DesignMethods_files/collapse.js"></script>
+    <script src="./DEx - DesignMethods_files/dropdown.js"></script>
+    <script src="./DEx - DesignMethods_files/tab.js"></script>
+    <script src="./DEx - DesignMethods_files/transition.js"></script>
+    <script src="./DEx - DesignMethods_files/scrollspy.js"></script>
+    <script src="./DEx - DesignMethods_files/modal.js"></script>
+    <script src="./DEx - DesignMethods_files/tooltip.js"></script>
+    <script src="./DEx - DesignMethods_files/popover.js"></script>
+    <script src="./DEx - DesignMethods_files/bootstrap.js"></script>
+    <script src="./DEx - DesignMethods_files/jquery.ui.core.js"></script>
+    <script src="./DEx - DesignMethods_files/jquery.ui.widget.js"></script>
+    <script src="./DEx - DesignMethods_files/jquery.ui.position.js"></script>
+    <script src="./DEx - DesignMethods_files/jquery.ui.menu.js"></script>
+    <script src="./DEx - DesignMethods_files/jquery.ui.autocomplete.js"></script>
+    <script src="./DEx - DesignMethods_files/search.js"></script>
+    <script src="./DEx - DesignMethods_files/validate.js"></script>
+    <script src="./DEx - DesignMethods_files/expander.js"></script>
+    <script src="./DEx - DesignMethods_files/element_resize_detection.js"></script>
+    <script src="./DEx - DesignMethods_files/js-markdown-extra.js"></script>
+    <script src="./DEx - DesignMethods_files/rangyinputs-jquery.min.js"></script>
+    <script src="./DEx - DesignMethods_files/jquery.meltdown.js"></script>
+    <script src="./DEx - DesignMethods_files/application.js"></script>
+    <link href="./DEx - DesignMethods_files/jquery.ui.core.css" media="all" rel="stylesheet">
+    <link href="./DEx - DesignMethods_files/jquery.ui.theme.css" media="all" rel="stylesheet">
+    <link href="./DEx - DesignMethods_files/jquery.ui.menu.css" media="all" rel="stylesheet">
+    <link href="./DEx - DesignMethods_files/jquery.ui.autocomplete.css" media="all" rel="stylesheet">
+    <link href="./DEx - DesignMethods_files/grid.css" media="all" rel="stylesheet">
+    <link href="./DEx - DesignMethods_files/normalize-rails.css" media="all" rel="stylesheet">
+    <link href="./DEx - DesignMethods_files/dropit.css" media="all" rel="stylesheet">
+    <link href="./DEx - DesignMethods_files/bootstrap.css" media="all" rel="stylesheet">
+    <link href="./DEx - DesignMethods_files/meltdown.css" media="all" rel="stylesheet">
+    <link href="./DEx - DesignMethods_files/application.css" media="all" rel="stylesheet">
+    <link href="./DEx - DesignMethods_files/jquery.tablesorter.theme.blue.css" media="all" rel="stylesheet">
+    <link href="./DEx - DesignMethods_files/jquery.tablesorter.pager.css" media="all" rel="stylesheet">
+    <link href="./DEx - DesignMethods_files/design_methods.css" media="all" rel="stylesheet">
+    <meta content="authenticity_token" name="csrf-param">
+    <meta content="5CtORLoeJ4FDM5P6I2VVm93thgGgi5DDZ22xm8R3AA4=" name="csrf-token">
+    <script>
+      $(function(){
+        $('button').click(function(e){
+          e.preventDefault();
+        });
+      })
+    </script>
+    <style>
+      .jumbotron{
+        font-size: 17px;
+        background: #2a3e51;
+        color: white;
+      }
+      .subtitle{
+        font-size: 20px;
+      }
+      
+      .login-margin{
+        margin-left: 25%;
+        margin-right: 25%;
+        margin-top: 5%;
+      }
+      .container {
+        position: relative;
+        top: 50px;
+      }
+      .footer{
+        position:relative;
+        bottom:0;
+        width:100%;
+        height:60px;   /* Height of the footer */
+        margin-top:100px;
+      }
+    </style>
+    <script>
+      $(function(){
+        $('form#search input').autocomplete(DE.Autocomplete);
+      });
+    </script>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://localhost:3000/">
+            <img alt="Logo de" id="logo" src="./DEx - DesignMethods_files/logo-DE.png" width="100">
+          </a>
+        </div>
+        <form accept-charset="UTF-8" action="http://localhost:3000/search" class="navbar-form navbar-left" id="search" method="post"><div style="margin:0;padding:0;display:inline"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input name="utf8" type="hidden" value="✓" class="ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input name="authenticity_token" type="hidden" value="5CtORLoeJ4FDM5P6I2VVm93thgGgi5DDZ22xm8R3AA4=" class="ui-autocomplete-input" autocomplete="off"></div>
+        <div class="form-group col-xs-8">
+          <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input class="form-control ui-autocomplete-input" id="search-input" name="query" placeholder="Search" type="text" value="" autocomplete="off">
+        </div>
+        <div class="form-group col-xs-4">
+          <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input class="btn btn-default ui-autocomplete-input" name="commit" type="submit" value="Search" autocomplete="off">
+        </div>
+        </form>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="http://localhost:3000/design_methods">Methods</a></li>
+            <li><a href="http://localhost:3000/case_studies">Case Studies</a></li>
+            <li><a href="http://localhost:3000/collections">Collections</a></li>
+            <li><a href="http://localhost:3000/drafts">Drafts</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="http://localhost:3000/design_methods/277#">
+                jmendre@berkeley.edu
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="http://localhost:3000/administrator">Admin</a></li>
+                <li><a href="http://localhost:3000/users/1">Profile</a></li>
+                <li><a href="http://localhost:3000/users/edit">Account Information</a></li>
+                <li>
+                  <a data-target="#myModal" data-toggle="modal" href="http://localhost:3000/design_methods/277#">
+                    Send Feedback
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li><a class="navbar-link" data-method="delete" href="http://localhost:3000/users/sign_out" rel="nofollow">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- / display flash errors if any -->
+    <div class="notice" style="margin-top:50px;">
+    </div>
+    <!-- Header for the application#index view -->
+    <!-- End of header for application#index -->
+    <div class="container">
+      <style>
+        .no-padding {
+          padding: 0%;
+        }
+        .method-toolbar {
+          padding-top: 20px;
+        }
+        .nav-tabs {
+          cursor: pointer;
+        
+        }
+        .tab-pane {
+          border-left: 1px solid #ddd;
+          border-right: 1px solid #ddd;
+          border-bottom: 1px solid #ddd;
+          padding: 20px;
+        
+        }
+        #sidebar {
+          padding-top: 50px;
+        }
+        .char-group {
+          padding-bottom: 10px;
+          clear: both;
+        }
+        .char-tag {
+          overflow: hidden;
+          max-width: 225px;
+          text-overflow: ellipsis;
+          float: left;
+          margin-right: 1px;
+          margin-top: 1px;
+          margin-bottom: 1px;
+        }
+        .reference {
+          white-space: -moz-pre-wrap; /* Firefox */
+          white-space: -pre-wrap;     /* Opera <7 */
+          white-space: -o-pre-wrap;   /* Opera 7 */
+          word-wrap: break-word;      /* IE */
+        }
+        .tooltips {
+          position: relative;
+          display: inline-block;
+          border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+        }
+        
+        .tooltips .tooltiptext {
+          visibility: hidden;
+          width: 120px;
+          background-color: black;
+          color: #fff;
+          text-align: center;
+          padding: 5px 0;
+          border-radius: 6px;
+        
+          position: absolute;
+          z-index: 1;
+        }
+        
+        .tooltips:hover .tooltiptext {
+          visibility: visible;
+        }
+        #collection_name {
+          float: left;
+          width: 75%;
+          height: 30px;
+        }
+        #new_collection {
+          padding: 0px 20px 40px 20px;
+          display: none;
+        }
+        #new-col-show {
+          margin: 10px 20px;
+        }
+        .existing-method {
+          padding: 3px 20px;
+          white-space: nowrap;
+          background: whitesmoke;
+        }
+      </style>
+      <script>
+        $(document).ready(function() {
+          $('.dropdown-menu input').click(function(e) {
+            e.stopPropagation(); //This will prevent the event from bubbling up and close the dropdown when you type/click on text boxes.
+          });
+        
+          $('#new-col-show').click(function(e) {
+            $('#new-col-show').css("display", "none");
+            $('#new_collection').css("display", "block");
+            e.stopPropagation();
+          });
+        
+          $('.dropdown-toggle').click(function(e) {
+            $('#new-col-show').css("display", "block");
+            $('#new_collection').css("display", "none");
+          });
+        });
+      </script>
+      <div class="col-md-3" id="sidebar">
+        <div class="row">
+          <h4>People</h4>
+          <p>
+            <span class="glyphicon glyphicon-user"></span>
+            ~1 designer
+          </p>
+          <p>
+            <span class="glyphicon glyphicon-user"></span>
+            ~1 user
+          </p>
+        </div>
+        <div class="row">
+          <h4>Tools</h4>
+          <p>
+            <span class="glyphicon glyphicon-pencil"></span>
+            -
+          </p>
+        </div>
+        <div class="row">
+          <h4>Time</h4>
+          <p>
+            <span class="glyphicon glyphicon-time"></span>
+            0 yrs
+          </p>
+        </div>
+        <div class="row">
+          <h4>Tags</h4>
+          <p>
+            No tags available
+          </p>
+        </div>
+        <div class="row">
+          <h4>Completion Score</h4>
+          <p>
+            <!-- calculate the completion score if it has not been done already -->
+            15
+          </p>
+        </div>
+        <div class="row">
+          <h4>Characteristics</h4>
+        </div>
+      </div>
+      <div class="col-md-9" id="content-column">
+        <!-- Method header -->
+        <div class="row">
+          <div class="col-md-6 no-padding">
+            <h3>DraftTwo</h3>
+          </div>
+          <div class="col-md-6 pull-right">
+            <div class="pull-right">
+              <ul class="list-inline method-toolbar">
+                <li>
+                  <span class="glyphicon glyphicon-eye-open"></span>
+                  10 views
+                </li>
+                <li>
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="http://localhost:3000/design_methods/277#">
+                    <span class="glyphicon glyphicon-folder-open"></span>
+                    Add to Collection
+                    <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <a class="btn btn-default pull-right btn-index-create" id="new-col-show">
+                      <span class="glyphicon glyphicon-plus"></span>
+                      Add to New Collection
+                    </a>
+                    <form accept-charset="UTF-8" action="http://localhost:3000/collections" class="new_collection" id="new_collection" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="5CtORLoeJ4FDM5P6I2VVm93thgGgi5DDZ22xm8R3AA4="></div>              <div class="input-group-lg" style="margin-top: 10px;margin-bottom: 10px;"></div>
+                                  <input id="collection_method_id" name="collection[method_id]" type="hidden" value="277">
+                                  <input class="form-control" id="collection_name" name="collection[name]" placeholder="" type="text">
+                                  <input class="btn btn-primary pull-right" id="add-set-btn" name="commit" type="submit" value="Add">
+                    </form>
+                  </ul>
+                </li>
+                <li>
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="http://localhost:3000/design_methods/277#">
+                    <span class="glyphicon glyphicon-share"></span>
+                    Share
+                    <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="http://localhost:3000/design_methods/277#">Email</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/design_methods/277/edit">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    Edit
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Method top level categories -->
+        </div>
+        <div class="row">
+        </div>
+        <!-- Tabs -->
+        <b>This is a draft.</b>
+        <div class="row padding">
+          <div id="tabs">
+            <ul class="nav nav-tabs">
+              <li background-color="#303136" class="active">
+                <a data-link="overview">Overview</a>
+              </li>
+              <li>
+                <a data-link="instructions">Instructions</a>
+              </li>
+              <li>
+                <a data-link="resources">Resources</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Method overview -->
+        <div class="tab-pane row" data-link="overview">
+          <p>fwaefw</p>
+          <h4>Contributing Authors</h4>
+          <div class="col-xs-6">
+            <div class="col-xs-4">
+              <!-- TODO lol we need to self host this asap -->
+              <img alt="Anonymous silhouette" class="fit-all" src="./DEx - DesignMethods_files/anonymous_silhouette.jpg" style="padding: 10%">
+            </div>
+            <div class="col-xs-8">
+              <p><a href="http://localhost:3000/users/1">James Jiang</a></p>
+              <p>jmendre@berkeley.edu</p>
+            </div>
+          </div>
+        </div>
+        <!-- Method instructions -->
+        <div class="tab-pane row" data-link="instructions" style="display: none;">
+          <p>fawfewa</p>
+        </div>
+        <!-- Method resources -->
+        <div class="tab-pane row" data-link="resources" style="display: none;">
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <footer class="site-footer">
+        <div class="site-info">
+          <a href="http://localhost:3000/about">About</a>
+        </div>
+        <style>
+          .feedback-button {
+            position: fixed;
+            bottom: -1px;
+            right: -1px;
+            border: 0px;
+            border-radius: 5px 0px 0px 0px;
+            background: #ddd;
+            color: #000;
+            font-size: 13px;
+            line-height: 1.8em;
+            }
+          .alert-recaptcha_error {
+            background-color: #f2dede;
+            border-color: #ebccd1;
+            color: #a94442;
+          }
+        </style>
+        <a class="btn btn-default feedback-button" data-target="#myModal" data-toggle="modal" href="http://localhost:3000/design_methods/277#">⇱ Feedback</a>
+        <div aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Got Feedback?</h4>
+              </div>
+              <form accept-charset="UTF-8" action="http://localhost:3000/feedbacks" class="new_feedback" enctype="multipart/form-data" id="new_feedback" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="5CtORLoeJ4FDM5P6I2VVm93thgGgi5DDZ22xm8R3AA4="></div>      <div class="modal-body">
+                      <div class="field form-group">
+                        <label for="feedback_name">Name</label>
+                        <input class="form-control" id="feedback_name" name="feedback[name]" placeholder="Name" type="text">
+                      </div>
+                      <div class="field form-group">
+                        <label for="feedback_email">Email</label>
+                        <input class="form-control" id="feedback_email" name="feedback[email]" placeholder="Email" type="email">
+                      </div>
+                      <div class="field form-group">
+                        <label for="feedback_subject">Subject</label>
+                        <input class="form-control" id="feedback_subject" name="feedback[subject]" placeholder="Subject" type="text">
+                      </div>
+                      <div class="field form-group">
+                        <label for="feedback_message">Message (required)</label>
+                        <textarea class="form-control noscroll" id="feedback_content" name="feedback[content]" rows="5"></textarea>
+                      </div>
+                      <script src="./DEx - DesignMethods_files/api(1).js" async="" defer=""></script>
+                      <div class="g-recaptcha" data-sitekey="xxx" data-stoken="9ZYaZ-_dv75bN2HfLklVzMAjcV0vuMkeyT_V_JfKs6tIxJcqOuYlfHVdGbMcNID9sifZWoRwX3DKrmTELjhE_unWqDaGl7JkWqV_KB5sdcU"><div style="width: 304px; height: 78px;"><div><iframe src="./DEx - DesignMethods_files/anchor.html" title="recaptcha widget" width="304" height="78" role="presentation" frameborder="0" scrolling="no" name="undefined"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;  display: none; "></textarea></div></div>
+                                <noscript>
+                                  &lt;div style="width: 302px; height: 352px;"&gt;
+                                    &lt;div style="width: 302px; height: 352px; position: relative;"&gt;
+                                      &lt;div style="width: 302px; height: 352px; position: absolute;"&gt;
+                                        &lt;iframe
+                                          src="//www.google.com/recaptcha/api/fallback?k=xxx"
+                                          frameborder="0" scrolling="no"
+                                          style="width: 302px; height:352px; border-style: none;"&gt;
+                                        &lt;/iframe&gt;
+                                      &lt;/div&gt;
+                                      &lt;div style="width: 250px; height: 80px; position: absolute; border-style: none;
+                                        bottom: 21px; left: 25px; margin: 0px; padding: 0px; right: 25px;"&gt;
+                                        &lt;textarea id="g-recaptcha-response" name="g-recaptcha-response"
+                                          class="g-recaptcha-response"
+                                          style="width: 250px; height: 80px; border: 1px solid #c1c1c1;
+                                          margin: 0px; padding: 0px; resize: none;" value=""&gt;
+&lt;/textarea&gt;
+                                      &lt;/div&gt;
+                                    &lt;/div&gt;
+                                  &lt;/div&gt;
+                                </noscript>
+                    </div>
+                    <div class="modal-footer">
+                      <input class="btn btn-primary" name="commit" type="submit" value="Send">
+                    </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  
+
+<style>body.tablesorter-disableSelection { -ms-user-select: none; -moz-user-select: -moz-none;-khtml-user-select: none; -webkit-user-select: none; user-select: none; }.tablesorter-resizable-container { position: relative; height: 1px; }.tablesorter-resizable-handle { position: absolute; display: inline-block; width: 8px;top: 1px; cursor: ew-resize; z-index: 3; user-select: none; -moz-user-select: none; }</style><div class="hiddendiv common"></div><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0" style="display: none;"></ul><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-2" tabindex="0" style="display: none;"></ul><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-3" tabindex="0" style="display: none;"></ul><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-4" tabindex="0" style="display: none;"></ul></body></html>
