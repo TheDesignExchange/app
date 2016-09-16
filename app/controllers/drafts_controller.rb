@@ -1,6 +1,6 @@
 class DraftsController < ApplicationController
 	def index
-	  if (current_user == nil) || (!current_user.admin? || !current_user.editor?)
+	  if (current_user == nil) || (!current_user.admin? && !current_user.editor?)
 	  	redirect_to root_path
 	  else
 	    @design_methods = DesignMethod.all
