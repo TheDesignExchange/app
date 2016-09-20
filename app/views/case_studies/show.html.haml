@@ -104,6 +104,10 @@
     / DESCRIPTION
     .row
       %h3 Problem
+      - if @case_study.draft?
+        %h3{:style=>"color:red;"} Suggestions
+        %p= @case_study.suggestions.blank? ? "-" : md_format(@case_study.suggestions)
+        %h5{:style=>"color:red"} End of Suggestions
       %p= @case_study.overview.blank? ? "-" : md_format(@case_study.overview)
       / FORMS
       %h3 Process

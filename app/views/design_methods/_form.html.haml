@@ -191,6 +191,13 @@
     .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
       = f.text_field :name, :class=> "form-control", :placeholder => "Method Name"
     / END INPUT METHOD NAME
+    - if @design_method.draft?
+      %h3.more-info-headers Suggestions
+      %div.more-info
+        %a#additional-reading More Info
+        %div.tool-help This section allows the administrators to provide suggestions to the editors.
+      = f.text_area :suggestions, :class => "form-control markdown", :rows => 6
+      %h5 End of Suggestions
     %h3 Synonyms
     .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
       = f.text_field :synonyms, :class=> "form-control", :placeholder => ""
@@ -289,6 +296,8 @@
       %a#additional-reading More Info
       %div.tool-help This section provides further resources that provide more information on the method than is presented on theDesignExchange for the method.
     = f.text_area :additional_reading, :class => "form-control markdown", :rows => 6
+
+
 
     %h3.more-info-headers Related Case Studies
 
