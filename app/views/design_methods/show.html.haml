@@ -213,6 +213,11 @@
           %a{"data-link" => "resources"} Resources
   /Method overview
   .tab-pane.row{"data-link" => "overview"}
+    - if @method.draft?
+      - if !@method.suggestions.blank?
+        %h3{:style=>"color:red;"} Suggestions
+        %p= md_format(@method.suggestions)
+        %h5{:style=>"color:red"} End of Suggestions
     = @method.overview != nil ? md_format(@method.overview) : "No overview available"
     - if !@method.synonyms.blank?
       %p
@@ -251,6 +256,7 @@
         = @method.video_attribution
     - if !@method.videoURL_two.blank?
       %h4 Video Two
+
 
       %iframe{:allowfullscreen => "", :frameborder => "1", :height => "315", :src => @method.videoURL_two, :width => "560"}
     - if !@method.video_two_caption.blank?
