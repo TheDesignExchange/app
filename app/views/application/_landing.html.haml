@@ -4,12 +4,11 @@
     .h1{:style=>"text-align:center;margin-bottom:10%;"}
       How Does it Work?
     .col-xs6.col-md-4
-
       .thumbnail{:style=>"height:300px;"}
-        .h3{:style=>"text-align:center"}
+        .h3{:style=>"text-align:center",:href=>"/register"}
           1
           %br
-          JOIN
+          %a{:href=>"#register"}JOIN
         .p{:style=>"text-align:center"}
           Join the community to find designers who share similar interests as you
           and start building your professional network.
@@ -18,7 +17,7 @@
         .h3{:style=>"text-align:center"}
           2
           %br
-          LEARN
+          %a{:href=>"#learn"}LEARN
         .p{:style=>"text-align:center"}
           Browse methods and case studies to improve your design skills. Learn what to do
           and what to not do to successfully complete your next design task.
@@ -27,69 +26,71 @@
         .h3{:style=>"text-align:center"}
           3
           %br
-          SHARE
+          %a{:href=>"/coming"}SHARE
         .p{:style=>"text-align:center"}
           Participate in discussions where you can post questions
           and answers regarding various design topics.
-  .getstarted{:style=>"margin-top:50%;padding:0 10% 0 10%"}
-    %hr/
-    .h2{:style=>"text-align:center; font-size:4em;margin-bottom:10%;"}
-      Get Started!
-    .col-md-6
-      %a{:href=>'/case_studies'}
-        .thumbnail{:style=>"text-align:center; font-size:3em"}
-          %span.glyphicon.glyphicon-envelope
-          %br
-          Case Studies
-    .col-md-6
-      %a{:href=>'/design_methods'}
-        .thumbnail{:style=>"text-align:center; font-size:3em"}
-          %span.glyphicon.glyphicon-envelope
-          %br
-          Design Methods
+  #learn
+    .getstarted{:style=>"margin-top:50%;padding:0 10% 0 10%"}
+      %hr/
+      .h2{:style=>"text-align:center; font-size:4em;margin-bottom:10%;"}
+        Get Started!
+      .col-md-6
+        %a{:href=>'/case_studies'}
+          .thumbnail{:style=>"text-align:center; font-size:3em"}
+            %span.glyphicon.glyphicon-user
+            %br
+            Case Studies
+      .col-md-6
+        %a{:href=>'/design_methods'}
+          .thumbnail{:style=>"text-align:center; font-size:3em"}
+            %span.glyphicon.glyphicon-folder-open
+            %br
+            Design Methods
     / .col-md-12
     /   %a{:href=>'/discussions'}
     /     .thumbnail{:style=>"text-align:center; font-size:3em"}
     /       %span.glyphicon.glyphicon-comment
     /       %br
     /       Discussions
-- if !user_signed_in?
-  .panel.panel-default.login-margin.panel-primary{:style=>"margin-top:20%"}
-    .panel-heading
-      %h3.panel-title Register
-    .panel-body
-      = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-        = devise_error_messages!
-        .input
-          = f.text_field :username, {:autofocus => false, :class => "form-control", :placeholder => "Username"}
-        %br/
-        .input
-          = f.text_field :first_name, {:autofocus => false, :class => "form-control", :placeholder => "First name"}
-        %br/
-        .input
-          = f.text_field :last_name, {:autofocus => false, :class => "form-control", :placeholder => "Last name"}
-        %br/
-        .input
-          = f.email_field :email, {:autofocus => false, :class => "form-control", :placeholder => "Email"}
-        %br/
-        .input
-          = f.text_field :affiliation, {:autofocus => false, :class => "form-control", :placeholder => "Affiliation (optional)"}
-        %br/
-        .input
-          = f.text_field :zip_code, {:autofocus => false, :class => "form-control", :placeholder => "Zip Code (optional)"}
-        %br/
-        .input
-          = f.password_field :password, { :class => "form-control", :placeholder => "Password"}
-        %br/
-        .input
-          = f.password_field :password_confirmation, { :class => "form-control", :placeholder => "Password Confirmation"}
-        %br/
-        .row
-          .col-md-12
-            .col-xs-6.col-md-8
-              = link_to "Sign in", new_session_path(resource_name)
-            .col-xs-8.col-md-4
-              = f.submit "Register", {:class=> "btn btn-default pull-right" }
+#register
+  - if !user_signed_in?
+    .panel.panel-default.login-margin.panel-primary{:style=>"margin-top:20%"}
+      .panel-heading
+        %h3.panel-title Register
+      .panel-body
+        = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+          = devise_error_messages!
+          .input
+            = f.text_field :username, {:autofocus => false, :class => "form-control", :placeholder => "Username"}
+          %br/
+          .input
+            = f.text_field :first_name, {:autofocus => false, :class => "form-control", :placeholder => "First name"}
+          %br/
+          .input
+            = f.text_field :last_name, {:autofocus => false, :class => "form-control", :placeholder => "Last name"}
+          %br/
+          .input
+            = f.email_field :email, {:autofocus => false, :class => "form-control", :placeholder => "Email"}
+          %br/
+          .input
+            = f.text_field :affiliation, {:autofocus => false, :class => "form-control", :placeholder => "Affiliation (optional)"}
+          %br/
+          .input
+            = f.text_field :zip_code, {:autofocus => false, :class => "form-control", :placeholder => "Zip Code (optional)"}
+          %br/
+          .input
+            = f.password_field :password, { :class => "form-control", :placeholder => "Password"}
+          %br/
+          .input
+            = f.password_field :password_confirmation, { :class => "form-control", :placeholder => "Password Confirmation"}
+          %br/
+          .row
+            .col-md-12
+              .col-xs-6.col-md-8
+                = link_to "Sign in", new_session_path(resource_name)
+              .col-xs-8.col-md-4
+                = f.submit "Register", {:class=> "btn btn-default pull-right" }
 
   /. Landing
   / .thedxcommunity{:style=>"margin-top:60%;padding:0 10% 0 10%"}
