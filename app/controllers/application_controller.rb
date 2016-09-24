@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   check_authorization :unless => :devise_controller?
 
-  skip_authorization_check :only => [:landing, :index, :search, :search_db, :about]
+  skip_authorization_check :only => [:landing, :index, :search, :search_db, :about,:coming]
   protect_from_forgery with: :exception
   add_flash_types :success, :warning, :danger, :info
 
@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
   def index
     @design_methods = DesignMethod.order("RANDOM()").limit(3)
     @case_studies = CaseStudy.order("RANDOM()").limit(3)
+    render layout: "custom"
+  end
+
+  def coming
     render layout: "custom"
   end
 
