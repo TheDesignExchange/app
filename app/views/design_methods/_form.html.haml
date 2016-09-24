@@ -191,7 +191,7 @@
     .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
       = f.text_field :name, :class=> "form-control", :placeholder => "Method Name"
     / END INPUT METHOD NAME
-    - if @design_method.draft?
+    - if @design_method.draft? and current_user != nil and current_user.admin?
       %h3.more-info-headers Suggestions
       %div.more-info
         %a#additional-reading More Info
