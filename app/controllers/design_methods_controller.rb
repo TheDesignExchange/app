@@ -21,6 +21,8 @@ class DesignMethodsController < ApplicationController
         format.html { render :layout => "wide" }
         format.json { render json: @design_methods_all}
       end
+      UserMailer.seeking_approval_email(current_user).deliver
+
   end
 
 
