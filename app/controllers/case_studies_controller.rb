@@ -86,14 +86,25 @@ class CaseStudiesController < ApplicationController
     end
 
     if params[:commit] == "Save as Draft"
+      if @case_study.owner_id != nil #not all case studies have owners, this is something we should change
+        if current_user.admin? and current_user != User.find_by(id:@case_study.owner_id) and @case_study.ready 
+          UserMailer.cs_admin_changes_email(User.find_by(id:@case_study.owner_id),@case_study).deliver
+        end
+      end
       @case_study.draft = true
       @case_study.ready = false
     elsif params[:commit] == "Publish"
       @case_study.draft = false
       @case_study.ready = true
+      if @case_study.owner_id != nil
+        UserMailer.publication_email(User.find_by(id:@case_study.owner_id), @case_study).deliver
+      end
     elsif params[:commit] == "Ready for Approval"
-      @design_method.draft = true
+      @case_study.draft = true
       @case_study.ready = true
+      UserMailer.cs_approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @case_study).deliver
+      UserMailer.cs_approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @case_study).deliver
+      UserMailer.cs_approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @case_studycs).deliver
     end
 
     respond_to do |format|
@@ -121,9 +132,15 @@ class CaseStudiesController < ApplicationController
     elsif params[:commit] == "Publish"
       @case_study.draft = false
       @case_study.ready = true
+      if @case_study.owner_id != nil
+        UserMailer.publication_email(User.find_by(id:@case_study.owner_id), @case_study).deliver
+      end
     elsif params[:commit] == "Ready for Approval"
-      @design_method.draft = true
+      @case_study.draft = true
       @case_study.ready = true
+      UserMailer.cs_approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @case_study).deliver
+      UserMailer.cs_approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @case_study).deliver
+      UserMailer.cs_approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @case_study).deliver
     end
     
     respond_to do |format|

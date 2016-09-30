@@ -1,0 +1,6 @@
+<p> Congrats! Your case study <a href="www.thedesignexchange.org/case_studies/<%= @cs.id%>">  <%= @cs.name %> </a> has been published. 
+</p>
+
+<p>
+From DXNotification Systems
+</p>

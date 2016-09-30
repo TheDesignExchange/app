@@ -245,6 +245,9 @@
       / INPUT METHOD NAME
       = f.check_box :hidden
       Hidden Case Study?
+      - if @case_study.draft? and current_user != nil and current_user.admin?
+        %h3{:style=>"color:red;"} Suggestions
+        = f.text_area :suggestions, :class => "form-control markdown", :rows => 6
       .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
         %h3 Title
         = f.text_field :name, :class=> "form-control", :placeholder => "Case Study Name"
@@ -264,6 +267,8 @@
     - else
       = f.file_field :main_image
       / FORMS
+
+
       %h3 Problem
       = f.text_area :overview, :class => "form-control markdown", :rows => 12
       %h3 Process
