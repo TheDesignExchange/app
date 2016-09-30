@@ -126,9 +126,14 @@ class CaseStudiesController < ApplicationController
     elsif params[:commit] == "Publish"
       @case_study.draft = false
       @case_study.ready = true
+      if @case_study.owner_id != nil
+        UserMailer.publication_email(User.find_by(id:@case_study.owner_id), @case_study).deliver
+      end
     elsif params[:commit] == "Ready for Approval"
       @case_study.draft = true
       @case_study.ready = true
+      UserMailer.cs_approval_email(User.find_by(email:"jmendre@berkeley.edu"), @case_study).deliver
+
     end
     
     respond_to do |format|

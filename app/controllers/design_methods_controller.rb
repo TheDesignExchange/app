@@ -45,7 +45,7 @@ class DesignMethodsController < ApplicationController
     if params[:commit] == "Save as Draft"
       @design_method.draft = true
       @design_method.ready = false
-    
+
     elsif params[:commit] == "Publish"
       @design_method.draft = false
       @design_method.ready = true
@@ -89,9 +89,12 @@ class DesignMethodsController < ApplicationController
     elsif params[:commit] == "Publish"
       @design_method.draft = false
       @design_method.ready = true
+      UserMailer.publication_email(@design_method.owner, @design_method).deliver
+
     elsif params[:commit] == "Ready for Approval"
       @design_method.draft = true
       @design_method.ready = true
+      UserMailer.approval_email(User.find_by(email:"jmendre@berkeley.edu"), @design_method).deliver
     end
 
     if Rails.env.production?
