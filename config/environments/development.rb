@@ -15,7 +15,6 @@ DesignExchange::Application.configure do
   config.action_mailer.perform_deliveries = true
 
   config.action_mailer.delivery_method = :smtp
-
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 

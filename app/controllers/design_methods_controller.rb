@@ -10,6 +10,7 @@ class DesignMethodsController < ApplicationController
   layout 'custom'
 
   def index
+      # UserMailer.seeking_approval_email(current_user, @design_method)
       @design_methods = DesignMethod.where("overview != ?", "No overview available" )
       if params[:sort_order] == "completion"
         @design_methods = DesignMethod.order(completion_score: :desc)
@@ -37,7 +38,6 @@ class DesignMethodsController < ApplicationController
 
   def update
     @design_method = DesignMethod.find(params[:id])
-
     if !(current_user.admin? || current_user.editor?)
       @design_method.hidden = true
     end
@@ -51,6 +51,8 @@ class DesignMethodsController < ApplicationController
     elsif params[:commit] == "Ready for Approval"
       @design_method.draft = true
       @design_method.ready = true
+      UserMailer.approval_email(current_user, @design_method).deliver
+
     end
 
     if Rails.env.production?
