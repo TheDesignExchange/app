@@ -1,5 +1,5 @@
 if Rails.env.development? or Rails.env.test?
-  mailgun_token = 'ab06f9f83ac6cbf93043f4d922a3b464' #test account password
+  mailgun_token = ENV["MAILGUN_PASSWORD"] #test account password
   domain = 'mailgun.org'
   user_name = 'postmaster@sandbox423e5292e666438983f8ae2612819549.mailgun.org'
 else
