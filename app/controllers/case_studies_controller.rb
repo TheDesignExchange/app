@@ -97,7 +97,7 @@ class CaseStudiesController < ApplicationController
     elsif params[:commit] == "Ready for Approval"
       @case_study.draft = true
       @case_study.ready = true
-      UserMailer.cs_approval_email(User.find_by(email:"jmendre@berkeley.edu"), @case_study).deliver
+      UserMailer.cs_approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @case_study).deliver
       UserMailer.cs_approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @case_study).deliver
       UserMailer.cs_approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @case_studycs).deliver
     end
@@ -133,7 +133,7 @@ class CaseStudiesController < ApplicationController
     elsif params[:commit] == "Ready for Approval"
       @case_study.draft = true
       @case_study.ready = true
-      UserMailer.cs_approval_email(User.find_by(email:"jmendre@berkeley.edu"), @case_study).deliver
+      UserMailer.cs_approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @case_study).deliver
       UserMailer.cs_approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @case_study).deliver
       UserMailer.cs_approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @case_study).deliver
     end
