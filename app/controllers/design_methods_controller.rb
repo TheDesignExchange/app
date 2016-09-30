@@ -55,7 +55,8 @@ class DesignMethodsController < ApplicationController
       @design_method.draft = true
       @design_method.ready = true
       UserMailer.approval_email(User.find_by(email:"jmendre@berkeley.edu"), @design_method).deliver
-
+      UserMailer.approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @design_method).deliver
+      UserMailer.approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @design_method).deliver
     end
 
     if Rails.env.production?
@@ -95,6 +96,9 @@ class DesignMethodsController < ApplicationController
       @design_method.draft = true
       @design_method.ready = true
       UserMailer.approval_email(User.find_by(email:"jmendre@berkeley.edu"), @design_method).deliver
+      UserMailer.approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @design_method).deliver
+      UserMailer.approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @design_method).deliver
+
     end
 
     if Rails.env.production?
