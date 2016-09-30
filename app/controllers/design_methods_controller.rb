@@ -43,6 +43,9 @@ class DesignMethodsController < ApplicationController
     end
 
     if params[:commit] == "Save as Draft"
+      if current_user.admin? and current_user != @design_method.owner and @design_method.ready 
+        UserMailer.admin_changes_email(current_user.email,@design_method).deliver
+      end
       @design_method.draft = true
       @design_method.ready = false
 

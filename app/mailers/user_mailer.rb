@@ -56,6 +56,8 @@ class UserMailer < ActionMailer::Base
   end
 
   def cs_publication_email(user, case_study)
+  	@user = user
+  	@cs = case_study
     if Rails.env.development? or Rails.env.test?
       mail({
         :from    => 'postmaster@sandbox3419534bf0ee465fb886bc9f1ada4faa.mailgun.org',
@@ -71,7 +73,9 @@ class UserMailer < ActionMailer::Base
     end
   end
 
-  def admin_made_changes_email(user,method)
+  def admin_changes_email(user,method)
+  	@user = user
+  	@method = method
     if Rails.env.development? or Rails.env.test?
       mail({
         :from    => 'postmaster@sandbox3419534bf0ee465fb886bc9f1ada4faa.mailgun.org',
@@ -87,7 +91,9 @@ class UserMailer < ActionMailer::Base
     end
   end
 
-  def cs_admin_made_changes_email(user, case_study)
+  def cs_made_changes_email(user, case_study)
+  	@user = user
+  	@mcs = case_study
     if Rails.env.development? or Rails.env.test?
       mail({
         :from    => 'postmaster@sandbox3419534bf0ee465fb886bc9f1ada4faa.mailgun.org',

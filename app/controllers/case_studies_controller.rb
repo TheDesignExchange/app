@@ -86,6 +86,11 @@ class CaseStudiesController < ApplicationController
     end
 
     if params[:commit] == "Save as Draft"
+      if @case_study.owner_id != nil #not all case studies have owners, this is something we should change
+        if current_user.admin? and current_user != User.find_by(id:@case_study.owner_id) and @case_study.ready 
+          UserMailer.admin_changes_email(current_user.email,@case_study).deliver
+        end
+      end
       @case_study.draft = true
       @case_study.ready = false
     elsif params[:commit] == "Publish"
