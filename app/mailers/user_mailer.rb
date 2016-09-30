@@ -91,7 +91,7 @@ class UserMailer < ActionMailer::Base
     end
   end
 
-  def cs_made_changes_email(user, case_study)
+  def cs_admin_changes_email(user, case_study)
   	@user = user
   	@mcs = case_study
     if Rails.env.development? or Rails.env.test?
