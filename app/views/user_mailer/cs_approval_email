@@ -1,0 +1,6 @@
+<p> Case study <a href="www.thedesignexchange.org/case_studies/<%= @cs.id%>">  <%= @cs.name %> </a> is now ready for approval. </a> 
+</p>
+
+<p>
+From DXNotification Systems
+</p>
