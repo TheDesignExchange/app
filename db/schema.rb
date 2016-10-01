@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920005052) do
+ActiveRecord::Schema.define(version: 20160930232005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -199,6 +199,7 @@ ActiveRecord::Schema.define(version: 20160920005052) do
     t.string   "video_two_caption"
     t.boolean  "draft",                    default: false
     t.boolean  "ready"
+    t.string   "image_attribution"
     t.string   "suggestions"
   end
 

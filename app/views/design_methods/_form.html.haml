@@ -219,6 +219,10 @@
     - if !@new
       = link_to "Clear Image", {:controller => "design_methods", :action => :clearImage, :id => @design_method.id}, :class=> "btn btn-primary"
 
+    %br/
+    %h4 Image Attribution
+    = f.text_area :image_attribution, :class => "form-control markdown", :rows => 2
+
 
     / END IMAGES
     / FORMS
