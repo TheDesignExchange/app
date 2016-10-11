@@ -200,6 +200,7 @@ ActiveRecord::Schema.define(version: 20161011182405) do
     t.string   "video_two_caption"
     t.boolean  "draft",                    default: false
     t.boolean  "ready"
+    t.string   "image_attribution"
     t.string   "suggestions"
     t.string   "last_editor"
   end

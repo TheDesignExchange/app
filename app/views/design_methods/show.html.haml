@@ -228,6 +228,12 @@
       .row
       = image_tag(@method.image_url, :width => "100%")
 
+    / Displays image attribution
+    - if !@method.image_attribution.blank? 
+      %h5 Image Attributions
+      %p
+        = md_format(@method.image_attribution)
+
     - if !@method.usage.blank?
       %h4 When to use
       %p= md_format(@method.usage)
