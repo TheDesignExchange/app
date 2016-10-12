@@ -1,4 +1,4 @@
-<p> <%= @method.owner.first_name %>'s method <a href="www.thedesignexchange.org/design_methods/<%= @method.id%>">  <%= @method.name %> </a> is now ready for approval. </a> 
+<p> <%= User.find_by(id:@method.last_editor_id).first_name %>'s method <a href="www.thedesignexchange.org/design_methods/<%= @method.id%>">  <%= @method.name %> </a> is now ready for approval. </a> 
 </p>
 
 <p>

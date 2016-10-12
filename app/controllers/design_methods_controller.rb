@@ -37,6 +37,7 @@ class DesignMethodsController < ApplicationController
   end
 
   def update
+    @design_method.last_editor_id = current_user.id
     @design_method = DesignMethod.find(params[:id])
     if !(current_user.admin? || current_user.editor?)
       @design_method.hidden = true
@@ -53,13 +54,18 @@ class DesignMethodsController < ApplicationController
       @design_method.draft = false
       @design_method.ready = true
       UserMailer.publication_email(@design_method.owner, @design_method).deliver
+      if @design_method.last_editor_id != nil
+        UserMailer.publication_email(User.find_by(id:@design_method.last_editor_id), @design_method).deliver
+      end
 
     elsif params[:commit] == "Ready for Approval"
       @design_method.draft = true
       @design_method.ready = true
-      UserMailer.approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @design_method).deliver
-      UserMailer.approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @design_method).deliver
-      UserMailer.approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @design_method).deliver
+      UserMailer.approval_email(User.find_by(email:"jmendre@berkeley.edu"), @design_method).deliver
+
+      # UserMailer.approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @design_method).deliver
+      # UserMailer.approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @design_method).deliver
+      # UserMailer.approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @design_method).deliver
     end
 
     if Rails.env.production?
@@ -82,6 +88,7 @@ class DesignMethodsController < ApplicationController
   def create
     @design_method = DesignMethod.new(params[:design_method])
     @design_method.owner = current_user
+    @design_method.last_editor_id = current_user.id
 
     if !(current_user.admin? || current_user.editor?)
       @design_method.hidden = true
@@ -101,7 +108,6 @@ class DesignMethodsController < ApplicationController
       UserMailer.approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @design_method).deliver
       UserMailer.approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @design_method).deliver
       UserMailer.approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @design_method).deliver
-
     end
 
     if Rails.env.production?
