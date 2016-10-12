@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011190858) do
+ActiveRecord::Schema.define(version: 20161012205902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 20161011190858) do
     t.boolean  "draft",             default: false
     t.integer  "owner_id"
     t.boolean  "ready"
-    t.string   "suggestions"
+    t.text     "suggestions"
     t.integer  "last_editor_id"
   end
 
@@ -191,17 +191,17 @@ ActiveRecord::Schema.define(version: 20161011190858) do
     t.boolean  "hidden",                   default: false
     t.integer  "picture"
     t.string   "picture_url"
-    t.string   "video_attribution"
-    t.string   "video_caption"
+    t.text     "video_attribution"
+    t.text     "video_caption"
     t.integer  "completion_score"
     t.string   "videoURL_two"
-    t.string   "videoURL_two_attribution"
-    t.string   "video_two_attribution"
-    t.string   "video_two_caption"
+    t.text     "videoURL_two_attribution"
+    t.text     "video_two_attribution"
+    t.text     "video_two_caption"
     t.boolean  "draft",                    default: false
     t.boolean  "ready"
-    t.string   "suggestions"
-    t.string   "image_attribution"
+    t.text     "suggestions"
+    t.text     "image_attribution"
     t.integer  "last_editor_id"
   end
 

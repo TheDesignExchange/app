@@ -247,7 +247,7 @@
       Hidden Case Study?
       - if @case_study.draft? and current_user != nil and current_user.admin?
         %h3{:style=>"color:red;"} Suggestions
-        = f.text_area :suggestions, :class => "form-control markdown", :rows => 6
+        = f.text_area :suggestions, :class => "form-control markdown", :rows => 50
       .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
         %h3 Title
         = f.text_field :name, :class=> "form-control", :placeholder => "Case Study Name"
