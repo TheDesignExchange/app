@@ -79,7 +79,7 @@ class CaseStudiesController < ApplicationController
 
   def update
     @case_study = CaseStudy.find(params[:id])
-
+    @case_study.last_editor_id = current_user.id
     if Rails.env.production?
       file = params[:case_study][:picture]
       @case_study.upload_to_s3(file, request.original_url)
@@ -98,6 +98,7 @@ class CaseStudiesController < ApplicationController
       @case_study.ready = true
       if @case_study.owner_id != nil
         UserMailer.publication_email(User.find_by(id:@case_study.owner_id), @case_study).deliver
+        UserMailer.publication_email(User.find_by(id:@case_study.last_editor_id),@case_study).deliver
       end
     elsif params[:commit] == "Ready for Approval"
       @case_study.draft = true
@@ -121,6 +122,7 @@ class CaseStudiesController < ApplicationController
   def create
     @case_study = CaseStudy.new(params[:case_study])
     @case_study.owner_id = current_user.id
+    @case_study.last_editor_id = current_user.id
     if Rails.env.production?
       file = params[:case_study][:picture]
       @case_study.upload_to_s3(file, request.original_url)

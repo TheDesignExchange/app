@@ -41,7 +41,7 @@ class DesignMethod < ActiveRecord::Base
                   :additional_reading, :characteristic_ids, :references, :case_study_ids,
                   :videoURL, :hidden, :picture, :picture_url, :video_attribution, :video_caption,
                   :completion_score, :videoURL_two, :video_two_attribution, :video_two_caption, :draft,
-                  :suggestions, :image_attribution
+                  :suggestions, :image_attribution, :last_editor_id
 
   # Validations
   validates :name, :overview, presence: true
