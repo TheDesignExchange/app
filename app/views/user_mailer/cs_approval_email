@@ -1,4 +1,4 @@
-<p> Case study <a href="www.thedesignexchange.org/case_studies/<%= @cs.id%>">  <%= @cs.name %> </a> is now ready for approval. </a> 
+<p> <%= User.find_by(id:@cs.last_editor_id).first_name %>'s Case study <a href="www.thedesignexchange.org/case_studies/<%= @cs.id%>">  <%= @cs.name %> </a> is now ready for approval. </a> 
 </p>
 
 <p>

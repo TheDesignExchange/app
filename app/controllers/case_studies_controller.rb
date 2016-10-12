@@ -99,9 +99,7 @@ class CaseStudiesController < ApplicationController
       if @case_study.owner_id != nil
         UserMailer.publication_email(User.find_by(id:@case_study.owner_id), @case_study).deliver
       end
-      if @case_study.last_editor != nil
-        UserMailer.publication_email(User.find_by(id:@case_study.last_editor),@case_study).deliver
-      end
+      UserMailer.publication_email(User.find_by(id:@case_study.last_editor),@case_study).deliver
     elsif params[:commit] == "Ready for Approval"
       @case_study.draft = true
       @case_study.ready = true
