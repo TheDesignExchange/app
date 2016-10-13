@@ -37,8 +37,8 @@ class DesignMethodsController < ApplicationController
   end
 
   def update
-    @design_method.last_editor_id = current_user.id
     @design_method = DesignMethod.find(params[:id])
+    @design_method.last_editor_id = current_user.id
     if !(current_user.admin? || current_user.editor?)
       @design_method.hidden = true
     end
