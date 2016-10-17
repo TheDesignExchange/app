@@ -82,7 +82,7 @@
       <haml_loud> glyphyify(&quot;floppy-disk&quot;) </haml_loud> Save as Draft
       </button>
 
-    - if not @case_study.new_record?
+    - if not @case_study.new_record? and (current_user.admin? || current_user.editor?)
       = link_to 'Destroy', case_study_path(@case_study),                                                |
         data: { :confirm => 'Are you sure?' }, :method => :delete, :class=> "btn btn-danger pull-right" |
     / <span id="auto-saved-text" class="pull-right">Auto-saved as draft 2 minutes ago</span>

@@ -149,7 +149,7 @@
   / INPUT FIELDS
   #save-bar.row
 
-    - if current_user.admin? || current_user.editor? || current_user.author?
+    - if current_user.admin? || current_user.editor?
       = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
     - if current_user.author?
       = f.submit "Ready for Approval", :id => "publish-btn", :class => "btn btn-success pull-right"

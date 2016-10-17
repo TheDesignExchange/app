@@ -43,9 +43,10 @@ class AdministratorController < ApplicationController
     @user.roles = [:author]
     @user.save
     respond_to do |format|
-      format.html { redirect_to administrator_path, notice: 'User has now been given editor privileges.'}
+      format.html { redirect_to administrator_path, notice: 'User has now been given author privileges.'}
       format.json { head :no_content }
     end
+  end
 
   def changeBasic
     authorize! :change_basic, :administrator
