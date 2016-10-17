@@ -195,7 +195,8 @@
               Edit
           %li
             Last Edited: 
-            %p= md_format(@method.updated_at)
+            - timestamp = @method.updated_at.strftime("Printed on %m/%d/%Y at %I:%M%p")
+            %p= md_format(timestamp)
          
 
     /Method top level categories
