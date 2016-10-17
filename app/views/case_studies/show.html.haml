@@ -96,19 +96,12 @@
           %span.glyphicon.glyphicon-pencil
           Edit
 
-<<<<<<< HEAD
       %p{:style=>"text-align: right; font-size: 11px;"}
         Last Updated: 
         #{@case_study.updated_at.strftime('%x') } by
         #{@case_study.last_editor}
-=======
-    %p{:style=>"text-align: right;"}
-      Last Updated: #{@case_study.updated_at.strftime("%B")} 
-      #{@case_study.updated_at.strftime("%d")}
-      %br/
-      by:
+
      
->>>>>>> 68f7f82f34a4ac06cde82ac927296bf027509c0f
     / END MENU BAR
     / CONTENT
     - if @case_study.has_image?
