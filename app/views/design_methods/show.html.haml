@@ -196,7 +196,9 @@
           %li
             - timestamp = @method.updated_at.strftime("Last Edited on %m/%d/%Y at %I:%M%p")
             = md_format(timestamp)
-          
+          - if !@method.last_editor.nil?
+          %li
+            by 
          
 
     /Method top level categories
