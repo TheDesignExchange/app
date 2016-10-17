@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   # of existing roles will wreak havoc on role assignments.
   # If you do not understand this, please consult the README at
   # https://github.com/martinrehfeld/role_model
-  roles :admin, :editor, :basic
+  roles :admin, :editor, :author, :basic
 
   def admin?
     self.has_role? :admin
@@ -70,6 +70,10 @@ class User < ActiveRecord::Base
     self.has_role? :editor
   end
 
+  def author?
+    self.has_role? :author
+  end
+  
   def basic?
     self.has_role? :basic
   end

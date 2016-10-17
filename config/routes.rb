@@ -42,6 +42,7 @@ DesignExchange::Application.routes.draw do
   get '/administrator', to: 'administrator#index'
   get '/administrator/change_admin', to: 'administrator#changeAdmin'
   get '/administrator/change_editor', to: 'administrator#changeEditor'
+  get '/administrator/change_author', to: 'administrator#changeAuthor'
   get '/administrator/change_basic', to: 'administrator#changeBasic'
   get '/design_methods/:id/clearImage', to: 'design_methods#clearImage'
   get '/design_methods/new/clearImage', to: 'design_methods#clearImage'

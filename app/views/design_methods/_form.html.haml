@@ -149,9 +149,9 @@
   / INPUT FIELDS
   #save-bar.row
 
-    - if current_user.admin?
+    - if current_user.admin? || current_user.editor?
       = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
-    - if current_user.editor?
+    - if current_user.author?
       = f.submit "Ready for Approval", :id => "publish-btn", :class => "btn btn-success pull-right"
     = f.submit "Save as Draft", :id => "save-btn", :class => "btn btn-default pull-right"
     
@@ -181,7 +181,7 @@
   .tab-pane.row{"data-link" => "overview"}
     / INPUT METHOD NAME
 
-    - if (current_user.admin? || current_user.editor?)
+    - if (current_user.admin? || current_user.editor? || current_user.author?)
       = f.check_box :hidden
       Hidden Method?
 
@@ -191,7 +191,7 @@
     .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
       = f.text_field :name, :class=> "form-control", :placeholder => "Method Name"
     / END INPUT METHOD NAME
-    - if @design_method.draft? and current_user != nil and current_user.admin?
+    - if @design_method.draft? and current_user != nil and (current_user.admin? || current_user.editor?)
       %h3.more-info-headers Suggestions
       %div.more-info
         %a#additional-reading More Info
@@ -396,9 +396,9 @@
   / END FORMS
   %br/
   #save-bar.row
-    - if current_user.admin?
+    - if current_user.admin? || current_user.editor?
       = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
-    - if current_user.editor?
+    - if current_user.author?
       = f.submit "Ready for Approval", :id => "publish-btn", :class => "btn btn-success pull-right"
     = f.submit "Save as Draft", :id => "save-btn", :class => "btn btn-default pull-right"
     

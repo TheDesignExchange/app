@@ -28,7 +28,7 @@
     .col-xs-8.col-xs-offset-4.col-sm-10.col-sm-offset-2.left-pad
       .col-xs-6
         %h3 Popular Methods
-        - if (current_user != nil) && (current_user.admin? || current_user.editor?)
+        - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
           %input{:name => "hidden", :type => "checkbox", :id => "hidden", :style => "margin: 0px 5px 15px 0px"} Show hidden methods
           %br
           = link_to "Sort by Completion Score", {:controller => "design_methods", :action => "index", :sort_order => "completion"}, :class => "btn btn-primary"
@@ -42,7 +42,7 @@
   #search-and-filter.row
     #sidebar.col-xs-4.col-sm-2
       = render "/layouts/sidebar"
-    - if (current_user != nil) && (current_user.admin? || current_user.editor?)
+    - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
       #results-container.col-xs-8.col-sm-10
         #hiddenMethods{:style => "display:none"}
           .h4{:style => "margin-left:3%"}
@@ -61,7 +61,7 @@
     #sidebar.col-xs-4.col-sm-2
 
     #results-container.col-xs-8.col-sm-10
-      - if (current_user != nil) && (current_user.admin? || current_user.editor?)
+      - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
         #publicMethods
           .h4{:style => "margin-left:3%"}
             Public Methods

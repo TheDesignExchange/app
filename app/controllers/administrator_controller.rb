@@ -25,6 +25,7 @@ class AdministratorController < ApplicationController
 
   end
 
+
   def changeEditor
     authorize! :change_editor, :administrator
     @user = User.find(params[:id])
@@ -32,6 +33,17 @@ class AdministratorController < ApplicationController
     @user.save
     respond_to do |format|
       format.html { redirect_to administrator_path, notice: 'User has now been given editor privileges.'}
+      format.json { head :no_content }
+    end
+  end
+
+  def changeAuthor
+    authorize! :change_author, :administrator
+    @user = User.find(params[:id])
+    @user.roles = [:author]
+    @user.save
+    respond_to do |format|
+      format.html { redirect_to administrator_path, notice: 'User has now been given author privileges.'}
       format.json { head :no_content }
     end
   end
