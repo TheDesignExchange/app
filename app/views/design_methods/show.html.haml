@@ -196,9 +196,6 @@
           %li
             - timestamp = @method.updated_at.strftime("Last Edited %I:%M%p %m/%d/%Y")
             = md_format(timestamp)
-          %li
-            by 
-            = md_format(@method.last_editor)
          
 
     /Method top level categories
