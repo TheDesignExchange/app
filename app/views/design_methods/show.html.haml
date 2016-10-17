@@ -193,7 +193,10 @@
             %a{:href => edit_design_method_path(params[:id])}
               %span.glyphicon.glyphicon-pencil
               Edit
-          
+          %li
+            Last Edited: 
+            %p= md_format(@method.updated_at)
+         
 
     /Method top level categories
   .row
