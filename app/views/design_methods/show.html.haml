@@ -194,11 +194,11 @@
               %span.glyphicon.glyphicon-pencil
               Edit
           %li
-            - timestamp = @method.updated_at.strftime("Last Edited on %m/%d/%Y at %I:%M%p")
+            - timestamp = @method.updated_at.strftime("Last Edited %I:%M%p %m/%d/%Y")
             = md_format(timestamp)
-          - if !@method.last_editor.nil?
           %li
             by 
+            = md_format(@method.last_editor)
          
 
     /Method top level categories
