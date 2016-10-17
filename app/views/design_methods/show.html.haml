@@ -193,14 +193,14 @@
             %a{:href => edit_design_method_path(params[:id])}
               %span.glyphicon.glyphicon-pencil
               Edit
-          - if !@method.last_editor_id.blank?
           %li
             Last Edited: 
             = md_format(@method.updated_at)
+          - if !@method.last_editor_id.blank?
           %li
              by: 
             = md_format(@method.last_editor_id)
-            
+
     /Method top level categories
   .row
     - @method.method_categories.each do |category|
