@@ -195,11 +195,11 @@
               Edit
           %li
             Last Edited: 
-            = md_format(@method.updated_at)
-          - if !@method.last_editor_id.blank?
-          %li
-             by: 
-            = md_format(@method.last_editor_id)
+            %p= md_format(@method.updated_at)
+          / - if !@method.last_editor_id.blank?
+          / %li
+          /    by: 
+          /   = md_format(@method.last_editor_id)
 
     /Method top level categories
   .row
