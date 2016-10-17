@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     render layout: "custom"
   end
 
-  def discussions
+  def share
     render layout: "custom"
   end
 
