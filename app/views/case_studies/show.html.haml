@@ -120,7 +120,7 @@
         - @case_study.design_methods.each do |dm|
           = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4")
 
-    - if (current_user != nil) && (current_user.admin? || current_user.editor?)
+    - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
       .row 
         %h4 Completion Score
         %p 

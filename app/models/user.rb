@@ -70,6 +70,10 @@ class User < ActiveRecord::Base
     self.has_role? :editor
   end
 
+  def author?
+    self.has_role? :author
+  end
+  
   def basic?
     self.has_role? :basic
   end

@@ -63,7 +63,7 @@
     #sidebar.col-xs-4.col-sm-2
 
     #results-container.col-xs-8.col-sm-10
-      - if (current_user != nil) && (current_user.admin?)
+      - if (current_user != nil) && (current_user.admin? || current_user.editor?)
         #publicMethods
           .h4{:style => "margin-left:3%"}
             Draft Methods by Editors

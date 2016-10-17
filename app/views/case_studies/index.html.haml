@@ -13,7 +13,7 @@
     .col-md-10.left-pad
       .col-md-6
         %h3 Featured Case Studies
-        - if (current_user != nil) && (current_user.admin? || current_user.editor?)
+        - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
           %input{:name => "hidden", :type => "checkbox", :id => "hidden", :style => "margin: 0px 5px 15px 0px"} Show hidden Case Studies
           %br
           = link_to "Sort by Completion Score", {:controller => "case_studies", :action => "index", :sort_order => "completion"}, :class => "btn btn-primary"
@@ -23,7 +23,7 @@
           Add Case Study
   
   .row
-    - if (current_user != nil) && (current_user.admin? || current_user.editor?)
+    - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
       .col-md-2
         / WARNING: SIDEBAR UNDER CONSTRUCTION!
       .col-md-10.left-pad
@@ -34,7 +34,7 @@
             = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3")
     .col-md-2
     .col-md-10.left-pad
-      - if (current_user != nil) && (current_user.admin? || current_user.editor?)
+      - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
         #publicCaseStudies
           .h4{:style => "margin-left:3%"}
             Public Case Studies

@@ -53,8 +53,8 @@ class DesignMethodsController < ApplicationController
     elsif params[:commit] == "Publish"
       @design_method.draft = false
       @design_method.ready = true
-      UserMailer.publication_email(@design_method.owner, @design_method).deliver
-      UserMailer.publication_email(User.find_by(id:@design_method.last_editor_id), @design_method).deliver
+      # UserMailer.publication_email(@design_method.owner, @design_method).deliver
+      # UserMailer.publication_email(User.find_by(id:@design_method.last_editor_id), @design_method).deliver
 
     elsif params[:commit] == "Ready for Approval"
       @design_method.draft = true

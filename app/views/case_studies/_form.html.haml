@@ -68,10 +68,10 @@
         - @case_study.errors.full_messages.each do |msg|
           %li= msg
   #user-action-ui.row
-    - if current_user.admin?
+    - if current_user.admin? || current_user.editor?
       = f.submit "Publish", :id => "publish-btn", |
         :class => "btn btn-primary pull-right"    |
-    - if current_user.editor?
+    - if current_user.author?
       = f.submit "Ready for Approval", :id => "publish-btn", |
         :class => "btn btn-success pull-right"    |
 

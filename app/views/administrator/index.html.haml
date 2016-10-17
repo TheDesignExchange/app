@@ -170,6 +170,7 @@
               %ul.dropdown-menu
                 %li= link_to "Admin"
                 %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
+                %li= link_to "Change to Author", :controller => "administrator", :action => :changeAuthor, :id => user.id
                 %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
           - elsif user.editor?
             %li.dropdown{:style => "list-style: none"}
@@ -179,6 +180,17 @@
               %ul.dropdown-menu
                 %li= link_to "Change to Admin", :controller => "administrator", :action => :changeAdmin, :id => user.id
                 %li= link_to "Editor"
+                %li= link_to "Change to Author", :controller => "administrator", :action => :changeAuthor, :id => user.id
+                %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
+          - elsif user.author?
+            %li.dropdown{:style => "list-style: none"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Basic
+                %b.caret
+              %ul.dropdown-menu
+                %li= link_to "Change to Admin", :controller => "administrator", :action => :changeAdmin, :id => user.id
+                %li= link_to "Author"
+                %li= link_to "Change to Author", :controller => "administrator", :action => :changeAuthor, :id => user.id
                 %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
           - elsif user.basic?
             %li.dropdown{:style => "list-style: none"}
@@ -188,6 +200,7 @@
               %ul.dropdown-menu
                 %li= link_to "Change to Admin", :controller => "administrator", :action => :changeAdmin, :id => user.id
                 %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
+                %li= link_to "Change to Author", :controller => "administrator", :action => :changeAuthor, :id => user.id
                 %li= link_to "Basic"
           - else
             %li.dropdown{:style => "list-style: none"}
@@ -197,6 +210,7 @@
               %ul.dropdown-menu
                 %li= link_to "Change to Admin", :controller => "administrator", :action => :changeAdmin, :id => user.id
                 %li= link_to "Change to Editor", :controller => "administrator", :action => :changeEditor, :id => user.id
+                %li= link_to "Change to Author", :controller => "administrator", :action => :changeAuthor, :id => user.id
                 %li= link_to "Change to Basic",  :controller => "administrator", :action => :changeBasic, :id => user.id
 
   .users-tablesorter-pager
