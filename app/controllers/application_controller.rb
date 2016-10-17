@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   check_authorization :unless => :devise_controller?
 
-  skip_authorization_check :only => [:landing, :index, :search, :search_db, :about,:coming]
+  skip_authorization_check :only => [:landing, :index, :search, :search_db, :about,:discussions]
   protect_from_forgery with: :exception
   add_flash_types :success, :warning, :danger, :info
 
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     render layout: "custom"
   end
 
-  def coming
+  def discussions
     render layout: "custom"
   end
 
