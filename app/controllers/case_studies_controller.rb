@@ -112,6 +112,7 @@ class CaseStudiesController < ApplicationController
         UserMailer.cs_approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @case_study).deliver
         UserMailer.cs_approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @case_studycs).deliver
       end
+      @case_study.last_editor = "#{current_user.first_name} #{current_user.last_name}"
     end
 
     respond_to do |format|
