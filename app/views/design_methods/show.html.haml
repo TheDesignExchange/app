@@ -193,6 +193,9 @@
             %a{:href => edit_design_method_path(params[:id])}
               %span.glyphicon.glyphicon-pencil
               Edit
+          / - if !@method.last_editor_id.blank?
+          %li
+            Supppppp
 
     /Method top level categories
   .row
