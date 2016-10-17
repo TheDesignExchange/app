@@ -93,6 +93,7 @@ class CaseStudiesController < ApplicationController
       end
       @case_study.draft = true
       @case_study.ready = false
+      @case_study.last_editor = "#{current_user.first_name} #{current_user.last_name}"
     elsif params[:commit] == "Publish"
       @case_study.draft = false
       @case_study.ready = true
@@ -102,6 +103,7 @@ class CaseStudiesController < ApplicationController
           UserMailer.publication_email(User.find_by(id:@case_study.last_editor_id),@case_study).deliver
         end
       end
+      @case_study.last_editor = "#{current_user.first_name} #{current_user.last_name}"
     elsif params[:commit] == "Ready for Approval"
       @case_study.draft = true
       @case_study.ready = true

@@ -95,6 +95,11 @@
         %a.pull-right{:href => edit_case_study_path(params[:id])}
           %span.glyphicon.glyphicon-pencil
           Edit
+
+      %p{:style=>"text-align: right; font-size: 11px;"}
+        Last Updated: 
+        #{@case_study.updated_at.strftime('%x') } by
+        #{@case_study.last_editor}
     / END MENU BAR
     / CONTENT
     - if @case_study.has_image?
