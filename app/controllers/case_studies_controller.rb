@@ -80,6 +80,8 @@ class CaseStudiesController < ApplicationController
   def update
     @case_study = CaseStudy.find(params[:id])
     @case_study.last_editor_id = current_user.id
+    @case_study.last_edited = Time.now
+
     if Rails.env.production?
       file = params[:case_study][:picture]
       @case_study.upload_to_s3(file, request.original_url)
@@ -130,6 +132,9 @@ class CaseStudiesController < ApplicationController
     @case_study = CaseStudy.new(params[:case_study])
     @case_study.owner_id = current_user.id
     @case_study.last_editor_id = current_user.id
+    @case_study.last_editor = "#{current_user.first_name} #{current_user.last_name}"
+    @case_study.last_edited = Time.now
+
     if Rails.env.production?
       file = params[:case_study][:picture]
       @case_study.upload_to_s3(file, request.original_url)

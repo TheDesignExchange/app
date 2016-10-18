@@ -194,6 +194,16 @@
               %span.glyphicon.glyphicon-pencil
               Edit
 
+      %p{:style=>"text-align: right; font-size: 11px;"}
+        Last Updated: 
+        - if @design_method.last_edited != nil
+          #{@design_method.last_edited.strftime('%x %I:%M %p')} by
+          #{@design_method.last_editor}
+        - else
+          Before 10/18/2016
+
+         
+
     /Method top level categories
   .row
     - @method.method_categories.each do |category|
