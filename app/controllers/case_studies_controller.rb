@@ -130,6 +130,8 @@ class CaseStudiesController < ApplicationController
     @case_study = CaseStudy.new(params[:case_study])
     @case_study.owner_id = current_user.id
     @case_study.last_editor_id = current_user.id
+    @case_study.last_editor = "#{current_user.first_name} #{current_user.last_name}"
+
     if Rails.env.production?
       file = params[:case_study][:picture]
       @case_study.upload_to_s3(file, request.original_url)

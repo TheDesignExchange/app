@@ -193,11 +193,12 @@
             %a{:href => edit_design_method_path(params[:id])}
               %span.glyphicon.glyphicon-pencil
               Edit
-          %li
-            - timestamp = @method.updated_at.strftime("Last Edited %I:%M%p %m/%d/%Y")
-            = md_format(timestamp)
-            - if @method.last_editor.nil?
-            by Me
+
+      %p{:style=>"text-align: right; font-size: 11px;"}
+        Last Updated: 
+        #{@design_method.updated_at.strftime('%x') } by
+        #{@design_method.last_editor}
+
          
 
     /Method top level categories

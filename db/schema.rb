@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017033813) do
+ActiveRecord::Schema.define(version: 20161018184731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -204,6 +204,7 @@ ActiveRecord::Schema.define(version: 20161017033813) do
     t.text     "suggestions"
     t.text     "image_attribution"
     t.integer  "last_editor_id"
+    t.string   "last_editor"
   end
 
   add_index "design_methods", ["collection_id"], name: "index_design_methods_on_collection_id", using: :btree
