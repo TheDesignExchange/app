@@ -196,8 +196,11 @@
 
       %p{:style=>"text-align: right; font-size: 11px;"}
         Last Updated: 
-        #{@design_method.updated_at.strftime('%x %r')} by
-        #{@design_method.last_editor}
+        - if @design_method.last_edited != nil
+          #{@design_method.last_edited.strftime('%x %I:%M %p')} by
+          #{@design_method.last_editor}
+        - else
+          Before 10/18/2016
 
          
 

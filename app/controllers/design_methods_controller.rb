@@ -40,6 +40,7 @@ class DesignMethodsController < ApplicationController
     @design_method = DesignMethod.find(params[:id])
     @design_method.last_editor_id = current_user.id
     @design_method.last_editor = "#{current_user.first_name} #{current_user.last_name}"
+    @design_method.last_edited = Time.now
 
     if !(current_user.admin? || current_user.editor? || current_user.author?)
       @design_method.hidden = true
@@ -90,7 +91,8 @@ class DesignMethodsController < ApplicationController
     @design_method.owner = current_user
     @design_method.last_editor_id = current_user.id
     @design_method.last_editor = "#{current_user.first_name} #{current_user.last_name}"
-
+    @design_method.last_edited = Time.now
+    
     if !(current_user.admin? || current_user.editor? || current_user.author?)
       @design_method.hidden = true
     end

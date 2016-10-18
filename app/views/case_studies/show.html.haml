@@ -98,8 +98,11 @@
 
       %p{:style=>"text-align: right; font-size: 11px;"}
         Last Updated: 
-        #{@case_study.updated_at.strftime('%x %r') } by
-        #{@case_study.last_editor}
+        - if @case_study.last_edited != nil
+          #{@case_study.last_edited.strftime('%x %I:%M %p') } by 
+          #{@case_study.last_editor}
+        - else
+          Before 10/18/2016
 
      
     / END MENU BAR

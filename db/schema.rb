@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018184731) do
+ActiveRecord::Schema.define(version: 20161018190144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20161018184731) do
     t.text     "suggestions"
     t.integer  "last_editor_id"
     t.string   "last_editor"
+    t.datetime "last_edited"
   end
 
   create_table "characteristic_groups", force: true do |t|
@@ -205,6 +206,7 @@ ActiveRecord::Schema.define(version: 20161018184731) do
     t.text     "image_attribution"
     t.integer  "last_editor_id"
     t.string   "last_editor"
+    t.datetime "last_edited"
   end
 
   add_index "design_methods", ["collection_id"], name: "index_design_methods_on_collection_id", using: :btree
