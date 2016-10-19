@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def sendInvitation
-    ApplicationMailer.invitation_email(params[:email_of_friend]).deliver
+    UserMailer.invitation_email(params[:email_of_friend]).deliver
     redirect_to '/share'
   end
 
