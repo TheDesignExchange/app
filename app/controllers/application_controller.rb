@@ -24,7 +24,8 @@ class ApplicationController < ActionController::Base
   end
 
   def sendInvitation
-    UserMailer.invitation_email(params[:email_of_friend]).deliver
+    UserMailer.invitation_email(params[:email_of_friend],current_user).deliver
+    flash[:notice] = "Invitation has been sent!"
     redirect_to '/share'
   end
 

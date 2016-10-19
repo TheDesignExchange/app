@@ -109,8 +109,8 @@ class UserMailer < ActionMailer::Base
     end
   end
 
-  def invitation_email(email)
-    @user = current_user
+  def invitation_email(email,user)
+    @user = user
     flash[:notice] = "Your invitation email has been sent!"
     if Rails.env.development? or Rails.env.test?
       mail({
@@ -125,6 +125,5 @@ class UserMailer < ActionMailer::Base
           :subject => "Invitation to join theDesignExchange!",
         })
     end
-    redirect_to '/share'
   end
 end
