@@ -11,7 +11,7 @@
     = form_tag({:controller=>'application',:action=>'sendInvitation'}) do 
       .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
         = label_tag(:email_of_friend, "Email:")
-        = text_field_tag :email_of_friend
+        = text_field_tag(:email_of_friend)
         = submit_tag "Send Invitation Email", class: 'btn btn-primary'
 
 
