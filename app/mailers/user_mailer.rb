@@ -5,13 +5,13 @@ class UserMailer < ActionMailer::Base
     @user = user
     @method = method
     if Rails.env.development? or Rails.env.test?
-	  mail({
+	    mail({
         :from    => 'postmaster@sandbox3419534bf0ee465fb886bc9f1ada4faa.mailgun.org',
         :to      => @user.email,
         :subject => "Method ready for approval",
       })
     else
-	  mail({
+	    mail({
         :from    => 'postmaster@thedesignexchange.org',
         :to      => @user.email,
         :subject => "Method ready for approval",
@@ -23,13 +23,13 @@ class UserMailer < ActionMailer::Base
     @user = user
     @cs = case_study
     if Rails.env.development? or Rails.env.test?
-	  mail({
+	    mail({
         :from    => 'postmaster@sandbox3419534bf0ee465fb886bc9f1ada4faa.mailgun.org',
         :to      => @user.email,
         :subject => "Case study ready for approval",
       })
     else
-	  mail({
+	    mail({
         :from    => 'postmaster@thedesignexchange.org',
         :to      => @user.email,
         :subject => "Case study ready for approval",
@@ -106,6 +106,23 @@ class UserMailer < ActionMailer::Base
         :to      => @user.email,
         :subject => "An administrator has made changes to your case study",
       })    	    	
+    end
+  end
+
+  def invitation_email(email,user)
+    @user = user
+    if Rails.env.development? or Rails.env.test?
+      mail({
+          :from    => 'postmaster@sandbox3419534bf0ee465fb886bc9f1ada4faa.mailgun.org',
+          :to      => email,
+          :subject => "Invitation to join theDesignExchange!",
+        })
+    else
+      mail({
+          :from    => 'postmaster@thedesignexchange.org',
+          :to      => email,
+          :subject => "Invitation to join theDesignExchange!",
+        })
     end
   end
 end

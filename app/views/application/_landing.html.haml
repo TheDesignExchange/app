@@ -1,18 +1,37 @@
 %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
 .container
-  .howdoesitwork{:style=>"margin-top:-10%;padding:0 10% 0 10%"}
-    .h1{:style=>"text-align:center;margin-bottom:10%;"}
-      How Does it Work?
-    .col-xs6.col-md-4
-      .thumbnail{:style=>"height:300px;"}
-        .h3{:style=>"text-align:center",:href=>"/register"}
-          1
-          %br
-          %a{:href=>"#register"}JOIN
-        .p{:style=>"text-align:center"}
-          Join the community to find designers who share similar interests as you
-          and start building your professional network.
-    .col-xs12.col-md-4
+  - if !user_signed_in?
+    .howdoesitwork{:style=>"margin-top:-10%;padding:0 10% 0 10%"}
+      .h1{:style=>"text-align:center;margin-bottom:10%;"}
+        How Does it Work?
+      .col-xs6.col-md-4
+        .thumbnail{:style=>"height:300px;"}
+          .h3{:style=>"text-align:center",:href=>"/register"}
+            1
+            %br
+            %a{:href=>"#register"}JOIN
+          .p{:style=>"text-align:center"}
+            Join the community to find designers who share similar interests as you
+            and start building your professional network.
+      .col-xs12.col-md-4
+        .thumbnail{:style=>"height:300px;"}
+          .h3{:style=>"text-align:center"}
+            2
+            %br
+            %a{:href=>"#learn"}LEARN
+          .p{:style=>"text-align:center"}
+            Browse methods and case studies to improve your design skills. Learn what to do
+            and what to not do to successfully complete your next design task.
+      .col-xs12.col-md-4
+        .thumbnail{:style=>"height:300px;"}
+          .h3{:style=>"text-align:center"}
+            3
+            %br
+            %a{:href=>"/share"}SHARE
+          .p{:style=>"text-align:center"}
+            Invite your friends to join theDesignExchange and participate in discussions!
+  - else
+    .col-xs12.col-md-4{:style=>"margin-left:150px;"}
       .thumbnail{:style=>"height:300px;"}
         .h3{:style=>"text-align:center"}
           2

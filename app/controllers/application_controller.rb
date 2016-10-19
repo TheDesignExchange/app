@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   check_authorization :unless => :devise_controller?
 
-  skip_authorization_check :only => [:landing, :index, :search, :search_db, :about,:discussions]
+  skip_authorization_check :only => [:landing, :index, :search, :search_db, :about, :share, :sendInvitation]
   protect_from_forgery with: :exception
   add_flash_types :success, :warning, :danger, :info
 
@@ -21,6 +21,14 @@ class ApplicationController < ActionController::Base
 
   def share
     render layout: "custom"
+  end
+
+  def sendInvitation
+    UserMailer.invitation_email(params[:email_of_friend],current_user).deliver
+    respond_to do |format|
+      format.html { redirect_to '/share', notice: 'Invitation was sent!' }
+      format.json { head :no_content } 
+    end
   end
 
   def about
