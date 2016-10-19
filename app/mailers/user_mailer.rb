@@ -111,7 +111,6 @@ class UserMailer < ActionMailer::Base
 
   def invitation_email(email,user)
     @user = user
-    flash[:notice] = "Your invitation email has been sent!"
     if Rails.env.development? or Rails.env.test?
       mail({
           :from    => 'postmaster@sandbox3419534bf0ee465fb886bc9f1ada4faa.mailgun.org',
