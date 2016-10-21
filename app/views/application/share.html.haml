@@ -1,0 +1,20 @@
+%meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+
+.boxed{:style=>"border: 3px solid black;width: 325px;margin: auto;"}
+  .h3{:style=>"text-align:center;"} SHARE: Coming Soon!
+
+%br/
+
+.boxed{:style=>"border: 2px solid black;width: 415px;margin: auto;"}
+  .p{:style=>"text-align:center; font-size:120%;"}
+    We're working on creating a forum for you to share with and learn from other designers. Do you have an idea of what you want this forum to look like?
+    = form_tag({:controller=>'application',:action=>'sendInvitation'}) do 
+      .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+        = label_tag(:email_of_friend, "Email:")
+        = text_field_tag(:email_of_friend)
+        = submit_tag "Send Invitation Email", class: 'btn btn-primary'
+
+
+
+
+
