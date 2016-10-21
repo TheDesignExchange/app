@@ -26,7 +26,7 @@
         - tagifier(@thumb_obj[:tags]).each do |category|
           %span.tag-label.label-gap
             = "#{category}"
-    - if current_user != nil && (current_user.admin? || current_user.editor?)
+    - if current_user != nil && (current_user.admin? || current_user.editor? || current_user.author?)
       %i.glyphicon.glyphicon-pencil
         %b= "#{@thumb_obj[:completion_score]}"
 

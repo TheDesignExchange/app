@@ -313,18 +313,23 @@
       %h4 Critiques
       %p= md_format(@method.critiques)
 
-    - if @citations != nil && @citations.length != 0
+    - if @method.references != nil and @method.references != ''
       %h4 References used in this Article
-      %ol
-        /Makes citation a hyperlink if it is a link
-        - @citations.each do |c|
-          -require "uri"
-          -link = URI.extract(c.text)
-          -if link.length == 0
-            %li.reference= c.text
-          -else
-            %li.reference
-              %a{ :href => link[0] } #{link[0]}
+      %p= @method.references
+      %p= md_format(@method.references)
+    / - if @citations != nil && @citations.length != 0
+    /   %h3 Citations
+    /   %ol
+    /     /Makes citation a hyperlink if it is a link
+    /     - @citations.each do |c|
+    /       -if @method.references == nil or !@method.references.include?(c.text)
+    /         -require "uri"
+    /         -link = URI.extract(c.text)
+    /         -if link.length == 0
+    /           %li.reference= c.text
+    /         -else
+    /           %li.reference
+    /             %a{ :href => link[0] } #{link[0]}
 
     - if !@method.additional_reading.blank?
       %h4 Additional Reading
