@@ -105,9 +105,9 @@
         - else
           Before 10/18/2016
 
-      - if (current_user.admin? or current_user.editor?) and @case_study.editor_id == nil
+      - if current_user != nil and (current_user.admin? or current_user.editor?) and @case_study.editor_id == nil
         = link_to "Claim to be Editor", {:controller => "case_studies", :action => :claimEditor, :id => @case_study.id}, :class => "btn btn-success"
-      - if current_user.author? and @case_study.author_id == nil
+      - if current_user != nil and current_user.author? and @case_study.author_id == nil
         = link_to "Claim to be Author", {:controller => "case_studies", :action => :claimAuthor, :id => @case_study.id}, :class => "btn btn-success"
     / END MENU BAR
     / CONTENT
@@ -148,8 +148,8 @@
           = score
     .row
       %h4 Contributing Authors
-      .col-xs-6
-        - if @current_author != nil
+      - if @current_author != nil
+        .col-xs-6
           %h5 Current Author
           .col-xs-4
             - if @current_author.profile_picture.present?
@@ -161,8 +161,8 @@
             - if @current_author != nil
               %p= link_to @current_author.first_name + " " + @current_author.last_name, user_path(@current_author.id)
               %p= @current_author.email != nil ? @current_author.email : "-"
-      .col-xs-6
-        - if @current_editor != nil
+      - if @current_editor != nil
+        .col-xs-6
           %h5 Current Editor
           .col-xs-4
             - if @current_editor.profile_picture.present?
