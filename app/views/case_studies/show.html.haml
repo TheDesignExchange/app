@@ -142,6 +142,34 @@
           - @case_study.completion_score = score
           - @case_study.save
           = score
+    .row
+      %h4 Contributing Authors
+      .col-xs-6
+        - if @current_author != nil
+          %h5 Current Author
+          .col-xs-4
+            - if @current_author.profile_picture.present?
+              = image_tag(@current_author.profile_picture, class: "fit-all", :style => "padding: 10%")
+            - else
+              /TODO lol we need to self host this asap
+              = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
+          .col-xs-8 
+            - if @current_author != nil
+              %p= link_to @current_author.first_name + " " + @current_author.last_name, user_path(@current_author.id)
+              %p= @current_author.email != nil ? @current_author.email : "-"
+      .col-xs-6
+        - if @current_editor != nil
+          %h5 Current Editor
+          .col-xs-4
+            - if @current_editor.profile_picture.present?
+              = image_tag(@current_editor.profile_picture, class: "fit-all", :style => "padding: 10%")
+            - else
+              /TODO lol we need to self host this asap
+              = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
+          .col-xs-8 
+            - if @current_editor != nil
+              %p= link_to @current_editor.first_name + " " + @current_editor.last_name, user_path(@current_editor.id)
+              %p= @current_editor.email != nil ? @current_editor.email : "-"
     / END DESCRIPTION
     - render "related_content"
     / END CONTENT
