@@ -95,6 +95,7 @@
         %a.pull-right{:href => edit_case_study_path(params[:id])}
           %span.glyphicon.glyphicon-pencil
           Edit
+    
 
       %p{:style=>"text-align: right; font-size: 11px;"}
         Last Updated: 
@@ -104,7 +105,10 @@
         - else
           Before 10/18/2016
 
-     
+      - if (current_user.admin? or current_user.editor?) and @case_study.editor_id == nil
+        = link_to "Claim to be Editor", {:controller => "case_studies", :action => :claimEditor, :id => @case_study.id}, :class => "btn btn-success"
+      - if current_user.author? and @case_study.author_id == nil
+        = link_to "Claim to be Author", {:controller => "case_studies", :action => :claimAuthor, :id => @case_study.id}, :class => "btn btn-success"
     / END MENU BAR
     / CONTENT
     - if @case_study.has_image?

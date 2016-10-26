@@ -47,6 +47,7 @@ DesignExchange::Application.routes.draw do
   get '/design_methods/:id/clearImage', to: 'design_methods#clearImage'
   get '/design_methods/new/clearImage', to: 'design_methods#clearImage'
   get '/design_methods/:id/{:action}', to: 'design_methods#action'
+  get '/case_studies/:id/{:action}', to: 'case_studies#action'
   get ":action", to:"application##{:action}"
   post ":action", to:"application##{:action}"
   post "search", to: "application#search"

@@ -88,7 +88,7 @@ class CaseStudiesController < ApplicationController
   end
 
   def claimEditor
-    @case_study = DesignMethod.find(params[:id])
+    @case_study = CaseStudy.find(params[:id])
     @case_study.editor_id = current_user.id
     @case_study.save!
     respond_to do |format|
