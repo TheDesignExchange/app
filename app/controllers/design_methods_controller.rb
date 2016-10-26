@@ -153,6 +153,8 @@ class DesignMethodsController < ApplicationController
 
     @citations = dm.citations
     @author = dm.owner
+    @current_author = User.find_by_id(dm.author_id)
+    @current_editor = User.find_by_id(dm.editor_id)
     @method.save
 
     @similar_methods = @method.similar_methods(100,6)
@@ -172,6 +174,23 @@ class DesignMethodsController < ApplicationController
     end
   end
 
+  def claimAuthor
+    @design_method = DesignMethod.find(params[:id])
+    @design_method.author_id = current_user.id
+    @design_method.save!
+    respond_to do |format|
+      format.html { redirect_to @design_method, notice: 'Successfully claimed to be author.'}
+    end
+  end
+
+  def claimEditor
+    @design_method = DesignMethod.find(params[:id])
+    @design_method.editor_id = current_user.id
+    @design_method.save!
+    respond_to do |format|
+      format.html { redirect_to @design_method, notice: 'Successfully claimed to be author.'}
+    end
+  end
   # Confirms that user is logged-in.
   def edit_as_signed_in_user
     unless signed_in?

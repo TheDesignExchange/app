@@ -46,6 +46,7 @@ DesignExchange::Application.routes.draw do
   get '/administrator/change_basic', to: 'administrator#changeBasic'
   get '/design_methods/:id/clearImage', to: 'design_methods#clearImage'
   get '/design_methods/new/clearImage', to: 'design_methods#clearImage'
+  get '/design_methods/:id/{:action}', to: 'design_methods#action'
   get ":action", to:"application##{:action}"
   post ":action", to:"application##{:action}"
   post "search", to: "application#search"
