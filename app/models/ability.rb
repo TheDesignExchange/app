@@ -65,7 +65,7 @@ class Ability
                     MethodCategory, MethodCharacteristic, MethodCitation, Tag]
       can :manage, Collection, :is_private => false
     elsif user.author?
-      can [:create, :update], [DesignMethod, CaseStudy]
+      can [:create, :update, :claimAuthor], [DesignMethod, CaseStudy]
       can :manage, MethodCharacteristic
     end
 

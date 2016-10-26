@@ -58,7 +58,8 @@ class CaseStudiesController < ApplicationController
 
     id = params[:id].to_i
     @case_study = CaseStudy.find(id)
-
+    @current_author = User.find_by_id(@case_study.author_id)
+    @current_editor = User.find_by_id(@case_study.editor_id)
     if !current_user.nil?
       @collections = current_user.owned_collections
       @collection = Collection.new(params[:collection])
@@ -75,6 +76,24 @@ class CaseStudiesController < ApplicationController
   end
 
   def search
+  end
+
+  def claimAuthor
+    @case_study = CaseStudy.find(params[:id])
+    @case_study.author_id = current_user.id
+    @case_study.save!
+    respond_to do |format|
+      format.html { redirect_to @case_study, notice: 'Successfully claimed to be author.'}
+    end
+  end
+
+  def claimEditor
+    @case_study = CaseStudy.find(params[:id])
+    @case_study.editor_id = current_user.id
+    @case_study.save!
+    respond_to do |format|
+      format.html { redirect_to @case_study, notice: 'Successfully claimed to be editor.'}
+    end
   end
 
   def update
