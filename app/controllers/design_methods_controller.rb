@@ -188,7 +188,7 @@ class DesignMethodsController < ApplicationController
     @design_method.editor_id = current_user.id
     @design_method.save!
     respond_to do |format|
-      format.html { redirect_to @design_method, notice: 'Successfully claimed to be author.'}
+      format.html { redirect_to @design_method, notice: 'Successfully claimed to be editor.'}
     end
   end
   # Confirms that user is logged-in.

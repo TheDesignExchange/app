@@ -77,6 +77,24 @@ class CaseStudiesController < ApplicationController
   def search
   end
 
+  def claimAuthor
+    @case_study = CaseStudy.find(params[:id])
+    @case_study.author_id = current_user.id
+    @case_study.save!
+    respond_to do |format|
+      format.html { redirect_to @case_study, notice: 'Successfully claimed to be author.'}
+    end
+  end
+
+  def claimEditor
+    @case_study = DesignMethod.find(params[:id])
+    @case_study.editor_id = current_user.id
+    @case_study.save!
+    respond_to do |format|
+      format.html { redirect_to @case_study, notice: 'Successfully claimed to be editor.'}
+    end
+  end
+
   def update
     @case_study = CaseStudy.find(params[:id])
     @case_study.last_editor_id = current_user.id
