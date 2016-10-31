@@ -107,8 +107,12 @@
 
       - if current_user != nil and (current_user.admin? or current_user.editor?) and @case_study.editor_id == nil
         = link_to "Claim to be Editor", {:controller => "case_studies", :action => :claimEditor, :id => @case_study.id}, :class => "btn btn-success"
+      - if current_user != nil and (current_user.admin? or current_user.editor?) and @case_study.editor_id == current_user.id
+        = link_to "Unclaim to be Editor", {:controller => "case_studies", :action => :unclaimEditor, :id => @case_study.id}, :class => "btn btn-success"
       - if current_user != nil and current_user.author? and @case_study.author_id == nil
         = link_to "Claim to be Author", {:controller => "case_studies", :action => :claimAuthor, :id => @case_study.id}, :class => "btn btn-success"
+      - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @case_study.author_id == current_user.id
+        = link_to "Unclaim to be Author", {:controller => "case_studies", :action => :unclaimAuthor, :id => @case_studies.id}, :class => "btn btn-success" 
     / END MENU BAR
     / CONTENT
     - if @case_study.has_image?
