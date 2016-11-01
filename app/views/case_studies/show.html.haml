@@ -34,7 +34,7 @@
 / CASE STUDY TITLE
 .row
   .col-xs-9.col-xs-offset-3.left-pad
-    %h3
+    %h1
       - if @case_study.draft == true
         %b{:style=>"color:blue"}= @case_study.name != nil ? @case_study.name : "-"
       - else
@@ -74,20 +74,20 @@
     / = render partial: "/application/props/props", locals: { entity: @case_study }
     .h4 Industry Sector
     .p Placeholder
-    .h4 Tags
+    .h4{:style=>"margin-top:40px"} Tags
     .p Placeholder
 
-    .h4 Countries
+    .h4{:style=>"margin-top:40px"} Countries
     .p Placeholder
 
-    .h4 Authors
+    .h4{:style=>"margin-top:40px"} Authors
     .p Placeholder
 
-    .h4 Design Process Covered
+    .h4{:style=>"margin-top:40px"} Design Process Covered
     .p Placeholder
 
     - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
-      %h4 Completion Score
+      %h4{:style=>"margin-top:40px"} Completion Score
       %p 
         /calculate the completion score if it has not been done already
         - score = 0
@@ -137,7 +137,7 @@
       /   %ul.dropdown-menu
       /     %li
       /       %a{:href => "#"} Email
-      .col-xs-3
+      .col-xs-3{:style=>"margin-top:-70px"}
         / = link_to '<span class="glyphicon glyphicon-pencil"></span> Edit'.html_safe, edit_case_study_path, :class => "pull right"
         %a.pull-right{:href => edit_case_study_path(params[:id])}
           %span.glyphicon.glyphicon-pencil
