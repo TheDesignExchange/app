@@ -41,90 +41,54 @@
         %b= @case_study.name != nil ? @case_study.name : "-"
     %p
       by #{link_to @case_study.company.name, company_path(@case_study.company) unless !@case_study.company}
-  .col-xs-3
-  - if !current_user.nil?
-    .col-xs-3
-      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-        %span.glyphicon.glyphicon-folder-open
-        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-          Add to Collection
-          %b.caret
-        %ul.dropdown-menu
-          -@collections.each do |collection|
-            - if collection.case_studies.include? @case_study
-              %li.existing-study
-                = collection.name + " (added)"
-            - else
-              %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :cs_id => @case_study.id)
-
-          %a.btn.btn-default.pull-right.btn-index-create#new-col-show
-            %span.glyphicon.glyphicon-plus
-            Add to New Collection
-          = form_for @collection do |f|
-            .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
-            = f.hidden_field :cs_id, :value => @case_study.id
-            = f.text_field :name, :class=> "form-control", :placeholder => ""
-            = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
 / END CASE STUDY TITLE
 .row
   / SIDEBAR
 
 
   .col-xs-3#sidebar
-    / = render partial: "/application/props/props", locals: { entity: @case_study }
-    .h4 Industry Sector
-    .p Placeholder
-    .h4 Tags
-    .p Placeholder
-
-    .h4 Countries
-    .p Placeholder
-
-    .h4 Authors
-    .p Placeholder
-
-    .h4 Design Process Covered
-    .p Placeholder
+    = render partial: "/application/props/props", locals: { entity: @case_study }
 
   / MAIN VIEW
   .col-xs-9.add-padding
     / MENU BAR
 
     .row
+
       .col-xs-3
+        %span.glyphicon.glyphicon-star
+        \- likes
+      - if !current_user.nil?
+        .col-xs-3
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            %span.glyphicon.glyphicon-folder-open
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              Add to Collection
+              %b.caret
+            %ul.dropdown-menu
+              -@collections.each do |collection|
+                - if collection.case_studies.include? @case_study
+                  %li.existing-study
+                    = collection.name + " (added)"
+                - else
+                  %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :cs_id => @case_study.id)
 
-      .col-xs-6
-      / - if !current_user.nil?
-      /   .col-xs-3
-      /     %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-      /       %span.glyphicon.glyphicon-folder-open
-      /       %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-      /         Add to Collection
-      /         %b.caret
-      /       %ul.dropdown-menu
-      /         -@collections.each do |collection|
-      /           - if collection.case_studies.include? @case_study
-      /             %li.existing-study
-      /               = collection.name + " (added)"
-      /           - else
-      /             %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :cs_id => @case_study.id)
-
-      /         %a.btn.btn-default.pull-right.btn-index-create#new-col-show
-      /           %span.glyphicon.glyphicon-plus
-      /           Add to New Collection
-      /         = form_for @collection do |f|
-      /           .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
-      /           = f.hidden_field :cs_id, :value => @case_study.id
-      /           = f.text_field :name, :class=> "form-control", :placeholder => ""
-      /           = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
-      / .col-xs-3
-      /   / %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-      /   /   %span.glyphicon.glyphicon-share
-      /   /   Share
-      /   /   %b.caret
-      /   %ul.dropdown-menu
-      /     %li
-      /       %a{:href => "#"} Email
+              %a.btn.btn-default.pull-right.btn-index-create#new-col-show
+                %span.glyphicon.glyphicon-plus
+                Add to New Collection
+              = form_for @collection do |f|
+                .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+                = f.hidden_field :cs_id, :value => @case_study.id
+                = f.text_field :name, :class=> "form-control", :placeholder => ""
+                = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
+      .col-xs-3
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          %span.glyphicon.glyphicon-share
+          Share
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            %a{:href => "#"} Email
       .col-xs-3
         / = link_to '<span class="glyphicon glyphicon-pencil"></span> Edit'.html_safe, edit_case_study_path, :class => "pull right"
         %a.pull-right{:href => edit_case_study_path(params[:id])}
