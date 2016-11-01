@@ -191,6 +191,27 @@ class DesignMethodsController < ApplicationController
       format.html { redirect_to @design_method, notice: 'Successfully claimed to be editor.'}
     end
   end
+
+  def unclaimAuthor
+    # An author and editor, should be able to unclaim a method or case study after they claim it.
+    @design_method = DesignMethod.find(params[:id])
+    @design_method.author_id = nil
+    @design_method.save!
+    respond_to do |format|
+      format.html { redirect_to @design_method, notice: 'Successfully unclaimed to be author.'}
+    end
+  end
+
+  def unclaimEditor
+    # Once editor can unclaim
+    @design_method = DesignMethod.find(params[:id])
+    @design_method.editor_id = nil
+    @design_method.save!
+    respond_to do |format|
+      format.html { redirect_to @design_method, notice: 'Successfully unclaimed to be editor.'}
+    end
+  end
+
   # Confirms that user is logged-in.
   def edit_as_signed_in_user
     unless signed_in?

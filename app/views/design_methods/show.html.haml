@@ -195,8 +195,17 @@
               Edit
       - if current_user != nil and (current_user.admin? or current_user.editor?) and @design_method.editor_id == nil
         = link_to "Claim to be Editor", {:controller => "design_methods", :action => :claimEditor, :id => @design_method.id}, :class => "btn btn-success"
-      - if current_user != nil and current_user.author? and @design_method.author_id == nil
+
+      //Add unclaim Editor
+      - if current_user != nil and (current_user.admin? or current_user.editor?) and @design_method.editor_id == current_user.id
+        = link_to "Unclaim to be Editor", {:controller => "design_methods", :action => :unclaimEditor, :id => @design_method.id}, :class => "btn btn-success"
+
+    
+      - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @design_method.author_id == nil
         = link_to "Claim to be Author", {:controller => "design_methods", :action => :claimAuthor, :id => @design_method.id}, :class => "btn btn-success"
+
+      - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @design_method.author_id == current_user.id
+        = link_to "Unclaim to be Author", {:controller => "design_methods", :action => :unclaimAuthor, :id => @design_method.id}, :class => "btn btn-success" 
 
       %p{:style=>"text-align: right; font-size: 11px;"}
         Last Updated: 

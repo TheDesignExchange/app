@@ -96,6 +96,24 @@ class CaseStudiesController < ApplicationController
     end
   end
 
+  def unclaimAuthor
+    @case_study = CaseStudy.find(params[:id])
+    @case_study.author_id = nil
+    @case_study.save!
+    respond_to do |format|
+      format.html { redirect_to @case_study, notice: 'Successfully unclaimed to be author.'}
+    end
+  end
+
+  def unclaimEditor
+    @case_study = CaseStudy.find(params[:id])
+    @case_study.editor_id = nil
+    @case_study.save!
+    respond_to do |format|
+      format.html { redirect_to @case_study, notice: 'Successfully unclaimed to be editor.'}
+    end
+  end
+
   def update
     @case_study = CaseStudy.find(params[:id])
     @case_study.last_editor_id = current_user.id
