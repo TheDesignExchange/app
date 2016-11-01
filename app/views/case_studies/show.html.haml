@@ -72,6 +72,15 @@
 
   .col-xs-3#sidebar
     / = render partial: "/application/props/props", locals: { entity: @case_study }
+    .claim{:style=>"margin-bottom:60px;margin-top:-40px"}
+      - if current_user != nil and (current_user.admin? or current_user.editor?) and @case_study.editor_id == nil
+        = link_to "Claim to be Editor", {:controller => "case_studies", :action => :claimEditor, :id => @case_study.id}, :class => "btn btn-success"
+      - if current_user != nil and (current_user.admin? or current_user.editor?) and @case_study.editor_id == current_user.id
+        = link_to "Unclaim to be Editor", {:controller => "case_studies", :action => :unclaimEditor, :id => @case_study.id}, :class => "btn btn-warning"
+      - if current_user != nil and current_user.author? and @case_study.author_id == nil
+        = link_to "Claim to be Author", {:controller => "case_studies", :action => :claimAuthor, :id => @case_study.id}, :class => "btn btn-success"
+      - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @case_study.author_id == current_user.id
+        = link_to "Unclaim to be Author", {:controller => "case_studies", :action => :unclaimAuthor, :id => @case_studies.id}, :class => "btn btn-warning"   
     .h4 Industry Sector
     .p Placeholder
     .h4{:style=>"margin-top:40px"} Tags
@@ -139,20 +148,11 @@
       /       %a{:href => "#"} Email
       .col-xs-3{:style=>"margin-top:-70px"}
         / = link_to '<span class="glyphicon glyphicon-pencil"></span> Edit'.html_safe, edit_case_study_path, :class => "pull right"
+
         %a.pull-right{:href => edit_case_study_path(params[:id])}
           %span.glyphicon.glyphicon-pencil
           Edit
-        .claim{:style=>"margin-top:30px;margin-bottom:5px;"}
-          - if current_user != nil and (current_user.admin? or current_user.editor?) and @case_study.editor_id == nil
-            = link_to "Claim to be Editor", {:controller => "case_studies", :action => :claimEditor, :id => @case_study.id}, :class => "btn btn-success"
-          - if current_user != nil and (current_user.admin? or current_user.editor?) and @case_study.editor_id == current_user.id
-            = link_to "Unclaim to be Editor", {:controller => "case_studies", :action => :unclaimEditor, :id => @case_study.id}, :class => "btn btn-warning"
-          - if current_user != nil and current_user.author? and @case_study.author_id == nil
-            = link_to "Claim to be Author", {:controller => "case_studies", :action => :claimAuthor, :id => @case_study.id}, :class => "btn btn-success"
-          - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @case_study.author_id == current_user.id
-            = link_to "Unclaim to be Author", {:controller => "case_studies", :action => :unclaimAuthor, :id => @case_studies.id}, :class => "btn btn-warning"   
-
-      %p{:style=>"text-align: right; font-size: 11px;"}
+      %p{:style=>"text-align: right; font-size: 11px; margin-top:-40px"}
         Last Updated: 
         - if @case_study.last_edited != nil
           #{@case_study.last_edited.strftime('%x %I:%M %p') } by 
