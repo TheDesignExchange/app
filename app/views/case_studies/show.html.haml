@@ -86,6 +86,18 @@
     .h4 Design Process Covered
     .p Placeholder
 
+    - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
+      %h4 Completion Score
+      %p 
+        /calculate the completion score if it has not been done already
+        - score = 0
+        - for attribute in @case_study.attributes.keys
+          - if @case_study[attribute] != nil && @case_study[attribute] != ""
+            - score += 1
+        - @case_study.completion_score = score
+        - @case_study.save
+        = score
+
   / MAIN VIEW
   .col-xs-9.add-padding
     / MENU BAR
@@ -130,7 +142,15 @@
         %a.pull-right{:href => edit_case_study_path(params[:id])}
           %span.glyphicon.glyphicon-pencil
           Edit
-    
+        .claim{:style=>"margin-top:30px;margin-bottom:5px;"}
+          - if current_user != nil and (current_user.admin? or current_user.editor?) and @case_study.editor_id == nil
+            = link_to "Claim to be Editor", {:controller => "case_studies", :action => :claimEditor, :id => @case_study.id}, :class => "btn btn-success"
+          - if current_user != nil and (current_user.admin? or current_user.editor?) and @case_study.editor_id == current_user.id
+            = link_to "Unclaim to be Editor", {:controller => "case_studies", :action => :unclaimEditor, :id => @case_study.id}, :class => "btn btn-warning"
+          - if current_user != nil and current_user.author? and @case_study.author_id == nil
+            = link_to "Claim to be Author", {:controller => "case_studies", :action => :claimAuthor, :id => @case_study.id}, :class => "btn btn-success"
+          - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @case_study.author_id == current_user.id
+            = link_to "Unclaim to be Author", {:controller => "case_studies", :action => :unclaimAuthor, :id => @case_studies.id}, :class => "btn btn-warning"   
 
       %p{:style=>"text-align: right; font-size: 11px;"}
         Last Updated: 
@@ -140,14 +160,6 @@
         - else
           Before 10/18/2016
 
-      - if current_user != nil and (current_user.admin? or current_user.editor?) and @case_study.editor_id == nil
-        = link_to "Claim to be Editor", {:controller => "case_studies", :action => :claimEditor, :id => @case_study.id}, :class => "btn btn-success"
-      - if current_user != nil and (current_user.admin? or current_user.editor?) and @case_study.editor_id == current_user.id
-        = link_to "Unclaim to be Editor", {:controller => "case_studies", :action => :unclaimEditor, :id => @case_study.id}, :class => "btn btn-success"
-      - if current_user != nil and current_user.author? and @case_study.author_id == nil
-        = link_to "Claim to be Author", {:controller => "case_studies", :action => :claimAuthor, :id => @case_study.id}, :class => "btn btn-success"
-      - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @case_study.author_id == current_user.id
-        = link_to "Unclaim to be Author", {:controller => "case_studies", :action => :unclaimAuthor, :id => @case_studies.id}, :class => "btn btn-success" 
     / END MENU BAR
     / CONTENT
     - if @case_study.has_image?
@@ -163,28 +175,27 @@
         %h5{:style=>"color:red"} End of Suggestions
       %p= @case_study.overview.blank? ? "-" : md_format(@case_study.overview)
       / FORMS
-      %h3 Process
+      %h3 Project Background
+      %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      / %p= @case_study.process.blank? ? "-" : md_format(@case_study.process)
+      / %h3 Outcome/Benefits
+      / %p= @case_study.outcome.blank? ? "-" : md_format(@case_study.outcome)
+      %h3 Summary
+      %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      %h3 The Process
+      %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
       %p= @case_study.process.blank? ? "-" : md_format(@case_study.process)
-      %h3 Outcome/Benefits
-      %p= @case_study.outcome.blank? ? "-" : md_format(@case_study.outcome)
-      
+      %h3 Retrospective
+      %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
       - if !@case_study.design_methods.blank?
         %h3 Related Design Methods
         - @case_study.design_methods.each do |dm|
           = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4")
 
-    - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
-      .row 
-        %h4 Completion Score
-        %p 
-          /calculate the completion score if it has not been done already
-          - score = 0
-          - for attribute in @case_study.attributes.keys
-            - if @case_study[attribute] != nil && @case_study[attribute] != ""
-              - score += 1
-          - @case_study.completion_score = score
-          - @case_study.save
-          = score
+
     .row
       %h4 Contributing Authors
       - if @current_author != nil
