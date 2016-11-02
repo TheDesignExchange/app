@@ -14,7 +14,7 @@ class TagCaseStudy < ActiveRecord::Base
 	belongs_to :tag
 	# validates :case_study, :uniqueness => {:scope => :design_method }
 	attr_accessible  :tag_id, :case_study_id
-	validates :case_study_id, :presence => true
-	validates :tag_id, :presence => true
+	# validates :case_study_id, :presence => true
+	# validates :tag_id, :presence => true
 	# attr_accesssible :case_study_id, :design_method_id
 end

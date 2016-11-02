@@ -21,5 +21,5 @@ class Tag < ActiveRecord::Base
 	belongs_to :discussion
 	belongs_to :user
 	before_save { self.content = content.downcase.gsub(' ', '_') }
-	validates :content, :uniqueness => { :scope => [ "case_study_id", "design_method_id", "discussion_id", "content_type"]}
+	# validates :content, :uniqueness => { :scope => [ "case_study_id", "design_method_id", "discussion_id", "content_type"]}
 end
