@@ -141,8 +141,8 @@
             %button.btn.btn-default{:onclick => "createTag('case_study', #{params[:id]}, this, 'tool');", :type => "button"} Add Tool
         %br/
         %p.tool-list
-          - @case_study.tools.each do |t|
-            = tagify(t.id, t.content, {:removable => true})
+          - case_study_tag
+          = tagify(case_study_tag.id, case_study_tag.content, {:removable => true})
       / END TOOLS
       / TIME
       .row
