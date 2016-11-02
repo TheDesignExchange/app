@@ -53,8 +53,11 @@
         margin-right: 4px;
     }
   .edit-char-group {
-    font-size: 0.8em;
+    font-size: 1em;
     padding-left: 0px;
+    font-style: normal;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: normal;
   }
 
 = form_for @case_study, :html => {:multipart => true} do |f|
@@ -92,50 +95,37 @@
     .col-xs-4
       / PEOPLE
       .row
-        %h4 Create Links
+        %h4 Industry Sector
+        = select("case_study", "company_id", Company.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'})
+        %h4 Tag
+        .editCharGroup{:style=>"margin-left:15px"}
+          = f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |t|
+            .row
+              = t.label(:class=>"edit-char-group") do
+                = t.check_box + " " + t.text
 
-        %h4 Materials
-
+          / - Tag.all.each do |t|
+          /   - tag = Tag.where(id: t.id)
+          /   = f.collection_check_boxes(:tag_ids, tag, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + "  " + b.text}}        
         %p
 
       .row
 
-        %h4 People
+        %h4 Country
 
       / END PEOPLE
       / TOOLS
       .row
-        %h4 Tools
+        %h4 Authors
 
       / END TOOLS
       / TIME
       .row
-        %h4 Time
+        %h4 Design Process Covered
 
       / END TIME
       / TAGS
-      .row
-        %h4 Tags
 
-      / END OF TAGS
-      / METHODS
-      .row
-        %h4 Methods Used
-
-        / END TAGS
-      / END OF METHODS
-      %br/
-      .row
-        %h4 Characteristics
-        / CHECKBOX
-
-        %h4 Related Design Methods
-
-
-        / END DROPDOWN
-    / END OF TAGS
-    / END LEFT CONTENT
-    / RIGHT CONTENT
     .col-xs-8
       / INPUT METHOD NAME
       = f.check_box :hidden

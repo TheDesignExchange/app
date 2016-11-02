@@ -84,8 +84,9 @@
     .h4 Industry Sector
     .p Placeholder
     .h4{:style=>"margin-top:40px"} Tags
-    .p Placeholder
-
+    - @case_study.tags.each do |t|
+      .tag{:style=>"margin-top:10px"}
+      = tagify(t.id, t.name, {:removable => false})
     .h4{:style=>"margin-top:40px"} Countries
     .p Placeholder
 
