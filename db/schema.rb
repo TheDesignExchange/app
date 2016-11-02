@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102063944) do
+ActiveRecord::Schema.define(version: 20161102083121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,8 @@ ActiveRecord::Schema.define(version: 20161102063944) do
     t.integer  "author_id"
     t.integer  "editor_id"
     t.string   "industry_sector"
+    t.string   "country"
+    t.string   "authors"
   end
 
   create_table "characteristic_groups", force: true do |t|
@@ -163,6 +165,11 @@ ActiveRecord::Schema.define(version: 20161102063944) do
     t.string   "email"
     t.string   "phone"
     t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "countries", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -315,6 +322,13 @@ ActiveRecord::Schema.define(version: 20161102063944) do
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tag_case_studies", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "case_study_id"
+    t.integer  "tag_id"
   end
 
   create_table "tags", force: true do |t|

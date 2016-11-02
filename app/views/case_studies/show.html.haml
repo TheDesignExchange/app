@@ -82,13 +82,15 @@
       - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @case_study.author_id == current_user.id
         = link_to "Unclaim to be Author", {:controller => "case_studies", :action => :unclaimAuthor, :id => @case_studies.id}, :class => "btn btn-warning"   
     .h4 Industry Sector
-    .p Placeholder
+    =@case_study.company.name
+    .p
+      ="(" + @case_study.company.domain + ")"
     .h4{:style=>"margin-top:40px"} Tags
-    - @case_study.tags.each do |t|
+    - @case_study.tag_ids.each do |t|
       .tag{:style=>"margin-top:10px"}
-      = tagify(t.id, t.name, {:removable => false})
+      = tagify(t, Tag.find_by_id(t).name, {:removable => false})
     .h4{:style=>"margin-top:40px"} Countries
-    .p Placeholder
+    = ISO3166::Country[@case_study.country]
 
     .h4{:style=>"margin-top:40px"} Authors
     .p Placeholder

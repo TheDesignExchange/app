@@ -94,11 +94,14 @@
     / LEFT CONTENT
     .col-xs-4
       / PEOPLE
-      .row
+      .row{:style=>"margin-top:30px"}
         %h4 Industry Sector
-        = select("case_study", "company_id", Company.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'})
+        = select("case_study", "company_id", Company.all.collect {|p| [ p.name, p.id ] }, {:multiple => "multiple", include_blank: 'None' })
+      .row{:style=>"margin-top:30px"}
         %h4 Tag
         .editCharGroup{:style=>"margin-left:15px"}
+          / = f.collection_check_boxes(:tag_ids, Tag.all, :id, :name)
+
           = f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |t|
             .row
               = t.label(:class=>"edit-char-group") do
@@ -106,23 +109,31 @@
 
           / - Tag.all.each do |t|
           /   - tag = Tag.where(id: t.id)
-          /   = f.collection_check_boxes(:tag_ids, tag, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + "  " + b.text}}        
+          /   = f.collection_check_boxes(:tag_ids, tag, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + "  " + b.text}}  
+
         %p
 
-      .row
+      .row{:style=>"margin-top:30px"}
 
         %h4 Country
+        = country_select("case_study", "country", priority_countries: ["US", "IN", "CN","GB"])
+
 
       / END PEOPLE
       / TOOLS
-      .row
+      .row{:style=>"margin-top:30px"}
         %h4 Authors
+        = f.text_field :authors, :class=> "form-control", :placeholder => "Authors", :style=>"width:80%"
 
       / END TOOLS
       / TIME
-      .row
-        %h4 Design Process Covered
-
+      / .row{:style=>"margin-top:30px"}
+      /   %h4 Design Process Covered
+      /   .editCharGroup{:style=>"margin-left:15px"}
+      /     = f.collection_check_boxes(:method_category_ids, MethodCategory.all, :id, :name) do |mc|
+      /       .row
+      /         = mc.label(:class=>"edit-char-group") do
+      /           = mc.check_box + " " + mc.text
       / END TIME
       / TAGS
 

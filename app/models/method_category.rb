@@ -16,6 +16,7 @@ class MethodCategory < ActiveRecord::Base
   has_many :characteristic_groups
   has_many :characteristics, through: :characteristic_groups
   has_many :design_methods, -> { uniq }, through: :characteristics
+  has_many :case_studies
   # Hacky approach to setting default values for process order without
   # revisiting the seed files
 
