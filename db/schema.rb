@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026072454) do
+ActiveRecord::Schema.define(version: 20161102091227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,11 +96,16 @@ ActiveRecord::Schema.define(version: 20161026072454) do
     t.integer  "owner_id"
     t.boolean  "ready"
     t.text     "suggestions"
-    t.string   "last_editor"
     t.integer  "last_editor_id"
+    t.string   "last_editor"
     t.datetime "last_edited"
     t.integer  "author_id"
     t.integer  "editor_id"
+    t.string   "industry_sector"
+    t.string   "country"
+    t.string   "authors"
+    t.text     "background"
+    t.text     "summary"
   end
 
   create_table "characteristic_groups", force: true do |t|
@@ -166,6 +171,11 @@ ActiveRecord::Schema.define(version: 20161026072454) do
     t.datetime "updated_at"
   end
 
+  create_table "countries", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "design_methods", force: true do |t|
     t.string   "name",                                     null: false
     t.text     "overview",                                 null: false
@@ -199,13 +209,13 @@ ActiveRecord::Schema.define(version: 20161026072454) do
     t.text     "video_caption"
     t.integer  "completion_score"
     t.string   "videoURL_two"
-    t.string   "videoURL_two_attribution"
+    t.text     "videoURL_two_attribution"
     t.text     "video_two_attribution"
     t.text     "video_two_caption"
     t.boolean  "draft",                    default: false
     t.boolean  "ready"
-    t.text     "image_attribution"
     t.text     "suggestions"
+    t.text     "image_attribution"
     t.integer  "last_editor_id"
     t.string   "last_editor"
     t.datetime "last_edited"
@@ -250,6 +260,13 @@ ActiveRecord::Schema.define(version: 20161026072454) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "process_order"
+  end
+
+  create_table "method_category_case_studies", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "case_study_id"
+    t.integer  "method_category_id"
   end
 
   create_table "method_characteristics", force: true do |t|
@@ -316,6 +333,13 @@ ActiveRecord::Schema.define(version: 20161026072454) do
     t.datetime "updated_at"
   end
 
+  create_table "tag_case_studies", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "case_study_id"
+    t.integer  "tag_id"
+  end
+
   create_table "tags", force: true do |t|
     t.integer  "design_method_id"
     t.integer  "case_study_id"
@@ -325,6 +349,7 @@ ActiveRecord::Schema.define(version: 20161026072454) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "content_type",     default: "tag"
+    t.string   "name"
   end
 
   create_table "user_methods", force: true do |t|

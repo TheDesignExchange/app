@@ -37,7 +37,8 @@ class CaseStudy < ActiveRecord::Base
                   :social_setting, :overview, :customer_is_user, :remote_project,
                   :company_id, :num_of_designers, :num_of_users, :overview, :time_period, :time_unit,
                   :resource, :process, :problem, :outcome, :design_method_ids, :hidden,
-                  :picture, :picture_url, :completion_score, :draft, :suggestions, :last_editor_id
+                  :picture, :picture_url, :completion_score, :draft, :suggestions, :last_editor_id, :tag_ids,
+                  :country, :method_category_ids, :authors, :background, :summary
 
   belongs_to :company
   has_many :contacts, :through => :company
@@ -45,9 +46,12 @@ class CaseStudy < ActiveRecord::Base
 
   # METHOD LINKING
   has_many :method_case_studies
-  has_many :design_methods, :through => :method_case_studies
-  has_many :tags
+  has_many :tag_case_studies
+  has_many :method_category_case_studies
 
+  has_many :design_methods, :through => :method_case_studies
+  has_many :tags, :through => :tag_case_studies
+  has_many :method_categories, :through => :method_category_case_studies
 
   has_many :method_collections, dependent: :destroy
   has_many :collections, through: :method_collections

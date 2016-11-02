@@ -53,8 +53,11 @@
         margin-right: 4px;
     }
   .edit-char-group {
-    font-size: 0.8em;
+    font-size: 1em;
     padding-left: 0px;
+    font-style: normal;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: normal;
   }
 
 = form_for @case_study, :html => {:multipart => true} do |f|
@@ -91,156 +94,52 @@
     / LEFT CONTENT
     .col-xs-4
       / PEOPLE
-      .row
-        %h4 Create Links
-        Company #{link_to "Create", new_company_path , :target => "_blank"}
-        - if @case_study.company
-          = link_to "Edit", edit_company_path(@case_study.company), :target => "_blank"
-          = link_to "Show", company_path(@case_study.company), :target => "_blank"
-        %br/
-        Design Research Method #{link_to "Create", new_design_method_path , :target => "_blank"}
-        %h4 Materials
+      .row{:style=>"margin-top:30px"}
+        %h4 Industry Sector
+        = select("case_study", "company_id", Company.all.collect {|p| [ p.name, p.id ] }, {:multiple => "multiple", include_blank: 'None' })
+      .row{:style=>"margin-top:30px"}
+        %h4 Tag
+        .editCharGroup{:style=>"margin-left:15px"}
+          / = f.collection_check_boxes(:tag_ids, Tag.all, :id, :name)
+
+          = f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |t|
+            .row
+              = t.label(:class=>"edit-char-group") do
+                = t.check_box + " " + t.text
+
+          / - Tag.all.each do |t|
+          /   - tag = Tag.where(id: t.id)
+          /   = f.collection_check_boxes(:tag_ids, tag, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + "  " + b.text}}  
+
         %p
-          %span.glyphicon.glyphicon-list-alt
-          - if @case_study.resource_url
-            = link_to "Permalink",  @case_study.resource_url, :target => "_blank"
-          - else
-            No resources available
-            %br/
-          = f.file_field :resource
-        %p
-          %span.glyphicon.glyphicon-list-alt
-          - if @case_study.url
-            = link_to "Original Website",  @case_study.url, :target => "_blank"
-          - else
-            No url available
-            %br/
-          = f.text_field :url, :class => "form-control", :placeholder => "http://"
-      .row
-        %h4 Contacts
-        - @case_study.contacts.each do |c|
-          %p= "#{c.name} (#{c.email})"
-        %p= "No contacts available" unless !@case_study.contacts.empty?
-        %h4 People
-        .input-group
-          %span.input-group-addon
-            %span.glyphicon.glyphicon-user collaborators
-          = f.number_field :num_of_designers, :class => "form-control", :placeholder => "# of collaborators", in: 0...1000
-        %br/
-        .input-group
-          %span.input-group-addon
-            %span.glyphicon.glyphicon-user users
-          = f.number_field :num_of_users, :class => "form-control", :placeholder => "# of users", in: 0...1000
+
+      .row{:style=>"margin-top:30px"}
+
+        %h4 Country
+        = country_select("case_study", "country", priority_countries: ["US", "IN", "CN","GB"])
+
+
       / END PEOPLE
       / TOOLS
-      .row
-        %h4 Tools
-        .input-group
-          %input.form-control{:type => "text"}/
-          %span.input-group-btn
-            %button.btn.btn-default{:onclick => "createTag('case_study', #{params[:id]}, this, 'tool');", :type => "button"} Add Tool
-        %br/
-        %p.tool-list
-          - @case_study.tools.each do |t|
-            = tagify(t.id, t.content, {:removable => true})
+      .row{:style=>"margin-top:30px"}
+        %h4 Authors
+        = f.text_field :authors, :class=> "form-control", :placeholder => "Authors", :style=>"width:80%"
+
       / END TOOLS
       / TIME
-      .row
-        %h4 Time
-        .input-group
-          %span.input-group-addon
-            %span.glyphicon.glyphicon-time
-          = f.number_field :time_period, :class => "form-control", in: 0...1000
-          = f.select(:time_unit, options_for_select([['years', 'yr'], ['days', 'd'], ['hours', 'hr'], ['minutes', 'min']], @case_study.time_unit), {}, {:class=> "form-control"})
-      / END TIME
-      / TAGS
-      .row
-        %h4 Tags
-        .input-group
-          %input.form-control{:type => "text"}/
-          %span.input-group-btn
-            %button.btn.btn-default{:onclick => "createTag('case_study', #{params[:id]}, this, 'tag');", :type => "button"} Add Tag
-        %br/
-        %p.tag-list
-          - @case_study.tags.each do |t|
-            = tagify(t.id, t.content, {:removable => true})
-      / END OF TAGS
-      / METHODS
-      .row
-        %h4 Methods Used
-        .input-group
-          / <input type="text" class="form-control">
-          = select("method_case_study", "design_method_id", DesignMethod.all.sort_by {|p| p.name }.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'}, {class: "form-control"})
-          %span.input-group-btn
-            %button.btn.btn-default{:onclick => "createMethodLink(#{params[:id]}, this);", :type => "button"} Add Method
-        - if not @case_study.new_record?
-          = link_to "Suggested Methods", related_methods_case_study_path(@case_study), :target => "_blank"
-        %p.method-list
-          - @case_study.method_case_studies.each do |t|
-            = tagify(t.id, t.design_method.name, {:removable => true, :method => true})
-          = "No methods available" unless not @case_study.method_case_studies.empty?
-        / END TAGS
-      / END OF METHODS
-      %br/
-      .row
-        %h4 Characteristics
-        / CHECKBOX
-        = f.check_box :customer_is_user
-        Customer is User
-        \#{f.check_box :remote_project} Remote Project
-        / END CHECKBOX
-        / DROPDOWNS
-        - dropdowns = ["development_cycle", "design_phase", "project_domain", "customer_type", "user_age", "privacy_level", "social_setting"]
-        .form-group
-          %table.table
-            - dropdowns.each do |name|
-              %tr
-                / LABEL
-                %td
-                  %label{:for => name}
-                    = name.underscore.humanize
-                    = glyphyify("question-sign")
-                %td
-                  / SELECT
-                  = select("case_study", name, |
-                    @options[name.to_sym],     |
-                    {include_blank: 'None'})   |
-
-
-        %h4 Related Design Methods
-
-        %button{"data-target" => "#dm", "data-toggle" => "collapse", :id => "dm-collapse", :class => "btn btn-default btn-index-create collapsed"}
-          %span.glyphicon.glyphicon-chevron-down
-          Design Methods
-
-
-        #dm.collapse
-          %br
-          %input.char-filter.form-control{type: "text", placeholder: "Filter Methods..."}
-          %br
-          - full = DesignMethod.count
-          - one_third = full/3
-          - two_thirds = one_third * 2
-
-          / first third of methods as a column
-          .col-md-4.edit-char-group
-            - DesignMethod.all[0..one_third].each do |m|
-              - method = DesignMethod.where(id: m.id)
-              = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
-          / second third of methods as a column
-          .col-md-4.edit-char-group
-            - DesignMethod.all[(one_third+1)..two_thirds].each do |m|
-              - method = DesignMethod.where(id: m.id)
-              = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
-          / last third of methods as a column
-          .col-md-4.edit-char-group
-            - DesignMethod.all[(two_thirds+1)..full].each do |m|
-              - method = DesignMethod.where(id: m.id)
-              = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
-        / END DROPDOWN
-    / END OF TAGS
-    / END LEFT CONTENT
-    / RIGHT CONTENT
+      .row{:style=>"margin-top:30px"}
+        %h4 Design Process Covered
+        .editCharGroup{:style=>"margin-left:15px"}
+          = f.collection_check_boxes(:method_category_ids, MethodCategory.all, :id, :name) do |mc|
+            .row
+              = mc.label(:class=>"edit-char-group") do
+                = mc.check_box + " " + mc.text
+      .row{:style=>"margin-top:30px"}
+        %h4 Upload Image
+        - if Rails.env.production?
+          = f.file_field :picture
+        - else
+          = f.file_field :main_image
     .col-xs-8
       / INPUT METHOD NAME
       = f.check_box :hidden
@@ -251,30 +150,59 @@
       .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
         %h3 Title
         = f.text_field :name, :class=> "form-control", :placeholder => "Case Study Name"
-      .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
-        %h3 Company
-        = select("case_study", "company_id", Company.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'}, :class => "form-control")
 
-      .row
-      .col-xs-6.col-md-12
-      - if @case_study.has_image?
-        = image_tag(@case_study.image_url)
-      - else
-        = image_tag("no-image-available.png", :width => "100%", :height => "385")
 
-    - if Rails.env.production?
-      = f.file_field :picture
-    - else
-      = f.file_field :main_image
-      / FORMS
-
+      / .row
+      / .col-xs-6.col-md-12
+      / - if @case_study.has_image?
+      /   = image_tag(@case_study.image_url)
+      / - else
+      /   = image_tag("no-image-available.png", :width => "100%", :height => "385")
 
       %h3 Problem
-      = f.text_area :overview, :class => "form-control markdown", :rows => 12
-      %h3 Process
-      = f.text_area :process, :class => "form-control markdown", :rows => 50
-      %h3 Outcome/Benefits
-      = f.text_area :outcome, :class => "form-control markdown", :rows => 50
+      = f.text_area :overview, :class => "form-control markdown", :rows => 3
+      %h3 Project Background
+      = f.text_area :background, :class => "form-control markdown", :rows => 10
+      %h3 Summary
+      = f.text_area :summary, :class => "form-control markdown", :rows => 10
+      %h3 The Process
+      = f.text_area :process, :class => "form-control markdown", :rows => 10
+      %h3 Retrospective
+      = f.text_area :outcome, :class => "form-control markdown", :rows => 10
+
+      / FORMS
+      %h4 Related Design Methods
+
+      %button{"data-target" => "#dm", "data-toggle" => "collapse", :id => "dm-collapse", :class => "btn btn-default btn-index-create collapsed"}
+        %span.glyphicon.glyphicon-chevron-down
+        Design Methods
+
+
+      #dm.collapse
+        %br
+        %input.char-filter.form-control{type: "text", placeholder: "Filter Methods..."}
+        %br
+        - full = DesignMethod.count
+        - one_third = full/3
+        - two_thirds = one_third * 2
+
+        / first third of methods as a column
+        .col-md-4.edit-char-group
+          - DesignMethod.all[0..one_third].each do |m|
+            - method = DesignMethod.where(id: m.id)
+            = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+        / second third of methods as a column
+        .col-md-4.edit-char-group
+          - DesignMethod.all[(one_third+1)..two_thirds].each do |m|
+            - method = DesignMethod.where(id: m.id)
+            = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+        / last third of methods as a column
+        .col-md-4.edit-char-group
+          - DesignMethod.all[(two_thirds+1)..full].each do |m|
+            - method = DesignMethod.where(id: m.id)
+            = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+
+
 
       / END FORMS
     / END RIGHT CONTENT

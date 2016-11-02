@@ -90,6 +90,13 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    countries (1.2.5)
+      currencies (~> 0.4.2)
+      i18n_data (~> 0.7.0)
+    country_select (2.5.2)
+      countries (~> 1.2.0)
+      sort_alphabetical (~> 1.0)
+    currencies (0.4.2)
     daemons (1.1.9)
     devise (3.2.4)
       bcrypt (~> 3.0)
@@ -140,6 +147,7 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.6.9)
+    i18n_data (0.7.0)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
       has_scope (~> 0.6.0.rc)
@@ -273,6 +281,8 @@ GEM
       websocket (~> 1.0.4)
     sexp_processor (4.5.0)
     slop (3.6.0)
+    sort_alphabetical (1.0.2)
+      unicode_utils (>= 1.2.2)
     spreadsheet (0.9.7)
       ruby-ole (>= 1.0)
     sprockets (2.11.0)
@@ -316,6 +326,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
+    unicode_utils (1.4.0)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
@@ -341,6 +352,7 @@ DEPENDENCIES
   capybara
   carrierwave
   coffee-rails
+  country_select
   devise
   equivalent-xml
   factory_girl_rails

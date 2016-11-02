@@ -16,7 +16,8 @@
 class Tag < ActiveRecord::Base
 	attr_accessible :design_method_id, :case_study_id, :discussion_id, :user_id, :content, :content_type
 	belongs_to :design_method
-	belongs_to :case_study
+  	has_many :tag_case_studies
+  	has_many :case_studies, :through => :tag_case_studies
 	belongs_to :discussion
 	belongs_to :user
 	before_save { self.content = content.downcase.gsub(' ', '_') }
