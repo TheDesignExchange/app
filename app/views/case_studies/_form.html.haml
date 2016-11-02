@@ -127,15 +127,13 @@
 
       / END TOOLS
       / TIME
-      / .row{:style=>"margin-top:30px"}
-      /   %h4 Design Process Covered
-      /   .editCharGroup{:style=>"margin-left:15px"}
-      /     = f.collection_check_boxes(:method_category_ids, MethodCategory.all, :id, :name) do |mc|
-      /       .row
-      /         = mc.label(:class=>"edit-char-group") do
-      /           = mc.check_box + " " + mc.text
-      / END TIME
-      / TAGS
+      .row{:style=>"margin-top:30px"}
+        %h4 Design Process Covered
+        .editCharGroup{:style=>"margin-left:15px"}
+          = f.collection_check_boxes(:method_category_ids, MethodCategory.all, :id, :name) do |mc|
+            .row
+              = mc.label(:class=>"edit-char-group") do
+                = mc.check_box + " " + mc.text
 
     .col-xs-8
       / INPUT METHOD NAME

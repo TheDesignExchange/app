@@ -93,10 +93,14 @@
     = ISO3166::Country[@case_study.country]
 
     .h4{:style=>"margin-top:40px"} Authors
-    .p Placeholder
+    - if @case_study.authors != nil
+      - @case_study.authors.split(",").each do |author|
+        .p
+          = author
 
     .h4{:style=>"margin-top:40px"} Design Process Covered
-    .p Placeholder
+    - @case_study.method_category_ids.each do |mc|
+      = tagify(mc, MethodCategory.find_by_id(mc).name, {:removable => false})
 
     - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
       %h4{:style=>"margin-top:40px"} Completion Score
