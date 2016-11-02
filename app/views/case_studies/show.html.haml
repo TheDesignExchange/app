@@ -183,24 +183,24 @@
       %p= @case_study.overview.blank? ? "-" : md_format(@case_study.overview)
       / FORMS
       %h3 Project Background
-      %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      %p= @case_study.background.blank? ? "-" : md_format(@case_study.background)
       / %p= @case_study.process.blank? ? "-" : md_format(@case_study.process)
       / %h3 Outcome/Benefits
       / %p= @case_study.outcome.blank? ? "-" : md_format(@case_study.outcome)
       %h3 Summary
-      %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      %h3 The Process
-      %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      %p= @case_study.summary.blank? ? "-" : md_format(@case_study.summary)
 
+      %h3 The Process
       %p= @case_study.process.blank? ? "-" : md_format(@case_study.process)
+
       %h3 Retrospective
-      %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      %p= @case_study.outcome.blank? ? "-" : md_format(@case_study.outcome)
 
 
       - if !@case_study.design_methods.blank?
         %h3 Related Design Methods
         - @case_study.design_methods.each do |dm|
-          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4")
+          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"3")
 
 
     .row

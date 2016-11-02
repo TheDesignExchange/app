@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102090546) do
+ActiveRecord::Schema.define(version: 20161102091227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,8 @@ ActiveRecord::Schema.define(version: 20161102090546) do
     t.string   "industry_sector"
     t.string   "country"
     t.string   "authors"
+    t.text     "background"
+    t.text     "summary"
   end
 
   create_table "characteristic_groups", force: true do |t|

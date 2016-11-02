@@ -134,7 +134,12 @@
             .row
               = mc.label(:class=>"edit-char-group") do
                 = mc.check_box + " " + mc.text
-
+      .row{:style=>"margin-top:30px"}
+        %h4 Upload Image
+        - if Rails.env.production?
+          = f.file_field :picture
+        - else
+          = f.file_field :main_image
     .col-xs-8
       / INPUT METHOD NAME
       = f.check_box :hidden
@@ -145,29 +150,57 @@
       .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
         %h3 Title
         = f.text_field :name, :class=> "form-control", :placeholder => "Case Study Name"
-      .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
-        %h3 Company
-        = select("case_study", "company_id", Company.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'}, :class => "form-control")
 
-      .row
-      .col-xs-6.col-md-12
-      - if @case_study.has_image?
-        = image_tag(@case_study.image_url)
-      - else
-        = image_tag("no-image-available.png", :width => "100%", :height => "385")
-      - if Rails.env.production?
-        = f.file_field :picture
-      - else
-        = f.file_field :main_image
+
+      / .row
+      / .col-xs-6.col-md-12
+      / - if @case_study.has_image?
+      /   = image_tag(@case_study.image_url)
+      / - else
+      /   = image_tag("no-image-available.png", :width => "100%", :height => "385")
+
       %h3 Problem
-      = f.text_area :overview, :class => "form-control markdown", :rows => 12
-      %h3 Process
-      = f.text_area :process, :class => "form-control markdown", :rows => 50
-      %h3 Outcome/Benefits
-      = f.text_area :outcome, :class => "form-control markdown", :rows => 50
-  
-      / FORMS
+      = f.text_area :overview, :class => "form-control markdown", :rows => 3
+      %h3 Project Background
+      = f.text_area :background, :class => "form-control markdown", :rows => 10
+      %h3 Summary
+      = f.text_area :summary, :class => "form-control markdown", :rows => 10
+      %h3 The Process
+      = f.text_area :process, :class => "form-control markdown", :rows => 10
+      %h3 Retrospective
+      = f.text_area :outcome, :class => "form-control markdown", :rows => 10
 
+      / FORMS
+      %h4 Related Design Methods
+
+      %button{"data-target" => "#dm", "data-toggle" => "collapse", :id => "dm-collapse", :class => "btn btn-default btn-index-create collapsed"}
+        %span.glyphicon.glyphicon-chevron-down
+        Design Methods
+
+
+      #dm.collapse
+        %br
+        %input.char-filter.form-control{type: "text", placeholder: "Filter Methods..."}
+        %br
+        - full = DesignMethod.count
+        - one_third = full/3
+        - two_thirds = one_third * 2
+
+        / first third of methods as a column
+        .col-md-4.edit-char-group
+          - DesignMethod.all[0..one_third].each do |m|
+            - method = DesignMethod.where(id: m.id)
+            = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+        / second third of methods as a column
+        .col-md-4.edit-char-group
+          - DesignMethod.all[(one_third+1)..two_thirds].each do |m|
+            - method = DesignMethod.where(id: m.id)
+            = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+        / last third of methods as a column
+        .col-md-4.edit-char-group
+          - DesignMethod.all[(two_thirds+1)..full].each do |m|
+            - method = DesignMethod.where(id: m.id)
+            = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
 
 
 
