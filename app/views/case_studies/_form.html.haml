@@ -98,11 +98,11 @@
         %h4 Industry Sector
         = select("case_study", "company_id", Company.all.collect {|p| [ p.name, p.id ] }, {:multiple => "multiple", include_blank: 'None' })
       .row{:style=>"margin-top:30px"}
-        %h4 Tag
+        %h4 Tags
         .editCharGroup{:style=>"margin-left:15px"}
           / = f.collection_check_boxes(:tag_ids, Tag.all, :id, :name)
-
-          = f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |t|
+          - names = ["Poverty and inequality","Hunger and food security","Water and Sanitation","Global partnership and cooperation", "Education", "Global health", "Economic inclusion", "Gender equality", "Governance human rights and conflict", "Environmental sustainability","Inclusive infrastructure"]
+          = f.collection_check_boxes(:tag_ids, Tag.where("name IN (?)",names), :id, :name) do |t|
             .row
               = t.label(:class=>"edit-char-group") do
                 = t.check_box + " " + t.text
