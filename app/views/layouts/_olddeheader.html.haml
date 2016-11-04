@@ -1,0 +1,50 @@
+:javascript
+  $(function(){
+    var cache = {};
+    $("form#search input").autocomplete(DE.Autocomplete);
+  });
+
+:css
+  @import url(//fonts.googleapis.com/css?family=Arvo:700);
+  .header-font {
+    font-family: 'Arvo', serif;
+  }
+  .jumbotron {
+    font-size: 17px;
+    background: rgb(89, 88, 91);
+    color: white;
+  }
+  .subtitle {
+    font-size: 20px;
+    margin-top:5%;
+  }
+
+  .login-margin {
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 5%;
+  }
+
+
+.jumbotron.hidden-xs{:style=>"height:300px;"}
+  .container
+    .row{}
+      .col-md-8
+        %h1.header-font
+          = image_tag "logo2.png", class: "logo"
+        %p.subtitle where designers and researchers share methods and best practices
+        = form_tag('/search') do
+          = text_field_tag('query', nil, placeholder: 'Search', class: 'form-search', id: 'search-input')
+          = submit_tag('Search', class: "btn btn-default")
+      - if !user_signed_in?
+        .col-md-4
+          %p Sign In
+          = form_for(:user, :url => {:controller => 'devise/sessions', :action => 'new'}) do |f|
+            .input.frontpage-login
+              = f.email_field :email, {:autofocus => true, :placeholder => "Email", :class => "form-control"}
+            .input.frontpage-login
+              = f.password_field :password, {:placeholder => "Password", :class => "form-control"}
+            .row
+              .col-md-8= link_to "Create an account", new_registration_path(:user)
+              .col-md-4
+                = f.submit "Log In", {:class=> "btn btn-default pull-right" }
