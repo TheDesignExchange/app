@@ -35,9 +35,13 @@
         / - if current_user != nil && (current_user.admin? || current_user.editor? || current_user.author?)
         /   %li= link_to "Drafts", drafts_path
       %ul.nav.navbar-nav.navbar-right
+        %li= link_to "Methods", design_methods_path, style: "font-size: 150%;"
+        %li= link_to "Case Studies", case_studies_path, style: "font-size: 150%;"
+        %li= link_to "Collections", collections_path, style: "font-size: 150%;"
+        %li= link_to "About", '/about', :class => 'navbar-link', style: "font-size: 150%;"
         - if user_signed_in?
           %li.dropdown
-            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", style: "font-size: 120%;"}
               = current_user.email
               %b.caret
             %ul.dropdown-menu
@@ -51,13 +55,8 @@
               %li.divider
               %li= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
         - else
-          %li= link_to "Methods", design_methods_path, style: "font-size: 150%;"
-          %li= link_to "Case Studies", case_studies_path, style: "font-size: 150%;"
-          %li= link_to "Collections", collections_path, style: "font-size: 150%;"
           - if current_user != nil && (current_user.admin? || current_user.editor? || current_user.author?)
             %li= link_to "Drafts", drafts_path
-          %li
-            = link_to "About", new_user_registration_path, :class => 'navbar-link', style: "font-size: 150%;"
           %li
             = link_to "Sign In", new_user_session_path, :class => 'navbar-link', style: "font-size: 150%;"
 

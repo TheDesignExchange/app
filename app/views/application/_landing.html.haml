@@ -1,22 +1,68 @@
+:css
+  .background {
+    background:url('../img/bg/diagonalnoise.png');
+    position: relative;
+  }
+
+  .layer {
+    background-color: rgba(134, 198, 124, 0.85);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 32%;
+    margin-top: 19%
+  }
+  .layer1 {
+    background-color: rgba(134, 198, 124, 0.92);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 108%;
+    height: 25%;
+    margin-top: 19%
+  }
+  .left-padding{
+    padding-left: 10px
+  }
 %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
 .container
   .row{}
-  - if !user_signed_in?
     .p{:style=>"margin-top:-10%;padding:0 10% 0 10%"}
     .col-md-5
       .h2{:style=>"text-align:center;margin-bottom:10%;"}
         Methods
       .row
-        %p.subtitle{:style=>"text-align:center;font-size:80%; margin-top:-10%;padding:0 10% 0 10%"} Learn about the methods you could use on your next design.
-    .col-md-1
-    .col-md-6
+        %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Learn about the methods you could use on your next design.
+        .background
+        = link_to design_method_path(id: 161) do 
+          = image_tag "MethodLandingPage.jpg", :width => "100%", size: "450x370"
+          .layer1
+            .left-padding
+              .h1{:style=>"margin-bottom:10%;font-family: 'Work Sans', sans-serif;color: white"}
+                Cultural Probes
+              .h4{:style=>"margin-bottom:10%;font-size:100%;color: white;margin-top:-10%;"}
+                Gain insight into and inspirational responses about the daily life and habits of communities
+
+    .col-md-2
+    .col-md-5
       .h2{:style=>"text-align:center;margin-bottom:10%;"}
         Case Studies
       .row
-        %p.subtitle{:style=>"text-align:center;font-size:80%; margin-top:-10%;padding:0 10% 0 10%"} Read about how real design probems were solved.
-    / .p{:style=>"margin-top:-10%;padding:0 10% 0 10%"}
-    /   .h1{:style=>"margin-bottom:10%;"}
-    /   Case Studies
+        %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Read about how real design probems were solved.
+        
+        .background
+        = link_to design_method_path(id: 161) do #change link path
+          = image_tag "CaseStudiesLandingPage.png", :width => "100%"
+          .layer
+            .left-padding
+              .h1{:style=>"margin-bottom:10%;font-family: 'Work Sans';font-size:180%; sans-serif;color: white;"}
+                Adapting Usability Testing for Oral, Rural Users
+              .h4{:style=>"margin-bottom:10%;font-size:100%;color: white;margin-top:-10%;"}
+                Read about a study conducted in Ghanaian villages that evaluated an audio computer desgined for people living in oral cultures
+
+
+  
 
   /. Landing
   / .thedxcommunity{:style=>"margin-top:60%;padding:0 10% 0 10%"}
