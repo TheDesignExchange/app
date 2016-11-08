@@ -1,4 +1,5 @@
 :css
+  @import url(//fonts.googleapis.com/css?family=Arvo:700);
   .background {
     background:url('../img/bg/diagonalnoise.png');
     position: relative;
@@ -9,18 +10,18 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 108.1%;
     height: 32%;
-    margin-top: 19%
+    margin-top: 20.1%
   }
   .layer1 {
     background-color: rgba(134, 198, 124, 0.92);
     position: absolute;
     top: 0;
     left: 0;
-    width: 108%;
+    width: 108.1%;
     height: 25%;
-    margin-top: 19%
+    margin-top: 20.1%
   }
   .left-padding{
     padding-left: 10px
@@ -30,12 +31,12 @@
   .row{:style=>"margin-bottom:10%"}
     .p{:style=>"margin-top:-10%;padding:0 10% 0 10%"}
     .col-md-5
-      .h2{:style=>"text-align:center;margin-bottom:10%;"}
+      .h2{:style=>"text-align:center;margin-bottom:10%;font-family: 'Work Sans', sans-serif;font-size:250%;"}
         Methods
       .row
         %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Learn about the methods you could use on your next design.
         .background
-        = link_to design_method_path(id: 161) do 
+        = link_to design_method_path(id: 162) do 
           = image_tag "MethodLandingPage.jpg", :width => "100%", size: "450x370"
           .layer1
             .left-padding
@@ -46,13 +47,13 @@
 
     .col-md-2
     .col-md-5
-      .h2{:style=>"text-align:center;margin-bottom:10%;"}
+      .h2{:style=>"text-align:center;margin-bottom:10%;font-family: 'Work Sans', sans-serif;font-size:250%;"}
         Case Studies
       .row
         %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Read about how real design probems were solved.
         
         .background
-        = link_to design_method_path(id: 161) do #change link path
+        = link_to case_studies_path(id: 197) do #change link path
           = image_tag "CaseStudiesLandingPage.png", :width => "100%", size: "450x370"
           .layer
             .left-padding
