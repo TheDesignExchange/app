@@ -183,8 +183,10 @@ class CaseStudiesController < ApplicationController
     elsif params[:commit] == "Publish"
       @case_study.draft = false
       @case_study.ready = true
-      if @case_study.owner_id != nil
-        UserMailer.publication_email(User.find_by(id:@case_study.owner_id), @case_study).deliver
+      if Rails.env.production?
+        if @case_study.owner_id != nil
+          UserMailer.publication_email(User.find_by(id:@case_study.owner_id), @case_study).deliver
+        end
       end
     elsif params[:commit] == "Ready for Approval"
       @case_study.draft = true

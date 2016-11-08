@@ -87,7 +87,6 @@
       .p
         ="(" + @case_study.company.domain + ")"
     .h4{:style=>"margin-top:40px"} Tags
-    - names = ["Poverty and inequality","Hunger and food security","Water and Sanitation","Global partnership and cooperation", "Education", "Global health", "Economic inclusion", "Gender equality", "Governance human rights and conflict", "Environmental sustainability","Inclusive infrastructure"]
     - @case_study.tag_ids.each do |t|
       .tag{:style=>"margin-top:10px"}
       = tagify(t, Tag.find_by_id(t).name, {:removable => false})
