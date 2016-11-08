@@ -24,14 +24,15 @@ DesignExchange::Application.routes.draw do
     end
   end
 
-  resources :collections
   get '/collections/add', to: 'collections#add', as: "add_to_collection"
   get '/collections/:id/edit/delete', to: 'collections#delete', as: "delete_collection"
+  resources :collections
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
 
+  resources :drafts
   resources :method_categories, only: [:show]
   resources :citations, only: [:show]
   resources :feedbacks, only: [:create]
@@ -41,9 +42,14 @@ DesignExchange::Application.routes.draw do
   get '/administrator', to: 'administrator#index'
   get '/administrator/change_admin', to: 'administrator#changeAdmin'
   get '/administrator/change_editor', to: 'administrator#changeEditor'
+  get '/administrator/change_author', to: 'administrator#changeAuthor'
   get '/administrator/change_basic', to: 'administrator#changeBasic'
-
+  get '/design_methods/:id/clearImage', to: 'design_methods#clearImage'
+  get '/design_methods/new/clearImage', to: 'design_methods#clearImage'
+  get '/design_methods/:id/{:action}', to: 'design_methods#action'
+  get '/case_studies/:id/{:action}', to: 'case_studies#action'
   get ":action", to:"application##{:action}"
+  post ":action", to:"application##{:action}"
   post "search", to: "application#search"
   get "autocomplete_search", to: "application#search"
 

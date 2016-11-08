@@ -1,0 +1,73 @@
+:javascript
+  $(function(){
+    // Archaeologist's note: this seems like a spectacularly bad idea, not spending the time to figure it out right now
+  	var pH = $('#create-btn').parent().parent().height()
+  	var eH = $('#create-btn').height()
+  	$('#create-btn').css('margin-top', (pH - eH)/2)
+    $('#hidden').click(function() {
+      $("#hiddenMethods").toggle(this.checked);
+    });
+
+  });
+:css
+  html, body{
+  	height: 100%;
+  	width: 100%;
+  }
+  #search-and-filter{
+  	height: 100%;
+  }
+
+  #results-container{
+  	margin-left: 0;
+  	padding-left: 0;
+  }
+/ TOP ROW
+.container-fluid
+  .row
+    .col-xs-8.col-xs-offset-4.col-sm-10.col-sm-offset-2.left-pad
+      .col-xs-6
+ 
+
+      .col-xs-6
+        = link_to new_design_method_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
+          %span.glyphicon.glyphicon-plus
+          Create Draft Method
+        = link_to new_case_study_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
+          %span.glyphicon.glyphicon-plus
+          Create Draft Case Study
+
+
+  / END TOP ROW
+  #search-and-filter.row
+    #sidebar.col-xs-4.col-sm-2
+    .h1{:style => "margin-left:3%"}
+      My Drafts
+    .h5{:style => "margin-left:3%"}
+      - if current_user.admin?
+        As an admin, you can check the draft methods and draft case studiesthe current editors here.
+      - else
+        An admin has to approve these for public visibility
+    - if current_user != nil && !@design_methods.where(:owner => current_user).empty?# signed in basic user with created methods
+      #results-container.col-xs-8.col-sm-10
+        #hiddenMethods
+          .h4 My Draft Methods
+
+          - @design_methods.where(:owner => current_user).where(:draft => true).each do |method|
+            = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3")
+      #results-container.col-xs-8.col-sm-10
+        #hiddenMethods
+          .h4 My Draft Case Studies
+          - @case_studies.where(:owner_id => current_user.id).where(:draft => true).each do |cs|
+            = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3")
+    #sidebar.col-xs-4.col-sm-2
+
+    #results-container.col-xs-8.col-sm-10
+      - if (current_user != nil) && (current_user.admin? || current_user.editor?)
+        #publicMethods
+          .h4{:style => "margin-left:3%"}
+            Draft Methods by Editors
+        - @design_methods.where(:draft=>true).each do |method|
+          = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3")
+        - @case_studies.where(:draft=>true).each do |cs|
+          = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3")

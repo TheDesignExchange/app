@@ -39,7 +39,9 @@ class DesignMethod < ActiveRecord::Base
                   :main_image, :time_period, :name, :time_unit, :synonyms, :benefits,
                   :limitations, :skills, :usage, :online_resources, :history, :critiques,
                   :additional_reading, :characteristic_ids, :references, :case_study_ids,
-                  :videoURL, :hidden
+                  :videoURL, :hidden, :picture, :picture_url, :video_attribution, :video_caption,
+                  :completion_score, :videoURL_two, :video_two_attribution, :video_two_caption, :draft,
+                  :suggestions, :image_attribution, :last_editor_id
 
   # Validations
   validates :name, :overview, presence: true
@@ -195,6 +197,74 @@ class DesignMethod < ActiveRecord::Base
     # logger.info "Similar Case Studies took #{elapsed_time}s to query #{limit} random sample from db."
     # return result
     return []
+  end
+
+  def update_citations
+    # Add Method references as citations
+    citations = self.citations
+    references = self.references
+    if !references.nil?
+      citations.each do |c|
+        if !references.include? c.text
+          c.destroy
+        end
+      end
+    else
+      references = ""
+      citations.each do |c|
+        if !references.include? c.text
+          references += c.text + "\n"
+        end
+      end
+    end
+    if !references.blank?
+      urls = references.split("\n")
+      urls.each do |url|
+        if !url.blank?
+          contains = false
+          citations.each do |c|
+            if c.text.strip == url.strip
+              contains = true
+            end
+          end
+          if !contains
+            citation = Citation.new(text: url.strip)
+            citation.save
+            citations.push(citation)
+          end
+        end
+      end
+    end
+    self.save
+  end
+
+  def upload_to_s3(file, url)
+    if !file.nil?
+      if url.include? "thedesignexchange-staging"
+        path = "staging/design_methods/" + self.id.to_s + "/" + "design-method-" + self.id.to_s
+      else
+        path = "production/design_methods/" + self.id.to_s + "/" + "design-method-" + self.id.to_s
+      end
+      obj = S3_BUCKET.object(path)
+      obj.upload_file(file.path, acl:'public-read')
+      self.update(picture_url: obj.public_url)
+    end
+  end
+
+  def has_image?
+    if Rails.env.production?
+      return self.picture_url.present?
+    else
+      return self.main_image.url.present?
+    end
+  end
+
+  def image_url
+    if Rails.env.production?
+      return self.picture_url
+    else
+      return self.main_image
+    end
   end
 
 end

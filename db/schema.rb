@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160721194126) do
+ActiveRecord::Schema.define(version: 20161102091227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,23 @@ ActiveRecord::Schema.define(version: 20160721194126) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "hidden",            default: false
+    t.integer  "picture"
+    t.string   "picture_url"
+    t.integer  "completion_score"
+    t.boolean  "draft",             default: false
+    t.integer  "owner_id"
+    t.boolean  "ready"
+    t.text     "suggestions"
+    t.integer  "last_editor_id"
+    t.string   "last_editor"
+    t.datetime "last_edited"
+    t.integer  "author_id"
+    t.integer  "editor_id"
+    t.string   "industry_sector"
+    t.string   "country"
+    t.string   "authors"
+    t.text     "background"
+    t.text     "summary"
   end
 
   create_table "characteristic_groups", force: true do |t|
@@ -116,10 +133,15 @@ ActiveRecord::Schema.define(version: 20160721194126) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "owner_id"
+    t.integer  "design_method_id"
     t.boolean  "is_private"
     t.text     "overview"
-    t.integer  "owner_id"
   end
+
+  add_index "collections", ["design_method_id"], name: "index_collections_on_design_method_id", using: :btree
+  add_index "collections", ["user_id"], name: "index_collections_on_user_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.text     "text"
@@ -149,20 +171,25 @@ ActiveRecord::Schema.define(version: 20160721194126) do
     t.datetime "updated_at"
   end
 
-  create_table "design_methods", force: true do |t|
-    t.string   "name",                               null: false
-    t.text     "overview",                           null: false
-    t.text     "process",                            null: false
-    t.string   "aka"
-    t.integer  "owner_id",                           null: false
+  create_table "countries", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "num_of_designers",   default: 1
-    t.integer  "num_of_users",       default: 1
-    t.integer  "time_period",        default: 0
-    t.string   "time_unit",          default: ""
+  end
+
+  create_table "design_methods", force: true do |t|
+    t.string   "name",                                     null: false
+    t.text     "overview",                                 null: false
+    t.text     "process",                                  null: false
+    t.string   "aka"
+    t.integer  "owner_id",                                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "num_of_designers",         default: 1
+    t.integer  "num_of_users",             default: 1
+    t.integer  "time_period",              default: 0
+    t.string   "time_unit",                default: ""
     t.string   "main_image"
-    t.integer  "likes",              default: 0
+    t.integer  "likes",                    default: 0
     t.text     "synonyms"
     t.text     "benefits"
     t.text     "limitations"
@@ -172,10 +199,28 @@ ActiveRecord::Schema.define(version: 20160721194126) do
     t.text     "history"
     t.text     "critiques"
     t.text     "additional_reading"
+    t.text     "references"
     t.string   "videoURL"
     t.integer  "collection_id"
-    t.text     "references"
-    t.boolean  "hidden",             default: false
+    t.boolean  "hidden",                   default: false
+    t.integer  "picture"
+    t.string   "picture_url"
+    t.text     "video_attribution"
+    t.text     "video_caption"
+    t.integer  "completion_score"
+    t.string   "videoURL_two"
+    t.text     "videoURL_two_attribution"
+    t.text     "video_two_attribution"
+    t.text     "video_two_caption"
+    t.boolean  "draft",                    default: false
+    t.boolean  "ready"
+    t.text     "suggestions"
+    t.text     "image_attribution"
+    t.integer  "last_editor_id"
+    t.string   "last_editor"
+    t.datetime "last_edited"
+    t.integer  "author_id"
+    t.integer  "editor_id"
   end
 
   add_index "design_methods", ["collection_id"], name: "index_design_methods_on_collection_id", using: :btree
@@ -215,6 +260,13 @@ ActiveRecord::Schema.define(version: 20160721194126) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "process_order"
+  end
+
+  create_table "method_category_case_studies", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "case_study_id"
+    t.integer  "method_category_id"
   end
 
   create_table "method_characteristics", force: true do |t|
@@ -281,6 +333,13 @@ ActiveRecord::Schema.define(version: 20160721194126) do
     t.datetime "updated_at"
   end
 
+  create_table "tag_case_studies", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "case_study_id"
+    t.integer  "tag_id"
+  end
+
   create_table "tags", force: true do |t|
     t.integer  "design_method_id"
     t.integer  "case_study_id"
@@ -290,6 +349,7 @@ ActiveRecord::Schema.define(version: 20160721194126) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "content_type",     default: "tag"
+    t.string   "name"
   end
 
   create_table "user_methods", force: true do |t|
@@ -328,6 +388,8 @@ ActiveRecord::Schema.define(version: 20160721194126) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "roles_mask"
+    t.integer  "zip_code"
+    t.string   "affiliation"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

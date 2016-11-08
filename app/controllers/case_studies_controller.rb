@@ -5,8 +5,11 @@ class CaseStudiesController < ApplicationController
   before_action :create_as_signed_in_user, only: [:create, :new]
 
   def index
-    @case_studies = CaseStudy.where("overview != ?", "No overview available" )
+    @case_study = CaseStudy.where("overview != ?", "No overview available" )
     # @case_studies = CaseStudy.take(24)
+    if params[:sort_order] == "completion"
+      @case_studies = CaseStudy.order(completion_score: :desc)
+    end
     @search_filter_hash = MethodCategory.order(:process_order)
     @case_studies_all = CaseStudy.all
     respond_to do |format|
@@ -55,7 +58,8 @@ class CaseStudiesController < ApplicationController
 
     id = params[:id].to_i
     @case_study = CaseStudy.find(id)
-
+    @current_author = User.find_by_id(@case_study.author_id)
+    @current_editor = User.find_by_id(@case_study.editor_id)
     if !current_user.nil?
       @collections = current_user.owned_collections
       @collection = Collection.new(params[:collection])
@@ -74,8 +78,81 @@ class CaseStudiesController < ApplicationController
   def search
   end
 
+  def claimAuthor
+    @case_study = CaseStudy.find(params[:id])
+    @case_study.author_id = current_user.id
+    @case_study.save!
+    respond_to do |format|
+      format.html { redirect_to @case_study, notice: 'Successfully claimed to be author.'}
+    end
+  end
+
+  def claimEditor
+    @case_study = CaseStudy.find(params[:id])
+    @case_study.editor_id = current_user.id
+    @case_study.save!
+    respond_to do |format|
+      format.html { redirect_to @case_study, notice: 'Successfully claimed to be editor.'}
+    end
+  end
+
+  def unclaimAuthor
+    @case_study = CaseStudy.find(params[:id])
+    @case_study.author_id = nil
+    @case_study.save!
+    respond_to do |format|
+      format.html { redirect_to @case_study, notice: 'Successfully unclaimed to be author.'}
+    end
+  end
+
+  def unclaimEditor
+    @case_study = CaseStudy.find(params[:id])
+    @case_study.editor_id = nil
+    @case_study.save!
+    respond_to do |format|
+      format.html { redirect_to @case_study, notice: 'Successfully unclaimed to be editor.'}
+    end
+  end
+
   def update
     @case_study = CaseStudy.find(params[:id])
+    @case_study.last_editor_id = current_user.id
+    @case_study.last_edited = Time.now
+
+    if Rails.env.production?
+      file = params[:case_study][:picture]
+      @case_study.upload_to_s3(file, request.original_url)
+    end
+
+    if params[:commit] == "Save as Draft"
+      if @case_study.owner_id != nil #not all case studies have owners, this is something we should change
+        if current_user.admin? and current_user != User.find_by(id:@case_study.owner_id) and @case_study.ready 
+          UserMailer.cs_admin_changes_email(User.find_by(id:@case_study.owner_id),@case_study).deliver
+        end
+      end
+      @case_study.draft = true
+      @case_study.ready = false
+      @case_study.last_editor = "#{current_user.first_name} #{current_user.last_name}"
+    elsif params[:commit] == "Publish"
+      @case_study.draft = false
+      @case_study.ready = true
+      if @case_study.owner_id != nil
+        if Rails.env.production?
+          UserMailer.publication_email(User.find_by(id:@case_study.owner_id), @case_study).deliver
+          UserMailer.publication_email(User.find_by(id:@case_study.last_editor_id),@case_study).deliver
+        end
+      end
+      @case_study.last_editor = "#{current_user.first_name} #{current_user.last_name}"
+    elsif params[:commit] == "Ready for Approval"
+      @case_study.draft = true
+      @case_study.ready = true
+      if Rails.env.production?
+        UserMailer.cs_approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @case_study).deliver
+        UserMailer.cs_approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @case_study).deliver
+        UserMailer.cs_approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @case_studycs).deliver
+      end
+      @case_study.last_editor = "#{current_user.first_name} #{current_user.last_name}"
+    end
 
     respond_to do |format|
       if @case_study.update_attributes(params[:case_study])
@@ -90,10 +167,40 @@ class CaseStudiesController < ApplicationController
 
   def create
     @case_study = CaseStudy.new(params[:case_study])
+    @case_study.owner_id = current_user.id
+    @case_study.last_editor_id = current_user.id
+    @case_study.last_editor = "#{current_user.first_name} #{current_user.last_name}"
+    @case_study.last_edited = Time.now
 
+    if Rails.env.production?
+      file = params[:case_study][:picture]
+      @case_study.upload_to_s3(file, request.original_url)
+    end
+    
+    if params[:commit] == "Save as Draft"
+      @case_study.draft = true
+      @case_study.ready = false
+    elsif params[:commit] == "Publish"
+      @case_study.draft = false
+      @case_study.ready = true
+      if Rails.env.production?
+        if @case_study.owner_id != nil
+          UserMailer.publication_email(User.find_by(id:@case_study.owner_id), @case_study).deliver
+        end
+      end
+    elsif params[:commit] == "Ready for Approval"
+      @case_study.draft = true
+      @case_study.ready = true
+      if Rails.env.production?
+        UserMailer.cs_approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @case_study).deliver
+        UserMailer.cs_approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @case_study).deliver
+        UserMailer.cs_approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @case_study).deliver
+      end
+    end
+    
     respond_to do |format|
       #if @design_method.save
-      if @case_study.save
+      if @case_study.update_attributes(params[:case_study])
         format.html { redirect_to @case_study, notice: 'Case study was successfully created.' }
         format.json { render json: @case_study, status: :created, location: @case_study }
       else

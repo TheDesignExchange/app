@@ -17,6 +17,12 @@
         = f.email_field :email, {:autofocus => true, :class => "form-control", :placeholder => "Email"}
       %br/
       .input
+        = f.text_field :affiliation, {:autofocus => true, :class => "form-control", :placeholder => "Affiliation (optional)"}
+      %br/
+      .input
+        = f.text_field :zip_code, {:autofocus => true, :class => "form-control", :placeholder => "Zip Code (optional)"}
+      %br/
+      .input
         = f.password_field :password, { :class => "form-control", :placeholder => "Password"}
       %br/
       .input

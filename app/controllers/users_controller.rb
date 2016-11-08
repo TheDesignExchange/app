@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @owned_collections = @user.owned_collections
 
     @private_collections = @owned_collections.where(is_private: true)
-    @public_collections = @owned_collections.where(is_private: false) 
+    @public_collections = @owned_collections.where(is_private: false)
 
     @private_collections = @private_collections.paginate(page: params[:private_page], :per_page => 10)
     @public_collections = @public_collections.paginate(page: params[:public_page], :per_page => 10)
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @owned_discussions = @user.owned_discussions.limit(12)
     @owned_collections = @user.owned_collections
     @private_collections = @owned_collections.where(is_private: true)
-    @public_collections = @owned_collections.where(is_private: false) 
+    @public_collections = @owned_collections.where(is_private: false)
     store_location
     render layout: "wide"
   end
@@ -61,10 +61,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-      :username, :email, :encrypted_password, :first_name, :last_name, :profile_picture, :website, :facebook, :twitter, :linkedin, :about_text, :profile_picture
+      :username, :email, :encrypted_password, :first_name, :last_name, :profile_picture, :website, :facebook, :twitter, :linkedin, :about_text, :profile_picture, :zip_code, :affiliation
       )
   end
 
- 
+
 
 end

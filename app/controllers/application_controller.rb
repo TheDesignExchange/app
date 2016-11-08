@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   check_authorization :unless => :devise_controller?
-  skip_authorization_check :only => [:index, :search, :about]
+
+  skip_authorization_check :only => [:landing, :index, :search, :search_db, :about, :share, :sendInvitation]
   protect_from_forgery with: :exception
   add_flash_types :success, :warning, :danger, :info
 
@@ -16,6 +17,18 @@ class ApplicationController < ActionController::Base
     @design_methods = DesignMethod.order("RANDOM()").limit(3)
     @case_studies = CaseStudy.order("RANDOM()").limit(3)
     render layout: "custom"
+  end
+
+  def share
+    render layout: "custom"
+  end
+
+  def sendInvitation
+    UserMailer.invitation_email(params[:email_of_friend],current_user).deliver
+    respond_to do |format|
+      format.html { redirect_to '/share', notice: 'Invitation was sent!' }
+      format.json { head :no_content } 
+    end
   end
 
   def about
@@ -106,7 +119,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :username << :first_name << :last_name
-    devise_parameter_sanitizer.for(:account_update) << :username << :first_name << :last_name
+    devise_parameter_sanitizer.for(:sign_up) << :username << :first_name << :last_name << :zip_code << :affiliation
+    devise_parameter_sanitizer.for(:account_update) << :username << :first_name << :last_name << :zip_code << :affiliation
   end
 end

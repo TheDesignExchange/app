@@ -25,7 +25,7 @@
              .siblings()
              .removeClass('active');
       var link = $(this).data('link');
-  
+
       // $('.tab-pane[data-link ~="'+ link +'"]').hide();
       $('.tab-pane[data-link ="'+ link +'"]').show().siblings(".tab-pane").hide();
     });
@@ -103,6 +103,10 @@
       .col-md-12
         %h4 About
         %p= @user.about_text
+    - if @user.affiliation != nil
+      .col-md-12
+        %h4 Affiliation
+        %p= @user.affiliation
     - if @user.email != nil || @user.website != nil || @user.phone_number != nil
       .col-md-12
         %h4 Contact
@@ -134,8 +138,6 @@
         %li
           %a{"data-link" => "cs"} Case Studies
         %li
-          %a{"data-link" => "disc"} Discussions
-        %li
           %a{"data-link" => "col"} Collections
     / END NAVBAR
     / THUMBNAILS
@@ -147,10 +149,6 @@
         = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4")
     / Case Study Search Tab
     .tab-pane.col-md-12.padding{"data-link" => "cs"}
-    / Discussion Search Tap
-    .tab-pane.col-md-12.padding{"data-link" => "disc"}
-      - @owned_discussions.each do |disc|
-        = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(disc,"4")
 
     .tab-pane.col-md-12.padding{"data-link" => "col"}
       #tabs
@@ -164,7 +162,7 @@
         -if @private_collections.empty?
 
           %h2 You have no private collections
-        -else 
+        -else
           %h2 Private
           = will_paginate @private_collections, :param_name => "private_page"
           %ul.collections
@@ -179,7 +177,7 @@
       .tab-pane.col-md-12.padding{"data-link" => "public", :style => "display: none;" }
         -if @public_collections.empty?
           %h2 You have no public collections
-        -else 
+        -else
           %h2 Public
           = will_paginate @public_collections, :param_name => "public_page"
           %ul.collections

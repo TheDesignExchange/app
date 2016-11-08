@@ -1,9 +1,23 @@
 %a.card{:href => "#{eval("#{@thumb_obj[:link]}_path(#{@thumb_obj[:id]})")}"}
   .caption
-    %h5= @thumb_obj[:name]
-    - if @thumb_obj[:image].present?
-      .image-wrapper
-        = image_tag @thumb_obj[:image]
+    - if @thumb_obj[:draft] == true
+      - if @thumb_obj[:ready] == true
+        %h5{:style=>"color:green"}= @thumb_obj[:name]
+      - elsif @thumb_obj[:link] == "design_method"
+        %h5{:style=>"color:orange"}= @thumb_obj[:name]
+      - elsif @thumb_obj[:link] == "case_study"
+        %h5{:style=>"color:purple"}= @thumb_obj[:name]
+    - else
+      %h5= @thumb_obj[:name]
+
+    - if Rails.env.production?
+      - if @thumb_obj[:picture_url].present?
+        .image-wrapper
+          = image_tag @thumb_obj[:picture_url]
+    - else
+      - if @thumb_obj[:image].url.present?
+        .image-wrapper
+          = image_tag @thumb_obj[:image]
     %p
       = "#{@thumb_obj[:overview]}"
   .meta
@@ -12,6 +26,10 @@
         - tagifier(@thumb_obj[:tags]).each do |category|
           %span.tag-label.label-gap
             = "#{category}"
+    - if current_user != nil && (current_user.admin? || current_user.editor? || current_user.author?)
+      %i.glyphicon.glyphicon-pencil
+        %b= "#{@thumb_obj[:completion_score]}"
+
     %p.views
       %i.glyphicon.glyphicon-eye-open
       = "#{@thumb_obj[:likes]}"

@@ -1,0 +1,6 @@
+<p> Congrats! Your method <a href="www.thedesignexchange.org/design_methods/<%= @method.id%>">  <%= @method.name %> </a> has been published. 
+</p>
+
+<p>
+From DXNotification Systems
+</p>

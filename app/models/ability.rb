@@ -36,13 +36,17 @@ class Ability
     can :manage, User, :id => user.id
     can :manage, Collection, :owner_id => user.id
     can :read, Collection, :is_private => false
+    can :create, DesignMethod
+    can [:edit, :update], DesignMethod, :owner => user
 
     if user.admin?
       # non-REST-ful actions in the administrator controller
       can :index, :administrator
       can :change_admin, :administrator
       can :change_editor, :administrator
+      can :change_author, :administrator
       can :change_basic, :administrator
+
 
       can :update, User
 
@@ -55,6 +59,13 @@ class Ability
       can :manage, Collection, :is_private => false
     elsif user.editor?
       can [:create, :update], [DesignMethod, CaseStudy]
+      can :manage, MethodCharacteristic
+      can :manage, [CaseStudy, Characteristic, CharacteristicGroup, Citation,
+                    Company, Contact, DesignMethod, MethodCaseStudy,
+                    MethodCategory, MethodCharacteristic, MethodCitation, Tag]
+      can :manage, Collection, :is_private => false
+    elsif user.author?
+      can [:create, :update, :claimAuthor], [DesignMethod, CaseStudy]
       can :manage, MethodCharacteristic
     end
 

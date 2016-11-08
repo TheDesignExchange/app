@@ -7,12 +7,14 @@
   }
   .nav-tabs {
     cursor: pointer;
+
   }
   .tab-pane {
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     padding: 20px;
+
   }
   #sidebar {
     padding-top: 50px;
@@ -70,6 +72,11 @@
   #new-col-show {
     margin: 10px 20px;
   }
+  .existing-method {
+    padding: 3px 20px;
+    white-space: nowrap;
+    background: whitesmoke;
+  }
 :javascript
   $(document).ready(function() {
     $('.dropdown-menu input').click(function(e) {
@@ -114,6 +121,19 @@
       - @method.tags.each do |t|
         = tagify(t.id, t.content, {:removable => false})
       = "No tags available" unless not @method.tags.empty?
+  - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
+    .row 
+      %h4 Completion Score
+      %p 
+        /calculate the completion score if it has not been done already
+        - score = 0
+        - for attribute in @design_method.attributes.keys
+          - if @design_method[attribute] != nil && @design_method[attribute] != ""
+            - score += 1
+        - @design_method.completion_score = score
+        - @design_method.save
+        = score
+       
   .row
     %h4 Characteristics
     - @method.method_categories.each do |category|
@@ -126,7 +146,11 @@
   /Method header
   .row
     .col-md-6.no-padding
-      %h3= @method.name
+      - if @design_method.draft == true
+        %h3{:style=>"color:blue"}= @method.name
+      - else
+        %h3= @method.name
+
     .col-md-6.pull-right
       .pull-right
         %ul.list-inline.method-toolbar
@@ -142,7 +166,13 @@
                 %b.caret
               %ul.dropdown-menu
                 -@collections.each do |collection|
-                  %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :method_id => @method.id)
+
+                  - if collection.design_methods.include? @method
+                    %li.existing-method
+                      = collection.name + " (added)"
+                  - else
+                    %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :method_id => @method.id)
+
                 %a.btn.btn-default.pull-right.btn-index-create#new-col-show
                   %span.glyphicon.glyphicon-plus
                   Add to New Collection
@@ -163,6 +193,29 @@
             %a{:href => edit_design_method_path(params[:id])}
               %span.glyphicon.glyphicon-pencil
               Edit
+      - if current_user != nil and (current_user.admin? or current_user.editor?) and @design_method.editor_id == nil
+        = link_to "Claim to be Editor", {:controller => "design_methods", :action => :claimEditor, :id => @design_method.id}, :class => "btn btn-success"
+
+      //Add unclaim Editor
+      - if current_user != nil and (current_user.admin? or current_user.editor?) and @design_method.editor_id == current_user.id
+        = link_to "Unclaim to be Editor", {:controller => "design_methods", :action => :unclaimEditor, :id => @design_method.id}, :class => "btn btn-success"
+
+    
+      - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @design_method.author_id == nil
+        = link_to "Claim to be Author", {:controller => "design_methods", :action => :claimAuthor, :id => @design_method.id}, :class => "btn btn-success"
+
+      - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @design_method.author_id == current_user.id
+        = link_to "Unclaim to be Author", {:controller => "design_methods", :action => :unclaimAuthor, :id => @design_method.id}, :class => "btn btn-success" 
+
+      %p{:style=>"text-align: right; font-size: 11px;"}
+        Last Updated: 
+        - if @design_method.last_edited != nil
+          #{@design_method.last_edited.strftime('%x %I:%M %p')} by
+          #{@design_method.last_editor}
+        - else
+          Before 10/18/2016
+
+         
 
     /Method top level categories
   .row
@@ -175,7 +228,7 @@
   .row.padding
     #tabs
       %ul.nav.nav-tabs
-        %li.active
+        %li.active{"background-color"=> "#303136"}
           %a{"data-link" => "overview"} Overview
         %li
           %a{"data-link" => "instructions"} Instructions
@@ -183,15 +236,26 @@
           %a{"data-link" => "resources"} Resources
   /Method overview
   .tab-pane.row{"data-link" => "overview"}
+    - if @method.draft?
+      - if !@method.suggestions.blank?
+        %h3{:style=>"color:red;"} Suggestions
+        %p= md_format(@method.suggestions)
+        %h5{:style=>"color:red"} End of Suggestions
     = @method.overview != nil ? md_format(@method.overview) : "No overview available"
     - if !@method.synonyms.blank?
-      %p
+      %p2
         %strong Synonyms:
         = @method.synonyms
 
-    - if @method.main_image.present?
+    - if @method.has_image?
       .row
-        = image_tag(@method.main_image, :width => "100%")
+      = image_tag(@method.image_url, :width => "100%")
+
+    / Displays image attribution
+    - if !@method.image_attribution.blank? 
+      %h5 Image Attributions
+      %p
+        = md_format(@method.image_attribution)
 
     - if !@method.usage.blank?
       %h4 When to use
@@ -209,20 +273,69 @@
       %h4 Skills that help:
       %p= md_format(@method.skills)
     - if !@method.videoURL.blank?
-      %h4 Video
+      %h4 Video One
 
       %iframe{:allowfullscreen => "", :frameborder => "1", :height => "315", :src => @method.videoURL, :width => "560"}
+    - if !@method.video_caption.blank?
+      %p
+        = md_format(@method.video_caption)
+    - if !@method.video_attribution.blank?
+      %h5 Video Attributions
+      %p
+        = md_format(@method.video_attribution)
+    - if !@method.videoURL_two.blank?
+      %h4 Video Two
+
+
+      %iframe{:allowfullscreen => "", :frameborder => "1", :height => "315", :src => @method.videoURL_two, :width => "560"}
+    - if !@method.video_two_caption.blank?
+      %p
+        = md_format(@method.video_two_caption)
+    - if !@method.video_two_attribution.blank?
+      %h5 Video Attributions
+      %p
+        = md_format(@method.video_two_attribution)
     %h4 Contributing Authors
     .col-xs-6
+      %h5 Creator
       .col-xs-4
         - if @author.profile_picture.present?
           = image_tag(@author.profile_picture, class: "fit-all", :style => "padding: 10%")
         - else
           /TODO lol we need to self host this asap
-          = image_tag("http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
+          /10.26 goodness knows when the previous comment was made
+          = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
       .col-xs-8
         %p= link_to @author.first_name + " " + @author.last_name, user_path(@author.id)
         %p= @author.email != nil ? @author.email : "-"
+    
+    - if @current_author != nil
+      .col-xs-6
+        %h5 Current Author
+        .col-xs-4
+          - if @current_author.profile_picture.present?
+            = image_tag(@current_author.profile_picture, class: "fit-all", :style => "padding: 10%")
+          - else
+            /TODO lol we need to self host this asap
+            = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
+        .col-xs-8 
+          - if @current_author != nil
+            %p= link_to @current_author.first_name + " " + @current_author.last_name, user_path(@current_author.id)
+            %p= @current_author.email != nil ? @current_author.email : "-"
+    - if @current_editor != nil
+      .col-xs-6
+        %h5 Current Editor
+        .col-xs-4
+          - if @current_editor.profile_picture.present?
+            = image_tag(@current_editor.profile_picture, class: "fit-all", :style => "padding: 10%")
+          - else
+            /TODO lol we need to self host this asap
+            = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
+        .col-xs-8 
+          - if @current_editor != nil
+            %p= link_to @current_editor.first_name + " " + @current_editor.last_name, user_path(@current_editor.id)
+            %p= @current_editor.email != nil ? @current_editor.email : "-"
+
 
   /Method instructions
   .tab-pane.row{"data-link" => "instructions"}
@@ -242,18 +355,23 @@
       %h4 Critiques
       %p= md_format(@method.critiques)
 
-    - if @citations.length != 0 && @citations != nil
+    - if @method.references != nil and @method.references != ''
       %h4 References used in this Article
-      %ol
-        /Makes citation a hyperlink if it is a link
-        - @citations.each do |c|
-          -require "uri"
-          -link = URI.extract(c.text)
-          -if link.length == 0
-            %li.reference= c.text
-          -else
-            %li.reference
-              %a{ :href => link[0] } #{link[0]}
+      %p= @method.references
+      %p= md_format(@method.references)
+    / - if @citations != nil && @citations.length != 0
+    /   %h3 Citations
+    /   %ol
+    /     /Makes citation a hyperlink if it is a link
+    /     - @citations.each do |c|
+    /       -if @method.references == nil or !@method.references.include?(c.text)
+    /         -require "uri"
+    /         -link = URI.extract(c.text)
+    /         -if link.length == 0
+    /           %li.reference= c.text
+    /         -else
+    /           %li.reference
+    /             %a{ :href => link[0] } #{link[0]}
 
     - if !@method.additional_reading.blank?
       %h4 Additional Reading

@@ -91,7 +91,6 @@
         $(this).children().addClass("glyphicon-chevron-down");
       }
     });
-
   });
 
   function filter() {
@@ -136,7 +135,8 @@
     eH = $('#auto-saved-text').height()
     $('#auto-saved-text').css('margin-top', (pH - eH)/2)
   }
-= form_for @design_method, :html => {:multipart => true} do |f|
+
+= form_for @design_method, :html => {:multipart => true } do |f|
   / ERROR MESSAGES
   - if @design_method.errors.any?
     #error_explanation
@@ -148,12 +148,21 @@
           %li= msg
   / INPUT FIELDS
   #save-bar.row
-    = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
-    %button#save-btn.btn.btn-default.pull-right{:name => "commit", :type => "button"}
-      = glyphyify("floppy-disk")
-      Save as Draft
+
+    - if current_user.admin? || current_user.editor?
+      = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
+    - if current_user.author?
+      = f.submit "Ready for Approval", :id => "publish-btn", :class => "btn btn-success pull-right"
+    = f.submit "Save as Draft", :id => "save-btn", :class => "btn btn-default pull-right"
+    
+
     / </button>
-    %span#auto-saved-text.pull-right Auto-saved as draft 2 minutes ago
+    %span#auto-saved-text.pull-right
+    - if !@new
+      = link_to design_method_path, {:data => { :confirm => "Are you sure you want to delete this design method. Doing so will permanently erase the method and all its associations."}, :method => :delete, :class => "btn btn-danger", :style => "margin-top:7px;"} do
+        = glyphyify("trash")
+        Delete
+
   /Tabs
   .row.padding
     #tabs
@@ -172,8 +181,9 @@
   .tab-pane.row{"data-link" => "overview"}
     / INPUT METHOD NAME
 
-    = f.check_box :hidden
-    Hidden Method?
+    - if (current_user.admin? || current_user.editor? || current_user.author?)
+      = f.check_box :hidden
+      Hidden Method?
 
     %h3
       Method Name
@@ -181,22 +191,44 @@
     .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
       = f.text_field :name, :class=> "form-control", :placeholder => "Method Name"
     / END INPUT METHOD NAME
+    - if @design_method.draft? and current_user != nil and (current_user.admin? || current_user.editor?)
+      %h3.more-info-headers Suggestions
+      %div.more-info
+        %a#additional-reading More Info
+        %div.tool-help This section allows the administrators to provide suggestions to the editors.
+      = f.text_area :suggestions, :class => "form-control markdown", :rows => 6
+      %h5 End of Suggestions
     %h3 Synonyms
     .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
       = f.text_field :synonyms, :class=> "form-control", :placeholder => ""
     / IMAGES
+
     .row
       .col-xs-6.col-md-12
-        - if @design_method.main_image.present?
-          = image_tag(@design_method.main_image)
-        - else
-          = image_tag("no-image-available.png", :width => "100%", :height => "385")
+      - if @design_method.has_image?
+        = image_tag(@design_method.image_url)
+      - else
+        = image_tag("no-image-available.png", :width => "100%", :height => "385")
+
+    - if Rails.env.production?
+      = f.file_field :picture
+    - else
+      = f.file_field :main_image
+    
     %br/
-    = f.file_field :main_image
+    - if !@new
+      = link_to "Clear Image", {:controller => "design_methods", :action => :clearImage, :id => @design_method.id}, :class=> "btn btn-primary"
+
+    %br/
+    %h4 Image Attribution
+    = f.text_area :image_attribution, :class => "form-control markdown", :rows => 2
+
+
     / END IMAGES
     / FORMS
     %br/
-    %h3 Video Embedded URL
+    %h2 Video
+    %h4 Video One Embedded URL
     .tooltips
       How to get Embedded Video URL
       %span.tooltiptext
@@ -204,6 +236,23 @@
         paste this information anywhere and you will get something like "< iframe width="640" height="360" src="https://www.youtube.com/embed/example" frameborder="0" allowfullscreen></iframe >". The embed URL is the linke after src= , remove the quotation marks and you will have the embedded video URL
     .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
       = f.text_field :videoURL, :class=> "form-control", :placeholder => ""
+
+    %h4 Video One Attribution
+    = f.text_area :video_attribution, :class => "form-control markdown", :rows => 2
+    %h4 Video One Caption
+    = f.text_area :video_caption, :class => "form-control markdown", :rows => 2
+    
+    %h4 Video Two Embedded URL
+    .tooltips
+      How to get Embedded Video URL
+      %span.tooltiptext
+        Video two allows non-Youtube videos to be embedded. This will work as long as the editor puts in the correct embed URL. Of course, the editor can put another YouTube URL if he or she wishes.
+    .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+      = f.text_field :videoURL_two, :class=> "form-control", :placeholder => ""
+    %h4 Video Two Attribution
+    = f.text_area :video_two_attribution, :class => "form-control markdown", :rows => 2
+    %h4 Video Two Caption
+    = f.text_area :video_two_caption, :class => "form-control markdown", :rows => 2
     %h3
       Summary
       %span.mandatory *
@@ -251,6 +300,8 @@
       %a#additional-reading More Info
       %div.tool-help This section provides further resources that provide more information on the method than is presented on theDesignExchange for the method.
     = f.text_area :additional_reading, :class => "form-control markdown", :rows => 6
+
+
 
     %h3.more-info-headers Related Case Studies
 
@@ -345,9 +396,12 @@
   / END FORMS
   %br/
   #save-bar.row
-    = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
-    %button#save-btn.btn.btn-default.pull-right{:name => "commit", :type => "button"}
-      = glyphyify("floppy-disk")
-      Save as Draft
+    - if current_user.admin? || current_user.editor?
+      = f.submit "Publish", :id => "publish-btn", :class => "btn btn-primary pull-right"
+    - if current_user.author?
+      = f.submit "Ready for Approval", :id => "publish-btn", :class => "btn btn-success pull-right"
+    = f.submit "Save as Draft", :id => "save-btn", :class => "btn btn-default pull-right"
+    
+
     / <span id="auto-saved-text" class="pull-right">Auto-saved as draft 2 minutes ago</span>
   / END BODY

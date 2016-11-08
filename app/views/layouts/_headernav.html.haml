@@ -2,7 +2,8 @@
   $(function(){
     $('form#search input').autocomplete(DE.Autocomplete);
   });
-%nav.navbar.navbar-default{:role => "navigation"}
+
+%nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
   .container-fluid
     / Brand and toggle get grouped for better mobile display
     .navbar-header
@@ -26,6 +27,8 @@
         %li= link_to "Methods", design_methods_path
         %li= link_to "Case Studies", case_studies_path
         %li= link_to "Collections", collections_path
+        - if current_user != nil && (current_user.admin? || current_user.editor? || current_user.author?)
+          %li= link_to "Drafts", drafts_path
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li.dropdown
@@ -49,7 +52,8 @@
             = link_to "Login", new_user_session_path, :class => 'navbar-link'
 
 // display flash errors if any
-- flash.each do |type, msg|
-  - type = :success if type == :notice
-  = content_tag(:div, msg, class: "flash-alert alert alert-#{type}")
+.notice{:style=>"margin-top:50px;"}
+  - flash.each do |type, msg|
+    - type = :success if type == :notice
+    = content_tag(:div, msg, class: "flash-alert alert alert-#{type}")
 

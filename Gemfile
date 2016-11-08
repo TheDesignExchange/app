@@ -23,10 +23,11 @@ gem 'pg'
 gem 'seed_dump'
 gem 'haml'
 gem 'haml-rails', group: :development
-gem 'font-awesome-sass'
-
+gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 gem 'rails_12factor', group: :production
 gem 'font_assets'
+gem 'aws-sdk', '~> 2'
+gem 'country_select'
 
 gem 'quiet_assets'
 gem 'lograge'

@@ -7,87 +7,231 @@
   #new_collection {
     padding: 0px 20px 40px 20px;
   }
-  .dropdown-menu {
-    max-width: 200px;
+  #new-col-show {
+    margin: 10px 20px;
+  }
+  .existing-study {
+    padding: 3px 20px;
+    white-space: nowrap;
+    background: whitesmoke;
   }
 :javascript
   $(document).ready(function() {
     $('.dropdown-menu input').click(function(e) {
       e.stopPropagation(); //This will prevent the event from bubbling up and close the dropdown when you type/click on text boxes.
     });
+    $('#new-col-show').click(function(e) {
+      $('#new-col-show').css("display", "none");
+      $('#new_collection').css("display", "block");
+      e.stopPropagation();
+    });
+    $('.dropdown-toggle').click(function(e) {
+      $('#new-col-show').css("display", "block");
+      $('#new_collection').css("display", "none");
+    });
   });
 
 / CASE STUDY TITLE
 .row
   .col-xs-9.col-xs-offset-3.left-pad
-    %h3
-      %b= @case_study.name != nil ? @case_study.name : "-"
+    %h1
+      - if @case_study.draft == true
+        %b{:style=>"color:blue"}= @case_study.name != nil ? @case_study.name : "-"
+      - else
+        %b= @case_study.name != nil ? @case_study.name : "-"
     %p
       by #{link_to @case_study.company.name, company_path(@case_study.company) unless !@case_study.company}
+  .col-xs-3
+  - if !current_user.nil?
+    .col-xs-3
+      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+        %span.glyphicon.glyphicon-folder-open
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          Add to Collection
+          %b.caret
+        %ul.dropdown-menu
+          -@collections.each do |collection|
+            - if collection.case_studies.include? @case_study
+              %li.existing-study
+                = collection.name + " (added)"
+            - else
+              %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :cs_id => @case_study.id)
+
+          %a.btn.btn-default.pull-right.btn-index-create#new-col-show
+            %span.glyphicon.glyphicon-plus
+            Add to New Collection
+          = form_for @collection do |f|
+            .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+            = f.hidden_field :cs_id, :value => @case_study.id
+            = f.text_field :name, :class=> "form-control", :placeholder => ""
+            = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
 / END CASE STUDY TITLE
 .row
   / SIDEBAR
+
+
   .col-xs-3#sidebar
-    = render partial: "/application/props/props", locals: { entity: @case_study }
+    / = render partial: "/application/props/props", locals: { entity: @case_study }
+    .claim{:style=>"margin-bottom:60px;margin-top:-40px"}
+      - if current_user != nil and (current_user.admin? or current_user.editor?) and @case_study.editor_id == nil
+        = link_to "Claim to be Editor", {:controller => "case_studies", :action => :claimEditor, :id => @case_study.id}, :class => "btn btn-success"
+      - if current_user != nil and (current_user.admin? or current_user.editor?) and @case_study.editor_id == current_user.id
+        = link_to "Unclaim to be Editor", {:controller => "case_studies", :action => :unclaimEditor, :id => @case_study.id}, :class => "btn btn-warning"
+      - if current_user != nil and current_user.author? and @case_study.author_id == nil
+        = link_to "Claim to be Author", {:controller => "case_studies", :action => :claimAuthor, :id => @case_study.id}, :class => "btn btn-success"
+      - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @case_study.author_id == current_user.id
+        = link_to "Unclaim to be Author", {:controller => "case_studies", :action => :unclaimAuthor, :id => @case_studies.id}, :class => "btn btn-warning"   
+    .h4 Industry Sector
+    - if @case_study.company != nil
+      =@case_study.company.name
+      .p
+        ="(" + @case_study.company.domain + ")"
+    .h4{:style=>"margin-top:40px"} Tags
+    - @case_study.tag_ids.each do |t|
+      .tag{:style=>"margin-top:10px"}
+      = tagify(t, Tag.find_by_id(t).name, {:removable => false})
+    .h4{:style=>"margin-top:40px"} Countries
+    = ISO3166::Country[@case_study.country]
+
+    .h4{:style=>"margin-top:40px"} Authors
+    - if @case_study.authors != nil
+      - @case_study.authors.split(",").each do |author|
+        .p
+          = author
+
+    .h4{:style=>"margin-top:40px"} Design Process Covered
+    - @case_study.method_category_ids.each do |mc|
+      = tagify(mc, MethodCategory.find_by_id(mc).name, {:removable => false})
+
+    - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
+      %h4{:style=>"margin-top:40px"} Completion Score
+      %p 
+        /calculate the completion score if it has not been done already
+        - score = 0
+        - for attribute in @case_study.attributes.keys
+          - if @case_study[attribute] != nil && @case_study[attribute] != ""
+            - score += 1
+        - @case_study.completion_score = score
+        - @case_study.save
+        = score
 
   / MAIN VIEW
   .col-xs-9.add-padding
     / MENU BAR
+
     .row
       .col-xs-3
-        %span.glyphicon.glyphicon-star
-        \- likes
-      - if !current_user.nil?
-        .col-xs-3
-          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            %span.glyphicon.glyphicon-folder-open
-            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              Add to Collection
-              %b.caret
-            %ul.dropdown-menu
-              -@collections.each do |collection|
-                %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :cs_id => @case_study.id)
 
-              = form_for @collection do |f|
-                .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
-                = f.hidden_field :cs_id, :value => @case_study.id
-                = f.text_field :name, :class=> "form-control", :placeholder => ""
-                = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
-      .col-xs-3
-        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-          %span.glyphicon.glyphicon-share
-          Share
-          %b.caret
-        %ul.dropdown-menu
-          %li
-            %a{:href => "#"} Email
-      .col-xs-3
+      .col-xs-6
+      / - if !current_user.nil?
+      /   .col-xs-3
+      /     %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+      /       %span.glyphicon.glyphicon-folder-open
+      /       %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+      /         Add to Collection
+      /         %b.caret
+      /       %ul.dropdown-menu
+      /         -@collections.each do |collection|
+      /           - if collection.case_studies.include? @case_study
+      /             %li.existing-study
+      /               = collection.name + " (added)"
+      /           - else
+      /             %li=link_to collection.name, add_to_collection_path(:col_id => collection.id, :cs_id => @case_study.id)
+
+      /         %a.btn.btn-default.pull-right.btn-index-create#new-col-show
+      /           %span.glyphicon.glyphicon-plus
+      /           Add to New Collection
+      /         = form_for @collection do |f|
+      /           .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+      /           = f.hidden_field :cs_id, :value => @case_study.id
+      /           = f.text_field :name, :class=> "form-control", :placeholder => ""
+      /           = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
+      / .col-xs-3
+      /   / %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+      /   /   %span.glyphicon.glyphicon-share
+      /   /   Share
+      /   /   %b.caret
+      /   %ul.dropdown-menu
+      /     %li
+      /       %a{:href => "#"} Email
+      .col-xs-3{:style=>"margin-top:-70px"}
         / = link_to '<span class="glyphicon glyphicon-pencil"></span> Edit'.html_safe, edit_case_study_path, :class => "pull right"
+
         %a.pull-right{:href => edit_case_study_path(params[:id])}
           %span.glyphicon.glyphicon-pencil
           Edit
+      %p{:style=>"text-align: right; font-size: 11px; margin-top:-40px"}
+        Last Updated: 
+        - if @case_study.last_edited != nil
+          #{@case_study.last_edited.strftime('%x %I:%M %p') } by 
+          #{@case_study.last_editor}
+        - else
+          Before 10/18/2016
+
     / END MENU BAR
     / CONTENT
-    - if @case_study.main_image.present?
+    - if @case_study.has_image?
       .row
-        = image_tag(@case_study.main_image, :width => "100%")
+      = image_tag(@case_study.image_url, :width => "100%")
     %br/
     / DESCRIPTION
     .row
       %h3 Problem
+      - if @case_study.draft?
+        %h3{:style=>"color:red;"} Suggestions
+        %p= @case_study.suggestions.blank? ? "-" : md_format(@case_study.suggestions)
+        %h5{:style=>"color:red"} End of Suggestions
       %p= @case_study.overview.blank? ? "-" : md_format(@case_study.overview)
       / FORMS
-      %h3 Process
+      %h3 Project Background
+      %p= @case_study.background.blank? ? "-" : md_format(@case_study.background)
+      / %p= @case_study.process.blank? ? "-" : md_format(@case_study.process)
+      / %h3 Outcome/Benefits
+      / %p= @case_study.outcome.blank? ? "-" : md_format(@case_study.outcome)
+      %h3 Summary
+      %p= @case_study.summary.blank? ? "-" : md_format(@case_study.summary)
+
+      %h3 The Process
       %p= @case_study.process.blank? ? "-" : md_format(@case_study.process)
-      %h3 Outcome/Benefits
+
+      %h3 Retrospective
       %p= @case_study.outcome.blank? ? "-" : md_format(@case_study.outcome)
+
 
       - if !@case_study.design_methods.blank?
         %h3 Related Design Methods
         - @case_study.design_methods.each do |dm|
-          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4")
+          = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"3")
 
 
+    .row
+      %h4 Contributing Authors
+      - if @current_author != nil
+        .col-xs-6
+          %h5 Current Author
+          .col-xs-4
+            - if @current_author.profile_picture.present?
+              = image_tag(@current_author.profile_picture, class: "fit-all", :style => "padding: 10%")
+            - else
+              /TODO lol we need to self host this asap
+              = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
+          .col-xs-8 
+            - if @current_author != nil
+              %p= link_to @current_author.first_name + " " + @current_author.last_name, user_path(@current_author.id)
+              %p= @current_author.email != nil ? @current_author.email : "-"
+      - if @current_editor != nil
+        .col-xs-6
+          %h5 Current Editor
+          .col-xs-4
+            - if @current_editor.profile_picture.present?
+              = image_tag(@current_editor.profile_picture, class: "fit-all", :style => "padding: 10%")
+            - else
+              /TODO lol we need to self host this asap
+              = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
+          .col-xs-8 
+            - if @current_editor != nil
+              %p= link_to @current_editor.first_name + " " + @current_editor.last_name, user_path(@current_editor.id)
+              %p= @current_editor.email != nil ? @current_editor.email : "-"
     / END DESCRIPTION
     - render "related_content"
     / END CONTENT

@@ -25,10 +25,26 @@
         margin-bottom: 10px;
         font-size: 30px;
       }
+      .container {
+        position: relative;
+        top: 50px;
+      }
+      .footer{
+        position:relative;
+        bottom:0%;
+        width:100%;
+        height:60px;   /* Height of the footer */
+        margin-top:100px;
+      }
+
+  
     %script{:src => "https://www.google.com/recaptcha/api.js"}
+  
   %body
     = render "layouts/headernav"
-    = yield
-  %footer.site-footer
-    = render "layouts/footer"
-    = render "layouts/feedbackform"
+    .container
+      = yield
+  .footer
+    %footer.site-footer{}
+      = render "layouts/footer"
+      = render "layouts/feedbackform"

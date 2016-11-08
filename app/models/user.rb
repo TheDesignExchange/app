@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   mount_uploader :profile_picture, PictureUploader
 
   attr_accessible :email, :encrypted_password, :sign_in_count, :first_name, :last_name, :username, :phone_number, :website,
-  :facebook, :twitter, :linkedin, :about_text , :profile_picture, :password, :password_confirmation
+  :facebook, :twitter, :linkedin, :about_text , :profile_picture, :password, :password_confirmation, :zip_code, :affiliation
 
   has_many :owned_methods, dependent: :destroy, class_name: "DesignMethod", foreign_key: :owner_id
   has_many :method_favorites, dependent: :destroy
@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   # of existing roles will wreak havoc on role assignments.
   # If you do not understand this, please consult the README at
   # https://github.com/martinrehfeld/role_model
-  roles :admin, :editor, :basic
+  roles :admin, :editor, :author, :basic
 
   def admin?
     self.has_role? :admin
@@ -70,6 +70,10 @@ class User < ActiveRecord::Base
     self.has_role? :editor
   end
 
+  def author?
+    self.has_role? :author
+  end
+  
   def basic?
     self.has_role? :basic
   end

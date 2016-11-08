@@ -10,9 +10,9 @@
     event.stopPropagation(); // prevents clicks on nested accordion categories from collapsing their parent category
     target = event.currentTarget;
     // toggle arrow icons
-    $(target).children('.fa').toggleClass('fa-caret-right').toggleClass('fa-caret-down');
+    $(target).children('.glyphicon').toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
     // toggle sub-content visibility
-    if($(target).children('.fa').hasClass('fa-caret-down')) {
+    if($(target).children('.glyphicon').hasClass('glyphicon-chevron-down')) {
       $(target).siblings('ul').slideDown("fast");
     } else {
       $(target).siblings('ul').slideUp("fast");
@@ -80,7 +80,7 @@
 
       %li.category
         %span.menu-toggle
-          %span.fa.fa-caret-right
+          %span.glyphicon.glyphicon-chevron-right
           %span.sidebar-maincategory
             = "#{category[:name]} (#{category[:count]})"
 
@@ -88,7 +88,7 @@
           - category[:char_groups].each do |char_group|
             %li.char-group
               %span.menu-toggle
-                %span.fa.fa-caret-right
+                %span.glyphicon.glyphicon-chevron-right
                 %span
                   = char_group[:name]
 
