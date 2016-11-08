@@ -82,11 +82,12 @@
       - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @case_study.author_id == current_user.id
         = link_to "Unclaim to be Author", {:controller => "case_studies", :action => :unclaimAuthor, :id => @case_studies.id}, :class => "btn btn-warning"   
     .h4 Industry Sector
-    - if @case_study.company != nil
-      =@case_study.company.name
-      .p
-        ="(" + @case_study.company.domain + ")"
-    .h4{:style=>"margin-top:40px"} Tags
+    - if @case_study.industry_sectors != nil
+      - @case_study.industry_sectors.each do |sector|
+        - if sector != "0"
+          = sector
+          %br
+    .h4{:style=>"margin-top:40px"} Development Engineering Tags
     - @case_study.tag_ids.each do |t|
       .tag{:style=>"margin-top:10px"}
       = tagify(t, Tag.find_by_id(t).name, {:removable => false})

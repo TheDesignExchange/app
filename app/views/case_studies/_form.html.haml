@@ -59,6 +59,11 @@
     font-family: "Times New Roman", Times, serif;
     font-weight: normal;
   }
+  .containerClass { border:2px solid #ccc;   
+              width:300px; 
+              height: 100px; 
+              overflow-y: scroll; }
+
 
 = form_for @case_study, :html => {:multipart => true} do |f|
   / ERROR MESSAGES
@@ -96,9 +101,18 @@
       / PEOPLE
       .row{:style=>"margin-top:30px"}
         %h4 Industry Sector
-        = select("case_study", "company_id", Company.all.collect {|p| [ p.name, p.id ] }, {:multiple => "multiple", include_blank: 'None' })
+        - sectors = ["Accomodations","Accounting","Advertising","Aerospace", "Agriculture & Agribusiness", "Air Transportation", "Apparel & Accessories", "Auto", "Banking", "Beauty & Cosmetics" ,"Biotechnology", "Chemical","Communications","Computer","Construction","Consulting","Consumer Products", "Education", "Electronics","Employment","Energy","Entertainment & Recreation","Fashion","Financial Services","Fine Arts","Food & Beverage", "Health", "Information", "Information Technology","Insurance","Journalism & News","Legal Services","Manufacturing","Media & Broadcasting", "Medical Devices & Supplies", "Motion Pictures & Video", "Music", "Pharmaceutical", "Public Administration", "Public Relations", "Publishing", "Real Estate","Retail","Service","Sports","Technology","Telecommunications","Tourism","Transportation","Travel", "Utilities", "Video Games", "Web Services" ]
+        .containerClass
+          - sectors.each do |sector|
+            = f.check_box(:industry_sectors,{ :multiple => true },sector)
+            = sector
+            %br
+          / = f.collection_select(:industry_sectors,sectors,:id, :id)
+
+        / = f.select(:industry_sectors, sectors, {:prompt=>"select"}, { :multiple => true,:size=>5 })
+        / = select("case_study", "industry_sector", sectors, {:multiple => "multiple", include_blank: 'None' })
       .row{:style=>"margin-top:30px"}
-        %h4 Tags
+        %h4 Development Engineering Tags
         .editCharGroup{:style=>"margin-left:15px"}
           / = f.collection_check_boxes(:tag_ids, Tag.all, :id, :name)
           - names = ["Poverty and inequality","Hunger and food security","Water and Sanitation","Global partnership and cooperation", "Education", "Global health", "Economic inclusion", "Gender equality", "Governance human rights and conflict", "Environmental sustainability","Inclusive infrastructure"]
