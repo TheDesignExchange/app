@@ -1,4 +1,4 @@
-<p> An admin has made changes to your case study <a href="www.thedesignexchange.org/case_studies/<%= @cs.id%>">  <%= @cs.name %> </a>. Please take a look.
+<p> An Editor has made changes to your case study <a href="www.thedesignexchange.org/case_studies/<%= @cs.id%>">  <%= @cs.name %> </a>. Please take a look.
 </p>
 
 <p>
