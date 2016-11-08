@@ -9,6 +9,9 @@
   .header-font {
     font-family: 'Arvo', serif;
   }
+  .h1 {
+    font-size = font-size: 300%;
+  }
   .jumbotron {
     font-size: 17px;
     background: rgb(89, 88, 91);
@@ -16,7 +19,7 @@
   }
   .subtitle {
     font-size: 20px;
-    margin-top:5%;
+    margin-top:2%;
   }
 
   .login-margin {
@@ -25,26 +28,67 @@
     margin-top: 5%;
   }
 
+  .btn.sharp {
+    border-radius:0;
+    letter-spacing: 2px;
+    padding: 10px 50px;
+  }
+  .logo{
+    width: 300px;
+  }
+  .header {
+    padding: 25px 10px;
+    height: 55px;
+    border-bottom: 1px solid #d3d3d3;
+    overflow: no-content;
+    min-width: 400px;
+  }     
+  .#header-right {
+    width: 50%;
+    border-color: blue; 
+  }
+  .btn-xl {
+    padding: 18px 28px;
+    font-size: 22px;
+    border-radius: 10px;
+  }
 
-.jumbotron.hidden-xs{:style=>"height:300px;"}
+%link{:href => "https://fonts.googleapis.com/css?family=Work+Sans:700", :rel => "stylesheet"}/
+%link{:href => "https://fonts.googleapis.com/css?family=Source+Sans+Pro", :rel => "stylesheet"}/
+
+
+.jumbotron.hidden-xs{:style=>"height:400px;"}
   .container
-    .row{}
-      .col-md-8
+    .row
+      .col-md-7
         %h1.header-font
-          = image_tag "logo2.png", class: "logo"
-        %p.subtitle where designers and researchers share methods and best practices
-        = form_tag('/search') do
-          = text_field_tag('query', nil, placeholder: 'Search', class: 'form-search', id: 'search-input')
-          = submit_tag('Search', class: "btn btn-default")
-      - if !user_signed_in?
-        .col-md-4
-          %p Sign In
-          = form_for(:user, :url => {:controller => 'devise/sessions', :action => 'new'}) do |f|
-            .input.frontpage-login
-              = f.email_field :email, {:autofocus => true, :placeholder => "Email", :class => "form-control"}
-            .input.frontpage-login
-              = f.password_field :password, {:placeholder => "Password", :class => "form-control"}
-            .row
-              .col-md-8= link_to "Create an account", new_registration_path(:user)
-              .col-md-4
-                = f.submit "Log In", {:class=> "btn btn-default pull-right" }
+          = image_tag "logo2.png", size: "600x54"
+        %p.subtitle Where designers and researchers share methods and best practices.
+        .row
+        %br/
+        %br/
+        .row
+        - if !user_signed_in?
+          .col-sm-4
+          .col-md-2= link_to "JOIN", new_registration_path(:user), class: "btn btn-success sharp btn-lrg", style: "font-family: 'Work Sans', sans-serif;height:50px; font-size:150%;"
+      .col-md-5
+        .boxed{:style=>"border: 2px solid #009966;width: 350px;margin: auto;padding: 15px;border-radius: 25px;margin-top:-10%;"}
+          .p{:style=>"font-family: 'Work Sans', sans-serif;font-size:165%;"}
+            Learn
+          .p{:style=>"font-size:100%;font-family: 'Source Sans Pro', sans-serif;"}
+            Browse methods and case studies to improve your design skills. Learn what to 
+            do and what not to do to successfully complete your next design task.
+
+        %br/
+
+        .boxed{:style=>"border: 2px solid #009966;width: 350px;margin: auto;padding: 20px;border-radius: 25px;"}
+          .p{:style=>"font-family: 'Work Sans', sans-serif; font-size:165%;"}
+            Invite
+          .p{:style=>"font-size:100%;font-family: 'Source Sans Pro', sans-serif;"}
+            Invite your friends to join theDesignExchange community!
+        
+    
+
+
+
+  
