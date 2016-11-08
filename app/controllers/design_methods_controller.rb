@@ -47,8 +47,12 @@ class DesignMethodsController < ApplicationController
     end
 
     if params[:commit] == "Save as Draft"
-      if current_user.admin? and current_user != @design_method.owner and @design_method.ready 
-        UserMailer.admin_changes_email(@design_method.owner,@design_method).deliver
+      if Rails.env.production?
+        if @design_method.author_id != nil
+          if (current_user.admin? or current_user.editor?) and current_user.id != @design_method.author_id and @design_method.ready 
+            UserMailer.admin_changes_email(User.find_by(id:@design_method.author_id),@design_method).deliver
+          end
+        end
       end
       @design_method.draft = true
       @design_method.ready = false
@@ -56,16 +60,20 @@ class DesignMethodsController < ApplicationController
     elsif params[:commit] == "Publish"
       @design_method.draft = false
       @design_method.ready = true
-      # UserMailer.publication_email(@design_method.owner, @design_method).deliver
-      # UserMailer.publication_email(User.find_by(id:@design_method.last_editor_id), @design_method).deliver
+      if Rails.env.production?
+        if @design_method.author_id != nil
+          UserMailer.publication_email(User.find_by(id:@design_method.author_id), @design_method).deliver
+        end
+      end
 
     elsif params[:commit] == "Ready for Approval"
       @design_method.draft = true
       @design_method.ready = true
       if Rails.env.production?
-        UserMailer.approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @design_method).deliver
-        UserMailer.approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @design_method).deliver
-        UserMailer.approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @design_method).deliver
+        if @design_method.editor_id != nil
+          UserMailer.approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @design_method).deliver
+          UserMailer.approval_email(User.find_by(id:@design_method.editor_id), @design_method).deliver
+        end
       end
     end
 
@@ -103,16 +111,14 @@ class DesignMethodsController < ApplicationController
     elsif params[:commit] == "Publish"
       @design_method.draft = false
       @design_method.ready = true
-      if Rails.env.production?
-        UserMailer.publication_email(@design_method.owner, @design_method).deliver
-      end
     elsif params[:commit] == "Ready for Approval"
       @design_method.draft = true
       @design_method.ready = true
       if Rails.env.production?
-        UserMailer.approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @design_method).deliver
-        UserMailer.approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @design_method).deliver
-        UserMailer.approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @design_method).deliver
+        if @design_method.editor_id != nil
+          UserMailer.approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @design_method).deliver
+          UserMailer.approval_email(User.find_by(id: @design_method.editor_id), @design_method).deliver
+        end
       end
     end
 
