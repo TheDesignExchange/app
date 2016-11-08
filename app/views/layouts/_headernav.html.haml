@@ -26,7 +26,6 @@
     .form-group.col-xs-4
       = submit_tag('Search', class: "btn btn-default")
       / = image_submit_tag('Search', class: "btn btn-default")
-
     </form>
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
@@ -34,8 +33,8 @@
         / %li= link_to "Methods", design_methods_path, style: "font-size: 150%;"
         / %li= link_to "Case Studies", case_studies_path, style: "font-size: 150%;"
         / %li= link_to "Collections", collections_path, style: "font-size: 150%;"
-        / - if current_user != nil && (current_user.admin? || current_user.editor? || current_user.author?)
-        /   %li= link_to "Drafts", drafts_path
+        - if current_user != nil && (current_user.admin? || current_user.editor? || current_user.author?)
+          %li= link_to "Drafts", drafts_path,  style: "font-size: 120%;"
       %ul.nav.navbar-nav.navbar-right
         %li= link_to "Methods", design_methods_path, style: "font-size: 120%;"
         %li= link_to "Case Studies", case_studies_path, style: "font-size: 120%;"
