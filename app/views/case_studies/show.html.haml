@@ -93,6 +93,10 @@
       = tagify(t, Tag.find_by_id(t).name, {:removable => false})
     .h4{:style=>"margin-top:40px"} Countries
     = ISO3166::Country[@case_study.country]
+    %br
+    = ISO3166::Country[@case_study.country_two]
+    %br
+    = ISO3166::Country[@case_study.country_three]
 
     .h4{:style=>"margin-top:40px"} Authors
     - if @case_study.authors != nil

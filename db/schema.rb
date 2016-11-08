@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108004818) do
+ActiveRecord::Schema.define(version: 20161108185127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(version: 20161108004818) do
     t.integer  "owner_id"
     t.boolean  "ready"
     t.text     "suggestions"
-    t.string   "last_editor"
     t.integer  "last_editor_id"
+    t.string   "last_editor"
     t.datetime "last_edited"
     t.integer  "author_id"
     t.integer  "editor_id"
@@ -107,6 +107,8 @@ ActiveRecord::Schema.define(version: 20161108004818) do
     t.text     "background"
     t.text     "summary"
     t.string   "industry_sectors",  default: [],    array: true
+    t.string   "country_two"
+    t.string   "country_three"
   end
 
   create_table "characteristic_groups", force: true do |t|
@@ -210,13 +212,13 @@ ActiveRecord::Schema.define(version: 20161108004818) do
     t.text     "video_caption"
     t.integer  "completion_score"
     t.string   "videoURL_two"
-    t.string   "videoURL_two_attribution"
+    t.text     "videoURL_two_attribution"
     t.text     "video_two_attribution"
     t.text     "video_two_caption"
     t.boolean  "draft",                    default: false
     t.boolean  "ready"
-    t.text     "image_attribution"
     t.text     "suggestions"
+    t.text     "image_attribution"
     t.integer  "last_editor_id"
     t.string   "last_editor"
     t.datetime "last_edited"
