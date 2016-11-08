@@ -32,7 +32,7 @@
     .p{:style=>"margin-top:-10%;padding:0 10% 0 10%"}
     .col-md-5
       .h2{:style=>"text-align:center;margin-bottom:10%;font-family: 'Work Sans', sans-serif;font-size:250%;"}
-        Methods
+        =link_to "Methods", design_methods_path
       .row
         %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Learn about the methods you could use on your next design.
         .background
@@ -48,12 +48,12 @@
     .col-md-2
     .col-md-5
       .h2{:style=>"text-align:center;margin-bottom:10%;font-family: 'Work Sans', sans-serif;font-size:250%;"}
-        Case Studies
+        =link_to "Case Studies", case_studies_path
       .row
         %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Read about how real design probems were solved.
         
         .background
-        = link_to case_studies_path(id: 197) do #change link path
+        = link_to case_study_path(id:197) do #change link path
           = image_tag "CaseStudiesLandingPage.png", :width => "100%", size: "450x370"
           .layer
             .left-padding
