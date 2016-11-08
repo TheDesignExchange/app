@@ -1,13 +1,29 @@
 %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+:css
+  .feedback-button {
+    position: fixed;
+    bottom: -1px;
+    right: -1px;
+    border: 0px;
+    border-radius: 5px 0px 0px 0px;
+    background: #ddd;
+    color: #000;
+    font-size: 13px;
+    line-height: 1.8em;
+    }
+  .alert-recaptcha_error {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+  }
 
-.boxed{:style=>"border: 3px solid black;width: 325px;margin: auto;"}
-  .h3{:style=>"text-align:center;"} SHARE: Coming Soon!
+
 
 %br/
 
 .boxed{:style=>"border: 2px solid black;width: 415px;margin: auto;"}
   .p{:style=>"text-align:center; font-size:120%;"}
-    We're working on creating a forum for you to share with and learn from other designers. Do you have an idea of what you want this forum to look like?
+    Invite all your friends to join theDesignExchange to become expert designers!
     = form_tag({:controller=>'application',:action=>'sendInvitation'}) do 
       .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
         = label_tag(:email_of_friend, "Email:")
@@ -18,3 +34,20 @@
 
 
 
+- @feedback = Feedback.new
+= form_for @feedback, :html => {:multipart => true} do |f|
+  .modal-body
+    .field.form-group
+      = f.label :name
+      = f.text_field :name, :class => "form-control", :placeholder => "Name"
+    .field.form-group
+      = f.label :email
+      = f.email_field :email, :class => "form-control", :placeholder => "Email"
+    .field.form-group
+      = f.label :subject
+      = f.text_field :subject, :class => "form-control", :placeholder => "Subject"
+    .field.form-group
+      = f.label :message, "Message (required)"
+      = f.text_area :content, :class => "form-control", :rows => "5"
+  .modal-footer
+    = f.submit 'Send', class: 'btn btn-primary'
