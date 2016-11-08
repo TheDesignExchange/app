@@ -129,10 +129,14 @@
 
       .row{:style=>"margin-top:30px"}
 
-        %h4 Country
-        = country_select("case_study", "country", priority_countries: ["US", "IN", "CN","GB"])
+        %h4 Country One
+        = country_select("case_study", "country",  priority_countries: ["US", "IN", "CN","GB"])
 
+        %h4 Country Two
+        = country_select("case_study", "country_two", include_blank: true, priority_countries: ["US", "IN", "CN","GB"])
 
+        %h4 Country Three
+        = country_select("case_study", "country_three", include_blank: true, priority_countries: ["US", "IN", "CN","GB"])
       / END PEOPLE
       / TOOLS
       .row{:style=>"margin-top:30px"}
@@ -214,7 +218,7 @@
         .col-md-4.edit-char-group
           - DesignMethod.all[(two_thirds+1)..full].each do |m|
             - method = DesignMethod.where(id: m.id)
-            = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
+            = f.collection_check_boxes(:design_method_ids, method, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text + "\n"}}
 
 
 
