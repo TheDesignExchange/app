@@ -125,9 +125,11 @@ class CaseStudiesController < ApplicationController
     end
 
     if params[:commit] == "Save as Draft"
-      if @case_study.owner_id != nil #not all case studies have owners, this is something we should change
-        if current_user.admin? and current_user != User.find_by(id:@case_study.owner_id) and @case_study.ready 
-          UserMailer.cs_admin_changes_email(User.find_by(id:@case_study.owner_id),@case_study).deliver
+      if @case_study.author_id != nil 
+        if current_user.admin? and current_user != User.find_by(id:@case_study.author_id) and @case_study.ready
+          if @case_study.author_id != nil
+            UserMailer.cs_admin_changes_email(User.find_by(id:@case_study.author_id),@case_study).deliver
+          end
         end
       end
       @case_study.draft = true
@@ -136,10 +138,11 @@ class CaseStudiesController < ApplicationController
     elsif params[:commit] == "Publish"
       @case_study.draft = false
       @case_study.ready = true
-      if @case_study.owner_id != nil
+      if @case_study.author_id != nil
         if Rails.env.production?
-          UserMailer.publication_email(User.find_by(id:@case_study.owner_id), @case_study).deliver
-          UserMailer.publication_email(User.find_by(id:@case_study.last_editor_id),@case_study).deliver
+          if @case_study.author_id != nil
+            UserMailer.publication_email(User.find_by(id:@case_study.author_id),@case_study).deliver
+          end
         end
       end
       @case_study.last_editor = "#{current_user.first_name} #{current_user.last_name}"
@@ -147,9 +150,10 @@ class CaseStudiesController < ApplicationController
       @case_study.draft = true
       @case_study.ready = true
       if Rails.env.production?
-        UserMailer.cs_approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @case_study).deliver
-        UserMailer.cs_approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @case_study).deliver
-        UserMailer.cs_approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @case_studycs).deliver
+        if @case_study.editor_id != nil
+          UserMailer.cs_approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @case_study).deliver
+          UserMailer.cs_approval_email(User.find_by_id(@case_study.editor_id), @case_study).deliver
+        end
       end
       @case_study.last_editor = "#{current_user.first_name} #{current_user.last_name}"
     end
@@ -184,17 +188,18 @@ class CaseStudiesController < ApplicationController
       @case_study.draft = false
       @case_study.ready = true
       if Rails.env.production?
-        if @case_study.owner_id != nil
-          UserMailer.publication_email(User.find_by(id:@case_study.owner_id), @case_study).deliver
+        if @case_study.author_id != nil
+          UserMailer.publication_email(User.find_by(id:@case_study.author_id), @case_study).deliver
         end
       end
     elsif params[:commit] == "Ready for Approval"
       @case_study.draft = true
       @case_study.ready = true
       if Rails.env.production?
-        UserMailer.cs_approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @case_study).deliver
-        UserMailer.cs_approval_email(User.find_by(email:"d.poreh@berkeley.edu"), @case_study).deliver
-        UserMailer.cs_approval_email(User.find_by(email:"j.kramer@berkeley.edu"), @case_study).deliver
+        if @case_study.editor_id != nil
+          UserMailer.cs_approval_email(User.find_by(email:"james.jiang@berkeley.edu"), @case_study).deliver
+          UserMailer.cs_approval_email(User.find_by(id:editor_id), @case_study).deliver
+        end
       end
     end
     
