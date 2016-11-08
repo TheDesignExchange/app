@@ -69,8 +69,8 @@
         %br/
         .row
         - if !user_signed_in?
-          .col-sm-4
-          .col-md-2= link_to "JOIN", new_registration_path(:user), class: "btn btn-success sharp btn-lrg", style: "font-family: 'Work Sans', sans-serif;height:50px; font-size:150%;"
+          .col-sm-3
+          .col-md-3= link_to "JOIN", new_registration_path(:user), class: "btn btn-success sharp btn-lrg", style: "font-family: 'Work Sans', sans-serif;height:50px; font-size:150%;"
       .col-md-5
         .boxed{:style=>"border: 2px solid #009966;width: 350px;margin: auto;padding: 15px;border-radius: 25px;margin-top:-10%;"}
           .p{:style=>"font-family: 'Work Sans', sans-serif;font-size:165%;"}
@@ -82,11 +82,11 @@
         %br/
 
         .boxed{:style=>"border: 2px solid #009966;width: 350px;margin: auto;padding: 20px;border-radius: 25px;"}
-          %a{:href=>"/share",:style=>"font-family: 'Work Sans', sans-serif; font-size:165%; color:white;"}
+          %a{:href=>"/share",:style=>"font-family: 'Work Sans', sans-serif; font-size:165%"}
             Invite
           .p{:style=>"font-size:100%;font-family: 'Source Sans Pro', sans-serif;"}
             Invite your friends to join theDesignExchange community!
-        
+                
     
 
 

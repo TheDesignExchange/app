@@ -33,21 +33,21 @@
 
 
 
-
-- @feedback = Feedback.new
-= form_for @feedback, :html => {:multipart => true} do |f|
-  .modal-body
-    .field.form-group
-      = f.label :name
-      = f.text_field :name, :class => "form-control", :placeholder => "Name"
-    .field.form-group
-      = f.label :email
-      = f.email_field :email, :class => "form-control", :placeholder => "Email"
-    .field.form-group
-      = f.label :subject
-      = f.text_field :subject, :class => "form-control", :placeholder => "Subject"
-    .field.form-group
-      = f.label :message, "Message (required)"
-      = f.text_area :content, :class => "form-control", :rows => "5"
-  .modal-footer
-    = f.submit 'Send', class: 'btn btn-primary'
+.boxed{:style=>"border: 2px solid black;width: 415px;margin-top:50px;margin-left:28.5%"}
+  - @feedback = Feedback.new
+  = form_for @feedback, :html => {:multipart => true} do |f|
+    .modal-body
+      .field.form-group
+        = f.label :name
+        = f.text_field :name, :class => "form-control", :placeholder => "Name"
+      .field.form-group
+        = f.label :email
+        = f.email_field :email, :class => "form-control", :placeholder => "Email"
+      .field.form-group
+        = f.label :subject
+        = f.text_field :subject, :class => "form-control", :placeholder => "Subject"
+      .field.form-group
+        = f.label :message, "Message (required)"
+        = f.text_area :content, :class => "form-control", :rows => "5"
+    .modal-footer
+      = f.submit 'Send', class: 'btn btn-primary'
