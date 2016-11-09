@@ -40,7 +40,7 @@
       - else
         %b= @case_study.name != nil ? @case_study.name : "-"
     %p
-      by #{link_to @case_study.company.name, company_path(@case_study.company) unless !@case_study.company}
+      / by #{link_to @case_study.company.name, company_path(@case_study.company) unless !@case_study.company}
   .col-xs-3
   - if !current_user.nil?
     .col-xs-3
@@ -159,13 +159,13 @@
       /   %ul.dropdown-menu
       /     %li
       /       %a{:href => "#"} Email
-      .col-xs-3{:style=>"margin-top:-70px"}
+      .col-xs-3{:style=>"margin-top:-30px"}
         / = link_to '<span class="glyphicon glyphicon-pencil"></span> Edit'.html_safe, edit_case_study_path, :class => "pull right"
 
         %a.pull-right{:href => edit_case_study_path(params[:id])}
           %span.glyphicon.glyphicon-pencil
           Edit
-      %p{:style=>"text-align: right; font-size: 11px; margin-top:-40px"}
+      %p{:style=>"text-align: right; font-size: 11px; margin-top:-15px"}
         Last Updated: 
         - if @case_study.last_edited != nil
           #{@case_study.last_edited.strftime('%x %I:%M %p') } by 
@@ -196,7 +196,7 @@
       %h3 Summary
       %p= @case_study.summary.blank? ? "-" : md_format(@case_study.summary)
 
-      %h3 The Process
+      %h3 Process
       %p= @case_study.process.blank? ? "-" : md_format(@case_study.process)
 
       %h3 Retrospective

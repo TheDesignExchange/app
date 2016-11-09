@@ -59,7 +59,7 @@
     font-family: "Times New Roman", Times, serif;
     font-weight: normal;
   }
-  .containerClass { border:2px solid #ccc;   
+  .containerClass { border:2px inset;   
               width:300px; 
               height: 100px; 
               overflow-y: scroll; }
@@ -183,7 +183,7 @@
       = f.text_area :background, :class => "form-control markdown", :rows => 10
       %h3 Summary
       = f.text_area :summary, :class => "form-control markdown", :rows => 10
-      %h3 The Process
+      %h3 Process
       = f.text_area :process, :class => "form-control markdown", :rows => 10
       %h3 Retrospective
       = f.text_area :outcome, :class => "form-control markdown", :rows => 10

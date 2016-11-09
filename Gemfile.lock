@@ -307,6 +307,8 @@ GEM
       kaminari (>= 0.14.0)
       sunspot
       sunspot_rails
+    svg-flags-rails (1.0.0.pre.beta2)
+      railties (>= 4.0)
     thin (1.6.2)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
@@ -386,6 +388,7 @@ DEPENDENCIES
   sunspot_rails
   sunspot_solr
   sunspot_with_kaminari
+  svg-flags-rails (>= 1.0.0.pre.beta)
   thin
   turbolinks
   uglifier
