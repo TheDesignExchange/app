@@ -28,7 +28,6 @@ gem 'rails_12factor', group: :production
 gem 'font_assets'
 gem 'aws-sdk', '~> 2'
 gem 'country_select'
-
 gem 'quiet_assets'
 gem 'lograge'
 # LSA
