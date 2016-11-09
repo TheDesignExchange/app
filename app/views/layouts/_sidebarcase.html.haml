@@ -37,4 +37,4 @@
 - @search_filter_hash.each do |x|
   %ul.sidebar-element
     .category
-      = link_to x.name, {:controller=>"case_studies",:action=>x.name},:class=> "category-heading sidebar-maincategory"
+      = link_to x.name, {:controller => "case_studies", :action => "index", :filter_category => x.id},:class=> "category-heading sidebar-maincategory"
