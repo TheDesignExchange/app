@@ -27,23 +27,25 @@
         - tagifier(@thumb_obj[:tags]).each do |category|
           - if counter == 2
             - break
-          - case category
-          - when 1
-            %span.tag-label.label-gap{:style=>"color:beige"}
-              = MethodCategory.find_by(id:category).name
-          - when 2
-            %span.tag-label.label-gap{:style=>"color:lightpink"}
-              = MethodCategory.find_by(id:category).name      
-          - when 3
-            %span.tag-label.label-gap{:style=>"color:cyan"}
-              = MethodCategory.find_by(id:category).name 
-          - when 4
-            %span.tag-label.label-gap{:style=>"color:yellow"}
-              = MethodCategory.find_by(id:category).name 
-          - when 5
-            %span.tag-label.label-gap{:style=>"color:coral"}
-              = MethodCategory.find_by(id:category).name     
-          - counter += 1
+          %span.tag-label.label-gap
+            = MethodCategory.find_by(id:category).name 
+          / - case category
+          / - when 1
+          /   %span.tag-label.label-gap{:style=>"color:beige"}
+          /     = MethodCategory.find_by(id:category).name
+          / - when 2
+          /   %span.tag-label.label-gap{:style=>"color:aqua"}
+          /     = MethodCategory.find_by(id:category).name      
+          / - when 3
+          /   %span.tag-label.label-gap{:style=>"color:cyan"}
+          /     = MethodCategory.find_by(id:category).name 
+          / - when 4
+          /   %span.tag-label.label-gap{:style=>"color:yellow"}
+          /     = MethodCategory.find_by(id:category).name 
+          / - when 5
+          /   %span.tag-label.label-gap{:style=>"color:coral"}
+          /     = MethodCategory.find_by(id:category).name     
+          / - counter += 1
     %br
 
     - if current_user != nil && (current_user.admin? || current_user.editor? || current_user.author?)
