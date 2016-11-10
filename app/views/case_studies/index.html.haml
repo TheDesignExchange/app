@@ -23,6 +23,8 @@
           Add Case Study
   
   .row
+    #sidebar.col-xs-4.col-sm-2
+      = render "/layouts/sidebarcase"
     - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
       .col-md-2
         / WARNING: SIDEBAR UNDER CONSTRUCTION!

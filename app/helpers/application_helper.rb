@@ -101,7 +101,7 @@ module ApplicationHelper
         {
           :image => obj.main_image,
           :name => obj.name,
-          :tags => obj.tags.map{|t| t.content},
+          :tags => obj.method_category_ids,
           :likes => obj.likes,
           :overview => obj.overview,
           :id => obj.id,
@@ -118,7 +118,7 @@ module ApplicationHelper
         {
           :image => obj.main_image,
           :name => obj.name,
-          :tags => obj.tags.map{|t| t.content},
+          :tags => obj.method_category_ids,
           :likes => (rand*100).to_i,
           :overview => obj.overview,
           :id => obj.id,

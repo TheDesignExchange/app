@@ -11,6 +11,7 @@
   }
 :css
   .sidebar-element{
+    margin-right:50px
   }
 
   .sidebar-leaf{
@@ -25,6 +26,7 @@
   }
 
   #sidebar{
+
      text-decoration: none;
      cursor: pointer;
      overflow: hidden;
@@ -38,4 +40,6 @@
 - @search_filter_hash.each do |x|
   %ul.sidebar-element
     .category
-      = link_to x.name, search_category_design_methods_path(x.id), :class=> "category-heading sidebar-maincategory"
+      = link_to x.name, {:controller => "case_studies", :action => "index", :filter_category => x.id},:class=> "category-heading sidebar-maincategory"
+/ .h5{:style=>"margin-left:40px"} Filter by Countries
+/ .h5{:style=>"margin-left:40px"} Filter by Development Engineering Tags

@@ -10,6 +10,13 @@ class CaseStudiesController < ApplicationController
     if params[:sort_order] == "completion"
       @case_studies = CaseStudy.order(completion_score: :desc)
     end
+
+    if params[:filter_category] != nil
+      c = CaseStudy.all
+      list_of_ids = MethodCategory.find_by(id:params[:filter_category]).case_study_ids
+      @case_studies = CaseStudy.where(id:list_of_ids)
+
+    end
     @search_filter_hash = MethodCategory.order(:process_order)
     @case_studies_all = CaseStudy.all
     respond_to do |format|
@@ -206,6 +213,9 @@ class CaseStudiesController < ApplicationController
         format.json { render json: @case_study.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def filter
   end
 
   def destroy
