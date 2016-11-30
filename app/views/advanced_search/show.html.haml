@@ -1,0 +1,25 @@
+
+.h1{:style => "margin-bottom:-2%; text-align:center"}Advanced Search Page
+
+.panel.panel-default.login-margin.panel-primary
+  .panel-heading
+    %h3.panel-title Find Methods that have...
+  .panel-body
+    .input
+      Author's first name as
+      %input.form-control{:placeholder => "First Name", :type => "text"}/
+    .input
+      %br/
+      Author's last name as
+      %input.form-control{:placeholder => "Last Name", :type => "text"}/
+    .input
+      %br/
+      Title containing
+      %input.form-control{:placeholder => "Method Title", :type => "text"}/
+    .input
+      %br/
+      Key Words
+      %input.form-control{:placeholder => "Key Words", :style => "margin-bottom: 10px;", :type => "text"}/
+    .row
+      .col-md-12
+        %button.btn.btn-default.pull-right{:type => "submit"} Search

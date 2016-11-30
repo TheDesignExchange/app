@@ -24,7 +24,6 @@ class DesignMethodsController < ApplicationController
       end
   end
 
-
   def new
     @new = true
     @design_method = DesignMethod.new
@@ -217,7 +216,7 @@ class DesignMethodsController < ApplicationController
       format.html { redirect_to @design_method, notice: 'Successfully unclaimed to be editor.'}
     end
   end
-
+ 
   # Confirms that user is logged-in.
   def edit_as_signed_in_user
     unless signed_in?
@@ -242,4 +241,6 @@ class DesignMethodsController < ApplicationController
         format.html { redirect_to '/design_methods', notice: 'Design method was successfully deleted.' }
     end
   end
+
+
 end
