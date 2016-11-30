@@ -15,6 +15,12 @@ class DesignMethodsController < ApplicationController
       if params[:sort_order] == "completion"
         @design_methods = DesignMethod.order(completion_score: :desc)
       end
+
+      if params[:filter_category] != nil
+        c = CaseStudy.all
+        list_of_ids = MethodCategory.find_by(id:params[:filter_category]).design_method_ids
+        @design_methods = DesignMethod.where(id:list_of_ids)
+      end
       # Filter bar needs
       @search_filter_hash = MethodCategory.order(:process_order)
       @design_methods_all = DesignMethod.all
