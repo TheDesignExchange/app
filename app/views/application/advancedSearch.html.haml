@@ -1,16 +1,17 @@
-- form_for @search do |f|
+%h1 search
+= form_for AdvancedSearch.new do |f|
   %p
     = f.label :keywords
     %br/
     = f.text_field :keywords
   %p
     = f.label :category_id
-    %br/
-    = f.collection_select :category_id, Category.all, :id, :name, :include_blank => true
-  %p
-    Price Range
-    %br/
-    = f.text_field :minimum_price, :size => 7
-    \-
-    \#{f.text_field :maximum_price, :size => 7}
+  /   %br/
+  /   = f.collection_select :category_id, Category.all, :id, :name, :include_blank => true
+  / %p
+  /   Price Range
+  /   %br/
+  /   = f.text_field :minimum_price, :size => 7
+  /   \-
+  /   \#{f.text_field :maximum_price, :size => 7}
   %p= f.submit "Submit"

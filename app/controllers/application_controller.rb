@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def advancedSearch
-
+    render layout: "custom"
   end
 
   def index

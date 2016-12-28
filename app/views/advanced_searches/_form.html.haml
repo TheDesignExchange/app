@@ -1,0 +1,10 @@
+= form_for @advanced_search do |f|
+  - if @advanced_search.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@advanced_search.errors.count, "error")} prohibited this advanced_search from being saved:"
+      %ul
+        - @advanced_search.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'

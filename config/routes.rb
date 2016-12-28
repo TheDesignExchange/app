@@ -1,5 +1,7 @@
 DesignExchange::Application.routes.draw do
 
+  resources :advanced_searches
+
   resources :companies do
     resources :contacts
   end
