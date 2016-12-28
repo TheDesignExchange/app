@@ -52,6 +52,7 @@ DesignExchange::Application.routes.draw do
   get ":action", to:"application##{:action}"
   post ":action", to:"application##{:action}"
   post "search", to: "application#search"
+  get "advancedSearch", to: "application#advancedSearch"
   get "autocomplete_search", to: "application#search"
 
 end

@@ -40,5 +40,5 @@
     .category
       = link_to x.name, {:controller => "design_methods", :action => "index", :filter_category => x.id},:class=> "category-heading sidebar-maincategory"
       / = link_to x.name, search_category_design_methods_path(x.id), :class=> "category-heading sidebar-maincategory"
-= link_to "#", :class => "btn btn-info", :style=>"margin-left:40px" do
+= link_to "advancedSearch", :class => "btn btn-info", :style=>"margin-left:40px" do
   .p{:style=>"font-size:10px"}Advanced Search

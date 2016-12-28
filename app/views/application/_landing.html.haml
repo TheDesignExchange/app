@@ -1,3 +1,4 @@
+%meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
 :css
   @import url(//fonts.googleapis.com/css?family=Arvo:700);
   .background {
@@ -26,7 +27,6 @@
   .left-padding{
     padding-left: 10px
   }
-%meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
 .container
   .row{:style=>"margin-bottom:10%"}
     .p{:style=>"margin-top:-10%;padding:0 10% 0 10%"}
@@ -37,7 +37,7 @@
         %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Learn about the methods you could use on your next design.
         .background
         = link_to design_method_path(id: 162) do 
-          = image_tag "MethodLandingPage.jpg", :width => "100%", size: "450x370"
+          = image_tag "MethodLandingPage.jpg", :class => "img-responsive",:width => "100%", size: "450x370"
           .layer1
             .left-padding
               .h1{:style=>"margin-bottom:10%;font-family: 'Work Sans', sans-serif;color: white"}
@@ -54,7 +54,7 @@
         
         .background
         = link_to case_study_path(id:197) do #change link path
-          = image_tag "CaseStudiesLandingPage.png", :width => "100%", size: "450x370"
+          = image_tag "CaseStudiesLandingPage.png", :class => "img-responsive", :width => "100%", size: "450x370"
           .layer
             .left-padding
               .h1{:style=>"margin-bottom:10%;font-family: 'Work Sans';font-size:180%; sans-serif;color: white;"}
