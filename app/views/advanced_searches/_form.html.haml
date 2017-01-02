@@ -1,10 +1,17 @@
+%h1 search
 = form_for @advanced_search do |f|
-  - if @advanced_search.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@advanced_search.errors.count, "error")} prohibited this advanced_search from being saved:"
-      %ul
-        - @advanced_search.errors.full_messages.each do |msg|
-          %li= msg
-
-  .actions
-    = f.submit 'Save'
+  %p
+    = f.label :keywords
+    %br/
+    = f.text_field :keywords
+  / %p
+  /   = f.label :category_id
+  /   %br/
+  /   = f.collection_select :category_id, Category.all, :id, :name, :include_blank => true
+  / %p
+  /   Price Range
+  /   %br/
+  /   = f.text_field :minimum_price, :size => 7
+  /   \-
+  /   \#{f.text_field :maximum_price, :size => 7}
+  %p= f.submit "Submit"

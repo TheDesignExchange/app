@@ -1,9 +1,21 @@
+require 'dx/props'
+require "uri"
+
 class AdvancedSearchesController < InheritedResources::Base
+  load_and_authorize_resource
 
-  private
+  def create
+  	@advanced_search = AdvancedSearch.create!(params[:advanced_search])
+  	redirect_to @advanced_search
+  end	
 
-    def advanced_search_params
-      params.require(:advanced_search).permit()
-    end
+  def show
+  	@advanced_search = AdvancedSearch.find(params[:id])
+  end
+
+  def new
+  	@advanced_search = AdvancedSearch.new
+  end
+
 end
 
