@@ -7,7 +7,9 @@
   %p
     = f.label :sector
     %br/
-    = f.text_field :sector
+    - sectors = ["Accomodations","Accounting","Advertising","Aerospace", "Agriculture & Agribusiness", "Air Transportation", "Apparel & Accessories", "Auto", "Banking", "Beauty & Cosmetics" ,"Biotechnology", "Chemical","Communications","Computer","Construction","Consulting","Consumer Products", "Education", "Electronics","Employment","Energy","Entertainment & Recreation","Fashion","Financial Services","Fine Arts","Food & Beverage", "Health", "Information", "Information Technology","Insurance","Journalism & News","Legal Services","Manufacturing","Media & Broadcasting", "Medical Devices & Supplies", "Motion Pictures & Video", "Music", "Pharmaceutical", "Public Administration", "Public Relations", "Publishing", "Real Estate","Retail","Service","Sports","Technology","Telecommunications","Tourism","Transportation","Travel", "Utilities", "Video Games", "Web Services" ]
+
+    = f.select :sector, sectors
   / %p
   /   = f.label :process
   /   %br/
