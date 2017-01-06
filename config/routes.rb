@@ -1,5 +1,6 @@
 DesignExchange::Application.routes.draw do
 
+  resources :case_study_advanced_searches
   resources :advanced_searches
 
   resources :companies do

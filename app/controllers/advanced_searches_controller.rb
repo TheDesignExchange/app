@@ -7,14 +7,18 @@ class AdvancedSearchesController < InheritedResources::Base
   def create
   	@advanced_search = AdvancedSearch.create!(params[:advanced_search])
   	redirect_to @advanced_search
+
   end	
 
   def show
   	@advanced_search = AdvancedSearch.find(params[:id])
+    render layout: "custom"
   end
 
   def new
   	@advanced_search = AdvancedSearch.new
+    render layout: "custom"
+
   end
 
 end
