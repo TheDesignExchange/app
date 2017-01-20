@@ -30,7 +30,10 @@
 
         .h3 
           / = params[:filter_category]
-          = filter_category(params[:filter_category]) + " Methods" 
+          - if params[:filter_category] == nil
+            = "Methods"
+          - else 
+            = "Methods: " + filter_category(params[:filter_category]) 
         - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
           %input{:name => "hidden", :type => "checkbox", :id => "hidden", :style => "margin: 0px 5px 15px 0px"} Show hidden methods
           %br

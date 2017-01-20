@@ -270,7 +270,7 @@ module ApplicationHelper
 
   def filter_category(category)
     if category == nil
-      return "Popular"
+      return ""
     elsif category == "1"
       return "Build"
     elsif category == "2"
