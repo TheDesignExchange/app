@@ -267,4 +267,20 @@ module ApplicationHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
+
+  def filter_category(category)
+    if category == nil
+      return "Popular"
+    elsif category == "1"
+      return "Build"
+    elsif category == "2"
+      return "Analyze"
+    elsif category == "3"
+      return "Ideate"
+    elsif category == "4"
+      return "Research"
+    elsif category == "5"
+      return "Communicate"
+    end
+  end
 end

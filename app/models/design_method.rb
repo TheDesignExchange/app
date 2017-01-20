@@ -131,6 +131,22 @@ class DesignMethod < ActiveRecord::Base
     Tag.where("design_method_id = ? and content_type = ?", self[:id], "tool");
   end
 
+  def filter_category(category)
+    if category == "nil"
+      return "Popular"
+    elsif category == 1
+      return "Build"
+    elsif category == 2
+      return "Analyze"
+    elsif category == 3
+      return "Ideate"
+    elsif category == 4
+      return "Research"
+    else
+      return "Communicate"
+    end
+  end
+
   # class Document_Attach < Document
   #   attr_reader :obj
 
