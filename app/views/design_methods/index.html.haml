@@ -27,7 +27,13 @@
   .row
     .col-xs-8.col-xs-offset-4.col-sm-10.col-sm-offset-2.left-pad
       .col-xs-6
-        %h3 Popular Methods
+
+        .h3 
+          / = params[:filter_category]
+          - if params[:filter_category] == nil
+            = "Methods"
+          - else 
+            = "Methods: " + filter_category(params[:filter_category]) 
         - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
           %input{:name => "hidden", :type => "checkbox", :id => "hidden", :style => "margin: 0px 5px 15px 0px"} Show hidden methods
           %br
