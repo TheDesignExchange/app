@@ -50,17 +50,17 @@
       .h2{:style=>"text-align:center;margin-bottom:10%;font-family: 'Work Sans', sans-serif;font-size:250%;"}
         =link_to "Case Studies", case_studies_path
       .row
-        %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Read about how real design probems were solved.
-        
+        / %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Read about how real design probems were solved.
+        %p.subtitle{:style=>"text-align:center;font-size:200%; margin-top:30%;font-family: 'Source Sans Pro', sans-serif;"} Case Studies coming soon
         .background
-        = link_to case_study_path(id:197) do #change link path
-          = image_tag "CaseStudiesLandingPage.png", :width => "100%", size: "450x370"
-          .layer
-            .left-padding
-              .h1{:style=>"margin-bottom:10%;font-family: 'Work Sans';font-size:180%; sans-serif;color: white;"}
-                Adapting Usability Testing for Oral, Rural Users
-              .h4{:style=>"margin-bottom:10%;font-size:100%;color: white;margin-top:-10%;"}
-                Read about a study conducted in Ghanaian villages that evaluated an audio computer desgined for people living in oral cultures
+        / = link_to case_study_path(id:197) do #change link path
+        /   = image_tag "CaseStudiesLandingPage.png", :width => "100%", size: "450x370"
+        /   .layer
+        /     .left-padding
+        /       .h1{:style=>"margin-bottom:10%;font-family: 'Work Sans';font-size:180%; sans-serif;color: white;"}
+        /         Adapting Usability Testing for Oral, Rural Users
+        /       .h4{:style=>"margin-bottom:10%;font-size:100%;color: white;margin-top:-10%;"}
+        /         Read about a study conducted in Ghanaian villages that evaluated an audio computer desgined for people living in oral cultures
 
 
   
