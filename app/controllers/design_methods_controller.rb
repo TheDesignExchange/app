@@ -18,7 +18,7 @@ class DesignMethodsController < ApplicationController
 
       if params[:filter_category] != nil
         c = DesignMethod.all
-        list_of_ids = MethodCategory.find_by(id:params[:filter_category]).design_method_ids
+        list_of_ids = MethodCategory.find_by(process_order:params[:filter_category]).design_method_ids
         @design_methods = DesignMethod.where(id:list_of_ids)
       end
       # Filter bar needs
