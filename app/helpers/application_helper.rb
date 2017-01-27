@@ -272,13 +272,13 @@ module ApplicationHelper
     if category == nil
       return ""
     elsif category == "1"
-      return "Build"
+      return "Research"
     elsif category == "2"
       return "Analyze"
     elsif category == "3"
       return "Ideate"
     elsif category == "4"
-      return "Research"
+      return "Build"
     elsif category == "5"
       return "Communicate"
     end
