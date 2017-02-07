@@ -145,6 +145,10 @@ class DesignMethodsController < ApplicationController
     end
   end
 
+  def popular
+
+  end
+
   def show
     require 'dx/props'
     @props = Dx::Props.load_file 'config/props/design_methods.yml'
@@ -224,6 +228,7 @@ class DesignMethodsController < ApplicationController
     end
   end
 
+
   # Confirms that user is logged-in.
   def edit_as_signed_in_user
     unless signed_in?
@@ -239,6 +244,7 @@ class DesignMethodsController < ApplicationController
       redirect_to design_methods_url
     end
   end
+
 
 
   def destroy
