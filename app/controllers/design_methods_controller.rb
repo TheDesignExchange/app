@@ -11,7 +11,9 @@ class DesignMethodsController < ApplicationController
 
   def index
       # UserMailer.seeking_approval_email(current_user, @design_method)
-      @design_methods = DesignMethod.where("overview != ?", "No overview available" )
+      # @design_methods = DesignMethod.where("overview != ?", "No overview available" )
+      @design_methods = DesignMethod.order(completion_score: :desc)
+
       if params[:sort_order] == "completion"
         @design_methods = DesignMethod.order(completion_score: :desc)
       end
