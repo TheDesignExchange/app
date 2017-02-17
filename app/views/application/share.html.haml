@@ -20,7 +20,7 @@
 
 
 %br/
-.boxed{:style=>"width: 500px;margin-top:10px;margin-left:28.5%;padding: 18px;background-color: #03c182;border-radius: 15px"}
+.boxed{:style=>"width: 500px;margin-top:10px;margin-left:28.5%;padding: 18px;background-color: #12bc84;border-radius: 15px"}
   .p{:style=>"text-align:center;font-size:15pt;font-family:'Trebuchet MS'"}Invite all your friends to join theDesignExchange to become expert designers!
   - @feedback = Feedback.new
   = form_for @feedback, :html => {:multipart => true} do |f|
@@ -33,7 +33,7 @@
         = f.text_field :subject, :class => "form-control", :placeholder => "Subject"
       .field.form-group
         = f.label :message, "Message (required)"
-        = f.text_area :content, :class => "form-control", :rows => "5"
+        = f.text_area :content, :class => "form-control", :rows => "5", :placeholder => "Invite Message"
     .modal-footer
       = f.submit 'Send Invitation Email', class: 'btn btn-primary'
 / .boxed{:style=>"border: 2px solid black;width: 415px;margin: auto;"}
