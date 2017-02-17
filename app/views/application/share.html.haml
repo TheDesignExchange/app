@@ -20,26 +20,11 @@
 
 
 %br/
-
-.boxed{:style=>"border: 2px solid black;width: 415px;margin: auto;"}
-  .p{:style=>"text-align:center; font-size:120%;"}
-    Invite all your friends to join theDesignExchange to become expert designers!
-    = form_tag({:controller=>'application',:action=>'sendInvitation'}) do 
-      .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
-        = label_tag(:email_of_friend, "Email:")
-        = text_field_tag(:email_of_friend)
-        = submit_tag "Send Invitation Email", class: 'btn btn-primary'
-
-
-
-
-.boxed{:style=>"border: 2px solid black;width: 415px;margin-top:50px;margin-left:28.5%"}
+.boxed{:style=>"width: 500px;margin-top:10px;margin-left:28.5%;padding: 18px;background-color: #03c182;border-radius: 15px"}
+  .p{:style=>"text-align:center;font-size:15pt;font-family:'Trebuchet MS'"}Invite all your friends to join theDesignExchange to become expert designers!
   - @feedback = Feedback.new
   = form_for @feedback, :html => {:multipart => true} do |f|
     .modal-body
-      .field.form-group
-        = f.label :name
-        = f.text_field :name, :class => "form-control", :placeholder => "Name"
       .field.form-group
         = f.label :email
         = f.email_field :email, :class => "form-control", :placeholder => "Email"
@@ -50,4 +35,34 @@
         = f.label :message, "Message (required)"
         = f.text_area :content, :class => "form-control", :rows => "5"
     .modal-footer
-      = f.submit 'Send', class: 'btn btn-primary'
+      = f.submit 'Send Invitation Email', class: 'btn btn-primary'
+/ .boxed{:style=>"border: 2px solid black;width: 415px;margin: auto;"}
+/   .p{:style=>"text-align:center; font-size:120%;"}
+/     Invite all your friends to join theDesignExchange to become expert designers!
+/     = form_tag({:controller=>'application',:action=>'sendInvitation'}) do 
+/       .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+/         = label_tag(:email_of_friend, "Email:")
+/         = text_field_tag(:email_of_friend)
+/         = submit_tag "Send Invitation Email", class: 'btn btn-primary'
+
+
+
+
+/ .boxed{:style=>"border: 2px solid black;width: 415px;margin-top:50px;margin-left:28.5%"}
+/   - @feedback = Feedback.new
+/   = form_for @feedback, :html => {:multipart => true} do |f|
+/     .modal-body
+/       .field.form-group
+/         = f.label :name
+/         = f.text_field :name, :class => "form-control", :placeholder => "Name"
+/       .field.form-group
+/         = f.label :email
+/         = f.email_field :email, :class => "form-control", :placeholder => "Email"
+/       .field.form-group
+/         = f.label :subject
+/         = f.text_field :subject, :class => "form-control", :placeholder => "Subject"
+/       .field.form-group
+/         = f.label :message, "Message (required)"
+/         = f.text_area :content, :class => "form-control", :rows => "5"
+/     .modal-footer
+/       = f.submit 'Send', class: 'btn btn-primary'
