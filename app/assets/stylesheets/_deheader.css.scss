@@ -1,0 +1,103 @@
+@import url(//fonts.googleapis.com/css?family=Arvo:700);
+
+.header-img {
+  padding-top: 100px;
+  img {
+    width: 600px;
+  }
+}
+
+.join {
+  font-family: 'Work Sans', sans-serif;
+  height:50px;
+  font-size:150%;
+  color: white;
+  line-height: normal;
+  margin-top: 16px;
+  display: table;
+  margin: 16px auto;
+}
+
+.h1 {
+  font-size: 300%;
+}
+.jumbotron {
+  font-size: 17px;
+  background: rgb(89, 88, 91);
+  color: white;
+  height:420px;
+  padding-top: 20px;
+}
+
+.subtitle {
+  font-size: 20px;
+  margin-top:2%;
+}
+
+.login-margin {
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 5%;
+}
+
+.btn.sharp {
+  border-radius:0;
+  letter-spacing: 2px;
+  padding: 10px 50px;
+}
+.logo{
+  width: 300px;
+}
+.header {
+  padding: 25px 10px;
+  height: 55px;
+  border-bottom: 1px solid #d3d3d3;
+  overflow: no-content;
+  min-width: 400px;
+}
+#header-right {
+  width: 50%;
+  border-color: blue;
+}
+.btn-xl {
+  padding: 18px 28px;
+  font-size: 22px;
+  border-radius: 10px;
+}
+
+.boxed {
+  border: 2px solid #009966;
+  width: 350px;
+  margin: auto;
+  padding: 25px;
+  border-radius: 20px;
+
+  h2 {
+    font-family: 'Work Sans', sans-serif;
+    font-size:165%;
+    margin-top: 0;
+  }
+
+  p {
+    font-size:100%;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+}
+
+@media (max-width: 768px) {
+  .jumbotron {
+    height: 800px;
+  }
+
+  .header-img {
+    padding-top: 100px;
+    img {
+      width: 100%;
+    }
+    margin: 0 -30px 0 -30px;
+  }
+
+  .boxed {
+    width: 100%;
+  }
+}
