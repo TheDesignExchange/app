@@ -25,14 +25,21 @@
   #search{
     height: 60px;
     padding: 10px 0;
-  }
-  #search .form-group{
-    padding: 0 8px;
-  }
-  #search button, #search input{
-    width: 100%;
+
+    .form-group{
+      padding: 0 8px;
+    }
+
+    button, input{
+      width: 100%;
+    }
   }
 }
+
+#search {
+   background-color: #f8f8f8;
+}
+
 
  /* OVERRIDE BOOTSTRAP ANCHOR BEHAVIOR */
  a {
@@ -154,6 +161,10 @@ img.logo{
 
   .navbar{
     margin-bottom: 0;
+  }
+
+  .navbar-brand {
+    padding: 10px;
   }
 
   .form-search{
