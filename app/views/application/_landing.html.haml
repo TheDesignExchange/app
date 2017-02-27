@@ -1,10 +1,10 @@
+
 :css
   @import url(//fonts.googleapis.com/css?family=Arvo:700);
   .background {
     background:url('../img/bg/diagonalnoise.png');
     position: relative;
   }
-
   .layer {
     background-color: rgba(134, 198, 124, 0.85);
     position: absolute;
@@ -17,15 +17,15 @@
   .layer1 {
     background-color: rgba(134, 198, 124, 0.92);
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0%;
+    left: 0%;
     width: 108.1%;
     height: 25%;
     margin-top: 20.1%
   }
-  .left-padding{
-    padding-left: 10px
-  }
+
+%head
+
 %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
 .container
   .row{:style=>"margin-bottom:10%"}
@@ -37,13 +37,12 @@
         %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Learn about the methods you could use on your next design.
         .background
         = link_to design_method_path(id: 162) do 
-          = image_tag "MethodLandingPage.jpg", :width => "100%", size: "450x370"
+          = image_tag "MethodLandingPage.jpg", :width => "108%", size: "100%"
           .layer1
-            .left-padding
-              .h1{:style=>"margin-bottom:10%;font-family: 'Work Sans', sans-serif;color: white"}
-                Cultural Probes
-              .h4{:style=>"margin-bottom:10%;font-size:100%;color: white;margin-top:-10%;"}
-                Gain insight into and inspirational responses about the daily life and habits of communities
+            .h1{:style=>"margin-bottom:10%;font-family: 'Work Sans', sans-serif;color: white"}
+              Cultural Probes
+            .h4{:style=>"margin-bottom:10%;font-size:100%;color: white;margin-top:-10%;"}
+              Gain insight into and inspirational responses about the daily life and habits of communities
 
     .col-md-2
     .col-md-5
