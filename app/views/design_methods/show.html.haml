@@ -357,7 +357,6 @@
 
     - if @method.references != nil and @method.references != ''
       %h4 References used in this Article
-      -# %p= @method.references
       %p= md_format(@method.references)
     / - if @citations != nil && @citations.length != 0
     /   %h3 Citations
