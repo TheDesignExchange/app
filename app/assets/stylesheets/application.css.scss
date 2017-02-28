@@ -21,6 +21,14 @@
  *= require jquery.tablesorter.pager
  */
 
+#search {
+   background-color: #f8f8f8;
+}
+
+.notice {
+  margin-top:50px;
+}
+
 @media (max-width: 768px) {
   #search{
     height: 60px;
@@ -34,12 +42,10 @@
       width: 100%;
     }
   }
+  .notice {
+    margin-top: 126px;
+  }
 }
-
-#search {
-   background-color: #f8f8f8;
-}
-
 
  /* OVERRIDE BOOTSTRAP ANCHOR BEHAVIOR */
  a {
@@ -263,6 +269,22 @@ img.logo{
     }
     .card .likes{
       font-size: 10pt;
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        height: 150px;
+        margin: 10px 0 10px 0;
+      }
+
+      .card .meta .tags {
+        position: absolute;
+        bottom: 0;
+      }
+
+      .card .meta .tags .tag-label {
+        font-size: 1em;
+      }
     }
 
     .profile div img{
