@@ -1,103 +1,25 @@
-:css
-  @import url(//fonts.googleapis.com/css?family=Arvo:700);
-  .background {
-    background:url('../img/bg/diagonalnoise.png');
-    position: relative;
-  }
-
-  .layer {
-    background-color: rgba(134, 198, 124, 0.85);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 108.1%;
-    height: 25%;
-    margin-top: 20.1%
-  }
-  .layer1 {
-    background-color: rgba(134, 198, 124, 0.92);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 108.1%;
-    height: 25%;
-    margin-top: 20.1%
-  }
-  .left-padding{
-    padding-left: 10px
-  }
-%meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
-.container
-  .row{:style=>"margin-bottom:10%"}
-    .p{:style=>"margin-top:-10%;padding:0 10% 0 10%"}
-    .col-md-5
-      .h2{:style=>"text-align:center;margin-bottom:10%;font-family: 'Work Sans', sans-serif;font-size:250%;"}
-        =link_to "Methods", design_methods_path
-      .row
-        %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Learn about the methods you could use on your next design.
-        .background
-        = link_to design_method_path(id: 162) do 
-          = image_tag "MethodLandingPage.jpg", :width => "100%", size: "450x370"
-          .layer1
-            .left-padding
-              .h1{:style=>"margin-bottom:10%;font-family: 'Work Sans', sans-serif;color: white"}
-                Cultural Probes
-              .h4{:style=>"margin-bottom:10%;font-size:100%;color: white;margin-top:-10%;"}
-                Gain insight into and inspirational responses about the daily life and habits of communities
-
-    .col-md-2
-    .col-md-5
-      .h2{:style=>"text-align:center;margin-bottom:10%;font-family: 'Work Sans', sans-serif;font-size:250%;"}
-        =link_to "Case Studies", case_studies_path
-      .row
-        / %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Read about how real design probems were solved.
-        %p.subtitle{:style=>"text-align:center;font-size:200%; margin-top:30%;font-family: 'Source Sans Pro', sans-serif;"} Case Studies coming soon
-        .background
-        / = link_to case_study_path(id:197) do #change link path
-        /   = image_tag "CaseStudiesLandingPage.png", :width => "100%", size: "450x370"
-        /   .layer
-        /     .left-padding
-        /       .h1{:style=>"margin-bottom:10%;font-family: 'Work Sans';font-size:180%; sans-serif;color: white;"}
-        /         Adapting Usability Testing for Oral, Rural Users
-        /       .h4{:style=>"margin-bottom:10%;font-size:100%;color: white;margin-top:-10%;"}
-        /         Read about a study conducted in Ghanaian villages that evaluated an audio computer desgined for people living in oral cultures
-
-
-  
-
-  /. Landing
-  / .thedxcommunity{:style=>"margin-top:60%;padding:0 10% 0 10%"}
-  /   %hr/x
-  /   .h2{:style=>"text-align:center; font-size:2em;margin-bottom:10%;"}
-  /     The Design Exchange Community
-  /   .col-md-4
-  /     .thumbnail{:style=>"text-align:center; font-size:1em"}
-  /       - if User.find_by(id:1).profile_picture.present?
-  /         = image_tag(user.profile_picture, class: "img-responsive", :style => "padding: 5%")
-  /       - else
-  /         = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%", :size=>"150x150")
-  /       .h3
-  /         First Last
-  /       .p
-  /         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-
-  /   .col-md-4
-  /     .thumbnail{:style=>"text-align:center; font-size:1em"}
-  /       = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%", :size=>"150x150")
-  /       .h3
-  /         First Last
-  /       .p
-  /         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-
-  /   .col-md-4
-  /     .thumbnail{:style=>"text-align:center; font-size:1em"}
-  /       = image_tag("no-profile-available.jpg", class: "img-responsive" , :style => "padding: 5%", :size=>"150x150")
-  /       .h3
-  /         First Last
-  /       .p
-  /         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-
-
+= stylesheet_link_tag "_landing", :media => "all" # CSS is in this file!
+.row{:id => "showcase"}
+  .col-sm-6
+    %h1
+      =link_to "Methods", design_methods_path
+    %p.subtitle Learn about the methods you could use on your next design.
+    .background{:id => "method-background"}
+      .layer
+        %h2
+          Cultural Probes
+        %h4
+          Gain insight into and inspirational responses about the daily life and habits of communities
+  .col-sm-6
+    %h1
+      =link_to "Case Studies", case_studies_path
+    / %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Read about how real design probems were solved.
+    %p.subtitle{:style=>"text-align:center;font-size:200%; margin-top:30%;font-family: 'Source Sans Pro', sans-serif;"} Case Studies coming soon
+    / = link_to case_study_path(id:197) do #change link path
+    /   = image_tag "CaseStudiesLandingPage.png", :width => "100%", size: "450x370"
+    /   .layer
+    /     .left-padding
+    /       .h1{:style=>"margin-bottom:10%;font-family: 'Work Sans';font-size:180%; sans-serif;color: white;"}
+    /         Adapting Usability Testing for Oral, Rural Users
+    /       .h4{:style=>"margin-bottom:10%;font-size:100%;color: white;margin-top:-10%;"}
+    /         Read about a study conducted in Ghanaian villages that evaluated an audio computer desgined for people living in oral cultures
