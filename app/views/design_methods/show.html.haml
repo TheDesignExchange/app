@@ -122,9 +122,9 @@
         = tagify(t.id, t.content, {:removable => false})
       = "No tags available" unless not @method.tags.empty?
   - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
-    .row 
+    .row
       %h4 Completion Score
-      %p 
+      %p
         /calculate the completion score if it has not been done already
         - score = 0
         - for attribute in @design_method.attributes.keys
@@ -133,7 +133,7 @@
         - @design_method.completion_score = score
         - @design_method.save
         = score
-       
+
   .row
     %h4 Characteristics
     - @method.method_categories.each do |category|
@@ -200,22 +200,22 @@
       - if current_user != nil and (current_user.admin? or current_user.editor?) and @design_method.editor_id == current_user.id
         = link_to "Unclaim to be Editor", {:controller => "design_methods", :action => :unclaimEditor, :id => @design_method.id}, :class => "btn btn-success"
 
-    
+
       - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @design_method.author_id == nil
         = link_to "Claim to be Author", {:controller => "design_methods", :action => :claimAuthor, :id => @design_method.id}, :class => "btn btn-success"
 
       - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @design_method.author_id == current_user.id
-        = link_to "Unclaim to be Author", {:controller => "design_methods", :action => :unclaimAuthor, :id => @design_method.id}, :class => "btn btn-success" 
+        = link_to "Unclaim to be Author", {:controller => "design_methods", :action => :unclaimAuthor, :id => @design_method.id}, :class => "btn btn-success"
 
       %p{:style=>"text-align: right; font-size: 11px;"}
-        Last Updated: 
+        Last Updated:
         - if @design_method.last_edited != nil
           #{@design_method.last_edited.strftime('%x %I:%M %p')} by
           #{@design_method.last_editor}
         - else
           Before 10/18/2016
 
-         
+
 
     /Method top level categories
   .row
@@ -252,7 +252,7 @@
       = image_tag(@method.image_url, :width => "100%")
 
     / Displays image attribution
-    - if !@method.image_attribution.blank? 
+    - if !@method.image_attribution.blank?
       %h5 Image Attributions
       %p
         = md_format(@method.image_attribution)
@@ -308,7 +308,7 @@
       .col-xs-8
         %p= link_to @author.first_name + " " + @author.last_name, user_path(@author.id)
         %p= @author.email != nil ? @author.email : "-"
-    
+
     - if @current_author != nil
       .col-xs-6
         %h5 Current Author
@@ -318,7 +318,7 @@
           - else
             /TODO lol we need to self host this asap
             = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
-        .col-xs-8 
+        .col-xs-8
           - if @current_author != nil
             %p= link_to @current_author.first_name + " " + @current_author.last_name, user_path(@current_author.id)
             %p= @current_author.email != nil ? @current_author.email : "-"
@@ -331,7 +331,7 @@
           - else
             /TODO lol we need to self host this asap
             = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
-        .col-xs-8 
+        .col-xs-8
           - if @current_editor != nil
             %p= link_to @current_editor.first_name + " " + @current_editor.last_name, user_path(@current_editor.id)
             %p= @current_editor.email != nil ? @current_editor.email : "-"
@@ -357,7 +357,6 @@
 
     - if @method.references != nil and @method.references != ''
       %h4 References used in this Article
-      %p= @method.references
       %p= md_format(@method.references)
     / - if @citations != nil && @citations.length != 0
     /   %h3 Citations
@@ -381,4 +380,3 @@
       %h4 Related Case Studies
       - @method.case_studies.each do |cs|
         = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"4")
-

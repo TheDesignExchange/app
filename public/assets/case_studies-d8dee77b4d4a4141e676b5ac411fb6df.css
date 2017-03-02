@@ -1,0 +1,37 @@
+/* line 1, /Users/sock-mac/TheDesignExchange/app/assets/stylesheets/_props.scss */
+.control {
+  margin: 0.5em 0;
+}
+/* line 4, /Users/sock-mac/TheDesignExchange/app/assets/stylesheets/_props.scss */
+.control.boolean {
+  display: block;
+}
+/* line 7, /Users/sock-mac/TheDesignExchange/app/assets/stylesheets/_props.scss */
+.control.link {
+  display: block;
+}
+/* line 10, /Users/sock-mac/TheDesignExchange/app/assets/stylesheets/_props.scss */
+.control.numeric {
+  display: inline-block;
+}
+/* line 13, /Users/sock-mac/TheDesignExchange/app/assets/stylesheets/_props.scss */
+.control.tags {
+  display: block;
+}
+/* line 16, /Users/sock-mac/TheDesignExchange/app/assets/stylesheets/_props.scss */
+.control.text {
+  display: block;
+}
+
+/* COLOR SCHEME */
+/* line 10, /Users/sock-mac/TheDesignExchange/app/assets/stylesheets/case_studies.css.scss */
+.panel-gray {
+  border-color: #888888;
+}
+
+/* line 14, /Users/sock-mac/TheDesignExchange/app/assets/stylesheets/case_studies.css.scss */
+.panel-gray > .panel-heading {
+  color: #fff;
+  background-color: #888888;
+  border-color: #888888;
+}

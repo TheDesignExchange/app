@@ -21,16 +21,29 @@
  *= require jquery.tablesorter.pager
  */
 
+#search {
+   background-color: #f8f8f8;
+}
+
+.notice {
+  margin-top:50px;
+}
+
 @media (max-width: 768px) {
   #search{
     height: 60px;
     padding: 10px 0;
+
+    .form-group{
+      padding: 0 8px;
+    }
+
+    button, input{
+      width: 100%;
+    }
   }
-  #search .form-group{
-    padding: 0 8px;
-  }
-  #search button, #search input{
-    width: 100%;
+  .notice {
+    margin-top: 126px;
   }
 }
 
@@ -156,6 +169,10 @@ img.logo{
     margin-bottom: 0;
   }
 
+  .navbar-brand {
+    padding: 10px;
+  }
+
   .form-search{
     height: 34px;
     padding: 6px 12px;
@@ -252,6 +269,22 @@ img.logo{
     }
     .card .likes{
       font-size: 10pt;
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        height: 150px;
+        margin: 10px 0 10px 0;
+      }
+
+      .card .meta .tags {
+        position: absolute;
+        bottom: 0;
+      }
+
+      .card .meta .tags .tag-label {
+        font-size: 1em;
+      }
     }
 
     .profile div img{
