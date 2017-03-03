@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108185127) do
+ActiveRecord::Schema.define(version: 20170303053246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,14 @@ ActiveRecord::Schema.define(version: 20161108185127) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "advanced_searches", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "keywords"
+    t.string   "author"
+    t.text     "process"
+  end
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -109,6 +117,13 @@ ActiveRecord::Schema.define(version: 20161108185127) do
     t.string   "industry_sectors",  default: [],    array: true
     t.string   "country_two"
     t.string   "country_three"
+  end
+
+  create_table "case_study_advanced_searches", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "keywords"
+    t.string   "sector"
   end
 
   create_table "characteristic_groups", force: true do |t|
@@ -336,6 +351,11 @@ ActiveRecord::Schema.define(version: 20161108185127) do
     t.datetime "updated_at"
   end
 
+  create_table "searches", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tag_case_studies", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -393,6 +413,7 @@ ActiveRecord::Schema.define(version: 20161108185127) do
     t.integer  "roles_mask"
     t.integer  "zip_code"
     t.string   "affiliation"
+    t.string   "member_type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

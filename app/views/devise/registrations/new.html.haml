@@ -20,6 +20,9 @@
         = f.text_field :affiliation, {:autofocus => true, :class => "form-control", :placeholder => "Affiliation (optional)"}
       %br/
       .input
+        = f.select :member_type, options_for_select(["Student","Educator","Design Practitioner"]), {}, {:class => "form-control"}
+      %br/
+      .input
         = f.text_field :zip_code, {:autofocus => true, :class => "form-control", :placeholder => "Zip Code (optional)"}
       %br/
       .input
