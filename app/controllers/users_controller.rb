@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       @is_current_user = false
     end
     store_location
-    render layout: "wide"
+    render layout: "custom"
   end
 
   def edit
