@@ -58,136 +58,260 @@
     float: right;
     width: 50%;
   }
+  .list_borders {
+    border:solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: green;
+    border-radius:0.5em;
+    width: 200px;
+
+  }
+  .list-group-item-success {
+    border-radius:0.5em;
+    height:30px;
+  }
+
 / BODY
-.row
-  / PROFILE INFO
-  .col-md-3{:style => "border-right:1px solid #dddddd;"}
-    .col-md-12{:style => "text-align: center;"}
-      %h4
+/ .row
+/   .col-md-3
+/     %h3{:style=>"margin-left:20px"}
+/       My Profile
+/     - if @user.profile_picture.present?
+/       = image_tag(@user.profile_picture, class: "fit-all", :style => "padding: 10%")
+/     - else
+/       = image_tag("no-profile-available.jpg", class: "fit-all",:style => "padding: 10%")
+
+/   .col-md-3{:style=>"margin-top:50px"}
+/     %h5
+/       Name
+/     = @user.first_name
+/     = @user.last_name  
+/     %h5
+/       Email
+      
+/     = @user.email
+/     %h5 
+/       Member Type
+/     Student
+/     %h5 
+/       Affiliation
+/     DX Developer
+
+/ .row
+/   %hr
+/   %h1
+/   .col-md-6
+/     %h3{:style=>"margin-left:10px"} My Collections
+/     .col-md-4
+/       %h4{:style=>"margin-top:10px;margin-bottom:-5px;"} Private
+/       .col-md-4
+/       -if @private_collections.empty?
+/         %h5 You have no private collections
+/       -else
+/         = will_paginate @private_collections, :param_name => "private_page"
+/         %ul.collections
+/           - @private_collections.each do |collection|
+/             %br
+/             %li
+/               -col_path = "/collections/" + collection.id.to_s
+/               %a{:href => col_path}
+/                 %span.glyphicon.glyphicon-th-list
+/                 #{collection.name}
+/     .col-md-4
+/       %h4{:style=>"margin-top:10px;margin-bottom:-5px;"} Public
+/       -if @public_collections.empty?
+/         %h5 You have no public collections
+/       -else
+/         = will_paginate @public_collections, :param_name => "public_page"
+/         %ul.collections
+/           - @public_collections.each do |collection|
+/             %br
+/             %li
+/               -col_path = "/collections/" + collection.id.to_s
+/               %a{:href => col_path}
+/                 %span.glyphicon.glyphicon-th-list
+/                 #{collection.name}
+/   .col-md-6
+/     %h3 Method Liked
+/     - @owned_methods.each do |dm|
+/       = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"5")
+
+
+/ PROFILE INFO
+/ .col-md-3{:style => "border-right:1px solid #dddddd;"}
+.col-md-3
+
+  .col-md-12{:style=>"margin-top:20px"}
+    - if @user.has_image?
+      = image_tag(@user.image_url, class: "fit-all", :style => "border-radius: 1em;")
+    - else
+      = image_tag("no-profile-available.jpg", class: "fit-all",:style => "border-radius: 1em;")
+    / - if @user.profile_picture.present?
+    /   = image_tag(@user.profile_picture, class: "fit-all", :style => "border-radius: 1em;")
+  .col-md-12{:style=>"margin-top:10px"}
+    %h5
+      %a= @user.username
+  - if @is_current_user
+    .col-md-12
+      = link_to "Edit Profile", edit_user_path(@user), :class => "btn btn-default", :style=>"width:200px; height:30px"
+
+  / - if !@is_current_user
+  /   .col-md-12
+  /     %button.btn.btn-default{:type => "submit"}
+  /       %span.glyphicon.glyphicon-plus
+  /       Follow
+  /     %button.btn.btn-default.pull-right{:type => "submit"}
+  /       %span.glyphicon.glyphicon-envelope
+  /       Message
+  .col-md-12
+    / %h4
+    /   %span.glyphicon.glyphicon-thumbs-up
+    /   Likes
+    /   %span.pull-right #
+    / %h4
+    /   %span.glyphicon.glyphicon-user
+    /   Followers
+    /   %span.pull-right #
+    / %h4
+    /   %span.glyphicon.glyphicon-user
+    /   Following
+    /   %span.pull-right #
+  / .col-md-12
+  /   %h4 Expertise
+  /   %p
+  /     %span.tag-label.label-gap brainstorming
+  /     %span.tag-label.label-gap research
+
+
+  / .col-md-12{:style=>"margin-top:15px"}
+  /   .list-group
+  /     .list-group-item-success{:style=>"padding:10px"}
+  /       Name
+  /     .list-group-item-default{:style=>"padding:10px"} 
+  /       James Jiang
+  /     .list-group-item-success{:style=>"padding:10px"} 
+  /       Affiliation
+  /     .list-group-item-default{:style=>"padding:10px"} 
+  /       DX Developer
+  /     .list-group-item-success{:style=>"padding:10px"}
+  /       Member Type
+  /     .list-group-item-default{:style=>"padding:10px"} 
+  /       Student
+  /     .list-group-item-success{:style=>"padding:10px"} 
+  /       Email
+  /     .list-group-item-default{:style=>"padding:10px"} 
+  /       james.jiang@berkeley.edu
+  /     .list-group-item-success{:style=>"padding:10px"}
+  /       Phone
+  /     .list-group-item-default{:style=>"padding:10px"} 
+  /       (818)669-1359
+
+
+  - if @user.first_name != nil && @user.last_name != nil
+    .col-md-12
+      %h5 Name
+      %p
         = @user.first_name
         = @user.last_name
-      %h5
-        %a= @user.username
+
+  / - if @user.about_text != nil
+  /   .col-md-12
+  /     %h4 About
+  /     %p= @user.about_text
+
+  - if @user.affiliation != nil
     .col-md-12
-      - if @user.profile_picture.present?
-        = image_tag(@user.profile_picture, class: "fit-all", :style => "padding: 10%")
-      - else
-        = image_tag("no-profile-available.jpg", class: "fit-all",:style => "padding: 10%")
-    - if !@is_current_user
-      .col-md-12
-        %button.btn.btn-default{:type => "submit"}
-          %span.glyphicon.glyphicon-plus
-          Follow
-        %button.btn.btn-default.pull-right{:type => "submit"}
-          %span.glyphicon.glyphicon-envelope
-          Message
-    / .col-md-12
-    /   %h4
-    /     %span.glyphicon.glyphicon-thumbs-up
-    /     Likes
-    /     %span.pull-right #
-    /   %h4
-    /     %span.glyphicon.glyphicon-user
-    /     Followers
-    /     %span.pull-right #
-    /   %h4
-    /     %span.glyphicon.glyphicon-user
-    /     Following
-    /     %span.pull-right #
+      %h5 Affiliation
+      %p= @user.affiliation
+  - if @user.email != nil || @user.website != nil || @user.phone_number != nil
+
     .col-md-12
-      %h4 Expertise
-      %p
-        %span.tag-label.label-gap brainstorming
-        %span.tag-label.label-gap research
-    - if @user.about_text != nil
-      .col-md-12
-        %h4 About
-        %p= @user.about_text
-    - if @user.affiliation != nil
-      .col-md-12
-        %h4 Affiliation
-        %p= @user.affiliation
-    - if @user.email != nil || @user.website != nil || @user.phone_number != nil
-      .col-md-12
-        %h4 Contact
-        %p= @user.email
-        %p= @user.website
-        %p= @user.phone_number
-    / SOCIAL ICONS
-    - if @user.facebook != nil && @user.facebook != ""
-      = link_to image_tag("facebook_icon.png", class: "social-icon"), @user.facebook
-    - if @user.twitter != nil && @user.twitter != ""
-      = link_to image_tag("twitter_icon.ico", class: "social-icon"), @user.twitter
-    - if @user.linkedin != nil && @user.linkedin != ""
-      = link_to image_tag("linkedin_icon.png", class: "social-icon"), @user.linkedin
-    / END SOCIAL ICONS
-  / END PROFILE INFO
-  / POSTED BY
-  .col-md-9
-    %h4
-      Posted by #{@user.first_name != nil && @user.last_name != nil ? @user.first_name+" "+@user.last_name : @user.username}
-      - if @is_current_user
-        = link_to "Edit", edit_user_path(@user), :class => "btn btn-default pull-right"
-    / NAVBAR
+      %h5 Contact
+      %p= @user.email
+      %p= @user.website
+      %p= @user.phone_number
+  .col-md-12
+    %h5 Member Type
+    %p Student
+  / / SOCIAL ICONS
+  / - if @user.facebook != nil && @user.facebook != ""
+  /   = link_to image_tag("facebook_icon.png", class: "social-icon"), @user.facebook
+  / - if @user.twitter != nil && @user.twitter != ""
+  /   = link_to image_tag("twitter_icon.ico", class: "social-icon"), @user.twitter
+  / - if @user.linkedin != nil && @user.linkedin != ""
+  /   = link_to image_tag("linkedin_icon.png", class: "social-icon"), @user.linkedin
+  / END SOCIAL ICONS
+/ END PROFILE INFO
+/ POSTED BY
+.col-md-9{:style=>"margin-top:25px"}
+  .panel.panel-success
+    .panel-heading
+      TDX Tips
+    .panel-body
+      You can like methods to easily access them from your profile in the future
+  %h4
+    Liked by #{@user.first_name != nil && @user.last_name != nil ? @user.first_name+" "+@user.last_name : @user.username}
+
+  / NAVBAR
+  #tabs
+    %ul.nav.nav-tabs
+      %li.active
+        %a{"data-link" => "all"} All
+      %li
+        %a{"data-link" => "dm"} Methods
+      %li
+        %a{"data-link" => "cs"} Case Studies
+      %li
+        %a{"data-link" => "col"} Collections
+  / END NAVBAR
+  / THUMBNAILS
+  .tab-pane.col-md-12.padding{"data-link" => "all"}
+    - @owned_methods.each do |dm|
+      = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4")
+  .tab-pane.col-md-12.padding{"data-link" => "dm"}
+    - @owned_methods.each do |dm|
+      = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4")
+  / Case Study Search Tab
+  .tab-pane.col-md-12.padding{"data-link" => "cs"}
+
+  .tab-pane.col-md-12.padding{"data-link" => "col"}
     #tabs
       %ul.nav.nav-tabs
         %li.active
-          %a{"data-link" => "all"} All
+          %a{"data-link" => "private"} Private
         %li
-          %a{"data-link" => "dm"} Methods
-        %li
-          %a{"data-link" => "cs"} Case Studies
-        %li
-          %a{"data-link" => "col"} Collections
-    / END NAVBAR
-    / THUMBNAILS
-    .tab-pane.col-md-12.padding{"data-link" => "all"}
-      - @owned_methods.each do |dm|
-        = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4")
-    .tab-pane.col-md-12.padding{"data-link" => "dm"}
-      - @owned_methods.each do |dm|
-        = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"4")
-    / Case Study Search Tab
-    .tab-pane.col-md-12.padding{"data-link" => "cs"}
+          %a{"data-link" => "public"} Public
 
-    .tab-pane.col-md-12.padding{"data-link" => "col"}
-      #tabs
-        %ul.nav.nav-tabs
-          %li.active
-            %a{"data-link" => "private"} Private
-          %li
-            %a{"data-link" => "public"} Public
+    .tab-pane.col-md-12.padding{"data-link" => "private"}
+      -if @private_collections.empty?
 
-      .tab-pane.col-md-12.padding{"data-link" => "private"}
-        -if @private_collections.empty?
+        %h2 You have no private collections
+      -else
+        %h2 Private
+        = will_paginate @private_collections, :param_name => "private_page"
+        %ul.collections
+          - @private_collections.each do |collection|
+            %br
+            %li
+              -col_path = "/collections/" + collection.id.to_s
+              %a{:href => col_path}
+                %span.glyphicon.glyphicon-th-list
+                #{collection.name}
 
-          %h2 You have no private collections
-        -else
-          %h2 Private
-          = will_paginate @private_collections, :param_name => "private_page"
-          %ul.collections
-            - @private_collections.each do |collection|
-              %br
-              %li
-                -col_path = "/collections/" + collection.id.to_s
-                %a{:href => col_path}
-                  %span.glyphicon.glyphicon-th-list
-                  #{collection.name}
-
-      .tab-pane.col-md-12.padding{"data-link" => "public", :style => "display: none;" }
-        -if @public_collections.empty?
-          %h2 You have no public collections
-        -else
-          %h2 Public
-          = will_paginate @public_collections, :param_name => "public_page"
-          %ul.collections
-            - @public_collections.each do |collection|
-              %br
-              %li
-                -col_path = "/collections/" + collection.id.to_s
-                %a{:href => col_path}
-                  %span.glyphicon.glyphicon-th-list
-                  #{collection.name}
-    / END THUMBNAILS
-  / END POSTED BY
+    .tab-pane.col-md-12.padding{"data-link" => "public", :style => "display: none;" }
+      -if @public_collections.empty?
+        %h2 You have no public collections
+      -else
+        %h2 Public
+        = will_paginate @public_collections, :param_name => "public_page"
+        %ul.collections
+          - @public_collections.each do |collection|
+            %br
+            %li
+              -col_path = "/collections/" + collection.id.to_s
+              %a{:href => col_path}
+                %span.glyphicon.glyphicon-th-list
+                #{collection.name}
+  / END THUMBNAILS
+/ END POSTED BY
 / END BODY
