@@ -232,7 +232,7 @@
       %p= @user.phone_number
   .col-md-12
     %h5 Member Type
-    %p Student
+    %p= @user.member_type
   / / SOCIAL ICONS
   / - if @user.facebook != nil && @user.facebook != ""
   /   = link_to image_tag("facebook_icon.png", class: "social-icon"), @user.facebook
