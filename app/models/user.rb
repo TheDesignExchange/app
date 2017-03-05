@@ -33,8 +33,8 @@ class User < ActiveRecord::Base
   mount_uploader :profile_picture, PictureUploader
 
   attr_accessible :email, :encrypted_password, :sign_in_count, :first_name, :last_name, :username, :phone_number, :website,
-  :facebook, :twitter, :linkedin, :about_text , :profile_picture, :password, :password_confirmation, :zip_code, :affiliation, :member_type
-
+  :facebook, :twitter, :linkedin, :about_text , :profile_picture, :password, :password_confirmation, :zip_code, :affiliation, :member_type,
+  :picture, :picture_url
   has_many :owned_methods, dependent: :destroy, class_name: "DesignMethod", foreign_key: :owner_id
   has_many :method_favorites, dependent: :destroy
   has_many :favorite_methods, through: :method_favorites, :source => :design_method
@@ -121,6 +121,35 @@ class User < ActiveRecord::Base
       return method_like
     else
       return false
+    end
+  end
+
+  def upload_to_s3(file, url)
+    if !file.nil?
+      if url.include? "thedesignexchange-staging"
+        path = "staging/users/" + self.id.to_s + "/" + "user-" + self.id.to_s
+      else
+        path = "production/users/" + self.id.to_s + "/" + "user-" + self.id.to_s
+      end
+      obj = S3_BUCKET.object(path)
+      obj.upload_file(file.path, acl:'public-read')
+      self.update(picture_url: obj.public_url)
+    end
+  end
+
+  def has_image?
+    if Rails.env.production?
+      return self.picture_url.present?
+    else
+      return self.profile_picture.url.present?
+    end
+  end
+
+  def image_url
+    if Rails.env.production?
+      return self.picture_url
+    else
+      return self.profile_picture
     end
   end
 

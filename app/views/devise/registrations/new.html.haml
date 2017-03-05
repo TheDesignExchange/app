@@ -19,8 +19,6 @@
       .input
         = f.text_field :affiliation, {:autofocus => true, :class => "form-control", :placeholder => "Affiliation (optional)"}
       %br/
-      / .input
-      /   = f.select :member_type, options_for_select(["Student-Undergraduate","Student-Graduate", "Educator (K-12)", "Educator (College)", "Design Practitioner (Hobbyist)"]), {}, {:class => "form-control"}
       %ul.nav.nav-pills
         %li.active
           %a{"data-toggle" => "pill", :href => "#student"} Student

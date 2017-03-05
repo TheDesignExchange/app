@@ -142,10 +142,12 @@
 .col-md-3
 
   .col-md-12{:style=>"margin-top:20px"}
-    - if @user.profile_picture.present?
-      = image_tag(@user.profile_picture, class: "fit-all", :style => "border-radius: 1em;")
+    - if @user.has_image?
+      = image_tag(@user.image_url, class: "fit-all", :style => "border-radius: 1em;")
     - else
       = image_tag("no-profile-available.jpg", class: "fit-all",:style => "border-radius: 1em;")
+    / - if @user.profile_picture.present?
+    /   = image_tag(@user.profile_picture, class: "fit-all", :style => "border-radius: 1em;")
   .col-md-12{:style=>"margin-top:10px"}
     %h5
       %a= @user.username
