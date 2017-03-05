@@ -9,6 +9,8 @@
                 content.toggleClass('in');
               })
   }
+
+
 :css
   .sidebar-element{
     margin-bottom: 5px;
@@ -36,6 +38,10 @@
     margin-left:40px;
   }
 
+  .list-group-item {
+    overflow: hidden;
+  }
+
   @media (max-width: 768px) {
     .sidebar-element {
       display: inline-block;
@@ -47,11 +53,19 @@
     }
   }
 
+
 %h5 Filter by Design Process
-- @search_filter_hash.each do |x|
-  %ul.sidebar-element
-    .category
-      = link_to x.name, {:controller => "design_methods", :action => "index", :filter_category => x.process_order},:class=> "category-heading sidebar-maincategory"
-      / = link_to x.name, search_category_design_methods_path(x.id), :class=> "category-heading sidebar-maincategory"
-/ = link_to "#", :class => "btn btn-info", :style=>"margin-left:40px" do
-/   .p{:style=>"font-size:10px"}Advanced Search
+
+.list-group
+  - @search_filter_hash.each do |x|
+    - if params[:filter_category].to_i == x.process_order
+      = link_to x.name, {:controller => "design_methods", :action => "index", :filter_category => x.process_order},:class=> "list-group-item active"
+    - else
+      = link_to x.name, {:controller => "design_methods", :action => "index", :filter_category => x.process_order},:class=> "list-group-item"
+
+
+
+  / = link_to "#", :class => "btn btn-info", :style=>"margin-left:40px" do
+  /   .p{:style=>"font-size:10px"}Advanced Search
+
+
