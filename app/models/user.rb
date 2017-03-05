@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   mount_uploader :profile_picture, PictureUploader
 
   attr_accessible :email, :encrypted_password, :sign_in_count, :first_name, :last_name, :username, :phone_number, :website,
-  :facebook, :twitter, :linkedin, :about_text , :profile_picture, :password, :password_confirmation, :zip_code, :affiliation
+  :facebook, :twitter, :linkedin, :about_text , :profile_picture, :password, :password_confirmation, :zip_code, :affiliation, :member_type
 
   has_many :owned_methods, dependent: :destroy, class_name: "DesignMethod", foreign_key: :owner_id
   has_many :method_favorites, dependent: :destroy

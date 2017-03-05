@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @public_collections = @public_collections.paginate(page: params[:public_page], :per_page => 10)
     if user_signed_in?
       @is_current_user = @user.id == current_user.id
-    else
+    else                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
       @is_current_user = false
     end
     store_location
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-      :username, :email, :encrypted_password, :first_name, :last_name, :profile_picture, :website, :facebook, :twitter, :linkedin, :about_text, :profile_picture, :zip_code, :affiliation
+      :username, :email, :encrypted_password, :first_name, :last_name, :profile_picture, :website, :facebook, :twitter, :linkedin, :about_text, :profile_picture, :zip_code, :affiliation, :member_type
       )
   end
 

@@ -23,6 +23,9 @@
         = f.text_field :zip_code, {:autofocus => true, :class => "form-control", :placeholder => "Zip Code (optional)"}
       %br/
       .input
+        = f.select :member_type, options_for_select(["Student-Undergraduate","Student-Graduate", "Educator (K-12)", "Educator (College)", "Design Practitioner (Hobbyist)"]), {}, {:class => "form-control"}
+      %br/
+      .input
         = f.password_field :password, {:autocomplete => "off", :autofocus => true, :placeholder => "New Password", :class => "form-control"}
       %br/
       .input

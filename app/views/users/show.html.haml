@@ -181,56 +181,55 @@
   /     %span.tag-label.label-gap research
 
 
-  .col-md-12{:style=>"margin-top:15px"}
-    .list-group
-      .list-group-item-success{:style=>"padding:10px"}
-        Name
-      .list-group-item-default{:style=>"padding:10px"} 
-        James Jiang
-      .list-group-item-success{:style=>"padding:10px"} 
-        Affiliation
-      .list-group-item-default{:style=>"padding:10px"} 
-        DX Developer
-      .list-group-item-success{:style=>"padding:10px"}
-        Member Type
-      .list-group-item-default{:style=>"padding:10px"} 
-        Student
-      .list-group-item-success{:style=>"padding:10px"} 
-        Email
-      .list-group-item-default{:style=>"padding:10px"} 
-        james.jiang@berkeley.edu
-      .list-group-item-success{:style=>"padding:10px"}
-        Phone
-      .list-group-item-default{:style=>"padding:10px"} 
-        (818)669-1359
+  / .col-md-12{:style=>"margin-top:15px"}
+  /   .list-group
+  /     .list-group-item-success{:style=>"padding:10px"}
+  /       Name
+  /     .list-group-item-default{:style=>"padding:10px"} 
+  /       James Jiang
+  /     .list-group-item-success{:style=>"padding:10px"} 
+  /       Affiliation
+  /     .list-group-item-default{:style=>"padding:10px"} 
+  /       DX Developer
+  /     .list-group-item-success{:style=>"padding:10px"}
+  /       Member Type
+  /     .list-group-item-default{:style=>"padding:10px"} 
+  /       Student
+  /     .list-group-item-success{:style=>"padding:10px"} 
+  /       Email
+  /     .list-group-item-default{:style=>"padding:10px"} 
+  /       james.jiang@berkeley.edu
+  /     .list-group-item-success{:style=>"padding:10px"}
+  /       Phone
+  /     .list-group-item-default{:style=>"padding:10px"} 
+  /       (818)669-1359
 
 
-  / - if @user.first_name != nil && @user.last_name != nil
+  - if @user.first_name != nil && @user.last_name != nil
+    .col-md-12
+      %h5 Name
+      %p
+        = @user.first_name
+        = @user.last_name
+
+  / - if @user.about_text != nil
   /   .col-md-12
-  /     / %h4 Name
-  /     %p
-  /       = @user.first_name
-  /       = @user.last_name
+  /     %h4 About
+  /     %p= @user.about_text
 
-  / / - if @user.about_text != nil
-  / /   .col-md-12
-  / /     %h4 About
-  / /     %p= @user.about_text
-
-  / - if @user.affiliation != nil
-  /   .col-md-12
-  /     / %h4 Affiliation
-  /     %p= @user.affiliation
-  / - if @user.email != nil || @user.website != nil || @user.phone_number != nil
-  /   .col-md-12
-  /     / %h4 Contact
-  /     .glyphicon.glyphicon-envelope
-  /       = @user.email
-  /     %p= @user.website
-  /     %p= @user.phone_number
-  / .col-md-12
-  /   / %h4 Member Type
-  /   %p Student
+  - if @user.affiliation != nil
+    .col-md-12
+      %h5 Affiliation
+      %p= @user.affiliation
+  - if @user.email != nil || @user.website != nil || @user.phone_number != nil
+    .col-md-12
+      %h5 Contact
+      %p= @user.email
+      %p= @user.website
+      %p= @user.phone_number
+  .col-md-12
+    %h5 Member Type
+    %p Student
   / / SOCIAL ICONS
   / - if @user.facebook != nil && @user.facebook != ""
   /   = link_to image_tag("facebook_icon.png", class: "social-icon"), @user.facebook
