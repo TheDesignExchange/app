@@ -1,3 +1,12 @@
+%ul.nav.nav-pills.nav-justified
+  %li.active
+    %a{:href => "#"} Home
+  %li
+    %a{:href => "#"} Menu 1
+  %li
+    %a{:href => "#"} Menu 2
+  %li
+    %a{:href => "#"} Menu 3
 .panel.panel-default.login-margin.panel-primary
   .panel-heading
     %h3.panel-title Account Information
@@ -22,8 +31,10 @@
       .input
         = f.text_field :zip_code, {:autofocus => true, :class => "form-control", :placeholder => "Zip Code (optional)"}
       %br/
-      .input
-        = f.select :member_type, options_for_select(["Student-Undergraduate","Student-Graduate", "Educator (K-12)", "Educator (College)", "Design Practitioner (Hobbyist)"]), {}, {:class => "form-control"}
+      / .input
+        / = f.select :member_type, options_for_select(["Student-Undergraduate","Student-Graduate", "Educator (K-12)", "Educator (College)", "Design Practitioner (Hobbyist)"]), {}, {:class => "form-control"}
+
+
       %br/
       .input
         = f.password_field :password, {:autocomplete => "off", :autofocus => true, :placeholder => "New Password", :class => "form-control"}
