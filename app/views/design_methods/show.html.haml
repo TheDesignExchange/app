@@ -311,10 +311,10 @@
       .col-xs-6
         %h5 Current Author
         .col-xs-4
-        - if @current_author.has_image?
-          = image_tag(@current_author.image_url, class: "fit-all", :style => "padding: 10%")
-        - else
-          = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
+          - if @current_author.has_image?
+            = image_tag(@current_author.image_url, class: "fit-all", :style => "padding: 10%")
+          - else
+            = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
         .col-xs-8
           - if @current_author != nil
             %p= link_to @current_author.first_name + " " + @current_author.last_name, user_path(@current_author.id)
@@ -323,10 +323,10 @@
       .col-xs-6
         %h5 Current Editor
         .col-xs-4
-        - if @current_editor.has_image?
-          = image_tag(@current_editor.image_url, class: "fit-all", :style => "padding: 10%")
-        - else
-          = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
+          - if @current_editor.has_image?
+            = image_tag(@current_editor.image_url, class: "fit-all", :style => "padding: 10%")
+          - else
+            = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
         .col-xs-8
           - if @current_editor != nil
             %p= link_to @current_editor.first_name + " " + @current_editor.last_name, user_path(@current_editor.id)
