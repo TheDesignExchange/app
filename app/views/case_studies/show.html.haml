@@ -80,7 +80,7 @@
       - if current_user != nil and current_user.author? and @case_study.author_id == nil
         = link_to "Claim to be Author", {:controller => "case_studies", :action => :claimAuthor, :id => @case_study.id}, :class => "btn btn-success"
       - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @case_study.author_id == current_user.id
-        = link_to "Unclaim to be Author", {:controller => "case_studies", :action => :unclaimAuthor, :id => @case_studies.id}, :class => "btn btn-warning"   
+        = link_to "Unclaim to be Author", {:controller => "case_studies", :action => :unclaimAuthor, :id => @case_study.id}, :class => "btn btn-warning"   
     .h4 Industry Sector
     - if @case_study.industry_sectors != nil
       - @case_study.industry_sectors.each do |sector|
@@ -215,10 +215,9 @@
         .col-xs-6
           %h5 Current Author
           .col-xs-4
-            - if @current_author.profile_picture.present?
-              = image_tag(@current_author.profile_picture, class: "fit-all", :style => "padding: 10%")
+            - if @current_author.has_image?
+              = image_tag(@current_author.image_url, class: "fit-all", :style => "padding: 10%; margin-left:-15px")
             - else
-              /TODO lol we need to self host this asap
               = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
           .col-xs-8 
             - if @current_author != nil
@@ -228,10 +227,9 @@
         .col-xs-6
           %h5 Current Editor
           .col-xs-4
-            - if @current_editor.profile_picture.present?
-              = image_tag(@current_editor.profile_picture, class: "fit-all", :style => "padding: 10%")
+            - if @current_editor.has_image?
+              = image_tag(@current_editor.image_url, class: "fit-all", :style => "padding: 10%; margin-left:-15px")
             - else
-              /TODO lol we need to self host this asap
               = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
           .col-xs-8 
             - if @current_editor != nil
