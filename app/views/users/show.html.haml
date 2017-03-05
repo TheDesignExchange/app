@@ -250,7 +250,8 @@
     .panel-body
       You can like methods to easily access them from your profile in the future
   %h4
-    Liked by #{@user.first_name != nil && @user.last_name != nil ? @user.first_name+" "+@user.last_name : @user.username}
+    //Change to liked by
+    Posted by #{@user.first_name != nil && @user.last_name != nil ? @user.first_name+" "+@user.last_name : @user.username}
 
   / NAVBAR
   #tabs
