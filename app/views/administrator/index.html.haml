@@ -259,6 +259,7 @@
       %tr
         %th Method Name
         %th Completion Score
+        %th Popularity
         %th Video
         %th Image
         %th Hidden
@@ -276,6 +277,10 @@
 
         %td
           = method.completion_score
+
+        %td
+          = method.likes
+
         %td
           - if method.videoURL.present?
             Yes

@@ -25,7 +25,7 @@
 
   }
 
-  #sidebar{
+  .sidebar{
 
      text-decoration: none;
      cursor: pointer;
@@ -36,11 +36,31 @@
      height: 100%;
      /*border-right: 2px solid #ddd;*/
   }
-.h5{:style=>"margin-left:40px"} Filter by Design Process
-- @search_filter_hash.each do |x|
-  %ul.sidebar-element
-    .category
-      = link_to x.name, {:controller => "case_studies", :action => "index", :filter_category => x.id},:class=> "category-heading sidebar-maincategory"
+
+  .sidebar h5 {
+    margin-left: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .sidebar-element {
+      display: inline-block;
+      padding-left: 10px;
+      margin-right: 0px;
+    }
+
+    .sidebar h5 {
+      margin-left: 0px;
+    }
+  }
+
+%h5 Filter by Design Process
+.list-group
+  - @search_filter_hash.each do |x|
+    - if params[:filter_category].to_i == x.process_order
+      = link_to x.name, {:controller => "case_studies", :action => "index", :filter_category => x.process_order},:class=> "list-group-item active"
+    - else
+      = link_to x.name, {:controller => "case_studies", :action => "index", :filter_category => x.process_order},:class=> "list-group-item"
+
 / = link_to "#", :class => "btn btn-info", :style=>"margin-left:40px" do
 /   .p{:style=>"font-size:10px"}Advanced Search
 

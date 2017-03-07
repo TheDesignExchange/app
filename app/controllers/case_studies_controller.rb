@@ -13,7 +13,7 @@ class CaseStudiesController < ApplicationController
 
     if params[:filter_category] != nil
       c = CaseStudy.all
-      list_of_ids = MethodCategory.find_by(id:params[:filter_category]).case_study_ids
+      list_of_ids = MethodCategory.find_by(process_order:params[:filter_category]).case_study_ids
       @case_studies = CaseStudy.where(id:list_of_ids)
 
     end

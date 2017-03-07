@@ -11,14 +11,16 @@ class DesignMethodsController < ApplicationController
 
   def index
       # UserMailer.seeking_approval_email(current_user, @design_method)
-      @design_methods = DesignMethod.where("overview != ?", "No overview available" )
+      # @design_methods = DesignMethod.where("overview != ?", "No overview available" )
+      @design_methods = DesignMethod.order(completion_score: :desc)
+
       if params[:sort_order] == "completion"
         @design_methods = DesignMethod.order(completion_score: :desc)
       end
 
       if params[:filter_category] != nil
-        c = CaseStudy.all
-        list_of_ids = MethodCategory.find_by(id:params[:filter_category]).design_method_ids
+        c = DesignMethod.all
+        list_of_ids = MethodCategory.find_by(process_order:params[:filter_category]).design_method_ids
         @design_methods = DesignMethod.where(id:list_of_ids)
       end
       # Filter bar needs
@@ -145,6 +147,10 @@ class DesignMethodsController < ApplicationController
     end
   end
 
+  def popular
+
+  end
+
   def show
     require 'dx/props'
     @props = Dx::Props.load_file 'config/props/design_methods.yml'
@@ -224,6 +230,7 @@ class DesignMethodsController < ApplicationController
     end
   end
 
+
   # Confirms that user is logged-in.
   def edit_as_signed_in_user
     unless signed_in?
@@ -239,6 +246,7 @@ class DesignMethodsController < ApplicationController
       redirect_to design_methods_url
     end
   end
+
 
 
   def destroy

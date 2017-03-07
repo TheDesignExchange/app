@@ -26,7 +26,7 @@
 .row
   = form_for @user, :html => {:multipart => true} do |f|
     / PROFILE INFO
-    .col-md-3{:style => "border-right:1px solid #dddddd;"}
+    .col-md-3
       .col-md-12{:style => "text-align: center;"}
         %h4
           = @user.first_name
@@ -34,31 +34,21 @@
         %h5
           %a= @user.username
       .col-md-12
-        - if @user.profile_picture.present?
-          = image_tag(@user.profile_picture, class: "fit-all",:style => "padding: 10%")
+        - if @user.has_image?
+          = image_tag(@user.image_url, class: "fit-all", :style => "border-radius: 1em;")
         - else
-          = image_tag("no-profile-available.jpg", class: "fit-all",:style => "padding: 10%")
-        = f.file_field :profile_picture
-      .col-md-12
-        %h4
-          %span.glyphicon.glyphicon-thumbs-up
-          Likes
-          %span.pull-right #
-        %h4
-          %span.glyphicon.glyphicon-user
-          Followers
-          %span.pull-right #
-        %h4
-          %span.glyphicon.glyphicon-user
-          Following
-          %span.pull-right #
-      .col-md-12
-        %h4 Expertise
-        %input.form-control{:placeholder => "Expertise", :type => "text"}/
-        %p
-          %span.tag-label.label-gap
-            brainstorming
-            %span.glyphicon.glyphicon-remove-circle
+          = image_tag("no-profile-available.jpg", class: "fit-all",:style => "border-radius: 1em;")
+        - if Rails.env.production?
+          = f.file_field :picture
+        - else
+          = f.file_field :profile_picture
+      / .col-md-12
+      /   %h4 Expertise
+      /   %input.form-control{:placeholder => "Expertise", :type => "text"}/
+      /   %p
+      /     %span.tag-label.label-gap
+      /       brainstorming
+      /       %span.glyphicon.glyphicon-remove-circle
       .col-md-12
         %h4 About
         = f.text_area :about_text, {:autofocus => true, :class => "form-control", :row => "3"}
@@ -68,9 +58,11 @@
       .col-md-12
         %h4 Zip Code
         = f.text_area :zip_code, {:autofocus => true, :class => "form-control", :row => "3"}
+
       .col-md-12
         %h4 Contact
         = f.text_field :website, {:autofocus => true, :class => "form-control", :placeholder => "Website"}
+        %br
         = f.phone_field :phone_number, {:autofocus => true, :class => "form-control", :placeholder => "Phone Number"}
       / SOCIAL ICONS
       .col-md-12{:style => "margin-top:10px;"}
@@ -92,7 +84,12 @@
       / END SOCIAL ICONS
     / END PROFILE INFO
     / POSTED BY
-    .col-md-9
+    .col-md-9{:style=>"margin-top:25px"}
+      .panel.panel-success
+        .panel-heading
+          TDX Tips
+        .panel-body
+          Add your expertise so you have a more complete profile
       %h4
         Posted by #{@user.first_name != nil && @user.last_name != nil ? @user.first_name+" "+@user.last_name : @user.username}
         \#{f.submit "Save", {:class=> "btn btn-default publish-background-color pull-right" }}

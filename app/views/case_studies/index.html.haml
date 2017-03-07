@@ -2,43 +2,70 @@
   $(function(){
     var pH = $('#create-btn').parent().parent().height()
     var eH = $('#create-btn').height()
-    $('#create-btn').css('margin-top', (pH - eH)/2)
     $('#hidden').click(function() {
       $("#hiddenCaseStudies").toggle();
     });
   });
+:css
+  html, body{
+  	height: 100%;
+  	width: 100%;
+  }
+  #search-and-filter{
+  	height: 100%;
+  }
+
+  #create-btn{
+    float: right;
+    margin: 16px 0 10px 0;
+  }
+
+  @media (max-width: 768px) {
+    #create-btn {
+      float: none;
+      margin: auto;
+      display: table;
+    }
+  }
+
 .container-fluid
   .row
     .col-md-2
     .col-md-10.left-pad
       .col-md-6
-        %h3 Featured Case Studies
+        .h3
+          - if params[:filter_category] == nil
+            = "Featured Case Studies"
+          - else
+            = "Case Studies: " + filter_category(params[:filter_category])
+
+
         - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
           %input{:name => "hidden", :type => "checkbox", :id => "hidden", :style => "margin: 0px 5px 15px 0px"} Show hidden Case Studies
           %br
           = link_to "Sort by Completion Score", {:controller => "case_studies", :action => "index", :sort_order => "completion"}, :class => "btn btn-primary"
       .col-md-6
-        = link_to new_case_study_path, :id => "create-btn", :class => "btn btn-default pull-right btn-index-create"  do
+        = link_to new_case_study_path, :id => "create-btn", :class => "btn btn-default btn-index-create"  do
           %span.glyphicon.glyphicon-plus
           Add Case Study
-  
+
   .row
-    #sidebar.col-xs-4.col-sm-2
+    #sidebar.col-sm-2
       = render "/layouts/sidebarcase"
     - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
-      .col-md-2
+      .col-sm-2
         / WARNING: SIDEBAR UNDER CONSTRUCTION!
-      .col-md-10.left-pad
-        #hiddenCaseStudies{:style => "display:none"} 
-          .h4{:style => "margin-left:3%"}
+      .col-sm-10.left-pad
+        #hiddenCaseStudies{:style => "display:none"}
+          %h4{:style => "margin-left:3%"}
             Hidden Case Studies
           - @case_studies.where(:hidden => true).where(:draft=>false).each do |cs|
             = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3")
-    .col-md-2
-    .col-md-10.left-pad
+    .col-sm-2
+    .col-sm-10.left-pad
       - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
         #publicCaseStudies
-          .h4{:style => "margin-left:3%"}
+          %h4{:style => "margin-left:3%"}
             Public Case Studies
       - @case_studies.where(:hidden => false).where(:draft=>false).each do |cs|
         = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3")

@@ -1,0 +1,135 @@
+/* line 1, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/_props.scss */
+.control {
+  margin: 0.5em 0;
+}
+/* line 4, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/_props.scss */
+.control.boolean {
+  display: block;
+}
+/* line 7, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/_props.scss */
+.control.link {
+  display: block;
+}
+/* line 10, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/_props.scss */
+.control.numeric {
+  display: inline-block;
+}
+/* line 13, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/_props.scss */
+.control.tags {
+  display: block;
+}
+/* line 16, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/_props.scss */
+.control.text {
+  display: block;
+}
+
+/* line 7, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+#save-bar > * {
+  margin-left: 4px;
+}
+
+/* line 13, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.method p {
+  font-size: 11pt;
+  font-family: serif;
+  line-height: 1.2em;
+}
+
+/* line 19, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.highlight {
+  color: #777;
+  font-size: 9pt;
+}
+
+/* line 24, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.highlight p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* line 29, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.method h3 {
+  font-size: 13pt;
+}
+
+/* line 33, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+li.method {
+  border-bottom: 1px solid #e9e9e9;
+  border-right: 1px solid #e9e9e9;
+  border-left: 1px solid #e9e9e9;
+  margin: 0;
+  padding: 10px;
+}
+
+/* line 42, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+h1, h2, h3, h4 {
+  font-family: sans-serif;
+}
+
+/* line 46, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+h3, h4 {
+  font-weight: normal;
+}
+
+/* line 50, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.inline {
+  display: inline;
+  margin: 10px 20px 10px 0;
+}
+
+/* line 55, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.subtitle {
+  font-family: serif;
+  color: #777;
+}
+
+/* line 60, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.char-filter {
+  width: 50%;
+}
+
+/* line 64, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.edit-category {
+  border-bottom: 1px solid #ddd;
+}
+/* line 66, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.edit-category h3 {
+  padding-left: 15px;
+}
+
+/* line 71, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.edit-category:last-child {
+  border-bottom: none;
+}
+
+/* line 75, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.edit-category:not(:first-child) {
+  padding-top: 15px;
+}
+
+/* line 79, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.edit-char-group {
+  padding-bottom: 15px;
+}
+/* line 81, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.edit-char-group h4 {
+  margin-bottom: 5px;
+}
+
+/* line 86, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.edit-char-group-checkboxes {
+  padding-top: 5px;
+  padding-left: 5px;
+  border-top: 1px solid #ddd;
+}
+
+/* line 92, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.char-checkbox-label {
+  display: block;
+  font-weight: normal;
+}
+
+/* line 97, /Users/jamesjiang/theDesignExchange/app/assets/stylesheets/design_methods.css.scss */
+.char-checkbox {
+  margin-right: 2px !important;
+}
