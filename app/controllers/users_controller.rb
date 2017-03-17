@@ -20,11 +20,11 @@ class UsersController < ApplicationController
     @public_collections = @public_collections.paginate(page: params[:public_page], :per_page => 10)
     if user_signed_in?
       @is_current_user = @user.id == current_user.id
-    else
+    else                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
       @is_current_user = false
     end
     store_location
-    render layout: "wide"
+    render layout: "custom"
   end
 
   def edit
@@ -40,7 +40,10 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-
+    if Rails.env.production?
+      file = params[:user][:picture]
+      @user.upload_to_s3(file, request.original_url)
+    end
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -61,7 +64,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-      :username, :email, :encrypted_password, :first_name, :last_name, :profile_picture, :website, :facebook, :twitter, :linkedin, :about_text, :profile_picture, :zip_code, :affiliation
+      :username, :email, :encrypted_password, :first_name, :last_name, :profile_picture, :website, :facebook, :twitter, :linkedin, :about_text, :profile_picture, :zip_code, :affiliation, :member_type, :picture, :picture_url
       )
   end
 

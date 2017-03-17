@@ -19,6 +19,42 @@
       .input
         = f.text_field :affiliation, {:autofocus => true, :class => "form-control", :placeholder => "Affiliation (optional)"}
       %br/
+      %ul.nav.nav-pills
+        %li.active
+          %a{"data-toggle" => "pill", :href => "#student"} Student
+        %li
+          %a{"data-toggle" => "pill", :href => "#educator"} Educator
+        %li
+          %a{"data-toggle" => "pill", :href => "#designer"} Design Practitioner
+        %li
+          %a{"data-toggle" => "pill", :href => "#other"} Other
+      .tab-content{:style=>"margin:5px 0px 0px 10px;"}
+        #student.tab-pane.fade.in.active
+          = f.radio_button :member_type, 'Undergraduate Student', :checked => true
+          Undergraduate Student
+          %br/
+          = f.radio_button :member_type, 'Graduate Student' 
+          Graduate Student
+        #educator.tab-pane.fade
+          = f.radio_button :member_type, 'Undergraduate Educator'
+          Undergraduate Educator
+          %br/
+          = f.radio_button :member_type, 'Graduate Educator' 
+          Graduate Educator
+        #designer.tab-pane.fade
+          = f.radio_button :member_type, 'Design Practitioner with 0-5 years experience'
+          0-5 years of experience
+          %br/
+          = f.radio_button :member_type, 'Design Practitioner with 5-10 years experience'
+          5-10 years of experience
+          %br/
+          = f.radio_button :member_type, 'Design Practitioner with 10+ years experience'
+          10+ years of experience
+        #other.tab-pane.fade
+          = f.radio_button :member_type, 'Other'
+          Other
+
+      %br/
       .input
         = f.text_field :zip_code, {:autofocus => true, :class => "form-control", :placeholder => "Zip Code (optional)"}
       %br/
