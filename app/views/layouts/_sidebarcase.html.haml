@@ -10,49 +10,58 @@
               })
   }
 :css
-  .sidebar-element{
-    margin-right:50px
-  }
-
   .sidebar-leaf{
-  	font-weight: normal;
-  	display: block;
+    font-weight: normal;
+    display: block;
   }
 
   .sidebar-maincategory{
-  	font-weight: bold;
+    font-weight: bold;
     cursor: pointer;
-
   }
 
-  .sidebar{
-
+  #sidebar{
      text-decoration: none;
      cursor: pointer;
      overflow: hidden;
      margin-right: 0;
      padding-right: 0px;
-     /*width: 100%;*/
-     height: 100%;
-     /*border-right: 2px solid #ddd;*/
   }
 
-  .sidebar h5 {
-    margin-left: 40px;
+  .sidebar-element {
+    display: inline-block;
+    margin: 6px 0 0 0;
+    padding: 0;
+  }
+
+  .sidebar-element .category {
+    display: inline-block;
+    padding: .2em .6em .3em;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.35em;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #366036;
+  }
+
+  #sidebar h5 {
+    float: left;
+    clear: left;
+    margin-right: 20px;
   }
 
   @media (max-width: 768px) {
-    .sidebar-element {
-      display: inline-block;
-      padding-left: 10px;
-      margin-right: 0px;
-    }
-
-    .sidebar h5 {
-      margin-left: 0px;
+    #sidebar h5 {
+      float: none;
     }
   }
-%h5 Filter by Design Process
+
+%h5 Filter by Design Process:
 - @search_filter_hash.each do |x|
   %ul.sidebar-element
     .category
