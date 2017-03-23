@@ -1,13 +1,19 @@
 %h1 search
 = form_for @advanced_search do |f|
   %p
-    = f.label :keywords
+    = f.label :name
     %br/
     = f.text_field :keywords
   %p
     = f.label :process
     %br/
     = f.text_field :process  
+
+  %p
+    = f.label :characteristics
+    %br
+    = f.text_field :chracteristics.map(&:name).join("|")
+
   / %p
   /   = f.label :category_id
   /   %br/
