@@ -103,7 +103,11 @@
         %button.close{"data-dismiss" => "modal", :type => "button"} ×
         %h4.modal-title Modal Header
       .modal-body
-        %p Some text in the modal.
+        = form_tag do 
+          .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+            = label_tag(:email_of_friend, "Email:")
+            = text_field_tag(:email_of_friend)
+            = submit_tag "Share Method", class: 'btn btn-primary'
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
 #sidebar.col-md-3

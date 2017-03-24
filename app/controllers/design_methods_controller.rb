@@ -183,6 +183,10 @@ class DesignMethodsController < ApplicationController
     end
   end
 
+  def share
+    @design_method = DesignMethod.find(params[:id])
+  end
+
   def clearImage
     @design_method = DesignMethod.find(params[:id])
     @design_method.picture_url = nil
