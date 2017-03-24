@@ -34,8 +34,61 @@
       display: table;
     }
   }
+
+  .dropdown-submenu {
+      position: relative;
+  }
+
+  .dropdown-submenu>.dropdown-menu {
+      top: 0;
+      left: 100%;
+      margin-top: -6px;
+      margin-left: -1px;
+      -webkit-border-radius: 0 6px 6px 6px;
+      -moz-border-radius: 0 6px 6px;
+      border-radius: 0 6px 6px 6px;
+  }
+
+  .dropdown-submenu:hover>.dropdown-menu {
+      display: block;
+  }
+
+  .dropdown-submenu>a:after {
+      display: block;
+      content: " ";
+      float: right;
+      width: 0;
+      height: 0;
+      border-color: transparent;
+      border-style: solid;
+      border-width: 5px 0 5px 5px;
+      border-left-color: #ccc;
+      margin-top: 5px;
+      margin-right: -10px;
+  }
+
+  .dropdown-submenu:hover>a:after {
+      border-left-color: #fff;
+  }
+
+  .dropdown-submenu.pull-left {
+      float: none;
+  }
+
+  .dropdown-submenu.pull-left>.dropdown-menu {
+      left: -100%;
+      margin-left: 10px;
+      -webkit-border-radius: 6px 0 6px 6px;
+      -moz-border-radius: 6px 0 6px 6px;
+      border-radius: 6px 0 6px 6px;
+  }
 / TOP ROW
+
+
+
+
 .container-fluid
+  
   .row
     .col-sm-10.col-sm-offset-2.left-pad
       .col-sm-6
@@ -55,11 +108,47 @@
         = link_to new_design_method_path, :id=> "create-btn", :class=> "btn btn-default btn-index-create" do
           %span.glyphicon.glyphicon-plus
           Create Method
+      %ul.nav.nav-pills{:style=>"margin:20px 20px 20px 20px; border:1px;"}
+        - @search_filter_hash.each do |category|
+          %li{:style=>"margin-left:10px;"}
+            .dropdown
+              %a#dLabel.btn.btn-info{"data-target" => "#", "data-toggle" => "dropdown", :href => "/page.html"}
+                = category[:name]
+                %span.caret
+              %ul.dropdown-menu.multi-level{"aria-labelledby" => "dropdownMenu", :role => "menu"}
+                - MethodCategory.find_by(name:category[:name]).characteristic_groups.each do |char_group|
+                  %li.dropdown-submenu
+                    %a{:href => "#", :tabindex => "-1"} 
+                      = char_group.name
+                    %ul.dropdown-menu
+                      - char_group.characteristics.each do |characteristic|
+                        %li
+                          %a{:href => "#", :tabindex => "-1"}
+                            = characteristic.name
+                        / %li.dropdown-submenu
+                        /   %a{:href => "#"} Even More..
+
+                / %li
+                /   %a{:href => "#"} Some action
+                / %li
+                /   %a{:href => "#"} Some other action
+                / %li.divider
+                
+                /       %ul.dropdown-menu
+                /         %li
+                /           %a{:href => "#"} 3rd level
+                /         %li
+                /           %a{:href => "#"} 3rd level
+                /     %li
+                /       %a{:href => "#"} Second level
+                /     %li
+                /       %a{:href => "#"} Second level
 
   / END TOP ROW
   #search-and-filter.row
     #sidebar.col-sm-2
       = render "/layouts/sidebar"
+
     - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
       #results-container.col-sm-10
         #hiddenMethods{:style => "display:none"}
