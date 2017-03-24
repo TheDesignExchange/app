@@ -230,6 +230,16 @@ class DesignMethodsController < ApplicationController
     end
   end
 
+  def shareMethod
+    @design_method = DesignMethod.find(params[:id])
+    @email_of_friend = params[:email_of_friend]
+    if Rails.env.production?
+      UserMailer.share_method_email(@email_of_friend, current_user, @design_method)
+    end
+    respond_to do |format|
+      format.html { redirect_to @design_method, notice: "Successfully shared method"}
+    end
+  end
 
   # Confirms that user is logged-in.
   def edit_as_signed_in_user
