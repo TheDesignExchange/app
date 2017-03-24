@@ -234,7 +234,7 @@ class DesignMethodsController < ApplicationController
     @design_method = DesignMethod.find(params[:id])
     @email_of_friend = params[:email_of_friend]
     if Rails.env.production?
-      UserMailer.share_method_email(@email_of_friend, current_user, @design_method)
+      UserMailer.share_method_email(@email_of_friend, current_user, @design_method).deliver
     end
     respond_to do |format|
       format.html { redirect_to @design_method, notice: "Successfully shared method"}
