@@ -130,7 +130,7 @@
     .modal-content
       .modal-header
         %button.close{"data-dismiss" => "modal", :type => "button"} ×
-        %h4.modal-title Modal Header
+        %h4.modal-title Share Method
       .modal-body
         = form_tag url_for(:controller => 'design_methods', :action => 'shareMethod', :id=> @design_method.id), :method => 'get' do
           .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
