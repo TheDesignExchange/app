@@ -125,4 +125,23 @@ class UserMailer < ActionMailer::Base
         })
     end
   end
+
+  def share_method_email(email,user,method)
+    @user = user
+    @method = method
+    if Rails.env.development? or Rails.env.test?
+      mail({
+          :from    => 'postmaster@sandbox3419534bf0ee465fb886bc9f1ada4faa.mailgun.org',
+          :to      => email,
+          :subject => @user.first_name + " Shared a method with you!",
+        })
+    else
+      mail({
+          :from    => 'postmaster@thedesignexchange.org',
+          :to      => email,
+          :subject => @user.first_name + " Shared a method with you!",
+        })
+    end
+  end
+
 end
