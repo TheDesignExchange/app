@@ -95,7 +95,17 @@
     });
   });
 
-
+#myModal.modal.fade{:role => "dialog"}
+  .modal-dialog
+    / Modal content
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title Modal Header
+      .modal-body
+        %p Some text in the modal.
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
 #sidebar.col-md-3
   .row
     %h4 People
@@ -182,13 +192,14 @@
                   = f.text_field :name, :class=> "form-control", :placeholder => ""
                   = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
           %li
+
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               %span.glyphicon.glyphicon-share
               Share
               %b.caret
             %ul.dropdown-menu
               %li
-                %a{:href => "#"} Email
+                %a{"data-target" => "#myModal", "data-toggle" => "modal"} Email
           %li
             %a{:href => edit_design_method_path(params[:id])}
               %span.glyphicon.glyphicon-pencil

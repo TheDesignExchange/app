@@ -157,4 +157,8 @@ $(document).ready ($) ->
   initializeMarkdownEditors()
   return
 
+$('a[data-popup]').live 'click', (e) ->
+  window.open $(this).attr('href')
+  e.preventDefault()
+  return
 

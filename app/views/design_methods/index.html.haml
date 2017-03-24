@@ -91,23 +91,6 @@
   
   .row
     .col-sm-10.col-sm-offset-2.left-pad
-      .col-sm-6
-
-        %h3
-          / = params[:filter_category]
-          - if params[:filter_category] == nil
-            = "Methods"
-          - else
-            = "Methods: " + filter_category(params[:filter_category])
-        - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
-          %input{:name => "hidden", :type => "checkbox", :id => "hidden", :style => "margin: 0px 5px 15px 0px"} Show hidden methods
-          %br
-          = link_to "Sort by Completion Score", {:controller => "design_methods", :action => "index", :sort_order => "completion"}, :class => "btn btn-primary"
-
-      .col-sm-6
-        = link_to new_design_method_path, :id=> "create-btn", :class=> "btn btn-default btn-index-create" do
-          %span.glyphicon.glyphicon-plus
-          Create Method
       %ul.nav.nav-pills{:style=>"margin:20px 20px 20px 20px; border:1px;"}
         - @search_filter_hash.each do |category|
           %li{:style=>"margin-left:10px;"}
@@ -125,24 +108,55 @@
                         %li
                           %a{:href => "#", :tabindex => "-1"}
                             = characteristic.name
-                        / %li.dropdown-submenu
-                        /   %a{:href => "#"} Even More..
+      .col-sm-6
 
-                / %li
-                /   %a{:href => "#"} Some action
-                / %li
-                /   %a{:href => "#"} Some other action
-                / %li.divider
-                
-                /       %ul.dropdown-menu
-                /         %li
-                /           %a{:href => "#"} 3rd level
-                /         %li
-                /           %a{:href => "#"} 3rd level
-                /     %li
-                /       %a{:href => "#"} Second level
-                /     %li
-                /       %a{:href => "#"} Second level
+        %h3
+          / = params[:filter_category]
+          - if params[:filter_category] == nil
+            = "Methods"
+          - else
+            = "Methods: " + filter_category(params[:filter_category])
+        - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
+          %input{:name => "hidden", :type => "checkbox", :id => "hidden", :style => "margin: 0px 5px 15px 0px"} Show hidden methods
+          %br
+          .row
+            = link_to "Sort by Completion Score", {:controller => "design_methods", :action => "index", :sort_order => "completion"}, :class => "btn btn-primary"
+            %button.btn.btn-info.btn-lg{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"} Open Modal
+            #myModal.modal.fade{:role => "dialog"}
+              .modal-dialog
+                / Modal content
+                .modal-content
+                  .modal-header
+                    %button.close{"data-dismiss" => "modal", :type => "button"} ×
+                    %h4.modal-title Modal Header
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+
+      .col-sm-6
+        = link_to new_design_method_path, :id=> "create-btn", :class=> "btn btn-default btn-index-create" do
+          %span.glyphicon.glyphicon-plus
+          Create Method
+
+          / %li.dropdown-submenu
+          /   %a{:href => "#"} Even More..
+
+          / %li
+          /   %a{:href => "#"} Some action
+          / %li
+          /   %a{:href => "#"} Some other action
+          / %li.divider
+          
+          /       %ul.dropdown-menu
+          /         %li
+          /           %a{:href => "#"} 3rd level
+          /         %li
+          /           %a{:href => "#"} 3rd level
+          /     %li
+          /       %a{:href => "#"} Second level
+          /     %li
+          /       %a{:href => "#"} Second level
 
   / END TOP ROW
   #search-and-filter.row
