@@ -188,7 +188,21 @@
               %b.caret
             %ul.dropdown-menu
               %li
-                %a{:href => "#"} Email
+                #myModal.modal.fade{:role => "dialog"}
+                  .modal-dialog
+                    / Modal content
+                    .modal-content
+                      .modal-header
+                        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+                        %h4.modal-title Modal Header
+                      .modal-body
+                        = form_tag do 
+                          .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
+                            = label_tag(:email_of_friend, "Email:")
+                            = text_field_tag(:email_of_friend)
+                            = submit_tag "Share Method", class: 'btn btn-primary'
+                      .modal-footer
+                        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
           %li
             %a{:href => edit_design_method_path(params[:id])}
               %span.glyphicon.glyphicon-pencil
