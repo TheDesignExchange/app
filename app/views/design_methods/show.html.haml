@@ -16,6 +16,10 @@
     padding: 20px;
 
   }
+  #title {
+    height: 0;
+    float: right;
+  }
   #sidebar {
     padding-top: 50px;
   }
@@ -77,6 +81,31 @@
     white-space: nowrap;
     background: whitesmoke;
   }
+
+  @media (max-width: 768px) {
+    #title {
+      height: auto;
+      float: none;
+      padding: 0;
+    }
+    #sidebar {
+      padding-top: 0;
+    }
+
+    #sidebar h4 {
+      float: left;
+      margin: 5px 10px 5px;
+      font-size: 16px;
+    }
+    #sidebar p {
+      float: left;
+      margin: 2px 4px 3px 4px;
+    }
+
+    .content-column img {
+      width: 100%;
+    }
+  }
 :javascript
   $(document).ready(function() {
     $('.dropdown-menu input').click(function(e) {
@@ -110,6 +139,11 @@
             = submit_tag "Share Method", class: 'btn btn-primary'
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+#title.col-md-9
+  - if @design_method.draft == true
+    %h3{:style=>"color:blue"}= @method.name
+  - else
+    %h3= @method.name
 
 #sidebar.col-md-3
   .row
@@ -161,10 +195,7 @@
   /Method header
   .row
     .col-md-6.no-padding
-      - if @design_method.draft == true
-        %h3{:style=>"color:blue"}= @method.name
-      - else
-        %h3= @method.name
+
 
     .col-md-6.pull-right
       .pull-right

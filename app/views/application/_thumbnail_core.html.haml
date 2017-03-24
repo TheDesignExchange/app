@@ -28,23 +28,23 @@
           - if counter == 2
             - break
           %span.tag-label.label-gap
-            = MethodCategory.find_by(id:category).name 
+            = MethodCategory.find_by(id:category).name
           / - case category
           / - when 1
           /   %span.tag-label.label-gap{:style=>"color:beige"}
           /     = MethodCategory.find_by(id:category).name
           / - when 2
           /   %span.tag-label.label-gap{:style=>"color:aqua"}
-          /     = MethodCategory.find_by(id:category).name      
+          /     = MethodCategory.find_by(id:category).name
           / - when 3
           /   %span.tag-label.label-gap{:style=>"color:cyan"}
-          /     = MethodCategory.find_by(id:category).name 
+          /     = MethodCategory.find_by(id:category).name
           / - when 4
           /   %span.tag-label.label-gap{:style=>"color:yellow"}
-          /     = MethodCategory.find_by(id:category).name 
+          /     = MethodCategory.find_by(id:category).name
           / - when 5
           /   %span.tag-label.label-gap{:style=>"color:coral"}
-          /     = MethodCategory.find_by(id:category).name     
+          /     = MethodCategory.find_by(id:category).name
           / - counter += 1
     %br
 

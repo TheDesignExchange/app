@@ -29,6 +29,13 @@
         position: relative;
         top: 50px;
       }
+
+      @media (max-width: 768px) {
+        .container {
+          top: 0;
+        }
+      }
+
       .footer{
         position:relative;
         bottom:0%;
@@ -37,9 +44,9 @@
         margin-top:100px;
       }
 
-  
+
     %script{:src => "https://www.google.com/recaptcha/api.js"}
-  
+
   %body
     = render "layouts/headernav"
     .container
