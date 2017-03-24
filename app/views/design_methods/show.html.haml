@@ -204,6 +204,13 @@
             %span.glyphicon.glyphicon-eye-open
             = pluralize(@method.likes, 'view')
 
+            %p{:style=>"text-align: right; font-size: 11px;"}
+              Last Updated:
+              - if @design_method.last_edited != nil
+                #{@design_method.last_edited.strftime('%x %I:%M %p')} by
+                #{@design_method.last_editor}
+              - else
+                Before 10/18/2016
           - if !current_user.nil?
             %li
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
@@ -254,13 +261,7 @@
       - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @design_method.author_id == current_user.id
         = link_to "Unclaim to be Author", {:controller => "design_methods", :action => :unclaimAuthor, :id => @design_method.id}, :class => "btn btn-success"
 
-      %p{:style=>"text-align: right; font-size: 11px;"}
-        Last Updated:
-        - if @design_method.last_edited != nil
-          #{@design_method.last_edited.strftime('%x %I:%M %p')} by
-          #{@design_method.last_editor}
-        - else
-          Before 10/18/2016
+
 
 
 
