@@ -134,6 +134,7 @@ class UserMailer < ActionMailer::Base
       @name = @user.first_name
     else
       @name = "An anonymous user"
+    end
     if Rails.env.development? or Rails.env.test?
       mail({
           :from    => 'postmaster@sandbox3419534bf0ee465fb886bc9f1ada4faa.mailgun.org',
