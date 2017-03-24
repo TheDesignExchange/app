@@ -1,8 +1,8 @@
 :javascript
   $(function(){
     // Archaeologist's note: this seems like a spectacularly bad idea, not spending the time to figure it out right now
-  	var pH = $('#create-btn').parent().parent().height()
-  	var eH = $('#create-btn').height()
+    var pH = $('#create-btn').parent().parent().height()
+    var eH = $('#create-btn').height()
     $('#hidden').click(function() {
       $("#hiddenMethods").toggle(this.checked);
     });
@@ -10,65 +10,66 @@
   });
 :css
   html, body{
-  	height: 100%;
-  	width: 100%;
+    height: 100%;
+    width: 100%;
   }
   #search-and-filter{
-  	height: 100%;
+    height: 100%;
   }
 
   #results-container{
-  	margin-left: 0;
-  	padding-left: 0;
+    margin-left: 0;
+    padding-left: 0;
   }
 
-  #create-btn{
-    float: right;
-    margin: 16px 0 10px 0;
+  #create{
+    position: absolute;
+    right: 0;
+    top: 12px;
   }
 
   @media (max-width: 768px) {
+    #create {
+      position: relative;
+      top: auto;
+      display: inline-block;
+    }
+
     #create-btn {
-      float: none;
-      margin: auto;
-      display: table;
+      margin-top: 0;
     }
   }
 / TOP ROW
 .container-fluid
   .row
-    .col-sm-10.col-sm-offset-2.left-pad
-      .col-sm-6
-
-        %h3
-          / = params[:filter_category]
-          - if params[:filter_category] == nil
-            = "Methods"
-          - else
-            = "Methods: " + filter_category(params[:filter_category])
-        - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
-          %input{:name => "hidden", :type => "checkbox", :id => "hidden", :style => "margin: 0px 5px 15px 0px"} Show hidden methods
-          %br
-          = link_to "Sort by Completion Score", {:controller => "design_methods", :action => "index", :sort_order => "completion"}, :class => "btn btn-primary"
-
-      .col-sm-6
-        = link_to new_design_method_path, :id=> "create-btn", :class=> "btn btn-default btn-index-create" do
-          %span.glyphicon.glyphicon-plus
-          Create Method
+    %h3
+      / = params[:filter_category]
+      - if params[:filter_category] == nil
+        = "Methods"
+      - else
+        = "Methods: " + filter_category(params[:filter_category])
+    - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
+      %input{:name => "hidden", :type => "checkbox", :id => "hidden", :style => "margin: 0px 5px 15px 0px"} Show hidden methods
+      %br
+      = link_to "Sort by Completion Score", {:controller => "design_methods", :action => "index", :sort_order => "completion"}, :class => "btn btn-primary"
+    #create
+      = link_to new_design_method_path, :id=> "create-btn", :class=> "btn btn-default btn-index-create" do
+        %span.glyphicon.glyphicon-plus
+        Create Method
 
   / END TOP ROW
   #search-and-filter.row
-    #sidebar.col-sm-2
+    #sidebar
       = render "/layouts/sidebar"
     - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
-      #results-container.col-sm-10
+      #results-container
         #hiddenMethods{:style => "display:none"}
           %h4{:style => "margin-left:3%"}
             Hidden Methods
           - @design_methods.where(:hidden => true).where(:draft=>false).each do |method|
             = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3")
     - elsif current_user != nil && !@design_methods.where(:owner => current_user).empty?# signed in basic user with created methods
-      #results-container.col-sm-10
+      #results-container
         #hiddenMethods
           %h4{:style => "margin-left:3%"}
             My Hidden Methods
@@ -77,7 +78,7 @@
           - @design_methods.where(:owner => current_user).where(:hidden => true).each do |method|
             = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3")
 
-    #results-container.col-sm-10
+    #results-container
       - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
         #publicMethods
           %h4{:style => "margin-left:3%"}

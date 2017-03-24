@@ -273,13 +273,14 @@ img.logo{
 
     @media (max-width: 768px) {
       .card {
-        height: 150px;
-        margin: 10px 0 10px 0;
-      }
-
-      .card .meta .tags {
-        position: absolute;
-        bottom: 0;
+        height: 190px;
+        margin: 16px 0 16px 0;
+        .caption h5 {
+          font-size: 1.5em;
+        }
+        .caption p {
+          font-size: 1.2em;
+        }
       }
 
       .card .meta .tags .tag-label {
