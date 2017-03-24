@@ -139,13 +139,13 @@ class UserMailer < ActionMailer::Base
       mail({
           :from    => 'postmaster@sandbox3419534bf0ee465fb886bc9f1ada4faa.mailgun.org',
           :to      => email,
-          :subject => @name + " Shared a method with you!",
+          :subject => @name + " shared a method with you!",
         })
     else
       mail({
           :from    => 'postmaster@thedesignexchange.org',
           :to      => email,
-          :subject => @name + " Shared a method with you!",
+          :subject => @name + " shared a method with you!",
         })
     end
   end
