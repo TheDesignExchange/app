@@ -131,8 +131,10 @@
                     %ul.dropdown-menu
                       - char_group.characteristics.each do |characteristic|
                         %li
-                          %a{:href => "#", :tabindex => "-1"}
-                            = characteristic.name
+                          = link_to characteristic.name, {:controller => "design_methods", :action => "index", :characteristic => params[:characteristic].to_s + "/s"+ characteristic.name},:class=> "category-heading sidebar-maincategory"
+
+                          / %a{:href => "#", :tabindex => "-1"}
+                          /   = characteristic.name
     - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
       #results-container
         #hiddenMethods{:style => "display:none"}
