@@ -116,6 +116,16 @@
   #search-and-filter.row
     #sidebar
       / = render "/layouts/sidebar"
+      .panel.panel-default{:style=>"margin-top:10px;margin-left:30px;width:85%"}
+        .panel-body
+          - if params[:characteristic] != nil
+            - characteristics = params[:characteristic].split("/s")
+            - for char in characteristics
+              - if char != ""
+                %span.label.label-success{:style=>"margin-left:10px"}
+                  = char
+                  / = link_to "x", {:controller => "design_methods", :action => "index", :characteristic => params[:characteristic].to_s - "/s"+ characteristic.name}, :style=>"color:gray"
+
       %ul.nav.nav-pills{:style=>"margin:20px 20px 20px 20px; border:1px;"}
         - @search_filter_hash.each do |category|
           %li{:style=>"margin-left:10px;"}
