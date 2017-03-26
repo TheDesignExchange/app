@@ -16,6 +16,10 @@
     padding: 20px;
 
   }
+  #title {
+    height: 0;
+    float: right;
+  }
   #sidebar {
     padding-top: 50px;
   }
@@ -77,6 +81,31 @@
     white-space: nowrap;
     background: whitesmoke;
   }
+
+  @media (max-width: 768px) {
+    #title {
+      height: auto;
+      float: none;
+      padding: 0;
+    }
+    #sidebar {
+      padding-top: 0;
+    }
+
+    #sidebar h4 {
+      float: left;
+      margin: 5px 10px 5px;
+      font-size: 16px;
+    }
+    #sidebar p {
+      float: left;
+      margin: 2px 4px 3px 4px;
+    }
+
+    .content-column img {
+      width: 100%;
+    }
+  }
 :javascript
   $(document).ready(function() {
     $('.dropdown-menu input').click(function(e) {
@@ -101,15 +130,23 @@
     .modal-content
       .modal-header
         %button.close{"data-dismiss" => "modal", :type => "button"} ×
-        %h4.modal-title Modal Header
+
+        %h4.modal-title Share Method
       .modal-body
-        = form_tag do 
+        = form_tag url_for(:controller => 'design_methods', :action => 'shareMethod', :id=> @design_method.id), :method => 'get' do
           .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
             = label_tag(:email_of_friend, "Email:")
             = text_field_tag(:email_of_friend)
             = submit_tag "Share Method", class: 'btn btn-primary'
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+
+#title.col-md-9
+  - if @design_method.draft == true
+    %h3{:style=>"color:blue"}= @method.name
+  - else
+    %h3= @method.name
+
 #sidebar.col-md-3
   .row
     %h4 People
@@ -160,10 +197,7 @@
   /Method header
   .row
     .col-md-6.no-padding
-      - if @design_method.draft == true
-        %h3{:style=>"color:blue"}= @method.name
-      - else
-        %h3= @method.name
+
 
     .col-md-6.pull-right
       .pull-right
@@ -172,6 +206,13 @@
             %span.glyphicon.glyphicon-eye-open
             = pluralize(@method.likes, 'view')
 
+            %p{:style=>"text-align: right; font-size: 11px;"}
+              Last Updated:
+              - if @design_method.last_edited != nil
+                #{@design_method.last_edited.strftime('%x %I:%M %p')} by
+                #{@design_method.last_editor}
+              - else
+                Before 10/18/2016
           - if !current_user.nil?
             %li
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
@@ -222,13 +263,7 @@
       - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @design_method.author_id == current_user.id
         = link_to "Unclaim to be Author", {:controller => "design_methods", :action => :unclaimAuthor, :id => @design_method.id}, :class => "btn btn-success"
 
-      %p{:style=>"text-align: right; font-size: 11px;"}
-        Last Updated:
-        - if @design_method.last_edited != nil
-          #{@design_method.last_edited.strftime('%x %I:%M %p')} by
-          #{@design_method.last_editor}
-        - else
-          Before 10/18/2016
+
 
 
 

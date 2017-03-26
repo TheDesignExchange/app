@@ -69,6 +69,8 @@ class Ability
     elsif user.author?
       can [:create, :update, :claimAuthor, :unclaimAuthor], [DesignMethod, CaseStudy]
       can :manage, MethodCharacteristic
+    else
+      can [:shareMethod], [DesignMethod]
     end
 
   end

@@ -1,0 +1,5 @@
+<p>   <%= @name %> has shared <%= @method.name %> with you! You can view it here: <a href="www.thedesignexchange.org/design_methods/<%= @method.id%>"> <%= @method.name %> </a>.</p>
+
+<p>
+From DXNotification Systems
+</p>
