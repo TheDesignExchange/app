@@ -39,9 +39,63 @@
       margin-top: 0;
     }
   }
+
+  .dropdown-submenu {
+      position: relative;
+  }
+
+  .dropdown-submenu>.dropdown-menu {
+      top: 0;
+      left: 100%;
+      margin-top: -6px;
+      margin-left: -1px;
+      -webkit-border-radius: 0 6px 6px 6px;
+      -moz-border-radius: 0 6px 6px;
+      border-radius: 0 6px 6px 6px;
+  }
+
+  .dropdown-submenu:hover>.dropdown-menu {
+      display: block;
+  }
+
+  .dropdown-submenu>a:after {
+      display: block;
+      content: " ";
+      float: right;
+      width: 0;
+      height: 0;
+      border-color: transparent;
+      border-style: solid;
+      border-width: 5px 0 5px 5px;
+      border-left-color: #ccc;
+      margin-top: 5px;
+      margin-right: -10px;
+  }
+
+  .dropdown-submenu:hover>a:after {
+      border-left-color: #fff;
+  }
+
+  .dropdown-submenu.pull-left {
+      float: none;
+  }
+
+  .dropdown-submenu.pull-left>.dropdown-menu {
+      left: -100%;
+      margin-left: 10px;
+      -webkit-border-radius: 6px 0 6px 6px;
+      -moz-border-radius: 6px 0 6px 6px;
+      border-radius: 6px 0 6px 6px;
+  }
 / TOP ROW
+
+
+
+
 .container-fluid
+  
   .row
+    .col-sm-10.col-sm-offset-2.left-pad
     %h3
       / = params[:filter_category]
       - if params[:filter_category] == nil
@@ -57,10 +111,40 @@
         %span.glyphicon.glyphicon-plus
         Create Method
 
+
   / END TOP ROW
   #search-and-filter.row
     #sidebar
-      = render "/layouts/sidebar"
+      / = render "/layouts/sidebar"
+      .panel.panel-default{:style=>"margin-top:10px;margin-left:30px;width:85%"}
+        .panel-body
+          - if params[:characteristic] != nil
+            - characteristics = params[:characteristic].split("/s")
+            - for char in characteristics
+              - if char != ""
+                %span.label.label-success{:style=>"margin-left:10px"}
+                  = char
+                  / = link_to "x", {:controller => "design_methods", :action => "index", :characteristic => params[:characteristic].to_s - "/s"+ characteristic.name}, :style=>"color:gray"
+
+      %ul.nav.nav-pills{:style=>"margin:20px 20px 20px 20px; border:1px;"}
+        - @search_filter_hash.each do |category|
+          %li{:style=>"margin-left:10px;"}
+            .dropdown
+              %a#dLabel.btn.btn-info{"data-target" => "#", "data-toggle" => "dropdown", :href => "/page.html"}
+                = category[:name]
+                %span.caret
+              %ul.dropdown-menu.multi-level{"aria-labelledby" => "dropdownMenu", :role => "menu"}
+                - MethodCategory.find_by(name:category[:name]).characteristic_groups.each do |char_group|
+                  %li.dropdown-submenu
+                    %a{:href => "#", :tabindex => "-1"} 
+                      = char_group.name
+                    %ul.dropdown-menu
+                      - char_group.characteristics.each do |characteristic|
+                        %li
+                          = link_to characteristic.name, {:controller => "design_methods", :action => "index", :characteristic => params[:characteristic].to_s + "/s"+ characteristic.name},:class=> "category-heading sidebar-maincategory"
+
+                          / %a{:href => "#", :tabindex => "-1"}
+                          /   = characteristic.name
     - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
       #results-container
         #hiddenMethods{:style => "display:none"}

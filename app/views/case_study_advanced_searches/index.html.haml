@@ -1,0 +1,19 @@
+%h1 Listing case_study_advanced_searches
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @case_study_advanced_searches.each do |case_study_advanced_search|
+      %tr
+        %td= link_to 'Show', case_study_advanced_search
+        %td= link_to 'Edit', edit_case_study_advanced_search_path(case_study_advanced_search)
+        %td= link_to 'Destroy', case_study_advanced_search, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Case study advanced search', new_case_study_advanced_search_path

@@ -1,5 +1,8 @@
 DesignExchange::Application.routes.draw do
 
+  resources :case_study_advanced_searches
+  resources :advanced_searches
+
   resources :companies do
     resources :contacts
   end
@@ -47,12 +50,15 @@ DesignExchange::Application.routes.draw do
   get '/design_methods/:id/clearImage', to: 'design_methods#clearImage'
   get '/design_methods/new/clearImage', to: 'design_methods#clearImage'
   get '/design_methods/popular', to: 'design_methods#popular'
+
   get '/design_methods/:id/{:action}', to: 'design_methods#action'
+
   get '/case_studies/:id/{:action}', to: 'case_studies#action'
 
   get ":action", to:"application##{:action}"
   post ":action", to:"application##{:action}"
   post "search", to: "application#search"
+  get "advancedSearch", to: "application#advancedSearch"
   get "autocomplete_search", to: "application#search"
 
 end

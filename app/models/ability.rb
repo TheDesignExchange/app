@@ -38,6 +38,8 @@ class Ability
     can :read, Collection, :is_private => false
     can :create, DesignMethod
     can [:edit, :update], DesignMethod, :owner => user
+    can :create, AdvancedSearch
+    can :create, CaseStudyAdvancedSearch
 
     if user.admin?
       # non-REST-ful actions in the administrator controller

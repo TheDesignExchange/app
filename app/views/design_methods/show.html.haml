@@ -130,6 +130,7 @@
     .modal-content
       .modal-header
         %button.close{"data-dismiss" => "modal", :type => "button"} ×
+
         %h4.modal-title Share Method
       .modal-body
         = form_tag url_for(:controller => 'design_methods', :action => 'shareMethod', :id=> @design_method.id), :method => 'get' do
@@ -139,6 +140,7 @@
             = submit_tag "Share Method", class: 'btn btn-primary'
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+
 #title.col-md-9
   - if @design_method.draft == true
     %h3{:style=>"color:blue"}= @method.name
@@ -235,6 +237,7 @@
                   = f.text_field :name, :class=> "form-control", :placeholder => ""
                   = f.submit "Add", :id => "add-set-btn", :class => "btn btn-primary pull-right"
           %li
+
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               %span.glyphicon.glyphicon-share
               Share
@@ -242,7 +245,6 @@
             %ul.dropdown-menu
               %li
                 %a{"data-target" => "#myModal", "data-toggle" => "modal"} Email
-
           %li
             %a{:href => edit_design_method_path(params[:id])}
               %span.glyphicon.glyphicon-pencil

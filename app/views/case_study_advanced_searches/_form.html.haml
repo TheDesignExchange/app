@@ -1,0 +1,27 @@
+%h1 search
+= form_for @case_study_advanced_search do |f|
+  %p
+    = f.label :keywords
+    %br/
+    = f.text_field :keywords
+  %p
+    = f.label :sector
+    %br/
+    - sectors = ["Accomodations","Accounting","Advertising","Aerospace", "Agriculture & Agribusiness", "Air Transportation", "Apparel & Accessories", "Auto", "Banking", "Beauty & Cosmetics" ,"Biotechnology", "Chemical","Communications","Computer","Construction","Consulting","Consumer Products", "Education", "Electronics","Employment","Energy","Entertainment & Recreation","Fashion","Financial Services","Fine Arts","Food & Beverage", "Health", "Information", "Information Technology","Insurance","Journalism & News","Legal Services","Manufacturing","Media & Broadcasting", "Medical Devices & Supplies", "Motion Pictures & Video", "Music", "Pharmaceutical", "Public Administration", "Public Relations", "Publishing", "Real Estate","Retail","Service","Sports","Technology","Telecommunications","Tourism","Transportation","Travel", "Utilities", "Video Games", "Web Services" ]
+
+    = f.select :sector, sectors
+  / %p
+  /   = f.label :process
+  /   %br/
+  /   = f.text_field :process  
+  / %p
+  /   = f.label :category_id
+  /   %br/
+  /   = f.collection_select :category_id, Category.all, :id, :name, :include_blank => true
+  / %p
+  /   Price Range
+  /   %br/
+  /   = f.text_field :minimum_price, :size => 7
+  /   \-
+  /   \#{f.text_field :maximum_price, :size => 7}
+  %p= f.submit "Submit"

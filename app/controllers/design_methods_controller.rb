@@ -23,6 +23,19 @@ class DesignMethodsController < ApplicationController
         list_of_ids = MethodCategory.find_by(process_order:params[:filter_category]).design_method_ids
         @design_methods = DesignMethod.where(id:list_of_ids)
       end
+
+      if params[:characteristic] != nil
+        characteristics = params[:characteristic].split("/s")
+        list_of_ids = []
+        for characteristic in characteristics
+          puts characteristic
+          if characteristic != ""
+            list_of_ids += Characteristic.find_by(name:characteristic).design_method_ids
+          end
+        end
+        @design_methods = DesignMethod.where(id: list_of_ids)
+      end
+
       # Filter bar needs
       @search_filter_hash = MethodCategory.order(:process_order)
       @design_methods_all = DesignMethod.all
@@ -181,6 +194,10 @@ class DesignMethodsController < ApplicationController
       format.html { render :layout => "custom" }
       format.json {render :json => @method}
     end
+  end
+
+  def share
+    @design_method = DesignMethod.find(params[:id])
   end
 
   def clearImage

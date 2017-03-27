@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   check_authorization :unless => :devise_controller?
 
-  skip_authorization_check :only => [:landing, :index, :search, :search_db, :about, :share, :sendInvitation]
+  skip_authorization_check :only => [:landing, :index, :search, :search_db, :about, :share, :sendInvitation,:advancedSearch]
   protect_from_forgery with: :exception
   add_flash_types :success, :warning, :danger, :info
 
@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
 
   def store_location
     session[:return_to] = request.url if request.get?
+  end
+
+  def advancedSearch
+    render layout: "custom"
   end
 
   def index
