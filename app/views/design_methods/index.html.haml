@@ -98,10 +98,11 @@
     .col-sm-10.col-sm-offset-2.left-pad
     %h3
       / = params[:filter_category]
-      - if params[:filter_category] == nil
-        = "Methods"
-      - else
-        = "Methods: " + filter_category(params[:filter_category])
+      = "Methods"
+      / - if params[:filter_category] == nil
+      /   = "Methods"
+      / - else
+      /   = "Methods: " + filter_category(params[:filter_category])
     - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
       %input{:name => "hidden", :type => "checkbox", :id => "hidden", :style => "margin: 0px 5px 15px 0px"} Show hidden methods
       %br
@@ -124,7 +125,18 @@
               - if char != ""
                 %span.label.label-success{:style=>"margin-left:10px"}
                   = char
-                  / = link_to "x", {:controller => "design_methods", :action => "index", :characteristic => params[:characteristic].to_s - "/s"+ characteristic.name}, :style=>"color:gray"
+          - if params[:characteristic_group] != nil
+            - characteristic_group = params[:characteristic_group].split("/s")
+            - for char_group in characteristic_group
+              - if char_group != ""
+                %span.label.label-info{:style=>"margin-left:10px"}
+                  = char_group
+          - if params[:filter_category] != nil
+            - categories = params[:filter_category].split("/s")
+            - for category in categories
+              - if category != ""
+                %span.label.label-default{:style=>"margin-left:10px"}
+                  = category
 
       %ul.nav.nav-pills{:style=>"margin:20px 20px 20px 20px; border:1px;"}
         - @search_filter_hash.each do |category|
@@ -134,14 +146,19 @@
                 = category[:name]
                 %span.caret
               %ul.dropdown-menu.multi-level{"aria-labelledby" => "dropdownMenu", :role => "menu"}
+                %li.dropdown{:style=>"background-color:springgreen"}
+                  = link_to category[:name], {:controller => "design_methods", :action => "index", :filter_category => params[:filter_category].to_s+"/s"+category[:name].to_s,:characteristic=> params[:characteristic].to_s, :characteristic_group => params[:characteristic_group].to_s},:class=> "category-heading sidebar-maincategory"
+
                 - MethodCategory.find_by(name:category[:name]).characteristic_groups.each do |char_group|
                   %li.dropdown-submenu
                     %a{:href => "#", :tabindex => "-1"} 
                       = char_group.name
                     %ul.dropdown-menu
+                      %li{:style=>"background-color:aquamarine"}
+                        = link_to char_group.name, {:controller => "design_methods", :action => "index", :filter_category=> params[:filter_category],:characteristic=> params[:characteristic].to_s, :characteristic_group => params[:characteristic_group].to_s + "/s"+ char_group.name},:class=> "category-heading sidebar-maincategory"
                       - char_group.characteristics.each do |characteristic|
                         %li
-                          = link_to characteristic.name, {:controller => "design_methods", :action => "index", :characteristic => params[:characteristic].to_s + "/s"+ characteristic.name},:class=> "category-heading sidebar-maincategory"
+                          = link_to characteristic.name, {:controller => "design_methods", :action => "index",:filter_category=> params[:filter_category], :characteristic => params[:characteristic].to_s + "/s"+ characteristic.name, :characteristic_group => params[:characteristic_group].to_s}, :class=> "category-heading sidebar-maincategory"
 
                           / %a{:href => "#", :tabindex => "-1"}
                           /   = characteristic.name
