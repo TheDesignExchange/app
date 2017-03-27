@@ -146,7 +146,7 @@
                 = category[:name]
                 %span.caret
               %ul.dropdown-menu.multi-level{"aria-labelledby" => "dropdownMenu", :role => "menu"}
-                %li.dropdown
+                %li.dropdown{:style=>"background-color:springgreen"}
                   = link_to category[:name], {:controller => "design_methods", :action => "index", :filter_category => params[:filter_category].to_s+"/s"+category[:name].to_s,:characteristic=> params[:characteristic].to_s, :characteristic_group => params[:characteristic_group].to_s},:class=> "category-heading sidebar-maincategory"
 
                 - MethodCategory.find_by(name:category[:name]).characteristic_groups.each do |char_group|
@@ -154,7 +154,7 @@
                     %a{:href => "#", :tabindex => "-1"} 
                       = char_group.name
                     %ul.dropdown-menu
-                      %li
+                      %li{:style=>"background-color:aquamarine"}
                         = link_to char_group.name, {:controller => "design_methods", :action => "index", :filter_category=> params[:filter_category],:characteristic=> params[:characteristic].to_s, :characteristic_group => params[:characteristic_group].to_s + "/s"+ char_group.name},:class=> "category-heading sidebar-maincategory"
                       - char_group.characteristics.each do |characteristic|
                         %li
