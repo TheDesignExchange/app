@@ -50,7 +50,7 @@ class DesignMethodsController < ApplicationController
       # if params[:characteristic_group] != nil
       #   characteristic_groups = params[:characteristic_group].split("/s")
       #   for characteristic_group in characteristic_groups
-      #     if characteristic_group != ""
+      #    if characteristic_group != ""
       #       list_of_ids += CharacteristicGroup.find_by(name:characteristic_group).design_method_ids
       #     end
       #   end

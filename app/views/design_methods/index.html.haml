@@ -125,18 +125,28 @@
               - if char != ""
                 %span.label.label-success{:style=>"margin-left:10px"}
                   = char
+                  - remaining_characteristics = params[:characteristic].to_s.dup
+                  - remaining_characteristics["/s" + char.to_s]=""
+                  = link_to "x",{:controller => "design_methods", :action => "index", :filter_category=> params[:filter_category],:characteristic=> remaining_characteristics, :characteristic_group => params[:characteristic_group]}, {:style=>"color:white"}
+
           - if params[:characteristic_group] != nil
             - characteristic_group = params[:characteristic_group].split("/s")
             - for char_group in characteristic_group
               - if char_group != ""
                 %span.label.label-info{:style=>"margin-left:10px"}
                   = char_group
+                  - remaining_characteristic_groups = params[:characteristic_group].to_s.dup
+                  - remaining_characteristic_groups["/s" + char_group.to_s]=""
+                  = link_to "x",{:controller => "design_methods", :action => "index", :filter_category=> params[:filter_category],:characteristic=> params[:characteristic], :characteristic_group => remaining_characteristic_groups}, {:style=>"color:white"}
           - if params[:filter_category] != nil
             - categories = params[:filter_category].split("/s")
             - for category in categories
               - if category != ""
                 %span.label.label-default{:style=>"margin-left:10px"}
                   = category
+                  - remaining_categories = params[:filter_category].to_s.dup
+                  - remaining_categories["/s" + category.to_s]=""
+                  = link_to "x",{:controller => "design_methods", :action => "index", :filter_category=> remaining_categories,:characteristic=> params[:characteristic], :characteristic_group => params[:characteristic_group]}, {:style=>"color:white"}
 
       %ul.nav.nav-pills{:style=>"margin:20px 20px 20px 20px; border:1px;"}
         - @search_filter_hash.each do |category|
@@ -159,6 +169,7 @@
                       - char_group.characteristics.each do |characteristic|
                         %li
                           = link_to characteristic.name, {:controller => "design_methods", :action => "index",:filter_category=> params[:filter_category], :characteristic => params[:characteristic].to_s + "/s"+ characteristic.name, :characteristic_group => params[:characteristic_group].to_s}, :class=> "category-heading sidebar-maincategory"
+ 
 
                           / %a{:href => "#", :tabindex => "-1"}
                           /   = characteristic.name
