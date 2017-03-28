@@ -135,13 +135,18 @@
               - if char_group != ""
                 %span.label.label-info{:style=>"margin-left:10px"}
                   = char_group
+                  - remaining_characteristic_groups = params[:characteristic_group].to_s.dup
+                  - remaining_characteristic_groups["/s" + char_group.to_s]=""
+                  = link_to "x",{:controller => "design_methods", :action => "index", :filter_category=> params[:filter_category],:characteristic=> params[:characteristic], :characteristic_group => remaining_characteristic_groups}, {:style=>"color:white"}
           - if params[:filter_category] != nil
             - categories = params[:filter_category].split("/s")
             - for category in categories
               - if category != ""
                 %span.label.label-default{:style=>"margin-left:10px"}
                   = category
-
+                  - remaining_categories = params[:filter_category].to_s.dup
+                  - remaining_categories["/s" + category.to_s]=""
+                  = link_to "x",{:controller => "design_methods", :action => "index", :filter_category=> remaining_categories,:characteristic=> params[:characteristic], :characteristic_group => params[:characteristic_group]}, {:style=>"color:white"}
 
       %ul.nav.nav-pills{:style=>"margin:20px 20px 20px 20px; border:1px;"}
         - @search_filter_hash.each do |category|
