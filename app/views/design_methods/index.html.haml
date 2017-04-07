@@ -159,15 +159,10 @@
         - @search_filter_hash.each do |category|
           %li{:style=>"margin-left:10px;"}
             .dropdown
-              %a#dLabel.btn.btn-info{"data-target" => "#", "data-toggle" => "dropdown", :href => "/page.html"}
-                / = category[:name]
-                = link_to category[:name], {:controller => "design_methods", :action => "index", :filter_category => params[:filter_category].to_s+"/s"+category[:name].to_s,:characteristic=> params[:characteristic].to_s, :characteristic_group => params[:characteristic_group].to_s},:class=> "category-heading sidebar-maincategory"
+              = link_to category[:name], {:controller => "design_methods", :action => "index", :filter_category => params[:filter_category].to_s+"/s"+category[:name].to_s,:characteristic=> params[:characteristic].to_s, :characteristic_group => params[:characteristic_group].to_s}, :class=> "btn btn-info category-heading sidebar-maincategory" 
 
-                %span.caret
               %ul.dropdown-menu.multi-level{"aria-labelledby" => "dropdownMenu", :role => "menu"}
                 %li.dropdown{:style=>"background-color:springgreen"}
-                  / = link_to category[:name], {:controller => "design_methods", :action => "index", :filter_category => params[:filter_category].to_s+"/s"+category[:name].to_s,:characteristic=> params[:characteristic].to_s, :characteristic_group => params[:characteristic_group].to_s},:class=> "category-heading sidebar-maincategory"
-
                 - MethodCategory.find_by(name:category[:name]).characteristic_groups.each do |char_group|
                   %li.dropdown-submenu
                     %a{:href => "#", :tabindex => "-1"} 
