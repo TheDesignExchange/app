@@ -28,6 +28,7 @@
     top: 12px;
   }
 
+
   @media (max-width: 768px) {
     #create {
       position: relative;
@@ -54,9 +55,17 @@
       border-radius: 0 6px 6px 6px;
   }
 
+  .dropdown:hover ul.dropdown-menu.multi-level{
+    display: block; 
+    margin-top:-5px;
+
+  }
+
+
   .dropdown-submenu:hover>.dropdown-menu {
       display: block;
   }
+
 
   .dropdown-submenu>a:after {
       display: block;
@@ -75,6 +84,9 @@
   .dropdown-submenu:hover>a:after {
       border-left-color: #fff;
   }
+
+
+
 
   .dropdown-submenu.pull-left {
       float: none;
@@ -152,13 +164,10 @@
         - @search_filter_hash.each do |category|
           %li{:style=>"margin-left:10px;"}
             .dropdown
-              %a#dLabel.btn.btn-info{"data-target" => "#", "data-toggle" => "dropdown", :href => "/page.html"}
-                = category[:name]
-                %span.caret
+              = link_to category[:name], {:controller => "design_methods", :action => "index", :filter_category => params[:filter_category].to_s+"/s"+category[:name].to_s,:characteristic=> params[:characteristic].to_s, :characteristic_group => params[:characteristic_group].to_s}, :class=> "btn btn-info category-heading sidebar-maincategory" 
+
               %ul.dropdown-menu.multi-level{"aria-labelledby" => "dropdownMenu", :role => "menu"}
                 %li.dropdown{:style=>"background-color:springgreen"}
-                  = link_to category[:name], {:controller => "design_methods", :action => "index", :filter_category => params[:filter_category].to_s+"/s"+category[:name].to_s,:characteristic=> params[:characteristic].to_s, :characteristic_group => params[:characteristic_group].to_s},:class=> "category-heading sidebar-maincategory"
-
                 - MethodCategory.find_by(name:category[:name]).characteristic_groups.each do |char_group|
                   %li.dropdown-submenu
                     %a{:href => "#", :tabindex => "-1"} 
