@@ -99,6 +99,9 @@
       -moz-border-radius: 6px 0 6px 6px;
       border-radius: 6px 0 6px 6px;
   }
+
+
+
 / TOP ROW
 
 
@@ -173,8 +176,6 @@
                     %a{:href => "#", :tabindex => "-1"} 
                       = char_group.name
                     %ul.dropdown-menu
-                      %li{:style=>"background-color:aquamarine"}
-                        = link_to char_group.name, {:controller => "design_methods", :action => "index", :filter_category=> params[:filter_category],:characteristic=> params[:characteristic].to_s, :characteristic_group => params[:characteristic_group].to_s + "/s"+ char_group.name},:class=> "category-heading sidebar-maincategory"
                       - char_group.characteristics.each do |characteristic|
                         %li
                           = link_to characteristic.name, {:controller => "design_methods", :action => "index",:filter_category=> params[:filter_category], :characteristic => params[:characteristic].to_s + "/s"+ characteristic.name, :characteristic_group => params[:characteristic_group].to_s}, :class=> "category-heading sidebar-maincategory"
