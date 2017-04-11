@@ -22,6 +22,11 @@
     font-family: 'Work Sans', sans-serif;
     color: white
   }
+  #showcase h3 {
+    margin-bottom:10%;
+    font-family: 'Work Sans', sans-serif;
+    color: white
+  }
 
   #showcase h4 {
     font-size:100%;
@@ -50,6 +55,23 @@
       padding: 10px;
     }
 
+    #casestudies-background {
+    background-image: url("/assets/CaseStudyLandingPage.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 0;
+    margin-bottom: 28px;
+    padding-top: 68.44%; /* (img-height / img-width * container-width) */
+                  /* (438 / 640) */
+  }
+  #casestudies-background .layer {
+      background-color: rgba(134, 198, 124, 0.85);
+      width: 100%;
+      margin-top: -68.44%;
+      padding: 10px;
+    }
+
   #showcase .col-sm-6 h1 {
     margin-bottom: 0;
   }
@@ -60,16 +82,26 @@
       =link_to "Methods", design_methods_path
     %p.subtitle Learn about the methods you could use on your next design.
     .background{:id => "method-background"}
-      .layer
-        %h2
-          Cultural Probes
-        %h4
-          Gain insight into and inspirational responses about the daily life and habits of communities
+      = link_to design_methods_path(id:161) do
+        .layer
+          %h2
+            Cultural Probes
+          %h4
+            Gain insight into and inspirational responses about the daily life and habits of communities
   .col-sm-6
     %h1
       =link_to "Case Studies", case_studies_path
     / %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Read about how real design probems were solved.
-    %p.subtitle{:style=>"text-align:center;font-size:200%; margin-top:30%;font-family: 'Source Sans Pro', sans-serif;"} Case Studies coming soon
+    %p.subtitle Read about how the methods are applied in real world situations.
+    .background{:id => "casestudies-background"}
+      = link_to case_studies_path(id:203) do
+        .layer
+          %h2
+            Medication Management 
+          %h4
+            Gain insight into medication management processes and design implications for personal health applications
+    / %p.subtitle{:style=>"text-align:center;font-size:200%; margin-top:30%;font-family: 'Source Sans Pro', sans-serif;"} Case Studies coming soon
+
     / = link_to case_study_path(id:197) do #change link path
     /   = image_tag "CaseStudiesLandingPage.png", :width => "100%", size: "450x370"
     /   .layer
