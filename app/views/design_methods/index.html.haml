@@ -116,7 +116,7 @@
     - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
       %input{:name => "hidden", :type => "checkbox", :id => "hidden", :style => "margin: 0px 5px 15px 0px"} Show hidden methods
       %br
-      = link_to "Sort by Completion Score", {:controller => "design_methods", :action => "index", :sort_order => "completion"}, :class => "btn btn-primary"
+      / = link_to "Sort by Completion Score", {:controller => "design_methods", :action => "index", :sort_order => "completion"}, :class => "btn btn-primary"
     #create
       = link_to new_design_method_path, :id=> "create-btn", :class=> "btn btn-default btn-index-create" do
         %span.glyphicon.glyphicon-plus

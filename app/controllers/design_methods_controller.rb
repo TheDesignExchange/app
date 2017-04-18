@@ -181,7 +181,6 @@ class DesignMethodsController < ApplicationController
   def show
     require 'dx/props'
     @props = Dx::Props.load_file 'config/props/design_methods.yml'
-
     id = params[:id].to_i
     #default to method id #1 TODO remove
     dm = DesignMethod.find(id)
@@ -298,3 +297,4 @@ class DesignMethodsController < ApplicationController
     end
   end
 end
+
