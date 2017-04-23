@@ -77,7 +77,13 @@ class ApplicationController < ActionController::Base
     @cs_names = case_study_names
 
     if design_method_names.count == 0
-      @autocorrect = correct @query
+      @autocorrect = ""
+      if @query.length < 10
+        @autocorrect = correct @query # do optimization in future, but now, dont correct anything longer than 10 letters
+      end
+      if @autocorrect == @query
+        @autocorrect = ""
+      end
     end
 
     @autocomplete_results = [design_method_names, case_study_names].flatten

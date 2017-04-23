@@ -27,7 +27,7 @@
         %h3= "#{@category} Methods"
       - else
         %h3= "Results for '#{@query}'"
-      - if @dm_names.count == 0 && @cs_names.count == 0
+      - if @dm_names.count == 0 && @cs_names.count == 0 && @autocorrect != ""
         %h5 
           Did you mean 
           = link_to @autocorrect, :controller=>"application", :action=>"search", "term"=>@autocorrect
