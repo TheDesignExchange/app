@@ -27,6 +27,10 @@
         %h3= "#{@category} Methods"
       - else
         %h3= "Results for '#{@query}'"
+      - if @dm_names.count == 0 && @cs_names.count == 0
+        %h5 
+          Did you mean 
+          = link_to @autocorrect, :controller=>"application", :action=>"search", "term"=>@autocorrect
     .col-md-4
       = link_to new_case_study_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
         %span.glyphicon.glyphicon-plus

@@ -1,3 +1,4 @@
+require_relative '../../lib/spelling_corrector.rb'
 class ApplicationController < ActionController::Base
   check_authorization :unless => :devise_controller?
 
@@ -62,6 +63,9 @@ class ApplicationController < ActionController::Base
       @cs_tab_visible = params[:visible_tab] == 'cs'
       @dm_search = solr_dm_search(@query, @dm_page, cg_filters, nil)
       @cs_search = solr_cs_search(@query, @cs_page)
+
+
+
     end
 
     sfh = SearchFilterHash.new(@dm_search.facets, cg_filters)
@@ -69,6 +73,12 @@ class ApplicationController < ActionController::Base
 
     design_method_names = @dm_search.results.map { |design_method| design_method.name }
     case_study_names = @cs_search.results.map { |case_study| case_study.name }
+    @dm_names = design_method_names
+    @cs_names = case_study_names
+
+    if design_method_names.count == 0
+      @autocorrect = correct @query
+    end
 
     @autocomplete_results = [design_method_names, case_study_names].flatten
 
