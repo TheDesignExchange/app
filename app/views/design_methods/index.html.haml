@@ -138,17 +138,8 @@
                   = char
                   - remaining_characteristics = params[:characteristic].to_s.dup
                   - remaining_characteristics["/s" + char.to_s]=""
-                  = link_to "x",{:controller => "design_methods", :action => "index", :filter_category=> params[:filter_category],:characteristic=> remaining_characteristics, :characteristic_group => params[:characteristic_group]}, {:style=>"color:white"}
+                  = link_to "x",{:controller => "design_methods", :action => "index", :filter_category=> params[:filter_category],:characteristic=> remaining_characteristics,}, {:style=>"color:white"}
 
-          - if params[:characteristic_group] != nil
-            - characteristic_group = params[:characteristic_group].split("/s")
-            - for char_group in characteristic_group
-              - if char_group != ""
-                %span.label.label-info{:style=>"margin-left:10px"}
-                  = char_group
-                  - remaining_characteristic_groups = params[:characteristic_group].to_s.dup
-                  - remaining_characteristic_groups["/s" + char_group.to_s]=""
-                  = link_to "x",{:controller => "design_methods", :action => "index", :filter_category=> params[:filter_category],:characteristic=> params[:characteristic], :characteristic_group => remaining_characteristic_groups}, {:style=>"color:white"}
           - if params[:filter_category] != nil
             - categories = params[:filter_category].split("/s")
             - for category in categories
@@ -157,13 +148,13 @@
                   = category
                   - remaining_categories = params[:filter_category].to_s.dup
                   - remaining_categories["/s" + category.to_s]=""
-                  = link_to "x",{:controller => "design_methods", :action => "index", :filter_category=> remaining_categories,:characteristic=> params[:characteristic], :characteristic_group => params[:characteristic_group]}, {:style=>"color:white"}
+                  = link_to "x",{:controller => "design_methods", :action => "index", :filter_category=> remaining_categories,:characteristic=> params[:characteristic]}, {:style=>"color:white"}
 
       %ul.nav.nav-pills{:style=>"margin:20px 20px 20px 20px; border:1px;"}
         - @search_filter_hash.each do |category|
           %li{:style=>"margin-left:10px;"}
             .dropdown
-              = link_to category[:name], {:controller => "design_methods", :action => "index", :filter_category => params[:filter_category].to_s+"/s"+category[:name].to_s,:characteristic=> params[:characteristic].to_s, :characteristic_group => params[:characteristic_group].to_s}, :class=> "btn btn-info category-heading sidebar-maincategory" 
+              = link_to category[:name], {:controller => "design_methods", :action => "index", :filter_category => params[:filter_category].to_s+"/s"+category[:name].to_s,:characteristic=> params[:characteristic].to_s}, :class=> "btn btn-info category-heading sidebar-maincategory"
 
               %ul.dropdown-menu.multi-level{"aria-labelledby" => "dropdownMenu", :role => "menu"}
                 %li.dropdown{:style=>"background-color:springgreen"}
@@ -174,7 +165,7 @@
                     %ul.dropdown-menu
                       - char_group.characteristics.each do |characteristic|
                         %li
-                          = link_to characteristic.name, {:controller => "design_methods", :action => "index",:filter_category=> params[:filter_category], :characteristic => params[:characteristic].to_s + "/s"+ characteristic.name, :characteristic_group => params[:characteristic_group].to_s}, :class=> "category-heading sidebar-maincategory", title: characteristic.description, 'data-toggle' => 'tooltip', 'data-placement' => 'right'
+                          = link_to characteristic.name, {:controller => "design_methods", :action => "index",:filter_category=> params[:filter_category], :characteristic => params[:characteristic].to_s + "/s"+ characteristic.name}, :class=> "category-heading sidebar-maincategory", title: characteristic.description, 'data-toggle' => 'tooltip', 'data-placement' => 'right'
     - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
       #results-container
         #hiddenMethods{:style => "display:none"}
