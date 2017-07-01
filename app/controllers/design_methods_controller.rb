@@ -39,6 +39,9 @@ class DesignMethodsController < ApplicationController
         end
         @design_methods = DesignMethod.where(id:list_of_ids).order(completion_score: :desc)
       end
+      if params[:characteristic] == "" and params[:characteristic_group] == "" and params[:filter_category] == ""
+        @design_methods = DesignMethod.order(completion_score: :desc)
+      end
 
       # if params[:characteristic_group] != nil
       #   characteristic_groups = params[:characteristic_group].split("/s")
