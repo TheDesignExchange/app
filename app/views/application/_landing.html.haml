@@ -2,35 +2,40 @@
   @import url(//fonts.googleapis.com/css?family=Arvo:700);
 
   #showcase .row {
-    margin-bottom: 10%;
+    margin-bottom:10%;
   }
 
 
   #showcase .subtitle {
     text-align:center;
     font-size:100%;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    padding-bottom:10px;
   }
 
   #showcase h1 {
     text-align:center;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
   #showcase h2 {
     margin-bottom:10%;
-    font-family: 'Work Sans', sans-serif;
-    color: white
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    line-height: 130%;
   }
   #showcase h3 {
     margin-bottom:10%;
-    font-family: 'Work Sans', sans-serif;
-    color: white
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    line-height: 130%;
   }
 
   #showcase h4 {
     font-size:100%;
     color: white;
+    font-family: 'Raleway', sans-serif;
+    line-height: 130%;
     margin-top:-10%;
   }
 
@@ -72,15 +77,132 @@
       padding: 10px;
     }
 
-  #showcase .col-sm-6 h1 {
-    margin-bottom: 0;
+  #showcase .col-sm-6 {
+    padding-bottom: 20px;
   }
+
+  #showcase .col-sm-6 h1 {
+    margin-bottom: 10px;
+  }
+
+  #explore {
+    margin: 40px 0px 40px 0px;
+    display: inline-block;
+  }
+  
+  #explore .col-sm-4 {
+    display: inline-block;
+    margin: 0 auto;
+  } 
+
+  #explore h1{
+    text-align:center;
+    font-family: 'Montserrat', sans-serif;
+    margin: 40px 0px 40px 0px;
+  }
+
+  #explore h2{
+    text-align:center;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+
+  #explore img {
+    margin: 20px 20px 20px 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width:100%;
+    max-height:100%;
+  }
+
+  #explore p{
+    text-align:center;
+    font-family: 'Raleway', sans-serif;
+    margin: 10px 0px 20px 0px;
+  }
+
+  #icons {
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  #bottom_icons{
+    display:block;
+    margin: 0 auto;
+    padding-left:10%;
+    padding-right:10%;
+  }
+
+  #bottom_icons .col-sm-4{
+     width:50%;
+     text-align:center;
+  }
+
+  #bottom_icons p{
+    text-align:center;
+    display:inline-block;
+  }
+
+  hr{
+    border: solid #d3d3d3 1px; 
+  }
+
+.row{:id => "explore"}
+
+  %h1
+    Our content is categorized within five phases of the early stage design process
+  
+  .row{:id => "icons"}
+    .col-sm-4
+      %h2
+        RESEARCH
+      %img
+        = image_tag "research.png"
+      %p 
+        collect information critical to project design process 
+    .col-sm-4
+      %h2
+        ANALYZE
+      %img
+        = image_tag "analyze.png"
+      %p 
+        analysis and/or synthesis of collected data
+    .col-sm-4
+      %h2
+        IDEATE
+      %img
+        = image_tag "ideate.png"
+      %p 
+        create new ideas for products, services, etc.
+  / minimum width: 768px
+  .row{:id => "bottom_icons"}
+    .col-sm-4
+      %h2
+        PROTOTYPE
+      %img
+        = image_tag "prototype.png"
+      %p
+        turn ideas into reality through a variety of mediums
+    .col-sm-4
+      %h2
+        COMMUNICATE
+      %img
+        = image_tag "communicate.png"
+      %p
+        communicate with others outside of the project
+
+%hr
+.row{:id => "explore"}
+  %h1
+    EXPLORE CONTENT
+  %p.subtitle Browse methods and case studies to improve your design skills. Learn what to do and what not to do to successfully complete your next design task.
 
 .row{:id => "showcase"}
   .col-sm-6
     %h1
       =link_to "Methods", design_methods_path
-    %p.subtitle Learn about the methods you could use on your next design.
+    %p.subtitle Learn about the methods you could use on your next design
     .background{:id => "method-background"}
       = link_to design_method_path(id:162) do
         .layer
@@ -92,7 +214,7 @@
     %h1
       =link_to "Case Studies", case_studies_path
     / %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Read about how real design probems were solved.
-    %p.subtitle Read about how the methods are applied in real world situations.
+    %p.subtitle Read about how the methods are applied in real world situations
     .background{:id => "casestudies-background"}
       = link_to case_study_path(id:203) do
         .layer
@@ -100,6 +222,9 @@
             Medication Management 
           %h4
             Gain insight into medication management processes and design implications for personal health applications
+  .row
+    = link_to 'INVITE YOUR FRIENDS', '/share', class: "btn btn-success sharp btn-lrg join"
+      
     / %p.subtitle{:style=>"text-align:center;font-size:200%; margin-top:30%;font-family: 'Source Sans Pro', sans-serif;"} Case Studies coming soon
 
     / = link_to case_study_path(id:197) do #change link path

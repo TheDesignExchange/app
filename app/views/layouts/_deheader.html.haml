@@ -7,35 +7,17 @@
 / %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
 / %meta{:content => "true", :name => "HandheldFriendly"}/
 
-%link{:href => "https://fonts.googleapis.com/css?family=Work+Sans:700", :rel => "stylesheet"}/
-%link{:href => "https://fonts.googleapis.com/css?family=Source+Sans+Pro", :rel => "stylesheet"}/
+%link{:href => "https://fonts.googleapis.com/css?family=Montserrat", :rel => "stylesheet"}/
+%link{:href => "https://fonts.googleapis.com/css?family=Raleway", :rel => "stylesheet"}/
 = stylesheet_link_tag "_deheader", :media => "all"
 
 .jumbotron
   .container
     .row
-      .col-sm-7
-        .header-img
-          = image_tag "logo2.png"
-        %p.subtitle Where designers and researchers share methods and best practices.
+      .header-img
+        = image_tag "logo2.png"
+      %p.subtitle TheDesignExchange provides a central repository of early design stage methods, engaging all stakeholders in the design community of practice, and integrating online learning with real case studies to demonstrate the methods
+      .row
+      - if !user_signed_in?
         .row
-        - if !user_signed_in?
-          .col-sm-3
-          .col-sm-3
-            = link_to "JOIN", new_registration_path(:user), class: "btn btn-success sharp btn-lrg join"
-      .col-sm-5
-        .boxed
-          %h2
-            Learn
-          %p
-            Browse methods and case studies to improve your design skills. Learn what to
-            do and what not to do to successfully complete your next design task.
-
-        %br/
-
-        .boxed
-          %h2
-            %a{:href=>"/share"}
-              Invite
-          %p
-            Invite your friends to join theDesignExchange community!
+          = link_to "JOIN", new_registration_path(:user), class: "btn btn-success sharp btn-lrg join"

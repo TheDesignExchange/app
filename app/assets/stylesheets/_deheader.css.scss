@@ -2,13 +2,15 @@
 
 .header-img {
   padding-top: 100px;
+  margin-left:10%;
+  margin-right:10%;
   img {
     width: 600px;
   }
 }
 
 .join {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   height:50px;
   font-size:150%;
   color: white;
@@ -31,6 +33,7 @@
 .subtitle {
   font-size: 20px;
   margin-top:2%;
+  text-align: center;
 }
 
 .login-margin {
@@ -72,14 +75,14 @@
   border-radius: 20px;
 
   h2 {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size:165%;
     margin-top: 0;
   }
 
   p {
     font-size:100%;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Raleway', sans-serif;
   }
 }
 
