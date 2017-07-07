@@ -15,29 +15,26 @@ class DesignMethodsController < ApplicationController
         @design_methods = DesignMethod.order(completion_score: :desc)
       end
       list_of_ids = []
-      if params[:characteristic] != nil || params[:characteristic_group] != nil
+      if params[:characteristic] != nil
         characteristics = params[:characteristic].to_s.split("/s")
         for characteristic in characteristics
           if characteristic != ""
             list_of_ids += Characteristic.find_by(name:characteristic).design_method_ids
           end
         end
-        characteristic_groups = params[:characteristic_group].to_s.split("/s")
-        for characteristic_group in characteristic_groups
-          if characteristic_group != ""
-            list_of_ids += CharacteristicGroup.find_by(name:characteristic_group).design_method_ids
-          end
-        end
-        @design_methods = DesignMethod.where(id: list_of_ids)
+        @design_methods = DesignMethod.where(id: list_of_ids).order(completion_score: :desc)
       end
       if params[:filter_category] != nil
         categories = params[:filter_category].to_s.split("/s")
         for category in categories
           if category != ""
-            list_of_ids = MethodCategory.find_by(name:category).design_method_ids
+            list_of_ids += MethodCategory.find_by(name:category).design_method_ids
           end
         end
-        @design_methods = DesignMethod.where(id:list_of_ids)
+        @design_methods = DesignMethod.where(id:list_of_ids).order(completion_score: :desc)
+      end
+      if params[:characteristic] == "" and params[:filter_category] == ""
+        @design_methods = DesignMethod.order(completion_score: :desc)
       end
 
       # if params[:characteristic_group] != nil
