@@ -101,96 +101,114 @@
     margin: 40px 0px 40px 0px;
   }
 
-  #explore h2{
+ 
+
+  #icons h2{
     text-align:center;
     font-family: 'Montserrat', sans-serif;
   }
 
 
-  #explore img {
-    margin: 20px 20px 20px 20px;
+  #icons img {
+    / margin: 20%;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    max-width:100%;
-    max-height:100%;
+    width:50%;
+    height:auto;
   }
 
-  #explore p{
+  #icons p{
     text-align:center;
     font-family: 'Raleway', sans-serif;
     margin: 10px 0px 20px 0px;
+    font-size:125%;
   }
 
-  #icons {
+
+
+  #icons .container{
     margin: 0 auto;
-    padding: 10px;
+    display: block;
+    / padding: 10px;
+    margin-left:0px;
+    margin-right:0px;
   }
 
-  #bottom_icons{
-    display:block;
-    margin: 0 auto;
-    padding-left:10%;
-    padding-right:10%;
+  #icons{
+    margin-left:0px;
+    margin-right:0px;
   }
 
-  #bottom_icons .col-sm-4{
-     width:50%;
-     text-align:center;
+  #icons .col-sm-2{
+    margin: 15px;
   }
 
-  #bottom_icons p{
-    text-align:center;
-    display:inline-block;
-  }
+  / #bottom_icons{
+  /   display:block;
+  /   margin: 0 auto;
+  /   padding-left:10%;
+  /   padding-right:10%;
+  / }
+
+  / #bottom_icons .col-sm-4{
+  /    width:50%;
+  /    height:auto;
+  /    text-align:center;
+  / }
+
+  / #bottom_icons p{
+  /   text-align:center;
+  /   display:inline-block;
+  / }
 
   hr{
     border: solid #d3d3d3 1px; 
   }
 
-.row{:id => "explore"}
+.container{:id => "explore"}
 
   %h1
     Our content is categorized within five phases of the early stage design process
   
-  .row{:id => "icons"}
-    .col-sm-4
-      %h2
-        RESEARCH
-      %img
-        = image_tag "research.png"
-      %p 
-        collect information critical to project design process 
-    .col-sm-4
-      %h2
-        ANALYZE
-      %img
-        = image_tag "analyze.png"
-      %p 
-        analysis and/or synthesis of collected data
-    .col-sm-4
-      %h2
-        IDEATE
-      %img
-        = image_tag "ideate.png"
-      %p 
-        create new ideas for products, services, etc.
+.row{:id => "icons"}
+  .col-sm-2
+    %h2
+      RESEARCH
+    %img
+      = image_tag "research.png"
+    %p 
+      collect information critical to project design process 
+  .col-sm-2
+    %h2
+      ANALYZE
+    %img
+      = image_tag "analyze.png"
+    %p 
+      analysis and/or synthesis of collected data
+  .col-sm-2
+    %h2
+      IDEATE
+    %img
+      = image_tag "ideate.png"
+    %p 
+      create new ideas for products, services, etc.
+  .col-sm-2
+    %h2
+      BUILD
+    %img
+      = image_tag "prototype.png"
+    %p
+      turn ideas into reality through a variety of mediums
+  .col-sm-2
+    %h2
+      COMMUNICATE
+    %img
+      = image_tag "communicate.png"
+    %p
+      communicate with others outside of the project
   / minimum width: 768px
-  .row{:id => "bottom_icons"}
-    .col-sm-4
-      %h2
-        PROTOTYPE
-      %img
-        = image_tag "prototype.png"
-      %p
-        turn ideas into reality through a variety of mediums
-    .col-sm-4
-      %h2
-        COMMUNICATE
-      %img
-        = image_tag "communicate.png"
-      %p
-        communicate with others outside of the project
+  / .row{:id => "bottom_icons"}
 
 %hr
 .row{:id => "explore"}
