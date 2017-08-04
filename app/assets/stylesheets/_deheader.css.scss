@@ -23,13 +23,16 @@
 }
 
 .carousel,.item,.active{
-   height:100%;
-   position: relative;
+  height:100%;
+  position: relative;
+  margin: auto;
+  padding:0px;
  }
 .carousel-inner{
   height:100%;
-  z-index: -1;
+  // z-index: -1;
   position: relative;
+  margin: auto;
   padding-bottom:10%;
   background:white !important;
 
@@ -56,27 +59,29 @@
 
 .carousel-inner img{
   position: relative;
+  margin: auto;
+  padding:0px;
 }
 
 
 .jumbotron {
   background: rgb(0, 0, 0);
   color: white;
-  padding-top: 20px;
-  z-index: 1000;
+  // padding-top: 20%;
+  // z-index: 1000;
   width:40%; 
   float:right;
   top:50%;
   left:48%; 
-  padding:5px;
-  position: absolute; 
+  position: absolute;
+  display:inline-block;
 }
 
 .jumbotron h2{
   font-weight: bold;
   font-size:275%;
   font-family: 'GFS Didot', serif;
-  padding-top:12%;
+  padding-top:10%;
   padding-bottom:4%;
 }
 
@@ -93,6 +98,7 @@
   font-family: Georgia, serif;
   text-decoration:underline;
   font-style:italic;
+  padding-bottom:20%;
 }
 
 .subtitle {
