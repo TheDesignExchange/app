@@ -9,15 +9,74 @@
 
 %link{:href => "https://fonts.googleapis.com/css?family=Montserrat", :rel => "stylesheet"}/
 %link{:href => "https://fonts.googleapis.com/css?family=Raleway", :rel => "stylesheet"}/
+%link{:href => "https://fonts.googleapis.com/css?family=GFS+Didot", :rel => "stylesheet"}
+%link{:href => "https://fonts.googleapis.com/css?family=Georgia", :rel => "stylesheet"}
+
 = stylesheet_link_tag "_deheader", :media => "all"
 
-.jumbotron
-  .container
-    .row
-      .header-img
-        = image_tag "logo2.png"
-      %p.subtitle TheDesignExchange provides a central repository of early design stage methods, engaging all stakeholders in the design community of practice, and integrating online learning with real case studies to demonstrate the methods
-      .row
-      - if !user_signed_in?
-        .row
-          = link_to "JOIN", new_registration_path(:user), class: "btn btn-success sharp btn-lrg join"
+
+.carousel-container
+  .carousel.slide{:id=>"slide-images", :data => {:ride => "carousel"}}
+    .carousel-inner
+      .item.active
+        %img
+          = image_tag "research_hero.png"
+        .jumbotron
+          %h2
+            RESEARCH
+          %p 
+            Methods of customer/stakeholder research to inform design decisions
+          %p
+            #{link_to 'View methods ', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsResearch'} &rarr;
+          %br/
+      .item
+        %img
+          = image_tag "analyze_hero.png"
+        .jumbotron
+          %h2
+            ANALYZE
+          %p
+            Methods for analyzing and synthesizing collected data 
+          %p
+            #{link_to 'View methods ', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsAnalyze'} &rarr;
+          %br/
+      .item
+        %img
+          = image_tag "ideate_hero.png"
+        .jumbotron
+          %h2
+            IDEATE
+          %p
+            Methods for creating new ideas for products, services, etc.
+          %p
+            #{link_to 'View methods ', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsIdeate'} &rarr;
+          %br/
+      .item
+        %img
+          = image_tag "build_hero.png"
+        .jumbotron
+          %h2
+            BUILD
+          %p
+            Methods for turning ideas into reality through a variety of mediums
+          %p
+            #{link_to 'View methods ', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsBuild'} &rarr;
+          %br/
+      .item
+        %img
+          = image_tag "communicate_hero.png"
+        .jumbotron
+          %h2
+            COMMUNICATE
+          %p
+            Methods for communicating at all stages with others outside the design team
+          %p
+            #{link_to 'View methods', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsCommunicate'} &rarr; 
+          %br/
+
+
+
+    %a.left.carousel-control{:href => "#slide-images", :data => {:slide => "prev"}}
+      %span.glyphicon.glyphicon-chevron-left
+    %a.right.carousel-control{:href => "#slide-images", :data => {:slide => "next"}}
+      %span.glyphicon.glyphicon-chevron-right

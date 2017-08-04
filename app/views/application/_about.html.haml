@@ -1,0 +1,194 @@
+:css
+  @import url('https://fonts.googleapis.com/css?family=Arvo:700');
+
+  h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom:10px;
+  }
+
+  p, ul, td, tr{
+    font-family: 'Raleway', sans-serif;
+  }
+
+  table{
+    border: 1px solid #d3d3d3;
+    padding:20px;
+  }
+
+  img {
+    height:150px;
+    width:auto;
+  }
+}
+
+
+%link{:href => "https://fonts.googleapis.com/css?family=Montserrat", :rel => "stylesheet"}/
+%link{:href => "https://fonts.googleapis.com/css?family=Raleway", :rel => "stylesheet"}/
+= stylesheet_link_tag "_about", :media => "all"
+
+
+.container
+  %br/
+  .row
+    %h1
+      ABOUT
+    %p
+      TheDesignExchange provides a central repository of early design stage methods, engaging all stakeholders in the design community of practice, and integrating online learning with real case studies to demonstrate the methods.
+    %p
+      Formal design methods have been shown to have high impact on the quality and success of engineered products. Due to time constraints, courses can only cover a subset of the most popular methods. Thus it can be hard to find the range of potential methods for use in any particular problem.
+    %p
+      TheDesignExchange fills this need by organizing a wide range of disparate design research methods, developing a community of design educators and practitioners to evaluate those methods, and educating the next generation of design innovators. TheDesignExchange provides a structure to collect the many design methods in use today, their variations, and examples of use.     The portal aims to support the design process by providing educators and practitioners alike with a versatile library of proven tools.
+    %p
+      Given the community-of-practice model and wide application of design methods, theDesignExchange portal is fundamentally multi-disciplinary. The subject matter draws on the diverse range of contributors engaged in “design thinking”, a human-centric multidisciplinary design process (engineers, designers, architects, business people, educators). By recognizing and promoting the common thread among these different disciplines, theDesignExchange supports the cross-pollination of methodologies among them. theDesignExchange  aims to be the world’s largest open innovation archive of design-practice-related subject matter.  To accomplish this, we are drawing on previous work one in design theory, communities of practice, and expert/lead user-generated content.
+
+    %p
+      The content in TheDesignExchange is categorized within five phases of the early stage design process:
+
+    %table
+      %tr
+        %td
+          %img
+            = image_tag "research.png"
+        %td
+          #{link_to 'RESEARCH', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsResearch'}: collect data to better understand customer needs and context
+      %tr
+        %td
+          %img
+            = image_tag "analyze.png"
+        %td
+          #{link_to 'ANALYZE', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsAnalyze'}: analyze and/or synthesize collected data
+      %tr
+        %td
+          %img
+            = image_tag "ideate.png"
+        %td 
+          #{link_to 'IDEATE', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsIdeate'}: create new ideas for products, services, etc.
+      %tr
+        %td
+          %img
+            = image_tag "prototype.png"
+        %td
+          #{link_to 'BUILD', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsBuild'}: turn ideas into reality through a variety of mediums
+      %tr
+        %td
+          %img
+            = image_tag "communicate.png"
+        %td 
+          #{link_to 'COMMUNICATE', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsCommunicate'}: communicate at all stages of the design process with others outside of the design team
+     
+  %br/
+
+  .row
+    %h2 
+      LEADERSHIP
+    %p 
+      #{link_to 'Alice Agogino', 'http://www.me.berkeley.edu/people/faculty/alice-m-agogino'}, UC Berkeley, #{link_to 'agogino@berkeley.edu', 'mailto:agogino@berkeley.edu'}
+    %p 
+      Sara Beckman, UC Berkeley, #{link_to 'beckman@berkeley.edu', 'mailto:beckman@berkeley.edu'}
+    %p 
+      Danielle Poreh, UC Berkeley, #{link_to 'd.poreh@berkeley.edu', 'mailto:d.poreh@berkeley.edu'} – Product Manager and Communications Contact
+    %p 
+      Celeste Roschuni, University of Maryland – College Park, #{link_to 'celestial@gmail.com', 'mailto:celestial@gmail.com'}
+    %p 
+      Maria Yang, MIT, #{link_to 'mcyang@mit.edu', 'mailto:mcyang@mit.edu'}
+
+  %br/
+
+  .row
+    %h2
+      DEVELOPMENT TEAM
+    %p 
+      Carmen Castaños, #{link_to 'ccastano@mit.edu', 'mailto:ccastano@mit.edu'}
+    %p  
+      Alice Chin, #{link_to 'alicechin@berkeley.edu', 'mailto:alicechin@berkeley.edu'}
+    %p  
+      James Jiang, UC Berkeley, #{link_to 'james.jiang@berkeley.edu', 'mailto:james.jiang@berkeley.edu'} – Leads Web Dev Team 
+    %p  
+      Euiyoung Kim, UC Berkeley, #{link_to 'avant80.kim@gmail.com', 'mailto:avant80.kim@gmail.com'} – Design Strategy
+    %p  
+      Julia Kramer, UC Berkeley, #{link_to 'j.kramer@berkeley.edu', 'mailto:j.kramer@berkeley.edu'} – Human-Centered Design for Development
+    %p
+      Catherine Nitta, UC Berkeley, #{link_to 'nittac@berkeley.edu', 'mailto:nittac@berkeley.edu'}
+    %p
+      Erika Oishi, UC Berkeley, #{link_to 'erikaoishi@berkeley.edu', 'mailto:erikaoishi@berkeley.edu'}
+    %p
+      Seokhyeon (Sock) Ryu, #{link_to 'seokhyeonryu87@gmail.com', 'mailto:seokhyeonryu87@gmail.com'}
+    %p
+      Jonida Shkurti, #{link_to 'shkurti.j@gmail.com', 'mailto:shkurti.j@gmail.com'} – UX Design
+
+  %br/
+
+  .row
+    %h2
+      VIDEOS
+    %p
+      %p theDesign Exchange #{link_to 'YouTube Channel', 'https://www.youtube.com/channel/UCLtBn_ZusRU1G2Tt16j-2IQ'}
+      %p #{link_to 'Video Pitch', 'https://www.youtube.com/watch?v=KnqqkO-r_04'} for theDesignExchange
+
+  %br/
+
+  .row
+    %h2 
+      PRESENTATIONS AND PUBLICATIONS
+    %h3
+      2017
+
+    %ul
+      Kramer, J., Euiyoung Kim, Danielle Poreh, Alice Agogino, “Teaching and Evaluating Design Competencies in the 21st Century”, extended abstract Proceedings of the Mudd Design Workshop, 2017 titled “Design and the Future of the Engineer of 2020”. Poster presentation.
+    %ul
+      Kramer, J., D. Poreh, A.M. Agogino, “Using theDesignExchange as a Knowledge Platform for Human-Centered Design-Driven Global Development,” Proceedings of the ICED17, International Conference in Engineering Design, 2017.
+
+    %h3
+      2016
+    %ul
+      Kramer, J., C. Roschuni, A.M. Agogino, “Characterizing Skills for Human-Centered Design”, Proceedings of ASME IDETC 2016.
+    %ul
+      D.I. Levine, M.A. Lesniewski, A.M. Agogino, “Design Thinking in Development Engineering”, (with D. I. Levine, M.A. Lesniewski), International Journal of Engineering Education, 32 (3B), pp. 1396-1406, 2016.
+    %ul 
+      A.M. Agogino, S. Beckman, C. Castaños, J. Kramer, C.Roschuni, M. Yang, “Design Practitioners’ Perspectives on Methods for Ideation and Prototyping”, International Journal of Engineering Education, 32 (3B), pp. 1428-1437, 2016.
+
+    %h3
+      2015
+    %ul 
+      Fuge, M. and A.M. Agogino, “Pattern Analysis of IDEO’s Human-Centered Design Methods in Developing Regions”, ASME Journal of Mechanical Design, 137 (7), MD-14-1571, July 2015.
+    %ul
+      Agogino, A.M., S. Beckman, C. Castaños, J. Kramer C.Roshuni, M. Yang (2015). “Design Practitioners’ Perspectives on Methods for Ideation and Prototyping,” Proceedings of the Mudd Design Workshop IX, May 27-30, 2015, Harvey Mudd College.
+    %ul
+      Roshuni, C. J. Kramer, et al. (2015). “Design Talking:  An Ontology of Design Methods to Support a Common Language of Design,” to appear in Proceedings of the International Conference on Engineering Design, ICED15.Winner of Reviewers’ Favorite at the 2015 International Conference on Engineering Design
+    %ul
+      Roshuni, C. J. Kramer, A.M. Agogino (2015). “Design Talking:  How Design Practitioners Talk About Design Research Methods,” to appear in Proceedings of the International Conference on Design Education, IDETC15.
+
+    %h3 
+      2014
+    %ul 
+      Fuge, M., B. Peters and A.M. Agogino, “Machine Learning Algorithms for Recommending Design Methods,” ASME Journal of Mechanical Design, 136 (10) 101103, August 18, 2014.
+    %ul 
+      Fuge, M., K. Tee, A.M. Agogino and N. Maton, “Network Analysis of Collaborative Design Networks: A Case Study of Open IDEO”. ASME Journal of Computing and Information Science in Engineering, 14 (2) 2014.
+    %ul 
+      Fuge, M., A.M. Agogino and N. Maton, “How Online Design Communities Evolve Over Time: the Birth and Growth of OpenIDEO.” Proceedings of the International Design Engineering Technical Conference (DETC), Design, Theory and Methods, ASME, August 2014.
+
+    %h3 
+      2011
+    %ul 
+      Roschuni, C., A.M. Agogino, S.L. Beckman (2011). The DesignExchange: Supporting the design community of practice. In Proceedings of the 18th International Conference on Engineering Design (ICED 11) (Vol. 8). Lyngby/Copenhagen, Denmark.
+
+  %br/
+
+  .row
+    %h2
+      FUNDING AND INDUSTRY COLLABORATION
+    %p
+      We thank our industry collaborators who hosted our workshop series: Autodesk, Frog, Goto Media, DesignMap, and IDEO and our team of faculty and students at UC Berkeley and MIT for their input and dedication to theDesignExchange. This work was partially supported by NSF grant CMMI-1334361.
+
+= render "layouts/headernav"
+    / Header for the application#index view
+    - if (params[:controller] == "application" && (params[:action] == "index" || params[:action] == "about"))
+      = render "layouts/deheader"
+    / End of header for application#index
+    .container{}
+      = render "layouts/about"
+    .footer
+      %footer.site-footer{}
+        = render "layouts/footer"
+        = render "layouts/feedbackform"
+

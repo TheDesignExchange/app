@@ -23,6 +23,7 @@
 
 #search {
    background-color: #f8f8f8;
+   font-family: Raleway, sans-serif;
 }
 
 .notice {
@@ -49,6 +50,7 @@
 
  /* OVERRIDE BOOTSTRAP ANCHOR BEHAVIOR */
  a {
+    font-family: Raleway, sans-serif;
     color: #6CC06D;
     text-decoration: none;
   }
@@ -366,8 +368,7 @@ img.logo{
   width: 100%;
   min-height: 49px;
   border-top: 1px solid #d9d9d9;
-  margin-top: 10px;
-  padding-left: 24px;
+  padding:2%;
 }
 
 .site-info {
