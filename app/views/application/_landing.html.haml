@@ -158,51 +158,50 @@
     border: solid #d3d3d3 1px; 
   }
 
-.row{:id => "explore"}
+/ .row{:id => "explore"}
 
-  %h1
-    Our content is categorized within five phases of the early stage design process
+/   %h1
+/     Our content is categorized within five phases of the early stage design process
   
-  .row{:id => "icons"}
-    .col-sm-4
-      %h2
-        RESEARCH
-      %img
-        = image_tag "research.png"
-      %p 
-        collect information critical to project design process 
-    .col-sm-4
-      %h2
-        ANALYZE
-      %img
-        = image_tag "analyze.png"
-      %p 
-        analysis and/or synthesis of collected data
-    .col-sm-4
-      %h2
-        IDEATE
-      %img
-        = image_tag "ideate.png"
-      %p 
-        create new ideas for products, services, etc.
-  / minimum width: 768px
-  .row{:id => "bottom_icons"}
-    .col-sm-4
-      %h2
-        BUILD
-      %img
-        = image_tag "prototype.png"
-      %p
-        turn ideas into reality through a variety of mediums
-    .col-sm-4
-      %h2
-        COMMUNICATE
-      %img
-        = image_tag "communicate.png"
-      %p
-        communicate with others outside of the project
+/   .row{:id => "icons"}
+/     .col-sm-4
+/       %h2
+/         RESEARCH
+/       %img
+/         = image_tag "research.png"
+/       %p 
+/         collect information critical to project design process 
+/     .col-sm-4
+/       %h2
+/         ANALYZE
+/       %img
+/         = image_tag "analyze.png"
+/       %p 
+/         analysis and/or synthesis of collected data
+/     .col-sm-4
+/       %h2
+/         IDEATE
+/       %img
+/         = image_tag "ideate.png"
+/       %p 
+/         create new ideas for products, services, etc.
+/   / minimum width: 768px
+/   .row{:id => "bottom_icons"}
+/     .col-sm-4
+/       %h2
+/         BUILD
+/       %img
+/         = image_tag "prototype.png"
+/       %p
+/         turn ideas into reality through a variety of mediums
+/     .col-sm-4
+/       %h2
+/         COMMUNICATE
+/       %img
+/         = image_tag "communicate.png"
+/       %p
+/         communicate with others outside of the project
 
-%hr
 .row{:id => "explore"}
   %h1
     EXPLORE CONTENT
@@ -232,16 +231,17 @@
             Medication Management 
           %h4
             Gain insight into medication management processes and design implications for personal health applications
-  .row
-    = link_to 'INVITE YOUR FRIENDS', '/share', class: "btn btn-success sharp btn-lrg join"
-      
-    / %p.subtitle{:style=>"text-align:center;font-size:200%; margin-top:30%;font-family: 'Source Sans Pro', sans-serif;"} Case Studies coming soon
 
-    / = link_to case_study_path(id:197) do #change link path
-    /   = image_tag "CaseStudiesLandingPage.png", :width => "100%", size: "450x370"
-    /   .layer
-    /     .left-padding
-    /       .h1{:style=>"margin-bottom:10%;font-family: 'Work Sans';font-size:180%; sans-serif;color: white;"}
-    /         Adapting Usability Testing for Oral, Rural Users
-    /       .h4{:style=>"margin-bottom:10%;font-size:100%;color: white;margin-top:-10%;"}
-    /         Read about a study conducted in Ghanaian villages that evaluated an audio computer desgined for people living in oral cultures
+.row
+  = link_to 'INVITE YOUR FRIENDS', '/share', class: "btn btn-success sharp btn-lrg join"
+      
+  / %p.subtitle{:style=>"text-align:center;font-size:200%; margin-top:30%;font-family: 'Source Sans Pro', sans-serif;"} Case Studies coming soon
+
+  / = link_to case_study_path(id:197) do #change link path
+  /   = image_tag "CaseStudiesLandingPage.png", :width => "100%", size: "450x370"
+  /   .layer
+  /     .left-padding
+  /       .h1{:style=>"margin-bottom:10%;font-family: 'Work Sans';font-size:180%; sans-serif;color: white;"}
+  /         Adapting Usability Testing for Oral, Rural Users
+  /       .h4{:style=>"margin-bottom:10%;font-size:100%;color: white;margin-top:-10%;"}
+  /         Read about a study conducted in Ghanaian villages that evaluated an audio computer desgined for people living in oral cultures

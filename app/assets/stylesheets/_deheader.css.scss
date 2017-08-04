@@ -1,5 +1,4 @@
 @import url(//fonts.googleapis.com/css?family=Arvo:700);
-
 .header-img {
   padding-top: 100px;
   margin-left:10%;
@@ -22,12 +21,76 @@
 .h1 {
   font-size: 300%;
 }
+
+.carousel,.item,.active{
+   height:100%;
+   position: relative;
+ }
+.carousel-inner{
+  height:100%;
+  z-index: -1;
+  position: relative;
+  padding-bottom:10%;
+  background:white !important;
+
+}
+
+.carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+  background:none !important;
+  background-image:none !important;
+}
+
+.carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
+  background: !important;
+  background-image:none !important;
+}
+
+
+
+.carousel-control.left, .carousel-control.right {
+  background: none !important;
+  filter: progid none !important;
+  outline: 0;
+  top:-25%;
+ }
+
+.carousel-inner img{
+  position: relative;
+}
+
+
 .jumbotron {
-  font-size: 17px;
-  background: rgb(89, 88, 91);
+  background: rgb(0, 0, 0);
   color: white;
-  height:420px;
   padding-top: 20px;
+  z-index: 1000;
+  width:40%; 
+  float:right;
+  top:55%;
+  left:48%; 
+  padding:5px;
+  position: absolute; 
+}
+
+.jumbotron h2{
+  font-weight: bold;
+  font-size:275%;
+  font-family: 'GFS Didot', serif;
+  padding-top:12%;
+  padding-bottom:4%;
+}
+
+.jumbotron p{
+  font-size: 120%;
+  font-family: Georgia, serif;
+  padding-left:5%;
+  padding-right:5%;
+}
+
+.jumbotron a{
+  color:white;
+  font-size: 70%;
+  font-family: Georgia, serif;
 }
 
 .subtitle {
@@ -92,7 +155,7 @@
   }
 
   .jumbotron {
-    height: 600px;
+    height: 30%;
     .container {
       margin: 0;
       padding: 0;
