@@ -1,11 +1,5 @@
 :css
   @import url(//fonts.googleapis.com/css?family=Arvo:700);
-
-  #showcase .row {
-    margin-bottom:10%;
-  }
-
-
   #showcase .subtitle {
     text-align:center;
     font-size:100%;
@@ -158,7 +152,10 @@
     border: solid #d3d3d3 1px; 
   }
 
+
 / .row{:id => "explore"}
+/ .container{:id => "explore"}
+
 
 /   %h1
 /     Our content is categorized within five phases of the early stage design process
@@ -201,6 +198,46 @@
 /         = image_tag "communicate.png"
 /       %p
 /         communicate with others outside of the project
+
+
+/ .row{:id => "icons"}
+/   .col-sm-2
+/     %h2
+/       RESEARCH
+/     %img
+/       = image_tag "research.png"
+/     %p 
+/       collect information critical to project design process 
+/   .col-sm-2
+/     %h2
+/       ANALYZE
+/     %img
+/       = image_tag "analyze.png"
+/     %p 
+/       analysis and/or synthesis of collected data
+/   .col-sm-2
+/     %h2
+/       IDEATE
+/     %img
+/       = image_tag "ideate.png"
+/     %p 
+/       create new ideas for products, services, etc.
+/   .col-sm-2
+/     %h2
+/       BUILD
+/     %img
+/       = image_tag "prototype.png"
+/     %p
+/       turn ideas into reality through a variety of mediums
+/   .col-sm-2
+/     %h2
+/       COMMUNICATE
+/     %img
+/       = image_tag "communicate.png"
+/     %p
+/       communicate with others outside of the project
+
+/ %hr
 
 .row{:id => "explore"}
   %h1
