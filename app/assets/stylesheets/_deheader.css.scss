@@ -41,13 +41,30 @@
 .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
   background:none !important;
   background-image:none !important;
+  color:white;
+
 }
 
 .carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
   background: !important;
   background-image:none !important;
+  color:white;
 }
 
+.carousel-control {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 8%;  /* change this value to required width */
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+  background-color: rgba(0, 0, 0, 0);
+  filter: alpha(opacity=50);
+  opacity: 1;
+}
 
 
 .carousel-control.left, .carousel-control.right {
@@ -62,6 +79,7 @@
   margin: auto;
   padding:0px;
 }
+
 
 
 .jumbotron {
