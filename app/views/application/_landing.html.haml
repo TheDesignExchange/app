@@ -55,8 +55,8 @@
     }
 
     #casestudies-background {
-    background-image: url("/assets/CaseStudyLandingPage.jpg");
-    background-size: contain;
+    background-image: url("https://thedesignexchange-staging.s3-us-west-1.amazonaws.com/production/case_studies/201/case-study-201");
+    background-size: 120%;
     background-repeat: no-repeat;
     width: 100%;
     height: 0;
@@ -260,17 +260,24 @@
     %h1
       =link_to "Case Studies", case_studies_path
     / %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Read about how real design probems were solved.
+    / case_study_path(id:200) do for link_to but can't figure out the ID
     %p.subtitle Read about how the methods are applied in real world situations
     .background{:id => "casestudies-background"}
-      = link_to case_study_path(id:203) do
+      = link_to 'https://www.thedesignexchange.org/case_studies/201' do
         .layer
           %h2
-            Medication Management 
+            HCI Practices in Malaysia
           %h4
-            Gain insight into medication management processes and design implications for personal health applications
+            ICT is seen as not only an industry, but a driving factor in the Malaysian economy in order to increase productivity and efficiency. 
 
 .row
-  = link_to 'INVITE YOUR FRIENDS', '/share', class: "btn btn-success sharp btn-lrg join"
+  - if user_signed_in?
+    .row
+      = link_to 'INVITE YOUR FRIENDS', '/share', class: "btn btn-success sharp btn-lrg join"
+  - if !user_signed_in?
+    .row
+      = link_to "JOIN NOW", new_registration_path(:user), class: "btn btn-success sharp btn-lrg join"
+      = link_to 'INVITE YOUR FRIENDS', '/share', class: "btn btn-success sharp btn-lrg join"
       
   / %p.subtitle{:style=>"text-align:center;font-size:200%; margin-top:30%;font-family: 'Source Sans Pro', sans-serif;"} Case Studies coming soon
 
