@@ -1,4 +1,10 @@
 %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+%script{:type => "text/javascript",
+        :src  => "//static.getclicky.com/js"}
+:javascript
+  try {
+    clicky.init(101059539);
+  } catch (e) {}
 :javascript
   $(function(){
     $('form#search input').autocomplete(DE.Autocomplete);
