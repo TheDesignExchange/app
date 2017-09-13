@@ -44,24 +44,25 @@
         %ul.nav.nav-tabs
           - if @category
             %li.active
-              %a{"data-link" => "dm"} Methods (#{@dm_search.total})
+              %a{"data-link" => "dm"} Methods (#{@dm_names.count})
           - else
             - if @cs_tab_visible
               %li
-                %a{"data-link" => "dm"} Methods (#{@dm_search.total})
+                %a{"data-link" => "dm"} Methods (#{@dm_names.count})
               %li.active
-                %a{"data-link" => "cs"} Case Studies (#{@cs_search.total})
+                %a{"data-link" => "cs"} Case Studies (#{@cs_names.count})
             - else
               %li.active
-                %a{"data-link" => "dm"} Methods (#{@dm_search.total})
+                %a{"data-link" => "dm"} Methods (#{@dm_names.count})
               %li
-                %a{"data-link" => "cs"} Case Studies (#{@cs_search.total})
+                %a{"data-link" => "cs"} Case Studies (#{@cs_names.count})
   / CONTENT
   .row
     / Method Search Tab
     .tab-pane.col-sm-12.padding#dm{"data-link" => "dm"}
       .row
-        - @dm_search.results.each do |method|
+        / - @dm_search.results.select{ |design_method| design_method.hidden = false}.each do |method| 
+        - search_not_draft_or_hidden(@dm_search.results, "dm").each do |method|
           = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(method,"3")
       .row
         = will_paginate @dm_search.hits
@@ -69,7 +70,7 @@
       / Case Study Search Tab
       .tab-pane.col-sm-12.padding#cs{"data-link" => "cs"}
         .row
-          - @cs_search.results.each do |cs|
+          - search_not_draft_or_hidden(@cs_search.results, "cs").each do |cs|
             = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3")
         .row
           = will_paginate @cs_search.hits
