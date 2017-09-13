@@ -12,6 +12,14 @@ module ApplicationHelper
   #TODO test deleting this
   @@methods_file = "method_categories.json"
 
+  def search_not_draft_or_hidden(search, dm_or_cs)
+    if dm_or_cs == "dm"
+      return search.select{ |design_method| design_method.hidden == false && design_method.draft == false}
+    elsif dm_or_cs == "cs"
+      return search.select{ |case_study| case_study.hidden == false && case_study.draft == false}
+    end
+  end
+
   def human_boolean(boolean)
       boolean ? 'Yes' : 'No'
   end

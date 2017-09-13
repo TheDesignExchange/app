@@ -1,5 +1,6 @@
 require_relative '../../lib/spelling_corrector.rb'
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
   check_authorization :unless => :devise_controller?
 
   skip_authorization_check :only => [:landing, :index, :search, :search_db, :about, :share, :sendInvitation,:advancedSearch]
@@ -63,16 +64,14 @@ class ApplicationController < ActionController::Base
       @cs_tab_visible = params[:visible_tab] == 'cs'
       @dm_search = solr_dm_search(@query, @dm_page, cg_filters, nil)
       @cs_search = solr_cs_search(@query, @cs_page)
-
-
-
     end
 
     sfh = SearchFilterHash.new(@dm_search.facets, cg_filters)
     @category_hashes = sfh.build_hash
-
-    design_method_names = @dm_search.results.map { |design_method| design_method.name }
-    case_study_names = @cs_search.results.map { |case_study| case_study.name }
+    design_method_names = search_not_draft_or_hidden(@dm_search.results, "dm")
+    design_method_names = design_method_names.map { |design_method| design_method.name }
+    case_study_names = search_not_draft_or_hidden(@cs_search.results, "cs")
+    case_study_names = case_study_names.map { |case_study| case_study.name}
     @dm_names = design_method_names
     @cs_names = case_study_names
 
