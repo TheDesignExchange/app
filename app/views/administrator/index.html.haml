@@ -99,6 +99,31 @@
         }
       }
     });
+
+      $("#skills-table").tablesorter({
+      widgets: ['pager'],
+      ignoreCase: true,
+      sortList: [[0,0],[1,0],[2,0],[3,0],[4,0]],
+      theme: 'blue',
+      widgetOptions: {
+        pager_updateArrows: true,
+        pager_ajaxUrl: null,
+        pager_css: {
+          container : 'casestudies-tablesorter-pager',    // class added to make included pager.css file work
+          disabled : 'tablesorter-pager-disabled'              // class added to arrows @ extremes (i.e. prev/first arrows "disabled" on first page)
+        },
+        pager_selectors: {
+          container : '.casestudies-tablesorter-pager',       // target the pager markup (wrapper)
+          first : '.first',       // go to first page arrow
+          prev : '.prev',        // previous page arrow
+          next : '.next',        // next page arrow
+          last : '.last',        // go to last page arrow
+          gotoPage : '.gotoPage',    // go to page selector - select dropdown that sets the current page
+          pageDisplay : '.pagedisplay', // location of where the "output" is displayed
+          pageSize : '.pagesize'     // page size selector - select dropdown that sets the "size" option
+        }
+      }
+    });
   });
 
 :css
@@ -135,6 +160,8 @@
         %a{"data-link" => "methods"} Methods
       %li
         %a{"data-link" => "casestudies"} Case Studies
+      %li
+        %a{"data-link" => "skills"} Skills
 .tab-pane.row{"data-link" => "users"}
   %table#users-table.tablesorter
     %thead
@@ -339,3 +366,23 @@
           = cs.updated_at
   .casestudies-tablesorter-pager
     = render :partial => '/shared/tablesorter_pager'
+.tab-pane.row{"data-link" => "skills"}
+  .methods-tablesorter-pager
+    = render :partial => '/shared/tablesorter_pager'
+  %table#skills-table.tablesorter
+    %thead
+      %tr
+        %th Method Name
+        %th Skills
+      
+    %tbody
+    - for method in @methods_with_skills
+      %tr
+        %td 
+          = method.name
+        %td 
+          - skills = method.skills.split("\r\n")
+          - for skill in skills
+            %li 
+              = skill.gsub("-","").gsub("*","")
+

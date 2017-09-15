@@ -9,6 +9,7 @@ class AdministratorController < ApplicationController
       @characteristics = Characteristic.all
       @design_methods = DesignMethod.all
       @case_studies = CaseStudy.all
+      @methods_with_skills = DesignMethod.where.not("skills= ? AND skills = ?", nil, "")
       render layout: "custom"
     end
   end
