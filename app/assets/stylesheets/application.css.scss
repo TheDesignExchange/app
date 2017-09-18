@@ -30,6 +30,12 @@
   margin-top:50px;
 }
 
+.btn.sharp {
+  border-radius:0;
+  letter-spacing: 2px;
+  padding: 10px 50px;
+}
+
 @media (max-width: 768px) {
   #search{
     height: 60px;
@@ -385,6 +391,11 @@ img.logo{
   line-height: 2;
 }
 
+.btn.sharp {
+    border-radius:0;
+    letter-spacing: 2px;
+    padding: 10px 50px;
+}
 
 .tablesorter-pager-disabled {
   opacity: 0.5;

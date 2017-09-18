@@ -102,12 +102,7 @@
       border-radius: 6px 0 6px 6px;
   }
 
-
-
 / TOP ROW
-
-
-
 
 .container-fluid
   
@@ -154,7 +149,7 @@
         - @search_filter_hash.each do |category|
           %li{:style=>"margin-left:10px;"}
             .dropdown
-              = link_to category[:name], {:controller => "design_methods", :action => "index", :filter_category => params[:filter_category].to_s+"/s"+category[:name].to_s,:characteristic=> params[:characteristic].to_s}, :class=> "btn btn-info category-heading sidebar-maincategory"
+              = link_to category[:name], {:controller => "design_methods", :action => "index", :filter_category => params[:filter_category].to_s+"/s"+category[:name].to_s,:characteristic=> params[:characteristic].to_s}, :class=> "btn btn-info sharp category-heading sidebar-maincategory"
 
               %ul.dropdown-menu.multi-level{"aria-labelledby" => "dropdownMenu", :role => "menu"}
                 %li.dropdown{:style=>"background-color:springgreen"}
