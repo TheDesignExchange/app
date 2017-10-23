@@ -124,7 +124,7 @@
     });
   });
 
-#myModal.modal.fade{:role => "dialog"}
+#shareModal.modal.fade{:role => "dialog"}
   .modal-dialog
     / Modal content
     .modal-content
@@ -244,7 +244,7 @@
               %b.caret
             %ul.dropdown-menu
               %li
-                %a{"data-target" => "#myModal", "data-toggle" => "modal"} Email
+                %a{"data-target" => "#shareModal", "data-toggle" => "modal"} Email
           %li
             %a{:href => edit_design_method_path(params[:id])}
               %span.glyphicon.glyphicon-pencil

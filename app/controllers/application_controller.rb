@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :warning, :danger, :info
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :alert => exception.message
+    redirect_to :back, :alert => exception.message
   end
 
   def store_location

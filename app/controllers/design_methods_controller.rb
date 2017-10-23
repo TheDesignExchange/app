@@ -61,6 +61,7 @@ class DesignMethodsController < ApplicationController
     @new = true
     @design_method = DesignMethod.new
     render :layout => "custom"
+
   end
 
   def edit
