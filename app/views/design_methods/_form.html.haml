@@ -164,7 +164,7 @@
     - if current_user.author?
       = f.submit "Ready for Approval", :id => "publish-btn", :class => "btn btn-success pull-right"
     = f.submit "Save as Draft", :id => "save-btn", :class => "btn btn-default pull-right"
-    
+
 
     / </button>
     %span#auto-saved-text.pull-right
@@ -206,7 +206,7 @@
       %div.more-info
         %a#additional-reading More Info
         %div.tool-help This section allows the administrators to provide suggestions to the editors.
-      = f.text_area :suggestions, :class => "form-control markdown", :rows => 6
+      = f.text_area :suggestions, :class => "form-control wysiwyg", :rows => 8
       %h5 End of Suggestions
     %h3 Synonyms
     .input-group-lg{:style => "margin-top: 10px;margin-bottom: 10px;"}
@@ -224,14 +224,14 @@
       = f.file_field :picture
     - else
       = f.file_field :main_image
-    
+
     %br/
     - if !@new
       = link_to "Clear Image", {:controller => "design_methods", :action => :clearImage, :id => @design_method.id}, :class=> "btn btn-primary"
 
     %br/
     %h4 Image Attribution
-    = f.text_area :image_attribution, :class => "form-control markdown", :rows => 2
+    = f.text_area :image_attribution, :class => "form-control wysiwyg", :rows => 8
 
 
     / END IMAGES
@@ -250,12 +250,12 @@
     %button{"data-target" => "#vOne", "data-toggle" => "collapse", :id => "dm-collapse",:name=>"videoAttrOneBtn",:class=>"btn btn-primary btn-index-create collapsed"}
       %span.glyphicon.glyphicon-chevron-down
       Show Video One Attributes
-    #vOne.collapse 
+    #vOne.collapse
       %h4 Video One Attribution
-      = f.text_area :video_attribution, :class => "form-control markdown", :rows => 2
+      = f.text_area :video_attribution, :class => "form-control wysiwyg", :rows => 2
       %h4 Video One Caption
-      = f.text_area :video_caption, :class => "form-control markdown", :rows => 2
-    
+      = f.text_area :video_caption, :class => "form-control wysiwyg", :rows => 2
+
     %h4 Video Two Embedded URL
     .tooltips
       How to get Embedded Video URL
@@ -265,59 +265,59 @@
       = f.text_field :videoURL_two, :class=> "form-control", :placeholder => ""
     %button{"data-target" => "#vTwo", "data-toggle" => "collapse", :id => "dm-collapse",:name=>"videoAttrOneBtn",:class=>"btn btn-primary btn-index-create collapsed"}
       %span.glyphicon.glyphicon-chevron-down
-      Show Video Two Attributes   
+      Show Video Two Attributes
     #vTwo.collapse
       %h4 Video Two Attribution
-      = f.text_area :video_two_attribution, :class => "form-control markdown", :rows => 2
+      = f.text_area :video_two_attribution, :class => "form-control wysiwyg", :rows => 2
       %h4 Video Two Caption
-      = f.text_area :video_two_caption, :class => "form-control markdown", :rows => 2
+      = f.text_area :video_two_caption, :class => "form-control wysiwyg", :rows => 2
     %h3
       Summary
       %span.mandatory *
-    = f.text_area :overview, :class => "form-control markdown", :rows => 6
+    = f.text_area :overview, :class => "form-control wysiwyg", :rows => 8, as: :wysihtml5
     %h3 Usage
-    = f.text_area :usage, :class => "form-control markdown", :rows => 6
+    = f.text_area :usage, :class => "form-control wysiwyg", :rows => 8
     %h3 Benefits
-    = f.text_area :benefits, :class => "form-control markdown", :rows => 6
+    = f.text_area :benefits, :class => "form-control wysiwyg", :rows => 8
     %h3 Limitations/Risks
-    = f.text_area :limitations, :class => "form-control markdown", :rows => 6
+    = f.text_area :limitations, :class => "form-control wysiwyg", :rows => 8
     %h3 Skills
-    = f.text_area :skills, :class => "form-control markdown", :rows => 6
+    = f.text_area :skills, :class => "form-control wysiwyg", :rows => 8
   /Instructions tab
   .tab-pane.row{"data-link" => "instructions"}
     %h3
       Instructions
       %span.mandatory *
-    = f.text_area :process, :class => "form-control markdown", :rows => 20
+    = f.text_area :process, :class => "form-control wysiwyg", :rows => 20, as: :wysihtml5
   /Resources tab
   .tab-pane.row{"data-link" => "resources"}
     %h3.more-info-headers Online Tools And Resources
     %div.more-info
       %a#online-tools-and-resources More Info
       %div.tool-help These are tools available online to facilitate the use of the method.
-    = f.text_area :online_resources, :class => "form-control markdown", :rows => 6
+    = f.text_area :online_resources, :class => "form-control wysiwyg", :rows => 8
     %h3.more-info-headers History
     %div.more-info
       %a#history More Info
       %div.tool-help This section discusses the historical inception and use of the method.
-    = f.text_area :history, :class => "form-control markdown", :rows => 6
+    = f.text_area :history, :class => "form-control wysiwyg", :rows => 8
     %h3.more-info-headers Critiques
     %div.more-info
       %a#critiques More Info
       %div.tool-help This section discusses the critical analyses and assessments of the method.
-    = f.text_area :critiques, :class => "form-control markdown", :rows => 6
+    = f.text_area :critiques, :class => "form-control wysiwyg", :rows => 8
 
     %h3.more-info-headers References
     %div.more-info
       %a#citations More Info
       %div.tool-help This section lists the sources used to develop the content on theDesignExchange for the method.
-    = f.text_area :references, :class => "form-control markdown", :rows => 6
+    = f.text_area :references, :class => "form-control wysiwyg", :rows => 8
 
     %h3.more-info-headers Additional Reading
     %div.more-info
       %a#additional-reading More Info
       %div.tool-help This section provides further resources that provide more information on the method than is presented on theDesignExchange for the method.
-    = f.text_area :additional_reading, :class => "form-control markdown", :rows => 6
+    = f.text_area :additional_reading, :class => "form-control wysiwyg", :rows => 8
 
 
 
@@ -419,7 +419,7 @@
     - if current_user.author?
       = f.submit "Ready for Approval", :id => "publish-btn", :class => "btn btn-success pull-right"
     = f.submit "Save as Draft", :id => "save-btn", :class => "btn btn-default pull-right"
-    
+
 
     / <span id="auto-saved-text" class="pull-right">Auto-saved as draft 2 minutes ago</span>
   / END BODY

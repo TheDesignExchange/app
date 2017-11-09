@@ -16,11 +16,11 @@
 #= require jquery.tablesorter.widget-pager.js
 #= require bootstrap
 # require bootsy
+#= require bootstrap-wysihtml5
 #= require jquery.ui.autocomplete
 #= require search
 #= require validate
 #= require expander
-#= require meltdown/jquery.meltdown
 # require_tree .
 # Fixing textarea bug
 
@@ -112,13 +112,10 @@ initializeMarkdownEditors = () ->
   # The :visible selector is a bit of a hack, have to initialize hidden md
   # fields after they are shown, otherwise their width is screwed up and afaik
   # that cannot be reset without modifying the meltdown library
-  $('textarea.markdown.form-control:visible')
-    .meltdown(
-      openPreview: true
-      previewHeight: 'editorHeight'
-      sidebyside: true
-    )
-    .removeClass("form-control")
+  # WYSIWYG = "What You See Is What You Get" text editor
+  editors = $('textarea.wysiwyg.form-control:visible');
+  for elem in editors
+    $(elem).wysihtml5();
   return
 
 updateSearchInput = (e) ->
@@ -161,4 +158,3 @@ $('a[data-popup]').live 'click', (e) ->
   window.open $(this).attr('href')
   e.preventDefault()
   return
-

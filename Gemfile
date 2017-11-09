@@ -63,6 +63,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'bootsy'
 gem 'bourbon', '~> 3.2'
+gem 'bootstrap-wysihtml5-rails'
 
 # gem "rmagick"
 gem "carrierwave"
