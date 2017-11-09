@@ -114,8 +114,18 @@ initializeMarkdownEditors = () ->
   # that cannot be reset without modifying the meltdown library
   # WYSIWYG = "What You See Is What You Get" text editor
   editors = $('textarea.wysiwyg.form-control:visible');
+  options =
+    "font-styles": true #Font styling, e.g. h1, h2, etc. Default true
+    "emphasis": true #Italics, bold, etc. Default true
+    "lists": false #(Un)ordered lists, e.g. Bullets, Numbers. Default true. Neec to fix
+    "html": false #Button which allows you to edit the generated HTML. Default false
+    "link": true #Button to insert a link. Default true
+    "image": true #Button to insert an image. Default true,
+    "color": false #Button to change color of font
+    "blockquote": false #Default true. Need to fix
+  console.log options
   for elem in editors
-    $(elem).wysihtml5();
+    $(elem).wysihtml5({toolbar: options})
   return
 
 updateSearchInput = (e) ->
