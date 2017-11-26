@@ -15,7 +15,7 @@
  *= require dropit
  * require bootsy
  *= require bootstrap
- *= require meltdown/meltdown
+ *= require bootstrap-wysihtml5
  *= require_self
  *= require jquery.tablesorter.theme.blue
  *= require jquery.tablesorter.pager
@@ -194,6 +194,12 @@ img.logo{
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   }
 
+  .form-control {
+    .wysiwyg {
+      width: 100%;
+    }
+  }
+
   .padding{
   padding-top: 15px;
 }
@@ -312,34 +318,6 @@ img.logo{
     /* Front page login boxes. */
     .frontpage-login {
       padding: 5px 0px 5px 0px;
-    }
-
-    .meltdown_preview-header {
-      display: none;
-    }
-    .meltdown_editor-wrap {
-      box-sizing: border-box;
-    }
-    .meltdown_editor-deco {
-      background: #fff;
-      border-radius: 0;
-      border-bottom-left-radius: 3px;
-      border-bottom-right-radius: 3px;
-      -moz-border-radius-bottomleft: 3px;
-      -moz-border-radius-bottomright: 3px;
-      -webkit-border-bottom-left-radius: 3px;
-      -webkit-border-bottom-right-radius: 3px;
-      border: 1px solid #a8a8a8;
-      border-top: none;
-      margin: 0;
-      min-height: 15px;
-      overflow: auto;
-      padding-top: 0;
-      padding-bottom: 0;
-      resize: none;
-    }
-    .meltdown_controlgroup-dropdown {
-      z-index: 1;
     }
 
 .flash-alert {

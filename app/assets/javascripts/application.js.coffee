@@ -16,11 +16,11 @@
 #= require jquery.tablesorter.widget-pager.js
 #= require bootstrap
 # require bootsy
+#= require bootstrap-wysihtml5
 #= require jquery.ui.autocomplete
 #= require search
 #= require validate
 #= require expander
-#= require meltdown/jquery.meltdown
 # require_tree .
 # Fixing textarea bug
 
@@ -112,13 +112,20 @@ initializeMarkdownEditors = () ->
   # The :visible selector is a bit of a hack, have to initialize hidden md
   # fields after they are shown, otherwise their width is screwed up and afaik
   # that cannot be reset without modifying the meltdown library
-  $('textarea.markdown.form-control:visible')
-    .meltdown(
-      openPreview: true
-      previewHeight: 'editorHeight'
-      sidebyside: true
-    )
-    .removeClass("form-control")
+  # WYSIWYG = "What You See Is What You Get" text editor
+  editors = $('textarea.wysiwyg.form-control:visible');
+  options =
+    "font-styles": true #Font styling, e.g. h1, h2, etc. Default true
+    "emphasis": true #Italics, bold, etc. Default true
+    "lists": false #(Un)ordered lists, e.g. Bullets, Numbers. Default true. Neec to fix
+    "html": false #Button which allows you to edit the generated HTML. Default false
+    "link": true #Button to insert a link. Default true
+    "image": true #Button to insert an image. Default true,
+    "color": false #Button to change color of font
+    "blockquote": false #Default true. Need to fix
+  console.log options
+  for elem in editors
+    $(elem).wysihtml5({toolbar: options})
   return
 
 updateSearchInput = (e) ->
@@ -161,4 +168,3 @@ $('a[data-popup]').live 'click', (e) ->
   window.open $(this).attr('href')
   e.preventDefault()
   return
-
