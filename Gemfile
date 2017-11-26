@@ -30,6 +30,8 @@ gem 'aws-sdk', '~> 2'
 gem 'country_select'
 gem 'quiet_assets'
 gem 'lograge'
+gem 'rgl'
+gem 'graphviz'
 # LSA
 
 gem 'sprockets', '2.11.0'

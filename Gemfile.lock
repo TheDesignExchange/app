@@ -125,6 +125,8 @@ GEM
     formtastic (3.1.4)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
+    graphviz (1.0.0)
+      process-pipeline
     haml (4.0.6)
       tilt
     haml-rails (0.9.0)
@@ -165,6 +167,7 @@ GEM
       activesupport (>= 3.0.0)
     kgio (2.9.2)
     kramdown (1.5.0)
+    lazy_priority_queue (0.1.1)
     lograge (0.3.1)
       actionpack (>= 3)
       activesupport (>= 3)
@@ -192,6 +195,9 @@ GEM
       activerecord (>= 3.0)
     polyglot (0.3.5)
     pr_geohash (1.0.0)
+    process-group (1.1.0)
+    process-pipeline (1.0.1)
+      process-group
     protected_attributes (1.0.8)
       activemodel (>= 4.0.1, < 5.0)
     pry (0.10.3)
@@ -241,6 +247,9 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    rgl (0.5.3)
+      lazy_priority_queue (~> 0.1.0)
+      stream (~> 0.5.0)
     role_model (0.8.2)
     rsolr (1.0.10)
       builder (>= 2.1.2)
@@ -294,6 +303,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    stream (0.5)
     subexec (0.2.3)
     sunspot (2.1.1)
       pr_geohash (~> 1.0)
@@ -359,6 +369,7 @@ DEPENDENCIES
   faker
   ffi
   font_assets
+  graphviz
   haml
   haml-rails
   hash_control
@@ -377,6 +388,7 @@ DEPENDENCIES
   rails (~> 4.0.0)
   rails_12factor
   recaptcha
+  rgl
   role_model (~> 0.8.2)
   rspec-rails
   seed_dump
