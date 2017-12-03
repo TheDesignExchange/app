@@ -158,6 +158,8 @@
           = f.file_field :picture
         - else
           = f.file_field :main_image
+      .row{:style=>"margin-top:30px"}
+        = link_to "Clear Image", {:controller => "case_studies", :action => :clearImage, :id => @case_study.id}, :class=> "btn btn-danger"
     .col-xs-8
       / INPUT METHOD NAME
       = f.check_box :hidden

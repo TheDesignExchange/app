@@ -45,6 +45,15 @@ class CaseStudiesController < ApplicationController
     end
   end
 
+  def clearImage
+    @case_study = CaseStudy.find(params[:id])
+    @case_study.picture_url = nil
+    @case_study.save!
+    respond_to do |format|
+      format.html { redirect_to @case_study, notice: 'Image was successfully removed.'}
+    end
+  end
+
   def edit
     id = params[:id] == nil ? 1 : params[:id].to_i
     # render :text => id
