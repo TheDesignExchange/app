@@ -41,7 +41,7 @@ class DesignMethod < ActiveRecord::Base
                   :additional_reading, :characteristic_ids, :references, :case_study_ids,
                   :videoURL, :hidden, :picture, :picture_url, :video_attribution, :video_caption,
                   :completion_score, :videoURL_two, :video_two_attribution, :video_two_caption, :draft,
-                  :suggestions, :image_attribution, :last_editor_id
+                  :suggestions, :image_attribution, :last_editor_id, :rms, :rm_ids
 
   # Validations
   validates :name, :overview, presence: true
@@ -73,6 +73,11 @@ class DesignMethod < ActiveRecord::Base
 
   has_many :method_collections, dependent: :destroy
   has_many :collections, through: :method_collections
+  has_and_belongs_to_many :rms, 
+              class_name: "DesignMethod", 
+              join_table: :rms, 
+              foreign_key: :design_method_id, 
+              association_foreign_key: :rm_design_method_id
 
   belongs_to :owner, class_name: "User", foreign_key: :owner_id
 

@@ -187,6 +187,8 @@
           %a{"data-link" => "sidebar"} Sidebar
         %li
           %a{"data-link" => "characteristics"} Characteristics
+        %li
+          %a{"data-link" => "related"} Related Methods
   /Method overview
   .tab-pane.row{"data-link" => "overview"}
     / INPUT METHOD NAME
@@ -411,6 +413,13 @@
             .edit-char-group-checkboxes
               = f.collection_check_boxes(:characteristic_ids, group_chars, :id, :name) {|b| b.label(class: "char-checkbox-label") {b.check_box(class: "char-checkbox") + b.text}}
     / END CHARACTERISTICS
+  /Related Methods tab
+  .tab-pane.row{"data-link"=>"related"}
+    - methods = DesignMethod.all
+    - methods.each do |method|
+      .col-md-4.edit-char-group
+        = f.check_box :rm_ids, { multiple: true }, method.id, nil
+        = method.name
   / END FORMS
   %br/
   #save-bar.row

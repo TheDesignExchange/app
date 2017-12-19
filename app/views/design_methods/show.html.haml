@@ -287,6 +287,8 @@
           %a{"data-link" => "instructions"} Instructions
         %li
           %a{"data-link" => "resources"} Resources
+        %li
+          %a{"data-link" => "related_methods"} Related Methods
   /Method overview
   .tab-pane.row{"data-link" => "overview"}
     - if @method.draft?
@@ -429,3 +431,10 @@
       %h4 Related Case Studies
       - @method.case_studies.each do |cs|
         = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(cs,"4")
+
+  /Related Methods
+  .tab-pane.row{"data-link" => "related_methods"}
+    - if !@method.rms.blank?
+      %h3 Related Design Methods
+      - @method.rms.each do |dm|
+        = render "/layouts/thumbnail", locals: @thumb_obj = thumbnail(dm,"3")

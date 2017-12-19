@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305074636) do
+ActiveRecord::Schema.define(version: 20171219021858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,19 +195,19 @@ ActiveRecord::Schema.define(version: 20170305074636) do
   end
 
   create_table "design_methods", force: true do |t|
-    t.string   "name",                                     null: false
-    t.text     "overview",                                 null: false
-    t.text     "process",                                  null: false
+    t.string   "name",                                  null: false
+    t.text     "overview",                              null: false
+    t.text     "process",                               null: false
     t.string   "aka"
-    t.integer  "owner_id",                                 null: false
+    t.integer  "owner_id",                              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "num_of_designers",         default: 1
-    t.integer  "num_of_users",             default: 1
-    t.integer  "time_period",              default: 0
-    t.string   "time_unit",                default: ""
+    t.integer  "num_of_designers",      default: 1
+    t.integer  "num_of_users",          default: 1
+    t.integer  "time_period",           default: 0
+    t.string   "time_unit",             default: ""
     t.string   "main_image"
-    t.integer  "likes",                    default: 0
+    t.integer  "likes",                 default: 0
     t.text     "synonyms"
     t.text     "benefits"
     t.text     "limitations"
@@ -220,17 +220,16 @@ ActiveRecord::Schema.define(version: 20170305074636) do
     t.text     "references"
     t.string   "videoURL"
     t.integer  "collection_id"
-    t.boolean  "hidden",                   default: false
+    t.boolean  "hidden",                default: false
     t.integer  "picture"
     t.string   "picture_url"
     t.text     "video_attribution"
     t.text     "video_caption"
     t.integer  "completion_score"
     t.string   "videoURL_two"
-    t.text     "videoURL_two_attribution"
     t.text     "video_two_attribution"
     t.text     "video_two_caption"
-    t.boolean  "draft",                    default: false
+    t.boolean  "draft",                 default: false
     t.boolean  "ready"
     t.text     "suggestions"
     t.text     "image_attribution"
@@ -350,6 +349,14 @@ ActiveRecord::Schema.define(version: 20170305074636) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "rms", id: false, force: true do |t|
+    t.integer "design_method_id"
+    t.integer "rm_design_method_id"
+  end
+
+  add_index "rms", ["design_method_id", "rm_design_method_id"], name: "index_rms_on_design_method_id_and_rm_design_method_id", unique: true, using: :btree
+  add_index "rms", ["rm_design_method_id", "design_method_id"], name: "index_rms_on_rm_design_method_id_and_design_method_id", unique: true, using: :btree
 
   create_table "searches", force: true do |t|
     t.datetime "created_at"
