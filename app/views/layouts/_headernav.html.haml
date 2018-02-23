@@ -1,10 +1,13 @@
 %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
-%script{:type => "text/javascript",
-        :src  => "//static.getclicky.com/js"}
+/ Global site tag (gtag.js) - Google Analytics
+%script{:async => "", :src => "https://www.googletagmanager.com/gtag/js?id=UA-113963401-1"}
 :javascript
-  try {
-    clicky.init(101059539);
-  } catch (e) {}
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113963401-1');
+
 :javascript
   $(function(){
     $('form#search input').autocomplete(DE.Autocomplete);
