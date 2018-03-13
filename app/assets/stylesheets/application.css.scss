@@ -22,7 +22,7 @@
  */
 
 #search {
-   background-color: #f8f8f8;
+   background-color: #BDBDBD;
    font-family: Raleway, sans-serif;
 }
 
@@ -172,6 +172,11 @@ img.logo{
   .navbar{
     margin-bottom: 0;
     font-family: Raleway, sans-serif;
+    background-color: #BDBDBD;
+  }
+
+  .navbar-default .navbar-nav > li > a {
+    color: #000000
   }
 
   .navbar-brand {

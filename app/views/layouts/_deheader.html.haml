@@ -16,68 +16,74 @@
 
 //1175px is max width for this setup to work
 
-.carousel-container
-  .carousel.slide{:id=>"slide-images", :data => {:ride => "carousel"}}
-    .carousel-inner
-      .item.active
-        %img
-          = image_tag "research.jpg"
-        .jumbotron
-          %h2
-            RESEARCH
-          %p 
-            Methods of customer/stakeholder research to inform design decisions
-          %a{ :href => "https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsResearch", :title => "" }
-            View methods
-          %br/
-      .item
-        %img
-          = image_tag "analyze.jpg"
-        .jumbotron
-          %h2
-            ANALYZE
-          %p
-            Methods for analyzing and synthesizing collected data 
-          %a{ :href => "https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsAnalyze", :title => "" }
-            View methods
-          %br/
-      .item
-        %img
-          = image_tag "ideate.jpg"
-        .jumbotron
-          %h2
-            IDEATE
-          %p
-            Methods for creating new ideas for products, services, etc.
-          %a{ :href => "https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsIdeate", :title => "" }
-            View methods
-          %br/
-      .item
-        %img
-          = image_tag "build.jpg"
-        .jumbotron
-          %h2
-            BUILD
-          %p
-            Methods for turning ideas into reality through a variety of mediums
-          %a{ :href => "https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsBuild", :title => "" }
-            View methods
-          %br/
-      .item
-        %img
-          = image_tag "communicate.jpg"
-        .jumbotron
-          %h2
-            COMMUNICATE
-          %p
-            Methods for communicating at all stages with others outside the design team
-          %a{ :href => "https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsCommunicate", :title => "" }
-            View methods
-          %br/
+.jumbotron{:id=>'jumbo-home'}
+  %h2
+    TheDesignExchange
+  %h4
+    Discover. Apply. Contribute.
 
-
-
-    %a.left.carousel-control{:href => "#slide-images", :data => {:slide => "prev"}}
-      %span.glyphicon.glyphicon-chevron-left
-    %a.right.carousel-control{:href => "#slide-images", :data => {:slide => "next"}}
-      %span.glyphicon.glyphicon-chevron-right
+-# .carousel-container
+-#   .carousel.slide{:id=>"slide-images", :data => {:ride => "carousel"}}
+-#     .carousel-inner
+-#       .item.active
+-#         %img
+-#           = image_tag "research.jpg"
+-#         .jumbotron
+-#           %h2
+-#             RESEARCH
+-#           %p
+-#             Methods of customer/stakeholder research to inform design decisions
+-#           %a{ :href => "https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsResearch", :title => "" }
+-#             View methods
+-#           %br/
+-#       .item
+-#         %img
+-#           = image_tag "analyze.jpg"
+-#         .jumbotron
+-#           %h2
+-#             ANALYZE
+-#           %p
+-#             Methods for analyzing and synthesizing collected data
+-#           %a{ :href => "https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsAnalyze", :title => "" }
+-#             View methods
+-#           %br/
+-#       .item
+-#         %img
+-#           = image_tag "ideate.jpg"
+-#         .jumbotron
+-#           %h2
+-#             IDEATE
+-#           %p
+-#             Methods for creating new ideas for products, services, etc.
+-#           %a{ :href => "https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsIdeate", :title => "" }
+-#             View methods
+-#           %br/
+-#       .item
+-#         %img
+-#           = image_tag "build.jpg"
+-#         .jumbotron
+-#           %h2
+-#             BUILD
+-#           %p
+-#             Methods for turning ideas into reality through a variety of mediums
+-#           %a{ :href => "https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsBuild", :title => "" }
+-#             View methods
+-#           %br/
+-#       .item
+-#         %img
+-#           = image_tag "communicate.jpg"
+-#         .jumbotron
+-#           %h2
+-#             COMMUNICATE
+-#           %p
+-#             Methods for communicating at all stages with others outside the design team
+-#           %a{ :href => "https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsCommunicate", :title => "" }
+-#             View methods
+-#           %br/
+-#
+-#
+-#
+-#     %a.left.carousel-control{:href => "#slide-images", :data => {:slide => "prev"}}
+-#       %span.glyphicon.glyphicon-chevron-left
+-#     %a.right.carousel-control{:href => "#slide-images", :data => {:slide => "next"}}
+-#       %span.glyphicon.glyphicon-chevron-right

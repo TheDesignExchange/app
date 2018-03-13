@@ -83,16 +83,22 @@
     margin: 40px 0px 40px 0px;
     display: inline-block;
   }
-  
+
   #explore .col-sm-4 {
     display: inline-block;
     margin: 0 auto;
-  } 
+  }
 
   #explore h1{
     text-align:center;
     font-family: 'Montserrat', sans-serif;
     margin: 40px 0px 40px 0px;
+    font-size: 24px;
+  }
+
+  #explore h1 span {
+    font-size: 36px;
+    font-weight: bold;
   }
 
   #explore h2{
@@ -149,7 +155,7 @@
   }
 
   hr{
-    border: solid #d3d3d3 1px; 
+    border: solid #d3d3d3 1px;
   }
 
 
@@ -159,28 +165,28 @@
 
 /   %h1
 /     Our content is categorized within five phases of the early stage design process
-  
+
 /   .row{:id => "icons"}
 /     .col-sm-4
 /       %h2
 /         RESEARCH
 /       %img
 /         = image_tag "research.png"
-/       %p 
-/         collect information critical to project design process 
+/       %p
+/         collect information critical to project design process
 /     .col-sm-4
 /       %h2
 /         ANALYZE
 /       %img
 /         = image_tag "analyze.png"
-/       %p 
+/       %p
 /         analysis and/or synthesis of collected data
 /     .col-sm-4
 /       %h2
 /         IDEATE
 /       %img
 /         = image_tag "ideate.png"
-/       %p 
+/       %p
 /         create new ideas for products, services, etc.
 /   / minimum width: 768px
 /   .row{:id => "bottom_icons"}
@@ -206,21 +212,21 @@
 /       RESEARCH
 /     %img
 /       = image_tag "research.png"
-/     %p 
-/       collect information critical to project design process 
+/     %p
+/       collect information critical to project design process
 /   .col-sm-2
 /     %h2
 /       ANALYZE
 /     %img
 /       = image_tag "analyze.png"
-/     %p 
+/     %p
 /       analysis and/or synthesis of collected data
 /   .col-sm-2
 /     %h2
 /       IDEATE
 /     %img
 /       = image_tag "ideate.png"
-/     %p 
+/     %p
 /       create new ideas for products, services, etc.
 /   .col-sm-2
 /     %h2
@@ -241,8 +247,13 @@
 
 .row{:id => "explore"}
   %h1
-    EXPLORE CONTENT
-  %p.subtitle Browse methods and case studies to improve your design skills. Learn what to do and what not to do to successfully complete your next design task.
+    We help
+    %span
+      Students
+    embed human-centered design into their
+    %span
+      Projects
+  -# %p.subtitle Browse methods and case studies to improve your design skills. Learn what to do and what not to do to successfully complete your next design task.
 
 .row{:id => "showcase"}
   .col-sm-6
@@ -268,7 +279,7 @@
           %h2
             HCI Practices in Malaysia
           %h4
-            ICT is seen as not only an industry, but a driving factor in the Malaysian economy in order to increase productivity and efficiency. 
+            ICT is seen as not only an industry, but a driving factor in the Malaysian economy in order to increase productivity and efficiency.
 
 .row
   - if user_signed_in?
@@ -278,7 +289,7 @@
     .row
       = link_to "JOIN NOW", new_registration_path(:user), class: "btn btn-success sharp btn-lrg join"
       = link_to 'INVITE YOUR FRIENDS', '/share', class: "btn btn-success sharp btn-lrg join"
-      
+
   / %p.subtitle{:style=>"text-align:center;font-size:200%; margin-top:30%;font-family: 'Source Sans Pro', sans-serif;"} Case Studies coming soon
 
   / = link_to case_study_path(id:197) do #change link path

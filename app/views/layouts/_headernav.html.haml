@@ -44,7 +44,7 @@
       %ul.nav.navbar-nav.navbar-right
         %li= link_to "Methods", design_methods_path, style: "font-size: 120%;"
         %li= link_to "Case Studies", case_studies_path, style: "font-size: 120%;"
-        %li= link_to "Collections", collections_path, style: "font-size: 120%;"
+        -# %li= link_to "Collections", collections_path, style: "font-size: 120%;"
         %li= link_to "About", '/about', :class => 'navbar-link', style: "font-size: 120%;"
         - if user_signed_in?
           %li.dropdown
