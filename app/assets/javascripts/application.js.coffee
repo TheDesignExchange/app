@@ -117,12 +117,12 @@ initializeMarkdownEditors = () ->
   options =
     "font-styles": true #Font styling, e.g. h1, h2, etc. Default true
     "emphasis": true #Italics, bold, etc. Default true
-    "lists": false #(Un)ordered lists, e.g. Bullets, Numbers. Default true. Neec to fix
+    "lists": true #(Un)ordered lists, e.g. Bullets, Numbers. Default true. Neec to fix
     "html": false #Button which allows you to edit the generated HTML. Default false
     "link": true #Button to insert a link. Default true
     "image": true #Button to insert an image. Default true,
     "color": false #Button to change color of font
-    "blockquote": false #Default true. Need to fix
+    "blockquote": true #Default true. Need to fix
   console.log options
   for elem in editors
     $(elem).wysihtml5({toolbar: options})
