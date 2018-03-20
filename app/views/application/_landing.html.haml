@@ -1,36 +1,48 @@
 :css
-  @import url(//fonts.googleapis.com/css?family=Arvo:700);
+  body {
+    font-family: "Gotham", sans-serif;
+  }
+
+  #methods {
+    margin-bottom: 36px;
+  }
+
+  #worlds-largest img {
+    width: 100%;
+  }
+
   #showcase .subtitle {
     text-align:center;
     font-size:100%;
-    font-family: 'Raleway', sans-serif;
     padding-bottom:10px;
   }
 
   #showcase h1 {
     text-align:center;
-    font-family: 'Montserrat', sans-serif;
   }
 
   #showcase h2 {
     margin-bottom:10%;
-    font-family: 'Montserrat', sans-serif;
-    color: white;
     line-height: 130%;
   }
   #showcase h3 {
     margin-bottom:10%;
-    font-family: 'Raleway', sans-serif;
     color: white;
     line-height: 130%;
   }
 
   #showcase h4 {
     font-size:100%;
-    color: white;
-    font-family: 'Raleway', sans-serif;
     line-height: 130%;
     margin-top:-10%;
+  }
+
+  #showcase .col-sm-6 {
+    padding-bottom: 20px;
+  }
+
+  #showcase .col-sm-6 h1 {
+    margin-bottom: 10px;
   }
 
   .left-padding{
@@ -71,17 +83,10 @@
       padding: 10px;
     }
 
-  #showcase .col-sm-6 {
-    padding-bottom: 20px;
-  }
-
-  #showcase .col-sm-6 h1 {
-    margin-bottom: 10px;
-  }
-
   #explore {
     margin: 40px 0px 40px 0px;
     display: inline-block;
+    font-family: "Gotham", sans-serif
   }
 
   #explore .col-sm-4 {
@@ -91,7 +96,6 @@
 
   #explore h1{
     text-align:center;
-    font-family: 'Montserrat', sans-serif;
     margin: 40px 0px 40px 0px;
     font-size: 24px;
   }
@@ -103,7 +107,6 @@
 
   #explore h2{
     text-align:center;
-    font-family: 'Montserrat', sans-serif;
   }
 
 
@@ -118,7 +121,6 @@
 
   #explore p{
     text-align:center;
-    font-family: 'Raleway', sans-serif;
     margin: 10px 0px 20px 0px;
     font-size:120%;
   }
@@ -253,26 +255,37 @@
     embed human-centered design into their
     %span
       Projects
-  -# %p.subtitle Browse methods and case studies to improve your design skills. Learn what to do and what not to do to successfully complete your next design task.
+
+.row{:id => "worlds-largest"}
+  .col-sm-3
+    %img
+      = image_tag "earth.png"
+  .col-sm-9
+    %p
+      TheDesignExchange (tDX) is the world’s largest open-source innovation archive of <a href="/">design methods</a> and <a href="/">case studies</a>. We support the design community through the entire life-cycle of the conceptual design process—from observation through synthesis and analysis to realization and evaluation – through our library of versatile and extensive tools.
+    %br
+    %p
+      This is a joint project led by UC Berkeley and M.I.T. working with the international community of design academics and practitioners.
 
 .row{:id => "showcase"}
-  .col-sm-6
+  .col-sm-4
+    %h2
+      With over 300 methods to choose from, we help guide your method discovery and selection.
+  .col-sm-8
+    %img
+      = image_tag ""
+
+.row{:id => "methods"}
+  .col-sm-12
     %h1
-      =link_to "Methods", design_methods_path
-    %p.subtitle Learn about the methods you could use on your next design
-    .background{:id => "method-background"}
-      = link_to design_method_path(id:162) do
-        .layer
-          %h2
-            Cultural Probes
-          %h4
-            Gain insight into and inspirational responses about the daily life and habits of communities
+      = link_to "Methods", design_methods_path
+    %p
+      Design methods provide a structure to the fuzzy and open-ended human-centered design process. We have curated a comprehensive collection of methods, methodically organized to help you navigate the ambiguous nature of design. Our methods are actionable - with best practices, instructions for use, resources, and more to help you seamlessly embed design thinking into your work.
+    %a
+      = link_to "See Methods", design_methods_path
+
+.row{:id => "casestudies"}
   .col-sm-6
-    %h1
-      =link_to "Case Studies", case_studies_path
-    / %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Read about how real design probems were solved.
-    / case_study_path(id:200) do for link_to but can't figure out the ID
-    %p.subtitle Read about how the methods are applied in real world situations
     .background{:id => "casestudies-background"}
       = link_to 'https://www.thedesignexchange.org/case_studies/201' do
         .layer
@@ -280,15 +293,48 @@
             HCI Practices in Malaysia
           %h4
             ICT is seen as not only an industry, but a driving factor in the Malaysian economy in order to increase productivity and efficiency.
+  .col-sm-6
+    %h1
+      = link_to "Case Studies", case_studies_path
+    %p
+      By providing context examples of design methods in practice, we hope to support designers address complex challenges through a human-centered design process. Our ever-growing collection of case studies is meant to inspire and empower the design community to creatively embed methods in practice.
+    %a
+      = link_to "See Case Studies", case_studies_path
 
-.row
-  - if user_signed_in?
-    .row
-      = link_to 'INVITE YOUR FRIENDS', '/share', class: "btn btn-success sharp btn-lrg join"
-  - if !user_signed_in?
-    .row
-      = link_to "JOIN NOW", new_registration_path(:user), class: "btn btn-success sharp btn-lrg join"
-      = link_to 'INVITE YOUR FRIENDS', '/share', class: "btn btn-success sharp btn-lrg join"
+-# .row{:id => "showcase"}
+-#   .col-sm-6
+-#     %h1
+-#       =link_to "Methods", design_methods_path
+-#     %p.subtitle Learn about the methods you could use on your next design
+-#     .background{:id => "method-background"}
+-#       = link_to design_method_path(id:162) do
+-#         .layer
+-#           %h2
+-#             Cultural Probes
+-#           %h4
+-#             Gain insight into and inspirational responses about the daily life and habits of communities
+-#   .col-sm-6
+-#     %h1
+-#       =link_to "Case Studies", case_studies_path
+-#     / %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Read about how real design probems were solved.
+-#     / case_study_path(id:200) do for link_to but can't figure out the ID
+-#     %p.subtitle Read about how the methods are applied in real world situations
+-#     .background{:id => "casestudies-background"}
+-#       = link_to 'https://www.thedesignexchange.org/case_studies/201' do
+-#         .layer
+-#           %h2
+-#             HCI Practices in Malaysia
+-#           %h4
+-#             ICT is seen as not only an industry, but a driving factor in the Malaysian economy in order to increase productivity and efficiency.
+-#
+-# .row
+-#   - if user_signed_in?
+-#     .row
+-#       = link_to 'INVITE YOUR FRIENDS', '/share', class: "btn btn-success sharp btn-lrg join"
+-#   - if !user_signed_in?
+-#     .row
+-#       = link_to "JOIN NOW", new_registration_path(:user), class: "btn btn-success sharp btn-lrg join"
+-#       = link_to 'INVITE YOUR FRIENDS', '/share', class: "btn btn-success sharp btn-lrg join"
 
   / %p.subtitle{:style=>"text-align:center;font-size:200%; margin-top:30%;font-family: 'Source Sans Pro', sans-serif;"} Case Studies coming soon
 

@@ -22,12 +22,17 @@
 
  */
 
+@font-face {
+  font-family: "Gotham";
+  src: local("Gotham\ Fonts\ Family/Gotham-Book.otf");
+}
+
 .ui-menu .ui-menu-item a{
   margin-top: 10px;
 }
 #search {
    background-color: #BDBDBD;
-   font-family: Raleway, sans-serif;
+   font-family: "Gotham", sans-serif;
 }
 
 
@@ -56,10 +61,9 @@
 
  /* OVERRIDE BOOTSTRAP ANCHOR BEHAVIOR */
  a {
-    font-family: Raleway, sans-serif;
+    font-family: "Gotham", sans-serif;
     color: #6CC06D;
     text-decoration: none;
-    font-family: Raleway, sans-serif;
   }
     a:hover{
       color: #366036;
@@ -176,8 +180,10 @@ img.logo{
 
   .navbar{
     margin-bottom: 0;
-    font-family: Raleway, sans-serif;
+    font-family: "Gotham", sans-serif;
+    font-weight: normal;
     background-color: #BDBDBD;
+    border: none;
   }
 
   .navbar-default .navbar-nav > li > a {
@@ -363,7 +369,7 @@ img.logo{
   padding-bottom: 1%;
   padding-left:5%;
   padding-right:5%;
-  font-family: Raleway, sans-serif;
+  font-family: "Gotham", sans-serif;
 }
 
 .site-info {

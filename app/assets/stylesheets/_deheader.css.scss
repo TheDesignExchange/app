@@ -9,7 +9,6 @@
 }
 
 .join {
-  font-family: 'Montserrat', sans-serif;
   height:50px;
   font-size:150%;
   color: white;
@@ -91,6 +90,7 @@
   text-align: left;
   padding-left: 12%;
   padding-right: 12%;
+  font-family: "Gotham", sans-serif
 }
 
 .jumbotron h2{
@@ -102,7 +102,6 @@
 
 .jumbotron p{
   font-size: 120%;
-  font-family: Georgia, serif;
   padding-left:5%;
   padding-right:5%;
 }
@@ -243,14 +242,12 @@
   border-radius: 20px;
 
   h2 {
-    font-family: 'Montserrat', sans-serif;
     font-size:165%;
     margin-top: 0;
   }
 
   p {
     font-size:100%;
-    font-family: 'Raleway', sans-serif;
   }
 }
 
