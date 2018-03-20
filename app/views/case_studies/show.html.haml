@@ -80,7 +80,7 @@
       - if current_user != nil and current_user.author? and @case_study.author_id == nil
         = link_to "Claim to be Author", {:controller => "case_studies", :action => :claimAuthor, :id => @case_study.id}, :class => "btn btn-success"
       - if current_user != nil and (current_user.admin? or current_user.editor? or current_user.author?) and @case_study.author_id == current_user.id
-        = link_to "Unclaim to be Author", {:controller => "case_studies", :action => :unclaimAuthor, :id => @case_study.id}, :class => "btn btn-warning"   
+        = link_to "Unclaim to be Author", {:controller => "case_studies", :action => :unclaimAuthor, :id => @case_study.id}, :class => "btn btn-warning"
     .h4 Industry Sector
     - if @case_study.industry_sectors != nil
       - @case_study.industry_sectors.each do |sector|
@@ -110,7 +110,7 @@
 
     - if (current_user != nil) && (current_user.admin? || current_user.editor? || current_user.author?)
       %h4{:style=>"margin-top:40px"} Completion Score
-      %p 
+      %p
         /calculate the completion score if it has not been done already
         - score = 0
         - for attribute in @case_study.attributes.keys
@@ -166,9 +166,9 @@
           %span.glyphicon.glyphicon-pencil
           Edit
       %p{:style=>"text-align: right; font-size: 11px; margin-top:-15px"}
-        Last Updated: 
+        Last Updated:
         - if @case_study.last_edited != nil
-          #{@case_study.last_edited.strftime('%x %I:%M %p') } by 
+          #{@case_study.last_edited.strftime('%x %I:%M %p') } by
           #{@case_study.last_editor}
         - else
           Before 10/18/2016
@@ -184,23 +184,23 @@
       %h3 Problem
       - if @case_study.draft?
         %h3{:style=>"color:red;"} Suggestions
-        %p= @case_study.suggestions.blank? ? "-" : md_format(@case_study.suggestions)
+        %p= @case_study.suggestions.blank? ? "-" : html_format(@case_study.suggestions)
         %h5{:style=>"color:red"} End of Suggestions
-      %p= @case_study.overview.blank? ? "-" : md_format(@case_study.overview)
+      %p= @case_study.overview.blank? ? "-" : html_format(@case_study.overview)
       / FORMS
       %h3 Project Background
-      %p= @case_study.background.blank? ? "-" : md_format(@case_study.background)
-      / %p= @case_study.process.blank? ? "-" : md_format(@case_study.process)
+      %p= @case_study.background.blank? ? "-" : html_format(@case_study.background)
+      / %p= @case_study.process.blank? ? "-" : html_format(@case_study.process)
       / %h3 Outcome/Benefits
-      / %p= @case_study.outcome.blank? ? "-" : md_format(@case_study.outcome)
+      / %p= @case_study.outcome.blank? ? "-" : html_format(@case_study.outcome)
       %h3 Summary
-      %p= @case_study.summary.blank? ? "-" : md_format(@case_study.summary)
+      %p= @case_study.summary.blank? ? "-" : html_format(@case_study.summary)
 
       %h3 Process
-      %p= @case_study.process.blank? ? "-" : md_format(@case_study.process)
+      %p= @case_study.process.blank? ? "-" : html_format(@case_study.process)
 
       %h3 Retrospective
-      %p= @case_study.outcome.blank? ? "-" : md_format(@case_study.outcome)
+      %p= @case_study.outcome.blank? ? "-" : html_format(@case_study.outcome)
 
 
       - if !@case_study.design_methods.blank?
@@ -219,7 +219,7 @@
               = image_tag(@current_author.image_url, class: "fit-all", :style => "padding: 10%; margin-left:-15px")
             - else
               = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
-          .col-xs-8 
+          .col-xs-8
             - if @current_author != nil
               %p= link_to @current_author.first_name + " " + @current_author.last_name, user_path(@current_author.id)
               %p= @current_author.email != nil ? @current_author.email : "-"
@@ -231,7 +231,7 @@
               = image_tag(@current_editor.image_url, class: "fit-all", :style => "padding: 10%; margin-left:-15px")
             - else
               = image_tag("https://s3-us-west-1.amazonaws.com/thedesignexchange-staging/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
-          .col-xs-8 
+          .col-xs-8
             - if @current_editor != nil
               %p= link_to @current_editor.first_name + " " + @current_editor.last_name, user_path(@current_editor.id)
               %p= @current_editor.email != nil ? @current_editor.email : "-"

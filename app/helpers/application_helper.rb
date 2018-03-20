@@ -40,6 +40,10 @@ module ApplicationHelper
     ::Kramdown::Document.new(text, input: 'GFM').to_html.html_safe
   end
 
+  def html_format(text)
+    text.html_safe
+  end
+
   def print_children(level,h)
     str=""
       h.each_pair do |k,v|
