@@ -24,6 +24,7 @@ DesignExchange::Application.routes.draw do
   resources :design_methods do
     collection do
       get "method_category/:category_id",  to: "application#search", :as => "search_category"
+      get 'autocomplete'
     end
   end
 

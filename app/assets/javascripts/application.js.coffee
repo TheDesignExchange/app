@@ -18,12 +18,27 @@
 # require bootsy
 #= require bootstrap-wysihtml5
 #= require jquery.ui.autocomplete
+#= require jquery.ui.all
+#= require autocomplete-rails
 #= require search
 #= require validate
 #= require expander
 # require_tree .
 # Fixing textarea bug
 
+ready = undefined
+
+ready = ->
+  $('a[href="' + @location.pathname + '"]').parent().addClass 'active'
+  $('#search-input').autocomplete 
+    source: '/autocomplete_search.json'
+    autoFocus: true
+    minLength:4,   
+
+  return
+
+$(document).ready ready
+$(document).on 'page:load', ready
 
 removeTag = (id, self) ->
   console.log '/tags/' + id

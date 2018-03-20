@@ -25,13 +25,22 @@
         %span.icon-bar
       %a.navbar-brand{:href => root_path}
         = image_tag "logo-DE.png", :width => "200", size: "37x32"
+
+    / = form_tag '/search', class: 'navbar-form navbar-left' do
+    /   .form-group.col-xs-8
+    /     - query_text = @query || ""
+    /     = text_field_tag :query, params[:query], id: "search-input", class: 'form-control col-sm-4 input-md', placeholder: 'Product name.....'
+    /   .form-group.col-xs-4
+    /     = submit_tag('Search', class: "btn btn-default")
+
+
     = form_tag('/search', class: 'navbar-form navbar-left', id: 'search')
     .form-group.col-xs-8
       - query_text = @query || ""
       = text_field_tag('query', query_text, placeholder: 'Search', class: "form-control col-sm-4 input-md", id: 'search-input')
     .form-group.col-xs-4
       = submit_tag('Search', class: "btn btn-default")
-      / = image_submit_tag('Search', class: "btn btn-default")
+    / = image_submit_tag('Search', class: "btn btn-default")
     </form>
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse

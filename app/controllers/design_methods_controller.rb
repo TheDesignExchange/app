@@ -56,6 +56,15 @@ class DesignMethodsController < ApplicationController
       end
   end
 
+  def autocomplete
+    @design_method = DesignMethod.order(:name).where("name LIKE ?", "%#{params[:term]}%")
+    respond_to do |format|
+      format.html
+      format.json { 
+        render json: @design_method.map(&:name).to_json
+      }
+    end
+  end
 
   def new
     @new = true
