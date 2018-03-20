@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   check_authorization :unless => :devise_controller?
 
-  skip_authorization_check :only => [:landing, :index, :search, :search_db, :about, :share, :sendInvitation,:advancedSearch]
+  autocomplete :design_methods, :name
+
+  skip_authorization_check :only => [:landing, :index, :search, :search_db, :about, :share, :sendInvitation,:advancedSearch, :autocomplete_search]
   protect_from_forgery with: :exception
   add_flash_types :success, :warning, :danger, :info
 
@@ -17,6 +19,16 @@ class ApplicationController < ActionController::Base
 
   def advancedSearch
     render layout: "custom"
+  end
+
+  def autocomplete_search
+    @design_method = DesignMethod.order(:name).where("name ILIKE ?", "%#{params[:term]}%")
+    respond_to do |format|
+      format.html
+      format.json { 
+        render json: @design_method.map(&:name).to_json
+      }
+    end
   end
 
   def index

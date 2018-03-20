@@ -14,6 +14,8 @@ gem 'role_model', '~> 0.8.2'
 gem 'coffee-rails'
 gem 'uglifier'
 gem 'spreadsheet'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin.git'
 gem 'turbolinks'
 gem 'equivalent-xml'
@@ -32,6 +34,8 @@ gem 'quiet_assets'
 gem 'lograge'
 gem 'rgl'
 gem 'graphviz'
+gem 'rails4-autocomplete'
+
 # LSA
 
 gem 'sprockets', '2.11.0'
@@ -61,8 +65,7 @@ group :test do
   gem 'faker'
 end
 
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
+
 gem 'bootsy'
 gem 'bourbon', '~> 3.2'
 gem 'bootstrap-wysihtml5-rails'

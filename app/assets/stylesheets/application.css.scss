@@ -19,12 +19,17 @@
  *= require_self
  *= require jquery.tablesorter.theme.blue
  *= require jquery.tablesorter.pager
+
  */
 
+.ui-menu .ui-menu-item a{
+  margin-top: 10px;
+}
 #search {
    background-color: #BDBDBD;
    font-family: Raleway, sans-serif;
 }
+
 
 .notice {
   margin-top:50px;
