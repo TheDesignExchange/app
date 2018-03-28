@@ -3,6 +3,33 @@
     font-family: "Gotham", sans-serif;
   }
 
+  .navbar{
+    margin-bottom: 0;
+    font-family: "Gotham", sans-serif;
+    font-weight: normal;
+    background-color: #BDBDBD;
+    border: none;
+  }
+
+  .jumbotron {
+    background-color: #bdbdbd;
+    color: #000000;
+    width: 100%;
+    height: 400px;
+    display: block;
+    text-align: left;
+    padding-left: 12%;
+    padding-right: 12%;
+    font-family: "Gotham", sans-serif
+  }
+
+  .jumbotron h2{
+    font-weight: bold;
+    font-size:52px;
+    padding-top:10%;
+    padding-bottom:4%;
+  }
+
   #methods {
     margin-bottom: 36px;
   }
@@ -49,203 +76,116 @@
     padding-left: 10px
   }
 
-  #method-background {
-    background-image: url("/assets/MethodLandingPage.jpg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 0;
-    margin-bottom: 28px;
-    padding-top: 68.44%; /* (img-height / img-width * container-width) */
-                  /* (438 / 640) */
-  }
-  #method-background .layer {
-      background-color: rgba(134, 198, 124, 0.85);
-      width: 100%;
-      margin-top: -68.44%;
-      padding: 10px;
-    }
-
-    #casestudies-background {
-    background-image: url("https://thedesignexchange-staging.s3-us-west-1.amazonaws.com/production/case_studies/201/case-study-201");
-    background-size: 120%;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 0;
-    margin-bottom: 28px;
-    padding-top: 68.44%; /* (img-height / img-width * container-width) */
-                  /* (438 / 640) */
-  }
-  #casestudies-background .layer {
-      background-color: rgba(134, 198, 124, 0.85);
-      width: 100%;
-      margin-top: -68.44%;
-      padding: 10px;
-    }
-
-  #explore {
-    margin: 40px 0px 40px 0px;
-    display: inline-block;
-    font-family: "Gotham", sans-serif
-  }
-
-  #explore .col-sm-4 {
-    display: inline-block;
-    margin: 0 auto;
-  }
-
-  #explore h1{
-    text-align:center;
-    margin: 40px 0px 40px 0px;
-    font-size: 24px;
-  }
-
-  #explore h1 span {
-    font-size: 36px;
-    font-weight: bold;
-  }
-
-  #explore h2{
-    text-align:center;
-  }
-
-
-  #explore img {
-    margin: 20px 20px 20px 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width:auto;
-    height:10%;
-  }
-
-  #explore p{
-    text-align:center;
-    margin: 10px 0px 20px 0px;
-    font-size:120%;
-  }
-
-  #icons {
-    margin: 0 auto;
-    padding: 10px;
-  }
-
-  #bottom_icons{
-    display:block;
-    margin: 0 auto;
-    padding-left:10%;
-    padding-right:10%;
-  }
-
-  #bottom_icons .col-sm-4{
-     width:50%;
-     text-align:center;
-  }
-
-  #bottom_icons p{
-    text-align:center;
-    display:inline-block;
-  }
-
-  #bottom_icons img {
-    margin: 20px 20px 20px 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width:auto;
-    height:10%;
-  }
-
-  hr{
-    border: solid #d3d3d3 1px;
-  }
-
-
-/ .row{:id => "explore"}
-/ .container{:id => "explore"}
-
-
-/   %h1
-/     Our content is categorized within five phases of the early stage design process
-
-/   .row{:id => "icons"}
-/     .col-sm-4
-/       %h2
-/         RESEARCH
-/       %img
-/         = image_tag "research.png"
-/       %p
-/         collect information critical to project design process
-/     .col-sm-4
-/       %h2
-/         ANALYZE
-/       %img
-/         = image_tag "analyze.png"
-/       %p
-/         analysis and/or synthesis of collected data
-/     .col-sm-4
-/       %h2
-/         IDEATE
-/       %img
-/         = image_tag "ideate.png"
-/       %p
-/         create new ideas for products, services, etc.
-/   / minimum width: 768px
-/   .row{:id => "bottom_icons"}
-/     .col-sm-4
-/       %h2
-/         BUILD
-/       %img
-/         = image_tag "prototype.png"
-/       %p
-/         turn ideas into reality through a variety of mediums
-/     .col-sm-4
-/       %h2
-/         COMMUNICATE
-/       %img
-/         = image_tag "communicate.png"
-/       %p
-/         communicate with others outside of the project
-
-
-/ .row{:id => "icons"}
-/   .col-sm-2
-/     %h2
-/       RESEARCH
-/     %img
-/       = image_tag "research.png"
-/     %p
-/       collect information critical to project design process
-/   .col-sm-2
-/     %h2
-/       ANALYZE
-/     %img
-/       = image_tag "analyze.png"
-/     %p
-/       analysis and/or synthesis of collected data
-/   .col-sm-2
-/     %h2
-/       IDEATE
-/     %img
-/       = image_tag "ideate.png"
-/     %p
-/       create new ideas for products, services, etc.
-/   .col-sm-2
-/     %h2
-/       BUILD
-/     %img
-/       = image_tag "prototype.png"
-/     %p
-/       turn ideas into reality through a variety of mediums
-/   .col-sm-2
-/     %h2
-/       COMMUNICATE
-/     %img
-/       = image_tag "communicate.png"
-/     %p
-/       communicate with others outside of the project
-
-/ %hr
+  -# #method-background {
+  -#   background-image: url("/assets/MethodLandingPage.jpg");
+  -#   background-size: contain;
+  -#   background-repeat: no-repeat;
+  -#   width: 100%;
+  -#   height: 0;
+  -#   margin-bottom: 28px;
+  -#   padding-top: 68.44%; /* (img-height / img-width * container-width) */
+  -#                 /* (438 / 640) */
+  -# }
+  -# #method-background .layer {
+  -#     background-color: rgba(134, 198, 124, 0.85);
+  -#     width: 100%;
+  -#     margin-top: -68.44%;
+  -#     padding: 10px;
+  -#   }
+  -#
+  -#   #casestudies-background {
+  -#   background-image: url("https://thedesignexchange-staging.s3-us-west-1.amazonaws.com/production/case_studies/201/case-study-201");
+  -#   background-size: 120%;
+  -#   background-repeat: no-repeat;
+  -#   width: 100%;
+  -#   height: 0;
+  -#   margin-bottom: 28px;
+  -#   padding-top: 68.44%; /* (img-height / img-width * container-width) */
+  -#                 /* (438 / 640) */
+  -# }
+  -# #casestudies-background .layer {
+  -#     background-color: rgba(134, 198, 124, 0.85);
+  -#     width: 100%;
+  -#     margin-top: -68.44%;
+  -#     padding: 10px;
+  -#   }
+  -#
+  -# #explore {
+  -#   margin: 40px 0px 40px 0px;
+  -#   display: inline-block;
+  -#   font-family: "Gotham", sans-serif
+  -# }
+  -#
+  -# #explore .col-sm-4 {
+  -#   display: inline-block;
+  -#   margin: 0 auto;
+  -# }
+  -#
+  -# #explore h1{
+  -#   text-align:center;
+  -#   margin: 40px 0px 40px 0px;
+  -#   font-size: 24px;
+  -# }
+  -#
+  -# #explore h1 span {
+  -#   font-size: 36px;
+  -#   font-weight: bold;
+  -# }
+  -#
+  -# #explore h2{
+  -#   text-align:center;
+  -# }
+  -#
+  -#
+  -# #explore img {
+  -#   margin: 20px 20px 20px 20px;
+  -#   display: block;
+  -#   margin-left: auto;
+  -#   margin-right: auto;
+  -#   width:auto;
+  -#   height:10%;
+  -# }
+  -#
+  -# #explore p{
+  -#   text-align:center;
+  -#   margin: 10px 0px 20px 0px;
+  -#   font-size:120%;
+  -# }
+  -#
+  -# #icons {
+  -#   margin: 0 auto;
+  -#   padding: 10px;
+  -# }
+  -#
+  -# #bottom_icons{
+  -#   display:block;
+  -#   margin: 0 auto;
+  -#   padding-left:10%;
+  -#   padding-right:10%;
+  -# }
+  -#
+  -# #bottom_icons .col-sm-4{
+  -#    width:50%;
+  -#    text-align:center;
+  -# }
+  -#
+  -# #bottom_icons p{
+  -#   text-align:center;
+  -#   display:inline-block;
+  -# }
+  -#
+  -# #bottom_icons img {
+  -#   margin: 20px 20px 20px 20px;
+  -#   display: block;
+  -#   margin-left: auto;
+  -#   margin-right: auto;
+  -#   width:auto;
+  -#   height:10%;
+  -# }
+  -#
+  -# hr{
+  -#   border: solid #d3d3d3 1px;
+  -# }
 
 .row{:id => "explore"}
   %h1
@@ -300,49 +240,3 @@
       By providing context examples of design methods in practice, we hope to support designers address complex challenges through a human-centered design process. Our ever-growing collection of case studies is meant to inspire and empower the design community to creatively embed methods in practice.
     %a
       = link_to "See Case Studies", case_studies_path
-
--# .row{:id => "showcase"}
--#   .col-sm-6
--#     %h1
--#       =link_to "Methods", design_methods_path
--#     %p.subtitle Learn about the methods you could use on your next design
--#     .background{:id => "method-background"}
--#       = link_to design_method_path(id:162) do
--#         .layer
--#           %h2
--#             Cultural Probes
--#           %h4
--#             Gain insight into and inspirational responses about the daily life and habits of communities
--#   .col-sm-6
--#     %h1
--#       =link_to "Case Studies", case_studies_path
--#     / %p.subtitle{:style=>"text-align:center;font-size:100%; margin-top:-10%;font-family: 'Source Sans Pro', sans-serif;"} Read about how real design probems were solved.
--#     / case_study_path(id:200) do for link_to but can't figure out the ID
--#     %p.subtitle Read about how the methods are applied in real world situations
--#     .background{:id => "casestudies-background"}
--#       = link_to 'https://www.thedesignexchange.org/case_studies/201' do
--#         .layer
--#           %h2
--#             HCI Practices in Malaysia
--#           %h4
--#             ICT is seen as not only an industry, but a driving factor in the Malaysian economy in order to increase productivity and efficiency.
--#
--# .row
--#   - if user_signed_in?
--#     .row
--#       = link_to 'INVITE YOUR FRIENDS', '/share', class: "btn btn-success sharp btn-lrg join"
--#   - if !user_signed_in?
--#     .row
--#       = link_to "JOIN NOW", new_registration_path(:user), class: "btn btn-success sharp btn-lrg join"
--#       = link_to 'INVITE YOUR FRIENDS', '/share', class: "btn btn-success sharp btn-lrg join"
-
-  / %p.subtitle{:style=>"text-align:center;font-size:200%; margin-top:30%;font-family: 'Source Sans Pro', sans-serif;"} Case Studies coming soon
-
-  / = link_to case_study_path(id:197) do #change link path
-  /   = image_tag "CaseStudiesLandingPage.png", :width => "100%", size: "450x370"
-  /   .layer
-  /     .left-padding
-  /       .h1{:style=>"margin-bottom:10%;font-family: 'Work Sans';font-size:180%; sans-serif;color: white;"}
-  /         Adapting Usability Testing for Oral, Rural Users
-  /       .h4{:style=>"margin-bottom:10%;font-size:100%;color: white;margin-top:-10%;"}
-  /         Read about a study conducted in Ghanaian villages that evaluated an audio computer desgined for people living in oral cultures
