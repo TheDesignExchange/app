@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.0.0'
+gem 'rails', '~> 4.1.0'
 
 gem 'sunspot_rails'
 gem 'sunspot_solr'
@@ -38,7 +38,7 @@ gem 'rails4-autocomplete'
 
 # LSA
 
-gem 'sprockets', '2.11.0'
+gem 'sprockets'
 
 # Styling
 gem 'bootstrap-sass'

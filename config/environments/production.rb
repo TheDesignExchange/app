@@ -47,11 +47,7 @@ DesignExchange::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   config.action_controller.asset_host = Proc.new { |source, request|
-    if request.base_url.include? "thedesignexchange-staging"
-      "dh4k5zus3oosl.cloudfront.net"
-    else
-      "d1zkdnob0tv9f9.cloudfront.net"
-    end
+    "d1zkdnob0tv9f9.cloudfront.net"
   }
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
