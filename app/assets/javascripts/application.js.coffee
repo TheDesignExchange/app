@@ -33,7 +33,7 @@ ready = ->
   $('#search-input').autocomplete 
     source: '/autocomplete_search.json'
     autoFocus: true
-    minLength: 4  
+    minLength:4,   
 
   return
 
@@ -116,9 +116,13 @@ window.DE =
         response DE.cache[term]
         return
       $.getJSON '/autocomplete_search', request, (data, status, xhr) ->
+        matches = $.map(data, (acItem) ->
+          if acItem.toUpperCase().indexOf(request.term.toUpperCase()) == 0
+            return acItem
+          return
+        )
+        response matches
         DE.cache[term] = data
-        response data.slice(1,6)
-        return
       return
 
     minLength: 1
