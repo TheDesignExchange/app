@@ -3,6 +3,27 @@
     font-family: "Gotham", sans-serif;
   }
 
+  .underline-container {
+    position: relative;
+    display: inline-block;
+    padding-right: 0.5em;
+  }
+  .underline-container a {
+    color: #333333;
+  }
+  .underline {
+    display: block;
+    width: 100%;
+    position: absolute;
+    background-color: #85F85D;
+    height: 30%;
+    bottom: 5%;
+    z-index: -1;
+  }
+  .underline .hide {
+    display: none;
+  }
+
   .navbar{
     margin-bottom: 0;
     font-family: "Gotham", sans-serif;
@@ -25,179 +46,173 @@
 
   .jumbotron h2{
     font-weight: bold;
-    font-size:52px;
-    padding-top:10%;
-    padding-bottom:4%;
+    font-size: 52px;
+    padding-top: 10%;
+    padding-bottom: 4%;
+  }
+
+  #explore {
+    text-align: center;
+    margin-top: 36px;
+    margin-bottom: 48px;
+  }
+  #explore h1 {
+    font-weight: normal;
+    line-height: normal;
+  }
+  #explore span {
+    font-weight: bold;
+    font-weight: bold;
+    width: 8em;
+    display: inline-block;
+    text-align: center;
   }
 
   #methods {
     margin-bottom: 36px;
   }
 
+  #worlds-largest {
+    margin-top: 24px;
+    margin-bottom: 64px;
+
+  }
+  #worlds-largest .earth {
+    text-align: center;
+  }
   #worlds-largest img {
+    width: 60%;
+  }
+
+  .circle-container {
+    position: relative;
+    width: 24em;
+    height: 24em;
+    padding: 2.8em; /*= 2em * 1.4 (2em = half the width of an img, 1.4 = sqrt(2))*/
+    border-radius: 50%;
+    margin: 1.75em auto 0;
+    text-align: center;
+  }
+  .circle-container a {
+    color: #333333;
+    display: block;
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 4em; height: 4em;
+    margin: -2em; /* 2em = 4em/2 */ /* half the width */
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  .circle-container .center-container {
+    color: #333333;
+    display: block;
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 12em; height: 8em;
+    margin: -6em;
+    text-align: center;
+  }
+  .circle-container .underline-container {
+    cursor: pointer;
+  }
+  .circle-container img {
+    display: block;
+    width: 50%;
+    margin-top: -4em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .deg0 { transform: rotate(-90deg) translate(12em) rotate(90deg); }
+  .deg72 { transform: rotate(-18deg) translate(12em) rotate(18deg); }
+  .deg144 { transform: rotate(54deg) translate(12em) rotate(-54deg); }
+  .deg216 { transform: rotate(126deg) translate(12em) rotate(-126deg); }
+  .deg288 { transform: rotate(198deg) translate(12em) rotate(-198deg); }
+
+  #showcase {
+    margin-top: 24px;
+  }
+  #showcase-img {
     width: 100%;
   }
-
-  #showcase .subtitle {
-    text-align:center;
-    font-size:100%;
-    padding-bottom:10px;
+  #showcase-header {
+    color: #333333;
+    font-weight: bold;
+  }
+  #showcase-desc {
   }
 
-  #showcase h1 {
-    text-align:center;
+  .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    height: auto;
+    margin: 2px 16px;
+    padding: 0px 0px 16px 0px;
+  }
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  .card img {
+    width: 100%;
+    display: inherit;
+    overflow: hidden;
+    max-height: 100px;
+  }
+  /* Add some padding inside the card container */
+  .card-container {
+    padding: 2px 16px;
+  }
+  .vert-card {
+    display: block;
+    background-color: #eee;
+    position: relative;
+    font-size: 0.85em;
+    padding: 0px 0px 0px 12px;
+    margin: 16px;
+  }
+  .vert-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  .vert-card-container {
+    width: 25%;
+    display: inline-block;
+  }
+  .vert-card img {
+    max-width: 70%;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
   }
 
-  #showcase h2 {
-    margin-bottom:10%;
-    line-height: 130%;
+  .join {
+    text-align: center;
   }
-  #showcase h3 {
-    margin-bottom:10%;
+  .join-button {
+    background-color: #6BC06D;
+    border-radius: 10px;
     color: white;
-    line-height: 130%;
+    font-size: 24px;
+    padding: 8px 24px;
   }
 
-  #showcase h4 {
-    font-size:100%;
-    line-height: 130%;
-    margin-top:-10%;
+  .site-footer {
+    background-color: #F2F2F2;
+    text-align: center;
   }
-
-  #showcase .col-sm-6 {
-    padding-bottom: 20px;
-  }
-
-  #showcase .col-sm-6 h1 {
-    margin-bottom: 10px;
-  }
-
-  .left-padding{
-    padding-left: 10px
-  }
-
-  -# #method-background {
-  -#   background-image: url("/assets/MethodLandingPage.jpg");
-  -#   background-size: contain;
-  -#   background-repeat: no-repeat;
-  -#   width: 100%;
-  -#   height: 0;
-  -#   margin-bottom: 28px;
-  -#   padding-top: 68.44%; /* (img-height / img-width * container-width) */
-  -#                 /* (438 / 640) */
-  -# }
-  -# #method-background .layer {
-  -#     background-color: rgba(134, 198, 124, 0.85);
-  -#     width: 100%;
-  -#     margin-top: -68.44%;
-  -#     padding: 10px;
-  -#   }
-  -#
-  -#   #casestudies-background {
-  -#   background-image: url("https://thedesignexchange-staging.s3-us-west-1.amazonaws.com/production/case_studies/201/case-study-201");
-  -#   background-size: 120%;
-  -#   background-repeat: no-repeat;
-  -#   width: 100%;
-  -#   height: 0;
-  -#   margin-bottom: 28px;
-  -#   padding-top: 68.44%; /* (img-height / img-width * container-width) */
-  -#                 /* (438 / 640) */
-  -# }
-  -# #casestudies-background .layer {
-  -#     background-color: rgba(134, 198, 124, 0.85);
-  -#     width: 100%;
-  -#     margin-top: -68.44%;
-  -#     padding: 10px;
-  -#   }
-  -#
-  -# #explore {
-  -#   margin: 40px 0px 40px 0px;
-  -#   display: inline-block;
-  -#   font-family: "Gotham", sans-serif
-  -# }
-  -#
-  -# #explore .col-sm-4 {
-  -#   display: inline-block;
-  -#   margin: 0 auto;
-  -# }
-  -#
-  -# #explore h1{
-  -#   text-align:center;
-  -#   margin: 40px 0px 40px 0px;
-  -#   font-size: 24px;
-  -# }
-  -#
-  -# #explore h1 span {
-  -#   font-size: 36px;
-  -#   font-weight: bold;
-  -# }
-  -#
-  -# #explore h2{
-  -#   text-align:center;
-  -# }
-  -#
-  -#
-  -# #explore img {
-  -#   margin: 20px 20px 20px 20px;
-  -#   display: block;
-  -#   margin-left: auto;
-  -#   margin-right: auto;
-  -#   width:auto;
-  -#   height:10%;
-  -# }
-  -#
-  -# #explore p{
-  -#   text-align:center;
-  -#   margin: 10px 0px 20px 0px;
-  -#   font-size:120%;
-  -# }
-  -#
-  -# #icons {
-  -#   margin: 0 auto;
-  -#   padding: 10px;
-  -# }
-  -#
-  -# #bottom_icons{
-  -#   display:block;
-  -#   margin: 0 auto;
-  -#   padding-left:10%;
-  -#   padding-right:10%;
-  -# }
-  -#
-  -# #bottom_icons .col-sm-4{
-  -#    width:50%;
-  -#    text-align:center;
-  -# }
-  -#
-  -# #bottom_icons p{
-  -#   text-align:center;
-  -#   display:inline-block;
-  -# }
-  -#
-  -# #bottom_icons img {
-  -#   margin: 20px 20px 20px 20px;
-  -#   display: block;
-  -#   margin-left: auto;
-  -#   margin-right: auto;
-  -#   width:auto;
-  -#   height:10%;
-  -# }
-  -#
-  -# hr{
-  -#   border: solid #d3d3d3 1px;
-  -# }
 
 .row{:id => "explore"}
-  %h1
-    We help
-    %span
-      Students
-    embed human-centered design into their
-    %span
-      Projects
+  .container
+    %h1
+      We help
+      %span{:id => "rotate-A"}
+        Students
+      embed human-centered design into their
+      %span{:id => "rotate-B"}
+        Projects
 
 .row{:id => "worlds-largest"}
-  .col-sm-3
+  .col-sm-3.earth
     %img
       = image_tag "earth.png"
   .col-sm-9
@@ -212,31 +227,138 @@
     %h2
       With over 300 methods to choose from, we help guide your method discovery and selection.
   .col-sm-8
-    %img
-      = image_tag ""
+    .circle-container
+      .center-container
+        .center
+          %img
+          %h3{:id => "showcase-header"}
+            Research
+          %p{:id => "showcase-desc"}
+            Methods to support acquiring meaningful data to drive design decisions
+
+      %a{:onclick => 'changeStage(0)'}
+        .deg0.underline-container
+          Research
+          .underline
+      %a{:onclick => 'changeStage(1)'}
+        .deg72.underline-container
+          Analyze
+          .underline
+      %a{:onclick => 'changeStage(2)'}
+        .deg144.underline-container
+          Ideate
+          .underline
+      %a{:onclick => 'changeStage(3)'}
+        .deg216.underline-container
+          Build
+          .underline
+      %a{:onclick => 'changeStage(4)'}
+        .deg288.underline-container
+          Communicate
+          .underline
 
 .row{:id => "methods"}
   .col-sm-12
-    %h1
+    %h1{:class => "underline-container"}
       = link_to "Methods", design_methods_path
+      .underline
     %p
       Design methods provide a structure to the fuzzy and open-ended human-centered design process. We have curated a comprehensive collection of methods, methodically organized to help you navigate the ambiguous nature of design. Our methods are actionable - with best practices, instructions for use, resources, and more to help you seamlessly embed design thinking into your work.
     %a
       = link_to "See Methods", design_methods_path
+  .col-sm-4
+    .card
+      %img
+        = image_tag "MethodLandingPage.jpg"
+      .card-container
+        %h4
+          Laser Cutting
+        %p
+          Laser cutting is the process of using a Computer Numeric Control (CNC) ...
+  .col-sm-4
+    .card
+      %img
+        = image_tag "MethodLandingPage.jpg"
+      .card-container
+        %h4
+          Laser Cutting
+        %p
+          Laser cutting is the process of using a Computer Numeric Control (CNC) ...
+  .col-sm-4
+    .card
+      %img
+        = image_tag "MethodLandingPage.jpg"
+      .card-container
+        %h4
+          Laser Cutting
+        %p
+          Laser cutting is the process of using a Computer Numeric Control (CNC) ...
 
 .row{:id => "casestudies"}
   .col-sm-6
-    .background{:id => "casestudies-background"}
-      = link_to 'https://www.thedesignexchange.org/case_studies/201' do
-        .layer
-          %h2
-            HCI Practices in Malaysia
-          %h4
-            ICT is seen as not only an industry, but a driving factor in the Malaysian economy in order to increase productivity and efficiency.
+    .vert-card
+      .vert-card-container
+        %h4
+          Title
+        %p
+          Praesent id mauris ut dolor luctus placerat. Integer facilisis dignissim libero, eu eleifend purus tristique eget.
+      %img
+        = image_tag "MethodLandingPage.jpg"
+    -# .background{:id => "casestudies-background"}
+    -#   = link_to 'https://www.thedesignexchange.org/case_studies/201' do
+    -#     .layer
+    -#       %h2
+    -#         HCI Practices in Malaysia
+    -#       %h4
+    -#         ICT is seen as not only an industry, but a driving factor in the Malaysian economy in order to increase productivity and efficiency.
   .col-sm-6
-    %h1
+    %h1{:class => "underline-container"}
       = link_to "Case Studies", case_studies_path
+      .underline
     %p
       By providing context examples of design methods in practice, we hope to support designers address complex challenges through a human-centered design process. Our ever-growing collection of case studies is meant to inspire and empower the design community to creatively embed methods in practice.
     %a
       = link_to "See Case Studies", case_studies_path
+.row
+  .container.join
+    %button.join-button
+      Join our community
+
+:javascript
+  var x = ['Students', 'Educators', 'Professionals', 'Anyone'];
+  var y = ['Projects', 'Curriculum', 'Practice', 'Life'];
+  var stages = ['Research', 'Analyze', 'Ideate', 'Build', 'Communicate'];
+  var stagesImg = ['research_1.png','analyze_1.png','ideate_1.png','prototype_1.png','communicate_1.png'];
+  var stagesDesc = ['Methods to support acquiring meaningful data to drive design decisions','Methods for synthesizing and drawing insights from collected data','Methods for generating new ideas for products, services, etc.','Methods for turning concepts and ideas into reality','Methods for sharing insights and design ideas']
+  var currIndex = 0;
+  var currStage = 0;
+
+  function swapText() {
+    if (currIndex < 3) currIndex++;
+    else currIndex = 0;
+    $("#rotate-A").text(x[currIndex]);
+    $("#rotate-B").text(y[currIndex]);
+  }
+
+  function changeStage(stage, override=false) {
+    if (stage === currStage && !override) return;
+    currStage = stage;
+    for (var i = 0; i < 5; i++) {
+      var selector = '.circle-container a:eq(' + i + ')';
+      if (i === stage) {
+        $(selector).find('.underline').removeClass('hide');
+        $(selector).css('color', '#333333');
+        $('#showcase-header').text(stages[i]);
+        $('#showcase-desc').text(stagesDesc[i]);
+        $('.circle-container img').attr('src', '/assets/' + stagesImg[i]);
+      } else {
+        $(selector).find('.underline').addClass('hide');
+        $(selector).css('color', 'rgba(0, 0, 0, 0.6)');
+      }
+    }
+  }
+
+  $(document).ready( function() {
+    window.setInterval(swapText, 4000);
+    changeStage(currStage, true);
+  });
