@@ -184,23 +184,23 @@
       %h3 Problem
       - if @case_study.draft?
         %h3{:style=>"color:red;"} Suggestions
-        %p= @case_study.suggestions.blank? ? "-" : html_format(@case_study.suggestions, @case_study.updated_at)
+        %p= @case_study.suggestions.blank? ? "-" : html_format(@case_study.suggestions, @case_study.last_edited)
         %h5{:style=>"color:red"} End of Suggestions
       %p= @case_study.overview.blank? ? "-" : html_format(@case_study.overview)
       / FORMS
       %h3 Project Background
-      %p= @case_study.background.blank? ? "-" : html_format(@case_study.background, @case_study.updated_at)
+      %p= @case_study.background.blank? ? "-" : html_format(@case_study.background, @case_study.last_edited)
       / %p= @case_study.process.blank? ? "-" : html_format(@case_study.process)
       / %h3 Outcome/Benefits
       / %p= @case_study.outcome.blank? ? "-" : html_format(@case_study.outcome)
       %h3 Summary
-      %p= @case_study.summary.blank? ? "-" : html_format(@case_study.summary, @case_study.updated_at)
+      %p= @case_study.summary.blank? ? "-" : html_format(@case_study.summary, @case_study.last_edited)
 
       %h3 Process
-      %p= @case_study.process.blank? ? "-" : html_format(@case_study.process, @case_study.updated_at)
+      %p= @case_study.process.blank? ? "-" : html_format(@case_study.process, @case_study.last_edited)
 
       %h3 Retrospective
-      %p= @case_study.outcome.blank? ? "-" : html_format(@case_study.outcome, @case_study.updated_at)
+      %p= @case_study.outcome.blank? ? "-" : html_format(@case_study.outcome, @case_study.last_edited)
 
 
       - if !@case_study.design_methods.blank?
