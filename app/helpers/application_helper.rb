@@ -40,8 +40,14 @@ module ApplicationHelper
     ::Kramdown::Document.new(text, input: 'GFM').to_html.html_safe
   end
 
-  def html_format(text)
-    text.html_safe
+  def html_format(text, updated_at)
+    updated_date = updated_at.to_date
+    beginning_date = "2018-03-13".to_date # Date when we switched away from Markdown
+    if updated_date < beginning_date
+      md_format(text)
+    else
+      text.html_safe
+    end
   end
 
   def print_children(level,h)
