@@ -45,7 +45,7 @@ gem 'bootstrap-sass'
 gem 'normalize-rails'
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
 end
 
 group :development do
