@@ -294,9 +294,9 @@
     - if @method.draft?
       - if !@method.suggestions.blank?
         %h3{:style=>"color:red;"} Suggestions
-        %p= html_format(@method.suggestions)
+        %p= html_format(@method.suggestions, @method.last_edited)
         %h5{:style=>"color:red"} End of Suggestions
-    = @method.overview != nil ? html_format(@method.overview) : "No overview available"
+    = @method.overview != nil ? html_format(@method.overview, @method.last_edited) : "No overview available"
     - if !@method.synonyms.blank?
       %p2
         %strong Synonyms:
@@ -310,34 +310,34 @@
     - if !@method.image_attribution.blank?
       %h5 Image Attributions
       %p
-        = html_format(@method.image_attribution)
+        = html_format(@method.image_attribution, @method.last_edited)
 
     - if !@method.usage.blank?
       %h4 When to use
-      %p= html_format(@method.usage)
+      %p= html_format(@method.usage, @method.last_edited)
 
     - if !@method.benefits.blank?
       %h4 Benefits
-      %p= html_format(@method.benefits)
+      %p= html_format(@method.benefits, @method.last_edited)
 
     - if !@method.limitations.blank?
       %h4 Limitations/Risks
-      %p= html_format(@method.limitations)
+      %p= html_format(@method.limitations, @method.last_edited)
 
     - if !@method.skills.blank?
       %h4 Skills that help:
-      %p= html_format(@method.skills)
+      %p= html_format(@method.skills, @method.last_edited)
     - if !@method.videoURL.blank?
       %h4 Video One
 
       %iframe{:allowfullscreen => "", :frameborder => "1", :height => "315", :src => @method.videoURL, :width => "560"}
     - if !@method.video_caption.blank?
       %p
-        = html_format(@method.video_caption)
+        = html_format(@method.video_caption, @method.last_edited)
     - if !@method.video_attribution.blank?
       %h5 Video Attributions
       %p
-        = html_format(@method.video_attribution)
+        = html_format(@method.video_attribution, @method.last_edited)
     - if !@method.videoURL_two.blank?
       %h4 Video Two
 
@@ -345,11 +345,11 @@
       %iframe{:allowfullscreen => "", :frameborder => "1", :height => "315", :src => @method.videoURL_two, :width => "560"}
     - if !@method.video_two_caption.blank?
       %p
-        = html_format(@method.video_two_caption)
+        = html_format(@method.video_two_caption, @method.last_edited)
     - if !@method.video_two_attribution.blank?
       %h5 Video Attributions
       %p
-        = html_format(@method.video_two_attribution)
+        = html_format(@method.video_two_attribution, @method.last_edited)
     %h4 Contributing Authors
     .col-xs-6
       %h5 Creator
@@ -390,25 +390,25 @@
 
   /Method instructions
   .tab-pane.row{"data-link" => "instructions"}
-    = @method.process != nil ? html_format(@method.process) : "No instructions available"
+    = @method.process != nil ? html_format(@method.process, @method.last_edited) : "No instructions available"
 
   /Method resources
   .tab-pane.row{"data-link" => "resources"}
     - if !@method.online_resources.blank?
       %h4&= "Online Tools & Resources"
-      %p= html_format(@method.online_resources)
+      %p= html_format(@method.online_resources, @method.last_edited)
 
     - if !@method.history.blank?
       %h4 History
-      %p= html_format(@method.history)
+      %p= html_format(@method.history, @method.last_edited)
 
     - if !@method.critiques.blank?
       %h4 Critiques
-      %p= html_format(@method.critiques)
+      %p= html_format(@method.critiques, @method.last_edited)
 
     - if @method.references != nil and @method.references != ''
       %h4 References used in this Article
-      %p= html_format(@method.references)
+      %p= html_format(@method.references, @method.last_edited)
     / - if @citations != nil && @citations.length != 0
     /   %h3 Citations
     /   %ol
@@ -425,7 +425,7 @@
 
     - if !@method.additional_reading.blank?
       %h4 Additional Reading
-      %p= html_format(@method.additional_reading)
+      %p= html_format(@method.additional_reading, @method.last_edited)
 
     - if !@method.case_studies.blank?
       %h4 Related Case Studies

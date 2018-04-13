@@ -116,9 +116,13 @@ window.DE =
         response DE.cache[term]
         return
       $.getJSON '/autocomplete_search', request, (data, status, xhr) ->
+        matches = $.map(data, (acItem) ->
+          if acItem.toUpperCase().indexOf(request.term.toUpperCase()) == 0
+            return acItem
+          return
+        )
+        response matches
         DE.cache[term] = data
-        response data
-        return
       return
 
     minLength: 1
