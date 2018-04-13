@@ -3,6 +3,11 @@
     font-family: "Gotham", sans-serif;
   }
 
+  p {
+    line-height: 1.5em;
+    font-size: 1.12em;
+  }
+
   .underline-container {
     position: relative;
     display: inline-block;
@@ -53,28 +58,99 @@
 
   #explore {
     text-align: center;
-    margin-top: 36px;
-    margin-bottom: 48px;
+    margin-top: 48px;
+    margin-bottom: 72px;
   }
   #explore h1 {
     font-weight: normal;
-    line-height: normal;
+    line-height: 1.4em;
+    padding-left: 15%;
+    text-align: left;
   }
   #explore span {
     font-weight: bold;
-    font-weight: bold;
-    width: 8em;
     display: inline-block;
-    text-align: center;
+  }
+
+  /*Vertical Flip*/
+  .verticalFlip{
+    display: inline;
+    text-indent: 8px;
+  }
+  .verticalFlip span{
+    animation: vertical 20s linear infinite 0s;
+    -ms-animation: vertical 20s linear infinite 0s;
+    -webkit-animation: vertical 20s linear infinite 0s;
+    color: #00abe9;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+  }
+  .verticalFlip span:nth-child(2){
+    animation-delay: 5s;
+    -ms-animation-delay: 5s;
+    -webkit-animation-delay: 5s;
+  }
+  .verticalFlip span:nth-child(3){
+    animation-delay: 10s;
+    -ms-animation-delay: 10s;
+    -webkit-animation-delay: 10s;
+  }
+  .verticalFlip span:nth-child(4){
+    animation-delay: 15s;
+    -ms-animation-delay: 15s;
+    -webkit-animation-delay: 15s;
+  }
+
+  /*Vertical Flip Animation*/
+  @-moz-keyframes vertical{
+    0% { opacity: 0; }
+    5% { opacity: 0; -moz-transform: rotateX(180deg); }
+    10% { opacity: 1; -moz-transform: translateY(0px); }
+    25% { opacity: 1; -moz-transform: translateY(0px); }
+    30% { opacity: 0; -moz-transform: translateY(0px); }
+    80% { opacity: 0; }
+    100% { opacity: 0;}
+  }
+  @-webkit-keyframes vertical{
+    0% { opacity: 0; }
+    5% { opacity: 0; -webkit-transform: rotateX(180deg); }
+    10% { opacity: 1; -webkit-transform: translateY(0px); }
+    25% { opacity: 1; -webkit-transform: translateY(0px); }
+    30% { opacity: 0; -webkit-transform: translateY(0px); }
+    80% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  @-ms-keyframes vertical{
+    0% { opacity: 0; }
+    5% { opacity: 0; -ms-transform: rotateX(180deg); }
+    10% { opacity: 1; -ms-transform: translateY(0px); }
+    25% { opacity: 1; -ms-transform: translateY(0px); }
+    30% { opacity: 0; -ms-transform: translateY(0px); }
+    80% { opacity: 0; }
+    100% { opacity: 0; }
   }
 
   #methods {
-    margin-bottom: 36px;
+    margin-top: 64px;
+    margin-bottom: 144px;
+  }
+
+  #case-studies {
+    margin-top: 64px;
+    margin-bottom: 144px;
+  }
+
+  .see-link a {
+    float: right;
+    color: #888;
+    font-style: italic;
+    margin-bottom: 24px;
   }
 
   #worlds-largest {
-    margin-top: 24px;
-    margin-bottom: 64px;
+    margin-top: 120px;
+    margin-bottom: 120px;
 
   }
   #worlds-largest .earth {
@@ -205,11 +281,28 @@
   .container
     %h1
       We help
-      %span{:id => "rotate-A"}
-        Students
-      embed human-centered design into their
-      %span{:id => "rotate-B"}
-        Projects
+      .verticalFlip
+        %span
+          Students
+        %span
+          Educators
+        %span
+          Professionals
+        %span
+          Anyone
+      %br
+      embed human-centered design
+      %br
+      into their
+      .verticalFlip
+        %span
+          Projects
+        %span
+          Curriculum
+        %span
+          Practice
+        %span
+          Life
 
 .row{:id => "worlds-largest"}
   .col-sm-3.earth
@@ -264,8 +357,9 @@
       .underline
     %p
       Design methods provide a structure to the fuzzy and open-ended human-centered design process. We have curated a comprehensive collection of methods, methodically organized to help you navigate the ambiguous nature of design. Our methods are actionable - with best practices, instructions for use, resources, and more to help you seamlessly embed design thinking into your work.
-    %a
-      = link_to "See Methods", design_methods_path
+    .see-link
+      %a
+        = link_to "See Methods", design_methods_path
   .col-sm-4
     .card
       %img
@@ -294,7 +388,7 @@
         %p
           Laser cutting is the process of using a Computer Numeric Control (CNC) ...
 
-.row{:id => "casestudies"}
+.row{:id => "case-studies"}
   .col-sm-6
     .vert-card
       .vert-card-container
@@ -317,8 +411,9 @@
       .underline
     %p
       By providing context examples of design methods in practice, we hope to support designers address complex challenges through a human-centered design process. Our ever-growing collection of case studies is meant to inspire and empower the design community to creatively embed methods in practice.
-    %a
-      = link_to "See Case Studies", case_studies_path
+    .see-link
+      %a
+        = link_to "See Case Studies", case_studies_path
 .row
   .container.join
     %button.join-button
