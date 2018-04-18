@@ -186,7 +186,7 @@
         %h3{:style=>"color:red;"} Suggestions
         %p= @case_study.suggestions.blank? ? "-" : html_format(@case_study.suggestions, @case_study.last_edited)
         %h5{:style=>"color:red"} End of Suggestions
-      %p= @case_study.overview.blank? ? "-" : html_format(@case_study.overview)
+      %p= @case_study.overview.blank? ? "-" : html_format(@case_study.overview, @case_study.last_edited)
       / FORMS
       %h3 Project Background
       %p= @case_study.background.blank? ? "-" : html_format(@case_study.background, @case_study.last_edited)
