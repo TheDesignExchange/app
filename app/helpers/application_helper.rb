@@ -41,10 +41,12 @@ module ApplicationHelper
   end
 
   def html_format(text, last_edited)
-    last_date = last_edited.to_date
-    beginning_date = "2018-03-13".to_date # Date when we switched away from Markdown
-    if last_date < beginning_date
-      md_format(text)
+    if last_edited != nil
+      last_date = last_edited.to_date
+      beginning_date = "2018-03-13".to_date # Date when we switched away from Markdown
+      if last_date < beginning_date
+        md_format(text)
+      end
     else
       text.html_safe
     end
