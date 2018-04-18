@@ -367,42 +367,46 @@
         = link_to "See Methods", design_methods_path
   .col-sm-4
     .card
+      - @method = DesignMethod.find(102)
       %img
-        = image_tag "MethodLandingPage.jpg"
+        = image_tag @method.picture_url
       .card-container
         %h4
-          Laser Cutting
+          = @method.name
         %p
-          Laser cutting is the process of using a Computer Numeric Control (CNC) ...
+          = shorten(@method.overview)
   .col-sm-4
     .card
+      - @method = DesignMethod.find(13)
       %img
-        = image_tag "MethodLandingPage.jpg"
+        = image_tag @method.picture_url
       .card-container
         %h4
-          Laser Cutting
+          = @method.name
         %p
-          Laser cutting is the process of using a Computer Numeric Control (CNC) ...
+          = shorten(@method.overview)
   .col-sm-4
     .card
+      - @method = DesignMethod.find(111)
       %img
-        = image_tag "MethodLandingPage.jpg"
+        = image_tag @method.picture_url
       .card-container
         %h4
-          Laser Cutting
+          = @method.name
         %p
-          Laser cutting is the process of using a Computer Numeric Control (CNC) ...
+          = shorten(@method.overview)
 
 .row{:id => "case-studies"}
   .col-sm-6
     .vert-card
+      - @case_study = CaseStudy.find(13)
       .vert-card-container
         %h4
-          Title
+          = @case_study.name
         %p
-          Praesent id mauris ut dolor luctus placerat. Integer facilisis dignissim libero, eu eleifend purus tristique eget.
+          = shorten(@case_study.overview)
       %img
-        = image_tag "MethodLandingPage.jpg"
+        = image_tag @case_study.picture_url
     -# .background{:id => "casestudies-background"}
     -#   = link_to 'https://www.thedesignexchange.org/case_studies/201' do
     -#     .layer

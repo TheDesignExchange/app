@@ -52,6 +52,14 @@ module ApplicationHelper
     end
   end
 
+  def shorten(text)
+    if text.length > 80
+      text[0..76] + " ..."
+    else
+      text
+    end
+  end
+
   def print_children(level,h)
     str=""
       h.each_pair do |k,v|
