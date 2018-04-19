@@ -56,6 +56,9 @@ module DesignExchange
     # Devise config
     config.assets.initialize_on_precompile = false
 
+    # Precompile custom fonts
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
     # Suppress warning
     I18n.enforce_available_locales = true
 
@@ -63,8 +66,8 @@ module DesignExchange
     Devise::SessionsController.layout "custom"
     Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "custom"   : "custom" }
     Devise::ConfirmationsController.layout "custom"
-    Devise::UnlocksController.layout "custom"            
-    Devise::PasswordsController.layout "custom"        
+    Devise::UnlocksController.layout "custom"
+    Devise::PasswordsController.layout "custom"
     end
 
   end
