@@ -1,31 +1,11 @@
 :css
-
-  /* navbar styles */
-  #search {
-     background-color: #BDBDBD;
-  }
-
-  .navbar{
-    margin-bottom: 0;
-    font-family: "Gotham", sans-serif;
-    background-color: #BDBDBD;
-    border: none;
-  }
-
-  .site-footer {
-    font-family: "Gotham", sans-serif;
-  }
-
-  a {
-    font-family: "Gotham", sans-serif;
+  @font-face {
+    font-family: "Gotham";
+    src: local("Gotham\ Fonts\ Family/Gotham-Book.otf");
   }
 
   body {
     font-family: "Gotham", sans-serif;
-  }
-
-  h1 {
-    font-weight: bold;
   }
 
   p {
@@ -87,6 +67,7 @@
     margin-bottom: 72px;
   }
   #explore h1 {
+    font-weight: normal;
     line-height: 1.4em;
     padding-left: 15%;
     text-align: left;
@@ -275,11 +256,11 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
   .vert-card-container {
-    width: 35%;
+    width: 25%;
     display: inline-block;
   }
   .vert-card img {
-    max-width: 60%;
+    max-width: 70%;
     overflow: hidden;
     display: inline-block;
     vertical-align: top;
@@ -383,7 +364,7 @@
       Design methods provide a structure to the fuzzy and open-ended human-centered design process. We have curated a comprehensive collection of methods, methodically organized to help you navigate the ambiguous nature of design. Our methods are actionable - with best practices, instructions for use, resources, and more to help you seamlessly embed design thinking into your work.
     .see-link
       %a
-        = link_to "See Methods >>", design_methods_path
+        = link_to "See Methods", design_methods_path
   .col-sm-4
     .card
       - @method = DesignMethod.find(102)
@@ -418,7 +399,7 @@
 .row{:id => "case-studies"}
   .col-sm-6
     .vert-card
-      - @case_study = CaseStudy.find(1) #201
+      - @case_study = CaseStudy.find(13)
       .vert-card-container
         %h4
           = @case_study.name
@@ -441,7 +422,7 @@
       By providing context examples of design methods in practice, we hope to support designers address complex challenges through a human-centered design process. Our ever-growing collection of case studies is meant to inspire and empower the design community to creatively embed methods in practice.
     .see-link
       %a
-        = link_to "See Case Studies >>", case_studies_path
+        = link_to "See Case Studies", case_studies_path
 .row
   .container.join
     %button.join-button
