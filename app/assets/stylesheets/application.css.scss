@@ -21,18 +21,47 @@
  *= require jquery.tablesorter.pager
 
  */
-
-@font-face {
-  font-family: "Gotham";
-  src: local("Gotham\ Fonts\ Family/Gotham-Book.otf");
-}
+ @font-face {
+   font-family: 'Gotham';
+   src: font-url('Gotham_Fonts_Family/Gotham-Book.otf') format('opentype');
+   font-weight: 400;
+   font-style: normal;
+ }
+ @font-face {
+    font-family: 'y';
+    src: font-url('Gotham_Fonts_Family/Gotham-BookItalic.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+  }
+ @font-face {
+   font-family: 'Gotham';
+   src: font-url('Gotham_Fonts_Family/Gotham-Medium.otf') format('opentype'),
+        font-url('Gotham_Fonts_Family/GOTHAM-MEDIUM.TTF') format('truetype');
+   font-weight: 700;
+   font-style: normal;
+ }
+ @font-face {
+   font-family: 'Gotham';
+   src: font-url('Gotham_Fonts_Family/Gotham-MediumItalic.otf') format('opentype'),
+        font-url('Gotham_Fonts_Family/GOTHAM-MEDIUMITALIC.TTF') format('truetype');
+   font-weight: 700;
+   font-style: italic;
+ }
+ @font-face {
+   font-family: 'Gotham';
+   src: font-url('Gotham_Fonts_Family/GOTHAM-BLACK.TTF') format('truetype');
+   font-weight: 800;
+   font-style: normal;
+ }
+ @font-face {
+   font-family: 'Gotham';
+   src: font-url('Gotham_Fonts_Family/GOTHAM-BLACKITALIC.TTF') format('truetype');
+   font-weight: 800;
+   font-style: italic;
+ }
 
 .ui-menu .ui-menu-item a{
   margin-top: 10px;
-}
-#search {
-   background-color: #BDBDBD;
-   font-family: "Gotham", sans-serif;
 }
 
 
@@ -61,7 +90,6 @@
 
  /* OVERRIDE BOOTSTRAP ANCHOR BEHAVIOR */
  a {
-    font-family: "Gotham", sans-serif;
     color: #6CC06D;
     text-decoration: none;
   }
@@ -176,14 +204,6 @@ img.logo{
   .truncate-multiline {
     text-align: justify;
     font-size: 9pt;
-  }
-
-  .navbar{
-    margin-bottom: 0;
-    font-family: "Gotham", sans-serif;
-    font-weight: normal;
-    background-color: #BDBDBD;
-    border: none;
   }
 
   .navbar-default .navbar-nav > li > a {
@@ -369,7 +389,6 @@ img.logo{
   padding-bottom: 1%;
   padding-left:5%;
   padding-right:5%;
-  font-family: "Gotham", sans-serif;
 }
 
 .site-info {
