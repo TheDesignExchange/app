@@ -29,7 +29,7 @@
   }
 
   p {
-    line-height: 1.5em;
+    line-height: 1.75em;
     font-size: 1.12em;
   }
 
@@ -83,86 +83,87 @@
 
   #explore {
     text-align: center;
-    margin-top: 48px;
-    margin-bottom: 72px;
+    margin-top: 100px;
   }
   #explore h1 {
     line-height: 1.4em;
-    padding-left: 15%;
-    text-align: left;
   }
   #explore span {
     font-weight: bold;
     display: inline-block;
   }
 
-  /*Vertical Flip*/
-  .verticalFlip{
+  /*Vertical Sliding*/
+  .slidingVertical{
     display: inline;
     text-indent: 8px;
   }
-  .verticalFlip span{
-    animation: vertical 20s linear infinite 0s;
-    -ms-animation: vertical 20s linear infinite 0s;
-    -webkit-animation: vertical 20s linear infinite 0s;
+  .slidingVertical span{
+    animation: topToBottom 12.5s linear infinite 0s;
+    -ms-animation: topToBottom 12.5s linear infinite 0s;
+    -webkit-animation: topToBottom 12.5s linear infinite 0s;
     color: #00abe9;
     opacity: 0;
     overflow: hidden;
     position: absolute;
   }
-  .verticalFlip span:nth-child(2){
+  .slidingVertical span:nth-child(2){
+    animation-delay: 2.5s;
+    -ms-animation-delay: 2.5s;
+    -webkit-animation-delay: 2.5s;
+  }
+  .slidingVertical span:nth-child(3){
     animation-delay: 5s;
     -ms-animation-delay: 5s;
     -webkit-animation-delay: 5s;
   }
-  .verticalFlip span:nth-child(3){
+  .slidingVertical span:nth-child(4){
+    animation-delay: 7.5s;
+    -ms-animation-delay: 7.5s;
+    -webkit-animation-delay: 7.5s;
+  }
+  .slidingVertical span:nth-child(5){
     animation-delay: 10s;
     -ms-animation-delay: 10s;
     -webkit-animation-delay: 10s;
   }
-  .verticalFlip span:nth-child(4){
-    animation-delay: 15s;
-    -ms-animation-delay: 15s;
-    -webkit-animation-delay: 15s;
-  }
 
-  /*Vertical Flip Animation*/
-  @-moz-keyframes vertical{
+  /*topToBottom Animation*/
+  @-moz-keyframes topToBottom{
     0% { opacity: 0; }
-    5% { opacity: 0; -moz-transform: rotateX(180deg); }
+    5% { opacity: 0; -moz-transform: translateY(-50px); }
     10% { opacity: 1; -moz-transform: translateY(0px); }
     25% { opacity: 1; -moz-transform: translateY(0px); }
-    30% { opacity: 0; -moz-transform: translateY(0px); }
-    80% { opacity: 0; }
-    100% { opacity: 0;}
-  }
-  @-webkit-keyframes vertical{
-    0% { opacity: 0; }
-    5% { opacity: 0; -webkit-transform: rotateX(180deg); }
-    10% { opacity: 1; -webkit-transform: translateY(0px); }
-    25% { opacity: 1; -webkit-transform: translateY(0px); }
-    30% { opacity: 0; -webkit-transform: translateY(0px); }
+    30% { opacity: 0; -moz-transform: translateY(50px); }
     80% { opacity: 0; }
     100% { opacity: 0; }
   }
-  @-ms-keyframes vertical{
+  @-webkit-keyframes topToBottom{
     0% { opacity: 0; }
-    5% { opacity: 0; -ms-transform: rotateX(180deg); }
+    5% { opacity: 0; -webkit-transform: translateY(-50px); }
+    10% { opacity: 1; -webkit-transform: translateY(0px); }
+    25% { opacity: 1; -webkit-transform: translateY(0px); }
+    30% { opacity: 0; -webkit-transform: translateY(50px); }
+    80% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  @-ms-keyframes topToBottom{
+    0% { opacity: 0; }
+    5% { opacity: 0; -ms-transform: translateY(-50px); }
     10% { opacity: 1; -ms-transform: translateY(0px); }
     25% { opacity: 1; -ms-transform: translateY(0px); }
-    30% { opacity: 0; -ms-transform: translateY(0px); }
+    30% { opacity: 0; -ms-transform: translateY(50px); }
     80% { opacity: 0; }
     100% { opacity: 0; }
   }
 
   #methods {
-    margin-top: 64px;
-    margin-bottom: 144px;
+    margin-top: 120px;
   }
 
   #case-studies {
-    margin-top: 64px;
-    margin-bottom: 144px;
+    margin-top: 120px;
+    margin-bottom: 64px;
   }
 
   .see-link a {
@@ -173,8 +174,7 @@
   }
 
   #worlds-largest {
-    margin-top: 120px;
-    margin-bottom: 120px;
+    margin-top: 144px;
 
   }
   #worlds-largest .earth {
@@ -229,7 +229,7 @@
   .deg288 { transform: rotate(198deg) translate(12em) rotate(-198deg); }
 
   #showcase {
-    margin-top: 24px;
+    margin-top: 200px;
   }
   #showcase-img {
     width: 100%;
@@ -237,8 +237,6 @@
   #showcase-header {
     color: #333333;
     font-weight: bold;
-  }
-  #showcase-desc {
   }
 
   .card {
@@ -295,6 +293,9 @@
     font-size: 24px;
     padding: 8px 24px;
   }
+  .join-button a {
+    color: white;
+  }
 
   .site-footer {
     background-color: #F2F2F2;
@@ -305,7 +306,7 @@
   .container
     %h1
       We help
-      .verticalFlip
+      .slidingVertical
         %span
           Students
         %span
@@ -318,7 +319,7 @@
       embed human-centered design
       %br
       into their
-      .verticalFlip
+      .slidingVertical
         %span
           Projects
         %span
@@ -376,9 +377,9 @@
 
 .row{:id => "methods"}
   .col-sm-12
-    %h1{:class => "underline-container"}
+    %h1{:class => "underline-container", :id => "method-link"}
       = link_to "Methods", design_methods_path
-      .underline
+      .underline.hide
     %p
       Design methods provide a structure to the fuzzy and open-ended human-centered design process. We have curated a comprehensive collection of methods, methodically organized to help you navigate the ambiguous nature of design. Our methods are actionable - with best practices, instructions for use, resources, and more to help you seamlessly embed design thinking into your work.
     .see-link
@@ -434,9 +435,9 @@
     -#       %h4
     -#         ICT is seen as not only an industry, but a driving factor in the Malaysian economy in order to increase productivity and efficiency.
   .col-sm-6
-    %h1{:class => "underline-container"}
+    %h1{:class => "underline-container", :id => "casestudy-link"}
       = link_to "Case Studies", case_studies_path
-      .underline
+      .underline.hide
     %p
       By providing context examples of design methods in practice, we hope to support designers address complex challenges through a human-centered design process. Our ever-growing collection of case studies is meant to inspire and empower the design community to creatively embed methods in practice.
     .see-link
@@ -444,8 +445,8 @@
         = link_to "See Case Studies >>", case_studies_path
 .row
   .container.join
-    %button.join-button
-      Join our community
+    .btn.join-button
+      = link_to "Join our community", "users/sign_up"
 
 :javascript
   var x = ['Students', 'Educators', 'Professionals', 'Anyone'];
@@ -484,4 +485,20 @@
   $(document).ready( function() {
     window.setInterval(swapText, 4000);
     changeStage(currStage, true);
+
+    $('.circle-container a').hover(function(){
+        $(this).find('.underline').removeClass('hide');
+    },
+    function(){
+        if ($(this).attr('onclick')[12] !== currStage.toString()) {
+          $(this).find('.underline').addClass('hide');
+        }
+    });
+
+    $('#method-link, #casestudy-link').hover(function(){
+        $(this).find('.underline').removeClass('hide');
+    },
+    function(){
+        $(this).find('.underline').addClass('hide');
+    });
   });
