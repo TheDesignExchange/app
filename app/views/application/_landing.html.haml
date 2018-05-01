@@ -278,6 +278,7 @@
   }
   .vert-card img {
     max-width: 60%;
+    max-height: 300px;
     overflow: hidden;
     display: inline-block;
     vertical-align: top;
@@ -419,7 +420,10 @@
 .row{:id => "case-studies"}
   .col-sm-6
     .vert-card
-      - @case_study = CaseStudy.find(204) #201
+      - begin
+        - @case_study = CaseStudy.find(201) #201
+      - rescue
+        - @case_study = CaseStudy.find(1)
       .vert-card-container
         %h4
           = @case_study.name
