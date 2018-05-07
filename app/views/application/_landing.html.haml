@@ -2,13 +2,14 @@
 
   /* navbar styles */
   #search {
-     background-color: #BDBDBD;
+     background-color: #ffffff;
+     /*display: none;*/
   }
 
   .navbar{
     margin-bottom: 0;
     font-family: "Gotham", sans-serif;
-    background-color: #BDBDBD;
+    background-color: #ffffff;
     border: none;
   }
 
@@ -58,19 +59,21 @@
     margin-bottom: 0;
     font-family: "Gotham", sans-serif;
     font-weight: normal;
-    background-color: #BDBDBD;
     border: none;
   }
 
   .jumbotron {
-    background-color: #bdbdbd;
+    background-color: white;
+    background-image: url('/assets/hero-desktop.png');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 100%;
     color: #000000;
     width: 100%;
     height: 400px;
     display: block;
     text-align: left;
-    padding-left: 12%;
-    padding-right: 12%;
+    margin-top: 84px;
     font-family: "Gotham", sans-serif
   }
 
@@ -82,11 +85,12 @@
   }
 
   #explore {
-    text-align: center;
+    text-align: left;
     margin-top: 100px;
+    padding-left: 22%;
   }
   #explore h1 {
-    line-height: 1.4em;
+    line-height: 1.5em;
   }
   #explore span {
     font-weight: bold;
@@ -99,10 +103,10 @@
     text-indent: 8px;
   }
   .slidingVertical span{
-    animation: topToBottom 12.5s linear infinite 0s;
-    -ms-animation: topToBottom 12.5s linear infinite 0s;
-    -webkit-animation: topToBottom 12.5s linear infinite 0s;
-    color: #00abe9;
+    animation: topToBottom 10s linear infinite 0s;
+    -ms-animation: topToBottom 10s linear infinite 0s;
+    -webkit-animation: topToBottom 10s linear infinite 0s;
+    color: #6CC06D;
     opacity: 0;
     overflow: hidden;
     position: absolute;
@@ -162,7 +166,7 @@
   }
 
   #case-studies {
-    margin-top: 120px;
+    margin-top: 200px;
     margin-bottom: 64px;
   }
 
@@ -382,7 +386,7 @@
       = link_to "Methods", design_methods_path
       .underline.hide
     %p
-      Design methods provide a structure to the fuzzy and open-ended human-centered design process. We have curated a comprehensive collection of methods, methodically organized to help you navigate the ambiguous nature of design. Our methods are actionable - with best practices, instructions for use, resources, and more to help you seamlessly embed design thinking into your work.
+      Design methods provide a structure to the fuzzy and open-ended human-centered design process. We have curated a comprehensive collection of methods, organized to help you navigate the ambiguous nature of design. Our methods are actionable - with best practices, instructions for use, resources, and more to help you seamlessly embed design thinking into your work.
     .see-link
       %a
         = link_to "See Methods >>", design_methods_path
@@ -419,7 +423,7 @@
 
 .row{:id => "case-studies"}
   .col-sm-6
-    .vert-card
+    .card.vert-card
       - begin
         - @case_study = CaseStudy.find(201) #201
       - rescue
@@ -431,19 +435,12 @@
           = shorten(@case_study.overview)
       %img
         = image_tag @case_study.picture_url
-    -# .background{:id => "casestudies-background"}
-    -#   = link_to 'https://www.thedesignexchange.org/case_studies/201' do
-    -#     .layer
-    -#       %h2
-    -#         HCI Practices in Malaysia
-    -#       %h4
-    -#         ICT is seen as not only an industry, but a driving factor in the Malaysian economy in order to increase productivity and efficiency.
   .col-sm-6
     %h1{:class => "underline-container", :id => "casestudy-link"}
       = link_to "Case Studies", case_studies_path
       .underline.hide
     %p
-      By providing context examples of design methods in practice, we hope to support designers address complex challenges through a human-centered design process. Our ever-growing collection of case studies is meant to inspire and empower the design community to creatively embed methods in practice.
+      By providing contextual examples of design methods in practice, we hope to support designers address complex challenges through a human-centered design process. Our ever-growing collection of case studies is meant to inspire and empower the design community to creatively embed methods in practice.
     .see-link
       %a
         = link_to "See Case Studies >>", case_studies_path
