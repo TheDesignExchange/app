@@ -1,3 +1,11 @@
+:css
+  p, ul {
+    font-family: 'Muli', sans-serif;
+  }
+  h1, h2, h3 {
+    font-family: "Gotham", sans-serif;
+  }
+
 %br/
 .row
   %h1
@@ -31,7 +39,7 @@
       %td
         %img
           = image_tag "ideate.png"
-      %td 
+      %td
         #{link_to 'IDEATE', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsIdeate'}: create new ideas for products, services, etc.
     %tr
       %td
@@ -43,59 +51,63 @@
       %td
         %img
           = image_tag "communicate.png"
-      %td 
+      %td
         #{link_to 'COMMUNICATE', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsBuild'}: communicate at all stages of the design process with others outside of the design team
-   
+
 %br/
- 
+
 %div
   %h2
     DESIGN SKILLS SELF-ASSESSMENT MATRIX
-  %p 
-    We have also created a skillsets matrix for instructors in design courses to measure how their students value specific design skillsets and how their competencies in these design skillsets change throughout the course. The X-axis of the matrix asks students to evaluate the strength of the Skills I Have vs. Skills that I am Limited In. The Y-axis asks students to evaluate the strength they have in the Skills I Want to Hone vs. Skills I Don’t Want to Hone. Students place 32 design skills (as explained in the attached table Skills-Descriptions) onto the matrix. 
-  %p 
-    You are invited to 
-    =link_to 'demo this tool', 'http://ec2-52-23-166-162.compute-1.amazonaws.com//demo' 
-    and give feedback. Contact 
+  %p
+    We have also created a skillsets matrix for instructors in design courses to measure how their students value specific design skillsets and how their competencies in these design skillsets change throughout the course. The X-axis of the matrix asks students to evaluate the strength of the Skills I Have vs. Skills that I am Limited In. The Y-axis asks students to evaluate the strength they have in the Skills I Want to Hone vs. Skills I Don’t Want to Hone. Students place 32 design skills (as explained in the attached table Skills-Descriptions) onto the matrix.
+  %p
+    You are invited to
+    =link_to 'demo this tool', 'http://ec2-52-23-166-162.compute-1.amazonaws.com//demo'
+    and give feedback. Contact
     = link_to 'Danielle Poreh', 'mailto:d.poreh@berkeley.edu'
     to learn more about the assessment tool and arrange to use for a class or workshop.
   %br/
 
 .row
-  %h2 
+  %h2
     LEADERSHIP
-  %p 
+  %p
     #{link_to 'Alice Agogino', 'http://www.me.berkeley.edu/people/faculty/alice-m-agogino'}, UC Berkeley, #{link_to 'agogino@berkeley.edu', 'mailto:agogino@berkeley.edu'}
-  %p 
+  %p
     Sara Beckman, UC Berkeley, #{link_to 'beckman@berkeley.edu', 'mailto:beckman@berkeley.edu'}
-  %p 
+  %p
     Danielle Poreh, UC Berkeley, #{link_to 'd.poreh@berkeley.edu', 'mailto:d.poreh@berkeley.edu'} – Product Manager and Communications Contact
-  %p 
-    Celeste Roschuni, University of Maryland – College Park, #{link_to 'celestial@gmail.com', 'mailto:celestial@gmail.com'}
-  %p 
+  %p
     Maria Yang, MIT, #{link_to 'mcyang@mit.edu', 'mailto:mcyang@mit.edu'}
-  %p  
-    Euiyoung Kim, UC Berkeley, #{link_to 'avant80.kim@gmail.com', 'mailto:avant80.kim@gmail.com'} – Design Strategy
+  %p
+    Euiyoung Kim, UC Berkeley, #{link_to 'euiyoungkim@berkeley.edu ', 'mailto:euiyoungkim@berkeley.edu '} – Design Strategy
+  %p
+    Julia Kramer, UC Berkeley, #{link_to 'j.kramer@berkeley.edu', 'mailto:j.kramer@berkeley.edu'} – Human-Centered Design for Development
+  %p
+    Celeste Roschuni, University of Maryland – College Park, #{link_to 'celestial@gmail.com', 'mailto:celestial@gmail.com'}
 
 %br/
 
 .row
   %h2
     DEVELOPMENT TEAM
-  %p 
-    Carmen Castaños, #{link_to 'ccastano@mit.edu', 'mailto:ccastano@mit.edu'}
-  %p  
-    Alice Chin, #{link_to 'alicechin@berkeley.edu', 'mailto:alicechin@berkeley.edu'}
-  %p  
-    James Jiang, UC Berkeley, #{link_to 'james.jiang@berkeley.edu', 'mailto:james.jiang@berkeley.edu'} – Leads Web Dev Team 
-  %p  
-    Julia Kramer, UC Berkeley, #{link_to 'j.kramer@berkeley.edu', 'mailto:j.kramer@berkeley.edu'} – Human-Centered Design for Development
+  %p
+    Jarrod Schnapper, UC Berkeley, #{link_to 'jschnapper@berkeley.edu', 'mailto:jschnapper@berkeley.edu'}
+  %p
+    Allan Yu, UC Berkeley, #{link_to 'allan15@berkeley.edu', 'mailto:allan15@berkeley.edu'}
+  %p
+    Carmen Castaños, MIT, #{link_to 'ccastano@mit.edu', 'mailto:ccastano@mit.edu'}
+  %p
+    Alice Chin, UC Berkeley, #{link_to 'alicechin@berkeley.edu', 'mailto:alicechin@berkeley.edu'}
+  %p
+    James Jiang, UC Berkeley, #{link_to 'james.jiang@berkeley.edu', 'mailto:james.jiang@berkeley.edu'} – Leads Web Dev Team
   %p
     Catherine Nitta, UC Berkeley, #{link_to 'nittac@berkeley.edu', 'mailto:nittac@berkeley.edu'}
   %p
     Erika Oishi, UC Berkeley, #{link_to 'erikaoishi@berkeley.edu', 'mailto:erikaoishi@berkeley.edu'}
   %p
-    Seokhyeon (Sock) Ryu, #{link_to 'seokhyeonryu87@gmail.com', 'mailto:seokhyeonryu87@gmail.com'}
+    Seokhyeon (Sock) Ryu, UC Berkeley, #{link_to 'seokhyeonryu87@gmail.com', 'mailto:seokhyeonryu87@gmail.com'}
   %p
     Jonida Shkurti, #{link_to 'shkurti.j@gmail.com', 'mailto:shkurti.j@gmail.com'} – UX Design
 
@@ -111,11 +123,18 @@
 %br/
 
 .row
-  %h2 
+  %h2
     PRESENTATIONS AND PUBLICATIONS
+
+  %h3
+    2018
+  %ul
+    Danielle Poreh, Euiyoung Kim, Varna Vasudevan, Alice Agogino, “Using “Why and How” to Tap into Novice Designers’ Method Selection Mindset”, ASME IDETC/DTM 2018: American Society of Mechanical Engineers International Design Engineering Technical Conferences, Quebec City, Canada.
+  %ul
+    Euiyoung Kim, Sara Beckman, Alice Agogino, “Applying Design Roadmapping in New Product Development Education: Insights From Student Design Teams”, ASME IDETC/DTM 2018: American Society of Mechanical Engineers International Design Engineering Technical Conferences, Quebec City, Canada.
+
   %h3
     2017
-
   %ul
     Kramer, J., Euiyoung Kim, Danielle Poreh, Alice Agogino, “Teaching and Evaluating Design Competencies in the 21st Century”, extended abstract Proceedings of the Mudd Design Workshop, 2017 titled “Design and the Future of the Engineer of 2020”. Poster presentation.
   %ul
@@ -127,12 +146,12 @@
     Kramer, J., C. Roschuni, A.M. Agogino, “Characterizing Skills for Human-Centered Design”, Proceedings of ASME IDETC 2016.
   %ul
     D.I. Levine, M.A. Lesniewski, A.M. Agogino, “Design Thinking in Development Engineering”, (with D. I. Levine, M.A. Lesniewski), International Journal of Engineering Education, 32 (3B), pp. 1396-1406, 2016.
-  %ul 
+  %ul
     A.M. Agogino, S. Beckman, C. Castaños, J. Kramer, C.Roschuni, M. Yang, “Design Practitioners’ Perspectives on Methods for Ideation and Prototyping”, International Journal of Engineering Education, 32 (3B), pp. 1428-1437, 2016.
 
   %h3
     2015
-  %ul 
+  %ul
     Fuge, M. and A.M. Agogino, “Pattern Analysis of IDEO’s Human-Centered Design Methods in Developing Regions”, ASME Journal of Mechanical Design, 137 (7), MD-14-1571, July 2015.
   %ul
     Agogino, A.M., S. Beckman, C. Castaños, J. Kramer C.Roshuni, M. Yang (2015). “Design Practitioners’ Perspectives on Methods for Ideation and Prototyping,” Proceedings of the Mudd Design Workshop IX, May 27-30, 2015, Harvey Mudd College.
@@ -141,18 +160,18 @@
   %ul
     Roshuni, C. J. Kramer, A.M. Agogino (2015). “Design Talking:  How Design Practitioners Talk About Design Research Methods,” to appear in Proceedings of the International Conference on Design Education, IDETC15.
 
-  %h3 
+  %h3
     2014
-  %ul 
+  %ul
     Fuge, M., B. Peters and A.M. Agogino, “Machine Learning Algorithms for Recommending Design Methods,” ASME Journal of Mechanical Design, 136 (10) 101103, August 18, 2014.
-  %ul 
+  %ul
     Fuge, M., K. Tee, A.M. Agogino and N. Maton, “Network Analysis of Collaborative Design Networks: A Case Study of Open IDEO”. ASME Journal of Computing and Information Science in Engineering, 14 (2) 2014.
-  %ul 
+  %ul
     Fuge, M., A.M. Agogino and N. Maton, “How Online Design Communities Evolve Over Time: the Birth and Growth of OpenIDEO.” Proceedings of the International Design Engineering Technical Conference (DETC), Design, Theory and Methods, ASME, August 2014.
 
-  %h3 
+  %h3
     2011
-  %ul 
+  %ul
     Roschuni, C., A.M. Agogino, S.L. Beckman (2011). The DesignExchange: Supporting the design community of practice. In Proceedings of the 18th International Conference on Engineering Design (ICED 11) (Vol. 8). Lyngby/Copenhagen, Denmark.
 
 %br/
@@ -162,6 +181,3 @@
     FUNDING AND INDUSTRY COLLABORATION
   %p
     We thank our industry collaborators who hosted our workshop series: Autodesk, Frog, Goto Media, DesignMap, and IDEO and our team of faculty and students at UC Berkeley and MIT for their input and dedication to theDesignExchange. This work was partially supported by NSF grant CMMI-1334361.
-
-
-
