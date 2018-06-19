@@ -73,7 +73,8 @@
     height: 400px;
     display: block;
     text-align: left;
-    margin-top: 84px;
+    margin-top: 1em;
+    -# previous was 84px
     font-family: "Gotham", sans-serif
   }
 
@@ -297,15 +298,114 @@
     color: white;
     font-size: 24px;
     padding: 8px 24px;
+    transition: 1s;
   }
   .join-button a {
     color: white;
+  }
+  .join-button:hover {
+    opacity: .8;
+  }
+  #join-button-row {
+    margin-top: 6em;
+    margin-bottom: 18em;
   }
 
   .site-footer {
     background-color: #F2F2F2;
     text-align: center;
   }
+
+  #mobile-case-study-title {
+    display: none;
+  }
+
+  #mobile-col-sm-6 {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    .notice {
+      display: none;
+    }
+    .jumbotron {
+      margin-top: 0px;
+      -# IMPORTANT: give the container containing the jumbotron a name and lower padding when jumbotron code is found
+    }
+    #explore {
+      display: none;
+    }
+    #join-button-row {
+      margin-top: 0em;
+      margin-bottom: 0em;
+      padding-bottom: 6em;
+      border-bottom: 1.5px solid;
+      border-color: rgba(0,0,0,0.3);
+    }
+    #worlds-largest {
+      margin-top: 24px;
+      padding-bottom: 3em;
+      border-bottom: 1.5px solid;
+      border-color: rgba(0,0,0,0.3);
+    }
+    .col-sm-3.earth {
+      margin-top: 0px;
+      margin-bottom: 64px;
+    }
+    #showcase {
+      margin-top: 12px;
+      padding-bottom: 6em;
+      border-bottom: 1.5px solid;
+      border-color: rgba(0,0,0,0.3);
+    }
+    .col-sm-8 {
+      margin-top: 180px;
+    }
+    #methods {
+      margin-top: 24px;
+      padding-bottom: 6em;
+      border-bottom: 1.5px solid;
+      border-color: rgba(0,0,0,0.3);
+    }
+    .col-sm-12 {
+      margin-bottom: 90px;
+    }
+    #casestudy-link {
+      display: none;
+    }
+    #mobile-case-study-title {
+      display: block;
+      width: 267px;
+      padding-left: 12px;
+    }
+    #case-studies {
+      margin-top: 24px;
+    }
+    #mobile-col-sm-6 {
+      display: block;
+    }
+    #non-mobile-col-sm-6 {
+      display: none;
+    }
+    .col-sm-6 {
+      margin-bottom: 90px;
+    }
+  }
+  #description {
+    font-size: 36px;
+    text-align: center;
+  }
+
+#description
+  The world’s <b>largest open-source innovation archive</b> of 
+  = link_to "design methods", design_methods_path
+  and
+  = link_to "case studies.", case_studies_path
+
+.row{:id => "join-button-row"}
+  .container.join
+    .btn.join-button
+      = link_to "Join our community", "users/sign_up"
 
 .row{:id => "explore"}
   .container
@@ -340,7 +440,7 @@
       = image_tag "earth.png"
   .col-sm-9
     %p
-      TheDesignExchange (tDX) is the world’s largest open-source innovation archive of <a href="/">design methods</a> and <a href="/">case studies</a>. We support the design community through the entire life-cycle of the conceptual design process—from observation through synthesis and analysis to realization and evaluation – through our library of versatile and extensive tools.
+      TheDesignExchange (tDX) supports the design community through the entire life-cycle of the conceptual design process— from observation through synthesis and analysis to realization and evaluation– through our library of versatile and extensive tools.
     %br
     %p
       This is a joint project led by UC Berkeley and M.I.T. working with the international community of design academics and practitioners.
@@ -390,7 +490,7 @@
     .see-link
       %a
         = link_to "See Methods >>", design_methods_path
-  .col-sm-4
+  .col-sm-5
     .card
       - @method = DesignMethod.find(102)
       %img
@@ -400,7 +500,7 @@
           = @method.name
         %p
           = shorten(@method.overview)
-  .col-sm-4
+  .col-sm-5
     .card
       - @method = DesignMethod.find(13)
       %img
@@ -410,7 +510,7 @@
           = @method.name
         %p
           = shorten(@method.overview)
-  .col-sm-4
+  .col-sm-5
     .card
       - @method = DesignMethod.find(111)
       %img
@@ -422,7 +522,10 @@
           = shorten(@method.overview)
 
 .row{:id => "case-studies"}
-  .col-sm-6
+  %h1{:class => "underline-container", :id => "mobile-case-study-title"}
+    = link_to "Case Studies", case_studies_path
+    .underline.hide
+  .col-sm-6{:id => "non-mobile-col-sm-6"}
     .card.vert-card
       - begin
         - @case_study = CaseStudy.find(201) #201
@@ -444,10 +547,19 @@
     .see-link
       %a
         = link_to "See Case Studies >>", case_studies_path
-.row
-  .container.join
-    .btn.join-button
-      = link_to "Join our community", "users/sign_up"
+  #mobile-col-sm-6
+    .card.vert-card
+      - begin
+        - @case_study = CaseStudy.find(201) #201
+      - rescue
+        - @case_study = CaseStudy.find(1)
+      .vert-card-container
+        %h4
+          = @case_study.name
+        %p
+          = shorten(@case_study.overview)
+      %img
+        = image_tag @case_study.picture_url
 
 :javascript
   var x = ['Students', 'Educators', 'Professionals', 'Anyone'];
@@ -496,7 +608,7 @@
         }
     });
 
-    $('#method-link, #casestudy-link').hover(function(){
+    $('#method-link, #casestudy-link, #mobile-case-study-title').hover(function(){
         $(this).find('.underline').removeClass('hide');
     },
     function(){
