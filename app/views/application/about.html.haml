@@ -11,6 +11,10 @@
     color: #333333;
   }
 
+  .header-left {
+    text-align: left;
+  }
+
   #logo-container {
     background-color: #59595C;
     padding: 20px;
@@ -29,25 +33,58 @@
 
   .our-story-container {
     position: relative;
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 40% 60%;
+    grid-template-areas:
+      "txt-grp-1 img-grp-1"
+      "img-grp-2 txt-grp-2"
   }
 
   .our-story-content {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     padding: 18px;
   }
 
+  /* .our-story-left {
+    width: 40%;
+  }
+
+  .our-story-right {
+    width: 60%;
+  } */
+
+  .our-story-text-left {
+    margin-right: 8px;
+  }
   .our-story-text-right {
     margin-left: 8px;
   }
 
   .our-story-img-container {
     position: relative;
-    width: 400px;
+    width: 80%;
   }
 
+  .txt-grp-1 {
+    grid-area: txt-grp-1;
+  }
+
+  .txt-grp-2 {
+    grid-area: txt-grp-2;
+  }
+
+  .img-grp-1 {
+    grid-area: img-grp-1;
+  }
+
+  .img-grp-2 {
+    grid-area: img-grp-2;
+  }
 
   #about_1 {
     top: 30px;
@@ -55,7 +92,8 @@
   }
 
   #about_2 {
-    top: -24px;
+    top: -30px;
+    align-self: flex-end;
   }
 
 
@@ -73,48 +111,48 @@
   }
 
   #img-back-1 {
-    left: 80px;
+    left: 25%;
     top: -30px;
   }
 
   #img-back-2 {
-    right: -50px;
+    right: -10%;
     bottom: -20px;
   }
 
   #img-back-3 {
-    left: -20px;
-    bottom: -80px;
+    left: -5%;
+    bottom: -10px;
   }
 
   #img-back-4 {
-    right: -20px;
-    top: -30px;
+    left: -10%;
+    top: -20px;
   }
 
   #img-back-5 {
-    width: 250px;
-    height: 200px;
+    width: 90%;
+    height: 85%;
     right: -15px;
     bottom: -20px;
   }
 
   #img-back-6 {
-    width: 200px;
-    height: 150px;
-    right: -30px;
-    bottom: 10px;
+    width: 80%;
+    height: 70%;
+    right: -20%;
+    top: -10px;
   }
 
   .back-large {
-    width: 350px;
-    height: 250px;
+    width: 80%;
+    height: 70%;
     z-index: -1;
   }
 
   .back-small {
-    width: 200px;
-    height: 200px;
+    width: 60%;
+    height: 60%;
     z-index: -2;
   }
 
@@ -194,8 +232,107 @@
   .video-frame {
     margin-bottom: 12px;
     border-radius: 4px;
+    width: 560px;
+    height: 315px;
   }
 
+  @media (max-width: 991px) and (min-width: 768px) {
+    .our-story-img-container {
+      width: 100%;
+    }
+
+    #about_2 {
+      top: -100px;
+    }
+
+    #img-back-6 {
+      right: -10%;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .our-story-container {
+      grid-template-rows: auto auto auto auto;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "txt-grp-1"
+        "img-grp-1"
+        "txt-grp-2"
+        "img-grp-2"
+    }
+
+    .our-story-content {
+      align-items: center;
+    }
+
+    .header-left {
+      align-self: flex-start;
+    }
+
+    .our-story-left {
+      width: 100%;
+    }
+
+    .our-story-right {
+      width: 100%;
+    }
+
+    .our-story-left-img {
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+    }
+
+    .our-story-img-container {
+      width: 60%;
+    }
+    #about_1 {
+      top: 10px;
+    }
+    #about_2 {
+      top: 0px;
+      align-self: center;
+      margin: 12px;
+      height: 175px;
+    }
+
+    #about_3 {
+      height: 175px;
+      margin: 12px;
+    }
+
+    #img-back-6 {
+      right: -10%;
+    }
+
+    .video-wrapper {
+      width: 420px;
+      height: 300px;
+    }
+
+    .video-frame {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .our-story-left-img {
+      flex-direction: column;
+    }
+
+    .our-story-img-container {
+      width: 80%;
+    }
+
+    #about_2 {
+      height: 100%;
+    }
+
+    #about_3 {
+      height: 100%;
+    }
+
+  }
 
 
 
@@ -203,20 +340,20 @@
 -# %div{:id => "logo-container"}
 -#   %img{:id => "logo-img", :src => "./assets/logo2.png"}
 %div{:class => "our-story-container"}
-  %div{:class => "our-story-content"}
-    %h1{:class => "about-header"}
+  %div{:class => "our-story-content our-story-left txt-grp-1"}
+    %h1{:class => "about-header header-left"}
       Our Story
     %p{:class => "our-story-text-left"}
       TheDesignExchange provides a central repository of early design stage methods, engaging all stakeholders in the design community of practice, and integrating online learning with real case studies to demonstrate the methods.
     %p{:class => "our-story-text-left"}
       Formal design methods have been shown to have high impact on the quality and success of engineered products. Due to time constraints, courses can only cover a subset of the most popular methods. Thus it can be hard to find the range of potential methods for use in any particular problem.
-  %div{:class => "our-story-content"}
+  %div{:class => "our-story-content our-story-right img-grp-1"}
     %div{:class => "our-story-img-container", :id => "about_1"}
       %div{:class => "img-back back-large back-green", :id => "img-back-1"}
       %div{:class => "img-back back-small back-grey", :id => "img-back-2"}
       %img{:class => "our-story-img", :src => "./assets/about_1.jpg" }
 %div{:class => "our-story-container"}
-  %div{:class => "our-story-content"}
+  %div{:class => "our-story-content our-story-left our-story-left-img img-grp-2"}
     %div{:class => "our-story-img-container", :id => "about_2"}
       %div{:class => "img-back back-large back-green", :id => "img-back-3"}
       %div{:class => "img-back back-small back-grey", :id => "img-back-4"}
@@ -225,7 +362,7 @@
       %div{:class => "img-back back-large back-green", :id => "img-back-5"}
       %div{:class => "img-back back-small back-grey", :id => "img-back-6"}
       %img{:class => "our-story-img", :src => "./assets/about_3.jpg" }
-  %div{:class => "our-story-content"}
+  %div{:class => "our-story-content our-story-right txt-grp-2"}
     %p{:class => "our-story-text-right"}
       TheDesignExchange fills this need by organizing a wide range of disparate design research methods, developing a community of design educators and practitioners to evaluate those methods, and educating the next generation of design innovators. TheDesignExchange provides a structure to collect the many design methods in use today, their variations, and examples of use.     The portal aims to support the design process by providing educators and practitioners alike with a versatile library of proven tools.
     %p{:class => "our-story-text-right"}
