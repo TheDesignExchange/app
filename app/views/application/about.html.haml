@@ -24,7 +24,9 @@
     object-fit: contain;
   }
 
+  /*************/
   /* OUR STORY */
+
   .our-story-container {
     position: relative;
     display: flex;
@@ -124,7 +126,9 @@
     background-color: #F2F2F2;
   }
 
+  /***********/
   /* MEMBERS */
+
   .members-container {
     background-color: #F2F2F2;
     padding: 18px;
@@ -161,6 +165,38 @@
   .member-name {
     font-weight: bold;
   }
+
+
+  /**********/
+  /* VIDEOS */
+
+  #video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .video-wrapper {
+    color: #ffffff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 18px 0;
+    background-color: #6BC06D;
+    padding: 12px;
+    border-radius: 4px;
+    box-shadow: 4px 4px 12px rgba(0,0,0,0.25);
+
+
+  }
+
+  .video-frame {
+    margin-bottom: 12px;
+    border-radius: 4px;
+  }
+
+
 
 
 /*  Need to find container before implementing this*/
@@ -353,10 +389,13 @@
 %div
   %h2{:class => "about-header"}
     Videos
-  %p
-    %p theDesign Exchange #{link_to 'YouTube Channel', 'https://www.youtube.com/channel/UCLtBn_ZusRU1G2Tt16j-2IQ'}
-    %p #{link_to 'Video Pitch', 'https://www.youtube.com/watch?v=KnqqkO-r_04'} for theDesignExchange
-
+  %div{:id => "video-container"}
+    %p
+      theDesignExchange #{link_to 'YouTube Channel', 'https://www.youtube.com/channel/UCLtBn_ZusRU1G2Tt16j-2IQ'}
+    %div{:class => "video-wrapper"}
+      %iframe{:class => "video-frame", :width => "560", :height => "315", :frameborder => "0", :src => "https://www.youtube.com/embed/KnqqkO-r_04"}
+      %p
+        Video Pitch for theDesignExchange
 %br/
 
 %div
