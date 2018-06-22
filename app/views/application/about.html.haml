@@ -1,64 +1,206 @@
 :css
-  p, ul {
-    font-family: 'Muli', sans-serif;
-  }
-  h1, h2, h3 {
+  body {
     font-family: "Gotham", sans-serif;
   }
+  h1, h2, h3 {
+    font-weight: bold;
+  }
+
+  .about-header {
+    text-align: center;
+    color: #333333;
+  }
+
+  #logo-container {
+    background-color: #59595C;
+    padding: 20px;
+    width: 100%;
+    height: 250px;
+  }
+
+  #logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* OUR STORY */
+  .our-story-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .our-story-content {
+    display: flex;
+    flex-direction: column;
+    padding: 18px;
+  }
+
+  .our-story-text-right {
+    margin-left: 8px;
+  }
+
+  .our-story-img-container {
+    position: relative;
+    width: 400px;
+  }
+
+
+  #about_1 {
+    top: 30px;
+    margin-bottom: 20px;
+  }
+
+  #about_2 {
+    top: -24px;
+  }
+
+
+  .our-story-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 4px 4px 12px rgba(0,0,0,0.25);
+    border-radius: 4px;
+  }
+
+  .img-back {
+    position: absolute;
+    border-radius: 4px;
+  }
+
+  #img-back-1 {
+    left: 80px;
+    top: -30px;
+  }
+
+  #img-back-2 {
+    right: -50px;
+    bottom: -20px;
+  }
+
+  #img-back-3 {
+    left: -20px;
+    bottom: -80px;
+  }
+
+  #img-back-4 {
+    right: -20px;
+    top: -30px;
+  }
+
+  #img-back-5 {
+    width: 250px;
+    height: 200px;
+    right: -15px;
+    bottom: -20px;
+  }
+
+  #img-back-6 {
+    width: 200px;
+    height: 150px;
+    right: -30px;
+    bottom: 10px;
+  }
+
+  .back-large {
+    width: 350px;
+    height: 250px;
+    z-index: -1;
+  }
+
+  .back-small {
+    width: 200px;
+    height: 200px;
+    z-index: -2;
+  }
+
+  .back-green {
+    background-color: #6BC06D;
+  }
+
+  .back-grey {
+    background-color: #F2F2F2;
+  }
+
+  /* MEMBERS */
+  .members-container {
+    background-color: #F2F2F2;
+    padding: 18px;
+    width: 100%;
+    box-shadow: 2px 4px 18px rgba(0,0,0,0.12);
+    border-radius: 4px;
+  }
+
+  .members-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+  }
+
+  .member {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 180px;
+    margin: 18px;
+  }
+
+  .member-img {
+    background-color: #C4C4C4;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: 3px 4px 12px rgba(0,0,0,0.12);
+    margin-bottom: 12px;
+  }
+
+  .member-name {
+    font-weight: bold;
+  }
+
+
+/*  Need to find container before implementing this*/
+-# %div{:id => "logo-container"}
+-#   %img{:id => "logo-img", :src => "./assets/logo2.png"}
+%div{:class => "our-story-container"}
+  %div{:class => "our-story-content"}
+    %h1{:class => "about-header"}
+      Our Story
+    %p{:class => "our-story-text-left"}
+      TheDesignExchange provides a central repository of early design stage methods, engaging all stakeholders in the design community of practice, and integrating online learning with real case studies to demonstrate the methods.
+    %p{:class => "our-story-text-left"}
+      Formal design methods have been shown to have high impact on the quality and success of engineered products. Due to time constraints, courses can only cover a subset of the most popular methods. Thus it can be hard to find the range of potential methods for use in any particular problem.
+  %div{:class => "our-story-content"}
+    %div{:class => "our-story-img-container", :id => "about_1"}
+      %div{:class => "img-back back-large back-green", :id => "img-back-1"}
+      %div{:class => "img-back back-small back-grey", :id => "img-back-2"}
+      %img{:class => "our-story-img", :src => "./assets/about_1.jpg" }
+%div{:class => "our-story-container"}
+  %div{:class => "our-story-content"}
+    %div{:class => "our-story-img-container", :id => "about_2"}
+      %div{:class => "img-back back-large back-green", :id => "img-back-3"}
+      %div{:class => "img-back back-small back-grey", :id => "img-back-4"}
+      %img{:class => "our-story-img", :src => "./assets/about_2.jpg" }
+    %div{:class => "our-story-img-container", :id => "about_3"}
+      %div{:class => "img-back back-large back-green", :id => "img-back-5"}
+      %div{:class => "img-back back-small back-grey", :id => "img-back-6"}
+      %img{:class => "our-story-img", :src => "./assets/about_3.jpg" }
+  %div{:class => "our-story-content"}
+    %p{:class => "our-story-text-right"}
+      TheDesignExchange fills this need by organizing a wide range of disparate design research methods, developing a community of design educators and practitioners to evaluate those methods, and educating the next generation of design innovators. TheDesignExchange provides a structure to collect the many design methods in use today, their variations, and examples of use.     The portal aims to support the design process by providing educators and practitioners alike with a versatile library of proven tools.
+    %p{:class => "our-story-text-right"}
+      Given the community-of-practice model and wide application of design methods, theDesignExchange portal is fundamentally multi-disciplinary. The subject matter draws on the diverse range of contributors engaged in “design thinking”, a human-centric multidisciplinary design process (engineers, designers, architects, business people, educators). By recognizing and promoting the common thread among these different disciplines, theDesignExchange supports the cross-pollination of methodologies among them. theDesignExchange  aims to be the world’s largest open innovation archive of design-practice-related subject matter.  To accomplish this, we are drawing on previous work one in design theory, communities of practice, and expert/lead user-generated content.
 
 %br/
-.row
-  %h1
-    ABOUT
-  %p
-    TheDesignExchange provides a central repository of early design stage methods, engaging all stakeholders in the design community of practice, and integrating online learning with real case studies to demonstrate the methods.
-  %p
-    Formal design methods have been shown to have high impact on the quality and success of engineered products. Due to time constraints, courses can only cover a subset of the most popular methods. Thus it can be hard to find the range of potential methods for use in any particular problem.
-  %p
-    TheDesignExchange fills this need by organizing a wide range of disparate design research methods, developing a community of design educators and practitioners to evaluate those methods, and educating the next generation of design innovators. TheDesignExchange provides a structure to collect the many design methods in use today, their variations, and examples of use.     The portal aims to support the design process by providing educators and practitioners alike with a versatile library of proven tools.
-  %p
-    Given the community-of-practice model and wide application of design methods, theDesignExchange portal is fundamentally multi-disciplinary. The subject matter draws on the diverse range of contributors engaged in “design thinking”, a human-centric multidisciplinary design process (engineers, designers, architects, business people, educators). By recognizing and promoting the common thread among these different disciplines, theDesignExchange supports the cross-pollination of methodologies among them. theDesignExchange  aims to be the world’s largest open innovation archive of design-practice-related subject matter.  To accomplish this, we are drawing on previous work one in design theory, communities of practice, and expert/lead user-generated content.
 
-  %p
-    The content in TheDesignExchange is categorized within five phases of the early stage design process:
-
-  %table
-    %tr
-      %td
-        %img
-          = image_tag "research.png"
-      %td
-        #{link_to 'RESEARCH', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsResearch'}: collect data to better understand customer needs and context
-    %tr
-      %td
-        %img
-          = image_tag "analyze.png"
-      %td
-        #{link_to 'ANALYZE', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsAnalyze'}: analyze and/or synthesize collected data
-    %tr
-      %td
-        %img
-          = image_tag "ideate.png"
-      %td
-        #{link_to 'IDEATE', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsIdeate'}: create new ideas for products, services, etc.
-    %tr
-      %td
-        %img
-          = image_tag "prototype.png"
-      %td
-        #{link_to 'BUILD', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsBuild'}: turn ideas into reality through a variety of mediums
-    %tr
-      %td
-        %img
-          = image_tag "communicate.png"
-      %td
-        #{link_to 'COMMUNICATE', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsBuild'}: communicate at all stages of the design process with others outside of the design team
-
-%br/
-
+%hr
 %div
-  %h2
-    DESIGN SKILLS SELF-ASSESSMENT MATRIX
+  %h2{:class => "about-header"}
+    Design Skills Self-Asessment Matrix
   %p
     We have also created a skillsets matrix for instructors in design courses to measure how their students value specific design skillsets and how their competencies in these design skillsets change throughout the course. The X-axis of the matrix asks students to evaluate the strength of the Skills I Have vs. Skills that I am Limited In. The Y-axis asks students to evaluate the strength they have in the Skills I Want to Hone vs. Skills I Don’t Want to Hone. Students place 32 design skills (as explained in the attached table Skills-Descriptions) onto the matrix.
   %p
@@ -68,63 +210,158 @@
     = link_to 'Danielle Poreh', 'mailto:d.poreh@berkeley.edu'
     to learn more about the assessment tool and arrange to use for a class or workshop.
   %br/
+%hr
 
-.row
-  %h2
-    LEADERSHIP
-  %p
-    #{link_to 'Alice Agogino', 'http://www.me.berkeley.edu/people/faculty/alice-m-agogino'}, UC Berkeley, #{link_to 'agogino@berkeley.edu', 'mailto:agogino@berkeley.edu'}
-  %p
-    Sara Beckman, UC Berkeley, #{link_to 'beckman@berkeley.edu', 'mailto:beckman@berkeley.edu'}
-  %p
-    Danielle Poreh, UC Berkeley, #{link_to 'd.poreh@berkeley.edu', 'mailto:d.poreh@berkeley.edu'} – Product Manager and Communications Contact
-  %p
-    Maria Yang, MIT, #{link_to 'mcyang@mit.edu', 'mailto:mcyang@mit.edu'}
-  %p
-    Euiyoung Kim, UC Berkeley, #{link_to 'euiyoungkim@berkeley.edu ', 'mailto:euiyoungkim@berkeley.edu '} – Design Strategy
-  %p
-    Julia Kramer, UC Berkeley, #{link_to 'j.kramer@berkeley.edu', 'mailto:j.kramer@berkeley.edu'} – Human-Centered Design for Development
-  %p
-    Celeste Roschuni, University of Maryland – College Park, #{link_to 'celestial@gmail.com', 'mailto:celestial@gmail.com'}
+%div{:class => "members-container"}
+  %h2{:class => "about-header"}
+    Leadership
+  %div{:class => "members-row"}
+    %div{:class => "member"}
+      %div{:class => "member-img"}
+      %div{:class => "member-name"}
+        #{link_to 'Alice Agogino', 'http://www.me.berkeley.edu/people/faculty/alice-m-agogino'}
+      %div
+        UC Berkeley
+      %div
+        #{link_to 'agogino@berkeley.edu', 'mailto:agogino@berkeley.edu'}
+    %div{:class => "member"}
+      %div{:class => "member-img"}
+      %div{:class => "member-name"}
+        Sara Beckman
+      %div
+        UC Berkeley
+      %div
+        #{link_to 'beckman@berkeley.edu', 'mailto:beckman@berkeley.edu'}
+    %div{:class => "member"}
+      %div{:class => "member-img"}
+      %div{:class => "member-name"}
+        Danielle Poreh
+      %div
+        UC Berkeley
+      %div
+        #{link_to 'd.poreh@berkeley.edu', 'mailto:d.poreh@berkeley.edu'}
+      %div
+        Product Manager and Communications Contact
+    %div{:class => "member"}
+      %div{:class => "member-img"}
+      %div{:class => "member-name"}
+        Maria Yang
+      %div
+        MIT
+      %div
+        #{link_to 'mcyang@mit.edu', 'mailto:mcyang@mit.edu'}
+    %div{:class => "member"}
+      %div{:class => "member-img"}
+      %div{:class => "member-name"}
+        Euiyoung Kim
+      %div
+        UC Berkeley
+      %div
+        #{link_to 'euiyoungkim@berkeley.edu ', 'mailto:euiyoungkim@berkeley.edu '}
+      %div
+        Design Strategy
+    %div{:class => "member"}
+      %div{:class => "member-img"}
+      %div{:class => "member-name"}
+        Julia Kramer
+      %div
+        UC Berkeley
+      %div
+        #{link_to 'j.kramer@berkeley.edu', 'mailto:j.kramer@berkeley.edu'}
+      %div
+        Human-Centered Design for Development
+    %div{:class => "member"}
+      %div{:class => "member-img"}
+      %div{:class => "member-name"}
+        Celeste Roschuni
+      %div
+        University of Maryland – College Park
+      %div
+        #{link_to 'celestial@gmail.com', 'mailto:celestial@gmail.com'}
+
+  %h2{:class => "about-header"}
+    Development Team
+  %div{:class => "members-row"}
+    %div{:class => "member"}
+      %div{:class => "member-name"}
+        Jarrod Schnapper
+      %div
+        UC Berkeley
+      %div
+        #{link_to 'jschnapper@berkeley.edu', 'mailto:jschnapper@berkeley.edu'}
+    %div{:class => "member"}
+      %div{:class => "member-name"}
+        Allan Yu
+      %div
+        UC Berkeley
+      %div
+        #{link_to 'allan15@berkeley.edu', 'mailto:allan15@berkeley.edu'}
+    %div{:class => "member"}
+      %div{:class => "member-name"}
+        Carmen Castaños
+      %div
+        MIT
+      %div
+        #{link_to 'ccastano@mit.edu', 'mailto:ccastano@mit.edu'}
+    %div{:class => "member"}
+      %div{:class => "member-name"}
+        Alice Chin
+      %div
+        UC Berkeley
+      %div
+        #{link_to 'alicechin@berkeley.edu', 'mailto:alicechin@berkeley.edu'}
+    %div{:class => "member"}
+      %div{:class => "member-name"}
+        James Jiang
+      %div
+        UC Berkeley
+      %div
+        #{link_to 'james.jiang@berkeley.edu', 'mailto:james.jiang@berkeley.edu'}
+      %div
+        Leads Web Dev Team
+    %div{:class => "member"}
+      %div{:class => "member-name"}
+        Catherine Nitta
+      %div
+        UC Berkeley
+      %div
+        #{link_to 'nittac@berkeley.edu', 'mailto:nittac@berkeley.edu'}
+    %div{:class => "member"}
+      %div{:class => "member-name"}
+        Erika Oishi
+      %div
+        UC Berkeley
+      %div
+        #{link_to 'erikaoishi@berkeley.edu', 'mailto:erikaoishi@berkeley.edu'}
+    %div{:class => "member"}
+      %div{:class => "member-name"}
+        Seokhyeon (Sock) Ryu
+      %div
+        UC Berkeley
+      %div
+        #{link_to 'seokhyeonryu87@gmail.com', 'mailto:seokhyeonryu87@gmail.com'}
+    %div{:class => "member"}
+      %div{:class => "member-name"}
+        Jonida Shkurti
+      %div
+        #{link_to 'shkurti.j@gmail.com', 'mailto:shkurti.j@gmail.com'}
+      %div
+        UX Design
 
 %br/
 
-.row
-  %h2
-    DEVELOPMENT TEAM
-  %p
-    Jarrod Schnapper, UC Berkeley, #{link_to 'jschnapper@berkeley.edu', 'mailto:jschnapper@berkeley.edu'}
-  %p
-    Allan Yu, UC Berkeley, #{link_to 'allan15@berkeley.edu', 'mailto:allan15@berkeley.edu'}
-  %p
-    Carmen Castaños, MIT, #{link_to 'ccastano@mit.edu', 'mailto:ccastano@mit.edu'}
-  %p
-    Alice Chin, UC Berkeley, #{link_to 'alicechin@berkeley.edu', 'mailto:alicechin@berkeley.edu'}
-  %p
-    James Jiang, UC Berkeley, #{link_to 'james.jiang@berkeley.edu', 'mailto:james.jiang@berkeley.edu'} – Leads Web Dev Team
-  %p
-    Catherine Nitta, UC Berkeley, #{link_to 'nittac@berkeley.edu', 'mailto:nittac@berkeley.edu'}
-  %p
-    Erika Oishi, UC Berkeley, #{link_to 'erikaoishi@berkeley.edu', 'mailto:erikaoishi@berkeley.edu'}
-  %p
-    Seokhyeon (Sock) Ryu, UC Berkeley, #{link_to 'seokhyeonryu87@gmail.com', 'mailto:seokhyeonryu87@gmail.com'}
-  %p
-    Jonida Shkurti, #{link_to 'shkurti.j@gmail.com', 'mailto:shkurti.j@gmail.com'} – UX Design
-
-%br/
-
-.row
-  %h2
-    VIDEOS
+%div
+  %h2{:class => "about-header"}
+    Videos
   %p
     %p theDesign Exchange #{link_to 'YouTube Channel', 'https://www.youtube.com/channel/UCLtBn_ZusRU1G2Tt16j-2IQ'}
     %p #{link_to 'Video Pitch', 'https://www.youtube.com/watch?v=KnqqkO-r_04'} for theDesignExchange
 
 %br/
 
-.row
+%div
   %h2
-    PRESENTATIONS AND PUBLICATIONS
+    Presentations and Publications
 
   %h3
     2018
@@ -176,8 +413,8 @@
 
 %br/
 
-.row
+%div
   %h2
-    FUNDING AND INDUSTRY COLLABORATION
+    Funding and Industry Collaboration
   %p
     We thank our industry collaborators who hosted our workshop series: Autodesk, Frog, Goto Media, DesignMap, and IDEO and our team of faculty and students at UC Berkeley and MIT for their input and dedication to theDesignExchange. This work was partially supported by NSF grant CMMI-1334361.
