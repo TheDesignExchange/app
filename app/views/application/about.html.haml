@@ -171,8 +171,9 @@
     background-color: #F2F2F2;
     padding: 18px;
     width: 100%;
-    box-shadow: 2px 4px 18px rgba(0,0,0,0.12);
+    box-shadow: 4px 6px 18px rgba(0,0,0,0.12);
     border-radius: 4px;
+    text-align: center;
   }
 
   .members-row {
@@ -196,7 +197,7 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    box-shadow: 3px 4px 12px rgba(0,0,0,0.12);
+    box-shadow: 3px 4px 8px rgba(0,0,0,0.24);
     margin-bottom: 12px;
   }
 
@@ -370,21 +371,6 @@
 
 %br/
 
-%hr
-%div
-  %h2{:class => "about-header"}
-    Design Skills Self-Asessment Matrix
-  %p
-    We have also created a skillsets matrix for instructors in design courses to measure how their students value specific design skillsets and how their competencies in these design skillsets change throughout the course. The X-axis of the matrix asks students to evaluate the strength of the Skills I Have vs. Skills that I am Limited In. The Y-axis asks students to evaluate the strength they have in the Skills I Want to Hone vs. Skills I Don’t Want to Hone. Students place 32 design skills (as explained in the attached table Skills-Descriptions) onto the matrix.
-  %p
-    You are invited to
-    =link_to 'demo this tool', 'http://ec2-52-23-166-162.compute-1.amazonaws.com//demo'
-    and give feedback. Contact
-    = link_to 'Danielle Poreh', 'mailto:d.poreh@berkeley.edu'
-    to learn more about the assessment tool and arrange to use for a class or workshop.
-  %br/
-%hr
-
 %div{:class => "members-container"}
   %h2{:class => "about-header"}
     Leadership
@@ -451,54 +437,27 @@
         University of Maryland – College Park
       %div
         #{link_to 'celestial@gmail.com', 'mailto:celestial@gmail.com'}
+    %div{:class => "member"}
+      %div{:class => "member-img"}
+      %div{:class => "member-name"}
+        Varna Vasudevan
+      %div
+        UC Berkeley
+      %div
+        #{link_to 'varna.vasudevan@berkeley.edu', 'mailto:varna.vasudevan@berkeley.edu'}
 
   %h2{:class => "about-header"}
     Development Team
   %div{:class => "members-row"}
     %div{:class => "member"}
       %div{:class => "member-name"}
-        Jarrod Schnapper
+        Angela Huang
       %div
         UC Berkeley
       %div
-        #{link_to 'jschnapper@berkeley.edu', 'mailto:jschnapper@berkeley.edu'}
-    %div{:class => "member"}
-      %div{:class => "member-name"}
-        Allan Yu
+        #{link_to 'angela_huang@berkeley.edu', 'mailto:angela_huang@berkeley.edu'}
       %div
-        UC Berkeley
-      %div
-        #{link_to 'allan15@berkeley.edu', 'mailto:allan15@berkeley.edu'}
-    %div{:class => "member"}
-      %div{:class => "member-name"}
-        Carmen Castaños
-      %div
-        MIT
-      %div
-        #{link_to 'ccastano@mit.edu', 'mailto:ccastano@mit.edu'}
-    %div{:class => "member"}
-      %div{:class => "member-name"}
-        Alice Chin
-      %div
-        UC Berkeley
-      %div
-        #{link_to 'alicechin@berkeley.edu', 'mailto:alicechin@berkeley.edu'}
-    %div{:class => "member"}
-      %div{:class => "member-name"}
-        James Jiang
-      %div
-        UC Berkeley
-      %div
-        #{link_to 'james.jiang@berkeley.edu', 'mailto:james.jiang@berkeley.edu'}
-      %div
-        Leads Web Dev Team
-    %div{:class => "member"}
-      %div{:class => "member-name"}
-        Catherine Nitta
-      %div
-        UC Berkeley
-      %div
-        #{link_to 'nittac@berkeley.edu', 'mailto:nittac@berkeley.edu'}
+        User Interface
     %div{:class => "member"}
       %div{:class => "member-name"}
         Erika Oishi
@@ -515,11 +474,62 @@
         #{link_to 'seokhyeonryu87@gmail.com', 'mailto:seokhyeonryu87@gmail.com'}
     %div{:class => "member"}
       %div{:class => "member-name"}
+        Jarrod Schnapper
+      %div
+        UC Berkeley
+      %div
+        #{link_to 'jschnapper@berkeley.edu', 'mailto:jschnapper@berkeley.edu'}
+    %div{:class => "member"}
+      %div{:class => "member-name"}
+        Allan Yu
+      %div
+        UC Berkeley
+      %div
+        #{link_to 'allan15@berkeley.edu', 'mailto:allan15@berkeley.edu'}
+
+  %h2{:class => "about-header"}
+    Acknowledgements
+  %p
+    theDesignExchange leadership is grateful for all of the people who have contributed in the past
+  %div{:class => "members-row"}
+    %div{:class => "member"}
+      %div{:class => "member-name"}
+        Carmen Castaños
+      %div
+        MIT
+      -# %div
+      -#   #{link_to 'ccastano@mit.edu', 'mailto:ccastano@mit.edu'}
+    %div{:class => "member"}
+      %div{:class => "member-name"}
+        Alice Chin
+      %div
+        UC Berkeley
+      -# %div
+      -#   #{link_to 'alicechin@berkeley.edu', 'mailto:alicechin@berkeley.edu'}
+    %div{:class => "member"}
+      %div{:class => "member-name"}
+        James Jiang
+      %div
+        UC Berkeley
+      -# %div
+      -#   #{link_to 'james.jiang@berkeley.edu', 'mailto:james.jiang@berkeley.edu'}
+      -# %div
+      -#   Leads Web Dev Team
+    %div{:class => "member"}
+      %div{:class => "member-name"}
+        Catherine Nitta
+      %div
+        UC Berkeley
+      -# %div
+      -#   #{link_to 'nittac@berkeley.edu', 'mailto:nittac@berkeley.edu'}
+    %div{:class => "member"}
+      %div{:class => "member-name"}
         Jonida Shkurti
-      %div
-        #{link_to 'shkurti.j@gmail.com', 'mailto:shkurti.j@gmail.com'}
-      %div
-        UX Design
+      -# %div
+      -#   #{link_to 'shkurti.j@gmail.com', 'mailto:shkurti.j@gmail.com'}
+      -# %div
+      -#   UX Design
+      -#
 
 %br/
 
@@ -534,6 +544,23 @@
       %p
         Video Pitch for theDesignExchange
 %br/
+
+-# Comment below section out until the link is functioning
+-# %hr
+-# %div
+-#   %h2{:class => "about-header"}
+-#     Design Skills Self-Asessment Matrix
+-#   %p
+-#     We have also created a skillsets matrix for instructors in design courses to measure how their students value specific design skillsets and how their competencies in these design skillsets change throughout the course. The X-axis of the matrix asks students to evaluate the strength of the Skills I Have vs. Skills that I am Limited In. The Y-axis asks students to evaluate the strength they have in the Skills I Want to Hone vs. Skills I Don’t Want to Hone. Students place 32 design skills (as explained in the attached table Skills-Descriptions) onto the matrix.
+-#   %p
+-#     You are invited to
+-#     =link_to 'demo this tool', 'http://ec2-52-23-166-162.compute-1.amazonaws.com//demo'
+-#     and give feedback. Contact
+-#     = link_to 'Danielle Poreh', 'mailto:d.poreh@berkeley.edu'
+-#     to learn more about the assessment tool and arrange to use for a class or workshop.
+-#   %br/
+-# %hr
+
 
 %div
   %h2
