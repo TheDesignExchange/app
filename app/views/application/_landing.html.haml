@@ -13,6 +13,10 @@
     border: none;
   }
 
+  .notice {
+    display: none;
+  }
+
   .site-footer {
     font-family: "Gotham", sans-serif;
   }
@@ -73,8 +77,6 @@
     height: 400px;
     display: block;
     text-align: left;
-    margin-top: 1em;
-    -# previous was 84px
     font-family: "Gotham", sans-serif
   }
 
@@ -83,6 +85,10 @@
     font-size: 52px;
     padding-top: 10%;
     padding-bottom: 4%;
+  }
+
+  #jumbo-container {
+    margin-bottom: 6em;
   }
 
   #explore {
@@ -164,10 +170,11 @@
 
   #methods {
     margin-top: 120px;
+    padding-bottom: 80px;
+    margin-bottom: 120px;
   }
 
   #case-studies {
-    margin-top: 200px;
     margin-bottom: 64px;
   }
 
@@ -179,8 +186,9 @@
   }
 
   #worlds-largest {
-    margin-top: 144px;
-
+    padding-top: 144px;
+    padding-bottom: 80px;
+    margin-bottom: 120px;
   }
   #worlds-largest .earth {
     text-align: center;
@@ -233,9 +241,6 @@
   .deg216 { transform: rotate(126deg) translate(12em) rotate(-126deg); }
   .deg288 { transform: rotate(198deg) translate(12em) rotate(-198deg); }
 
-  #showcase {
-    margin-top: 200px;
-  }
   #showcase-img {
     width: 100%;
   }
@@ -307,8 +312,7 @@
     opacity: .8;
   }
   #join-button-row {
-    margin-top: 6em;
-    margin-bottom: 18em;
+    margin-top: 24em;
   }
 
   .site-footer {
@@ -324,7 +328,21 @@
     display: none;
   }
 
+  .mobile {
+    display: none;
+  }
+  .non-mobile {
+    display: block;
+  }
+
   @media (max-width: 767px) {
+    .mobile {
+      display: block;
+    }
+    .non-mobile {
+      display: none;
+    }
+
     .notice {
       display: none;
     }
@@ -333,7 +351,10 @@
       -# IMPORTANT: give the container containing the jumbotron a name and lower padding when jumbotron code is found
     }
     #explore {
-      display: none;
+      padding-left: 0px;
+    }
+    .shifting-words {
+      font-size: 20px;
     }
     #join-button-row {
       margin-top: 0em;
@@ -343,7 +364,7 @@
       border-color: rgba(0,0,0,0.3);
     }
     #worlds-largest {
-      margin-top: 24px;
+      padding-top: 24px;
       padding-bottom: 3em;
       border-bottom: 1.5px solid;
       border-color: rgba(0,0,0,0.3);
@@ -396,45 +417,41 @@
     text-align: center;
   }
 
-.container
-  .jumbotron{:id=>'jumbo-home'}
+  #explore, #worlds-largest, #methods {
+    background-color: rgb(107, 192, 109, 0.4);
+  }
 
 #description
-  The world’s <b>largest open-source innovation archive</b> of
+  The world’s <b>largest open-source innovation archive</b> of 
   = link_to "design methods", design_methods_path
   and
   = link_to "case studies.", case_studies_path
 
-.row{:id => "join-button-row"}
-  .container.join
-    .btn.join-button
-      = link_to "Join our community", "users/sign_up"
-
 .row{:id => "explore"}
   .container
-    %h1
+    %h1{:class => "shifting-words"}
       We help
       .slidingVertical
-        %span
+        %span{:class => "shifting-word"}
           Students
-        %span
+        %span{:class => "shifting-word"}
           Educators
-        %span
+        %span{:class => "shifting-word"}
           Professionals
-        %span
+        %span{:class => "shifting-word"}
           Anyone
       %br
       embed human-centered design
-      %br
+      %br{:class => "non-mobile"}
       into their
       .slidingVertical
-        %span
+        %span{:class => "shifting-word"}
           Projects
-        %span
+        %span{:class => "shifting-word"}
           Curriculum
-        %span
+        %span{:class => "shifting-word"}
           Practice
-        %span
+        %span{:class => "shifting-word"}
           Life
 
 .row{:id => "worlds-largest"}
@@ -563,6 +580,11 @@
           = shorten(@case_study.overview)
       %img
         = image_tag @case_study.picture_url
+
+  .row{:id => "join-button-row"}
+    .container.join
+      .btn.join-button
+        = link_to "Join our community", "users/sign_up"
 
 :javascript
   var x = ['Students', 'Educators', 'Professionals', 'Anyone'];
