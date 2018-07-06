@@ -7,7 +7,10 @@ TheDesignExchange/app
  [TheDesignExchange:master]: https://github.com/TheDesignExchange/thedesignexchange/tree/master
  [build status]: https://travis-ci.org/TheDesignExchange/thedesignexchange.svg
  
- [See our wiki]https://github.com/TheDesignExchange/app/wiki to learn about our workflow
+ 
+ [See our wiki] to learn about our workflow
+ 
+ [See our wiki]: https://github.com/TheDesignExchange/app/wiki
 
 ### Installing
 
