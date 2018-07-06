@@ -334,6 +334,47 @@
   .non-mobile {
     display: block;
   }
+  @media (max-width: 500px) {
+    .deg0 {
+      position: relative;
+      top: 40%;
+      font-size: 15px;
+    }
+    .deg72 {
+      position: relative;
+      right: 70%;
+      font-size: 15px;
+    }
+    .deg144 {
+      position: relative;
+      right: 60%;
+      bottom: 80%;
+      font-size: 15px;
+    }
+    .deg216 {
+      left: 60%;
+      bottom: 80%;
+      font-size: 15px;
+    }
+    .deg288 {
+      position: relative;
+      left: 40%;
+      font-size: 15px;
+    }
+    #showcase-img-img {
+      width: 60px;
+      height: 60px;
+    }
+    #showcase-header {
+      font-size: 21px;
+    }
+    #showcase-desc {
+      font-size: 12px;
+    }
+  }
+  .deg72 {
+    padding: 0px;
+  }
 
   @media (max-width: 767px) {
     .mobile {
@@ -476,7 +517,7 @@
     .circle-container
       .center-container
         .center
-          %img
+          %img{:id => "showcase-img-img"}
           %h3{:id => "showcase-header"}
             Research
           %p{:id => "showcase-desc"}
