@@ -92,9 +92,12 @@
   }
 
   #explore {
+    width: 40%;
     text-align: left;
-    margin-top: 100px;
-    padding-left: 20.75em;
+    position: relative;
+    bottom: 29em;
+    left: 4.3em;
+    background-color: white;
   }
   #explore h1 {
     line-height: 1.5em;
@@ -102,6 +105,10 @@
   #explore span {
     font-weight: bold;
     display: inline-block;
+  }
+  .shifting-words {
+    font-size: 27px;
+    font-family: 'Playfair Display', serif;
   }
 
   /*Vertical Sliding*/
@@ -169,13 +176,17 @@
   }
 
   #methods {
-    margin-top: 120px;
-    padding-bottom: 80px;
-    margin-bottom: 120px;
+    padding-top: 3em;
+    padding-bottom: 6em;
+    border-bottom: 1.5px solid;
+    border-color: rgba(0,0,0,0.3);
   }
 
   #case-studies {
-    margin-bottom: 64px;
+    padding-top: 3em;
+    padding-bottom: 6em;
+    border-bottom: 1.5px solid;
+    border-color: rgba(0,0,0,0.3);
   }
 
   .see-link a {
@@ -186,12 +197,13 @@
   }
 
   #worlds-largest {
-    padding-top: 144px;
-    padding-bottom: 80px;
-    margin-bottom: 120px;
+    padding-top: 6em;
+    padding-bottom: 3em;
   }
   #worlds-largest .earth {
     text-align: center;
+    position: relative;
+    bottom: 1em;
   }
   #worlds-largest img {
     width: 60%;
@@ -201,6 +213,7 @@
     position: relative;
     left: 6em;
     top: 3em;
+    font-family: 'Playfair Display', serif;
   }
 
   .circle-container {
@@ -278,12 +291,21 @@
   .deg216 { transform: rotate(126deg) translate(12em) rotate(-126deg); }
   .deg288 { transform: rotate(198deg) translate(12em) rotate(-198deg); }
 
+  #showcase {
+    border-bottom: 1.5px solid;
+    border-color: rgba(0,0,0,0.3);
+    padding-bottom: 6em;
+    position: relative;
+    bottom: 1em;
+  }
+
   #showcase-img {
     width: 100%;
   }
   #showcase-header {
     color: #333333;
     font-weight: bold;
+    font-family: 'Playfair Display', serif;
   }
 
   .card {
@@ -347,9 +369,6 @@
   }
   .join-button:hover {
     opacity: .8;
-  }
-  #join-button-row {
-    margin-top: 24em;
   }
 
   .site-footer {
@@ -435,14 +454,10 @@
       margin-top: 0em;
       margin-bottom: 0em;
       padding-bottom: 6em;
-      border-bottom: 1.5px solid;
-      border-color: rgba(0,0,0,0.3);
     }
     #worlds-largest {
       padding-top: 24px;
       padding-bottom: 3em;
-      border-bottom: 1.5px solid;
-      border-color: rgba(0,0,0,0.3);
     }
     .col-sm-3.earth {
       margin-top: 0px;
@@ -451,8 +466,6 @@
     #showcase {
       margin-top: 12px;
       padding-bottom: 6em;
-      border-bottom: 1.5px solid;
-      border-color: rgba(0,0,0,0.3);
     }
     .col-sm-8 {
       margin-top: 180px;
@@ -460,8 +473,6 @@
     #methods {
       margin-top: 24px;
       padding-bottom: 6em;
-      border-bottom: 1.5px solid;
-      border-color: rgba(0,0,0,0.3);
     }
     .col-sm-12 {
       margin-bottom: 90px;
@@ -496,10 +507,10 @@
   #description {
     font-size: 36px;
     text-align: center;
-  }
-
-  #explore, #worlds-largest, #methods {
-    background-color: rgba(107, 192, 109, 0.3);
+    padding-top: 0.25em;
+    padding-bottom: 1.5em;
+    border-bottom: 1.5px solid;
+    border-color: rgba(0,0,0,0.3);
   }
 
 .container
@@ -537,17 +548,6 @@
           Practice
         %span{:class => "shifting-word"}
           Life
-
-.row{:id => "worlds-largest"}
-  .col-sm-3.earth
-    %img
-      = image_tag "earth.png"
-  .col-sm-9
-    %p
-      TheDesignExchange (tDX) supports the design community through the entire life-cycle of the conceptual design process— from observation through synthesis and analysis to realization and evaluation– through our library of versatile and extensive tools.
-    %br
-    %p
-      This is a joint project led by UC Berkeley and M.I.T. working with the international community of design academics and practitioners.
 
 .row{:id => "showcase"}
   .col-sm-4{:id => "threehundredtext"}
@@ -629,6 +629,15 @@
   %h1{:class => "underline-container", :id => "mobile-case-study-title"}
     = link_to "Case Studies", case_studies_path
     .underline.hide
+  .col-sm-6
+    %h1{:class => "underline-container", :id => "casestudy-link"}
+      = link_to "Case Studies", case_studies_path
+      .underline.hide
+    %p
+      By providing contextual examples of design methods in practice, we hope to support designers address complex challenges through a human-centered design process. Our ever-growing collection of case studies is meant to inspire and empower the design community to creatively embed methods in practice.
+    .see-link
+      %a
+        = link_to "See Case Studies >>", case_studies_path
   .col-sm-6{:id => "non-mobile-col-sm-6"}
     .card.vert-card
       - begin
@@ -642,15 +651,6 @@
           = shorten(@case_study.overview)
       %img
         = image_tag @case_study.picture_url
-  .col-sm-6
-    %h1{:class => "underline-container", :id => "casestudy-link"}
-      = link_to "Case Studies", case_studies_path
-      .underline.hide
-    %p
-      By providing contextual examples of design methods in practice, we hope to support designers address complex challenges through a human-centered design process. Our ever-growing collection of case studies is meant to inspire and empower the design community to creatively embed methods in practice.
-    .see-link
-      %a
-        = link_to "See Case Studies >>", case_studies_path
   #mobile-col-sm-6
     .card.vert-card
       - begin
@@ -665,10 +665,21 @@
       %img.col-sm-3
         = image_tag @case_study.picture_url
 
-  .row{:id => "join-button-row"}
-    .container.join
-      .btn.join-button
-        = link_to "Join our community", "users/sign_up"
+.row{:id => "worlds-largest"}
+  .col-sm-3.earth
+    %img
+      = image_tag "earth.png"
+  .col-sm-9
+    %p
+      TheDesignExchange (tDX) supports the design community through the entire life-cycle of the conceptual design process— from observation through synthesis and analysis to realization and evaluation– through our library of versatile and extensive tools.
+    %br
+    %p
+      This is a joint project led by UC Berkeley and M.I.T. working with the international community of design academics and practitioners.
+
+.row{:id => "join-button-row"}
+  .container.join
+    .btn.join-button
+      = link_to "Join our community", "users/sign_up"
 
 :javascript
   var x = ['Students', 'Educators', 'Professionals', 'Anyone'];
