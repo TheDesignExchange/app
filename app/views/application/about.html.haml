@@ -416,9 +416,18 @@
   $(window).scroll(function() {
         var scrollTop = $(window).scrollTop();
         $('.parallax-container').children().each(function() {
-            var factor = parseInt($(this).css("height")) / 9;
-            var imgPos = scrollTop / factor + 'px';
-            $(this).css('transform', 'translateY(' + imgPos + ')');
+          var width = parseInt($(window).width());
+          var divisor;
+          if (width <= 480) {
+            divisor = 2;
+          } else if (width <= 768) {
+            divisor = 5;
+          } else {
+            divisor = 9;
+          }
+          var factor = parseInt($(this).css("height")) / divisor;
+          var imgPos = scrollTop / factor + 'px';
+          $(this).css('transform', 'translateY(' + imgPos + ')');
         })
 
     });
