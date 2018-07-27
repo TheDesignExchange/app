@@ -91,12 +91,21 @@
     margin-bottom: 6em;
   }
 
+  #description {
+    font-size: 36px;
+    text-align: center;
+    padding-top: 0.25em;
+    padding-bottom: 0.5em;
+    //border-bottom: 1.5px solid;
+    //border-color: rgba(0,0,0,0.3);
+  }
+
   #explore {
     width: 40%;
     text-align: left;
     position: relative;
-    bottom: 29em;
-    left: 4.3em;
+    bottom: 30em;
+    left: 4.1em;
     background-color: white;
   }
   #explore h1 {
@@ -178,15 +187,13 @@
   #methods {
     padding-top: 3em;
     padding-bottom: 6em;
-    border-bottom: 1.5px solid;
-    border-color: rgba(0,0,0,0.3);
   }
 
   #case-studies {
     padding-top: 3em;
-    padding-bottom: 6em;
-    border-bottom: 1.5px solid;
-    border-color: rgba(0,0,0,0.3);
+    padding-bottom: 3em;
+    //border-bottom: 1.5px solid;
+    //border-color: rgba(0,0,0,0.3);
   }
 
   .see-link a {
@@ -212,8 +219,11 @@
   #threehundredtext {
     position: relative;
     left: 6em;
-    top: 3em;
+    bottom: 1.5em;
     font-family: 'Playfair Display', serif;
+  }
+  #threehundredmethods {
+    font-family: 'Open Sans', sans-serif;
   }
 
   .circle-container {
@@ -227,9 +237,18 @@
     left: 3em;
   }
 
+  hr {
+    border: 0.6px solid;
+    border-color: rgba(0,0,0,0.4);
+    width: 110%;
+    position: relative;
+    right: 5%;
+  }
+
   @media (max-width: 1199px) {
     #explore {
-      padding-left: 17.35em;
+      bottom: 29.5em;
+      left: 3.5em;
     }
     #threehundredtext {
       left: 3em;
@@ -241,7 +260,11 @@
 
   @media (max-width: 991px) {
     #explore {
-      padding-left: 7.5em;
+      bottom: 32.5em;
+      left: 3em;
+    }
+    .shifting-words {
+      font-size: 21px;
     }
     #threehundredtext {
       left: -.3em;
@@ -292,9 +315,9 @@
   .deg288 { transform: rotate(198deg) translate(12em) rotate(-198deg); }
 
   #showcase {
-    border-bottom: 1.5px solid;
-    border-color: rgba(0,0,0,0.3);
-    padding-bottom: 6em;
+    //border-bottom: 1.5px solid;
+    //border-color: rgba(0,0,0,0.3);
+    padding-bottom: 3em;
     position: relative;
     bottom: 1em;
   }
@@ -441,14 +464,19 @@
       display: none;
     }
     .jumbotron {
-      margin-top: 0px;
+      margin-top: -6em;
       -# IMPORTANT: give the container containing the jumbotron a name and lower padding when jumbotron code is found
     }
     #explore {
-      padding-left: 0px;
+      bottom: 24em;
+      left: 2.25em;
+      width: 50%;
     }
     .shifting-words {
-      font-size: 20px;
+      font-size: 16px;
+    }
+    #description {
+      font-size: 21px;
     }
     #join-button-row {
       margin-top: 0em;
@@ -464,7 +492,7 @@
       margin-bottom: 64px;
     }
     #showcase {
-      margin-top: 12px;
+      margin-top: -6em;
       padding-bottom: 6em;
     }
     .col-sm-8 {
@@ -503,14 +531,18 @@
     .circle-container {
       left: 0.5em;
     }
+    hr {
+      width: 90%;
+      left: 0%;
+    }
   }
-  #description {
-    font-size: 36px;
-    text-align: center;
-    padding-top: 0.25em;
-    padding-bottom: 1.5em;
-    border-bottom: 1.5px solid;
-    border-color: rgba(0,0,0,0.3);
+
+  @media (max-width: 450px) {
+    #explore {
+      bottom: 26em;
+      left: 2em;
+      width: 50%;
+    }
   }
 
 .container
@@ -521,6 +553,8 @@
   = link_to "design methods", design_methods_path
   and
   = link_to "case studies.", case_studies_path
+
+%hr
 
 .row{:id => "explore"}
   .container
@@ -551,7 +585,10 @@
 
 .row{:id => "showcase"}
   .col-sm-4{:id => "threehundredtext"}
-    %h2
+    %h1
+      Discover. Apply. Contribute.
+    %br
+    %h2{:id => "threehundredmethods"}
       With over 300 methods to choose from, we help guide your method discovery and selection.
   .col-sm-8
     .circle-container
@@ -583,6 +620,8 @@
         .deg288.underline-container
           Communicate
           .underline
+
+%hr
 
 .row{:id => "methods"}
   .col-sm-12
@@ -664,6 +703,8 @@
           = shorten(@case_study.overview)
       %img.col-sm-3
         = image_tag @case_study.picture_url
+
+%hr
 
 .row{:id => "worlds-largest"}
   .col-sm-3.earth
