@@ -105,7 +105,7 @@
     text-align: left;
     position: relative;
     bottom: 29em;
-    left: 4.1em;
+    left: 3.75em;
     background-color: white;
   }
   #explore h1 {
@@ -117,7 +117,7 @@
   }
   .shifting-words {
     font-size: 27px;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Open Sans', sans-serif;
   }
 
   /*Vertical Sliding*/
@@ -248,7 +248,7 @@
   @media (max-width: 1199px) {
     #explore {
       bottom: 29.5em;
-      left: 3.5em;
+      left: 3.65em;
     }
     #threehundredtext {
       left: 3em;
@@ -260,11 +260,11 @@
 
   @media (max-width: 991px) {
     #explore {
-      bottom: 32.5em;
+      bottom: 25.75em;
       left: 3em;
     }
     .shifting-words {
-      font-size: 21px;
+      font-size: 24px;
     }
     #threehundredtext {
       left: -.3em;
@@ -276,6 +276,9 @@
     #join-button-row {
       position: relative;
       top: 3em;
+    }
+    #description {
+      font-size: 24px;
     }
   }
 
@@ -468,15 +471,21 @@
       -# IMPORTANT: give the container containing the jumbotron a name and lower padding when jumbotron code is found
     }
     #explore {
-      bottom: 24em;
-      left: 2.25em;
+      bottom: 15.25em;
+      left: 2.75em;
       width: 50%;
+      font-size: 18px;
     }
     .shifting-words {
       font-size: 16px;
     }
     #description {
-      font-size: 21px;
+      font-size: 18px;
+      width: 90%;
+      margin: auto;
+      position: relative;
+      bottom: 3em;
+      margin-bottom: -3em;
     }
     #join-button-row {
       margin-top: 0em;
@@ -537,11 +546,30 @@
     }
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 585px) {
     #explore {
-      bottom: 26em;
+      bottom: 14.5 em;
+      left: 2.25em;
+    }
+  }
+
+  @media (max-width: 478px) {
+    #explore {
+      bottom: 16em;
       left: 2em;
-      width: 50%;
+    }
+    .shifting-words {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 362px) {
+    #explore {
+      bottom: 16.75em;
+      left: 1.75em;
+    }
+    .shifting-words {
+      font-size: 8px;
     }
   }
 
