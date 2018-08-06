@@ -21,10 +21,6 @@
     font-family: 'Open Sans', sans-serif;
   }
 
-  a {
-    font-family: 'Playfair Display', serif;
-  }
-
   body {
     font-family: 'Open Sans', sans-serif;
   }
@@ -118,6 +114,11 @@
   .shifting-words {
     font-size: 27px;
     font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+  }
+  .shifting-word {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
   }
 
   /*Vertical Sliding*/
@@ -243,6 +244,14 @@
     width: 110%;
     position: relative;
     right: 5%;
+  }
+
+  .deg0, .deg72, .deg144, .deg216, .deg288 {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .underline-container {
+    font-family: 'Playfair Display', serif;
   }
 
   @media (max-width: 1199px) {
@@ -560,14 +569,30 @@
     }
   }
 
-
   @media (max-width: 478px) {
     #explore {
-      bottom: 16em;
+      bottom: 14em;
       left: 2em;
     }
     .shifting-words {
       font-size: 12px;
+    }
+    #description {
+      font-size: 12px;
+    }
+    h1 {
+      font-size: 18px;
+    }
+    h2, p {
+      font-size: 12px;
+    }
+    #threehundredmethods {
+      width: 90%;
+      margin: auto;
+    }
+    .col-sm-8 {
+      margin-top: 6em;
+      margin-bottom: -9em;
     }
   }
 
@@ -585,7 +610,7 @@
   .jumbotron{:id=>'jumbo-home'}
 
 #description
-  The world’s <b>largest open-source innovation archive</b> of
+  The world’s largest open-source innovation archive of
   = link_to "design methods", design_methods_path
   and
   = link_to "case studies.", case_studies_path
