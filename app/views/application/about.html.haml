@@ -364,47 +364,12 @@
 
   }
 
-  @-moz-keyframes loading{
-    0% {
-      transform: rotate(0deg) scale(1)
-    }
-    50% {
-      transform: rotate(180deg) scale(1.2);
-    }
-    100% {
-    transform: rotate(360deg) scale(1)
-    }
-  }
-  @-webkit-keyframes loading{
-    0% {
-      transform: rotate(0deg) scale(1)
-    }
-    50% {
-      transform: rotate(180deg) scale(1.2);
-    }
-    100% {
-    transform: rotate(360deg) scale(1)
-    }
-  }
-  @-ms-keyframes loading{
-    0% {
-      transform: rotate(0deg) scale(1)
-    }
-    50% {
-      transform: rotate(180deg) scale(1.2);
-    }
-    100% {
-    transform: rotate(360deg) scale(1)
-    }
-  }
-
 :javascript
 
   $(document).ready(function() {
 
     window.onload = function() {
       setTimeout(function() {
-        $(".loading-img-container").css("display", "none");
         $(".about-content").css("opacity", 1);
         $(".our-story-container").css("top", 0);
       }, 1000);
@@ -436,8 +401,6 @@
 /*  Need to find container before implementing this*/
 -# %div{:id => "logo-container"}
 -#   %img{:id => "logo-img", :src => "./assets/logo2.png"}
-%div{:class => "loading-img-container"}
-  %img{:class => "loading-img", :alt => "Logo de", :src => "./assets/logo-DE.png"}
 %div{:class => "about-content"}
   %div{:class => "our-story-container"}
     %div{:class => "our-story-content our-story-left txt-grp-1"}
