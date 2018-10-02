@@ -20,7 +20,7 @@
     float: right;
     padding-top: 50px;
   }
-  .nav-tabs:hover {
+  .nav-tab:hover {
     cursor: pointer;
   }
 
@@ -57,11 +57,11 @@
         
 #tabs
   %ul.nav.nav-tabs
-    %li.active
+    %li.active.nav-tab
       %a{"data-link" => "all"} All
-    %li
+    %li.nav-tab
       %a{"data-link" => "dm"} Methods
-    %li
+    %li.nav-tab
       %a{"data-link" => "cs"} Case Studies
 
 .tab-pane.col-md-12.padding{"data-link" => "all"}
