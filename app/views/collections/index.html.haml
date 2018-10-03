@@ -17,9 +17,9 @@
 #tabs
   %ul.nav.nav-tabs
     %li.active.nav-tab
-      %a{"data-link" => "private"} Private
-    %li.nav-tab
       %a{"data-link" => "public"} Public
+    %li.nav-tab
+      %a{"data-link" => "private"} Private
 
 .tab-pane.col-md-12.padding{"data-link" => "private"}
   -if @private_collections.nil? || @private_collections.empty?
