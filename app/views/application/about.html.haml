@@ -446,7 +446,7 @@
       %div{:class => "member"}
         -# %div{:class => "member-img"}
         %div{:class => "member-name"}
-          #{link_to 'Alice Agogino', 'http://www.me.berkeley.edu/people/faculty/alice-m-agogino'}
+          #{link_to 'Alice Agogino', 'http://www.me.berkeley.edu/people/faculty/alice-m-agogino', target: :_blank}
         %div
           UC Berkeley
         %div
@@ -613,7 +613,7 @@
       Videos
     %div{:id => "video-container"}
       %p
-        theDesignExchange #{link_to 'YouTube Channel', 'https://www.youtube.com/channel/UCLtBn_ZusRU1G2Tt16j-2IQ'}
+        theDesignExchange #{link_to 'YouTube Channel', 'https://www.youtube.com/channel/UCLtBn_ZusRU1G2Tt16j-2IQ', target: :_blank}
       %div{:class => "video-wrapper"}
         %iframe{:class => "video-frame", :width => "560", :height => "315", :frameborder => "0", :src => "https://www.youtube.com/embed/KnqqkO-r_04"}
         %p
@@ -628,9 +628,9 @@
       We have also created a skillsets matrix for instructors in design courses to measure how their students value specific design skillsets and how their competencies in these design skillsets change throughout the course. The X-axis of the matrix asks students to evaluate the strength of the Skills I Have vs. Skills that I am Limited In. The Y-axis asks students to evaluate the strength they have in the Skills I Want to Hone vs. Skills I Don’t Want to Hone. Students place 32 design skills (as explained in the attached table Skills-Descriptions) onto the matrix.
     %p
       You are invited to
-      =link_to 'demo this tool', 'http://ec2-54-86-240-127.compute-1.amazonaws.com//demo'
+      #{link_to 'demo this tool', 'http://ec2-54-86-240-127.compute-1.amazonaws.com//demo', target: :_blank}
       and give feedback. Contact
-      = link_to 'Euiyoung Kim', 'mailto:euiyoungkim@berkeley.edu'
+      #{link_to 'Euiyoung Kim', 'mailto:euiyoungkim@berkeley.edu'}
       to learn more about the assessment tool and arrange to use for a class or workshop.
     %br/
   %hr
