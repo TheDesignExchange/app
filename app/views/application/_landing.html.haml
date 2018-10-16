@@ -377,7 +377,7 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
   .vert-card-container {
-    width: 35%;
+    width: 100%;
     display: inline-block;
   }
   .vert-card img {
@@ -744,7 +744,7 @@
         - @case_study = CaseStudy.find(201) #201
       - rescue
         - @case_study = CaseStudy.find(1)
-      .col-sm-2
+      .vert-card-container
         %h4
           = @case_study.name
         %p
