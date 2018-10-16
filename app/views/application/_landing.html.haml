@@ -738,6 +738,19 @@
     .see-link
       %a
         = link_to "See Case Studies >>", case_studies_path
+  .col-sm-6
+    .card.vert-card
+      - begin
+        - @case_study = CaseStudy.find(201) #201
+      - rescue
+        - @case_study = CaseStudy.find(1)
+      .vert-card-container
+        %h4
+          = @case_study.name
+        %p
+          = shorten(@case_study.overview)
+      %img
+        = image_tag @case_study.picture_url
 
 %hr
 
