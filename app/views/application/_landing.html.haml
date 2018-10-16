@@ -744,12 +744,12 @@
         - @case_study = CaseStudy.find(201) #201
       - rescue
         - @case_study = CaseStudy.find(1)
-      .vert-card-container
+      .col-sm-2
         %h4
           = @case_study.name
         %p
           = shorten(@case_study.overview)
-      %img
+      %img{:class => "col-sm-4"}
         = image_tag @case_study.picture_url
 
 %hr
