@@ -20,6 +20,14 @@
     float: right;
     padding-top: 50px;
   }
+  .nav-tab:hover {
+    cursor: pointer;
+  }
+  @media (max-width: 768px) {
+    .notice {
+      display: none;
+    }
+  }
 
 .col-basics
   %h1= @collection.name
@@ -36,15 +44,15 @@
 .col-owner
   %h4 Collection Owner 
   .col-xs-6
-    .col-xs-4.author-info
-      - if @author.profile_picture.present?
-        = image_tag(@author.profile_picture, class: "fit-all", :style => "padding: 10%")
-      - else
-        /TODO lol we need to self host this asap
-        = image_tag("http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
-    .col-xs-8
-      %p= link_to @author.first_name + " " + @author.last_name, user_path(@author.id)
-      %p= @author.email != nil ? @author.email : "-"
+    /.col-xs-4.author-info
+    /  - if @author.profile_picture.present?
+    /    = image_tag(@author.profile_picture, class: "fit-all", :style => "padding: 10%")
+    /  - else
+    /    /TODO lol we need to self host this asap
+    /    = image_tag("http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
+    /.col-xs-8
+    %p= link_to @author.first_name + " " + @author.last_name, user_path(@author.id)
+    %p= @author.email != nil ? @author.email : "-"
 
   -if !@user.nil?
     -if @user.id == @collection.owner_id
@@ -54,11 +62,11 @@
         
 #tabs
   %ul.nav.nav-tabs
-    %li.active
+    %li.active.nav-tab
       %a{"data-link" => "all"} All
-    %li
+    %li.nav-tab
       %a{"data-link" => "dm"} Methods
-    %li
+    %li.nav-tab
       %a{"data-link" => "cs"} Case Studies
 
 .tab-pane.col-md-12.padding{"data-link" => "all"}

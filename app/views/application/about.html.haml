@@ -1,167 +1,699 @@
-%br/
-.row
-  %h1
-    ABOUT
-  %p
-    TheDesignExchange provides a central repository of early design stage methods, engaging all stakeholders in the design community of practice, and integrating online learning with real case studies to demonstrate the methods.
-  %p
-    Formal design methods have been shown to have high impact on the quality and success of engineered products. Due to time constraints, courses can only cover a subset of the most popular methods. Thus it can be hard to find the range of potential methods for use in any particular problem.
-  %p
-    TheDesignExchange fills this need by organizing a wide range of disparate design research methods, developing a community of design educators and practitioners to evaluate those methods, and educating the next generation of design innovators. TheDesignExchange provides a structure to collect the many design methods in use today, their variations, and examples of use.     The portal aims to support the design process by providing educators and practitioners alike with a versatile library of proven tools.
-  %p
-    Given the community-of-practice model and wide application of design methods, theDesignExchange portal is fundamentally multi-disciplinary. The subject matter draws on the diverse range of contributors engaged in “design thinking”, a human-centric multidisciplinary design process (engineers, designers, architects, business people, educators). By recognizing and promoting the common thread among these different disciplines, theDesignExchange supports the cross-pollination of methodologies among them. theDesignExchange  aims to be the world’s largest open innovation archive of design-practice-related subject matter.  To accomplish this, we are drawing on previous work one in design theory, communities of practice, and expert/lead user-generated content.
+:css
+  body {
+    font-family: 'Open Sans', sans-serif;
+  }
+  h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+  }
 
-  %p
-    The content in TheDesignExchange is categorized within five phases of the early stage design process:
+  hr {
+    position: relative;
+    z-index: -4;
+  }
 
-  %table
-    %tr
-      %td
-        %img
-          = image_tag "research.png"
-      %td
-        #{link_to 'RESEARCH', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsResearch'}: collect data to better understand customer needs and context
-    %tr
-      %td
-        %img
-          = image_tag "analyze.png"
-      %td
-        #{link_to 'ANALYZE', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsAnalyze'}: analyze and/or synthesize collected data
-    %tr
-      %td
-        %img
-          = image_tag "ideate.png"
-      %td 
-        #{link_to 'IDEATE', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsIdeate'}: create new ideas for products, services, etc.
-    %tr
-      %td
-        %img
-          = image_tag "prototype.png"
-      %td
-        #{link_to 'BUILD', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsBuild'}: turn ideas into reality through a variety of mediums
-    %tr
-      %td
-        %img
-          = image_tag "communicate.png"
-      %td 
-        #{link_to 'COMMUNICATE', 'https://www.thedesignexchange.org/design_methods?characteristic=&filter_category=%2FsBuild'}: communicate at all stages of the design process with others outside of the design team
-   
-%br/
- 
-%div
-  %h2
-    DESIGN SKILLS SELF-ASSESSMENT MATRIX
-  %p 
-    We have also created a skillsets matrix for instructors in design courses to measure how their students value specific design skillsets and how their competencies in these design skillsets change throughout the course. The X-axis of the matrix asks students to evaluate the strength of the Skills I Have vs. Skills that I am Limited In. The Y-axis asks students to evaluate the strength they have in the Skills I Want to Hone vs. Skills I Don’t Want to Hone. Students place 32 design skills (as explained in the attached table Skills-Descriptions) onto the matrix. 
-  %p 
-    You are invited to 
-    =link_to 'demo this tool', 'http://ec2-52-23-166-162.compute-1.amazonaws.com//demo' 
-    and give feedback. Contact 
-    = link_to 'Danielle Poreh', 'mailto:d.poreh@berkeley.edu'
-    to learn more about the assessment tool and arrange to use for a class or workshop.
+  .loading-img-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 60px;
+    width: 100%;
+  }
+
+  .loading-img {
+    height: 35px;
+    animation: loading 2s infinite ease 0.2s;
+    -ms-animation: loading 2s infinite ease 0.2s;
+    -webkit-animation: loading 2s infinite ease 0.2s;
+  }
+
+  .about-content {
+    opacity: 0;
+    transition: 2s ease;
+  }
+
+  .about-header {
+    text-align: center;
+    color: #333333;
+  }
+
+  .header-left {
+    text-align: left;
+  }
+
+  #logo-container {
+    background-color: #59595C;
+    padding: 20px;
+    width: 100%;
+    height: 250px;
+  }
+
+  #logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /*************/
+  /* OUR STORY */
+
+  .our-story-container {
+    position: relative;
+    top:40px;
+    /* display: flex;
+    justify-content: center; */
+    display: grid;
+    transition: 1.5s ease;
+    grid-template-rows: auto auto;
+    grid-template-columns: 40% 60%;
+    grid-template-areas:
+      "txt-grp-1 img-grp-1"
+      "img-grp-2 txt-grp-2"
+  }
+
+  .our-story-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 18px;
+  }
+
+  /* .our-story-left {
+    width: 40%;
+  }
+
+  .our-story-right {
+    width: 60%;
+  } */
+
+  .our-story-text-left {
+    margin-right: 8px;
+  }
+  .our-story-text-right {
+    margin-left: 8px;
+  }
+
+  .our-story-img-container {
+    position: relative;
+    width: 80%;
+  }
+
+  .txt-grp-1 {
+    grid-area: txt-grp-1;
+  }
+
+  .txt-grp-2 {
+    grid-area: txt-grp-2;
+  }
+
+  .img-grp-1 {
+    grid-area: img-grp-1;
+  }
+
+  .img-grp-2 {
+    grid-area: img-grp-2;
+  }
+
+  #about_1 {
+    top: 30px;
+    margin-bottom: 20px;
+  }
+
+  #about_2 {
+    align-self: flex-end;
+    top: -30px;
+  }
+
+
+  .our-story-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 4px 4px 12px rgba(0,0,0,0.25);
+    border-radius: 2px;
+  }
+
+  .img-back {
+    position: absolute;
+    border-radius: 2px;
+  }
+
+  #img-back-1 {
+    left: 25%;
+    top: -30px;
+  }
+
+  #img-back-2 {
+    right: -10%;
+    bottom: -20px;
+  }
+
+  #img-back-3 {
+    left: -5%;
+    bottom: -10px;
+  }
+
+  #img-back-4 {
+    left: -10%;
+    top: -20px;
+  }
+
+  #img-back-5 {
+    width: 90%;
+    height: 85%;
+    right: -15px;
+    bottom: -20px;
+  }
+
+  #img-back-6 {
+    width: 80%;
+    height: 70%;
+    right: -20%;
+    top: -10px;
+  }
+
+  .back-large {
+    width: 80%;
+    height: 70%;
+    z-index: -1;
+  }
+
+  .back-small {
+    width: 60%;
+    height: 60%;
+    z-index: -2;
+  }
+
+  .back-green {
+    background-color: #6BC06D;
+  }
+
+  .back-grey {
+    background-color: #F2F2F2;
+  }
+
+  /***********/
+  /* MEMBERS */
+
+  .members-container {
+    /* background-color: #F2F2F2; */
+    padding: 0 18px;
+    width: 100%;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .members-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+  }
+
+  .member {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 180px;
+    margin: 18px;
+  }
+
+  .member-img {
+    background-color: #C4C4C4;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: 3px 4px 8px rgba(0,0,0,0.24);
+    margin-bottom: 12px;
+  }
+
+  .member-name {
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+  }
+
+
+  /**********/
+  /* VIDEOS */
+
+  #video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .video-wrapper {
+    color: #ffffff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 18px 0;
+    background-color: #6BC06D;
+    padding: 12px;
+    border-radius: 2px;
+    box-shadow: 4px 4px 12px rgba(0,0,0,0.25);
+
+
+  }
+
+  .video-frame {
+    margin-bottom: 12px;
+    border-radius: 4px;
+    width: 560px;
+    height: 315px;
+  }
+
+  @media (max-width: 991px) and (min-width: 768px) {
+    .our-story-img-container {
+      width: 100%;
+    }
+
+    #about_2 {
+      top: -70px;
+    }
+
+    #img-back-6 {
+      right: -10%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .our-story-container {
+      grid-template-rows: auto auto auto auto;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "txt-grp-1"
+        "img-grp-1"
+        "txt-grp-2"
+        "img-grp-2"
+    }
+
+    .our-story-content {
+      align-items: center;
+    }
+
+    .header-left {
+      align-self: flex-start;
+    }
+
+    .our-story-left {
+      width: 100%;
+    }
+
+    .our-story-right {
+      width: 100%;
+    }
+
+    .our-story-left-img {
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+    }
+
+    .our-story-img-container {
+      width: 60%;
+    }
+    #about_1 {
+      top: 10px;
+    }
+    #about_2 {
+      align-self: center;
+      margin: 12px;
+      height: 175px;
+      top: 0;
+    }
+
+    #about_3 {
+      height: 175px;
+      margin: 12px;
+    }
+
+    #img-back-6 {
+      right: -10%;
+    }
+
+    .video-wrapper {
+      width: 420px;
+      height: 300px;
+    }
+
+    .video-frame {
+      width: 100%;
+    }
+    
+    .notice {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .our-story-left-img {
+      flex-direction: column;
+    }
+
+    .our-story-img-container {
+      width: 80%;
+    }
+
+    #about_2 {
+      height: 100%;
+      top: -10px;
+    }
+
+    #about_3 {
+      height: 100%;
+    }
+
+  }
+
+:javascript
+
+  $(document).ready(function() {
+
+    window.onload = function() {
+      setTimeout(function() {
+        $(".about-content").css("opacity", 1);
+        $(".our-story-container").css("top", 0);
+      }, 1000);
+
+      };
+
+
+
+  $(window).scroll(function() {
+        var scrollTop = $(window).scrollTop();
+        $('.parallax-container').children().each(function() {
+          var width = parseInt($(window).width());
+          var divisor;
+          if (width <= 480) {
+            divisor = 2;
+          } else if (width <= 768) {
+            divisor = 5;
+          } else {
+            divisor = 9;
+          }
+          var factor = parseInt($(this).css("height")) / divisor;
+          var imgPos = scrollTop / factor + 'px';
+          $(this).css('transform', 'translateY(' + imgPos + ')');
+        })
+
+    });
+
+  });
+/*  Need to find container before implementing this*/
+-# %div{:id => "logo-container"}
+-#   %img{:id => "logo-img", :src => "./assets/logo2.png"}
+%div{:class => "about-content"}
+  %div{:class => "our-story-container"}
+    %div{:class => "our-story-content our-story-left txt-grp-1"}
+      %h1{:class => "about-header header-left"}
+        Our Story
+      %p{:class => "our-story-text-left"}
+        TheDesignExchange provides a central repository of early design stage methods, engaging all stakeholders in the design community of practice, and integrating online learning with real case studies to demonstrate the methods.
+      %p{:class => "our-story-text-left"}
+        Formal design methods have been shown to have high impact on the quality and success of engineered products. Due to time constraints, courses can only cover a subset of the most popular methods. Thus it can be hard to find the range of potential methods for use in any particular problem.
+    %div{:class => "our-story-content our-story-right img-grp-1"}
+      %div{:class => "our-story-img-container parallax-container", :id => "about_1"}
+        %div{:class => "img-back back-large back-green", :id => "img-back-1"}
+        %div{:class => "img-back back-small back-grey", :id => "img-back-2"}
+        %img{:class => "our-story-img", :src => "./assets/about_1.jpg" }
+  %div{:class => "our-story-container"}
+    %div{:class => "our-story-content our-story-left our-story-left-img img-grp-2"}
+      %div{:class => "our-story-img-container parallax-container", :id => "about_2"}
+        %div{:class => "img-back back-large back-green", :id => "img-back-3"}
+        %div{:class => "img-back back-small back-grey", :id => "img-back-4"}
+        %img{:class => "our-story-img", :src => "./assets/about_2.jpg" }
+      %div{:class => "our-story-img-container parallax-container", :id => "about_3"}
+        %div{:class => "img-back back-large back-green", :id => "img-back-5"}
+        %div{:class => "img-back back-small back-grey", :id => "img-back-6"}
+        %img{:class => "our-story-img", :src => "./assets/about_3.jpg" }
+    %div{:class => "our-story-content our-story-right txt-grp-2"}
+      %p{:class => "our-story-text-right"}
+        TheDesignExchange fills this need by organizing a wide range of disparate design research methods, developing a community of design educators and practitioners to evaluate those methods, and educating the next generation of design innovators. TheDesignExchange provides a structure to collect the many design methods in use today, their variations, and examples of use.     The portal aims to support the design process by providing educators and practitioners alike with a versatile library of proven tools.
+      %p{:class => "our-story-text-right"}
+        Given the community-of-practice model and wide application of design methods, theDesignExchange portal is fundamentally multi-disciplinary. The subject matter draws on the diverse range of contributors engaged in “design thinking”, a human-centric multidisciplinary design process (engineers, designers, architects, business people, educators). By recognizing and promoting the common thread among these different disciplines, theDesignExchange supports the cross-pollination of methodologies among them. theDesignExchange  aims to be the world’s largest open innovation archive of design-practice-related subject matter.  To accomplish this, we are drawing on previous work one in design theory, communities of practice, and expert/lead user-generated content.
+
   %br/
 
-.row
-  %h2 
-    LEADERSHIP
-  %p 
-    #{link_to 'Alice Agogino', 'http://www.me.berkeley.edu/people/faculty/alice-m-agogino'}, UC Berkeley, #{link_to 'agogino@berkeley.edu', 'mailto:agogino@berkeley.edu'}
-  %p 
-    Sara Beckman, UC Berkeley, #{link_to 'beckman@berkeley.edu', 'mailto:beckman@berkeley.edu'}
-  %p 
-    Danielle Poreh, UC Berkeley, #{link_to 'd.poreh@berkeley.edu', 'mailto:d.poreh@berkeley.edu'} – Product Manager and Communications Contact
-  %p 
-    Celeste Roschuni, University of Maryland – College Park, #{link_to 'celestial@gmail.com', 'mailto:celestial@gmail.com'}
-  %p 
-    Maria Yang, MIT, #{link_to 'mcyang@mit.edu', 'mailto:mcyang@mit.edu'}
-  %p  
-    Euiyoung Kim, UC Berkeley, #{link_to 'avant80.kim@gmail.com', 'mailto:avant80.kim@gmail.com'} – Design Strategy
+  %hr
 
-%br/
+  %div{:class => "members-container"}
+    %h2{:class => "about-header"}
+      Leadership
+    %div{:class => "members-row"}
+      %div{:class => "member"}
+        -# %div{:class => "member-img"}
+        %div{:class => "member-name"}
+          #{link_to 'Alice Agogino', 'http://www.me.berkeley.edu/people/faculty/alice-m-agogino', target: :_blank}
+        %div
+          UC Berkeley
+        %div
+          #{link_to 'agogino@berkeley.edu', 'mailto:agogino@berkeley.edu'}
+      %div{:class => "member"}
+        -# %div{:class => "member-img"}
+        %div{:class => "member-name"}
+          Sara Beckman
+        %div
+          UC Berkeley
+        %div
+          #{link_to 'beckman@berkeley.edu', 'mailto:beckman@berkeley.edu'}
+      %div{:class => "member"}
+        -# %div{:class => "member-img"}
+        %div{:class => "member-name"}
+          Danielle Poreh
+        %div
+          UC Berkeley
+        %div
+          #{link_to 'd.poreh@berkeley.edu', 'mailto:d.poreh@berkeley.edu'}
+        %div
+          Product Manager and Communications Contact
+      %div{:class => "member"}
+        -# %div{:class => "member-img"}
+        %div{:class => "member-name"}
+          Maria Yang
+        %div
+          MIT
+        %div
+          #{link_to 'mcyang@mit.edu', 'mailto:mcyang@mit.edu'}
+      %div{:class => "member"}
+        -# %div{:class => "member-img"}
+        %div{:class => "member-name"}
+          Euiyoung Kim
+        %div
+          UC Berkeley
+        %div
+          #{link_to 'euiyoungkim@berkeley.edu ', 'mailto:euiyoungkim@berkeley.edu '}
+        %div
+          Design Strategy
+      %div{:class => "member"}
+        -# %div{:class => "member-img"}
+        %div{:class => "member-name"}
+          Julia Kramer
+        %div
+          UC Berkeley
+        %div
+          #{link_to 'j.kramer@berkeley.edu', 'mailto:j.kramer@berkeley.edu'}
+        %div
+          Human-Centered Design for Development
+      %div{:class => "member"}
+        -# %div{:class => "member-img"}
+        %div{:class => "member-name"}
+          Celeste Roschuni
+        %div
+          University of Maryland – College Park
+        %div
+          #{link_to 'celestial@gmail.com', 'mailto:celestial@gmail.com'}
+      %div{:class => "member"}
+        -# %div{:class => "member-img"}
+        %div{:class => "member-name"}
+          Varna Vasudevan
+        %div
+          UC Berkeley
+        %div
+          #{link_to 'varna.vasudevan@berkeley.edu', 'mailto:varna.vasudevan@berkeley.edu'}
 
-.row
-  %h2
-    DEVELOPMENT TEAM
-  %p 
-    Carmen Castaños, #{link_to 'ccastano@mit.edu', 'mailto:ccastano@mit.edu'}
-  %p  
-    Alice Chin, #{link_to 'alicechin@berkeley.edu', 'mailto:alicechin@berkeley.edu'}
-  %p  
-    James Jiang, UC Berkeley, #{link_to 'james.jiang@berkeley.edu', 'mailto:james.jiang@berkeley.edu'} – Leads Web Dev Team 
-  %p  
-    Julia Kramer, UC Berkeley, #{link_to 'j.kramer@berkeley.edu', 'mailto:j.kramer@berkeley.edu'} – Human-Centered Design for Development
-  %p
-    Catherine Nitta, UC Berkeley, #{link_to 'nittac@berkeley.edu', 'mailto:nittac@berkeley.edu'}
-  %p
-    Erika Oishi, UC Berkeley, #{link_to 'erikaoishi@berkeley.edu', 'mailto:erikaoishi@berkeley.edu'}
-  %p
-    Seokhyeon (Sock) Ryu, #{link_to 'seokhyeonryu87@gmail.com', 'mailto:seokhyeonryu87@gmail.com'}
-  %p
-    Jonida Shkurti, #{link_to 'shkurti.j@gmail.com', 'mailto:shkurti.j@gmail.com'} – UX Design
+    %hr
 
-%br/
+    %h2{:class => "about-header"}
+      Development Team
+    %div{:class => "members-row"}
+      %div{:class => "member"}
+        %div{:class => "member-name"}
+          Angela Huang
+        %div
+          UC Berkeley
+        %div
+          #{link_to 'angela_huang@berkeley.edu', 'mailto:angela_huang@berkeley.edu'}
+        %div
+          User Interface
+      %div{:class => "member"}
+        %div{:class => "member-name"}
+          Erika Oishi
+        %div
+          UC Berkeley
+        %div
+          #{link_to 'erikaoishi@berkeley.edu', 'mailto:erikaoishi@berkeley.edu'}
+      %div{:class => "member"}
+        %div{:class => "member-name"}
+          Jarrod Schnapper
+        %div
+          UC Berkeley
+        %div
+          #{link_to 'jschnapper@berkeley.edu', 'mailto:jschnapper@berkeley.edu'}
+      %div{:class => "member"}
+        %div{:class => "member-name"}
+          Allan Yu
+        %div
+          UC Berkeley
+        %div
+          #{link_to 'allan15@berkeley.edu', 'mailto:allan15@berkeley.edu'}
 
-.row
-  %h2
-    VIDEOS
-  %p
-    %p theDesign Exchange #{link_to 'YouTube Channel', 'https://www.youtube.com/channel/UCLtBn_ZusRU1G2Tt16j-2IQ'}
-    %p #{link_to 'Video Pitch', 'https://www.youtube.com/watch?v=KnqqkO-r_04'} for theDesignExchange
+    %hr
 
-%br/
+    %h2{:class => "about-header"}
+      Acknowledgements
+    %p
+      theDesignExchange leadership is grateful for all of the people who have contributed in the past
+    %div{:class => "members-row"}
+      %div{:class => "member"}
+        %div{:class => "member-name"}
+          Carmen Castaños
+        %div
+          MIT
+        -# %div
+        -#   #{link_to 'ccastano@mit.edu', 'mailto:ccastano@mit.edu'}
+      %div{:class => "member"}
+        %div{:class => "member-name"}
+          Alice Chin
+        %div
+          UC Berkeley
+        -# %div
+        -#   #{link_to 'alicechin@berkeley.edu', 'mailto:alicechin@berkeley.edu'}
+      %div{:class => "member"}
+        %div{:class => "member-name"}
+          James Jiang
+        %div
+          UC Berkeley
+        -# %div
+        -#   #{link_to 'james.jiang@berkeley.edu', 'mailto:james.jiang@berkeley.edu'}
+        -# %div
+        -#   Leads Web Dev Team
+      %div{:class => "member"}
+        %div{:class => "member-name"}
+          Catherine Nitta
+        %div
+          UC Berkeley
+        -# %div
+        -#   #{link_to 'nittac@berkeley.edu', 'mailto:nittac@berkeley.edu'}
+      %div{:class => "member"}
+        %div{:class => "member-name"}
+          Seokhyeon (Sock) Ryu
+        %div
+          UC Berkeley
+        -# %div
+        -#   #{link_to 'seokhyeonryu87@gmail.com', 'mailto:seokhyeonryu87@gmail.com'}
+      %div{:class => "member"}
+        %div{:class => "member-name"}
+          Jonida Shkurti
+        -# %div
+        -#   #{link_to 'shkurti.j@gmail.com', 'mailto:shkurti.j@gmail.com'}
+        %div
+          UX Design
+        -#
 
-.row
-  %h2 
-    PRESENTATIONS AND PUBLICATIONS
-  %h3
-    2017
+  %hr
 
-  %ul
-    Kramer, J., Euiyoung Kim, Danielle Poreh, Alice Agogino, “Teaching and Evaluating Design Competencies in the 21st Century”, extended abstract Proceedings of the Mudd Design Workshop, 2017 titled “Design and the Future of the Engineer of 2020”. Poster presentation.
-  %ul
-    Kramer, J., D. Poreh, A.M. Agogino, “Using theDesignExchange as a Knowledge Platform for Human-Centered Design-Driven Global Development,” Proceedings of the ICED17, International Conference in Engineering Design, 2017.
-
-  %h3
-    2016
-  %ul
-    Kramer, J., C. Roschuni, A.M. Agogino, “Characterizing Skills for Human-Centered Design”, Proceedings of ASME IDETC 2016.
-  %ul
-    D.I. Levine, M.A. Lesniewski, A.M. Agogino, “Design Thinking in Development Engineering”, (with D. I. Levine, M.A. Lesniewski), International Journal of Engineering Education, 32 (3B), pp. 1396-1406, 2016.
-  %ul 
-    A.M. Agogino, S. Beckman, C. Castaños, J. Kramer, C.Roschuni, M. Yang, “Design Practitioners’ Perspectives on Methods for Ideation and Prototyping”, International Journal of Engineering Education, 32 (3B), pp. 1428-1437, 2016.
-
-  %h3
-    2015
-  %ul 
-    Fuge, M. and A.M. Agogino, “Pattern Analysis of IDEO’s Human-Centered Design Methods in Developing Regions”, ASME Journal of Mechanical Design, 137 (7), MD-14-1571, July 2015.
-  %ul
-    Agogino, A.M., S. Beckman, C. Castaños, J. Kramer C.Roshuni, M. Yang (2015). “Design Practitioners’ Perspectives on Methods for Ideation and Prototyping,” Proceedings of the Mudd Design Workshop IX, May 27-30, 2015, Harvey Mudd College.
-  %ul
-    Roshuni, C. J. Kramer, et al. (2015). “Design Talking:  An Ontology of Design Methods to Support a Common Language of Design,” to appear in Proceedings of the International Conference on Engineering Design, ICED15.Winner of Reviewers’ Favorite at the 2015 International Conference on Engineering Design
-  %ul
-    Roshuni, C. J. Kramer, A.M. Agogino (2015). “Design Talking:  How Design Practitioners Talk About Design Research Methods,” to appear in Proceedings of the International Conference on Design Education, IDETC15.
-
-  %h3 
-    2014
-  %ul 
-    Fuge, M., B. Peters and A.M. Agogino, “Machine Learning Algorithms for Recommending Design Methods,” ASME Journal of Mechanical Design, 136 (10) 101103, August 18, 2014.
-  %ul 
-    Fuge, M., K. Tee, A.M. Agogino and N. Maton, “Network Analysis of Collaborative Design Networks: A Case Study of Open IDEO”. ASME Journal of Computing and Information Science in Engineering, 14 (2) 2014.
-  %ul 
-    Fuge, M., A.M. Agogino and N. Maton, “How Online Design Communities Evolve Over Time: the Birth and Growth of OpenIDEO.” Proceedings of the International Design Engineering Technical Conference (DETC), Design, Theory and Methods, ASME, August 2014.
-
-  %h3 
-    2011
-  %ul 
-    Roschuni, C., A.M. Agogino, S.L. Beckman (2011). The DesignExchange: Supporting the design community of practice. In Proceedings of the 18th International Conference on Engineering Design (ICED 11) (Vol. 8). Lyngby/Copenhagen, Denmark.
-
-%br/
-
-.row
-  %h2
-    FUNDING AND INDUSTRY COLLABORATION
-  %p
-    We thank our industry collaborators who hosted our workshop series: Autodesk, Frog, Goto Media, DesignMap, and IDEO and our team of faculty and students at UC Berkeley and MIT for their input and dedication to theDesignExchange. This work was partially supported by NSF grant CMMI-1334361.
+  %br/
 
 
+  %div
+    %h2{:class => "about-header"}
+      Videos
+    %div{:id => "video-container"}
+      %p
+        theDesignExchange #{link_to 'YouTube Channel', 'https://www.youtube.com/channel/UCLtBn_ZusRU1G2Tt16j-2IQ', target: :_blank}
+      %div{:class => "video-wrapper"}
+        %iframe{:class => "video-frame", :width => "560", :height => "315", :frameborder => "0", :src => "https://www.youtube.com/embed/KnqqkO-r_04"}
+        %p
+          Video Pitch for theDesignExchange
+  %br/
 
+  %hr
+  %div
+    %h2{:class => "about-header"}
+      Design Skills Self-Assessment Matrix
+    %p
+      We have also created a skillsets matrix for instructors in design courses to measure how their students value specific design skillsets and how their competencies in these design skillsets change throughout the course. The X-axis of the matrix asks students to evaluate the strength of the Skills I Have vs. Skills that I am Limited In. The Y-axis asks students to evaluate the strength they have in the Skills I Want to Hone vs. Skills I Don’t Want to Hone. Students place 32 design skills (as explained in the attached table Skills-Descriptions) onto the matrix.
+    %p
+      You are invited to
+      #{link_to 'demo this tool', 'http://ec2-54-86-240-127.compute-1.amazonaws.com//demo', target: :_blank}
+      and give feedback. Contact
+      #{link_to 'Euiyoung Kim', 'mailto:euiyoungkim@berkeley.edu'}
+      to learn more about the assessment tool and arrange to use for a class or workshop.
+    %br/
+  %hr
+
+
+  %div
+    %h2
+      Presentations and Publications
+
+    %h3
+      2018
+    %ul
+      Euiyoung Kim, Sara Beckman, Alice Agogino, “Design roadmapping in uncertain world: Implementing a customer-experience focused strategy”, California Management Review, 61(1), Fall 2018.: 10.1177/0008125618796489, 2018.
+    %ul
+      Danielle Poreh, Euiyoung Kim, Varna Vasudevan, Alice Agogino, “Using “Why and How” to Tap into Novice Designers’ Method Selection Mindset”, ASME IDETC/DTM 2018: American Society of Mechanical Engineers International Design Engineering Technical Conferences, Quebec City, Canada.
+    %ul
+      Euiyoung Kim, Sara Beckman, Alice Agogino, “Applying Design Roadmapping in New Product Development Education: Insights From Student Design Teams”, ASME IDETC/DTM 2018: American Society of Mechanical Engineers International Design Engineering Technical Conferences, Quebec City, Canada.
+
+    %h3
+      2017
+    %ul
+      Kramer, J., Euiyoung Kim, Danielle Poreh, Alice Agogino, “Teaching and Evaluating Design Competencies in the 21st Century”, extended abstract Proceedings of the Mudd Design Workshop, 2017 titled “Design and the Future of the Engineer of 2020”. Poster presentation.
+    %ul
+      Kramer, J., D. Poreh, A.M. Agogino, “Using theDesignExchange as a Knowledge Platform for Human-Centered Design-Driven Global Development,” Proceedings of the ICED17, International Conference in Engineering Design, 2017.
+
+    %h3
+      2016
+    %ul
+      Kramer, J., C. Roschuni, A.M. Agogino, “Characterizing Skills for Human-Centered Design”, Proceedings of ASME IDETC 2016.
+    %ul
+      D.I. Levine, M.A. Lesniewski, A.M. Agogino, “Design Thinking in Development Engineering”, (with D. I. Levine, M.A. Lesniewski), International Journal of Engineering Education, 32 (3B), pp. 1396-1406, 2016.
+    %ul
+      A.M. Agogino, S. Beckman, C. Castaños, J. Kramer, C.Roschuni, M. Yang, “Design Practitioners’ Perspectives on Methods for Ideation and Prototyping”, International Journal of Engineering Education, 32 (3B), pp. 1428-1437, 2016.
+
+    %h3
+      2015
+    %ul
+      Fuge, M. and A.M. Agogino, “Pattern Analysis of IDEO’s Human-Centered Design Methods in Developing Regions”, ASME Journal of Mechanical Design, 137 (7), MD-14-1571, July 2015.
+    %ul
+      Agogino, A.M., S. Beckman, C. Castaños, J. Kramer C.Roshuni, M. Yang (2015). “Design Practitioners’ Perspectives on Methods for Ideation and Prototyping,” Proceedings of the Mudd Design Workshop IX, May 27-30, 2015, Harvey Mudd College.
+    %ul
+      Roshuni, C. J. Kramer, et al. (2015). “Design Talking:  An Ontology of Design Methods to Support a Common Language of Design,” to appear in Proceedings of the International Conference on Engineering Design, ICED15.Winner of Reviewers’ Favorite at the 2015 International Conference on Engineering Design
+    %ul
+      Roshuni, C. J. Kramer, A.M. Agogino (2015). “Design Talking:  How Design Practitioners Talk About Design Research Methods,” to appear in Proceedings of the International Conference on Design Education, IDETC15.
+
+    %h3
+      2014
+    %ul
+      Fuge, M., B. Peters and A.M. Agogino, “Machine Learning Algorithms for Recommending Design Methods,” ASME Journal of Mechanical Design, 136 (10) 101103, August 18, 2014.
+    %ul
+      Fuge, M., K. Tee, A.M. Agogino and N. Maton, “Network Analysis of Collaborative Design Networks: A Case Study of Open IDEO”. ASME Journal of Computing and Information Science in Engineering, 14 (2) 2014.
+    %ul
+      Fuge, M., A.M. Agogino and N. Maton, “How Online Design Communities Evolve Over Time: the Birth and Growth of OpenIDEO.” Proceedings of the International Design Engineering Technical Conference (DETC), Design, Theory and Methods, ASME, August 2014.
+
+    %h3
+      2011
+    %ul
+      Roschuni, C., A.M. Agogino, S.L. Beckman (2011). The DesignExchange: Supporting the design community of practice. In Proceedings of the 18th International Conference on Engineering Design (ICED 11) (Vol. 8). Lyngby/Copenhagen, Denmark.
+
+  %br/
+
+  -# %div
+  -#   %h2
+  -#     Funding and Industry Collaboration
+  -#   %p
+  -#     We thank our industry collaborators who hosted our workshop series: Autodesk, Frog, Goto Media, DesignMap, and IDEO and our team of faculty and students at UC Berkeley and MIT for their input and dedication to theDesignExchange. This work was partially supported by NSF grant CMMI-1334361.

@@ -46,9 +46,19 @@ module ApplicationHelper
       beginning_date = "2018-03-13".to_date # Date when we switched away from Markdown
       if last_date < beginning_date
         md_format(text)
+      else
+        text.html_safe
       end
     else
       text.html_safe
+    end
+  end
+
+  def shorten(text)
+    if text.length > 80
+      text[0..76] + " ..."
+    else
+      text
     end
   end
 

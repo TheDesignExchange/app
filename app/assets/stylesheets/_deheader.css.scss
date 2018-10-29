@@ -9,7 +9,6 @@
 }
 
 .join {
-  font-family: 'Montserrat', sans-serif;
   height:50px;
   font-size:150%;
   color: white;
@@ -81,125 +80,6 @@
 }
 
 
-
-.jumbotron {
-  background: rgb(0, 0, 0);
-  color: white;
-  width:40%; 
-  height:100%;
-  float:right;
-  top:50%;
-  left:48%; 
-  position: absolute;
-  display:inline-block;
-}
-
-.jumbotron h2{
-  font-weight: bold;
-  font-size:275%;
-  font-family: 'GFS Didot', serif;
-  padding-top:10%;
-  padding-bottom:4%;
-}
-
-.jumbotron p{
-  font-size: 120%;
-  font-family: Georgia, serif;
-  padding-left:5%;
-  padding-right:5%;
-}
-
-.jumbotron a{
-  color:white;
-  font-size: 70%;
-  font-family: Georgia, serif;
-  text-decoration:underline;
-  font-style:italic;
-  padding-bottom:20%;
-}
-
-
-@media (max-width: 1175px) {
-  .jumbotron {
-    width:40%; 
-    height:90%;
-  }
-
-  .jumbotron h2{
-    font-size:200%;
-  }
-
-  .jumbotron p{
-    font-size: 90%;
-  }
-
-  .jumbotron a{
-    font-size: 50%;
-  }
-}
-
-@media (max-width: 928px) {
-  .jumbotron {
-    width:50%; 
-    height:75%;
-    left:42%; 
-    padding-top:20px;
-    padding-bottom:20px;
-  }
-
-  .jumbotron h2{
-    font-size:200%;
-    padding-top:4%;
-  }
-
-  .jumbotron p{
-    font-size: 90%;
-  }
-
-  .jumbotron a{
-    font-size: 50%;
-    padding-bottom:20%;
-  }
-}
-
-@media (max-width: 774px) {
-  .jumbotron {
-    width:84%; 
-    height:100%;
-    top:60%;
-    left:8%; 
-    padding-top:10px;
-    padding-bottom:10px;
-    z-index:1000;
-  }
-
-  .jumbotron h2{
-    font-size:170%;
-    padding-top:1%;
-    padding-bottom:2%;
-    text-align: center;
-  }
-
-  .jumbotron p{
-    font-size: 75%;
-  }
-
-  .jumbotron a{
-    font-size: 50%;
-  }
-
-  .carousel-inner{
-  height:100%;
-  // z-index: -1;
-  position: relative;
-  margin: auto;
-  padding-bottom:30%;
-  background:white !important;
-
-  }
-
-}
-
 .subtitle {
   font-size: 20px;
   margin-top:2%;
@@ -245,14 +125,12 @@
   border-radius: 20px;
 
   h2 {
-    font-family: 'Montserrat', sans-serif;
     font-size:165%;
     margin-top: 0;
   }
 
   p {
     font-size:100%;
-    font-family: 'Raleway', sans-serif;
   }
 }
 

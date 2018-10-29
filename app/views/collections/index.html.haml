@@ -3,6 +3,9 @@
     position: absolute;
     right: 30px;
   }
+  .nav-tab:hover {
+    cursor: pointer;
+  }
 
 -if !current_user.nil?
   = link_to new_collection_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
@@ -13,9 +16,9 @@
 
 #tabs
   %ul.nav.nav-tabs
-    %li.active
+    %li.active.nav-tab
       %a{"data-link" => "public"} Public
-    %li
+    %li.nav-tab
       %a{"data-link" => "private"} Private
 
 .tab-pane.col-md-12.padding{"data-link" => "private"}
