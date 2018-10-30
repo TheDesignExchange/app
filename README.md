@@ -32,7 +32,7 @@ A few manual steps are required:
 
  [install **rvm**]: https://rvm.io/rvm/install
 
-### Legacy Usage (based on inhertied code)
+### Legacy Usage (based on inherited code)
 
 The `Makefile` helps simplify starting and stopping the dev server.
 
