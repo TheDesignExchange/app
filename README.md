@@ -32,7 +32,7 @@ A few manual steps are required:
 
  [install **rvm**]: https://rvm.io/rvm/install
 
-### Usage
+### Legacy Usage (based on inhertied code)
 
 The `Makefile` helps simplify starting and stopping the dev server.
 
@@ -46,6 +46,15 @@ Rails can also be run in the background using `screen(1)` as follows:
 make [up]             # start rails (in the background) and its dependencies
 make [rails-]restart  # restart rails (in the background)
 make [rails-]attach   # start rails in the foreground in a screen(1) session
+```
+
+### Current Usage (Fall 2018)
+```
+# When developing
+make rails            # starts rails, pg, and solr, and seeds pg
+
+# IMPORTANT! When finished developing, do this
+make halt             # shuts everything down and frees the port
 ```
 
 ### Debugging
