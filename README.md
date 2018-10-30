@@ -24,11 +24,15 @@ A few manual steps are required:
    As of Aug 2015, this would be: `rvm install ruby-2.1.3`
    (If you have a nonstandard security setup, install rvm without autolibs.)
 
-3. **Bundler**. `gem install bundler`, then `bundle install`
-   Ubuntu: You might have to `sudo apt-get install openjdk-6-jdk` for Sunspot.
+3. `cd` into the repo and then `cd app` to get to the root of the project directory
 
-4. That's it! Read the next section to see how to start up the server.
-5. After starting your server, run `bundle exec rake db:seed` to seed your database with starter data.
+4. **Bundler**. `gem install bundler`, then `bundle install`
+   Ubuntu: You might have to `sudo apt-get install openjdk-6-jdk` for Sunspot.
+   
+5. That's it! Read the next section to see how to start up the server. The recommended usad is the current usage listed below the legacy.
+
+*optional 6th step based on legacy code... not sure if it really is working*
+6. After starting your server, run `bundle exec rake db:seed` to seed your database with starter data.
 
  [install **rvm**]: https://rvm.io/rvm/install
 
