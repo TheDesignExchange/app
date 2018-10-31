@@ -61,6 +61,11 @@ make rails            # starts rails, pg, and solr, and seeds pg
 make halt             # shuts everything down and frees the port
 ```
 
+### Precompile changes in the assets file
+```
+rake assets:precompile
+```
+
 ### Debugging
 
 #### Ruby
