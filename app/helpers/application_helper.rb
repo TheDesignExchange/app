@@ -56,11 +56,12 @@ module ApplicationHelper
 
   def shorten(text)
     if text.length > 80
-      text[0..76] + " ..."
+      text.split('.')[0]
     else
       text
     end
   end
+    
 
   def print_children(level,h)
     str=""
