@@ -31,7 +31,8 @@ A few manual steps are required:
    
 5. That's it! Read the next section to see how to start up the server. The recommended usad is the current usage listed below the legacy.
 
-*optional 6th step based on legacy code... not sure if it really is working*
+(*optional 6th step based on legacy code... not sure if it really is working*)
+
 6. After starting your server, run `bundle exec rake db:seed` to seed your database with starter data.
 
  [install **rvm**]: https://rvm.io/rvm/install
