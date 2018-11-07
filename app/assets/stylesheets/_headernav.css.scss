@@ -35,10 +35,34 @@ li.active a {
     border-radius: 4px;
     color: #6BC06D;
     margin-top: 9px;
+    margin-left: 8px;
     padding: 4px 6px;
 }
 
 #sign-in:hover {
     color: #ffffff;
     background-color:#6BC06D;
+}
+
+.navbar-toggle .icon-bar {
+    background-color: #333333;
+}
+
+.navbar-toggle:hover .icon-bar {
+    background-color: #6BC06D;
+}
+
+.search-icon {
+    cursor: pointer;
+    padding: 15px;
+    font-size: 16px;
+    top: 2px;
+}
+
+.search-icon:hover {
+    color: #6BC06D;
+}
+
+.search-group {
+    display: none;
 }
