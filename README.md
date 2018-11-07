@@ -78,7 +78,7 @@ short, you need to have a visible rails server (run `make attach` in a console)
 and add a line that reads `binding.pry` in the file you want to debug, at the
 line where you want the debugger to begin.
 
-### Troublshooting
+### Troubleshooting
 In general, *we should eventually update ruby and all gems* to the most recent version. This will help with old dependencies and any possible security issues. 
 
 #### nokogiri issue
