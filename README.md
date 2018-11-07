@@ -69,12 +69,6 @@ rake assets:precompile
 
 ### Debugging
 
-### Troublshooting
-In general, *we should eventually update ruby and all gems* to the most recent version. This will help with old dependencies and any possible security issues. 
-
-#### nokogiri issue
-If you run into problems with nokogiri, it may have to do with your ruby version. Make sure you're using **ruby version 2.1.3** since we have yet to update. If this does not resolve the problem, trying re-cloning the repo and make sure you set up the environment with rvm ruby version 2.1.3
-
 #### Ruby
 
 We use [pry](https://github.com/pry/pry) and
@@ -83,3 +77,9 @@ code. See their respective github repositories for further documentation. In
 short, you need to have a visible rails server (run `make attach` in a console)
 and add a line that reads `binding.pry` in the file you want to debug, at the
 line where you want the debugger to begin.
+
+### Troublshooting
+In general, *we should eventually update ruby and all gems* to the most recent version. This will help with old dependencies and any possible security issues. 
+
+#### nokogiri issue
+If you run into problems with nokogiri, it may have to do with your ruby version. Make sure you're using **ruby version 2.1.3** since we have yet to update. If this does not resolve the problem, trying re-cloning the repo and make sure you set up the environment with rvm ruby version 2.1.3
