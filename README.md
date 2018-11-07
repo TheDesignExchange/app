@@ -31,9 +31,9 @@ A few manual steps are required. See **troublshooting** section of readme is you
    
 5. That's it! Read the next section to see how to start up the server. The recommended usad is the current usage listed below the legacy.
 
-(*optional 6th step based on legacy code... not sure if it really is working*)
+(*optional 6th step based on legacy code... not sure if it is necessary since we believe it is executed the first time you run `make rails`*)
 
-6. After starting your server, run `bundle exec rake db:seed` to seed your database with starter data.
+6. After starting your server, run `bundle exec rake db:seed` to seed your database with starter data. 
 
  [install **rvm**]: https://rvm.io/rvm/install
 
