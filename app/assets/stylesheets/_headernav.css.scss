@@ -2,12 +2,12 @@
     top: 0;
     background-color: #ffffff;
     position: fixed;
-    box-shadow: 0px 2px 8px rgba(0,0,0,0.25);
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
     font-family: 'Open Sans', sans-serif;
     font-weight: normal;
     border: none;
     border-radius: 0;
-    z-index: 4;
+    z-index: 2;
     width: 100%;
 }
 
@@ -16,7 +16,29 @@
 }
 
 .navbar li a:hover, .navbar-nav li a:focus {
-    background-color: none;
+    background-color: #ffffff;
     color: #6BC06D;
     opacity: 1;
+}
+
+.navbar li.active {
+    font-weight: 700;
+}
+
+li.active a {
+    color: #6BC06D;
+}
+
+#sign-in {
+    border: 2px solid #6BC06D;
+    font-weight: 700;
+    border-radius: 4px;
+    color: #6BC06D;
+    margin-top: 9px;
+    padding: 4px 6px;
+}
+
+#sign-in:hover {
+    color: #ffffff;
+    background-color:#6BC06D;
 }
