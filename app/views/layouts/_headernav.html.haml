@@ -1,4 +1,7 @@
 %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+
+= stylesheet_link_tag "_headernav", :media => "all"
+
 / Global site tag (gtag.js) - Google Analytics
 %script{:async => "", :src => "https://www.googletagmanager.com/gtag/js?id=UA-113963401-1"}
 :javascript
@@ -14,7 +17,7 @@
   });
 
 %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
-%nav.navbar.navbar-default.navbar-top{:role => "navigation"}
+%nav.navbar.navbar-top{:role => "navigation"}
   .container-fluid
     / Brand and toggle get grouped for better mobile display
     .navbar-header

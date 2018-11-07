@@ -1,0 +1,22 @@
+.navbar {
+    top: 0;
+    background-color: #ffffff;
+    position: fixed;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.25);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+    border: none;
+    border-radius: 0;
+    z-index: 4;
+    width: 100%;
+}
+
+.navbar a {
+    color: #333333;
+}
+
+.navbar li a:hover, .navbar-nav li a:focus {
+    background-color: none;
+    color: #6BC06D;
+    opacity: 1;
+}
