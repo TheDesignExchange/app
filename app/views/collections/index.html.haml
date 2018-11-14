@@ -1,53 +1,210 @@
+/ :css
+/   .btn-index-create {
+/     position: absolute;
+/     right: 30px;
+/   }
+/   .nav-tab:hover {
+/     cursor: pointer;
+/   }
+
+/ -if !current_user.nil?
+/   = link_to new_collection_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
+/     %span.glyphicon.glyphicon-plus
+/     Create Collection
+
+/ %h1 Collections
+
+/ #tabs
+/   %ul.nav.nav-tabs
+/     %li.active.nav-tab
+/       %a{"data-link" => "public"} Public
+/     %li.nav-tab
+/       %a{"data-link" => "private"} Private
+
+/ .tab-pane.col-md-12.padding{"data-link" => "private"}
+/   -if @private_collections.nil? || @private_collections.empty?
+/     %h2 You have no private collections
+/   -else 
+/     %h2 Your Private Collections
+/     = will_paginate @private_collections, :param_name => "private_page"
+/     %ul.collections
+/       - @private_collections.each do |collection|
+/         %br
+/         %li
+/           -col_path = "/collections/" + collection.id.to_s
+/           %a{:href => col_path}
+/             %span.glyphicon.glyphicon-th-list
+/             #{collection.name}
+
+/ .tab-pane.col-md-12.padding{"data-link" => "public"}
+/   -if @public_collections.empty?
+/     %h2 There are no public collections
+/   -else 
+/     %h2 All Public Collections
+/     = will_paginate @public_collections, :param_name => "public_page"
+/     %ul.collections
+/       - @public_collections.each do |collection|
+/         %br
+/         %li
+/           -col_path = "/collections/" + collection.id.to_s
+/           %a{:href => col_path}
+/             %span.glyphicon.glyphicon-th-list
+/             #{collection.name}
+
 :css
-  .btn-index-create {
-    position: absolute;
-    right: 30px;
+  .new-collection-button {
+    width: 200px;
+    height: 60px;
+    border: .5px solid #E5E5E5;
+    border-radius: 54px;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 200px;
   }
-  .nav-tab:hover {
+
+  .new-collection-button:hover {
     cursor: pointer;
   }
 
--if !current_user.nil?
-  = link_to new_collection_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
-    %span.glyphicon.glyphicon-plus
-    Create Collection
+  .collection-button-text {
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+    top: 9px;
+  }
 
-%h1 Collections
+  .plus {
+    display: inline-block;
+    color: #6BC06D;
+    font-size: 25px;
+  }
 
-#tabs
-  %ul.nav.nav-tabs
-    %li.active.nav-tab
-      %a{"data-link" => "public"} Public
-    %li.nav-tab
-      %a{"data-link" => "private"} Private
+  .new-collection {
+    display: inline-block;
+    font-family: Gotham;
+    font-weight: bold;
+  }
 
-.tab-pane.col-md-12.padding{"data-link" => "private"}
-  -if @private_collections.nil? || @private_collections.empty?
-    %h2 You have no private collections
-  -else 
-    %h2 Your Private Collections
-    = will_paginate @private_collections, :param_name => "private_page"
-    %ul.collections
-      - @private_collections.each do |collection|
-        %br
-        %li
-          -col_path = "/collections/" + collection.id.to_s
-          %a{:href => col_path}
-            %span.glyphicon.glyphicon-th-list
-            #{collection.name}
+  .filter-box {
+    width: 200px;
+    height: 120px;
+    background-color: #F5F5F5;
+    padding: 12px;
+    margin-top: 42px;
+  }
 
-.tab-pane.col-md-12.padding{"data-link" => "public"}
-  -if @public_collections.empty?
-    %h2 There are no public collections
-  -else 
-    %h2 All Public Collections
-    = will_paginate @public_collections, :param_name => "public_page"
-    %ul.collections
-      - @public_collections.each do |collection|
-        %br
-        %li
-          -col_path = "/collections/" + collection.id.to_s
-          %a{:href => col_path}
-            %span.glyphicon.glyphicon-th-list
-            #{collection.name}
+  .filter-by {
+    font-family: Gotham;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .labels {
+    margin-top: 12px;
+    font-family: Open Sans;
+  }
+
+  h1 {
+    font-family: Gotham;
+    font-weight: bold;
+  }
+
+  .title {
+    margin-top: 60px;
+  }
+
+  .blurb {
+    font-family: Open Sans;
+    font-size: 18px;
+    margin-top: 18px;
+  }
+
+  .collection-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 24px;
+  }
+
+  .collection-card {
+    width: 250px;
+    height: 240px;
+    border: .5px solid #E5E5E5;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 30px;
+  }
+
+  .color {
+    height: 120px;
+    background-color: #6BC06D;
+  }
+
+  .info {
+    padding: 12px;
+  }
+
+  .class-name {
+    font-family: Gotham;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .school {
+    font-family: Open Sans;
+    font-size: 15px;
+  }
+
+  .semester {
+    font-family: Open Sans;
+    font-size: 15px;
+  }
+
+.col-sm-3
+  .new-collection-button
+    .collection-button-text
+      .plus +
+      .new-collection New Collection
+
+  .filter-box
+    .filter-by Filter By
+    .labels
+      .public-label Public Collections
+      .private-label My Collections
+
+.col-sm-9
+  %h1.title Collections
+  .blurb Your methods and case studies relevant to specific courses.
+  .collection-cards
+    .collection-card
+      .color
+      .info
+        .class-name ME 110: Introduction to Product Development
+        .school UC Berkeley
+        .semester Fall 2018
+    .collection-card
+      .color
+      .info
+        .class-name
+        .school
+        .semester
+    .collection-card
+      .color
+      .info
+        .class-name
+        .school
+        .semester
+    .collection-card
+      .color
+      .info
+        .class-name
+        .school
+        .semester
+
+
+
+
+
+
+
+
+
 
