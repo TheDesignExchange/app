@@ -78,16 +78,4 @@ gem "hash_control"
 
 gem 'recaptcha', :require => 'recaptcha/rails'
 
-gem 'sass-rails', '~> 5.0', '>= 5.0.6'
 
-# register sprockets
-if env.respond_to?(:register_transformer)
-  env.register_mime_type 'text/css', extensions: ['.css'], charset: :css
-  env.register_preprocessor 'text/css', MySprocketsExtension
-end
-
-if env.respond_to?(:register_engine)
-  args = ['.css', MySprocketsExtension]
-  args << { mime_type: 'text/css', silence_deprecation: true } if Sprockets::VERSION.start_with?("3")
-  env.register_engine(*args)
-end
