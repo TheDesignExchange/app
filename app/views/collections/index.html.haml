@@ -51,155 +51,273 @@
 /             %span.glyphicon.glyphicon-th-list
 /             #{collection.name}
 
+
+
+
+
+
+
+
+/ :css
+/   .new-collection-button {
+/     width: 200px;
+/     height: 60px;
+/     border: .5px solid #E5E5E5;
+/     border-radius: 54px;
+/     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+/     margin-top: 200px;
+/   }
+
+/   .new-collection-button:hover {
+/     cursor: pointer;
+/     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+/     /background-color: #F5F5F5;
+/   }
+
+/   .collection-button-text {
+/     font-size: 18px;
+/     text-align: center;
+/     position: relative;
+/     top: 9px;
+/   }
+
+/   .plus {
+/     display: inline-block;
+/     color: #6BC06D;
+/     font-size: 25px;
+/   }
+
+/   .new-collection {
+/     display: inline-block;
+/     font-family: Gotham;
+/     font-weight: bold;
+/   }
+
+/   .filter-box {
+/     width: 200px;
+/     height: 120px;
+/     background-color: #F5F5F5;
+/     padding: 12px;
+/     margin-top: 42px;
+/   }
+
+/   .filter-by {
+/     font-family: Gotham;
+/     font-weight: bold;
+/     font-size: 18px;
+/   }
+
+/   .labels {
+/     margin-top: 12px;
+/     font-family: Open Sans;
+/   }
+
+/   h1 {
+/     font-family: Gotham;
+/     font-weight: bold;
+/   }
+
+/   .title {
+/     margin-top: 60px;
+/   }
+
+/   .blurb {
+/     font-family: Open Sans;
+/     font-size: 18px;
+/     margin-top: 18px;
+/   }
+
+/   .collection-cards {
+/     display: flex;
+/     flex-wrap: wrap;
+/     justify-content: space-between;
+/     margin-top: 24px;
+/   }
+
+/   .collection-card {
+/     width: 250px;
+/     height: 240px;
+/     border: .5px solid #E5E5E5;
+/     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+/     margin-bottom: 30px;
+/   }
+
+/   .color1 {
+/     height: 120px;
+/     background-color: #6BC06D;
+/   }
+
+/   .color2 {
+/     height: 120px;
+/     background-color: #52C1E7;
+/   }
+
+/   .color3 {
+/     height: 120px;
+/     background-color: #FDE667;
+/   }
+
+/   .color4 {
+/     height: 120px;
+/     background-color: #C74042;
+/   }
+
+/   .info {
+/     padding: 12px;
+/   }
+
+/   .class-name {
+/     font-family: Gotham;
+/     font-weight: bold;
+/     font-size: 18px;
+/   }
+
+/   .school {
+/     font-family: Open Sans;
+/     font-size: 15px;
+/   }
+
+/   .semester {
+/     font-family: Open Sans;
+/     font-size: 15px;
+/   }
+
+/ .col-sm-3
+/   .new-collection-button
+/     .collection-button-text
+/       .plus +
+/       .new-collection New Collection
+
+/   .filter-box
+/     .filter-by Filter By
+/     .labels
+/       .public-label Public Collections
+/       .private-label My Collections
+
+/ .col-sm-9
+/   %h1.title Collections
+/   .blurb Your methods and case studies relevant to specific courses.
+/   .collection-cards
+/     .collection-card
+/       .color1
+/       .info
+/         .class-name ME 110: Introduction to Product Development
+/         .school UC Berkeley
+/         .semester Fall 2018
+/     .collection-card
+/       .color2
+/       .info
+/         .class-name DES INV 190: Design Thinking
+/         .school UC Berkeley
+/         .semester Spring 2017
+/     .collection-card
+/       .color3
+/       .info
+/         .class-name DES INV 15: Introduction to Design Thinking
+/         .school UC Berkeley
+/         .semester Fall 2018
+/     .collection-card
+/       .color4
+/       .info
+/         .class-name DES INV 181/ME 292C-2: Reimagining Mobility
+/         .school UC Berkeley
+/         .semester Fall 2018
+
 :css
-  .new-collection-button {
-    width: 200px;
-    height: 60px;
-    border: .5px solid #E5E5E5;
-    border-radius: 54px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-top: 200px;
+  .notice {
+    display: none;
   }
 
-  .new-collection-button:hover {
-    cursor: pointer;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
-    /background-color: #F5F5F5;
-  }
-
-  .collection-button-text {
-    font-size: 18px;
-    text-align: center;
+  .title-space {
+    width: 150%;
+    height: 200px;
     position: relative;
-    top: 9px;
+    right: 25%;
+    background-color: #FFBF69;
   }
 
-  .plus {
-    display: inline-block;
-    color: #6BC06D;
-    font-size: 25px;
-  }
-
-  .new-collection {
-    display: inline-block;
+  .title-text {
     font-family: Gotham;
+    font-size: 36px;
     font-weight: bold;
-  }
-
-  .filter-box {
-    width: 200px;
-    height: 120px;
-    background-color: #F5F5F5;
-    padding: 12px;
-    margin-top: 42px;
-  }
-
-  .filter-by {
-    font-family: Gotham;
-    font-weight: bold;
-    font-size: 18px;
+    margin-left: 10%;
+    padding-top: 120px;
   }
 
   .labels {
-    margin-top: 12px;
-    font-family: Open Sans;
-  }
-
-  h1 {
     font-family: Gotham;
+    font-size: 24px;
     font-weight: bold;
-  }
-
-  .title {
+    position: relative;
+    right: 5%;
     margin-top: 60px;
   }
 
-  .blurb {
-    font-family: Open Sans;
-    font-size: 18px;
-    margin-top: 18px;
-  }
-
-  .collection-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  .label1 {
     margin-top: 24px;
   }
 
-  .collection-card {
-    width: 250px;
-    height: 240px;
-    border: .5px solid #E5E5E5;
-    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-bottom: 30px;
-  }
-
-  .color {
-    height: 120px;
-    background-color: #6BC06D;
-  }
-
-  .info {
-    padding: 12px;
-  }
-
-  .class-name {
-    font-family: Gotham;
-    font-weight: bold;
-    font-size: 18px;
-  }
-
-  .school {
+  .gray-box {
+    width: 320px;
+    height: 220px;
+    background-color: #F5F5F5;
+    margin-top: 74px;
+    margin-bottom: 100px;
     font-family: Open Sans;
-    font-size: 15px;
+    font-size: 16px;
   }
 
-  .semester {
-    font-family: Open Sans;
-    font-size: 15px;
+  .info1 {
+    font-style: bold;
   }
 
-.col-sm-3
-  .new-collection-button
-    .collection-button-text
-      .plus +
-      .new-collection New Collection
 
-  .filter-box
-    .filter-by Filter By
-    .labels
-      .public-label Public Collections
-      .private-label My Collections
 
-.col-sm-9
-  %h1.title Collections
-  .blurb Your methods and case studies relevant to specific courses.
-  .collection-cards
-    .collection-card
-      .color
-      .info
-        .class-name ME 110: Introduction to Product Development
-        .school UC Berkeley
-        .semester Fall 2018
-    .collection-card
-      .color
-      .info
-        .class-name
-        .school
-        .semester
-    .collection-card
-      .color
-      .info
-        .class-name
-        .school
-        .semester
-    .collection-card
-      .color
-      .info
-        .class-name
-        .school
-        .semester
+
+
+
+
+
+
+.title-space
+  .title-text DES INV 190: Design Thinking: Methods, Skills, and Mindsets
+
+.col-sm-8.labels
+  .label1 Research
+  .label1 Analysis/Synthesis
+  .label1 Ideate
+  .label1 Build
+
+.col-sm-4
+  .gray-box
+    / .row
+    /   .icon-in
+    /   Institution
+    /   .info1.school Berkeley
+    / .row
+    /   .icon-s
+    /   Semester
+    /   .info1.semester Summer 2017
+    / .row
+    /   .icon-t
+    /   Time
+    /   .info1.time 7/1/18 - 7/5/18
+    / .row
+    /   .icon-ir
+    /   Instructor
+    /   .info1.instructor Danielle Poreh
+    / .row
+    /   .icon-filler
+    /   Email
+    /   .info1.email dporeh@berkeley.edu
+
+
+
+
+
+
+
+
 
 
 
