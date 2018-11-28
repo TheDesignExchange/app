@@ -405,7 +405,6 @@ DEPENDENCIES
   rgl
   role_model (~> 0.8.2)
   rspec-rails (~> 3.5, >= 3.5.2)
-  sass-rails (~> 5.0, >= 5.0.6)
   seed_dump
   selenium-webdriver
   spreadsheet
