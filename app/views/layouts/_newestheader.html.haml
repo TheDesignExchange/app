@@ -1,0 +1,125 @@
+%meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+
+= stylesheet_link_tag "_headernav", :media => "all"
+
+/ Global site tag (gtag.js) - Google Analytics
+%script{:async => "", :src => "https://www.googletagmanager.com/gtag/js?id=UA-113963401-1"}
+:javascript
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113963401-1');
+
+:javascript
+  $(function(){
+    $('form.search-query input').autocomplete(DE.Autocomplete);
+  });
+
+  $(document).ready(function() {
+
+    if ($("#search-input").val().length > 0) {
+      $("#search-input").focus();
+    }
+    
+    $("#search-btn").click(function() {
+      if ($("#search-input").val().length > 0) {
+        $("#search").submit();
+      } else if ($("#search-btn").hasClass("inactive-search")) {
+        $("#search-btn").addClass("active-search");
+        $("#search-btn").removeClass("inactive-search");
+        $("#search-input").css("transition", "0.4s ease-in-out");
+        $("#search-input").focus();
+      } else {
+        $("#search-btn").addClass("inactive-search");
+        $("#search-btn").removeClass("active-search");
+      }
+    });
+
+    $("#search-input").focusout(function() {
+      if (!($("#search-input").val().length > 0)) {
+        $("#search-btn").addClass("inactive-search");
+        $("#search-btn").removeClass("active-search");
+      } else {
+        $("#search-input").focus();
+      }
+    });
+
+    $("#mobile-search-btn").click(function() {
+      if (($("#mobile-search-input").val().length > 0)) {
+        $("#search-mobile").submit();
+      }
+    })
+
+
+
+  });
+
+
+
+/ bootstrap 3.3 
+%nav.navbar{:role => "navigation"}
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => root_path}
+        = image_tag "logo-DE.png", :width => "200", size: "37x32"
+      = form_tag('/search', class: 'search-query navbar-form navbar-right', id: 'search-mobile', role: 'search')
+      .form-group#search-group
+        .input-group
+          - query_text = @query || ""
+          = text_field_tag('query', query_text, placeholder: 'Search', class: "form-control", id: 'mobile-search-input')
+          .input-group-btn
+            %button.btn#mobile-search-btn.inactive-search
+              %i.glyphicon.glyphicon-search.search-icon
+      </form>
+    #navbar.navbar-collapse.collapse
+      / if user is not signed in
+      - if !user_signed_in?
+        = link_to "Login", new_user_session_path, :id => "sign-in-btn", :class => "btn navbar-btn navbar-right"
+      %ul.nav.navbar-nav.navbar-right
+        %li= link_to "Methods", design_methods_path
+        %li= link_to "Case Studies", case_studies_path
+        %li= link_to "Collections", collections_path
+        %li= link_to "About", '/about'
+        - if user_signed_in?
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              = current_user.email
+              %b.caret
+            %ul.dropdown-menu
+              - if current_user.admin?
+                %li= link_to "Admin", administrator_path
+              %li= link_to "Profile", user_path(current_user.id)
+              %li= link_to "Account Information", edit_user_registration_path
+              %li
+                %a{"data-target" => "#myModal", "data-toggle" => "modal", :href => "#"}
+                  Send Feedback
+              %li.divider
+              %li= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
+              - if current_user != nil && (current_user.admin? || current_user.editor? || current_user.author?)
+                %li= link_to "Drafts", drafts_path
+        - else
+          %li= link_to "Login", new_user_session_path, :class => "mobile-user-session", :id => "mobile-login"
+          %li= link_to "Sign Up", "users/sign_up", :class => "mobile-user-session"
+      = form_tag('/search', class: 'search-query navbar-form navbar-right', id: 'search', role: 'search')
+      .form-group#search-group
+        .input-group
+          - query_text = @query || ""
+          = text_field_tag('query', query_text, placeholder: 'Search', class: "form-control", id: 'search-input')
+          .input-group-btn
+            %button.btn#search-btn.inactive-search
+              %i.glyphicon.glyphicon-search.search-icon
+      </form>
+// display flash errors if any
+.notice
+  - flash.each do |type, msg|
+    - type = :success if type == :notice
+    = content_tag(:div, msg, class: "flash-alert alert alert-#{type}")
+
+

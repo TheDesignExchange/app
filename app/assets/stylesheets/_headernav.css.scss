@@ -1,3 +1,7 @@
+.navbar-nav .mobile-user-session {
+    display: none;
+}
+
 .navbar {
     top: 0;
     background-color: #ffffff;
@@ -5,6 +9,7 @@
     box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
     font-family: 'Open Sans', sans-serif;
     font-weight: normal;
+    font-size: 16px;
     border: none;
     border-radius: 0;
     z-index: 2;
@@ -12,11 +17,15 @@
 }
 
 .navbar a {
-    color: #333333;
+    color: #4F4F4F;
+}
+
+.navbar .dropdown-menu {
+    font-size: 16px;
 }
 
 .navbar li a:hover, .navbar-nav li a:focus {
-    background-color: #ffffff;
+    background-color: transparent;
     color: #6BC06D;
     opacity: 1;
 }
@@ -29,40 +38,152 @@ li.active a {
     color: #6BC06D;
 }
 
-#sign-in {
-    border: 2px solid #6BC06D;
-    font-weight: 700;
+#sign-in-btn {
+    border: 1px solid #828282;
+    font-size: 16px;
     border-radius: 4px;
-    color: #6BC06D;
-    margin-top: 9px;
-    margin-left: 8px;
-    padding: 4px 6px;
+    margin-left: 30px;
 }
 
-#sign-in:hover {
+#sign-in-btn:hover {
     color: #ffffff;
-    background-color:#6BC06D;
+    background-color:#828282;
 }
 
 .navbar-toggle .icon-bar {
-    background-color: #333333;
+    background-color: #4F4F4F;
 }
 
 .navbar-toggle:hover .icon-bar {
     background-color: #6BC06D;
 }
 
-.search-icon {
-    cursor: pointer;
-    padding: 15px;
-    font-size: 16px;
+#search-btn {
+    background-color: transparent;
+    position: relative;
     top: 2px;
+    z-index: 2;
+}
+
+#search-btn:active, #search-btn:focus {
+    box-shadow: none;
+    outline: none
+}
+
+.search-icon {
+    background-color: transparent;
+    color: #4F4F4F;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 .search-icon:hover {
     color: #6BC06D;
 }
 
+#search-input {
+    position: absolute;
+    right: 0;
+    width: 0;
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+#search-input:focus {
+    border-bottom: 1px solid #4F4F4F;
+    width: 200px;
+}
+
+
 .search-group {
     display: none;
+}
+
+#search {
+    display: block;
+}
+
+#search-mobile {
+    display: none;
+}
+
+// Collapse the navbar earlier
+@media (max-width: 850px) {
+
+    #mobile-login {
+        margin-top: 16px;
+    }
+
+    .navbar-nav .mobile-user-session {
+        display: block;
+        font-weight: bold;
+    }
+
+    #mobile-search-btn {
+        background-color: transparent;
+        z-index: 4;
+    }
+
+    #mobile-search-input {
+        outline: none;
+        box-shadow: none;
+        border: none;
+        border-bottom: 1px solid #4F4F4F;
+        position: absolute;
+        width: 200px;
+        right:16px;
+    }
+
+    #mobile-search-btn:active, #mobile-search-btn:focus {
+        box-shadow: none;
+        outline: none
+    }
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in { 
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
+    #search {
+        display: none;
+    }
+
+    #search-mobile {
+        display: block;
+        padding: 0 10px;
+    }
+
+    #sign-in-btn {
+        display: none;
+    }
 }
