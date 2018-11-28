@@ -7,13 +7,6 @@
      /*display: none;*/
   }
 
-  .navbar{
-    margin-bottom: 0;
-    font-family: 'Open Sans', sans-serif;
-    background-color: #ffffff;
-    border: none;
-  }
-
   .notice {
     display: none;
   }
@@ -56,13 +49,6 @@
     display: none;
   }
 
-  .navbar{
-    margin-bottom: 0;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: normal;
-    border: none;
-  }
-
   .jumbotron {
     background-color: white;
     background-image: url('/assets/hero-desktop.png');
@@ -74,7 +60,8 @@
     height: 400px;
     display: block;
     text-align: left;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Gotham', serif;
+    margin-top: 40px;
   }
 
   .jumbotron h2{
@@ -222,7 +209,7 @@
     position: relative;
     left: 6em;
     bottom: 1.5em;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Gotham', serif;
   }
   #threehundredmethods {
     font-family: 'Open Sans', sans-serif;
@@ -248,11 +235,11 @@
   }
 
   .deg0, .deg72, .deg144, .deg216, .deg288 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Gotham', serif;
   }
 
   .underline-container {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Gotham', serif;
   }
 
   @media (max-width: 1199px) {
@@ -341,7 +328,7 @@
   #showcase-header {
     color: #333333;
     font-weight: bold;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Gotham', serif;
   }
 
   .card {
@@ -468,6 +455,9 @@
   }
 
   @media (max-width: 767px) {
+    .jumbotron {
+      margin-top: 30px;
+    }
     .mobile {
       display: block;
     }
@@ -478,10 +468,7 @@
     .notice {
       display: none;
     }
-    .jumbotron {
-      margin-top: -6em;
-      -# IMPORTANT: give the container containing the jumbotron a name and lower padding when jumbotron code is found
-    }
+
     #explore {
       bottom: 15.25em;
       left: 2.75em;
@@ -568,7 +555,7 @@
   @media (max-width: 585px) {
     #explore {
       bottom: 14.5em;
-      left: 2.75em;
+      left: 2.5em;
     }
   }
 

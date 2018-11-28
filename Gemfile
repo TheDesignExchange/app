@@ -77,3 +77,5 @@ gem "hash_control"
 
 
 gem 'recaptcha', :require => 'recaptcha/rails'
+
+
