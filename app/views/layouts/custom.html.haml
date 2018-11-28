@@ -51,11 +51,7 @@
         }
       }
 
-    = render "layouts/headernav"
-    / Header for the application#index view
-    - if (params[:controller] == "application" && (params[:action] == "index" || params[:action] == "about"))
-      = render "layouts/deheader"
-    / End of header for application#index
+    = render "layouts/newestheader"
     .container{}
       = yield
     .footer
