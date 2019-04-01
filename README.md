@@ -14,7 +14,7 @@ TheDesignExchange/app
 
 ### Installing
 
-A few manual steps are required:
+A few manual steps are required. See **troublshooting** section of readme is you run into issues.
 
 1. Install **postgres**.
    Mac: `brew install postgresql`
@@ -24,15 +24,20 @@ A few manual steps are required:
    As of Aug 2015, this would be: `rvm install ruby-2.1.3`
    (If you have a nonstandard security setup, install rvm without autolibs.)
 
-3. **Bundler**. `gem install bundler`, then `bundle install`
-   Ubuntu: You might have to `sudo apt-get install openjdk-6-jdk` for Sunspot.
+3. `cd` into the repo and then `cd app` to get to the root of the project directory
 
-4. That's it! Read the next section to see how to start up the server.
-5. After starting your server, run `bundle exec rake db:seed` to seed your database with starter data.
+4. **Bundler**. `gem install bundler`, then `bundle install`
+   Ubuntu: You might have to `sudo apt-get install openjdk-6-jdk` for Sunspot.
+   
+5. That's it! Read the next section to see how to start up the server. The recommended usad is the current usage listed below the legacy.
+
+(*optional 6th step based on legacy code... not sure if it is necessary since we believe it is executed the first time you run `make rails`*)
+
+6. After starting your server, run `bundle exec rake db:seed` to seed your database with starter data. 
 
  [install **rvm**]: https://rvm.io/rvm/install
 
-### Legacy Usage (based on inhertied code)
+### Legacy Usage (based on inherited code)
 
 The `Makefile` helps simplify starting and stopping the dev server.
 
@@ -57,6 +62,11 @@ make rails            # starts rails, pg, and solr, and seeds pg
 make halt             # shuts everything down and frees the port
 ```
 
+### Precompile changes in the assets file
+```
+rake assets:precompile
+```
+
 ### Debugging
 
 #### Ruby
@@ -67,3 +77,9 @@ code. See their respective github repositories for further documentation. In
 short, you need to have a visible rails server (run `make attach` in a console)
 and add a line that reads `binding.pry` in the file you want to debug, at the
 line where you want the debugger to begin.
+
+### Troubleshooting
+In general, *we should eventually update ruby and all gems* to the most recent version. This will help with old dependencies and any possible security issues. 
+
+#### nokogiri issue
+If you run into problems with nokogiri, it may have to do with your ruby version. Make sure you're using **ruby version 2.1.3** since we have yet to update. If this does not resolve the problem, trying re-cloning the repo and make sure you set up the environment with rvm ruby version 2.1.3

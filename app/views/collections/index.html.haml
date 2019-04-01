@@ -267,16 +267,28 @@
     font-size: 16px;
   }
 
-  .info1 {
-    font-style: bold;
+  .icon_col {
+    position: relative;
+    left: 25px;
+    top: 5px;
   }
 
+  .icon_name {
+    position: relative;
+    left: 65px;
+    bottom: 17.5px;
+  }
 
+  .info1 {
+    position: relative;
+    left: 160px;
+    bottom: 39px;
+    font-weight: bold;
+  }
 
-
-
-
-
+  .icon_row {
+    height: 45px;
+  }
 
 
 .title-space
@@ -290,26 +302,26 @@
 
 .col-sm-4
   .gray-box
-    / .row
-    /   .icon-in
-    /   Institution
-    /   .info1.school Berkeley
-    / .row
-    /   .icon-s
-    /   Semester
-    /   .info1.semester Summer 2017
-    / .row
-    /   .icon-t
-    /   Time
-    /   .info1.time 7/1/18 - 7/5/18
-    / .row
-    /   .icon-ir
-    /   Instructor
-    /   .info1.instructor Danielle Poreh
-    / .row
-    /   .icon-filler
-    /   Email
-    /   .info1.email dporeh@berkeley.edu
+    .row.icon_row
+      %img{:class => "icon_col", :src => "./assets/icon_school.png", :width => "25", :height => "25"}
+      .icon_name Institution
+      .info1.school Berkeley
+    .row.icon_row
+      %img{:class => "icon_col", :src => "./assets/icon_semester.png", :width => "25", :height => "25"}
+      .icon_name Semester
+      .info1.semester Summer 2017
+    .row.icon_row
+      %img{:class => "icon_col", :src => "./assets/icon_time.png", :width => "25", :height => "25"}
+      .icon_name Time
+      .info1.time 7/1/18 - 7/5/18
+    .row.icon_row
+      %img{:class => "icon_col", :src => "./assets/icon_instructor.png", :width => "25", :height => "25"}
+      .icon_name Instructor
+      .info1.instructor Danielle Poreh
+    .row.icon_row
+      %img{:class => "icon_col", :src => "./assets/icon_filler.png", :width => "25", :height => "25"}
+      .icon_name Email
+      .info1.email dporeh@berkeley.edu
 
 
 

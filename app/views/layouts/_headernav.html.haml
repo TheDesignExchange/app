@@ -1,4 +1,7 @@
 %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+
+= stylesheet_link_tag "_headernav", :media => "all"
+
 / Global site tag (gtag.js) - Google Analytics
 %script{:async => "", :src => "https://www.googletagmanager.com/gtag/js?id=UA-113963401-1"}
 :javascript
@@ -12,9 +15,15 @@
   $(function(){
     $('form#search input').autocomplete(DE.Autocomplete);
   });
+  $(document).ready(function() {
+    $(".search-icon").click(function() {
+      $(".search-group").show();
+    })
+  })
+
 
 %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
-%nav.navbar.navbar-default.navbar-top{:role => "navigation"}
+%nav.navbar.navbar-top{:role => "navigation"}
   .container-fluid
     / Brand and toggle get grouped for better mobile display
     .navbar-header
@@ -25,22 +34,13 @@
         %span.icon-bar
       %a.navbar-brand{:href => root_path}
         = image_tag "logo-DE.png", :width => "200", size: "37x32"
-
-    / = form_tag '/search', class: 'navbar-form navbar-left' do
-    /   .form-group.col-xs-8
-    /     - query_text = @query || ""
-    /     = text_field_tag :query, params[:query], id: "search-input", class: 'form-control col-sm-4 input-md', placeholder: 'Product name.....'
-    /   .form-group.col-xs-4
-    /     = submit_tag('Search', class: "btn btn-default")
-
-
-    = form_tag('/search', class: 'navbar-form navbar-left', id: 'search')
+         
+    = form_tag('/search', class: 'navbar-form navbar-left search-group', id: 'search')
     .form-group.col-xs-8
       - query_text = @query || ""
       = text_field_tag('query', query_text, placeholder: 'Search', class: "form-control col-sm-4 input-md", id: 'search-input')
     .form-group.col-xs-4
       = submit_tag('Search', class: "btn btn-default")
-    / = image_submit_tag('Search', class: "btn btn-default")
     </form>
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
@@ -51,6 +51,8 @@
         - if current_user != nil && (current_user.admin? || current_user.editor? || current_user.author?)
           %li= link_to "Drafts", drafts_path,  style: "font-size: 120%;"
       %ul.nav.navbar-nav.navbar-right
+        %li
+          %span.glyphicon.glyphicon-search.search-icon
         %li= link_to "Methods", design_methods_path, style: "font-size: 120%;"
         %li= link_to "Case Studies", case_studies_path, style: "font-size: 120%;"
         %li= link_to "Collections", collections_path, style: "font-size: 120%;"
@@ -70,12 +72,11 @@
                   Send Feedback
               %li.divider
               %li= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
+              - if current_user != nil && (current_user.admin? || current_user.editor? || current_user.author?)
+                %li= link_to "Drafts", drafts_path
         - else
-          - if current_user != nil && (current_user.admin? || current_user.editor? || current_user.author?)
-            %li= link_to "Drafts", drafts_path
-          %li
-            = link_to "Sign In", new_user_session_path, :class => 'navbar-link', style: "font-size: 120%;"
-
+        = form_tag('', class:'form-inline')
+        =link_to "Sign In", new_user_session_path, :class => "navbar-link", :id => "sign-in"
 // display flash errors if any
 .notice
   - flash.each do |type, msg|
