@@ -266,6 +266,11 @@
     margin-top: 24px;
   }
 
+  .label1:hover {
+    cursor: pointer;
+    color: #6CC06D;
+  }
+
   .gray-box {
     width: 320px;
     height: 220px;
@@ -334,7 +339,8 @@
     .row.icon_row
       %img{:class => "icon_col", :src => "./assets/icon_filler.png", :width => "25", :height => "25"}
       .icon_name Email
-      .info1.email dporeh@berkeley.edu
+      .info1.email
+        #{link_to 'd.poreh@berkeley.edu', 'mailto:d.poreh@berkeley.edu'}
 
 
 
