@@ -22,6 +22,7 @@
   h1 {
     font-weight: bold;
   }
+  
 
   p {
     line-height: 1.75em;
@@ -85,10 +86,10 @@
   }
 
   #explore {
-    width: 40%;
-    text-align: left;
+    width: 100%;
+    text-align: center;
     position: relative;
-    bottom: 29em;
+    bottom: 0em;
     left: 3.75em;
     background-color: white;
   }
@@ -320,6 +321,7 @@
     padding-bottom: 3em;
     position: relative;
     bottom: 1em;
+    top:8em;
   }
 
   #showcase-img {
@@ -486,6 +488,12 @@
       bottom: 3em;
       margin-bottom: -3em;
     }
+    #description3Words {
+      font-size: 5px;
+      width: 90%;
+      margin: auto;
+      position: fixed;
+    }
     #join-button-row {
       margin-top: 0em;
       margin-bottom: 0em;
@@ -596,43 +604,48 @@
     }
   }
 
+
 .container
   .jumbotron{:id=>'jumbo-home'}
 
-#description
+
+
+-#description
   The world’s largest open-source innovation archive of
   = link_to "design methods", design_methods_path
   and
   = link_to "case studies.", case_studies_path
 
-%hr
+
+/this was a line that was removed in 2019
+/%hr
 
 / .row{:id => "explore"}
 / .container{:id => "explore"}
 /   %h1
 /     Our content is categorized within five phases of the early stage design process
-  
+
 /   .row{:id => "icons"}
 /     .col-sm-4
 /       %h2
 /         RESEARCH
 /       %img
 /         = image_tag "research.png"
-/       %p 
-/         collect information critical to project design process 
+/       %p
+/         collect information critical to project design process
 /     .col-sm-4
 /       %h2
 /         ANALYZE
 /       %img
 /         = image_tag "analyze.png"
-/       %p 
+/       %p
 /         analysis and/or synthesis of collected data
 /     .col-sm-4
 /       %h2
 /         IDEATE
 /       %img
 /         = image_tag "ideate.png"
-/       %p 
+/       %p
 /         create new ideas for products, services, etc.
 /   / minimum width: 768px
 /   .row{:id => "bottom_icons"}
@@ -656,21 +669,21 @@
 /       RESEARCH
 /     %img
 /       = image_tag "research.png"
-/     %p 
-/       collect information critical to project design process 
+/     %p
+/       collect information critical to project design process
 /   .col-sm-2
 /     %h2
 /       ANALYZE
 /     %img
 /       = image_tag "analyze.png"
-/     %p 
+/     %p
 /       analysis and/or synthesis of collected data
 /   .col-sm-2
 /     %h2
 /       IDEATE
 /     %img
 /       = image_tag "ideate.png"
-/     %p 
+/     %p
 /       create new ideas for products, services, etc.
 /   .col-sm-2
 /     %h2
@@ -687,6 +700,7 @@
 /     %p
 /       communicate with others outside of the project
 
+%p= "&nbsp;".html_safe
 .row{:id => "explore"}
   .container
     %h1{:class => "shifting-words"}
@@ -700,8 +714,9 @@
           Professionals
         %span{:class => "shifting-word"}
           Anyone
-      %br
-      embed human-centered design
+
+
+        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp embed human-centered design
       %br{:class => "non-mobile"}
       into their
       .slidingVertical
@@ -714,11 +729,31 @@
         %span{:class => "shifting-word"}
           Life
 
+
+.row{:id => "worlds-largest"}
+  .col-sm-3.earth
+    %img
+      = image_tag "earth.png"
+  .col-sm-9
+    %p
+      TheDesignExchange (tDX) is the world’s largest open-source innovation archive of
+      = link_to "design methods", "https://www.thedesignexchange.org/design_methods"
+      and
+      = link_to "case studies.", "https://www.thedesignexchange.org/case_studies"
+      We support the design community through the entire life-cycle of the conceptual design process—from observation through synthesis and analysis to realization and evaluation – through our library of versatile and extensive tools.
+    %br
+    %p
+      This is a joint project led by
+      = link_to "UC Berkeley", "https://www.berkeley.edu/"
+      and
+      = link_to "M.I.T.", "http://web.mit.edu/"
+      working with the international community of design academics and practitioners.
+
 .row{:id => "showcase"}
   .col-sm-4{:id => "threehundredtext"}
-    %h1
+    -#%h1 (removed 2019)
       Discover. Apply. Contribute.
-    %br
+    -# %br
     %h2{:id => "threehundredmethods"}
       With over 300 methods to choose from, we help guide your method discovery and selection.
   .col-sm-8
@@ -751,8 +786,9 @@
         .deg288.underline-container
           Communicate
           .underline
-
-%hr
+%br
+%br
+-#%hr 'twas a line till 2019
 
 .row{:id => "methods"}
   .col-sm-12
@@ -822,9 +858,9 @@
         %img{:class => "col-sm-4"}
           = image_tag @case_study.picture_url
 
-%hr
+-#%hr
 
-.row{:id => "worlds-largest"}
+-#.row{:id => "worlds-largest"}
   .col-sm-3.earth
     %img
       = image_tag "earth.png"
