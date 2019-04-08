@@ -22,7 +22,7 @@
   h1 {
     font-weight: bold;
   }
-  
+
 
   p {
     line-height: 1.75em;
@@ -87,11 +87,11 @@
 
   #explore {
     width: 100%;
-    text-align: center;
+    text-align: left;
     position: relative;
-    bottom: 0em;
+    bottom: 10em;
     left: 3.75em;
-    background-color: white;
+    background-color: transparent;
   }
   #explore h1 {
     line-height: 1.5em;
@@ -177,6 +177,7 @@
   #methods {
     padding-top: 3em;
     padding-bottom: 6em;
+    
   }
 
   #case-studies {
@@ -194,8 +195,10 @@
   }
 
   #worlds-largest {
-    padding-top: 6em;
+    padding-top: 7em;
     padding-bottom: 3em;
+    width: 80%;
+    margin-left: 10%;
   }
   #worlds-largest .earth {
     text-align: center;
@@ -569,11 +572,14 @@
 
   @media (max-width: 478px) {
     #explore {
-      bottom: 14em;
+      bottom: 9em;
       left: 2em;
     }
     .shifting-words {
       font-size: 12px;
+      padding-top: -300px;
+      position: relative;
+
     }
     #description {
       font-size: 12px;
@@ -700,7 +706,6 @@
 /     %p
 /       communicate with others outside of the project
 
-%p= "&nbsp;".html_safe
 .row{:id => "explore"}
   .container
     %h1{:class => "shifting-words"}
@@ -714,9 +719,8 @@
           Professionals
         %span{:class => "shifting-word"}
           Anyone
-
-
-        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp embed human-centered design
+      %br
+      embed human-centered design
       %br{:class => "non-mobile"}
       into their
       .slidingVertical
