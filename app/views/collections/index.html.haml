@@ -158,7 +158,7 @@
   .blurb Your methods and case studies relevant to specific courses.
   -if @public_collections.empty?
     %h2.title There are no public collections
-  -else 
+  -else
     = will_paginate @public_collections, :param_name => "public_page"
     %ul.collections
       - @public_collections.each do |collection|
@@ -225,7 +225,7 @@
   / .tab-pane.col-md-12.padding{"data-link" => "private"}
   /   -if @private_collections.nil? || @private_collections.empty?
   /     %h2 You have no private collections
-  /   -else 
+  /   -else
   /     %h2 Your Private Collections
   /     = will_paginate @private_collections, :param_name => "private_page"
   /     %ul.collections
@@ -240,7 +240,7 @@
   / .tab-pane.col-md-12.padding{"data-link" => "public"}
   /   -if @public_collections.empty?
   /     %h2 There are no public collections
-  /   -else 
+  /   -else
   /     %h2 All Public Collections
   /     = will_paginate @public_collections, :param_name => "public_page"
   /     %ul.collections
@@ -251,4 +251,3 @@
   /           %a{:href => col_path}
   /             %span.glyphicon.glyphicon-th-list
   /             #{collection.name}
-
