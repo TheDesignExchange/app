@@ -163,7 +163,7 @@
     %ul.collections
       - @public_collections.each do |collection|
         %br
-        %li.collection-cards
+        .collection-cards
           -col_path = "/collections/" + collection.id.to_s
           %a{:href => col_path}
             %span.glyphicon
