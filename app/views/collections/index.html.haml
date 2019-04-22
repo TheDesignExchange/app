@@ -160,10 +160,10 @@
     %h2.title There are no public collections
   -else
     = will_paginate @public_collections, :param_name => "public_page"
-    %ul.collections
+    %ul.collections.collection-cards
       - @public_collections.each do |collection|
         %br
-        .collection-cards
+        %li
           -col_path = "/collections/" + collection.id.to_s
           %a{:href => col_path}
             %span.glyphicon
