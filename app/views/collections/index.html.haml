@@ -163,16 +163,15 @@
     %ul.collections
       - @public_collections.each do |collection|
         %br
-        %li
+        %li.collection-cards
           -col_path = "/collections/" + collection.id.to_s
           %a{:href => col_path}
-            .collection-cards
-              %span.glyphicon.glyphicon-th-list
-                .collection-card
-                  .color1
-                  .info
-                    .class-name #{collection.name}
-                    .school UC Berkeley
+            %span.glyphicon
+              .collection-card
+                .color1
+                .info
+                  .class-name #{collection.name}
+                  .school UC Berkeley
 
 
 
