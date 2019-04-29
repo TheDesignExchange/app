@@ -2,7 +2,7 @@ class CollectionsController < ApplicationController
   load_and_authorize_resource
   def index
     @collections = Collection.all
-    @public_collections = Collection.where(is_private: false) 
+    @public_collections = Collection.where(is_private: false)
     @public_collections = @public_collections.paginate(page: params[:public_page], :per_page => 10)
 
     if !current_user.nil?

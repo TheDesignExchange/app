@@ -1,83 +1,118 @@
 :css
-  .edit_col {
-    width: 20%;
-    float: right;
+  .notice {
+    display: none;
   }
-  .col-xs-6 {
-    width: 100%;
-    padding-left: 0px;
+
+  .title-space {
+    width: 150%;
+    height: 210px;
+    position: relative;
+    right: 25%;
+    background-color: #FFBF69;
   }
-  .author-info {
-    width: 10%;
-    padding-left: 0px;
+
+  .title-text {
+    font-family: Gotham;
+    font-size: 36px;
+    font-weight: bold;
+    margin-left: 12%;
+    padding-top: 150px;
   }
-  .col-basics {
-    width: 50%;
-    display: inline-block;
+
+  .class-desc {
+    margin-top: 30px;
   }
-  .col-owner {
-    width: 50%;
-    float: right;
-    padding-top: 50px;
+
+  .labels {
+    font-family: Gotham;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 60px;
   }
-  .nav-tab:hover {
+
+  .labelt {
+    position: relative;
+    right: 17px;
+    font-size: 36px;
+  }
+
+  .label1 {
+    text-indent: 15px;
+    margin-top: 24px;
+  }
+
+  .label1:hover {
     cursor: pointer;
-  }
-  @media (max-width: 768px) {
-    .notice {
-      display: none;
-    }
+    color: #6CC06D;
   }
 
-.col-basics
-  %h1= @collection.name
+  .gray-box {
+    width: 320px;
+    height: 220px;
+    background-color: #F5F5F5;
+    margin-top: 74px;
+    margin-bottom: 100px;
+    font-family: Open Sans;
+    font-size: 16px;
+  }
 
-  - if @collection.is_private
-    %h5 Private Collection
-  - else
-    %h5 Public Collection
-  %br
-  -if !@collection.overview.blank?
-    %p= @collection.overview
-    %br
+  .icon_col {
+    position: relative;
+    left: 25px;
+    top: 5px;
+  }
 
-.col-owner
-  %h4 Collection Owner 
-  .col-xs-6
-    /.col-xs-4.author-info
-    /  - if @author.profile_picture.present?
-    /    = image_tag(@author.profile_picture, class: "fit-all", :style => "padding: 10%")
-    /  - else
-    /    /TODO lol we need to self host this asap
-    /    = image_tag("http://newsdesk.si.edu/sites/default/files/imagecache/photo_pagewidth/photos/anonymous_silhouette.jpg", class: "fit-all",:style => "padding: 10%")
-    /.col-xs-8
-    %p= link_to @author.first_name + " " + @author.last_name, user_path(@author.id)
-    %p= @author.email != nil ? @author.email : "-"
+  .icon_name {
+    position: relative;
+    left: 65px;
+    bottom: 17.5px;
+  }
 
-  -if !@user.nil?
-    -if @user.id == @collection.owner_id
-      %a{:class => "edit_col", :href => edit_collection_path(params[:id])}
-        %span.glyphicon.glyphicon-pencil
-        Edit
-        
-#tabs
-  %ul.nav.nav-tabs
-    %li.active.nav-tab
-      %a{"data-link" => "all"} All
-    %li.nav-tab
-      %a{"data-link" => "dm"} Methods
-    %li.nav-tab
-      %a{"data-link" => "cs"} Case Studies
+  .info1 {
+    position: relative;
+    left: 160px;
+    bottom: 39px;
+    font-weight: bold;
+  }
 
-.tab-pane.col-md-12.padding{"data-link" => "all"}
-  - @collection.design_methods.each do |dm|
-    = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(dm,"3")
-  - @collection.case_studies.each do |cs|
-    = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3")
-.tab-pane.col-md-12.padding{"data-link" => "dm"}
-  - @collection.design_methods.each do |dm|
-    = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(dm,"3")
-/ Case Study Search Tab
-.tab-pane.col-md-12.padding{"data-link" => "cs"}
-  - @collection.case_studies.each do |cs|
-    = render "/layouts/thumbnail", :object => @thumb_obj = thumbnail(cs,"3")
+  .icon_row {
+    height: 45px;
+  }
+
+
+.title-space
+  .title-text DES INV 190: Design Thinking: Methods, Skills, and Mindsets
+
+.class-desc
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+.col-sm-8.labels
+  .labelt Modules
+  .label1 Research
+  .label1 Analysis/Synthesis
+  .label1 Ideate
+  .label1 Build
+
+.col-sm-4
+  .gray-box
+    .row.icon_row
+      %img{:class => "icon_col", :src => "./assets/icon_school.png", :width => "25", :height => "25"}
+      .icon_name Institution
+      .info1.school Berkeley
+    .row.icon_row
+      %img{:class => "icon_col", :src => "./assets/icon_semester.png", :width => "25", :height => "25"}
+      .icon_name Semester
+      .info1.semester Summer 2017
+    .row.icon_row
+      %img{:class => "icon_col", :src => "./assets/icon_time.png", :width => "25", :height => "25"}
+      .icon_name Time
+      .info1.time 7/1/18 - 7/5/18
+    .row.icon_row
+      %img{:class => "icon_col", :src => "./assets/icon_instructor.png", :width => "25", :height => "25"}
+      .icon_name Instructor
+      .info1.instructor Danielle Poreh
+    .row.icon_row
+      %img{:class => "icon_col", :src => "./assets/icon_filler.png", :width => "25", :height => "25"}
+      .icon_name Email
+      .info1.email
+        #{link_to 'd.poreh@berkeley.edu', 'mailto:d.poreh@berkeley.edu'}

@@ -70,7 +70,6 @@
   .collection-cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     margin-top: 24px;
   }
 
@@ -80,6 +79,7 @@
     border: .5px solid #E5E5E5;
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
     margin-bottom: 30px;
+    margin-right: 30px;
   }
 
   .color1 {
@@ -115,6 +115,7 @@
   .school {
     font-family: Open Sans;
     font-size: 15px;
+    color: black;
   }
 
   .semester {
@@ -127,11 +128,16 @@
   }
 
   li.active a {
-    color: black;
+    color: #6BC06D;
   }
 
   li.active a:hover {
     cursor: default;
+  }
+
+
+  card-elem {
+    margin-right: 36px;
   }
 
 .col-sm-3
@@ -163,7 +169,7 @@
     %ul.collections.collection-cards
       - @public_collections.each do |collection|
         %br
-        %li
+        %li.card-elem
           -col_path = "/collections/" + collection.id.to_s
           %a{:href => col_path}
             %span.glyphicon
