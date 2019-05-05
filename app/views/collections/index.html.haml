@@ -149,11 +149,11 @@
 
 .col-sm-3
   // -if !current_user.nil?
-  = link_to new_collection_path, do
-    .new-collection-button
-      .collection-button-text
-        .plus +
-        .new-collection New Collection
+  // = link_to new_collection_path, do
+  .new-collection-button
+    .collection-button-text
+      .plus +
+      .new-collection New Collection
 
   .filter-box
     .filter-by Filter By
@@ -183,7 +183,7 @@
               .collection-card
               .color1
               .info
-              .class-name #{collection.name}
+                .class-name #{collection.name}
 
 .tab-pane.col-sm-9.padding{"data-link" => "public"}
   %h1.title Collections
