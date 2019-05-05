@@ -148,8 +148,8 @@
   }
 
 .col-sm-3
-  -if !current_user.nil?
-  = link_to new_collection_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
+  // -if !current_user.nil?
+  = link_to new_collection_path, do
     .new-collection-button
       .collection-button-text
         .plus +
