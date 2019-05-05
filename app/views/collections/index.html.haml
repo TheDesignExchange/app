@@ -148,12 +148,12 @@
   }
 
 .col-sm-3
-  // -if !current_user.nil?
-  // = link_to new_collection_path, do
-  .new-collection-button
-    .collection-button-text
-      .plus +
-      .new-collection New Collection
+  -if !current_user.nil?
+    = link_to new_collection_path, :id=> "create-btn" do
+      .new-collection-button
+        .collection-button-text
+          .plus +
+          .new-collection New Collection
 
   .filter-box
     .filter-by Filter By
@@ -161,7 +161,7 @@
       #tabs
         %li.public-label.active.nav-tab
           %a.ppswitch{"data-link" => "public"} Public Collections
-        %li.private-label.nav-tab.ppswitch
+        %li.private-label.nav-tab
           %a.ppswitch{"data-link" => "private"} My Collections
         / .public-label Public Collections
         / .private-label My Collections
