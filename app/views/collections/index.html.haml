@@ -135,29 +135,55 @@
     cursor: default;
   }
 
-
   card-elem {
     margin-right: 36px;
   }
+  
+  .ppswitch {
+    color: black;
+  }
+  
+  .ppswitch:hover {
+    color: #6BC06D;
+  }
 
 .col-sm-3
-  .new-collection-button
-    .collection-button-text
-      .plus +
-      .new-collection New Collection
+  -if !current_user.nil?
+  = link_to new_collection_path, :id=> "create-btn", :class=> "btn btn-default pull-right btn-index-create" do
+    .new-collection-button
+      .collection-button-text
+        .plus +
+        .new-collection New Collection
 
   .filter-box
     .filter-by Filter By
     .labels
       #tabs
-        %li.public-label.active.nav-tab
+        %li.public-label.active.nav-tab.ppswitch
           %a{"data-link" => "public"} Public Collections
-        %li.private-label.nav-tab
+        %li.private-label.nav-tab.ppswitch
           %a{"data-link" => "private"} My Collections
         / .public-label Public Collections
         / .private-label My Collections
 
 .tab-pane.col-sm-9.padding{"data-link" => "private"}
+  %h1.title Collections
+  .blurb Your private collections.
+  -if @private_collections.nil? || @private_collections.empty?
+    %h2.title You have no private collections
+  -else
+    = will_paginate @private_collections, :param_name => "private_page"
+    %ul.collections.collection-cards
+      - @private_collections.each do |collection|
+        %br
+        %li.card-elem
+          -col_path = "/collections/" + collection.id.to_s
+          %a{:href => col_path}
+            %span.glyphicon
+              .collection-card
+              .color1
+              .info
+              .class-name #{collection.name}
 
 .tab-pane.col-sm-9.padding{"data-link" => "public"}
   %h1.title Collections
@@ -177,7 +203,6 @@
                 .color1
                 .info
                   .class-name #{collection.name}
-                  .school UC Berkeley
 
 
 
