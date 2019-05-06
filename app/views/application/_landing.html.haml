@@ -885,10 +885,10 @@
     .card
       - @method = DesignMethod.find(102)
       %img
-        = image_tag @method.picture_url
+        = image_tag "design-method-102.png"
       .card-container
-        %h4
-          = @method.name
+        %h3
+          = "Web Analytics"
         %p
           = shorten(@method.overview)
   .col-sm-4
