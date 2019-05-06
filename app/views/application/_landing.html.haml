@@ -23,6 +23,7 @@
     font-weight: bold;
   }
 
+
   p {
     line-height: 1.75em;
     font-size: 1.12em;
@@ -84,13 +85,22 @@
     //border-color: rgba(0,0,0,0.3);
   }
 
+  #method-link {
+    left: 12%;
+  }
+
+  #para-methods {
+    margin-left: 12%;
+    width: 80%;
+  }
+
   #explore {
-    width: 40%;
+    width: 100%;
     text-align: left;
     position: relative;
-    bottom: 29em;
+    bottom: 10em;
     left: 3.75em;
-    background-color: white;
+    background-color: transparent;
   }
   #explore h1 {
     line-height: 1.5em;
@@ -176,6 +186,7 @@
   #methods {
     padding-top: 3em;
     padding-bottom: 6em;
+
   }
 
   #case-studies {
@@ -183,6 +194,8 @@
     padding-bottom: 3em;
     //border-bottom: 1.5px solid;
     //border-color: rgba(0,0,0,0.3);
+    width: 80%;
+    margin-left: 12%;
   }
 
   .see-link a {
@@ -193,8 +206,10 @@
   }
 
   #worlds-largest {
-    padding-top: 6em;
+    padding-top: 7em;
     padding-bottom: 3em;
+    width: 80%;
+    margin-left: 10%;
   }
   #worlds-largest .earth {
     text-align: center;
@@ -207,7 +222,7 @@
 
   #threehundredtext {
     position: relative;
-    left: 6em;
+    left: 5em;
     bottom: 1.5em;
     font-family: 'Gotham', serif;
   }
@@ -320,6 +335,9 @@
     padding-bottom: 3em;
     position: relative;
     bottom: 1em;
+    top:8em;
+    width:80%;
+    left:10%;
   }
 
   #showcase-img {
@@ -331,13 +349,15 @@
     font-family: 'Gotham', serif;
   }
 
+
   .card {
     /* Add shadows to create the "card" effect */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);*/
     transition: 0.3s;
     height: auto;
     margin: 2px 16px;
     padding: 0px 0px 16px 0px;
+    border-radius: 0px !important;
   }
   /* On mouse-over, add a deeper shadow */
   .card:hover {
@@ -348,6 +368,10 @@
     display: inherit;
     overflow: hidden;
     max-height: 100px;
+  }
+  .img_case_study {
+    width: 100% !important;
+    display:inline;
   }
   /* Add some padding inside the card container */
   .card-container {
@@ -371,11 +395,13 @@
     align-items: center;
   }
   .vert-card img {
-    max-width: 60%;
+    max-width: 90%;
     max-height: 300px;
     overflow: hidden;
     display: inline-block;
     vertical-align: top;
+    padding-bottom:10px;
+
   }
 
   .join {
@@ -455,6 +481,10 @@
   }
 
   @media (max-width: 767px) {
+    #showcase {
+    text-align: center;
+    left: 0%;
+    }
     .jumbotron {
       margin-top: 30px;
     }
@@ -485,6 +515,12 @@
       position: relative;
       bottom: 3em;
       margin-bottom: -3em;
+    }
+    #description3Words {
+      font-size: 5px;
+      width: 90%;
+      margin: auto;
+      position: fixed;
     }
     #join-button-row {
       margin-top: 0em;
@@ -534,8 +570,18 @@
       margin-bottom: 90px;
     }
     #threehundredtext {
-      text-align: center;
+      text-align: center !important;
+      left:10%;
+      font-weight: bold !important;
     }
+    #threehundredmethods {
+      font-weight: bold !important;
+    }
+      #showcase-header {
+        color: #333333;
+        font-weight: bold;
+        font-family: 'Gotham', serif;
+      }
     .circle-container {
       left: 0.5em;
     }
@@ -561,11 +607,14 @@
 
   @media (max-width: 478px) {
     #explore {
-      bottom: 14em;
+      bottom: 9em;
       left: 2em;
     }
     .shifting-words {
       font-size: 12px;
+      padding-top: -300px;
+      position: relative;
+
     }
     #description {
       font-size: 12px;
@@ -579,6 +628,7 @@
     #threehundredmethods {
       width: 90%;
       margin: auto;
+
     }
     .col-sm-8 {
       margin-top: 6em;
@@ -596,43 +646,48 @@
     }
   }
 
+
 .container
   .jumbotron{:id=>'jumbo-home'}
 
-#description
+
+
+-#description
   The world’s largest open-source innovation archive of
   = link_to "design methods", design_methods_path
   and
   = link_to "case studies.", case_studies_path
 
-%hr
+
+/this was a line that was removed in 2019
+/%hr
 
 / .row{:id => "explore"}
 / .container{:id => "explore"}
 /   %h1
 /     Our content is categorized within five phases of the early stage design process
-  
+
 /   .row{:id => "icons"}
 /     .col-sm-4
 /       %h2
 /         RESEARCH
 /       %img
 /         = image_tag "research.png"
-/       %p 
-/         collect information critical to project design process 
+/       %p
+/         collect information critical to project design process
 /     .col-sm-4
 /       %h2
 /         ANALYZE
 /       %img
 /         = image_tag "analyze.png"
-/       %p 
+/       %p
 /         analysis and/or synthesis of collected data
 /     .col-sm-4
 /       %h2
 /         IDEATE
 /       %img
 /         = image_tag "ideate.png"
-/       %p 
+/       %p
 /         create new ideas for products, services, etc.
 /   / minimum width: 768px
 /   .row{:id => "bottom_icons"}
@@ -656,21 +711,21 @@
 /       RESEARCH
 /     %img
 /       = image_tag "research.png"
-/     %p 
-/       collect information critical to project design process 
+/     %p
+/       collect information critical to project design process
 /   .col-sm-2
 /     %h2
 /       ANALYZE
 /     %img
 /       = image_tag "analyze.png"
-/     %p 
+/     %p
 /       analysis and/or synthesis of collected data
 /   .col-sm-2
 /     %h2
 /       IDEATE
 /     %img
 /       = image_tag "ideate.png"
-/     %p 
+/     %p
 /       create new ideas for products, services, etc.
 /   .col-sm-2
 /     %h2
@@ -714,11 +769,31 @@
         %span{:class => "shifting-word"}
           Life
 
+
+.row{:id => "worlds-largest"}
+  .col-sm-3.earth
+    %img
+      = image_tag "earth.png"
+  .col-sm-9
+    %p
+      TheDesignExchange (tDX) is the world’s largest open-source innovation archive of
+      = link_to "design methods", "https://www.thedesignexchange.org/design_methods"
+      and
+      = link_to "case studies.", "https://www.thedesignexchange.org/case_studies"
+      We support the design community through the entire life-cycle of the conceptual design process—from observation through synthesis and analysis to realization and evaluation – through our library of versatile and extensive tools.
+    %br
+    %p
+      This is a joint project led by
+      = link_to "UC Berkeley", "https://www.berkeley.edu/"
+      and
+      = link_to "M.I.T.", "http://web.mit.edu/"
+      working with the international community of design academics and practitioners.
+
 .row{:id => "showcase"}
   .col-sm-4{:id => "threehundredtext"}
-    %h1
+    -#%h1 (removed 2019)
       Discover. Apply. Contribute.
-    %br
+    -# %br
     %h2{:id => "threehundredmethods"}
       With over 300 methods to choose from, we help guide your method discovery and selection.
   .col-sm-8
@@ -751,15 +826,16 @@
         .deg288.underline-container
           Communicate
           .underline
+%br
+%br
+-#%hr 'twas a line till 2019
 
-%hr
-
-.row{:id => "methods"}
+-#.row{:id => "methods"}
   .col-sm-12
     %h1{:class => "underline-container", :id => "method-link"}
       = link_to "Methods", design_methods_path
       .underline.hide
-    %p
+    %p{:id => "para-methods"}
       Design methods provide a structure to the fuzzy and open-ended human-centered design process. We have curated a comprehensive collection of methods, organized to help you navigate the ambiguous nature of design. Our methods are actionable - with best practices, instructions for use, resources, and more to help you seamlessly embed design thinking into your work.
     .see-link
       %a
@@ -770,7 +846,7 @@
       %img
         = image_tag @method.picture_url
       .card-container
-        %h4
+        %h3
           = @method.name
         %p
           = shorten(@method.overview)
@@ -780,7 +856,7 @@
       %img
         = image_tag @method.picture_url
       .card-container
-        %h4
+        %h3
           = @method.name
         %p
           = shorten(@method.overview)
@@ -790,7 +866,48 @@
       %img
         = image_tag @method.picture_url
       .card-container
-        %h4
+        %h3
+          = @method.name
+        %p
+          = shorten(@method.overview)
+
+.row{:id => "methods"}
+  .col-sm-12
+    %h1{:class => "underline-container", :id => "method-link"}
+      = link_to "Methods", design_methods_path
+      .underline.hide
+    %p{:id => "para-methods"}
+      Design methods provide a structure to the fuzzy and open-ended human-centered design process. We have curated a comprehensive collection of methods, organized to help you navigate the ambiguous nature of design. Our methods are actionable - with best practices, instructions for use, resources, and more to help you seamlessly embed design thinking into your work.
+    .see-link
+      %a
+        = link_to "See Methods >>", design_methods_path
+  .col-sm-4
+    .card
+      - @method = DesignMethod.find(102)
+      %img
+        = image_tag "design-method-102.png"
+      .card-container
+        %h3
+          = "Web Analytics"
+        %p
+          = shorten(@method.overview)
+  .col-sm-4
+    .card
+      - @method = DesignMethod.find(13)
+      %img
+        = image_tag "design-method-111.png"
+      .card-container
+        %h3
+          = @method.name
+        %p
+          = shorten(@method.overview)
+  .col-sm-4
+    .card
+      - @method = DesignMethod.find(111)
+      %img
+        = image_tag "design-method-13.jpg"
+      .card-container
+        %h3
           = @method.name
         %p
           = shorten(@method.overview)
@@ -819,12 +936,13 @@
           = @case_study.name
         %p
           = shorten(@case_study.overview)
-        %img{:class => "col-sm-4"}
-          = image_tag @case_study.picture_url
+        %img{:class => "col-sm-4", :id => "img_case_study"}
+          = image_tag "design-method-13.jpg"
 
-%hr
 
-.row{:id => "worlds-largest"}
+-#%hr
+
+-#.row{:id => "worlds-largest"}
   .col-sm-3.earth
     %img
       = image_tag "earth.png"
