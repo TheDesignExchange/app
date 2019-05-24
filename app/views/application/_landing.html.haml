@@ -79,7 +79,7 @@
   #description {
     font-size: 36px;
     text-align: center;
-    padding-top: 0.65em;
+    padding-top: 0.25em;
     padding-bottom: 0.5em;
     //border-bottom: 1.5px solid;
     //border-color: rgba(0,0,0,0.3);
@@ -113,7 +113,6 @@
     font-size: 27px;
     font-family: 'Open Sans', sans-serif;
     font-weight: normal;
-    margin-top:-140px;
   }
   .shifting-word {
     font-family: 'Open Sans', sans-serif;
@@ -278,7 +277,6 @@
     }
     .shifting-words {
       font-size: 24px;
-      margin-top:100px;
     }
     #threehundredtext {
       left: -.3em;
@@ -614,12 +612,12 @@
     }
     .shifting-words {
       font-size: 12px;
+      padding-top: -300px;
       position: relative;
 
     }
     #description {
       font-size: 12px;
-      padding-top:30px;
     }
     h1 {
       font-size: 18px;
@@ -654,7 +652,7 @@
 
 
 
-#description
+-#description
   The world’s largest open-source innovation archive of
   = link_to "design methods", design_methods_path
   and
@@ -887,7 +885,7 @@
     .card
       - @method = DesignMethod.find(102)
       %img
-        = image_tag "https://thedesignexchange-staging.herokuapp.com/assets/design-method-102.png"
+        = image_tag "/assets/design-method-102.png"
       .card-container
         %h3
           = "Web Analytics"
@@ -897,7 +895,7 @@
     .card
       - @method = DesignMethod.find(13)
       %img
-        = image_tag "https://thedesignexchange-staging.herokuapp.com/assets/design-method-111.png"
+        = image_tag "/assets/design-method-111.png"
       .card-container
         %h3
           = @method.name
@@ -907,7 +905,7 @@
     .card
       - @method = DesignMethod.find(111)
       %img
-        = image_tag "https://thedesignexchange-staging.herokuapp.com/assets/design-method-13.jpg"
+        = image_tag "/assets/design-method-13.jpg"
       .card-container
         %h3
           = @method.name
@@ -939,7 +937,7 @@
         %p
           = shorten(@case_study.overview)
         %img{:class => "col-sm-4", :id => "img_case_study"}
-          = image_tag "https://thedesignexchange-staging.herokuapp.com/assets/case-study-201.jpeg"
+          = image_tag "/assets/design-method-13.jpg"
 
 
 -#%hr
