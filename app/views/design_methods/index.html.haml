@@ -221,7 +221,7 @@
                 - remaining_categories["/s" + category.to_s]=""
                 = link_to "x",{:controller => "design_methods", :action => "index", :filter_category=> remaining_categories,:characteristic=> params[:characteristic]}, {:style=>"color:white"}    
 
-    - if (current_user == nil || current_user.admin? || current_user.editor? || current_user.author?)
+    - if (true)
       #results-container
         #hiddenMethods{:style => "display:none"}
           %h4{:style => "margin-left:3%"}
