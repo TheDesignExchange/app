@@ -12,7 +12,7 @@ class DesignMethodsController < ApplicationController
   def index
       @design_methods = DesignMethod.where.not(completion_score: 0).order(completion_score: :desc)
       if params[:sort_order] == "completion"
-        @design_methods = DesignMethod.order(completion_score: :desc)
+        @design_methods = DesignMethod.where.not(completion_score: 0).order(completion_score: :desc)
       end
       list_of_ids = []
       if params[:characteristic] != nil
@@ -22,7 +22,7 @@ class DesignMethodsController < ApplicationController
             list_of_ids += Characteristic.find_by(name:characteristic).design_method_ids
           end
         end
-        @design_methods = DesignMethod.where(id: list_of_ids).order(completion_score: :desc)
+        @design_methods = DesignMethod.where(id: list_of_ids).where.not(completion_score: 0).order(completion_score: :desc)
       end
       if params[:filter_category] != nil
         categories = params[:filter_category].to_s.split("/s")
@@ -31,10 +31,10 @@ class DesignMethodsController < ApplicationController
             list_of_ids += MethodCategory.find_by(name:category).design_method_ids
           end
         end
-        @design_methods = DesignMethod.where(id:list_of_ids).order(completion_score: :desc)
+        @design_methods = DesignMethod.where(id:list_of_ids).where.not(completion_score: 0).order(completion_score: :desc)
       end
       if params[:characteristic] == "" and params[:filter_category] == ""
-        @design_methods = DesignMethod.order(completion_score: :desc)
+        @design_methods = DesignMethod.where.not(completion_score: 0).order(completion_score: :desc)
       end
 
       # if params[:characteristic_group] != nil
