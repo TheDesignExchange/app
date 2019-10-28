@@ -10,9 +10,9 @@ class DesignMethodsController < ApplicationController
   layout 'custom'
 
   def index
-      @design_methods = DesignMethod.where.not(completion_score: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]).order(completion_score: :desc)
+      @design_methods = DesignMethod.where.not(completion_score: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]).order(completion_score: :desc)
       if params[:sort_order] == "completion"
-        @design_methods = DesignMethod.where.not(completion_score: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]).order(completion_score: :desc)
+        @design_methods = DesignMethod.where.not(completion_score: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]).order(completion_score: :desc)
       end
       list_of_ids = []
       if params[:characteristic] != nil
@@ -22,7 +22,7 @@ class DesignMethodsController < ApplicationController
             list_of_ids += Characteristic.find_by(name:characteristic).design_method_ids
           end
         end
-        @design_methods = DesignMethod.where(id: list_of_ids).order(completion_score: :desc)
+        @design_methods = DesignMethod.where.not(completion_score: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]).where(id: list_of_ids).order(completion_score: :desc)
       end
       if params[:filter_category] != nil
         categories = params[:filter_category].to_s.split("/s")
@@ -31,10 +31,10 @@ class DesignMethodsController < ApplicationController
             list_of_ids += MethodCategory.find_by(name:category).design_method_ids
           end
         end
-        @design_methods = DesignMethod.where(id:list_of_ids).order(completion_score: :desc)
+        @design_methods = DesignMethod.where.not(completion_score: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]).where(id:list_of_ids).order(completion_score: :desc)
       end
       if params[:characteristic] == "" and params[:filter_category] == ""
-        @design_methods = DesignMethod.order(completion_score: :desc)
+        @design_methods = DesignMethod.where.not(completion_score: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]).order(completion_score: :desc)
       end
 
       # if params[:characteristic_group] != nil
@@ -44,7 +44,7 @@ class DesignMethodsController < ApplicationController
       #       list_of_ids += CharacteristicGroup.find_by(name:characteristic_group).design_method_ids
       #     end
       #   end
-      #   @design_methods = DesignMethod.where(id: list_of_ids)
+      #   @design_methods = DesignMethod.where.not(completion_score: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]).where(id: list_of_ids)
       # end
 
       # Filter bar needs
@@ -57,7 +57,7 @@ class DesignMethodsController < ApplicationController
   end
 
   def autocomplete
-    @design_method = DesignMethod.order(:name).where("name LIKE ?", "%#{params[:term]}%")
+    @design_method = DesignMethod.where.not(completion_score: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]).order(:name).where("name LIKE ?", "%#{params[:term]}%")
     respond_to do |format|
       format.html
       format.json { 
@@ -68,7 +68,7 @@ class DesignMethodsController < ApplicationController
 
   def new
     @new = true
-    @design_method = DesignMethod.new
+    @design_method = DesignMethod.where.not(completion_score: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]).new
     render :layout => "custom"
 
   end
