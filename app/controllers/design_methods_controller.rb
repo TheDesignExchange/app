@@ -10,7 +10,7 @@ class DesignMethodsController < ApplicationController
   layout 'custom'
 
   def index
-      @design_methods = DesignMethod.order(completion_score: :desc)
+      @design_methods = DesignMethod.where.not(completion_score: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]).order(completion_score: :desc)
       if params[:sort_order] == "completion"
         @design_methods = DesignMethod.order(completion_score: :desc)
       end
